@@ -1,0 +1,401 @@
+Function 0 (??):
+   32: 					self:Press(child)
+GETUPVAL R0 0
+GETUPVAL R2 1
+NAMECALL R0 R0 K0 ['Press']
+CALLFB R0 2 0 [0]
+   33: 				end))
+RETURN R0 0
+
+Function 1 (new):
+REMARK builtin assert/2
+    5: 	assert(typeof(sheet) == "Instance" and sheet:IsA("Model"), "Controller.new expects a Model")
+LOADB R2 0
+REMARK builtin typeof/1
+FASTCALL1 44 R0 L0
+MOVE R4 R0
+GETIMPORT R3 1 [typeof]
+CALL R3 1 1
+L0: JUMPXEQKS R3 K2 L1 NOT ['Instance']
+LOADK R4 K3 ['Model']
+NAMECALL R2 R0 K4 ['IsA']
+CALLFB R2 2 1 [0]
+L1: FASTCALL2K 1 R2 K5 L2 ['Controller.new expects a Model']
+LOADK R3 K5 ['Controller.new expects a Model']
+GETIMPORT R1 7 [assert]
+CALL R1 2 0
+REMARK builtin setmetatable/2
+REMARK allocation: table template 7
+    7: 	local self = setmetatable({
+L2: DUPTABLE R2 17
+    8: 		sheet = sheet,
+SETTABLEKS R0 R2 K8 ['sheet']
+REMARK allocation: table hash 0
+   13: 		states = {},
+NEWTABLE R3 0 0
+SETTABLEKS R3 R2 K15 ['states']
+REMARK allocation: table hash 0
+   14: 		connections = {},
+NEWTABLE R3 0 0
+SETTABLEKS R3 R2 K16 ['connections']
+   15: 	}, Controller)
+GETUPVAL R3 0
+FASTCALL2 61 R2 R3 L3
+    7: 	local self = setmetatable({
+GETIMPORT R1 19 [setmetatable]
+CALL R1 2 1
+   17: 	for _, child in ipairs(sheet:GetChildren()) do
+L3: GETIMPORT R2 21 [ipairs]
+NAMECALL R3 R0 K22 ['GetChildren']
+CALL R3 1 -1
+CALL R2 -1 3
+FORGPREP_INEXT R2 L5
+   18: 		if child:IsA("BasePart") then
+L4: LOADK R9 K23 ['BasePart']
+NAMECALL R7 R6 K4 ['IsA']
+CALLFB R7 2 1 [1]
+JUMPIFNOT R7 L5
+   19: 			local mesh = child:FindFirstChild("Mesh")
+LOADK R9 K24 ['Mesh']
+NAMECALL R7 R6 K25 ['FindFirstChild']
+CALLFB R7 2 1 [2]
+   20: 			local click = child:FindFirstChild("Click")
+LOADK R10 K26 ['Click']
+NAMECALL R8 R6 K25 ['FindFirstChild']
+CALLFB R8 2 1 [3]
+   21: 			local detector = child:FindFirstChildOfClass("ClickDetector")
+LOADK R11 K27 ['ClickDetector']
+NAMECALL R9 R6 K28 ['FindFirstChildOfClass']
+CALLFB R9 2 1 [4]
+   23: 			if mesh and mesh:IsA("SpecialMesh") and click and click:IsA("Sound") and detector then
+JUMPIFNOT R7 L5
+LOADK R12 K29 ['SpecialMesh']
+NAMECALL R10 R7 K4 ['IsA']
+CALLFB R10 2 1 [5]
+JUMPIFNOT R10 L5
+JUMPIFNOT R8 L5
+LOADK R12 K30 ['Sound']
+NAMECALL R10 R8 K4 ['IsA']
+CALLFB R10 2 1 [6]
+JUMPIFNOT R10 L5
+JUMPIFNOT R9 L5
+   24: 				self.states[child] = {
+GETTABLEKS R10 R1 K15 ['states']
+REMARK allocation: table template 4
+DUPTABLE R11 35
+   25: 					transparency = child.Transparency,
+GETTABLEKS R12 R6 K36 ['Transparency']
+SETTABLEKS R12 R11 K31 ['transparency']
+   26: 					meshScale = mesh.Scale,
+GETTABLEKS R12 R7 K37 ['Scale']
+SETTABLEKS R12 R11 K32 ['meshScale']
+   27: 					maxActivationDistance = detector.MaxActivationDistance,
+GETTABLEKS R12 R9 K38 ['MaxActivationDistance']
+SETTABLEKS R12 R11 K33 ['maxActivationDistance']
+   24: 				self.states[child] = {
+SETTABLE R11 R10 R6
+REMARK builtin table.insert/2+
+   31: 				table.insert(self.connections, detector.MouseClick:Connect(function()
+GETTABLEKS R11 R1 K16 ['connections']
+GETTABLEKS R12 R9 K39 ['MouseClick']
+REMARK allocation: closure with 2 upvalues
+NEWCLOSURE R14 P0
+CAPTURE VAL R1
+CAPTURE VAL R6
+NAMECALL R12 R12 K40 ['Connect']
+CALL R12 2 -1
+FASTCALL 52 L5
+GETIMPORT R10 43 [table.insert]
+CALL R10 -1 0
+   17: 	for _, child in ipairs(sheet:GetChildren()) do
+L5: FORGLOOP R2 L4 2 [inext]
+   38: 	return self
+RETURN R1 1
+
+Function 2 (??):
+   67: 		for step = 1, steps do
+LOADN R2 1
+LOADN R0 6
+LOADN R1 1
+FORNPREP R0 L3
+   68: 			task.wait(0.12 / steps)
+L0: GETIMPORT R3 2 [task.wait]
+LOADK R4 K3 [0.02]
+CALLFB R3 1 0 [0]
+   69: 			if self.destroyed or generation ~= self.generation then
+GETUPVAL R3 0
+GETTABLEKS R3 R3 K4 ['destroyed']
+JUMPIF R3 L1
+GETUPVAL R3 1
+GETUPVAL R4 0
+GETTABLEKS R4 R4 K5 ['generation']
+JUMPIFEQ R3 R4 L2
+   70: 				return
+L1: RETURN R0 0
+   72: 			local alpha = step / steps
+L2: DIVK R3 R2 K6 [6]
+   73: 			mesh.Scale = originalScale:Lerp(depressedScale, alpha)
+GETUPVAL R4 2
+GETUPVAL R5 3
+GETUPVAL R7 4
+MOVE R8 R3
+NAMECALL R5 R5 K7 ['Lerp']
+CALLFB R5 3 1 [1]
+SETTABLEKS R5 R4 K8 ['Scale']
+   67: 		for step = 1, steps do
+FORNLOOP R0 L0
+   76: 		if self.destroyed or generation ~= self.generation then
+L3: GETUPVAL R0 0
+GETTABLEKS R0 R0 K4 ['destroyed']
+JUMPIF R0 L4
+GETUPVAL R0 1
+GETUPVAL R1 0
+GETTABLEKS R1 R1 K5 ['generation']
+JUMPIFEQ R0 R1 L5
+   77: 			return
+L4: RETURN R0 0
+   80: 		part.Transparency = 1
+L5: GETUPVAL R0 5
+LOADN R1 1
+SETTABLEKS R1 R0 K9 ['Transparency']
+   81: 		click:Play()
+GETUPVAL R0 6
+NAMECALL R0 R0 K10 ['Play']
+CALLFB R0 1 0 [2]
+   82: 		self.count += 1
+GETUPVAL R0 0
+GETTABLEKS R1 R0 K11 ['count']
+ADDK R1 R1 K12 [1]
+SETTABLEKS R1 R0 K11 ['count']
+   83: 		if self.count >= 12 then
+GETUPVAL R0 0
+GETTABLEKS R0 R0 K11 ['count']
+LOADN R1 12
+JUMPIFNOTLE R1 R0 L6
+   84: 			self.complete = true
+GETUPVAL R0 0
+LOADB R1 1
+SETTABLEKS R1 R0 K13 ['complete']
+   86: 	end)
+L6: RETURN R0 0
+
+Function 3 (Press):
+   42: 	if self.destroyed or self.complete then
+GETTABLEKS R2 R0 K0 ['destroyed']
+JUMPIF R2 L0
+GETTABLEKS R2 R0 K1 ['complete']
+JUMPIFNOT R2 L1
+   43: 		return false
+L0: LOADB R2 0
+RETURN R2 1
+   46: 	local state = self.states[part]
+L1: GETTABLEKS R3 R0 K2 ['states']
+GETTABLE R2 R3 R1
+   47: 	if not state or state.pressed or not part:IsDescendantOf(self.sheet) then
+JUMPIFNOT R2 L2
+GETTABLEKS R3 R2 K3 ['pressed']
+JUMPIF R3 L2
+GETTABLEKS R5 R0 K4 ['sheet']
+NAMECALL R3 R1 K5 ['IsDescendantOf']
+CALLFB R3 2 1 [0]
+JUMPIF R3 L3
+   48: 		return false
+L2: LOADB R3 0
+RETURN R3 1
+   51: 	local mesh = part:FindFirstChild("Mesh")
+L3: LOADK R5 K6 ['Mesh']
+NAMECALL R3 R1 K7 ['FindFirstChild']
+CALLFB R3 2 1 [1]
+   52: 	local click = part:FindFirstChild("Click")
+LOADK R6 K8 ['Click']
+NAMECALL R4 R1 K7 ['FindFirstChild']
+CALLFB R4 2 1 [2]
+   53: 	local detector = part:FindFirstChildOfClass("ClickDetector")
+LOADK R7 K9 ['ClickDetector']
+NAMECALL R5 R1 K10 ['FindFirstChildOfClass']
+CALLFB R5 2 1 [3]
+   54: 	if not mesh or not mesh:IsA("SpecialMesh") or not click or not click:IsA("Sound") or not detector then
+JUMPIFNOT R3 L4
+LOADK R8 K11 ['SpecialMesh']
+NAMECALL R6 R3 K12 ['IsA']
+CALLFB R6 2 1 [4]
+JUMPIFNOT R6 L4
+JUMPIFNOT R4 L4
+LOADK R8 K13 ['Sound']
+NAMECALL R6 R4 K12 ['IsA']
+CALLFB R6 2 1 [5]
+JUMPIFNOT R6 L4
+JUMPIF R5 L5
+   55: 		return false
+L4: LOADB R6 0
+RETURN R6 1
+   58: 	state.pressed = true
+L5: LOADB R6 1
+SETTABLEKS R6 R2 K3 ['pressed']
+   59: 	detector.MaxActivationDistance = 0
+LOADN R6 0
+SETTABLEKS R6 R5 K14 ['MaxActivationDistance']
+   60: 	self.generation += 1
+GETTABLEKS R6 R0 K15 ['generation']
+ADDK R6 R6 K16 [1]
+SETTABLEKS R6 R0 K15 ['generation']
+   61: 	local generation = self.generation
+GETTABLEKS R6 R0 K15 ['generation']
+   63: 	local originalScale = state.meshScale
+GETTABLEKS R7 R2 K17 ['meshScale']
+   64: 	local depressedScale = Vector3.new(originalScale.X, originalScale.Y * 0.7, originalScale.Z)
+GETIMPORT R8 20 [Vector3.new]
+GETTABLEKS R9 R7 K21 ['X']
+GETTABLEKS R11 R7 K23 ['Y']
+MULK R10 R11 K22 [0.69999999999999996]
+GETTABLEKS R11 R7 K24 ['Z']
+CALLFB R8 3 1 [6]
+   66: 	task.spawn(function()
+GETIMPORT R9 27 [task.spawn]
+REMARK allocation: closure with 7 upvalues
+NEWCLOSURE R10 P0
+CAPTURE VAL R0
+CAPTURE VAL R6
+CAPTURE VAL R3
+CAPTURE VAL R7
+CAPTURE VAL R8
+CAPTURE VAL R1
+CAPTURE VAL R4
+CALLFB R9 1 0 [7]
+   88: 	return true
+LOADB R9 1
+RETURN R9 1
+
+Function 4 (Reset):
+   92: 	if self.destroyed then
+GETTABLEKS R1 R0 K0 ['destroyed']
+JUMPIFNOT R1 L0
+   93: 		return
+RETURN R0 0
+   96: 	self.generation += 1
+L0: GETTABLEKS R1 R0 K1 ['generation']
+ADDK R1 R1 K2 [1]
+SETTABLEKS R1 R0 K1 ['generation']
+   97: 	self.count = 0
+LOADN R1 0
+SETTABLEKS R1 R0 K3 ['count']
+   98: 	self.complete = false
+LOADB R1 0
+SETTABLEKS R1 R0 K4 ['complete']
+  100: 	for part, state in pairs(self.states) do
+GETIMPORT R1 6 [pairs]
+GETTABLEKS R2 R0 K7 ['states']
+CALLFB R1 1 3 [0]
+FORGPREP_NEXT R1 L4
+  101: 		if part and part.Parent then
+L1: JUMPIFNOT R4 L3
+GETTABLEKS R6 R4 K8 ['Parent']
+JUMPIFNOT R6 L3
+  102: 			local mesh = part:FindFirstChild("Mesh")
+LOADK R8 K9 ['Mesh']
+NAMECALL R6 R4 K10 ['FindFirstChild']
+CALLFB R6 2 1 [1]
+  103: 			local detector = part:FindFirstChildOfClass("ClickDetector")
+LOADK R9 K11 ['ClickDetector']
+NAMECALL R7 R4 K12 ['FindFirstChildOfClass']
+CALLFB R7 2 1 [2]
+  104: 			part.Transparency = state.transparency
+GETTABLEKS R8 R5 K13 ['transparency']
+SETTABLEKS R8 R4 K14 ['Transparency']
+  105: 			if mesh and mesh:IsA("SpecialMesh") then
+JUMPIFNOT R6 L2
+LOADK R10 K15 ['SpecialMesh']
+NAMECALL R8 R6 K16 ['IsA']
+CALLFB R8 2 1 [3]
+JUMPIFNOT R8 L2
+  106: 				mesh.Scale = state.meshScale
+GETTABLEKS R8 R5 K17 ['meshScale']
+SETTABLEKS R8 R6 K18 ['Scale']
+  108: 			if detector then
+L2: JUMPIFNOT R7 L3
+  109: 				detector.MaxActivationDistance = state.maxActivationDistance
+GETTABLEKS R8 R5 K19 ['maxActivationDistance']
+SETTABLEKS R8 R7 K20 ['MaxActivationDistance']
+  112: 		state.pressed = false
+L3: LOADB R6 0
+SETTABLEKS R6 R5 K21 ['pressed']
+  100: 	for part, state in pairs(self.states) do
+L4: FORGLOOP R1 L1 2
+  114: end
+RETURN R0 0
+
+Function 5 (Destroy):
+  117: 	if self.destroyed then
+GETTABLEKS R1 R0 K0 ['destroyed']
+JUMPIFNOT R1 L0
+  118: 		return
+RETURN R0 0
+  121: 	self.destroyed = true
+L0: LOADB R1 1
+SETTABLEKS R1 R0 K0 ['destroyed']
+  122: 	self.generation += 1
+GETTABLEKS R1 R0 K1 ['generation']
+ADDK R1 R1 K2 [1]
+SETTABLEKS R1 R0 K1 ['generation']
+  123: 	for _, connection in ipairs(self.connections) do
+GETIMPORT R1 4 [ipairs]
+GETTABLEKS R2 R0 K5 ['connections']
+CALLFB R1 1 3 [0]
+FORGPREP_INEXT R1 L2
+  124: 		connection:Disconnect()
+L1: NAMECALL R6 R5 K6 ['Disconnect']
+CALLFB R6 1 0 [1]
+  123: 	for _, connection in ipairs(self.connections) do
+L2: FORGLOOP R1 L1 2 [inext]
+  126: 	table.clear(self.connections)
+GETIMPORT R1 9 [table.clear]
+GETTABLEKS R2 R0 K5 ['connections']
+CALLFB R1 1 0 [2]
+  127: 	table.clear(self.states)
+GETIMPORT R1 9 [table.clear]
+GETTABLEKS R2 R0 K10 ['states']
+CALLFB R1 1 0 [3]
+  128: 	self.sheet = nil
+LOADNIL R1
+SETTABLEKS R1 R0 K11 ['sheet']
+  129: end
+RETURN R0 0
+
+Function 6 (GetCount):
+  132: 	return self.count
+GETTABLEKS R1 R0 K0 ['count']
+RETURN R1 1
+
+Function 7 (IsComplete):
+  136: 	return self.complete
+GETTABLEKS R1 R0 K0 ['complete']
+RETURN R1 1
+
+Function 8 (??):
+REMARK allocation: table hash 7
+    1: local Controller = {}
+NEWTABLE R0 8 0
+    2: Controller.__index = Controller
+SETTABLEKS R0 R0 K0 ['__index']
+    4: function Controller.new(sheet)
+DUPCLOSURE R1 K1 ['new']
+CAPTURE VAL R0
+SETTABLEKS R1 R0 K2 ['new']
+   41: function Controller:Press(part)
+DUPCLOSURE R1 K3 ['Press']
+SETTABLEKS R1 R0 K4 ['Press']
+   91: function Controller:Reset()
+DUPCLOSURE R1 K5 ['Reset']
+SETTABLEKS R1 R0 K6 ['Reset']
+  116: function Controller:Destroy()
+DUPCLOSURE R1 K7 ['Destroy']
+SETTABLEKS R1 R0 K8 ['Destroy']
+  131: function Controller:GetCount()
+DUPCLOSURE R1 K9 ['GetCount']
+SETTABLEKS R1 R0 K10 ['GetCount']
+  135: function Controller:IsComplete()
+DUPCLOSURE R1 K11 ['IsComplete']
+SETTABLEKS R1 R0 K12 ['IsComplete']
+  139: return Controller
+RETURN R0 1
+

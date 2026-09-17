@@ -1,0 +1,128 @@
+{
+  "packetHash": "a1b88c60edf3a1ff04c4a4d41b1d9c5710a80fb61c2bf59e989f9609acece002",
+  "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+  "disposition": "unsuitable",
+  "reason": "The asset contains an unresolved dynamic require via NumberPose Value in an extraneous Package script, preventing safe direct integration.",
+  "serializedMedia": [
+    {
+      "index": 16,
+      "property": "Texture",
+      "value": "rbxasset://textures/face.png",
+      "purpose": "Standard default facial decal for the R6 humanoid dummy head.",
+      "verification": "unverified"
+    }
+  ],
+  "sources": [
+    {
+      "sha256": "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873",
+      "behavior": "Executes lighting setup and performs a dynamic require on Module.Value. Not relevant to dummy combat behavior.",
+      "reuse": "unsuitable",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "RunService",
+          "sourceQuote": "local RunService = game:GetService(\"RunService\")",
+          "verification": "unverified"
+        },
+        {
+          "kind": "service",
+          "value": "Lighting",
+          "sourceQuote": "local Lighting = game:GetService(\"Lighting\")",
+          "verification": "unverified"
+        },
+        {
+          "kind": "dynamic_or_unresolved",
+          "value": "script:WaitForChild(\"TextureConfiguration\", 4).Module.Value",
+          "sourceQuote": "local TextureConfiguration = require(script:WaitForChild(\"TextureConfiguration\", 4).Module.Value)",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": [
+        "Dynamic require of Module.Value resolves to an unverified external target."
+      ]
+    },
+    {
+      "sha256": "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28",
+      "behavior": "Utility module providing texture presets and texture optimization methods.",
+      "reuse": "unsuitable",
+      "dependencies": [],
+      "unresolved": []
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-dummy-rig",
+      "status": "static_evidence_present",
+      "reason": "Contains R6 dummy rig hierarchy with Motor6D joints and Humanoid, though bundled scripts are problematic.",
+      "sourceHashes": [],
+      "nodeIndices": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "requirementId": "req-combat-combo",
+      "status": "integration_needed",
+      "reason": "No attack combo execution or player animation logic is present in this asset.",
+      "sourceHashes": [],
+      "nodeIndices": []
+    },
+    {
+      "requirementId": "req-dummy-health-reset",
+      "status": "integration_needed",
+      "reason": "Includes a standard Humanoid instance but lacks defeat handling and health reset logic.",
+      "sourceHashes": [],
+      "nodeIndices": [
+        17
+      ]
+    }
+  ],
+  "permissionImpacts": [
+    {
+      "capability": "DataStore",
+      "impact": "none_observed",
+      "reason": "No DataStore access is performed in the source code.",
+      "sourceHashes": [
+        "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873",
+        "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28"
+      ]
+    },
+    {
+      "capability": "Network",
+      "impact": "none_observed",
+      "reason": "No HTTP requests or external network operations are present.",
+      "sourceHashes": [
+        "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873",
+        "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28"
+      ]
+    },
+    {
+      "capability": "ScriptGlobals",
+      "impact": "none_observed",
+      "reason": "Scripts do not interact with shared or _G globals.",
+      "sourceHashes": [
+        "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873",
+        "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28"
+      ]
+    }
+  ],
+  "integrationNotes": [
+    "The R6 Dummy hierarchy itself is standard, but the included Package script with dynamic require must be rejected.",
+    "Author a clean dummy model and combat controller without the third-party texture/lighting package."
+  ],
+  "runtimeVerification": "not_performed"
+}

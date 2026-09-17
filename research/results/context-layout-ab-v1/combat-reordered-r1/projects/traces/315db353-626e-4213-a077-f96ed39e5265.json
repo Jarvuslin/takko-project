@@ -1,0 +1,6 @@
+{
+  "phase": "reviewer",
+  "model": "openai/gpt-4.1-mini",
+  "response": "{\n  \"issues\": [],\n  \"tests\": [\n    {\n      \"id\": \"coreTest\",\n      \"requirementId\": \"core\",\n      \"mode\": \"server\",\n      \"source\": \"local M=require('./Logic')\\nlocal a=M.new(0.25,1)\\nassert(a:getHits()==0 and a:hit('dummy')==false,'initial')\\nassert(a:attack(0)==1,'first')\\nassert(a:hit('dummy')==true and a:hit('dummy')==false,'dedup')\\nassert(a:hit('')==false and a:hit('other')==true,'target identities')\\nassert(a:attack(0.2)==nil and a:attack(0.25)==2,'cooldown and rejected timing')\\nassert(a:hit('dummy')==true and a:getHits()==3,'new swing')\\nassert(a:attack(0.5)==3 and a:attack(0.75)==1,'cycle')\\nassert(a:attack(1.75)==2,'exact reset boundary')\\nassert(a:attack(3)==1,'expired combo')\\nassert(M.new(0.25,1):getHits()==0,'independent')\\na:reset()\\nassert(a:getHits()==0 and a:hit('dummy')==false and a:attack(0)==1,'reset')\\nprint('PASS combat')\"\n    }\n  ]\n}",
+  "at": "2026-09-16T06:53:19.388Z"
+}

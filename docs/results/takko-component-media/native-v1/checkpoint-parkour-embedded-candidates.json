@@ -1,0 +1,65 @@
+{
+  "audioNeed": {
+    "id": "checkpointSound",
+    "requirementId": "req-checkpoint-activation",
+    "role": "Audio chime played when activating an ordered checkpoint",
+    "kind": "Audio",
+    "query": "checkpoint chime chime bell ding",
+    "constraints": "Short positive confirmation jingle under 2 seconds",
+    "intent": {
+      "experienceRole": "Gives immediate crisp audio satisfaction upon achieving intermediate course progress.",
+      "interaction": "Plays synchronously when server validates checkpoint activation.",
+      "reusableFeatures": [
+        "Audible chime waveform"
+      ],
+      "relatedRequirementIds": [
+        "req-checkpoint-activation"
+      ]
+    },
+    "required": true,
+    "position": [
+      0,
+      10,
+      30
+    ],
+    "maxSize": 5
+  },
+  "media": {
+    "candidates": [],
+    "receipts": [
+      {
+        "operation": "component_audio_discovery_intent",
+        "at": "2026-09-16T16:18:44.091Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "readOnly": true,
+          "nativeOperations": false
+        }
+      },
+      {
+        "operation": "component_audio_discovery",
+        "at": "2026-09-16T16:18:44.300Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "component": {
+            "recordHash": "9dafd4af8d2b2ab8eb5bf9c1a2d08d92450de8a40ef03eff9f7609bace90f92d",
+            "needId": "checkpointPadModel",
+            "candidateId": "398137408",
+            "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+            "packetHash": "e3fd5a8cc6270e57e051750a5e74ab715df603bbd9f8a5833d8f2f54680e5cd6",
+            "archiveHash": "075770b6e843129af00d67e144ff8dad724de0a5d951899562042058c075344d",
+            "conversionHash": "68112a747dbbf95233272205847f584d8dce60489829f584f4a05d7b285f0d25",
+            "destinationPath": "Workspace/MediaRegression_ed3fe7dd28f4/Assets/checkpointPadModel",
+            "rootName": "Imported",
+            "runtimeVerification": "not_performed",
+            "placement": "worker_integration_required"
+          },
+          "candidates": [],
+          "runtimeVerification": "not_performed",
+          "playbackVerification": "required"
+        }
+      }
+    ]
+  },
+  "evaluation": "Discovery only; not listening acceptance"
+}

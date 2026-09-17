@@ -1,0 +1,37 @@
+{
+  "createdAt": "2026-09-16T01:49:02.1689972Z",
+  "policySource": "User latest clarification: audio Marketplace mandatory, everything else Marketplace first if possible",
+  "promptFileSha256": "591fb62a702e0b7c96925f36def1179cd8d9f7c21999cbe4ecf648cf2e48a0bd",
+  "runs": [
+    {
+      "model": "minimax/minimax-m3",
+      "profileId": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+      "projectId": "6910370f-c548-4641-8bfe-3001b0921d86",
+      "status": "prepared",
+      "qualityScore": null
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "profileId": "3feda1ba-ad30-45de-9d47-b33785414efc",
+      "projectId": "7550326e-b964-4bd7-a3bb-532a659a77fb",
+      "status": "prepared",
+      "qualityScore": null
+    },
+    {
+      "model": "x-ai/grok-build-0.1",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "projectId": "8bcbebbd-8d25-4c34-b539-04ecb5d92d7b",
+      "status": "prepared",
+      "qualityScore": null
+    }
+  ],
+  "plannerReviewer": "google/gemini-3.7-flash",
+  "perRunBudgetMicros": 1800000,
+  "priorReservationsMicros": 439890,
+  "combinedCeilingMicros": 6000000,
+  "repairRounds": 1,
+  "maxOutputTokens": 24000,
+  "manualGameAssetOrPlanRescue": false,
+  "policyEnforcement": "Explicit model instruction, existing asset pipeline, external plan acceptance; no new automatic semantic planner guard implemented",
+  "status": "running"
+}

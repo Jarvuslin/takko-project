@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "quarry-asset-integration",
+  "fixtureVersion": "1.0.0",
+  "purpose": "starting_fixture_not_candidate_quality_evidence",
+  "scope": "Forge_GenerationPilot",
+  "artifactSha256": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+  "bundleFileSha256": "82229a7dfd68c3f1a97ab2a4866a2a85dfc5a0ef6070145592e9044254406752",
+  "exportHash": "6ff9e32c4cd1a98336fbb784628c680fa6660324331508d545ce24d920b7c35a",
+  "bundlePath": "bundle.json",
+  "exportPath": "export.rbxlx",
+  "caseBindings": [
+    {
+      "caseId": "dev.asset-integration",
+      "caseVersion": "1.0.0",
+      "promptSha256": "257ceac9480b4fa804fa8361c976a1c592548739f9150245de169ac2ea3bf675"
+    }
+  ],
+  "provenance": "Exact public bundle from frozen authored Crystal Hollow visual V2. Historical coverage is retained but is not this development task's quality evidence. No project wrapper, model traces, credentials or private source path included. Native baseline history is documented separately."
+}

@@ -1,0 +1,1214 @@
+{
+  "kind": "native-product-audio-regression",
+  "benchmarkEligible": false,
+  "paidCalls": 0,
+  "sourceProject": "D:\\RobloxProjects\\Roblox Gen\\benchmarks\\runs\\butter-crunch-marketplace-v3-20260915\\grok-final-project.json",
+  "sourceSha256": "a1ddc1a4356e3cc6eec331debf97ec47024dd0b78dc75b26e1ff5c12422a26b3",
+  "sourceHashesAtStart": {
+    "src/generation/studio-audio-runtime.ts": "60b2cd7a79c0fb552bcc36b2440cf8bc31f9a688388f8df86087efbb6180f202",
+    "src/generation/studio-asset-adapter.ts": "cdb86ce84c76e966115eaf13522ba75dd12221ed7f18c43807e0fb9379663975",
+    "src/generation/audio-capture.ts": "5b98723827c174fc68a15063fe6fe636baf8455f57b04c52de33278343e43247",
+    "src/generation/audio-evidence.ts": "85c621b71e01e9befe4640451f36da0a0afb9d22741070e7f1d50b992893a4f5",
+    "src/generation/studio-state.ts": "8deb7ea2ea17edb4316d5bc932f11997d5379c400d99ca2f9f6e0e957fc29c2c"
+  },
+  "selection": {
+    "at": "2026-09-16T02:09:35.787Z",
+    "needId": "crunchAudio",
+    "step": "candidate_selected",
+    "data": {
+      "candidate": {
+        "id": "76469933896339",
+        "name": "WBite2",
+        "kind": "Audio",
+        "creator": "roboloc2200",
+        "sourceUrl": "https://create.roblox.com/store/asset/76469933896339",
+        "price": 0,
+        "source": "creator_store"
+      },
+      "reason": "WBite2 is the most relevant candidate for a crunch bite crisp food impact sound effect based on its name directly implying a bite sound suitable for the requirement. Reze Boom implies an explosion and a train take off is unrelated to food crunch or bite.",
+      "attempt": 1
+    }
+  },
+  "query": "crunch bite crisp food impact sound effect",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+  "startedAt": "2026-09-16T03:01:06.007Z",
+  "passed": true,
+  "discovery": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+      }
+    ],
+    "isError": false
+  },
+  "before": {
+    "content": [
+      {
+        "type": "text",
+        "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+      }
+    ],
+    "isError": false
+  },
+  "search": {
+    "candidates": [
+      {
+        "id": "99588347376471",
+        "name": "Reze Boom",
+        "kind": "Audio",
+        "creator": "ZedBlade_1",
+        "sourceUrl": "https://create.roblox.com/store/asset/99588347376471",
+        "price": 0,
+        "source": "creator_store"
+      },
+      {
+        "id": "76469933896339",
+        "name": "WBite2",
+        "kind": "Audio",
+        "creator": "roboloc2200",
+        "sourceUrl": "https://create.roblox.com/store/asset/76469933896339",
+        "price": 0,
+        "source": "creator_store"
+      },
+      {
+        "id": "90856500472439",
+        "name": "a train take off",
+        "kind": "Audio",
+        "creator": "pookahstar",
+        "sourceUrl": "https://create.roblox.com/store/asset/90856500472439",
+        "price": 0,
+        "source": "creator_store"
+      },
+      {
+        "id": "93198604965847",
+        "name": "Kunigami - Header",
+        "kind": "Audio",
+        "creator": "Axellatic",
+        "sourceUrl": "https://create.roblox.com/store/asset/93198604965847",
+        "price": 0,
+        "source": "creator_store"
+      },
+      {
+        "id": "76766736915389",
+        "name": "WolfBite1",
+        "kind": "Audio",
+        "creator": "Dartharsveider",
+        "sourceUrl": "https://create.roblox.com/store/asset/76766736915389",
+        "price": 0,
+        "source": "creator_store"
+      }
+    ],
+    "receipts": [
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:06.072Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "search_asset",
+        "at": "2026-09-16T03:01:06.316Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"scope\":\"creator_store\",\"nextSteps\":[\"Review the results and choose the best asset for the user's request. Prefer inventory results (source='inventory') as these are already owned and always insertable.\",\"For free/owned assets: call insert_asset with assetId, assetType, and assetName from the chosen result to insert it.\",\"For paid assets (isFree=false): show the user the creatorStoreUrl link and priceLabel so they can purchase it. Do not attempt to insert paid assets — they will fail.\",\"Some Creator Store assets may be restricted or moderated and fail to insert. If insert_asset fails, try the next result from the list rather than retrying the same asset.\"],\"resultCount\":5,\"query\":\"crunch bite crisp food impact sound effect\",\"status\":\"success\",\"searchSources\":[\"creator_store\"],\"context\":{\"userId\":\"11119876005\",\"isPublished\":false},\"results\":[{\"description\":\"5 big booms\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/99588347376471\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=99588347376471&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"99588347376471\",\"name\":\"Reze Boom\",\"priceCents\":0,\"creatorName\":\"ZedBlade_1\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/76469933896339\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=76469933896339&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"76469933896339\",\"name\":\"WBite2\",\"priceCents\":0,\"creatorName\":\"roboloc2200\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/90856500472439\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=90856500472439&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"90856500472439\",\"name\":\"a train take off\",\"priceCents\":0,\"creatorName\":\"pookahstar\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/93198604965847\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=93198604965847&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"93198604965847\",\"name\":\"Kunigami - Header\",\"priceCents\":0,\"creatorName\":\"Axellatic\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/76766736915389\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=76766736915389&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"76766736915389\",\"name\":\"WolfBite1\",\"priceCents\":0,\"creatorName\":\"Dartharsveider\",\"source\":\"creator_store\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    ]
+  },
+  "inspection": {
+    "candidate": {
+      "id": "76469933896339",
+      "name": "WBite2",
+      "kind": "Audio",
+      "creator": "roboloc2200",
+      "sourceUrl": "https://create.roblox.com/store/asset/76469933896339",
+      "price": 0,
+      "source": "creator_store"
+    },
+    "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+    "path": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076/Imported",
+    "safe": true,
+    "reasons": [],
+    "snapshot": {
+      "marker": "takko_asset_v1",
+      "operation": "inspect",
+      "ok": true,
+      "reasons": [],
+      "functional": {
+        "contentLoaded": true,
+        "instanceCount": 1,
+        "scriptCount": 0
+      },
+      "scene": [],
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "size": 1
+    },
+    "functional": {
+      "contentLoaded": true,
+      "instanceCount": 1,
+      "scriptCount": 0,
+      "playbackObserved": true
+    },
+    "image": "[binary evidence stored separately by adapter]",
+    "audio": {
+      "dataUrl": "[binary evidence stored separately by adapter]",
+      "sha256": "c9543ff1de923e26ac1e3b6ea840fe6cd5d98cfd68a772d1dc87a75df45fb79b",
+      "durationMs": 7992.222222222222,
+      "sampleRate": 44100,
+      "channels": 2,
+      "rms": 0.032991261320691474,
+      "peak": 0.265045166015625,
+      "source": {
+        "kind": "studio_process_loopback",
+        "mode": "include_process_tree",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "candidateId": "76469933896339",
+        "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+        "processId": 12712,
+        "processStartedAt": "2026-09-15T18:52:26.9645393Z",
+        "capturedAt": "2026-09-16T03:01:11.8347011Z",
+        "file": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\takko-audio-runtime-native-v2\\c9543ff1de923e26ac1e3b6ea840fe6cd5d98cfd68a772d1dc87a75df45fb79b.wav",
+        "leadingSilenceFrames": 539,
+        "audition": {
+          "runtimeNonce": "823a8c9d-8021-444d-bda0-b5dea3e340ab",
+          "soundId": "rbxassetid://76469933896339",
+          "nativeTimeLengthSeconds": 1.88,
+          "playbackSpeed": 1,
+          "playbackLimitSeconds": 5,
+          "playbackElapsedSeconds": 1.9144682999976794,
+          "maxTimePositionSeconds": 1.877,
+          "endedNaturally": true,
+          "playbackWindowTruncated": false
+        }
+      }
+    },
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T03:01:06.318Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "prepare",
+          "sessionId": "f1082a89-1b27-4562-b5be-1912e687e898",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/AssetPreviews/attempt_ecb80192e8d30f3fb1960076",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:06.319Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T03:01:06.328Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T03:01:06.353Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:06.355Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T03:01:06.366Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "insert_asset",
+        "at": "2026-09-16T03:01:06.417Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"insertGuid\":\"5252a927-236f-41c7-87f1-3f33b04bff01\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.TakkoAudioDiagnostic_deebad6f786b4566.AssetStaging.attempt_ecb80192e8d30f3fb1960076.Imported\",\"name\":\"Imported\",\"className\":\"Sound\"}],\"sandboxed\":false,\"assetType\":\"Audio\",\"assetId\":\"76469933896339\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:5252a927-236f-41c7-87f1-3f33b04bff01\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T03:01:06.417Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "inspect",
+          "sessionId": "f1082a89-1b27-4562-b5be-1912e687e898",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/AssetPreviews/attempt_ecb80192e8d30f3fb1960076",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:06.418Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T03:01:06.428Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T03:01:06.565Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"reasons\":[],\"center\":[0,0,0],\"ok\":true,\"functional\":{\"scriptCount\":0,\"contentLoaded\":true,\"instanceCount\":1},\"operation\":\"inspect\",\"marker\":\"takko_asset_v1\",\"size\":1}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T03:01:06.566Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "preview",
+          "sessionId": "f1082a89-1b27-4562-b5be-1912e687e898",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/AssetPreviews/attempt_ecb80192e8d30f3fb1960076",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:06.567Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T03:01:06.578Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T03:01:06.666Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"preview\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_binding",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:07.008Z",
+        "data": {
+          "binding": {
+            "pid": 12712,
+            "startedAt": "2026-09-15T18:52:26.9645393Z",
+            "executable": "C:\\Users\\7474g\\AppData\\Local\\Roblox\\Versions\\version-55808de4b1914919\\RobloxStudioBeta.exe"
+          },
+          "marker": "TakkoAudition_823a8c9d8021444dbda0b5dea3e340ab",
+          "nonce": "823a8c9d-8021-444d-bda0-b5dea3e340ab",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb"
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:07.335Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:07.365Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"prepare\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:07.703Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "start_stop_play",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:10.617Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Game Started"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:10.953Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:10.978Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"claim\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:11.310Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:11.391Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"playbackSpeed\":1,\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\",\"marker\":\"takko_audio_runtime_v1\",\"operation\":\"load\",\"soundId\":\"rbxassetid://76469933896339\",\"nativeTimeLengthSeconds\":1.88}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:12.703Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:14.648Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\",\"marker\":\"takko_audio_runtime_v1\",\"operation\":\"playback\",\"playbackWindowTruncated\":false,\"reason\":\"\",\"playbackSpeed\":1,\"maxTimePositionSeconds\":1.877,\"endedNaturally\":true,\"playbackElapsedSeconds\":1.9144682999976795,\"soundId\":\"rbxassetid://76469933896339\",\"playbackObserved\":true,\"playbackLimitSeconds\":5,\"nativeTimeLengthSeconds\":1.88}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:20.672Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:20.697Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"ownership\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "start_stop_play",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:21.715Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Game Stopped"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:22.151Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:22.173Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"restore\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"823a8c9d-8021-444d-bda0-b5dea3e340ab\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_restored",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:22.173Z",
+        "data": {
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "nonce": "823a8c9d-8021-444d-bda0-b5dea3e340ab",
+          "editVerified": true,
+          "markerRemoved": true
+        }
+      },
+      {
+        "operation": "audio_capture",
+        "at": "2026-09-16T03:01:22.196Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "source": {
+            "kind": "studio_process_loopback",
+            "mode": "include_process_tree",
+            "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+            "candidateId": "76469933896339",
+            "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+            "processId": 12712,
+            "processStartedAt": "2026-09-15T18:52:26.9645393Z",
+            "capturedAt": "2026-09-16T03:01:11.8347011Z",
+            "file": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\takko-audio-runtime-native-v2\\c9543ff1de923e26ac1e3b6ea840fe6cd5d98cfd68a772d1dc87a75df45fb79b.wav",
+            "leadingSilenceFrames": 539,
+            "audition": {
+              "runtimeNonce": "823a8c9d-8021-444d-bda0-b5dea3e340ab",
+              "soundId": "rbxassetid://76469933896339",
+              "nativeTimeLengthSeconds": 1.88,
+              "playbackSpeed": 1,
+              "playbackLimitSeconds": 5,
+              "playbackElapsedSeconds": 1.9144682999976794,
+              "maxTimePositionSeconds": 1.877,
+              "endedNaturally": true,
+              "playbackWindowTruncated": false
+            }
+          },
+          "sha256": "c9543ff1de923e26ac1e3b6ea840fe6cd5d98cfd68a772d1dc87a75df45fb79b",
+          "durationMs": 7992.222222222222,
+          "playbackObserved": true
+        }
+      }
+    ]
+  },
+  "placement": {
+    "passed": true,
+    "reasons": [],
+    "snapshot": {
+      "marker": "takko_asset_v1",
+      "operation": "place",
+      "ok": true,
+      "reasons": [],
+      "functional": {
+        "contentLoaded": true,
+        "instanceCount": 1,
+        "scriptCount": 0,
+        "playbackObserved": false
+      },
+      "scene": [
+        {
+          "path": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio",
+          "className": "Sound",
+          "properties": {
+            "RollOffMode": {
+              "type": "Enum",
+              "enum": "RollOffMode",
+              "value": 0
+            },
+            "Looped": false,
+            "PlaybackSpeed": 1,
+            "PlayOnRemove": false,
+            "RollOffMaxDistance": 10000,
+            "Volume": 0.6499999761581421,
+            "SoundId": "rbxassetid://76469933896339",
+            "Playing": false,
+            "Archivable": true,
+            "RollOffMinDistance": 10
+          }
+        }
+      ],
+      "center": [
+        0,
+        4,
+        0
+      ],
+      "size": 1,
+      "audibilityVerified": false,
+      "functionalVerified": false
+    },
+    "functional": {
+      "contentLoaded": true,
+      "instanceCount": 1,
+      "scriptCount": 0,
+      "playbackObserved": true
+    },
+    "image": "[binary evidence stored separately by adapter]",
+    "audio": {
+      "dataUrl": "[binary evidence stored separately by adapter]",
+      "sha256": "ac5d2e7c4dae157ac40b1e4a537e9a58ccb664dc3e7685c5f1142cd4ace287a8",
+      "durationMs": 8000,
+      "sampleRate": 44100,
+      "channels": 2,
+      "rms": 0.03297518579539836,
+      "peak": 0.261962890625,
+      "source": {
+        "kind": "studio_process_loopback",
+        "mode": "include_process_tree",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "candidateId": "76469933896339",
+        "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+        "processId": 12712,
+        "processStartedAt": "2026-09-15T18:52:26.9645393Z",
+        "capturedAt": "2026-09-16T03:01:28.7134479Z",
+        "file": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\takko-audio-runtime-native-v2\\ac5d2e7c4dae157ac40b1e4a537e9a58ccb664dc3e7685c5f1142cd4ace287a8.wav",
+        "leadingSilenceFrames": 1323,
+        "audition": {
+          "runtimeNonce": "fa7d092c-696b-4fb9-91aa-31780fa016fe",
+          "soundId": "rbxassetid://76469933896339",
+          "nativeTimeLengthSeconds": 1.88,
+          "playbackSpeed": 1,
+          "playbackLimitSeconds": 5,
+          "playbackElapsedSeconds": 1.890639999997802,
+          "maxTimePositionSeconds": 1.856,
+          "endedNaturally": true,
+          "playbackWindowTruncated": false
+        }
+      }
+    },
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T03:01:22.204Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "place",
+          "sessionId": "f1082a89-1b27-4562-b5be-1912e687e898",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/AssetPreviews/attempt_ecb80192e8d30f3fb1960076",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T03:01:22.205Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T03:01:22.217Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T03:01:22.297Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"reasons\":[],\"scene\":[{\"path\":\"Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio\",\"properties\":{\"RollOffMode\":{\"value\":0,\"type\":\"Enum\",\"enum\":\"RollOffMode\"},\"Looped\":false,\"PlaybackSpeed\":1,\"PlayOnRemove\":false,\"RollOffMaxDistance\":10000,\"Volume\":0.6499999761581421,\"SoundId\":\"rbxassetid://76469933896339\",\"Playing\":false,\"Archivable\":true,\"RollOffMinDistance\":10},\"className\":\"Sound\"}],\"audibilityVerified\":false,\"functional\":{\"scriptCount\":0,\"contentLoaded\":true,\"instanceCount\":1,\"playbackObserved\":false},\"functionalVerified\":false,\"center\":[0,4,0],\"ok\":true,\"operation\":\"place\",\"marker\":\"takko_asset_v1\",\"size\":1}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_binding",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:22.699Z",
+        "data": {
+          "binding": {
+            "pid": 12712,
+            "startedAt": "2026-09-15T18:52:26.9645393Z",
+            "executable": "C:\\Users\\7474g\\AppData\\Local\\Roblox\\Versions\\version-55808de4b1914919\\RobloxStudioBeta.exe"
+          },
+          "marker": "TakkoAudition_fa7d092c696b4fb991aa31780fa016fe",
+          "nonce": "fa7d092c-696b-4fb9-91aa-31780fa016fe",
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb"
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:23.116Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:23.148Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"prepare\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:23.648Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "start_stop_play",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:27.122Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Game Started"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:27.590Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:27.609Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"claim\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:28.064Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:28.141Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"playbackSpeed\":1,\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\",\"marker\":\"takko_audio_runtime_v1\",\"operation\":\"load\",\"soundId\":\"rbxassetid://76469933896339\",\"nativeTimeLengthSeconds\":1.88}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:29.727Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:31.654Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\",\"marker\":\"takko_audio_runtime_v1\",\"operation\":\"playback\",\"playbackWindowTruncated\":false,\"reason\":\"\",\"playbackSpeed\":1,\"maxTimePositionSeconds\":1.856,\"endedNaturally\":true,\"playbackElapsedSeconds\":1.890639999997802,\"soundId\":\"rbxassetid://76469933896339\",\"playbackObserved\":true,\"playbackLimitSeconds\":5,\"nativeTimeLengthSeconds\":1.88}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:37.762Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Play\n- Available DataModels: Client, Server\n- Focused DataModel in the viewport: Client"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:37.779Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"ownership\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "start_stop_play",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:38.797Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "Game Stopped"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:39.209Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:39.240Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"restore\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"fa7d092c-696b-4fb9-91aa-31780fa016fe\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_restored",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T03:01:39.240Z",
+        "data": {
+          "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+          "nonce": "fa7d092c-696b-4fb9-91aa-31780fa016fe",
+          "editVerified": true,
+          "markerRemoved": true
+        }
+      },
+      {
+        "operation": "audio_capture",
+        "at": "2026-09-16T03:01:39.258Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "source": {
+            "kind": "studio_process_loopback",
+            "mode": "include_process_tree",
+            "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+            "candidateId": "76469933896339",
+            "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+            "processId": 12712,
+            "processStartedAt": "2026-09-15T18:52:26.9645393Z",
+            "capturedAt": "2026-09-16T03:01:28.7134479Z",
+            "file": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\takko-audio-runtime-native-v2\\ac5d2e7c4dae157ac40b1e4a537e9a58ccb664dc3e7685c5f1142cd4ace287a8.wav",
+            "leadingSilenceFrames": 1323,
+            "audition": {
+              "runtimeNonce": "fa7d092c-696b-4fb9-91aa-31780fa016fe",
+              "soundId": "rbxassetid://76469933896339",
+              "nativeTimeLengthSeconds": 1.88,
+              "playbackSpeed": 1,
+              "playbackLimitSeconds": 5,
+              "playbackElapsedSeconds": 1.890639999997802,
+              "maxTimePositionSeconds": 1.856,
+              "endedNaturally": true,
+              "playbackWindowTruncated": false
+            }
+          },
+          "sha256": "ac5d2e7c4dae157ac40b1e4a537e9a58ccb664dc3e7685c5f1142cd4ace287a8",
+          "durationMs": 8000,
+          "playbackObserved": true
+        }
+      }
+    ],
+    "bundle": {
+      "files": [],
+      "scene": [
+        {
+          "path": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566",
+          "className": "Folder",
+          "properties": {}
+        },
+        {
+          "path": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets",
+          "className": "Folder",
+          "properties": {}
+        },
+        {
+          "path": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio",
+          "className": "Sound",
+          "properties": {
+            "RollOffMode": {
+              "type": "Enum",
+              "enum": "RollOffMode",
+              "value": 0
+            },
+            "Looped": false,
+            "PlaybackSpeed": 1,
+            "PlayOnRemove": false,
+            "RollOffMaxDistance": 10000,
+            "Volume": 0.6499999761581421,
+            "SoundId": "rbxassetid://76469933896339",
+            "Playing": false,
+            "Archivable": true,
+            "RollOffMinDistance": 10
+          }
+        }
+      ],
+      "coverage": [],
+      "assets": [
+        {
+          "id": "crunchAudio",
+          "requirementId": "req-audio-crunch",
+          "kind": "audio",
+          "assetId": "76469933896339",
+          "sourceUrl": "https://create.roblox.com/store/asset/76469933896339",
+          "status": "retrieved",
+          "description": "Sound effect played when the player clicks or taps the butter to perform a crunch."
+        }
+      ]
+    }
+  },
+  "cleanup": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T03:01:39.266Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "discard",
+        "sessionId": "f1082a89-1b27-4562-b5be-1912e687e898",
+        "token": "f3e643fe-90f6-42da-ada8-a383f4204abb",
+        "scope": "TakkoAudioDiagnostic_deebad6f786b4566",
+        "stagingPath": "ServerStorage/TakkoAudioDiagnostic_deebad6f786b4566/AssetStaging/attempt_ecb80192e8d30f3fb1960076",
+        "previewPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/AssetPreviews/attempt_ecb80192e8d30f3fb1960076",
+        "finalPath": "Workspace/TakkoAudioDiagnostic_deebad6f786b4566/Assets/crunchAudio"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T03:01:39.267Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T03:01:39.279Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T03:01:39.309Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removed\":2,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "after": {
+    "content": [
+      {
+        "type": "text",
+        "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+      }
+    ],
+    "isError": false
+  },
+  "finishedAt": "2026-09-16T03:01:39.323Z"
+}

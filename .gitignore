@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.forge/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+research/evidence/
+research/tools/
+research/evidence-inventory.json
+
+dist-desktop/
+release/
+
+# Local third-party reverse-engineering derivatives; findings stay in research/*.md.
+research/notes/superbullet-0.3.99/
+
+# Recreated caches and local runtime/credential material.
+coverage/
+*.tsbuildinfo
+*.pid
+*.lock.local
+*.dpapi
+.DS_Store
+Thumbs.db

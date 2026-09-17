@@ -1,0 +1,1160 @@
+{
+  "status": "captured",
+  "format": "roblox-native-rbxm-v1",
+  "engineVersion": "0.739.0.7390687",
+  "bytes": 17374,
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "CombatSystem",
+      "className": "Folder"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "ThumbnailCamera",
+      "className": "Camera"
+    },
+    {
+      "index": 4,
+      "parentIndex": 2,
+      "name": "CombatAnimations",
+      "className": "Folder"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "name": "Block",
+      "className": "Animation"
+    },
+    {
+      "index": 6,
+      "parentIndex": 4,
+      "name": "LeftPunch",
+      "className": "Animation"
+    },
+    {
+      "index": 7,
+      "parentIndex": 4,
+      "name": "RightPunch",
+      "className": "Animation"
+    },
+    {
+      "index": 8,
+      "parentIndex": 2,
+      "name": "Punched2",
+      "className": "Sound"
+    },
+    {
+      "index": 9,
+      "parentIndex": 2,
+      "name": "Punched1",
+      "className": "Sound"
+    },
+    {
+      "index": 10,
+      "parentIndex": 2,
+      "name": "Swing",
+      "className": "Sound"
+    },
+    {
+      "index": 11,
+      "parentIndex": 2,
+      "name": "BlockEffect",
+      "className": "ParticleEmitter"
+    },
+    {
+      "index": 12,
+      "parentIndex": 2,
+      "name": "HitEffect",
+      "className": "ParticleEmitter"
+    },
+    {
+      "index": 13,
+      "parentIndex": 2,
+      "name": "Punching",
+      "className": "RemoteEvent"
+    },
+    {
+      "index": 14,
+      "parentIndex": 2,
+      "name": "Settings",
+      "className": "Folder"
+    },
+    {
+      "index": 15,
+      "parentIndex": 14,
+      "name": "Damage",
+      "className": "IntValue"
+    },
+    {
+      "index": 16,
+      "parentIndex": 14,
+      "name": "VisualEffectsEnabled",
+      "className": "BoolValue"
+    },
+    {
+      "index": 17,
+      "parentIndex": 14,
+      "name": "ThrustValue",
+      "className": "IntValue"
+    },
+    {
+      "index": 18,
+      "parentIndex": 14,
+      "name": "SoundEffectsEnabled",
+      "className": "BoolValue"
+    },
+    {
+      "index": 19,
+      "parentIndex": 14,
+      "name": "Keybinds",
+      "className": "Folder"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "name": "Punch",
+      "className": "StringValue"
+    },
+    {
+      "index": 21,
+      "parentIndex": 19,
+      "name": "Block",
+      "className": "StringValue"
+    },
+    {
+      "index": 22,
+      "parentIndex": 1,
+      "name": "CombatServer",
+      "className": "Script"
+    },
+    {
+      "index": 23,
+      "parentIndex": 1,
+      "name": "CombatClient",
+      "className": "LocalScript"
+    },
+    {
+      "index": 24,
+      "parentIndex": 1,
+      "name": "Animations",
+      "className": "Model"
+    },
+    {
+      "index": 25,
+      "parentIndex": 24,
+      "name": "LeftPunch",
+      "className": "KeyframeSequence"
+    },
+    {
+      "index": 26,
+      "parentIndex": 25,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 27,
+      "parentIndex": 26,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 28,
+      "parentIndex": 27,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 29,
+      "parentIndex": 28,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 30,
+      "parentIndex": 29,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 31,
+      "parentIndex": 30,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 32,
+      "parentIndex": 31,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 33,
+      "parentIndex": 29,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 34,
+      "parentIndex": 33,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 35,
+      "parentIndex": 34,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 36,
+      "parentIndex": 29,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 37,
+      "parentIndex": 28,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 38,
+      "parentIndex": 37,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 39,
+      "parentIndex": 38,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 40,
+      "parentIndex": 28,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 41,
+      "parentIndex": 40,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 42,
+      "parentIndex": 41,
+      "name": "LeftFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 43,
+      "parentIndex": 25,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 44,
+      "parentIndex": 43,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 45,
+      "parentIndex": 44,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 46,
+      "parentIndex": 45,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 47,
+      "parentIndex": 46,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 48,
+      "parentIndex": 47,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 49,
+      "parentIndex": 46,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 50,
+      "parentIndex": 46,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 51,
+      "parentIndex": 45,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 52,
+      "parentIndex": 51,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 53,
+      "parentIndex": 52,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 54,
+      "parentIndex": 45,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 55,
+      "parentIndex": 54,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 56,
+      "parentIndex": 25,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 57,
+      "parentIndex": 56,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 58,
+      "parentIndex": 57,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 59,
+      "parentIndex": 58,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 60,
+      "parentIndex": 59,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 61,
+      "parentIndex": 60,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 62,
+      "parentIndex": 59,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 63,
+      "parentIndex": 62,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 64,
+      "parentIndex": 63,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 65,
+      "parentIndex": 59,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 66,
+      "parentIndex": 58,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 67,
+      "parentIndex": 66,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 68,
+      "parentIndex": 58,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 69,
+      "parentIndex": 68,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 70,
+      "parentIndex": 25,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 71,
+      "parentIndex": 70,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 72,
+      "parentIndex": 71,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 73,
+      "parentIndex": 72,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 74,
+      "parentIndex": 73,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 75,
+      "parentIndex": 74,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 76,
+      "parentIndex": 75,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 77,
+      "parentIndex": 73,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 78,
+      "parentIndex": 77,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 79,
+      "parentIndex": 73,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 80,
+      "parentIndex": 72,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 81,
+      "parentIndex": 80,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 82,
+      "parentIndex": 81,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 83,
+      "parentIndex": 72,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 84,
+      "parentIndex": 83,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 85,
+      "parentIndex": 84,
+      "name": "LeftFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 86,
+      "parentIndex": 25,
+      "name": "NpcAnimationRigData",
+      "className": "AnimationRigData"
+    },
+    {
+      "index": 87,
+      "parentIndex": 24,
+      "name": "RightPunch",
+      "className": "KeyframeSequence"
+    },
+    {
+      "index": 88,
+      "parentIndex": 87,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 89,
+      "parentIndex": 88,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 90,
+      "parentIndex": 89,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 91,
+      "parentIndex": 90,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 92,
+      "parentIndex": 91,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 93,
+      "parentIndex": 92,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 94,
+      "parentIndex": 93,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 95,
+      "parentIndex": 91,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 96,
+      "parentIndex": 95,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 97,
+      "parentIndex": 96,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 98,
+      "parentIndex": 91,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 99,
+      "parentIndex": 90,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 100,
+      "parentIndex": 99,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 101,
+      "parentIndex": 100,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 102,
+      "parentIndex": 90,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 103,
+      "parentIndex": 102,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 104,
+      "parentIndex": 103,
+      "name": "LeftFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 105,
+      "parentIndex": 87,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 106,
+      "parentIndex": 105,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 107,
+      "parentIndex": 106,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 108,
+      "parentIndex": 107,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 109,
+      "parentIndex": 108,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 110,
+      "parentIndex": 109,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 111,
+      "parentIndex": 110,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 112,
+      "parentIndex": 108,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 113,
+      "parentIndex": 112,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 114,
+      "parentIndex": 113,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 115,
+      "parentIndex": 108,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 116,
+      "parentIndex": 107,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 117,
+      "parentIndex": 116,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 118,
+      "parentIndex": 117,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 119,
+      "parentIndex": 107,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 120,
+      "parentIndex": 119,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 121,
+      "parentIndex": 87,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 122,
+      "parentIndex": 121,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 123,
+      "parentIndex": 122,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 124,
+      "parentIndex": 123,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 125,
+      "parentIndex": 124,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 126,
+      "parentIndex": 125,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 127,
+      "parentIndex": 126,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 128,
+      "parentIndex": 124,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 129,
+      "parentIndex": 128,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 130,
+      "parentIndex": 129,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 131,
+      "parentIndex": 123,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 132,
+      "parentIndex": 87,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 133,
+      "parentIndex": 132,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 134,
+      "parentIndex": 133,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 135,
+      "parentIndex": 134,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 136,
+      "parentIndex": 135,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 137,
+      "parentIndex": 136,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 138,
+      "parentIndex": 137,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 139,
+      "parentIndex": 135,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 140,
+      "parentIndex": 135,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 141,
+      "parentIndex": 134,
+      "name": "RightUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 142,
+      "parentIndex": 141,
+      "name": "RightLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 143,
+      "parentIndex": 142,
+      "name": "RightFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 144,
+      "parentIndex": 134,
+      "name": "LeftUpperLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 145,
+      "parentIndex": 144,
+      "name": "LeftLowerLeg",
+      "className": "Pose"
+    },
+    {
+      "index": 146,
+      "parentIndex": 145,
+      "name": "LeftFoot",
+      "className": "Pose"
+    },
+    {
+      "index": 147,
+      "parentIndex": 87,
+      "name": "NpcAnimationRigData",
+      "className": "AnimationRigData"
+    },
+    {
+      "index": 148,
+      "parentIndex": 24,
+      "name": "Block",
+      "className": "KeyframeSequence"
+    },
+    {
+      "index": 149,
+      "parentIndex": 148,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 150,
+      "parentIndex": 149,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 151,
+      "parentIndex": 150,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 152,
+      "parentIndex": 151,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 153,
+      "parentIndex": 152,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 154,
+      "parentIndex": 153,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 155,
+      "parentIndex": 154,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 156,
+      "parentIndex": 152,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 157,
+      "parentIndex": 152,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 158,
+      "parentIndex": 157,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 159,
+      "parentIndex": 158,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 160,
+      "parentIndex": 148,
+      "name": "Keyframe",
+      "className": "Keyframe"
+    },
+    {
+      "index": 161,
+      "parentIndex": 160,
+      "name": "HumanoidRootPart",
+      "className": "Pose"
+    },
+    {
+      "index": 162,
+      "parentIndex": 161,
+      "name": "LowerTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 163,
+      "parentIndex": 162,
+      "name": "UpperTorso",
+      "className": "Pose"
+    },
+    {
+      "index": 164,
+      "parentIndex": 163,
+      "name": "LeftUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 165,
+      "parentIndex": 164,
+      "name": "LeftLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 166,
+      "parentIndex": 165,
+      "name": "LeftHand",
+      "className": "Pose"
+    },
+    {
+      "index": 167,
+      "parentIndex": 163,
+      "name": "Head",
+      "className": "Pose"
+    },
+    {
+      "index": 168,
+      "parentIndex": 163,
+      "name": "RightUpperArm",
+      "className": "Pose"
+    },
+    {
+      "index": 169,
+      "parentIndex": 168,
+      "name": "RightLowerArm",
+      "className": "Pose"
+    },
+    {
+      "index": 170,
+      "parentIndex": 169,
+      "name": "RightHand",
+      "className": "Pose"
+    },
+    {
+      "index": 171,
+      "parentIndex": 148,
+      "name": "NpcAnimationRigData",
+      "className": "AnimationRigData"
+    }
+  ],
+  "sources": [
+    {
+      "index": 22,
+      "className": "Script",
+      "source": "-- Adapted Server Combat component interface\n-- Scoped to Forge_d451eccc9382 namespace\nlocal Debris = game:GetService(\"Debris\")\nlocal combatFolder = script.Parent:FindFirstChild(\"CombatSystem\")\n\nif combatFolder then\n\tlocal punchingRemote = combatFolder:FindFirstChild(\"Punching\")\n\tif punchingRemote and punchingRemote:IsA(\"RemoteEvent\") then\n\t\tpunchingRemote.OnServerEvent:Connect(function(player)\n\t\t\t-- Server authoritative validation will be handled by the training arena manager\n\t\tend)\n\tend\nend\n",
+      "sourceBytes": 498,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "8a2a0e0e632e3ad02c990962731b1429c7b08f34b63b5393e40f67e082fa76f2"
+    },
+    {
+      "index": 23,
+      "className": "LocalScript",
+      "source": "-- Adapted Client Combat component interface\n-- Client controls and touch bindings will be integrated via StarterPlayerScripts / StarterGui\nlocal Players = game:GetService(\"Players\")\nlocal LocalPlayer = Players.LocalPlayer\n",
+      "sourceBytes": 223,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "0660b6a784cf4c88e0e8fb8937e8d47a71f673de1942edeab2b0835ccf39d9a2"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 5,
+      "property": "AnimationId",
+      "value": ""
+    },
+    {
+      "index": 6,
+      "property": "AnimationId",
+      "value": ""
+    },
+    {
+      "index": 7,
+      "property": "AnimationId",
+      "value": ""
+    },
+    {
+      "index": 8,
+      "property": "SoundId",
+      "value": "rbxassetid://4306980885"
+    },
+    {
+      "index": 9,
+      "property": "SoundId",
+      "value": "rbxassetid://3932504231"
+    },
+    {
+      "index": 10,
+      "property": "SoundId",
+      "value": "rbxassetid://4059010105"
+    },
+    {
+      "index": 11,
+      "property": "Texture",
+      "value": "rbxassetid://1084991215"
+    },
+    {
+      "index": 12,
+      "property": "Texture",
+      "value": "http://www.roblox.com/asset/?id=5568119031"
+    }
+  ],
+  "configurationValues": [
+    {
+      "index": 15,
+      "property": "Value",
+      "value": 10
+    },
+    {
+      "index": 16,
+      "property": "Value",
+      "value": true
+    },
+    {
+      "index": 17,
+      "property": "Value",
+      "value": 10
+    },
+    {
+      "index": 18,
+      "property": "Value",
+      "value": true
+    },
+    {
+      "index": 20,
+      "property": "Value",
+      "value": "E"
+    },
+    {
+      "index": 21,
+      "property": "Value",
+      "value": "X"
+    }
+  ],
+  "sourceBytes": 721,
+  "roundTrip": {
+    "passed": true,
+    "checkedProperties": 1035,
+    "checkedAttributes": 0,
+    "checkedReferences": 3,
+    "unobservableProperties": [
+      "AnimationRigData.Generic",
+      "AnimationRigData.label",
+      "AnimationRigData.postTransform",
+      "AnimationRigData.preTransform",
+      "AnimationRigData.transform",
+      "LocalScript.ScriptGuid",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "executed": false,
+  "sha256": "1e9ac9bbb744c6e33d44173a5f897426f85491ad98521fdec6f5a1eafa92850c",
+  "securityReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "identityBoundary": "exact imported hierarchy before static normalization; import tool controls the outer root name"
+}

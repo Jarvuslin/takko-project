@@ -1,0 +1,14 @@
+{
+  "verified": true,
+  "model": "google/gemini-3.7-flash",
+  "cases": 3,
+  "calls": 4,
+  "firstAttemptPasses": 2,
+  "finalPasses": 3,
+  "totalCostUSD": 0.1184205,
+  "inputTokens": 80279,
+  "outputTokens": 15523,
+  "files": 36,
+  "noPlaintextProviderKey": true,
+  "boundary": "Contract and receipt verification only. Semantic correctness and gameplay are not established."
+}

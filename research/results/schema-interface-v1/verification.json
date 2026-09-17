@@ -1,0 +1,65 @@
+{
+  "at": "2026-09-16T17:21:33.684Z",
+  "nativeOperations": 0,
+  "rawDecisionsChanged": false,
+  "plan": {
+    "stage": "review",
+    "calls": 1,
+    "chargedMicros": 67809,
+    "choices": [
+      {
+        "responseSha256": "ad4a9573c090b27edec81194ca3256a2279449105f816c03bc953d8fca46034a",
+        "rootSchemaCopied": false,
+        "needs": [
+          {
+            "id": "checkpointSystem",
+            "kind": "Model",
+            "query": "obby checkpoint system",
+            "explicitRequired": true,
+            "required": true,
+            "defaultCopied": false
+          },
+          {
+            "id": "movingPlatformSystem",
+            "kind": "Model",
+            "query": "moving platform obby",
+            "explicitRequired": true,
+            "required": true,
+            "defaultCopied": false
+          },
+          {
+            "id": "skyCourseComponent",
+            "kind": "Model",
+            "query": "sky obby course",
+            "explicitRequired": true,
+            "required": true,
+            "defaultCopied": false
+          },
+          {
+            "id": "checkpointConfirmationAudio",
+            "kind": "Audio",
+            "query": "checkpoint confirmation sound",
+            "explicitRequired": true,
+            "required": true,
+            "defaultCopied": false
+          }
+        ]
+      }
+    ]
+  },
+  "review": {
+    "calls": 1,
+    "chargedMicros": 49751,
+    "contractPassed": true,
+    "reviews": [
+      {
+        "attempt": 1,
+        "responseSha256": "e4416ce68b06183c91583bae9b47684815b675b615ba4023b527027434ecec34",
+        "rootSchemaCopied": false,
+        "validationError": null
+      }
+    ]
+  },
+  "conservativePriorMicros": 5271258,
+  "remaining": 5.043609764
+}

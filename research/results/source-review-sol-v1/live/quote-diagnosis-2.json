@@ -1,0 +1,12 @@
+[
+  {
+    "sha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+    "dependency": {
+      "kind": "instance_reference",
+      "value": "RegenButton Part and containing working bubble wrap Model",
+      "sourceQuote": "local Button = script.Parent\nlocal Backup = Button.Parent:clone()",
+      "verification": "unverified"
+    },
+    "actualSource": "local Button = script.Parent\nlocal ButtonColor = Button.BrickColor\nlocal CanNPCsActivate = script.CanNPCsActivate.Value\nlocal Cooldown = script.Cooldown.Value\nlocal RemovesPreviousModel = script.RemovesPreviousModel.Value\nlocal OffColor = script.OffColor.Value\nlocal Backup = Button.Parent:clone()\nBackup:findFirstChild(Button.Name):remove()\nActive = true\n\nfunction Regen()\n\tif RemovesPreviousModel == true then\n\t\tlocal PreviousModel = Button.Parent:children()\n\t\tfor i = 1, #PreviousModel do\n\t\t\tif PreviousModel[i] ~= Button then\n\t\t\t\tPreviousModel[i]:Destroy()\n\t\t\tend\n\t\tend\n\tend\n\tlocal Clone = Backup:clone()\n\tlocal Children = Clone:children()\n\tfor i = 1, #Children do\n\t\tChildren[i].Parent = Button.Parent\n\t\tif Children[i]:isA(\"BasePart\") == true or Children[i]:isA(\"Model\") == true then\n\t\t\tChildren[i]:makeJoints()\n\t\tend\n\tend\n\tClone:Destroy()\nend\n\nfunction Start(Part)\n\tif Active == true then\n\t\tlocal Humanoid = Part.Parent:findFirstChild(\"Humanoid\")\n\t\tif Humanoid ~= nil then\n\t\t\tif CanNPCsActivate == false then\n\t\t\t\tRegen()\n\t\t\t\tActive = false\n\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\twait(Cooldown)\n\t\t\t\tActive = true\n\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\telse\n\t\t\t\tlocal Plr = game.Players:playerFromCharacter(Part.Parent)\n\t\t\t\tif Plr ~= nil then\n\t\t\t\t\tRegen()\n\t\t\t\t\tActive = false\n\t\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\t\twait(Cooldown)\n\t\t\t\t\tActive = true\n\t\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\t\tend\n\t\t\tend\n\t\tend\n\tend\nend\nButton.Touched:connect(Start)"
+  }
+]

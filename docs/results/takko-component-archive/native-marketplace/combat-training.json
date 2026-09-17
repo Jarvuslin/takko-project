@@ -1,0 +1,314 @@
+{
+  "case": "combat-training",
+  "sourceProject": "950ab3b0-d8ac-4895-b40a-32ab1e1cdb7d",
+  "scope": "ArchiveRegression_13d83a97df8c",
+  "candidate": {
+    "id": "125989241853035",
+    "name": "Dummy Training Practice Humanoid Test RP",
+    "kind": "Model",
+    "creator": "XxAidenLionxX72",
+    "sourceUrl": "https://create.roblox.com/store/asset/125989241853035",
+    "price": 0,
+    "source": "creator_store",
+    "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): Dummy, Training, Practice, Humanoid, Test, RP, Roleplay, Simulator, Game, NPC, AI, Character, Mannequin, Target, Avatar, Rig, Mesh, Player, Victim, Ragdoll, Scripted, Animation, Tools, Weapons, Sword, Gun, Melee, Combat, Battle, Arena, Fighting, Physics, Realistic, Customizable, Poseable, Dummy, Exercise, Target, Practice, Simulated, Interactive, Dummy, Practice, Dummy, Test, Humanoid, Roleplay, Dummy, Practice, AI, Training, Character, Target, Humanoid, Test, RP, Practice, Dummy, Humanoid, Training, Target, Practice, Simulator, Roleplay, Game"
+  },
+  "component": {
+    "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+    "candidateId": "125989241853035",
+    "status": "captured",
+    "sha256": "c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d",
+    "bytes": 18467,
+    "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d.rbxm",
+    "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\857823b7a5230accadd78d3c7e350107eba61bcf48675ea15f893f880ed030da.component.json",
+    "instanceCount": 20,
+    "scriptCount": 2,
+    "sourceBytes": 22505,
+    "roundTrip": {
+      "passed": false,
+      "stage": "deserialize",
+      "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+    },
+    "persisted": true,
+    "securityReview": "not_performed",
+    "runtimeVerification": "not_performed",
+    "exportConversion": "not_performed"
+  },
+  "inspectionReceipts": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T05:29:22.751Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "prepare",
+        "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "scope": "ArchiveRegression_13d83a97df8c",
+        "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+        "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+        "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T05:29:22.753Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T05:29:22.766Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T05:29:22.797Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T05:29:22.800Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T05:29:22.810Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "insert_asset",
+      "at": "2026-09-16T05:29:22.866Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"insertGuid\":\"311e4d22-3802-4403-930b-1f7b677ff775\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.ArchiveRegression_13d83a97df8c.AssetStaging.attempt_4235e34b016d6e2b121d4dc3.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"125989241853035\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:311e4d22-3802-4403-930b-1f7b677ff775\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T05:29:22.867Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "inspect",
+        "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "scope": "ArchiveRegression_13d83a97df8c",
+        "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+        "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+        "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T05:29:22.867Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T05:29:22.879Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T05:29:22.916Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"reasons\":[\"Unsupported or executable class: Motor6D\",\"Decal lacks supported image content identity\",\"Unsupported or executable class: Humanoid\",\"Unsupported or executable class: Script\",\"Unsupported or executable class: ModuleScript\",\"Unsupported or executable class: NumberPose\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":105256,\"chunkSize\":32768,\"sha256\":\"c62e80051fd190665d8d20301c9da141bc679d0fdc9ccaa215d5d7f6a3b936a1\",\"jsonBytes\":78942},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":2,\"contentLoaded\":false,\"instanceCount\":20},\"size\":1}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "component_transfer",
+      "at": "2026-09-16T05:29:23.037Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "candidateId": "125989241853035",
+        "encodedBytes": 105256,
+        "jsonBytes": 78942,
+        "sha256": "c62e80051fd190665d8d20301c9da141bc679d0fdc9ccaa215d5d7f6a3b936a1",
+        "chunkSize": 32768,
+        "chunksRead": 4,
+        "verified": true,
+        "readOnly": true
+      }
+    },
+    {
+      "operation": "component_archive",
+      "at": "2026-09-16T05:29:23.039Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "candidateId": "125989241853035",
+        "status": "captured",
+        "sha256": "c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d",
+        "bytes": 18467,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\857823b7a5230accadd78d3c7e350107eba61bcf48675ea15f893f880ed030da.component.json",
+        "instanceCount": 20,
+        "scriptCount": 2,
+        "sourceBytes": 22505,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      }
+    },
+    {
+      "operation": "inert_asset_audit",
+      "at": "2026-09-16T05:29:23.041Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "candidateId": "125989241853035",
+        "sha256": "85432e0b5690f292c5433c8a0800e7528758456d1d6aec733eb11b496cb45965",
+        "bytes": 30991,
+        "auditFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\85432e0b5690f292c5433c8a0800e7528758456d1d6aec733eb11b496cb45965.audit.json",
+        "persistence": "full_original_sources_in_sidecar",
+        "sourceBytesReturned": 22505
+      }
+    }
+  ],
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "safe": false,
+  "cleanup": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T05:29:23.042Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "discard",
+        "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "scope": "ArchiveRegression_13d83a97df8c",
+        "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+        "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+        "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T05:29:23.042Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T05:29:23.053Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T05:29:23.079Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "paidCalls": 0,
+  "benchmark": false,
+  "importedCodeExecuted": false
+}

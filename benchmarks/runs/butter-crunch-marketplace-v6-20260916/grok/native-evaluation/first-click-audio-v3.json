@@ -1,0 +1,35 @@
+{
+  "kind": "evaluator-side real first click and game process audio",
+  "projectId": "98c63e12-b73c-4553-bde0-939b88985746",
+  "gameEdits": false,
+  "input": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Success"
+      }
+    ],
+    "isError": false
+  },
+  "audio": {
+    "sha256": "e0fd5ca075b1f8b070bd7c9dedeca397ad76d27425c95298a8d23f03f849ccd4",
+    "durationMs": 7993.106575963719,
+    "sampleRate": 44100,
+    "channels": 2,
+    "rms": 0.0013653406604196175,
+    "peak": 0.156585693359375,
+    "source": {
+      "kind": "studio_process_loopback",
+      "mode": "include_process_tree",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "candidateId": "71300508404120",
+      "token": "evaluation_25dd117a-ee7f-495e-a0b2-bf75b9807a15",
+      "processId": 12712,
+      "processStartedAt": "2026-09-15T18:52:26.9645393Z",
+      "capturedAt": "2026-09-16T03:26:24.5774449Z",
+      "file": "D:\\RobloxProjects\\Roblox Gen\\benchmarks\\runs\\butter-crunch-marketplace-v6-20260916\\grok\\native-evaluation\\e0fd5ca075b1f8b070bd7c9dedeca397ad76d27425c95298a8d23f03f849ccd4.wav",
+      "leadingSilenceFrames": 578
+    }
+  },
+  "passed": true
+}

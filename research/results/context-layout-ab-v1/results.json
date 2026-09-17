@@ -1,0 +1,438 @@
+{
+  "layoutAB": true,
+  "rounds": 2,
+  "model": "openai/gpt-4.1-mini",
+  "rows": [
+    {
+      "harness": "Takko baseline",
+      "case": "crunch",
+      "durationMs": 12870,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "e0f538142bf32798a4ceb485d2b51327409a11651340c4434f9bf05951c8a6a6"
+      },
+      "trial": "crunch-baseline-r1",
+      "round": 1,
+      "accountedUSD": 0.0088564,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "crunch",
+      "durationMs": 8894,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "57e4e7f878177b5c5ce91c8fd9c3967576edb088565eacc1610f68cf52f9676c"
+      },
+      "trial": "crunch-reordered-r1",
+      "round": 1,
+      "accountedUSD": 0.008275600000000001,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "combat",
+      "durationMs": 8756,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "ce9a0f37e21dc7fb8e5edbcc907dc61cae9b191dde004767eb611638b1354743"
+      },
+      "trial": "combat-reordered-r1",
+      "round": 1,
+      "accountedUSD": 0.0068716,
+      "calls": 2
+    },
+    {
+      "harness": "Takko baseline",
+      "case": "combat",
+      "durationMs": 11688,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "9641c97cc0f65c558fa1c0a493f1e78ed09d96f12ad7cb310c4327dc25f6858f"
+      },
+      "trial": "combat-baseline-r1",
+      "round": 1,
+      "accountedUSD": 0.0084476,
+      "calls": 2
+    },
+    {
+      "harness": "Takko baseline",
+      "case": "checkpoint",
+      "durationMs": 9326,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "a89e4b169c0005200486f42acfa3a478c7f2ad6e03c2b563217a268d7ad9f901"
+      },
+      "trial": "checkpoint-baseline-r1",
+      "round": 1,
+      "accountedUSD": 0.0072440000000000004,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "checkpoint",
+      "durationMs": 8623,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "f81febdb52269e33715a78ca1f596fc8a1f3e2f28d5c26e290e29b3c7c8a095c"
+      },
+      "trial": "checkpoint-reordered-r1",
+      "round": 1,
+      "accountedUSD": 0.006198,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "crunch",
+      "durationMs": 9526,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "ca4ea67de27d601bb97fd16af172f81d06f0d3987ce3497bb593d99a0e1d2b8c"
+      },
+      "trial": "crunch-reordered-r2",
+      "round": 2,
+      "accountedUSD": 0.0035415999999999998,
+      "calls": 2
+    },
+    {
+      "harness": "Takko baseline",
+      "case": "crunch",
+      "durationMs": 10619,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "66ff25587643b89c0147cf76548b0a8fd2a8adf6596e811c3c53b356c2e49de1"
+      },
+      "trial": "crunch-baseline-r2",
+      "round": 2,
+      "accountedUSD": 0.0036363999999999997,
+      "calls": 2
+    },
+    {
+      "harness": "Takko baseline",
+      "case": "combat",
+      "durationMs": 11911,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "923ddcd63d8f8e5a85b1cedc866d222e0a64848bf38f50c0ae109e1499fda123"
+      },
+      "trial": "combat-baseline-r2",
+      "round": 2,
+      "accountedUSD": 0.005708400000000001,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "combat",
+      "durationMs": 8209,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "c4e27b320f94393850a2e20f51f10fed1a097b720a82802d64d67b0b61eef453"
+      },
+      "trial": "combat-reordered-r2",
+      "round": 2,
+      "accountedUSD": 0.0034159999999999998,
+      "calls": 2
+    },
+    {
+      "harness": "Takko reordered",
+      "case": "checkpoint",
+      "durationMs": 7474,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "80bb9a99ef5b91a446c2efaf73ab4ed642b0d8d3e90a97af762f7c060c521559"
+      },
+      "trial": "checkpoint-reordered-r2",
+      "round": 2,
+      "accountedUSD": 0.0034755999999999997,
+      "calls": 2
+    },
+    {
+      "harness": "Takko baseline",
+      "case": "checkpoint",
+      "durationMs": 9243,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "1d4be599d6521b8ff86056744ebe6e79fe7b27e54ac466843cbbed3b96cf7f8d"
+      },
+      "trial": "checkpoint-baseline-r2",
+      "round": 2,
+      "accountedUSD": 0.0033388000000000003,
+      "calls": 2
+    }
+  ],
+  "calls": [
+    {
+      "trial": "crunch-baseline-r1",
+      "id": 1,
+      "liability": 0.031188399999999995,
+      "status": 200,
+      "charged": 0.0049752,
+      "inputTokens": 9190,
+      "outputTokens": 812
+    },
+    {
+      "trial": "crunch-baseline-r1",
+      "id": 2,
+      "liability": 0.028685199999999998,
+      "status": 200,
+      "charged": 0.0038812,
+      "inputTokens": 8115,
+      "outputTokens": 397
+    },
+    {
+      "trial": "crunch-reordered-r1",
+      "id": 3,
+      "liability": 0.031188799999999996,
+      "status": 200,
+      "charged": 0.0045008,
+      "inputTokens": 9188,
+      "outputTokens": 516
+    },
+    {
+      "trial": "crunch-reordered-r1",
+      "id": 4,
+      "liability": 0.028160799999999996,
+      "status": 200,
+      "charged": 0.0037748,
+      "inputTokens": 7817,
+      "outputTokens": 405
+    },
+    {
+      "trial": "combat-reordered-r1",
+      "id": 5,
+      "liability": 0.0304312,
+      "status": 200,
+      "charged": 0.0032984,
+      "inputTokens": 9022,
+      "outputTokens": 550
+    },
+    {
+      "trial": "combat-reordered-r1",
+      "id": 6,
+      "liability": 0.027404,
+      "status": 200,
+      "charged": 0.0035732,
+      "inputTokens": 7685,
+      "outputTokens": 312
+    },
+    {
+      "trial": "combat-baseline-r1",
+      "id": 7,
+      "liability": 0.030430799999999994,
+      "status": 200,
+      "charged": 0.0045104,
+      "inputTokens": 9024,
+      "outputTokens": 563
+    },
+    {
+      "trial": "combat-baseline-r1",
+      "id": 8,
+      "liability": 0.0274096,
+      "status": 200,
+      "charged": 0.0039372,
+      "inputTokens": 7699,
+      "outputTokens": 536
+    },
+    {
+      "trial": "checkpoint-baseline-r1",
+      "id": 9,
+      "liability": 0.030461199999999997,
+      "status": 200,
+      "charged": 0.0037208,
+      "inputTokens": 8898,
+      "outputTokens": 461
+    },
+    {
+      "trial": "checkpoint-baseline-r1",
+      "id": 10,
+      "liability": 0.027368,
+      "status": 200,
+      "charged": 0.0035232,
+      "inputTokens": 7472,
+      "outputTokens": 334
+    },
+    {
+      "trial": "checkpoint-reordered-r1",
+      "id": 11,
+      "liability": 0.0304616,
+      "status": 200,
+      "charged": 0.0031584,
+      "inputTokens": 8896,
+      "outputTokens": 494
+    },
+    {
+      "trial": "checkpoint-reordered-r1",
+      "id": 12,
+      "liability": 0.027440399999999997,
+      "status": 200,
+      "charged": 0.0030396,
+      "inputTokens": 7503,
+      "outputTokens": 384
+    },
+    {
+      "trial": "crunch-reordered-r2",
+      "id": 13,
+      "liability": 0.031188799999999996,
+      "status": 200,
+      "charged": 0.0019552,
+      "inputTokens": 9188,
+      "outputTokens": 605
+    },
+    {
+      "trial": "crunch-reordered-r2",
+      "id": 14,
+      "liability": 0.028314,
+      "status": 200,
+      "charged": 0.0015864,
+      "inputTokens": 7906,
+      "outputTokens": 335
+    },
+    {
+      "trial": "crunch-baseline-r2",
+      "id": 15,
+      "liability": 0.031188399999999995,
+      "status": 200,
+      "charged": 0.0020472,
+      "inputTokens": 9190,
+      "outputTokens": 662
+    },
+    {
+      "trial": "crunch-baseline-r2",
+      "id": 16,
+      "liability": 0.02843,
+      "status": 200,
+      "charged": 0.0015892,
+      "inputTokens": 7965,
+      "outputTokens": 322
+    },
+    {
+      "trial": "combat-baseline-r2",
+      "id": 17,
+      "liability": 0.030430799999999994,
+      "status": 200,
+      "charged": 0.0018736,
+      "inputTokens": 9024,
+      "outputTokens": 571
+    },
+    {
+      "trial": "combat-baseline-r2",
+      "id": 18,
+      "liability": 0.027488399999999996,
+      "status": 200,
+      "charged": 0.0038348,
+      "inputTokens": 7707,
+      "outputTokens": 470
+    },
+    {
+      "trial": "combat-reordered-r2",
+      "id": 19,
+      "liability": 0.0304312,
+      "status": 200,
+      "charged": 0.0019368,
+      "inputTokens": 9022,
+      "outputTokens": 611
+    },
+    {
+      "trial": "combat-reordered-r2",
+      "id": 20,
+      "liability": 0.0275336,
+      "status": 200,
+      "charged": 0.0014792,
+      "inputTokens": 7746,
+      "outputTokens": 308
+    },
+    {
+      "trial": "checkpoint-reordered-r2",
+      "id": 21,
+      "liability": 0.0304616,
+      "status": 200,
+      "charged": 0.0016832,
+      "inputTokens": 8896,
+      "outputTokens": 460
+    },
+    {
+      "trial": "checkpoint-reordered-r2",
+      "id": 22,
+      "liability": 0.027398,
+      "status": 200,
+      "charged": 0.0017924,
+      "inputTokens": 7469,
+      "outputTokens": 381
+    },
+    {
+      "trial": "checkpoint-baseline-r2",
+      "id": 23,
+      "liability": 0.030461199999999997,
+      "status": 200,
+      "charged": 0.0016232,
+      "inputTokens": 8898,
+      "outputTokens": 422
+    },
+    {
+      "trial": "checkpoint-baseline-r2",
+      "id": 24,
+      "liability": 0.027306799999999996,
+      "status": 200,
+      "charged": 0.0017156,
+      "inputTokens": 7433,
+      "outputTokens": 342
+    }
+  ],
+  "chargedUSD": 0.06901,
+  "nativeStudio": false,
+  "rootRepairs": 0,
+  "publicFixtures": [
+    {
+      "id": "crunch",
+      "promptHash": "4abe5fff423d5feb738aef59c04e46d25bdb59ab079ac352da7ceb6f7ace4484",
+      "testHash": "d9c195a8d37dd54da331094c111aa6487079cb6a228fdf0907b78748bb5a4604"
+    },
+    {
+      "id": "combat",
+      "promptHash": "22f6741c38f53571896baffb80a95d693dbd95f42301ddf371dca54a1b7a605b",
+      "testHash": "37b0ce2f689853b2fd0cdace3492655e4f9961608603197e9770b3e80661bfad"
+    },
+    {
+      "id": "checkpoint",
+      "promptHash": "85b501067d9a59434877cad3a35efbc253921e67f75663184640fb4d5a704caf",
+      "testHash": "e70b83176353b0f1dfb042392e6ec53141f6ffc5b410d10211158bf802a188c6"
+    }
+  ],
+  "conclusion": "Pilot only; no general superiority established from three single-run logic tasks."
+}

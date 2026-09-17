@@ -1,0 +1,33 @@
+{
+  "mode": "live",
+  "arms": [
+    {
+      "arm": "baseline",
+      "contractPassed": true,
+      "disposition": "integration_candidate",
+      "durationMs": 20534,
+      "calls": 1,
+      "chargedOrUnknownMicros": 23989,
+      "inFlightReservations": 0,
+      "semanticAccuracy": "not_scored"
+    },
+    {
+      "arm": "treatment",
+      "contractPassed": true,
+      "disposition": "integration_candidate",
+      "durationMs": 27847,
+      "calls": 1,
+      "chargedOrUnknownMicros": 30837,
+      "inFlightReservations": 0,
+      "semanticAccuracy": "not_scored"
+    }
+  ],
+  "calls": 2,
+  "actualPaidCalls": 2,
+  "chargedOrUnknownMicros": 54826,
+  "conservativePriorMicros": 5326084,
+  "unknownLiability": false,
+  "noFurtherCallsPending": true,
+  "nativeOperations": 0,
+  "rawGamePass": false
+}

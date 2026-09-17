@@ -1,0 +1,144 @@
+[
+  {
+    "model": "anthropic/claude-sonnet-5",
+    "reserveMicros": 90596,
+    "status": "received",
+    "startedAt": "2026-09-16T22:39:56.979Z",
+    "httpStatus": 200,
+    "generationId": "gen-1789598396-FTkkbCXWnMiQLvk1hP1Q",
+    "usage": {
+      "prompt_tokens": 1091,
+      "completion_tokens": 2181,
+      "total_tokens": 3272,
+      "cost": 0.023992,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.023992,
+        "upstream_inference_prompt_cost": 0.002182,
+        "upstream_inference_completions_cost": 0.02181
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "stop",
+    "chargedMicros": 23992,
+    "compiles": true,
+    "contractParsed": true,
+    "elapsedMs": 18203
+  },
+  {
+    "model": "qwen/qwen3.8-max-0902",
+    "reserveMicros": 58588,
+    "status": "received",
+    "startedAt": "2026-09-16T22:40:15.185Z",
+    "httpStatus": 200,
+    "generationId": "gen-1789598414-7MPOl9MQwbs0Av8qbHa7",
+    "usage": {
+      "prompt_tokens": 665,
+      "completion_tokens": 5836,
+      "total_tokens": 6501,
+      "cost": 0.036346,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.036346,
+        "upstream_inference_prompt_cost": 0.00133,
+        "upstream_inference_completions_cost": 0.035016
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 4684,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "stop",
+    "chargedMicros": 36346,
+    "compiles": true,
+    "contractParsed": true,
+    "elapsedMs": 114934
+  },
+  {
+    "model": "moonshotai/kimi-k2.7-code",
+    "reserveMicros": 29422,
+    "status": "received",
+    "startedAt": "2026-09-16T22:42:10.121Z",
+    "httpStatus": 200,
+    "generationId": "gen-1789598529-M4wd8gSPPpVDV2ojl9Ah",
+    "usage": {
+      "prompt_tokens": 634,
+      "completion_tokens": 8000,
+      "total_tokens": 8634,
+      "cost": 0.031298208,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.031298208,
+        "upstream_inference_prompt_cost": 0.000578208,
+        "upstream_inference_completions_cost": 0.03072
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 7999,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "length",
+    "chargedMicros": 31299,
+    "elapsedMs": 82415
+  },
+  {
+    "model": "openai/gpt-5.6-luna",
+    "reserveMicros": 10659,
+    "status": "received",
+    "startedAt": "2026-09-16T22:43:32.537Z",
+    "httpStatus": 200,
+    "generationId": "gen-1789598612-tIgeHGvWhX59PsY0uHU0",
+    "usage": {
+      "prompt_tokens": 631,
+      "completion_tokens": 1558,
+      "total_tokens": 2189,
+      "cost": 0.0019958,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0019958,
+        "upstream_inference_prompt_cost": 0.0001262,
+        "upstream_inference_completions_cost": 0.0018696
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 396,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "finishReason": "stop",
+    "chargedMicros": 1996,
+    "compiles": true,
+    "contractParsed": true,
+    "elapsedMs": 12500
+  }
+]

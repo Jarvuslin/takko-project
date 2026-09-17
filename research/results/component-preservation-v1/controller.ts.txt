@@ -1,0 +1,153 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import { createHash, randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { Engine } from "../src/generation/engine";
+import { Configuration } from "../src/generation/settings";
+import { GenerationStore } from "../src/generation/store";
+import { gameContext } from "../src/generation/game-context";
+import { loadAdaptedComponentEvidence } from "../src/generation/component-adaptation";
+import { componentPreservationContext, componentPreservationModelContext, componentPreservationInstructions } from "../src/generation/component-preservation";
+import { loadComponentReviewEvidence, componentReviewDecisionSchema, componentReviewInstructions, validateComponentReview, componentReviewModelEvidence } from "../src/generation/component-review";
+import type { Profile, Project } from "../src/generation/schema";
+
+const [mode, outputDirectory] = process.argv.slice(2);
+assert(["offline", "live"].includes(mode) && outputDirectory, "Expected offline|live and fresh output directory");
+const base = "benchmarks/runs/marketplace-diversity-v9-20260916/checkpoint-parkour";
+const root = "research/results/component-preservation-v1";
+const out = path.resolve(outputDirectory);
+assert(!fs.existsSync(out), "Preserve prior evidence; use fresh output directory");
+const read = (file: string) => JSON.parse(fs.readFileSync(file, "utf8"));
+const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
+const original: Project = read(path.join(base, "final-project.json"));
+const experiment = read(path.join(base, "experiment.json"));
+const event = (step: string) => original.assetPipeline!.events.find(e => e.needId === "movingPlatformSystem" && e.step === step)!.data as any;
+const initial = event("component_review_call");
+const after = event("component_adapted_review_call");
+const plan = event("component_adapt_call").plan;
+const oldDecision = event("component_adapted_review_result");
+const need = original.assetPipeline!.needs.find(n => n.id === "movingPlatformSystem")!;
+fs.mkdirSync(out, { recursive: true });
+const save = (file: string, value: unknown) => fs.writeFileSync(path.join(out, file), JSON.stringify(value, null, 2) + "\n");
+// Durable loaders replay validation; keep their writes in an isolated evidence copy.
+const evidenceDir = path.join(out, "asset-evidence");
+fs.cpSync(path.join(base, "asset-evidence"), evidenceDir, { recursive: true });
+const beforeEvidence = loadComponentReviewEvidence(evidenceDir, initial.packetHash, initial.inputHash);
+const currentEvidence = loadAdaptedComponentEvidence(evidenceDir, after.packetHash, beforeEvidence);
+assert.equal(currentEvidence.packetHash, after.packetHash);
+const preservation = componentPreservationContext(beforeEvidence, currentEvidence, plan);
+const record = read(path.join(evidenceDir, after.packetHash + ".adaptation.json"));
+assert.deepEqual(preservation.mapping.indexMap, record.indexMap);
+validateComponentReview(oldDecision, currentEvidence, after.requirementIds);
+const common = {
+  task: "component-source-review", request: original.request, gameContext: gameContext(original, need),
+  context: { need, evidence: componentReviewModelEvidence(currentEvidence), requirementIds: after.requirementIds },
+  instructions: componentReviewInstructions + " " + componentPreservationInstructions,
+};
+const contexts = {
+  baseline: common,
+  treatment: { ...common, context: { ...common.context, preservation: componentPreservationModelContext(preservation) } },
+};
+save("inputs.json", contexts);
+save("before-evidence.json", beforeEvidence);
+save("current-evidence.json", currentEvidence);
+save("preservation.json", preservation);
+const files = fs.readdirSync("src/generation", { recursive: true }).filter(f => typeof f === "string" && f.endsWith(".ts")).map(f => "src/generation/" + String(f).replaceAll("\\", "/"));
+const sources = Object.fromEntries(files.map(file => [file, hash(fs.readFileSync(file))]));
+const profile: Profile = (({ hasKey: _, ...p }) => p)(experiment.reviewer);
+assert.equal(profile.model, "google/gemini-3.7-flash");
+assert.equal(profile.maxOutputTokens, 12000);
+assert.equal(profile.requestTimeoutMs, 300000);
+const cap = 300000, ceiling = 6000000, headroom = 400000;
+let prior = 5271258;
+const priorProbe = read("research/results/schema-interface-v1/review-live/result.json");
+assert.equal(priorProbe.conservativePriorMicros, prior);
+assert(!priorProbe.unknownLiability && priorProbe.inFlightReservations === 0);
+const protocol = { mode, sourceProject: original.id, projectSha256: hash(fs.readFileSync(path.join(base, "final-project.json"))),
+  inputHashes: Object.fromEntries(Object.entries(contexts).map(([arm, value]) => [arm, hash(JSON.stringify(value))])), sources, profile,
+  capMicros: cap, campaignCeilingMicros: ceiling, headroomMicros: headroom, priorMicros: prior, maxCallsPerArm: 2, maxCalls: 4, nativeOperations: 0,
+  boundary: "One paired context ablation on unchanged V9 moving-platform sources. Both arms use identical current schema, generic instructions, current sources, game context, model and settings. Treatment adds verified original evidence, actual applied plan presentation and mapping only. Baseline is a fresh context ablation, not exact historical V9 prompts. No prior answers or independent findings enter live prompts. No game edits, native operations, decisions injected into generation, or semantic/gameplay pass inferred from contract success." };
+save("protocol.json", protocol);
+let secret = "", officialBefore: any;
+const lock = ".forge/component-preservation-probe.lock";
+const fd = fs.openSync(lock, "wx"); fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, mode, out, startedAt: new Date().toISOString() })); fs.closeSync(fd);
+const allCalls: any[] = [], results: any[] = [];
+const committed = () => allCalls.reduce((sum, call) => sum + (call.chargedMicros ?? call.reserveMicros), 0);
+const abort = new AbortController();
+async function keyStatus(name: string) {
+  const response = await fetch("https://openrouter.ai/api/v1/key", { headers: { Authorization: "Bearer " + secret }, redirect: "error" });
+  assert(response.ok, "Key status unavailable"); const { data } = await response.json() as any;
+  const value = { checkedAt: new Date().toISOString(), limit: data.limit, usage: data.usage, remaining: data.limit_remaining, expiresAt: data.expires_at };
+  save(name, value); return value;
+}
+try {
+  if (mode === "live") {
+    const offline = read(path.join(root, "offline", "result.json"));
+    assert(offline.arms.length === 2 && offline.arms.every((arm: any) => arm.contractPassed && arm.calls === 1));
+    assert.deepEqual(read(path.join(root, "offline", "protocol.json")).sources, sources, "Source changed after offline preflight");
+    assert.deepEqual(read(path.join(root, "offline", "inputs.json")), contexts, "Context changed after offline preflight");
+    try { secret = execFileSync("pwsh.exe", ["-NoProfile", "-NonInteractive", "-Command", "$s=ConvertTo-SecureString ([IO.File]::ReadAllText((Join-Path $env:LOCALAPPDATA 'Takko\\secrets\\openrouter-testing.dpapi'))); $p=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($s); try {[Console]::Write([Runtime.InteropServices.Marshal]::PtrToStringBSTR($p))} finally {[Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p)}"], { windowsHide: true, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim(); } catch { throw Error("Key restoration failed; credential suppressed"); }
+    officialBefore = await keyStatus("key-before.json");
+    prior = Math.max(prior, Math.ceil(officialBefore.usage * 1e6));
+    assert(prior + cap + headroom <= ceiling && officialBefore.remaining * 1e6 >= cap + headroom, "Campaign admission rejected");
+    const response = await fetch("https://openrouter.ai/api/v1/models", { redirect: "error" }); assert(response.ok);
+    const catalog = (await response.json() as any).data.find((row: any) => row.id === profile.model);
+    assert(catalog && Number(catalog.pricing.prompt) * 1e6 === profile.inputRate && Number(catalog.pricing.completion) * 1e6 === profile.outputRate, "Official prices changed");
+    save("catalog-model.json", catalog);
+  }
+  for (const [arm, context] of Object.entries(contexts)) {
+    assert(!abort.signal.aborted, "Unknown prior outcome prevents further calls");
+    fs.mkdirSync(path.join(out, arm));
+    const cfg = new Configuration(path.join(out, arm, "configuration"));
+    cfg.save({ profiles: [profile], routes: { planner: [], builder: [], reviewer: [profile.id], repair: [] }, budgetMicros: cap - committed(), repairLimit: 0, researchEnabled: false });
+    cfg.setKey(profile.id, secret || "offline-fixture");
+    const calls: any[] = [];
+    const transport: typeof fetch = async (url, options) => {
+      assert.equal(url, "https://openrouter.ai/api/v1/chat/completions");
+      const body = JSON.parse(options!.body as string);
+      assert.equal(body.model, profile.model); assert.equal(body.max_tokens, 12000);
+      assert(!body.plugins && !body.stream && body.messages.length === 2);
+      if (mode === "live" && !calls.length) assert.deepEqual(body, read(path.join(root, "offline", arm, "call-1-request.json")), "Live request differs from offline preflight");
+      const reserve = Math.ceil((Buffer.byteLength(options!.body as string) + 1024) * profile.inputRate + 12000 * profile.outputRate);
+      assert(calls.length < 2 && allCalls.length < 4 && committed() + reserve <= cap && prior + committed() + reserve + headroom <= ceiling, "Diagnostic dispatch budget rejected");
+      const call: any = { arm, id: calls.length + 1, startedAt: new Date().toISOString(), reserveMicros: reserve, mode };
+      calls.push(call); allCalls.push(call); save("calls.json", allCalls); save(`${arm}/call-${call.id}-request.json`, body);
+      if (mode === "offline") {
+        call.chargedMicros = 0; call.actualPaidCall = false; save("calls.json", allCalls);
+        return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(oldDecision) }, finish_reason: "stop" }], usage: { prompt_tokens: 1, completion_tokens: 1, cost: 0 } }), { status: 200, headers: { "Content-Type": "application/json" } });
+      }
+      try {
+        const response = await fetch(url, { ...options, redirect: "error" });
+        const text = (await response.text()).replaceAll(secret, "[REDACTED]");
+        fs.writeFileSync(path.join(out, arm, `call-${call.id}-response.txt`), text);
+        call.status = response.status; call.finishedAt = new Date().toISOString();
+        try { const value = JSON.parse(text); call.usage = value.usage; if (typeof value.usage?.cost === "number" && Number.isFinite(value.usage.cost) && value.usage.cost >= 0) { call.costUSD = value.usage.cost; call.chargedMicros = Math.ceil(value.usage.cost * 1e6); } } catch {}
+        if (call.chargedMicros === undefined) abort.abort("Unknown provider charge; retain full reservation and stop");
+        save("calls.json", allCalls);
+        return new Response(text, { status: response.status, headers: { "Content-Type": "application/json" } });
+      } catch { call.error = "Provider request failed; full reservation retained"; save("calls.json", allCalls); abort.abort("Unknown provider outcome"); throw Error(call.error); }
+    };
+    const store = new GenerationStore(path.join(out, arm, "projects"));
+    const engine = new Engine(store, cfg, transport);
+    const project: Project = { ...structuredClone(original), id: randomUUID(), charges: [], reservedMicros: 0, budgetMicros: cap - committed(), events: [], jobId: null, error: null, failure: null };
+    const started = Date.now(); let decision: any, error: string | undefined;
+    try {
+      decision = await (engine as any).call(project, "reviewer", context, componentReviewDecisionSchema, cfg.read(), new Map([[profile.id, secret || "offline-fixture"]]), AbortSignal.any([abort.signal, AbortSignal.timeout(650000)]),
+        (value: unknown) => validateComponentReview(value, currentEvidence, after.requirementIds), { label: "component-reviewer" });
+      save(`${arm}/decision.json`, decision);
+    } catch (e) { error = (e as Error).message; }
+    save(`${arm}/project.json`, project);
+    const result = { arm, contractPassed: !!decision, error, disposition: decision?.disposition, durationMs: Date.now() - started, calls: calls.length,
+      chargedOrUnknownMicros: calls.reduce((sum, c) => sum + (c.chargedMicros ?? c.reserveMicros), 0), inFlightReservations: project.reservedMicros, semanticAccuracy: "not_scored" };
+    results.push(result); save(`${arm}/result.json`, result); console.log(JSON.stringify(result));
+    if (mode === "offline") { assert(decision); assert.equal(calls.length, 1); }
+  }
+  if (mode === "live") await keyStatus("key-after.json");
+} finally {
+  const result = { mode, arms: results, calls: allCalls.length, actualPaidCalls: mode === "live" ? allCalls.length : 0,
+    chargedOrUnknownMicros: committed(), conservativePriorMicros: prior + committed(), unknownLiability: allCalls.some(c => c.chargedMicros === undefined),
+    noFurtherCallsPending: true, nativeOperations: 0, rawGamePass: false };
+  save("result.json", result); console.log(JSON.stringify(result)); secret = "";
+  fs.unlinkSync(lock);
+}

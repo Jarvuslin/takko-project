@@ -1,0 +1,20 @@
+{
+  "mode": "offline",
+  "contractPassed": false,
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n\n21 !== 20\n",
+  "calls": 0,
+  "actualPaidCalls": 0,
+  "chargedMicros": 0,
+  "reservationMicros": 0,
+  "liabilityMicros": 0,
+  "priorMicros": 8110213,
+  "conservativePriorMicros": 8110213,
+  "inheritedUnknownLiabilitiesRetained": true,
+  "historicalReservationsMicros": 22244720,
+  "cumulativeReservationAuditMicros": 22244720,
+  "unknownOutcome": false,
+  "noFurtherCallsPending": true,
+  "noFurtherRequests": true,
+  "nativeOperations": 0,
+  "rawGamePass": false
+}

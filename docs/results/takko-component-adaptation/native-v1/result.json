@@ -1,0 +1,1883 @@
+{
+  "kind": "raw-worker-component-adaptation-native-replay",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "results": [
+    {
+      "case": "combat-training",
+      "result": {
+        "version": 1,
+        "kind": "takko-component-adaptation",
+        "original": {
+          "archiveHash": "aba5111eca5702de6b9c4ee360adc808d37543c1770adde615dcf9442a9b05d1",
+          "manifestHash": "eb2a3f63db9aad459da4e762ed9250640fb35032df67aac722be4584d6d69fda"
+        },
+        "plan": {
+          "packetHash": "5c629510805ec5321eed1844b0eb9a63f43cf471e34aa1d9f0f7803ca5fe24b4",
+          "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+          "reason": "Preserve the complete R6 humanoid training dummy rig with HumanoidRootPart, Torso, Head, limbs, Humanoid, and standard Motor6D joint tree. Remove the Package script and child Module NumberPose which contain an unresolved external numeric asset require and irrelevant lighting manipulation logic. Register remaining integration needs for combat combo state machine, server validation, UI, audio, and arena setup.",
+          "removeSubtrees": [
+            {
+              "index": 18,
+              "reason": "Remove the Package script and its child TextureConfiguration module containing unresolved numeric require ID 91638724979309 and unrelated day/night lighting code."
+            }
+          ],
+          "replaceSources": [],
+          "preservedBehavior": [
+            "Preserve the Dummy model (node 2) hierarchy including HumanoidRootPart, Torso, Head, Left Arm, Right Arm, Left Leg, and Right Leg.",
+            "Preserve all standard R6 Motor6D joints ('Root Hip', 'Neck', 'Left Shoulder', 'Right Shoulder', 'Left Hip', 'Right Hip') enabling animation and flinch playback.",
+            "Preserve the Humanoid instance (node 17) for health tracking, state changes, and combat hit reactions.",
+            "Preserve the Head Face Decal (node 16) for standard dummy facial presentation."
+          ],
+          "remainingIntegration": [
+            "Construct the Strike Lab arena geometry with marked sparring mat, boundaries, overhead key lighting, and player spawn facing the dummy.",
+            "Author a 3-hit light-attack combo state machine (Jab -> Cross -> Heavy Finisher) with distinct windup (anticipation), contact (active window), and recovery timing phases.",
+            "Implement server-authoritative hit validation checking attacker-to-dummy range, attack cooldowns, and enforcing strictly one hit registration per swing.",
+            "Implement client presentation with procedural joint/track attack animations, contact spark VFX, miss whoosh effects, and synchronized hit/miss audio.",
+            "Implement responsive HUD displaying real-time dummy health, combo hit counter, reset combo timer, and touch controls for mobile alongside desktop keyboard/mouse inputs.",
+            "Implement dummy defeat state transition upon reaching 0 HP (flinch/knockdown reaction) with auto-reset and explicit manual reset button controls."
+          ],
+          "nativeTestPlan": [
+            "Spawn into the arena on desktop and verify dummy stands upright with intact Motor6D joint hierarchy and full health bar.",
+            "Execute Hit 1 (Jab) within valid range: observe windup animation, contact spark VFX, impact sound, dummy health deduction, and combo counter incrementing to 1.",
+            "Continue combo with Hit 2 (Cross) and Hit 3 (Finisher) within timing windows: verify combo counter progresses to 2 and 3 with escalating hit feedback.",
+            "Test recovery-spam: press attack rapidly during recovery phase and confirm no additional swings, damage, or counter increments occur before recovery completes.",
+            "Test button-hold: hold the attack input continuously and confirm exactly one swing executes without continuous auto-attacking.",
+            "Test miss feedback: attack while positioned outside attack range; confirm whoosh swing audio and trail play, no damage is dealt, and combo counter does not increment.",
+            "Deplete dummy health to 0: verify dummy triggers defeat reaction, displays defeat banner, and resets health/stance upon pressing the reset control.",
+            "Test mobile touch controls using device emulation: verify on-screen attack and reset buttons function identically to desktop inputs."
+          ],
+          "runtimeVerification": "not_performed"
+        },
+        "planHash": "f342e2815f33ff1905e04441d3c04a4b56d3b6b470b5efc8312d5d094c34b96f",
+        "adapted": {
+          "archiveHash": "9f37d798a7ceb199ded3020d3736b73ccb3859f3a027875bdf56216eeffa2863",
+          "manifestHash": "acdf0f99fb986e0bd2c7d70041eaeccefbbc76532425b1d494c6969867d876f8"
+        },
+        "indexMap": [
+          {
+            "before": 1,
+            "after": 1
+          },
+          {
+            "before": 2,
+            "after": 2
+          },
+          {
+            "before": 3,
+            "after": 3
+          },
+          {
+            "before": 4,
+            "after": 4
+          },
+          {
+            "before": 5,
+            "after": 5
+          },
+          {
+            "before": 6,
+            "after": 6
+          },
+          {
+            "before": 7,
+            "after": 7
+          },
+          {
+            "before": 8,
+            "after": 8
+          },
+          {
+            "before": 9,
+            "after": 9
+          },
+          {
+            "before": 10,
+            "after": 10
+          },
+          {
+            "before": 11,
+            "after": 11
+          },
+          {
+            "before": 12,
+            "after": 12
+          },
+          {
+            "before": 13,
+            "after": 13
+          },
+          {
+            "before": 14,
+            "after": 14
+          },
+          {
+            "before": 15,
+            "after": 15
+          },
+          {
+            "before": 16,
+            "after": 16
+          },
+          {
+            "before": 17,
+            "after": 17
+          }
+        ],
+        "sourceReview": "required",
+        "runtimeVerification": "not_performed",
+        "exported": false,
+        "executed": false,
+        "sha256": "2a632a4322cfdf7009611e234b25bd4b3dba866a7bd7057c195636ec4e7cd0f9",
+        "file": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\combat-training\\2a632a4322cfdf7009611e234b25bd4b3dba866a7bd7057c195636ec4e7cd0f9.adaptation.json",
+        "archive": {
+          "status": "captured",
+          "sha256": "9f37d798a7ceb199ded3020d3736b73ccb3859f3a027875bdf56216eeffa2863",
+          "bytes": 7414,
+          "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\combat-training\\9f37d798a7ceb199ded3020d3736b73ccb3859f3a027875bdf56216eeffa2863.rbxm",
+          "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\combat-training\\acdf0f99fb986e0bd2c7d70041eaeccefbbc76532425b1d494c6969867d876f8.component.json",
+          "instanceCount": 17,
+          "scriptCount": 0,
+          "sourceBytes": 0,
+          "roundTrip": {
+            "passed": true,
+            "checkedProperties": 435,
+            "checkedAttributes": 0,
+            "checkedReferences": 13,
+            "unobservableProperties": [
+              "Humanoid.Health_XML",
+              "Humanoid.InternalBodyScale",
+              "Humanoid.InternalHeadScale",
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw"
+            ],
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ]
+          },
+          "persisted": true,
+          "securityReview": "not_performed",
+          "runtimeVerification": "not_performed",
+          "exportConversion": "not_performed"
+        }
+      },
+      "nativeReceipt": {
+        "ok": true,
+        "transfer": {
+          "encodedBytes": 15720,
+          "chunkSize": 32768,
+          "sha256": "52fd551a13d2695bdc71c2ce3960a566a46e1e772eea44b37b87231d331bb859",
+          "jsonBytes": 11789
+        },
+        "rootsDestroyed": true
+      },
+      "paidCalls": 0,
+      "importedCodeExecuted": false,
+      "rawGameBenchmark": false
+    },
+    {
+      "case": "bubble-wrap",
+      "result": {
+        "version": 1,
+        "kind": "takko-component-adaptation",
+        "original": {
+          "archiveHash": "afc94ed56c59d08e2ae4bec37b55029f077b12df617697b3b24faf4d6a8a9098",
+          "manifestHash": "42d98ffb5f3fa12458980778e5b24af95c91e4fba873366fbf52ea29719d1e84"
+        },
+        "plan": {
+          "packetHash": "eca6b2a3bc77f3a01653e0232b803cc793113d3c1cca79245fa0e93e18473ce8",
+          "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+          "reason": "Adapt the bubble wrap model by removing the obfuscated TypeConfig backdoor loader and legacy physical RegenButton, while replacing legacy bubble pop scripts with a robust squash-and-deflate tween animation, debounce, synchronized audio playback, and attribute-driven state management for reset integration.",
+          "removeSubtrees": [
+            {
+              "index": 3,
+              "reason": "RegenButton and its legacy script perform destructive whole-model re-cloning on player touch, conflicting with clean UI-driven sheet resets and server/client state management."
+            },
+            {
+              "index": 15,
+              "reason": "TypeConfig contains an obfuscated backdoor loader attempting numeric require on external ID 99292559910041 and MarketplaceService hijacking."
+            }
+          ],
+          "replaceSources": [
+            {
+              "index": 14,
+              "beforeSha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+              "source": "--!strict\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal bubblePart = script.Parent :: BasePart\nlocal clickDetector = bubblePart:FindFirstChildOfClass(\"ClickDetector\")\nlocal sound = bubblePart:FindFirstChildOfClass(\"Sound\")\n\nlocal isPopped = false\nbubblePart:SetAttribute(\"Popped\", false)\n\nlocal originalSize = bubblePart.Size\nlocal originalTransparency = bubblePart.Transparency\n\nlocal function pop()\n\tif isPopped then return end\n\tisPopped = true\n\tbubblePart:SetAttribute(\"Popped\", true)\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 0\n\tend\n\n\tif sound then\n\t\tsound:Play()\n\tend\n\n\tlocal squashInfo = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)\n\tlocal squashGoal = {\n\t\tSize = Vector3.new(originalSize.X * 1.15, math.max(0.05, originalSize.Y * 0.25), originalSize.Z * 1.15),\n\t\tTransparency = 0.65,\n\t}\n\tlocal tween = TweenService:Create(bubblePart, squashInfo, squashGoal)\n\ttween:Play()\nend\n\nlocal function reset()\n\tisPopped = false\n\tbubblePart:SetAttribute(\"Popped\", false)\n\tbubblePart.Size = originalSize\n\tbubblePart.Transparency = originalTransparency\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 32\n\tend\nend\n\nif clickDetector then\n\tclickDetector.MouseClick:Connect(function()\n\t\tpop()\n\tend)\nend\n\nbubblePart:GetAttributeChangedSignal(\"Reset\"):Connect(function()\n\tif bubblePart:GetAttribute(\"Reset\") == true then\n\t\treset()\n\t\tbubblePart:SetAttribute(\"Reset\", false)\n\tend\nend)\n",
+              "reason": "Replaces crude instant invisibility with smooth physical squash/deflate tweening, audio playback, debounce, and reset attribute listener."
+            }
+          ],
+          "preservedBehavior": [
+            "Preserved bubble grid geometry and physical placement across the bubble wrap sheet.",
+            "Preserved ClickDetector interaction targets and associated pop audio Sound objects (rbxassetid://421058925)."
+          ],
+          "remainingIntegration": [
+            "Implement client HUD manager with live popped counter (Popped: X / Total), completion banner, and tactile Reset Sheet button.",
+            "Implement tabletop camera framing module focusing cleanly on the bubble wrap sheet on desktop and touch viewports."
+          ],
+          "nativeTestPlan": [
+            "1. In Studio Play mode, inspect the bubble sheet to ensure all bubble domes render with intact materials and ClickDetectors.",
+            "2. Click and tap unpopped bubbles on desktop and mobile emulator, verifying the depression/squash tween, pop audio playback, and ClickDetector disabling.",
+            "3. Attempt rapid spam clicking on already popped bubbles to confirm debounce prevents duplicate pop counts.",
+            "4. Pop all bubbles sequentially and verify the completion state triggers accurately.",
+            "5. Trigger the Reset action and confirm all bubble domes smoothly restore their original geometry, transparency, and clickability."
+          ],
+          "runtimeVerification": "not_performed"
+        },
+        "planHash": "c235aabe4d40a3590659e7be9fc36243e504531f7c74ab13b39a90bc5116a711",
+        "adapted": {
+          "archiveHash": "b469979941fe54e8e9ac9c218111cd03aeba76c445cccd56f7f7b026fef6f26c",
+          "manifestHash": "48ae43656b8f2cfd62c063357e9c461cb167a9d7ecb5eca952937f6b4735c037"
+        },
+        "indexMap": [
+          {
+            "before": 1,
+            "after": 1
+          },
+          {
+            "before": 2,
+            "after": 2
+          },
+          {
+            "before": 9,
+            "after": 3
+          },
+          {
+            "before": 10,
+            "after": 4
+          },
+          {
+            "before": 11,
+            "after": 5
+          },
+          {
+            "before": 12,
+            "after": 6
+          },
+          {
+            "before": 13,
+            "after": 7
+          },
+          {
+            "before": 14,
+            "after": 8
+          },
+          {
+            "before": 19,
+            "after": 9
+          },
+          {
+            "before": 20,
+            "after": 10
+          },
+          {
+            "before": 21,
+            "after": 11
+          },
+          {
+            "before": 22,
+            "after": 12
+          },
+          {
+            "before": 23,
+            "after": 13
+          },
+          {
+            "before": 24,
+            "after": 14
+          },
+          {
+            "before": 25,
+            "after": 15
+          },
+          {
+            "before": 26,
+            "after": 16
+          },
+          {
+            "before": 27,
+            "after": 17
+          },
+          {
+            "before": 28,
+            "after": 18
+          },
+          {
+            "before": 29,
+            "after": 19
+          },
+          {
+            "before": 30,
+            "after": 20
+          },
+          {
+            "before": 31,
+            "after": 21
+          },
+          {
+            "before": 32,
+            "after": 22
+          },
+          {
+            "before": 33,
+            "after": 23
+          },
+          {
+            "before": 34,
+            "after": 24
+          },
+          {
+            "before": 35,
+            "after": 25
+          },
+          {
+            "before": 36,
+            "after": 26
+          },
+          {
+            "before": 37,
+            "after": 27
+          },
+          {
+            "before": 38,
+            "after": 28
+          },
+          {
+            "before": 39,
+            "after": 29
+          },
+          {
+            "before": 40,
+            "after": 30
+          },
+          {
+            "before": 41,
+            "after": 31
+          },
+          {
+            "before": 42,
+            "after": 32
+          },
+          {
+            "before": 43,
+            "after": 33
+          },
+          {
+            "before": 44,
+            "after": 34
+          },
+          {
+            "before": 45,
+            "after": 35
+          },
+          {
+            "before": 46,
+            "after": 36
+          },
+          {
+            "before": 47,
+            "after": 37
+          },
+          {
+            "before": 48,
+            "after": 38
+          },
+          {
+            "before": 49,
+            "after": 39
+          },
+          {
+            "before": 50,
+            "after": 40
+          },
+          {
+            "before": 51,
+            "after": 41
+          },
+          {
+            "before": 52,
+            "after": 42
+          },
+          {
+            "before": 53,
+            "after": 43
+          },
+          {
+            "before": 54,
+            "after": 44
+          },
+          {
+            "before": 55,
+            "after": 45
+          },
+          {
+            "before": 56,
+            "after": 46
+          },
+          {
+            "before": 57,
+            "after": 47
+          },
+          {
+            "before": 58,
+            "after": 48
+          },
+          {
+            "before": 59,
+            "after": 49
+          },
+          {
+            "before": 60,
+            "after": 50
+          },
+          {
+            "before": 61,
+            "after": 51
+          },
+          {
+            "before": 62,
+            "after": 52
+          },
+          {
+            "before": 63,
+            "after": 53
+          },
+          {
+            "before": 64,
+            "after": 54
+          },
+          {
+            "before": 65,
+            "after": 55
+          },
+          {
+            "before": 66,
+            "after": 56
+          },
+          {
+            "before": 67,
+            "after": 57
+          },
+          {
+            "before": 68,
+            "after": 58
+          },
+          {
+            "before": 69,
+            "after": 59
+          },
+          {
+            "before": 70,
+            "after": 60
+          },
+          {
+            "before": 71,
+            "after": 61
+          },
+          {
+            "before": 72,
+            "after": 62
+          },
+          {
+            "before": 73,
+            "after": 63
+          },
+          {
+            "before": 74,
+            "after": 64
+          },
+          {
+            "before": 75,
+            "after": 65
+          },
+          {
+            "before": 76,
+            "after": 66
+          },
+          {
+            "before": 77,
+            "after": 67
+          },
+          {
+            "before": 78,
+            "after": 68
+          },
+          {
+            "before": 79,
+            "after": 69
+          },
+          {
+            "before": 80,
+            "after": 70
+          },
+          {
+            "before": 81,
+            "after": 71
+          },
+          {
+            "before": 82,
+            "after": 72
+          },
+          {
+            "before": 83,
+            "after": 73
+          },
+          {
+            "before": 84,
+            "after": 74
+          },
+          {
+            "before": 85,
+            "after": 75
+          },
+          {
+            "before": 86,
+            "after": 76
+          },
+          {
+            "before": 87,
+            "after": 77
+          },
+          {
+            "before": 88,
+            "after": 78
+          },
+          {
+            "before": 89,
+            "after": 79
+          },
+          {
+            "before": 90,
+            "after": 80
+          },
+          {
+            "before": 91,
+            "after": 81
+          },
+          {
+            "before": 92,
+            "after": 82
+          },
+          {
+            "before": 93,
+            "after": 83
+          },
+          {
+            "before": 94,
+            "after": 84
+          },
+          {
+            "before": 95,
+            "after": 85
+          },
+          {
+            "before": 96,
+            "after": 86
+          },
+          {
+            "before": 97,
+            "after": 87
+          },
+          {
+            "before": 98,
+            "after": 88
+          },
+          {
+            "before": 99,
+            "after": 89
+          },
+          {
+            "before": 100,
+            "after": 90
+          },
+          {
+            "before": 101,
+            "after": 91
+          },
+          {
+            "before": 102,
+            "after": 92
+          },
+          {
+            "before": 103,
+            "after": 93
+          },
+          {
+            "before": 104,
+            "after": 94
+          },
+          {
+            "before": 105,
+            "after": 95
+          },
+          {
+            "before": 106,
+            "after": 96
+          },
+          {
+            "before": 107,
+            "after": 97
+          },
+          {
+            "before": 108,
+            "after": 98
+          },
+          {
+            "before": 109,
+            "after": 99
+          },
+          {
+            "before": 110,
+            "after": 100
+          },
+          {
+            "before": 111,
+            "after": 101
+          },
+          {
+            "before": 112,
+            "after": 102
+          },
+          {
+            "before": 113,
+            "after": 103
+          },
+          {
+            "before": 114,
+            "after": 104
+          },
+          {
+            "before": 115,
+            "after": 105
+          },
+          {
+            "before": 116,
+            "after": 106
+          },
+          {
+            "before": 117,
+            "after": 107
+          },
+          {
+            "before": 118,
+            "after": 108
+          },
+          {
+            "before": 119,
+            "after": 109
+          },
+          {
+            "before": 120,
+            "after": 110
+          },
+          {
+            "before": 121,
+            "after": 111
+          },
+          {
+            "before": 122,
+            "after": 112
+          },
+          {
+            "before": 123,
+            "after": 113
+          },
+          {
+            "before": 124,
+            "after": 114
+          },
+          {
+            "before": 125,
+            "after": 115
+          },
+          {
+            "before": 126,
+            "after": 116
+          },
+          {
+            "before": 127,
+            "after": 117
+          },
+          {
+            "before": 128,
+            "after": 118
+          },
+          {
+            "before": 129,
+            "after": 119
+          },
+          {
+            "before": 130,
+            "after": 120
+          },
+          {
+            "before": 131,
+            "after": 121
+          },
+          {
+            "before": 132,
+            "after": 122
+          },
+          {
+            "before": 133,
+            "after": 123
+          },
+          {
+            "before": 134,
+            "after": 124
+          },
+          {
+            "before": 135,
+            "after": 125
+          },
+          {
+            "before": 136,
+            "after": 126
+          },
+          {
+            "before": 137,
+            "after": 127
+          },
+          {
+            "before": 138,
+            "after": 128
+          },
+          {
+            "before": 139,
+            "after": 129
+          },
+          {
+            "before": 140,
+            "after": 130
+          },
+          {
+            "before": 141,
+            "after": 131
+          },
+          {
+            "before": 142,
+            "after": 132
+          },
+          {
+            "before": 143,
+            "after": 133
+          },
+          {
+            "before": 144,
+            "after": 134
+          },
+          {
+            "before": 145,
+            "after": 135
+          },
+          {
+            "before": 146,
+            "after": 136
+          },
+          {
+            "before": 147,
+            "after": 137
+          },
+          {
+            "before": 148,
+            "after": 138
+          },
+          {
+            "before": 149,
+            "after": 139
+          },
+          {
+            "before": 150,
+            "after": 140
+          },
+          {
+            "before": 151,
+            "after": 141
+          },
+          {
+            "before": 152,
+            "after": 142
+          },
+          {
+            "before": 153,
+            "after": 143
+          },
+          {
+            "before": 154,
+            "after": 144
+          },
+          {
+            "before": 155,
+            "after": 145
+          },
+          {
+            "before": 156,
+            "after": 146
+          },
+          {
+            "before": 157,
+            "after": 147
+          },
+          {
+            "before": 158,
+            "after": 148
+          },
+          {
+            "before": 159,
+            "after": 149
+          },
+          {
+            "before": 160,
+            "after": 150
+          },
+          {
+            "before": 161,
+            "after": 151
+          },
+          {
+            "before": 162,
+            "after": 152
+          },
+          {
+            "before": 163,
+            "after": 153
+          },
+          {
+            "before": 164,
+            "after": 154
+          },
+          {
+            "before": 165,
+            "after": 155
+          },
+          {
+            "before": 166,
+            "after": 156
+          },
+          {
+            "before": 167,
+            "after": 157
+          },
+          {
+            "before": 168,
+            "after": 158
+          },
+          {
+            "before": 169,
+            "after": 159
+          },
+          {
+            "before": 170,
+            "after": 160
+          },
+          {
+            "before": 171,
+            "after": 161
+          },
+          {
+            "before": 172,
+            "after": 162
+          },
+          {
+            "before": 173,
+            "after": 163
+          },
+          {
+            "before": 174,
+            "after": 164
+          },
+          {
+            "before": 175,
+            "after": 165
+          },
+          {
+            "before": 176,
+            "after": 166
+          },
+          {
+            "before": 177,
+            "after": 167
+          },
+          {
+            "before": 178,
+            "after": 168
+          },
+          {
+            "before": 179,
+            "after": 169
+          },
+          {
+            "before": 180,
+            "after": 170
+          },
+          {
+            "before": 181,
+            "after": 171
+          },
+          {
+            "before": 182,
+            "after": 172
+          },
+          {
+            "before": 183,
+            "after": 173
+          },
+          {
+            "before": 184,
+            "after": 174
+          },
+          {
+            "before": 185,
+            "after": 175
+          },
+          {
+            "before": 186,
+            "after": 176
+          },
+          {
+            "before": 187,
+            "after": 177
+          },
+          {
+            "before": 188,
+            "after": 178
+          },
+          {
+            "before": 189,
+            "after": 179
+          },
+          {
+            "before": 190,
+            "after": 180
+          },
+          {
+            "before": 191,
+            "after": 181
+          },
+          {
+            "before": 192,
+            "after": 182
+          },
+          {
+            "before": 193,
+            "after": 183
+          },
+          {
+            "before": 194,
+            "after": 184
+          },
+          {
+            "before": 195,
+            "after": 185
+          },
+          {
+            "before": 196,
+            "after": 186
+          },
+          {
+            "before": 197,
+            "after": 187
+          },
+          {
+            "before": 198,
+            "after": 188
+          },
+          {
+            "before": 199,
+            "after": 189
+          },
+          {
+            "before": 200,
+            "after": 190
+          },
+          {
+            "before": 201,
+            "after": 191
+          },
+          {
+            "before": 202,
+            "after": 192
+          },
+          {
+            "before": 203,
+            "after": 193
+          },
+          {
+            "before": 204,
+            "after": 194
+          },
+          {
+            "before": 205,
+            "after": 195
+          },
+          {
+            "before": 206,
+            "after": 196
+          },
+          {
+            "before": 207,
+            "after": 197
+          },
+          {
+            "before": 208,
+            "after": 198
+          },
+          {
+            "before": 209,
+            "after": 199
+          },
+          {
+            "before": 210,
+            "after": 200
+          },
+          {
+            "before": 211,
+            "after": 201
+          },
+          {
+            "before": 212,
+            "after": 202
+          },
+          {
+            "before": 213,
+            "after": 203
+          },
+          {
+            "before": 214,
+            "after": 204
+          },
+          {
+            "before": 215,
+            "after": 205
+          },
+          {
+            "before": 216,
+            "after": 206
+          },
+          {
+            "before": 217,
+            "after": 207
+          },
+          {
+            "before": 218,
+            "after": 208
+          },
+          {
+            "before": 219,
+            "after": 209
+          },
+          {
+            "before": 220,
+            "after": 210
+          },
+          {
+            "before": 221,
+            "after": 211
+          },
+          {
+            "before": 222,
+            "after": 212
+          },
+          {
+            "before": 223,
+            "after": 213
+          },
+          {
+            "before": 224,
+            "after": 214
+          },
+          {
+            "before": 225,
+            "after": 215
+          },
+          {
+            "before": 226,
+            "after": 216
+          },
+          {
+            "before": 227,
+            "after": 217
+          },
+          {
+            "before": 228,
+            "after": 218
+          },
+          {
+            "before": 229,
+            "after": 219
+          },
+          {
+            "before": 230,
+            "after": 220
+          },
+          {
+            "before": 231,
+            "after": 221
+          },
+          {
+            "before": 232,
+            "after": 222
+          },
+          {
+            "before": 233,
+            "after": 223
+          },
+          {
+            "before": 234,
+            "after": 224
+          },
+          {
+            "before": 235,
+            "after": 225
+          },
+          {
+            "before": 236,
+            "after": 226
+          },
+          {
+            "before": 237,
+            "after": 227
+          },
+          {
+            "before": 238,
+            "after": 228
+          },
+          {
+            "before": 239,
+            "after": 229
+          },
+          {
+            "before": 240,
+            "after": 230
+          },
+          {
+            "before": 241,
+            "after": 231
+          },
+          {
+            "before": 242,
+            "after": 232
+          },
+          {
+            "before": 243,
+            "after": 233
+          },
+          {
+            "before": 244,
+            "after": 234
+          },
+          {
+            "before": 245,
+            "after": 235
+          },
+          {
+            "before": 246,
+            "after": 236
+          },
+          {
+            "before": 247,
+            "after": 237
+          },
+          {
+            "before": 248,
+            "after": 238
+          },
+          {
+            "before": 249,
+            "after": 239
+          },
+          {
+            "before": 250,
+            "after": 240
+          },
+          {
+            "before": 251,
+            "after": 241
+          },
+          {
+            "before": 252,
+            "after": 242
+          },
+          {
+            "before": 253,
+            "after": 243
+          },
+          {
+            "before": 254,
+            "after": 244
+          },
+          {
+            "before": 255,
+            "after": 245
+          },
+          {
+            "before": 256,
+            "after": 246
+          },
+          {
+            "before": 257,
+            "after": 247
+          },
+          {
+            "before": 258,
+            "after": 248
+          },
+          {
+            "before": 259,
+            "after": 249
+          },
+          {
+            "before": 260,
+            "after": 250
+          },
+          {
+            "before": 261,
+            "after": 251
+          },
+          {
+            "before": 262,
+            "after": 252
+          },
+          {
+            "before": 263,
+            "after": 253
+          },
+          {
+            "before": 264,
+            "after": 254
+          },
+          {
+            "before": 265,
+            "after": 255
+          },
+          {
+            "before": 266,
+            "after": 256
+          },
+          {
+            "before": 267,
+            "after": 257
+          },
+          {
+            "before": 268,
+            "after": 258
+          },
+          {
+            "before": 269,
+            "after": 259
+          },
+          {
+            "before": 270,
+            "after": 260
+          },
+          {
+            "before": 271,
+            "after": 261
+          },
+          {
+            "before": 272,
+            "after": 262
+          },
+          {
+            "before": 273,
+            "after": 263
+          },
+          {
+            "before": 274,
+            "after": 264
+          },
+          {
+            "before": 275,
+            "after": 265
+          },
+          {
+            "before": 276,
+            "after": 266
+          },
+          {
+            "before": 277,
+            "after": 267
+          },
+          {
+            "before": 278,
+            "after": 268
+          },
+          {
+            "before": 279,
+            "after": 269
+          },
+          {
+            "before": 280,
+            "after": 270
+          },
+          {
+            "before": 281,
+            "after": 271
+          },
+          {
+            "before": 282,
+            "after": 272
+          },
+          {
+            "before": 283,
+            "after": 273
+          },
+          {
+            "before": 284,
+            "after": 274
+          },
+          {
+            "before": 285,
+            "after": 275
+          },
+          {
+            "before": 286,
+            "after": 276
+          },
+          {
+            "before": 287,
+            "after": 277
+          },
+          {
+            "before": 288,
+            "after": 278
+          },
+          {
+            "before": 289,
+            "after": 279
+          },
+          {
+            "before": 290,
+            "after": 280
+          },
+          {
+            "before": 291,
+            "after": 281
+          },
+          {
+            "before": 292,
+            "after": 282
+          },
+          {
+            "before": 293,
+            "after": 283
+          },
+          {
+            "before": 294,
+            "after": 284
+          },
+          {
+            "before": 295,
+            "after": 285
+          },
+          {
+            "before": 296,
+            "after": 286
+          },
+          {
+            "before": 297,
+            "after": 287
+          },
+          {
+            "before": 298,
+            "after": 288
+          },
+          {
+            "before": 299,
+            "after": 289
+          },
+          {
+            "before": 300,
+            "after": 290
+          },
+          {
+            "before": 301,
+            "after": 291
+          },
+          {
+            "before": 302,
+            "after": 292
+          },
+          {
+            "before": 303,
+            "after": 293
+          },
+          {
+            "before": 304,
+            "after": 294
+          },
+          {
+            "before": 305,
+            "after": 295
+          },
+          {
+            "before": 306,
+            "after": 296
+          },
+          {
+            "before": 307,
+            "after": 297
+          },
+          {
+            "before": 308,
+            "after": 298
+          },
+          {
+            "before": 309,
+            "after": 299
+          },
+          {
+            "before": 310,
+            "after": 300
+          },
+          {
+            "before": 311,
+            "after": 301
+          },
+          {
+            "before": 312,
+            "after": 302
+          },
+          {
+            "before": 313,
+            "after": 303
+          },
+          {
+            "before": 314,
+            "after": 304
+          },
+          {
+            "before": 315,
+            "after": 305
+          },
+          {
+            "before": 316,
+            "after": 306
+          },
+          {
+            "before": 317,
+            "after": 307
+          },
+          {
+            "before": 318,
+            "after": 308
+          },
+          {
+            "before": 319,
+            "after": 309
+          },
+          {
+            "before": 320,
+            "after": 310
+          },
+          {
+            "before": 321,
+            "after": 311
+          },
+          {
+            "before": 322,
+            "after": 312
+          },
+          {
+            "before": 323,
+            "after": 313
+          },
+          {
+            "before": 324,
+            "after": 314
+          },
+          {
+            "before": 325,
+            "after": 315
+          },
+          {
+            "before": 326,
+            "after": 316
+          },
+          {
+            "before": 327,
+            "after": 317
+          },
+          {
+            "before": 328,
+            "after": 318
+          },
+          {
+            "before": 329,
+            "after": 319
+          },
+          {
+            "before": 330,
+            "after": 320
+          },
+          {
+            "before": 331,
+            "after": 321
+          },
+          {
+            "before": 332,
+            "after": 322
+          },
+          {
+            "before": 333,
+            "after": 323
+          },
+          {
+            "before": 334,
+            "after": 324
+          },
+          {
+            "before": 335,
+            "after": 325
+          },
+          {
+            "before": 336,
+            "after": 326
+          },
+          {
+            "before": 337,
+            "after": 327
+          },
+          {
+            "before": 338,
+            "after": 328
+          },
+          {
+            "before": 339,
+            "after": 329
+          },
+          {
+            "before": 340,
+            "after": 330
+          },
+          {
+            "before": 341,
+            "after": 331
+          },
+          {
+            "before": 342,
+            "after": 332
+          },
+          {
+            "before": 343,
+            "after": 333
+          },
+          {
+            "before": 344,
+            "after": 334
+          },
+          {
+            "before": 345,
+            "after": 335
+          },
+          {
+            "before": 346,
+            "after": 336
+          },
+          {
+            "before": 347,
+            "after": 337
+          },
+          {
+            "before": 348,
+            "after": 338
+          },
+          {
+            "before": 349,
+            "after": 339
+          },
+          {
+            "before": 350,
+            "after": 340
+          },
+          {
+            "before": 351,
+            "after": 341
+          },
+          {
+            "before": 352,
+            "after": 342
+          },
+          {
+            "before": 353,
+            "after": 343
+          },
+          {
+            "before": 354,
+            "after": 344
+          },
+          {
+            "before": 355,
+            "after": 345
+          },
+          {
+            "before": 356,
+            "after": 346
+          },
+          {
+            "before": 357,
+            "after": 347
+          },
+          {
+            "before": 358,
+            "after": 348
+          },
+          {
+            "before": 359,
+            "after": 349
+          },
+          {
+            "before": 360,
+            "after": 350
+          },
+          {
+            "before": 361,
+            "after": 351
+          },
+          {
+            "before": 362,
+            "after": 352
+          },
+          {
+            "before": 363,
+            "after": 353
+          },
+          {
+            "before": 364,
+            "after": 354
+          },
+          {
+            "before": 365,
+            "after": 355
+          },
+          {
+            "before": 366,
+            "after": 356
+          },
+          {
+            "before": 367,
+            "after": 357
+          },
+          {
+            "before": 368,
+            "after": 358
+          },
+          {
+            "before": 369,
+            "after": 359
+          },
+          {
+            "before": 370,
+            "after": 360
+          },
+          {
+            "before": 371,
+            "after": 361
+          },
+          {
+            "before": 372,
+            "after": 362
+          },
+          {
+            "before": 373,
+            "after": 363
+          },
+          {
+            "before": 374,
+            "after": 364
+          },
+          {
+            "before": 375,
+            "after": 365
+          }
+        ],
+        "sourceReview": "required",
+        "runtimeVerification": "not_performed",
+        "exported": false,
+        "executed": false,
+        "sha256": "2d6fdb9fde392dabbaec7a2f511b4b2b94eec0b0b45f40de1204827a9f1e5929",
+        "file": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\bubble-wrap\\2d6fdb9fde392dabbaec7a2f511b4b2b94eec0b0b45f40de1204827a9f1e5929.adaptation.json",
+        "archive": {
+          "status": "captured",
+          "sha256": "b469979941fe54e8e9ac9c218111cd03aeba76c445cccd56f7f7b026fef6f26c",
+          "bytes": 12725,
+          "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\bubble-wrap\\b469979941fe54e8e9ac9c218111cd03aeba76c445cccd56f7f7b026fef6f26c.rbxm",
+          "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\bubble-wrap\\48ae43656b8f2cfd62c063357e9c461cb167a9d7ecb5eca952937f6b4735c037.component.json",
+          "instanceCount": 365,
+          "scriptCount": 72,
+          "sourceBytes": 15859,
+          "roundTrip": {
+            "passed": true,
+            "checkedProperties": 5903,
+            "checkedAttributes": 0,
+            "checkedReferences": 0,
+            "unobservableProperties": [
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw",
+              "Script.ScriptGuid"
+            ],
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ]
+          },
+          "persisted": true,
+          "securityReview": "not_performed",
+          "runtimeVerification": "not_performed",
+          "exportConversion": "not_performed"
+        }
+      },
+      "nativeReceipt": {
+        "ok": true,
+        "transfer": {
+          "encodedBytes": 107256,
+          "chunkSize": 32768,
+          "sha256": "ee37100a6d6491ede3b830cec99c0ada28302a68256e07bb0873bd699f4cc604",
+          "jsonBytes": 80442
+        },
+        "rootsDestroyed": true
+      },
+      "paidCalls": 0,
+      "importedCodeExecuted": false,
+      "rawGameBenchmark": false
+    },
+    {
+      "case": "checkpoint-parkour",
+      "result": {
+        "version": 1,
+        "kind": "takko-component-adaptation",
+        "original": {
+          "archiveHash": "e904c544f85904af25ffe8b87b0f1ef682370fe5483e9183a516373b18fcdcde",
+          "manifestHash": "c27965146032b27d5b9c94b5622c3c35f3fcceb07b4b0e05cff7b0f17b9c7027"
+        },
+        "plan": {
+          "packetHash": "3c59796a86e1df7ac717f873763e08212a3b5a9992d59ad2b7f58cb4b173f509",
+          "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+          "reason": "Preserve checkpoint pad geometry and decal while upgrading the legacy unconditional touch script to enforce sequential checkpoint progression (CP1 -> CP2 -> CP3), add visual illumination/color transitions, play audio confirmation, and support safe character fall recovery.",
+          "removeSubtrees": [],
+          "replaceSources": [
+            {
+              "index": 3,
+              "beforeSha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96",
+              "source": "local Players = game:GetService(\"Players\")\nlocal TweenService = game:GetService(\"TweenService\")\nlocal Debris = game:GetService(\"Debris\")\n\nlocal pad = script.Parent\npad.Anchored = true\npad.CanCollide = true\n\n-- Determine checkpoint index from attribute or name\nlocal checkpointIndex = pad:GetAttribute(\"CheckpointIndex\")\nif not checkpointIndex then\n\tlocal num = string.match(pad.Name, \"%d+\")\n\tcheckpointIndex = num and tonumber(num) or 1\n\tpad:SetAttribute(\"CheckpointIndex\", checkpointIndex)\nend\n\n-- Attach visual feedback components\nlocal light = pad:FindFirstChildOfClass(\"PointLight\")\nif not light then\n\tlight = Instance.new(\"PointLight\")\n\tlight.Name = \"ActivationLight\"\n\tlight.Color = Color3.fromRGB(0, 220, 255)\n\tlight.Range = 14\n\tlight.Brightness = 0\n\tlight.Enabled = true\n\tlight.Parent = pad\nend\n\nlocal chimeSound = pad:FindFirstChildOfClass(\"Sound\")\nif not chimeSound then\n\tchimeSound = Instance.new(\"Sound\")\n\tchimeSound.Name = \"CheckpointChime\"\n\tchimeSound.SoundId = \"rbxasset://sounds/electronicpingshort.wav\"\n\tchimeSound.Volume = 0.85\n\tchimeSound.RollOffMaxDistance = 60\n\tchimeSound.Parent = pad\nend\n\nlocal activated = false\n\nlocal function activateVisuals()\n\tpad.Material = Enum.Material.Neon\n\tTweenService:Create(pad, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\tColor = Color3.fromRGB(0, 255, 230)\n\t}):Play()\n\tTweenService:Create(light, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\tBrightness = 3\n\t}):Play()\n\tchimeSound:Play()\nend\n\npad.Touched:Connect(function(hit)\n\tif not hit or not hit.Parent then return end\n\tlocal character = hit.Parent\n\tlocal humanoid = character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoid or humanoid.Health <= 0 then return end\n\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tif not player then return end\n\n\tlocal currentCp = player:GetAttribute(\"CurrentCheckpoint\") or 0\n\tif checkpointIndex == currentCp + 1 then\n\t\tplayer:SetAttribute(\"CurrentCheckpoint\", checkpointIndex)\n\t\tplayer:SetAttribute(\"LastSafeCFrame\", pad.CFrame + Vector3.new(0, 3.5, 0))\n\t\t\n\t\tif not activated then\n\t\t\tactivated = true\n\t\t\tactivateVisuals()\n\t\tend\n\tend\nend)\n",
+              "reason": "Upgrade the checkpoint pad logic to enforce strictly ordered progression (cpIndex == currentCp + 1), record safe recovery CFrame coordinates, trigger synchronized visual glow/light tween animations, and play audio feedback."
+            }
+          ],
+          "preservedBehavior": [
+            "Retained checkpoint pad root Model and primary Part geometry for placement along the aerial parkour course.",
+            "Preserved top surface checkpoint decal (rbxassetid://398136610) for immediate visual identification.",
+            "Maintained collision detection on the pad platform to trigger checkpoint progress on character contact."
+          ],
+          "remainingIntegration": [
+            "Course coordinator script must set CheckpointIndex attributes (1, 2, 3) on instances of this checkpoint pad across the sky course.",
+            "Fall hazard plane detector must read player:GetAttribute('LastSafeCFrame') or player:GetAttribute('CurrentCheckpoint') to teleport falling players back to their active checkpoint.",
+            "Client HUD controller must listen for player:GetAttributeChangedSignal('CurrentCheckpoint') to update checkpoint progress indicators."
+          ],
+          "nativeTestPlan": [
+            "1. Place 3 instances of the adapted checkpoint pad in workspace labeled Checkpoint1, Checkpoint2, Checkpoint3.",
+            "2. Spawn a test character at Start platform (CurrentCheckpoint = 0).",
+            "3. Step on Checkpoint 2 directly; verify CurrentCheckpoint remains 0, visual color remains unchanged, and chime does not play.",
+            "4. Step on Checkpoint 1; verify CurrentCheckpoint advances to 1, pad transitions to neon cyan, light intensifies, and chime sound plays.",
+            "5. Step on Checkpoint 2; verify CurrentCheckpoint advances to 2 with activation response.",
+            "6. Step on Checkpoint 3; verify CurrentCheckpoint advances to 3.",
+            "7. Simulate falling into hazard plane and confirm teleportation safely returns player to Checkpoint 3 CFrame."
+          ],
+          "runtimeVerification": "not_performed"
+        },
+        "planHash": "4df9cd4b747572fc9460040bcb75f1959691f77d91de9c5c8fb689894e61c7d2",
+        "adapted": {
+          "archiveHash": "0a5907cbfdfd3c42751fe9d65f003178530dde8fbe707a0d20ed894598d552fe",
+          "manifestHash": "06a0d7290e9ac136152169666fabcb6b3b25eb04283e8fd116ea24fd71501e4f"
+        },
+        "indexMap": [
+          {
+            "before": 1,
+            "after": 1
+          },
+          {
+            "before": 2,
+            "after": 2
+          },
+          {
+            "before": 3,
+            "after": 3
+          },
+          {
+            "before": 4,
+            "after": 4
+          }
+        ],
+        "sourceReview": "required",
+        "runtimeVerification": "not_performed",
+        "exported": false,
+        "executed": false,
+        "sha256": "9befdae1ae20a2b482e83e850f8acb00394cb9323740aa93fe56ed3fd442ef7b",
+        "file": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\checkpoint-parkour\\9befdae1ae20a2b482e83e850f8acb00394cb9323740aa93fe56ed3fd442ef7b.adaptation.json",
+        "archive": {
+          "status": "captured",
+          "sha256": "0a5907cbfdfd3c42751fe9d65f003178530dde8fbe707a0d20ed894598d552fe",
+          "bytes": 6327,
+          "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\checkpoint-parkour\\0a5907cbfdfd3c42751fe9d65f003178530dde8fbe707a0d20ed894598d552fe.rbxm",
+          "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-adaptation-native-v1\\checkpoint-parkour\\06a0d7290e9ac136152169666fabcb6b3b25eb04283e8fd116ea24fd71501e4f.component.json",
+          "instanceCount": 4,
+          "scriptCount": 1,
+          "sourceBytes": 2149,
+          "roundTrip": {
+            "passed": true,
+            "checkedProperties": 70,
+            "checkedAttributes": 0,
+            "checkedReferences": 0,
+            "unobservableProperties": [
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw",
+              "Script.ScriptGuid"
+            ],
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ]
+          },
+          "persisted": true,
+          "securityReview": "not_performed",
+          "runtimeVerification": "not_performed",
+          "exportConversion": "not_performed"
+        }
+      },
+      "nativeReceipt": {
+        "ok": true,
+        "transfer": {
+          "encodedBytes": 15752,
+          "chunkSize": 32768,
+          "sha256": "dfbda77942d707b2a78a406c835915fb1925f88a41069406701bb712d0812430",
+          "jsonBytes": 11812
+        },
+        "rootsDestroyed": true
+      },
+      "paidCalls": 0,
+      "importedCodeExecuted": false,
+      "rawGameBenchmark": false
+    }
+  ],
+  "importedCodeExecuted": false,
+  "rawGameBenchmark": false
+}

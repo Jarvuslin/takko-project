@@ -1,0 +1,127 @@
+{
+  "version": 11,
+  "benchmark": "marketplace-diversity-v4/combat-training",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 198486,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 3319496,
+    "shouldCancel": false
+  },
+  "model": "x-ai/grok-build-0.1",
+  "projectId": "b345ec8c-3660-4f3d-b32a-2095d4723318",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: TimeoutError: The operation was aborted due to timeout",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "TimeoutError: The operation was aborted due to timeout",
+    "at": "2026-09-16T09:48:52.161Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 5877598,
+  "priorChargedMicros": 3121010,
+  "reservedMicros": 610374,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 6487972,
+  "chargedMicros": 198486,
+  "combinedChargedMicros": 3319496,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 113815,
+      "chargedMicros": 18209,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6488,
+      "outputTokens": 3558,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T09:44:57.636Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 123120,
+      "chargedMicros": 20827,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9594,
+      "outputTokens": 3635,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T09:45:16.130Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 113468,
+      "chargedMicros": 15117,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 12709,
+      "outputTokens": 1255,
+      "cachedInputTokens": 128,
+      "status": "ok",
+      "at": "2026-09-16T09:46:31.505Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 141335,
+      "chargedMicros": 25697,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 17117,
+      "outputTokens": 3429,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T09:46:51.997Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 118636,
+      "chargedMicros": 118636,
+      "estimated": true,
+      "billingSource": "reservation",
+      "inputTokens": null,
+      "outputTokens": null,
+      "status": "error",
+      "at": "2026-09-16T09:48:52.064Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "TrainingDummyModel",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "TimeoutError: The operation was aborted due to timeout"
+    },
+    {
+      "needId": "PunchHitAudio",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "PunchMissAudio",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

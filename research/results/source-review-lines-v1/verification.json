@@ -1,0 +1,127 @@
+{
+  "checkedAt": "2026-09-16T16:51:26.006Z",
+  "nativeOperations": 0,
+  "rawOutputsChanged": false,
+  "outcomes": [
+    {
+      "name": "source-review-sol-v1",
+      "providerCost": 0.253846,
+      "officialDelta": 0.25384600000000024,
+      "remaining": 5.738842964,
+      "reviews": [
+        {
+          "attempt": 1,
+          "responseSha256": "da9e980610f1a9b908d145740cdd4fc876875434d2913ce33afe0f359fde08e6",
+          "contractPassed": false,
+          "error": "Component review must address every removed capability exactly once",
+          "lineCitations": [],
+          "legacyQuoteCount": 0
+        },
+        {
+          "attempt": 2,
+          "responseSha256": "b67e9dba6b878495aaf2824e0f06dc7f435fdbc3c7b1a8a6a40fea006aec9aa3",
+          "contractPassed": false,
+          "error": "Source ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3 dependency[1] (instance_reference): Component dependency lacks an exact source quotation. Cite sourceLines {start,end} from this source body or copy one contiguous exact sourceQuote; do not join separated lines.",
+          "lineCitations": [],
+          "legacyQuoteCount": 0
+        }
+      ]
+    },
+    {
+      "name": "source-review-lines-v1",
+      "providerCost": 0.050034,
+      "officialDelta": 0.050034000000000134,
+      "remaining": 5.688808964,
+      "reviews": [
+        {
+          "attempt": 1,
+          "responseSha256": "76b6315a5c41876fa9b79403697f001d77795b46fcf7a40d1a2dab23e28c8c19",
+          "contractPassed": true,
+          "lineCitations": [
+            {
+              "sourceHash": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+              "kind": "service",
+              "value": "Players",
+              "range": {
+                "start": 43,
+                "end": 43
+              },
+              "exactText": "\t\t\t\tlocal Plr = game.Players:playerFromCharacter(Part.Parent)\n"
+            },
+            {
+              "sourceHash": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+              "kind": "instance_reference",
+              "value": "ClickDetector",
+              "range": {
+                "start": 5,
+                "end": 5
+              },
+              "exactText": "\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n"
+            },
+            {
+              "sourceHash": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+              "kind": "instance_reference",
+              "value": "Click",
+              "range": {
+                "start": 6,
+                "end": 6
+              },
+              "exactText": "\tscript.Parent.Click:Play()\n"
+            },
+            {
+              "sourceHash": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677",
+              "kind": "service",
+              "value": "Lighting",
+              "range": {
+                "start": 3,
+                "end": 3
+              },
+              "exactText": "local Lighting = game:GetService(\"Lighting\")\n"
+            },
+            {
+              "sourceHash": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677",
+              "kind": "instance_reference",
+              "value": "Type",
+              "range": {
+                "start": 4,
+                "end": 4
+              },
+              "exactText": "local TypeLibrary = require(script:WaitForChild('Type'))\n"
+            },
+            {
+              "sourceHash": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677",
+              "kind": "dynamic_or_unresolved",
+              "value": "Dynamic numeric require from EasyConfiguration.Pose.Value",
+              "range": {
+                "start": 86,
+                "end": 86
+              },
+              "exactText": "local EasyConfiguration = require(script:WaitForChild(\"EasyConfiguration\",5).Pose.Value)\n"
+            },
+            {
+              "sourceHash": "4051dc6c09016a3672e9eccdf1293d4d27c1260c5675ec4fc15b864bf3d1ae0e",
+              "kind": "instance_reference",
+              "value": "Type",
+              "range": {
+                "start": 5,
+                "end": 5
+              },
+              "exactText": "local Type = print(script.Parent:WaitForChild(\"Type\"))\r\n"
+            },
+            {
+              "sourceHash": "772345d6803455068d11cc71ff99235e9e107e6e2857306455ad37aa3255db70",
+              "kind": "service",
+              "value": "MarketplaceService",
+              "range": {
+                "start": 139,
+                "end": 139
+              },
+              "exactText": "\treturn root.MarketplaceService,root.MarketplaceService.GetProductInfo\n"
+            }
+          ],
+          "legacyQuoteCount": 0
+        }
+      ]
+    }
+  ]
+}

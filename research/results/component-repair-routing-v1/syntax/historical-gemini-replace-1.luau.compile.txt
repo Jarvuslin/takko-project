@@ -1,0 +1,350 @@
+Function 0 (getPlayerCombatData):
+   25: 	if not playerState[player] then
+GETUPVAL R2 0
+GETTABLE R1 R2 R0
+JUMPIF R1 L0
+   26: 		playerState[player] = {
+GETUPVAL R1 0
+REMARK allocation: table template 2
+DUPTABLE R2 4
+SETTABLE R2 R1 R0
+   31: 	return playerState[player]
+L0: GETUPVAL R2 0
+GETTABLE R1 R2 R0
+RETURN R1 1
+
+Function 1 (??):
+   35: 	playerState[player] = nil
+GETUPVAL R1 0
+LOADNIL R2
+SETTABLE R2 R1 R0
+   36: end)
+RETURN R0 0
+
+Function 2 (??):
+   64: 			if not char.Parent or humanoid.Health <= 0 then return end
+GETUPVAL R0 0
+GETTABLEKS R0 R0 K0 ['Parent']
+JUMPIFNOT R0 L0
+GETUPVAL R0 1
+GETTABLEKS R0 R0 K1 ['Health']
+LOADN R1 0
+JUMPIFNOTLE R0 R1 L1
+L0: RETURN R0 0
+   66: 			local targetDummy = nil
+L1: LOADNIL R0
+   67: 			local minDistance = MAX_ATTACK_RANGE
+LOADK R1 K2 [7.5]
+   69: 			for _, descendant in ipairs(Workspace:GetDescendants()) do
+GETIMPORT R2 4 [ipairs]
+GETUPVAL R3 2
+NAMECALL R3 R3 K5 ['GetDescendants']
+CALL R3 1 -1
+CALL R2 -1 3
+FORGPREP_INEXT R2 L3
+   70: 				if descendant:IsA("Humanoid") and descendant.Parent ~= char and descendant.Health > 0 then
+L2: LOADK R9 K6 ['Humanoid']
+NAMECALL R7 R6 K7 ['IsA']
+CALLFB R7 2 1 [0]
+JUMPIFNOT R7 L3
+GETTABLEKS R7 R6 K0 ['Parent']
+GETUPVAL R8 0
+JUMPIFEQ R7 R8 L3
+GETTABLEKS R7 R6 K1 ['Health']
+LOADN R8 0
+JUMPIFNOTLT R8 R7 L3
+   71: 					local targetHrp = descendant.Parent:FindFirstChild("HumanoidRootPart")
+GETTABLEKS R7 R6 K0 ['Parent']
+LOADK R9 K8 ['HumanoidRootPart']
+NAMECALL R7 R7 K9 ['FindFirstChild']
+CALLFB R7 2 1 [1]
+   72: 					if targetHrp then
+JUMPIFNOT R7 L3
+   73: 						local dist = (targetHrp.Position - hrp.Position).Magnitude
+GETTABLEKS R9 R7 K10 ['Position']
+GETUPVAL R10 3
+GETTABLEKS R10 R10 K10 ['Position']
+SUB R8 R9 R10
+GETTABLEKS R8 R8 K11 ['Magnitude']
+   74: 						if dist < minDistance then
+JUMPIFNOTLT R8 R1 L3
+   75: 							minDistance = dist
+MOVE R1 R8
+   76: 							targetDummy = descendant.Parent
+GETTABLEKS R0 R6 K0 ['Parent']
+   69: 			for _, descendant in ipairs(Workspace:GetDescendants()) do
+L3: FORGLOOP R2 L2 2 [inext]
+   82: 			if targetDummy then
+JUMPIFNOT R0 L9
+   83: 				local targetHumanoid = targetDummy:FindFirstChild("Humanoid")
+LOADK R4 K6 ['Humanoid']
+NAMECALL R2 R0 K9 ['FindFirstChild']
+CALLFB R2 2 1 [2]
+   84: 				local targetTorso = targetDummy:FindFirstChild("UpperTorso") or targetDummy:FindFirstChild("Torso") or targetDummy:FindFirstChild("HumanoidRootPart")
+LOADK R5 K12 ['UpperTorso']
+NAMECALL R3 R0 K9 ['FindFirstChild']
+CALLFB R3 2 1 [3]
+JUMPIF R3 L4
+LOADK R5 K13 ['Torso']
+NAMECALL R3 R0 K9 ['FindFirstChild']
+CALLFB R3 2 1 [4]
+JUMPIF R3 L4
+LOADK R5 K8 ['HumanoidRootPart']
+NAMECALL R3 R0 K9 ['FindFirstChild']
+CALLFB R3 2 1 [5]
+   85: 				if targetHumanoid and targetHumanoid.Health > 0 then
+L4: JUMPIFNOT R2 L9
+GETTABLEKS R4 R2 K1 ['Health']
+LOADN R5 0
+JUMPIFNOTLT R5 R4 L9
+   86: 					local damageToApply = baseDamage
+GETUPVAL R4 4
+   87: 					if step == 2 then
+GETUPVAL R5 5
+JUMPXEQKN R5 K14 L5 NOT [2]
+   88: 						damageToApply = baseDamage + 2
+GETUPVAL R5 4
+ADDK R4 R5 K14 [2]
+   90: 					targetHumanoid:TakeDamage(damageToApply)
+L5: MOVE R7 R4
+NAMECALL R5 R2 K15 ['TakeDamage']
+CALLFB R5 2 0 [6]
+   92: 					local soundSource = if step == 1 then punched1Sound else punched2Sound
+GETUPVAL R6 5
+JUMPXEQKN R6 K16 L6 NOT [1]
+GETUPVAL R5 6
+JUMP L7
+L6: GETUPVAL R5 7
+   93: 					if soundSource and soundSource:IsA("Sound") and targetTorso then
+L7: JUMPIFNOT R5 L8
+LOADK R8 K17 ['Sound']
+NAMECALL R6 R5 K7 ['IsA']
+CALLFB R6 2 1 [7]
+JUMPIFNOT R6 L8
+JUMPIFNOT R3 L8
+   94: 						local punchClone = soundSource:Clone()
+NAMECALL R6 R5 K18 ['Clone']
+CALLFB R6 1 1 [8]
+   95: 						punchClone.Parent = targetTorso
+SETTABLEKS R3 R6 K0 ['Parent']
+   96: 						punchClone:Play()
+NAMECALL R7 R6 K19 ['Play']
+CALLFB R7 1 0 [9]
+   97: 						Debris:AddItem(punchClone, 1.5)
+GETUPVAL R7 8
+MOVE R9 R6
+LOADK R10 K20 [1.5]
+NAMECALL R7 R7 K21 ['AddItem']
+CALLFB R7 3 0 [10]
+  100: 					if hitEffectTemplate and hitEffectTemplate:IsA("ParticleEmitter") and targetTorso then
+L8: GETUPVAL R6 9
+JUMPIFNOT R6 L9
+GETUPVAL R6 9
+LOADK R8 K22 ['ParticleEmitter']
+NAMECALL R6 R6 K7 ['IsA']
+CALLFB R6 2 1 [11]
+JUMPIFNOT R6 L9
+JUMPIFNOT R3 L9
+  101: 						local effectClone = hitEffectTemplate:Clone()
+GETUPVAL R6 9
+NAMECALL R6 R6 K18 ['Clone']
+CALLFB R6 1 1 [12]
+  102: 						effectClone.Parent = targetTorso
+SETTABLEKS R3 R6 K0 ['Parent']
+  103: 						effectClone:Emit(10)
+LOADN R9 10
+NAMECALL R7 R6 K23 ['Emit']
+CALLFB R7 2 0 [13]
+  104: 						Debris:AddItem(effectClone, 1)
+GETUPVAL R7 8
+MOVE R9 R6
+LOADN R10 1
+NAMECALL R7 R7 K21 ['AddItem']
+CALLFB R7 3 0 [14]
+  108: 		end)
+L9: RETURN R0 0
+
+Function 3 (??):
+   40: 		local char = player.Character
+GETTABLEKS R2 R0 K0 ['Character']
+   41: 		if not char then return end
+JUMPIF R2 L0
+RETURN R0 0
+   42: 		local hrp = char:FindFirstChild("HumanoidRootPart")
+L0: LOADK R5 K1 ['HumanoidRootPart']
+NAMECALL R3 R2 K2 ['FindFirstChild']
+CALLFB R3 2 1 [0]
+   43: 		local humanoid = char:FindFirstChild("Humanoid")
+LOADK R6 K3 ['Humanoid']
+NAMECALL R4 R2 K2 ['FindFirstChild']
+CALLFB R4 2 1 [1]
+   44: 		if not hrp or not humanoid or humanoid.Health <= 0 then return end
+JUMPIFNOT R3 L1
+JUMPIFNOT R4 L1
+GETTABLEKS R5 R4 K4 ['Health']
+LOADN R6 0
+JUMPIFNOTLE R5 R6 L2
+L1: RETURN R0 0
+   46: 		local now = os.clock()
+L2: GETIMPORT R5 7 [os.clock]
+CALLFB R5 0 1 [2]
+   47: 		local combat = getPlayerCombatData(player)
+GETUPVAL R6 0
+MOVE R7 R0
+CALLFB R6 1 1 [3]
+   48: 		if now - combat.lastAttackTime < ATTACK_COOLDOWN then
+GETTABLEKS R8 R6 K8 ['lastAttackTime']
+SUB R7 R5 R8
+LOADK R8 K9 [0.5]
+JUMPIFNOTLT R7 R8 L3
+   49: 			return
+RETURN R0 0
+   51: 		combat.lastAttackTime = now
+L3: SETTABLEKS R5 R6 K8 ['lastAttackTime']
+   53: 		local step = requestedStep or combat.comboStep or 1
+MOVE R7 R1
+JUMPIF R7 L4
+GETTABLEKS R7 R6 K10 ['comboStep']
+JUMPIF R7 L4
+LOADN R7 1
+   54: 		combat.comboStep = (step % 2) + 1
+L4: MODK R9 R7 K12 [2]
+ADDK R8 R9 K11 [1]
+SETTABLEKS R8 R6 K10 ['comboStep']
+   56: 		if swingSound and swingSound:IsA("Sound") then
+GETUPVAL R8 1
+JUMPIFNOT R8 L5
+GETUPVAL R8 1
+LOADK R10 K13 ['Sound']
+NAMECALL R8 R8 K14 ['IsA']
+CALLFB R8 2 1 [4]
+JUMPIFNOT R8 L5
+   57: 			local swingClone = swingSound:Clone()
+GETUPVAL R8 1
+NAMECALL R8 R8 K15 ['Clone']
+CALLFB R8 1 1 [5]
+   58: 			swingClone.Parent = hrp
+SETTABLEKS R3 R8 K16 ['Parent']
+   59: 			swingClone:Play()
+NAMECALL R9 R8 K17 ['Play']
+CALLFB R9 1 0 [6]
+   60: 			Debris:AddItem(swingClone, 1.5)
+GETUPVAL R9 2
+MOVE R11 R8
+LOADK R12 K18 [1.5]
+NAMECALL R9 R9 K19 ['AddItem']
+CALLFB R9 3 0 [7]
+   63: 		task.delay(0.15, function()
+L5: GETIMPORT R8 22 [task.delay]
+LOADK R9 K23 [0.14999999999999999]
+REMARK allocation: closure with 10 upvalues
+NEWCLOSURE R10 P0
+CAPTURE VAL R2
+CAPTURE VAL R4
+CAPTURE UPVAL U3
+CAPTURE VAL R3
+CAPTURE UPVAL U4
+CAPTURE VAL R7
+CAPTURE UPVAL U5
+CAPTURE UPVAL U6
+CAPTURE UPVAL U2
+CAPTURE UPVAL U7
+CALLFB R8 2 0 [8]
+  109: 	end)
+RETURN R0 0
+
+Function 4 (??):
+    1: local Debris = game:GetService("Debris")
+GETIMPORT R0 1 [game]
+LOADK R2 K2 ['Debris']
+NAMECALL R0 R0 K3 ['GetService']
+CALL R0 2 1
+    2: local Players = game:GetService("Players")
+GETIMPORT R1 1 [game]
+LOADK R3 K4 ['Players']
+NAMECALL R1 R1 K3 ['GetService']
+CALL R1 2 1
+    3: local Workspace = game:GetService("Workspace")
+GETIMPORT R2 1 [game]
+LOADK R4 K5 ['Workspace']
+NAMECALL R2 R2 K3 ['GetService']
+CALL R2 2 1
+    5: local combatFolder = script.Parent:FindFirstChild("CombatSystem")
+GETIMPORT R3 8 [script.Parent]
+LOADK R5 K9 ['CombatSystem']
+NAMECALL R3 R3 K10 ['FindFirstChild']
+CALL R3 2 1
+    6: if not combatFolder then return end
+JUMPIF R3 L0
+RETURN R0 0
+    8: local punchingRemote = combatFolder:FindFirstChild("Punching")
+L0: LOADK R6 K11 ['Punching']
+NAMECALL R4 R3 K10 ['FindFirstChild']
+CALL R4 2 1
+    9: local punched1Sound = combatFolder:FindFirstChild("Punched1")
+LOADK R7 K12 ['Punched1']
+NAMECALL R5 R3 K10 ['FindFirstChild']
+CALL R5 2 1
+   10: local punched2Sound = combatFolder:FindFirstChild("Punched2")
+LOADK R8 K13 ['Punched2']
+NAMECALL R6 R3 K10 ['FindFirstChild']
+CALL R6 2 1
+   11: local swingSound = combatFolder:FindFirstChild("Swing")
+LOADK R9 K14 ['Swing']
+NAMECALL R7 R3 K10 ['FindFirstChild']
+CALL R7 2 1
+   12: local hitEffectTemplate = combatFolder:FindFirstChild("HitEffect")
+LOADK R10 K15 ['HitEffect']
+NAMECALL R8 R3 K10 ['FindFirstChild']
+CALL R8 2 1
+   13: local settingsFolder = combatFolder:FindFirstChild("Settings")
+LOADK R11 K16 ['Settings']
+NAMECALL R9 R3 K10 ['FindFirstChild']
+CALL R9 2 1
+   15: local baseDamage = 10
+LOADN R10 10
+   16: if settingsFolder and settingsFolder:FindFirstChild("Damage") then
+JUMPIFNOT R9 L1
+LOADK R13 K17 ['Damage']
+NAMECALL R11 R9 K10 ['FindFirstChild']
+CALL R11 2 1
+JUMPIFNOT R11 L1
+   17: 	baseDamage = settingsFolder.Damage.Value
+GETTABLEKS R11 R9 K17 ['Damage']
+GETTABLEKS R10 R11 K18 ['Value']
+REMARK allocation: table hash 0
+   22: local playerState = {}
+L1: NEWTABLE R11 0 0
+   24: local function getPlayerCombatData(player)
+DUPCLOSURE R12 K19 ['getPlayerCombatData']
+CAPTURE VAL R11
+   34: Players.PlayerRemoving:Connect(function(player)
+GETTABLEKS R13 R1 K20 ['PlayerRemoving']
+DUPCLOSURE R15 K21 []
+CAPTURE VAL R11
+NAMECALL R13 R13 K22 ['Connect']
+CALL R13 2 0
+   38: if punchingRemote and punchingRemote:IsA("RemoteEvent") then
+JUMPIFNOT R4 L2
+LOADK R15 K23 ['RemoteEvent']
+NAMECALL R13 R4 K24 ['IsA']
+CALL R13 2 1
+JUMPIFNOT R13 L2
+   39: 	punchingRemote.OnServerEvent:Connect(function(player, requestedStep)
+GETTABLEKS R13 R4 K25 ['OnServerEvent']
+REMARK allocation: closure with 8 upvalues
+NEWCLOSURE R15 P2
+CAPTURE VAL R12
+CAPTURE VAL R7
+CAPTURE VAL R0
+CAPTURE VAL R2
+CAPTURE REF R10
+CAPTURE VAL R5
+CAPTURE VAL R6
+CAPTURE VAL R8
+NAMECALL R13 R13 K22 ['Connect']
+CALL R13 2 0
+  111: 
+L2: CLOSEUPVALS R10
+RETURN R0 0
+

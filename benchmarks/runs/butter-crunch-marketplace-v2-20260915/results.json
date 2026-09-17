@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-09-16T01:52:28.2290882Z",
+  "status": "adapter_failure",
+  "projectId": "6910370f-c548-4641-8bfe-3001b0921d86",
+  "planner": "google/gemini-3.7-flash",
+  "worker": "minimax/minimax-m3",
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109220,
+      "chargedMicros": 14487,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5396,
+      "outputTokens": 2784,
+      "status": "ok",
+      "at": "2026-09-16T01:49:27.413Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+      "model": "minimax/minimax-m3",
+      "reservedMicros": 34608,
+      "chargedMicros": 1054,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3880,
+      "outputTokens": 168,
+      "status": "ok",
+      "at": "2026-09-16T01:49:44.063Z"
+    }
+  ],
+  "totalChargedMicros": 15541.0,
+  "workerMarketplaceSearch": true,
+  "workerCandidateSelection": true,
+  "nativeImportCompleted": false,
+  "nativeAudioVerification": false,
+  "gameCodeGenerated": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "StudioAssetError: Verified Edit mode required; Studio state was not changed",
+    "at": "2026-09-16T01:49:44.112Z"
+  },
+  "otherTrials": "not started: same adapter would reject native Edit receipt",
+  "sourceFix": "Strict official text state recognition plus regression tests; not yet loaded in live credential-bearing server",
+  "manualAssetOrGameRescue": false,
+  "routesRestored": true,
+  "keysLoaded": 9
+}

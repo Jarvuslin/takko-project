@@ -1,0 +1,86 @@
+{
+  "version": 10,
+  "benchmark": "marketplace-diversity-v3/combat-training",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 32713,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 3121012,
+    "shouldCancel": false
+  },
+  "model": "x-ai/grok-build-0.1",
+  "projectId": "7bc7a8e3-7c28-4b72-8ae9-cb3e0a5ccadd",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: StudioAssetError: Restricted component must pass native restoration",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "StudioAssetError: Restricted component must pass native restoration",
+    "at": "2026-09-16T09:25:11.318Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 5644219,
+  "priorChargedMicros": 3088299,
+  "reservedMicros": 233379,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 5877598,
+  "chargedMicros": 32713,
+  "combinedChargedMicros": 3121012,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 113815,
+      "chargedMicros": 15933,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6488,
+      "outputTokens": 2951,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T09:24:57.296Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 119564,
+      "chargedMicros": 16780,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 14088,
+      "outputTokens": 1397,
+      "cachedInputTokens": 128,
+      "status": "ok",
+      "at": "2026-09-16T09:25:09.427Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "TrainingDummyModel",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "StudioAssetError: Restricted component must pass native restoration"
+    },
+    {
+      "needId": "HitSoundHeavy",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "SwingWhooshSound",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

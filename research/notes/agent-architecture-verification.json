@@ -1,0 +1,128 @@
+{
+  "verifiedAt": "2026-09-16T06:46:32.154Z",
+  "scope": "Research integrity, not app or native testing",
+  "repositories": [
+    {
+      "repo": "anomalyco/opencode",
+      "commit": "e03db9bc6908f75c9334d8aa997deeaac81c0298"
+    },
+    {
+      "repo": "cline/cline",
+      "commit": "82b8e1fa0471f728e3d9540fd19aa063e2049497"
+    },
+    {
+      "repo": "aaif-goose/goose",
+      "commit": "df1e2850c21e012689b4e5606ec4b5eac486de91"
+    },
+    {
+      "repo": "Aider-AI/aider",
+      "commit": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c"
+    },
+    {
+      "repo": "SWE-agent/SWE-agent",
+      "commit": "3ea751c087f32b16e039a2233dd6eefecef325d5"
+    },
+    {
+      "repo": "SWE-agent/mini-swe-agent",
+      "commit": "04d809ceab9df28f9adaed044884180159172930"
+    },
+    {
+      "repo": "SWE-agent/SWE-ReX",
+      "commit": "5c995c365dfb1fd5bc56fda688be5d8538f9931f"
+    },
+    {
+      "repo": "OpenHands/OpenHands",
+      "commit": "82203bb1011cdf0e6eb318a32111806a6f6f734a"
+    },
+    {
+      "repo": "OpenHands/software-agent-sdk",
+      "commit": "22c85eb0e0db8f4386380d095e9fe6933af2e65f"
+    },
+    {
+      "repo": "continuedev/continue",
+      "commit": "5522c6f44ca0ac3528b37244818fbfa39b5af470"
+    },
+    {
+      "repo": "RooCodeInc/Roo-Code",
+      "commit": "b867ec9145750d0ae1ff7f02d35406e9bf2a0b16"
+    },
+    {
+      "repo": "spacedriveapp/spacebot",
+      "commit": "ab2c16086f0237ed0ec212efb6c1061f37e37f0d"
+    }
+  ],
+  "pinnedFilesVerified": 89,
+  "pinnedBytesVerified": 1170901,
+  "sourceReferencesVerified": 43,
+  "takkoComparisonFiles": [
+    {
+      "file": "src/generation/engine.ts",
+      "sha256": "1255b8c39990e16fd13865ec34235c6a60e05cd66fb56a9cca053f6ce9a5c72f"
+    },
+    {
+      "file": "src/generation/game-context.ts",
+      "sha256": "dae1f8994d35ee2d484de08b44e9ed5796584ff2c5b2f774a9491d445f041d93"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "sha256": "3bea5a96e7f10e4bd3a3b68185ec69fcde45f096638284b0e71191e58948bc29"
+    },
+    {
+      "file": "src/generation/studio-asset-adapter.ts",
+      "sha256": "554e255ee4754c9497561a86af3b14716f74b4ea5097370bb4b261237e72e3ce"
+    },
+    {
+      "file": "src/generation/component-archive.ts",
+      "sha256": "43d98bb571e17bc6105ff1ef8b783a1d138f9edb65e27da09324fdf871f960ab"
+    },
+    {
+      "file": "src/generation/bridge.ts",
+      "sha256": "07ec1ec113d72018e81ed862ba0931fcb701c66141535df7b086388a761451cc"
+    },
+    {
+      "file": "src/generation/component-derivative.ts",
+      "sha256": "066b971ef1de3a692409801bde5ea5dbf73028d9782e51122c4e3620e46f9de9"
+    },
+    {
+      "file": "src/generation/component-review.ts",
+      "sha256": "c29b20d936f752f6ae3c7392c1d548b96b014a71d463c8ab8c5098b3d345aba0"
+    },
+    {
+      "file": "src/generation/asset-contract.ts",
+      "sha256": "be92107d25acdf7b99abaddf6b6d692c7106fcbae92716b19b1ffdb8c04c0d3f"
+    },
+    {
+      "file": "docs/takko-component-derivative.md",
+      "sha256": "c49d728cff53d54713521d6d45e1e585d2e6ea35d6cdbdc02b0868cab043c459"
+    },
+    {
+      "file": "src/generation/store.ts",
+      "sha256": "1c80742a479e47c989cbc83aff8cba0d9a8357ce8004005bc3cdf8755b25b86d"
+    },
+    {
+      "file": "src/generation/providers.ts",
+      "sha256": "c3f86183be963e711f0e71e7b8460da4ee94c365aac689919074481ae9ff41d9"
+    },
+    {
+      "file": "docs/takko-component-archive.md",
+      "sha256": "a2c70b9fdb6ec275172bec5c99958c9939f093eb32b6cc9795ae3d8fd6a22bbb"
+    },
+    {
+      "file": "docs/takko-restricted-component-restoration.md",
+      "sha256": "16f3e901780983c02c8cce4ecdd734a197c13a4f3135cdb122fd6e1e02380ed6"
+    },
+    {
+      "file": "docs/takko-game-context-handoff.md",
+      "sha256": "39a8ea6f8991779c593a1a889d9090d3161c855980583581244a3889adeac375"
+    },
+    {
+      "file": "benchmarks/runs/marketplace-diversity-v2-20260916/RESULTS.md",
+      "sha256": "9b46ce75d35c838257a6b15b67de049db5e4b5ebeddfb8da0b0ace6e3e03a981"
+    }
+  ],
+  "reportSha256": "e174549d10a0ceb5f2b069ef3ec75f462dcc0b740d094994c06b85e6fce9ed02",
+  "downloadedCodeExecuted": false,
+  "upstreamTestsRun": false,
+  "paidModelCalls": 0,
+  "studioOperations": 0
+}

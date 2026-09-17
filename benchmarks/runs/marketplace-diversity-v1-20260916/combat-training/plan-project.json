@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 2,
+  "id": "1ce5239e-6fd2-4b34-bf74-8d6af2ef8c84",
+  "name": "Strike Lab - Combat Training Arena",
+  "request": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+  "revision": 1,
+  "scope": "Forge_1ce5239e6fd2",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "TrainingDummyModel",
+        "requirementId": "req_dummy_rig",
+        "role": "Central interactive training dummy humanoid rig",
+        "kind": "Model",
+        "query": "training dummy humanoid",
+        "constraints": "Humanoid character rig with Torso/HumanoidRootPart and standard joints suitable for combat flinch reactions and damage feedback",
+        "intent": {
+          "experienceRole": "Provides the primary sparring target for testing combo attacks and practicing hit timing.",
+          "interaction": "Player strikes the dummy within melee range to inflict damage, trigger kinetic flinch animations, and increment combo counters.",
+          "reusableFeatures": [
+            "Humanoid rig",
+            "Torso joints",
+            "Head and limbs"
+          ],
+          "relatedRequirementIds": [
+            "req_dummy_rig",
+            "req_combo_combat",
+            "req_server_validation"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 8
+      },
+      {
+        "id": "HitImpactSound",
+        "requirementId": "req_hit_sfx",
+        "role": "Synchronized audio impact for successful melee strikes",
+        "kind": "Audio",
+        "query": "punch hit impact punch",
+        "constraints": "Short, crisp, punchy melee impact sound effect under 1 second",
+        "intent": {
+          "experienceRole": "Provides immediate auditory confirmation and weight to successful strikes.",
+          "interaction": "Plays precisely when an attack hits the training dummy during the active contact frame.",
+          "reusableFeatures": [
+            "Impact audio playback"
+          ],
+          "relatedRequirementIds": [
+            "req_hit_sfx",
+            "req_hit_miss_feedback"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 5
+      },
+      {
+        "id": "AttackWooshSound",
+        "requirementId": "req_hit_sfx",
+        "role": "Swing audio for melee windup and swings",
+        "kind": "Audio",
+        "query": "whoosh swing melee punch",
+        "constraints": "Short whoosh / swing sound under 0.6 seconds",
+        "intent": {
+          "experienceRole": "Provides auditory anticipation during attack windup and active swing.",
+          "interaction": "Plays immediately upon initiating each light attack.",
+          "reusableFeatures": [
+            "Swing audio playback"
+          ],
+          "relatedRequirementIds": [
+            "req_hit_sfx",
+            "req_combo_combat"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 5
+      }
+    ],
+    "assetStrategy": "Query Roblox Marketplace for stylized combat training dummy models, hit impact sound effects, and attack woosh audio. For rig animations, use clean procedural joint and Motor6D keyframe/lerp systems layered with humanoid animations to guarantee smooth windup, contact extension, and recovery poses across all client platforms without risking broken external animation asset IDs.",
+    "title": "Strike Lab - Combat Training Arena",
+    "summary": "Strike Lab is a focused, responsive fighting-game training arena tailored for desktop and mobile touch devices. The player enters a modern combat dojo equipped with a training dummy, an interactive HUD tracking dummy health and hit count, and intuitive controls (Left-Click/F key on desktop, dedicated on-screen touch buttons on mobile). The combat system features an authored three-hit light-attack combo with distinct windup, contact, and recovery phases. The server strictly validates attack cadence, active contact windows, and player-to-dummy proximity, preventing button-holding exploits and recovery spam. Each valid strike produces synchronized audio, kinetic hit-stop effects, and floating damage numbers, while out-of-range attacks provide immediate miss feedback. Defeating the dummy triggers a knockout sequence and automatic reset, alongside a manual reset control for continuous training.",
+    "visualDirection": "A clean, modern minimalist combat training dojo ('Strike Lab') featuring a polished dark-slate and neon-accented arena floor, ambient boundary lighting, and focused lighting on the central training ring. The training dummy stands centered on a marked sparring circle with high-contrast health and hit indicators overhead. Attack strikes emit crisp energy arcs and kinetic impact sparks, while floating combat text clearly differentiates 'HIT' (with damage number and combo count) from 'MISS' feedback. The HUD features a sleek, uncluttered fighting-game health bar, dynamic combo counter, and unobtrusive touch controls for mobile players.",
+    "requirements": [
+      {
+        "id": "req_arena_world",
+        "description": "Construct a clean, uncluttered Strike Lab training arena featuring a marked central sparring ring, player spawn point, and training bounds.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "Arena is spawned with safe walkable bounds, clear spatial focus around the training dummy, and no unnecessary clutter."
+      },
+      {
+        "id": "req_dummy_rig",
+        "description": "Provide a humanoid training dummy placed in the center of the arena with full Humanoid health attributes, flinch animation reactions, and defeat state handling.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Dummy possesses a Humanoid with 100 MaxHealth, reacts visually upon being struck, and collapses or resets upon reaching 0 HP."
+      },
+      {
+        "id": "req_combo_combat",
+        "description": "Implement a 3-hit light-attack combo (Hit 1: Left Jab, Hit 2: Right Cross, Hit 3: Heavy Finisher) featuring distinct windup, active contact, and recovery phases with procedural joint animations.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Attacks cycle smoothly through 1 -> 2 -> 3 with distinct animation poses and reset back to 1 if the player delays beyond the combo window or finishes the third strike."
+      },
+      {
+        "id": "req_server_validation",
+        "description": "The server must rigorously validate melee strike timing, player-to-dummy distance (< 7 studs), combo cadence, and active contact timing. Holding the button or spamming during recovery must not create extra hits.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "network",
+        "priority": "required",
+        "acceptance": "Server rejects requests if the player is out of range, attacking too fast during recovery cooldown, or holding the attack key; each strike counts exactly once at contact."
+      },
+      {
+        "id": "req_hit_miss_feedback",
+        "description": "Display distinct visual and auditory feedback for both accepted hits (impact flash, hit particles, floating damage number, combo counter increment) and misses (swing whoosh, 'MISS' indicator).",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "Strikes on the dummy display glowing hit sparks and floating damage text; swings outside range display a distinct miss prompt without incrementing hit count."
+      },
+      {
+        "id": "req_hit_sfx",
+        "description": "Synchronize audible swing whoosh and impact sound effects on combat actions and successful hits.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "Audio plays audibly when swinging and when making contact with the dummy."
+      },
+      {
+        "id": "req_ui_hud",
+        "description": "Provide an uncluttered training UI displaying Dummy Health, an accepted-hit counter, active combo step indicator, manual Reset Dummy button, and dedicated Touch Attack button for mobile users.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "HUD accurately displays real-time dummy health, combo hit counter, interactive reset button, and functional mobile touch controls."
+      },
+      {
+        "id": "req_reset_flow",
+        "description": "Allow the dummy to be reset both automatically upon defeat (0 HP) and manually via the UI reset control, restoring full health and resetting active combo counters.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+        "origin": "user",
+        "category": "lifecycle",
+        "priority": "required",
+        "acceptance": "Triggering reset or defeating the dummy instantly restores the dummy's health to 100%, resets hit counts, and clears active hit reactions."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "task_config_remotes",
+        "title": "Create StrikeLab shared configuration and Remote communication events",
+        "requirements": [
+          "req_combo_combat",
+          "req_server_validation",
+          "req_hit_miss_feedback"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_1ce5239e6fd2/StrikeLabConfig.luau",
+          "ReplicatedStorage/Forge_1ce5239e6fd2/CombatEvents.luau"
+        ]
+      },
+      {
+        "id": "task_arena_and_dummy_setup",
+        "title": "Build training arena environment, sparring ring, and training dummy rig",
+        "requirements": [
+          "req_arena_world",
+          "req_dummy_rig"
+        ],
+        "dependsOn": [
+          "task_config_remotes"
+        ],
+        "files": []
+      },
+      {
+        "id": "task_server_combat_engine",
+        "title": "Implement server combat validation, damage handling, and dummy lifecycle reset logic",
+        "requirements": [
+          "req_dummy_rig",
+          "req_server_validation",
+          "req_hit_miss_feedback",
+          "req_reset_flow"
+        ],
+        "dependsOn": [
+          "task_config_remotes"
+        ],
+        "files": [
+          "ServerScriptService/Forge_1ce5239e6fd2/CombatServer.server.luau"
+        ]
+      },
+      {
+        "id": "task_client_combat_controller",
+        "title": "Implement client player combat controller, input binding, 3-hit combo animation state machine, and audio playback",
+        "requirements": [
+          "req_combo_combat",
+          "req_server_validation",
+          "req_hit_miss_feedback",
+          "req_hit_sfx"
+        ],
+        "dependsOn": [
+          "task_config_remotes",
+          "task_server_combat_engine"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_1ce5239e6fd2/StrikeController.client.luau",
+          "StarterPlayer/StarterPlayerScripts/Forge_1ce5239e6fd2/ProceduralAnimator.luau"
+        ]
+      },
+      {
+        "id": "task_training_hud_and_touch",
+        "title": "Implement training HUD, dummy health bar, combo counter, hit/miss floating VFX, and desktop/touch controls",
+        "requirements": [
+          "req_ui_hud",
+          "req_hit_miss_feedback",
+          "req_reset_flow"
+        ],
+        "dependsOn": [
+          "task_config_remotes",
+          "task_client_combat_controller"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_1ce5239e6fd2/TrainingHUD.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": []
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 113585,
+      "chargedMicros": 17829,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6456,
+      "outputTokens": 3463,
+      "status": "ok",
+      "at": "2026-09-16T04:49:22.057Z"
+    }
+  ],
+  "budgetMicros": 1000000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T04:48:57.377Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T04:48:57.399Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T04:49:22.067Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T04:48:57.367Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

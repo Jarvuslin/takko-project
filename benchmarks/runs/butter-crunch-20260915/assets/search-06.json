@@ -1,0 +1,24 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "args": {
+      "query": "squish slime",
+      "assetType": "Audio",
+      "audioMaxDuration": 3,
+      "maxResults": 5,
+      "studio_id": "4794fbfd-333b-4cda-8655-a702bbf75cd9",
+      "scope": "creator_store",
+      "priceFilter": "free"
+    },
+    "retrievedAt": "2026-09-15T18:52:44.953Z",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "No Roblox Studio instances are connected. Ask the user to confirm that Studio is running with a place open and the MCP server enabled in Assistant settings."
+        }
+      ],
+      "isError": true
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": 5,
+  "model": "x-ai/grok-build-0.1",
+  "projectId": "ad3e2e8e-b32a-48b1-9815-14ab4cf81286",
+  "stage": "failed",
+  "error": "Error: Planning ended at failed",
+  "failure": {
+    "code": "GENERATION_OUTPUT_REJECTED",
+    "phase": "planner",
+    "attempts": 2,
+    "details": "requirements.0.description: Invalid input: expected string, received undefined; requirements.1.description: Invalid input: expected string, received undefined; requirements.2.description: Invalid input: expected string, received undefined; requirements.3.description: Invalid input: expected string, received undefined; requirements.4.description: Invalid input: expected string, received undefined; requirements.5.description: Invalid input: expected string, received undefined",
+    "at": "2026-09-16T03:03:54.801Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 3058319,
+  "priorChargedMicros": 297298,
+  "reservedMicros": 225690,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 3284009,
+  "chargedMicros": 28309,
+  "combinedChargedMicros": 325607,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109644,
+      "chargedMicros": 15021,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5538,
+      "outputTokens": 2898,
+      "status": "ok",
+      "at": "2026-09-16T03:03:44.559Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 116046,
+      "chargedMicros": 13288,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7677,
+      "outputTokens": 2008,
+      "status": "ok",
+      "at": "2026-09-16T03:03:54.796Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

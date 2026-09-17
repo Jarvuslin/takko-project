@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-09-14T02:59:55.8139967Z",
+  "kind": "Independent native Studio integration fixture; not model-generated gameplay",
+  "projectId": "4beae11d-99d3-4667-bd77-eb02a49b5886",
+  "scope": "Forge_4beae11d99d3",
+  "nativeEvents": [
+    "2026-09-14T02:57:56.174Z,11.174191,3b14,6,Info [FLog::CreatorOutput] FORGE_NATIVE_XML_PASS: PrimaryPart, Motor6D Part0/Part1, Highlight.Adornee",
+    "2026-09-14T02:57:58.263Z,13.263104,3b14,6,Info [FLog::CreatorOutput] FORGE_NATIVE_APPLY_RESULT: {\"ok\":true,\"revision\":1,\"checks\":[{\"id\":\"apply\",\"status\":\"passed\",\"detail\":\"Applied generated instances and sources.\"}],\"logs\":[\"Applied revision 1\"],\"artifactHash\":\"c3501654edaaff3ce6979fb5c1fca6b991ead416e4b7ad5aec732f59d5ed06ed\",\"operationId\":\"6efaab01-dd13-42f5-8c39-3a9d98bde39a\"}",
+    "2026-09-14T02:58:06.931Z,21.931349,0310,6,Info [FLog::CreatorOutput] FORGE_NATIVE_TEST_RESULT: {\"ok\":true,\"revision\":1,\"checks\":[{\"id\":\"rigReferences\",\"status\":\"passed\",\"detail\":\"Assertion scenario completed in Studio\"},{\"id\":\"clientHud\",\"status\":\"passed\",\"detail\":\"Assertion scenario completed in Studio\"}],\"logs\":[],\"artifactHash\":\"c3501654edaaff3ce6979fb5c1fca6b991ead416e4b7ad5aec732f59d5ed06ed\",\"operationId\":\"84b9de4e-01d4-4e10-8927-0d0067d01012\"}",
+    "2026-09-14T02:58:08.686Z,23.686039,82e4,6,Info [FLog::CreatorOutput] FORGE_NATIVE_VERIFICATION_FINISHED"
+  ],
+  "studioEvidence": {
+    "revision": 1,
+    "artifactHash": "c3501654edaaff3ce6979fb5c1fca6b991ead416e4b7ad5aec732f59d5ed06ed",
+    "checks": [
+      {
+        "id": "rigReferences",
+        "status": "passed",
+        "detail": "Assertion scenario completed in Studio"
+      },
+      {
+        "id": "clientHud",
+        "status": "passed",
+        "detail": "Assertion scenario completed in Studio"
+      }
+    ],
+    "logs": [],
+    "at": "2026-09-14T02:58:08.48Z"
+  },
+  "limitations": [
+    "No fresh provider generation after restart: the session key has not been re-entered.",
+    "The user Brainrot project remains incomplete and requires resuming generation.",
+    "Studio checks cover native references, plugin apply, joint movement, player spawn and client HUD, not arbitrary game quality."
+  ]
+}

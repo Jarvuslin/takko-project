@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-15",
+  "command": "npm run check",
+  "exitCode": 0,
+  "unitApi": { "files": 44, "passed": 451 },
+  "desktop": { "passed": 10, "nativeDesktopLaunch": false },
+  "browser": { "passed": 36, "devices": ["desktop", "mobile"] },
+  "luau": { "combatScenarios": 6, "sourceCompilationPassed": true, "studioApisMocked": true },
+  "plugin": { "scenarios": 14, "injectedSourcesCompiled": 8, "studioApisMocked": true },
+  "guardEvaluation": "passed",
+  "typescriptAndProductionBuild": "passed",
+  "productionHttpSmoke": "passed",
+  "assetMcpReadOnlyDiscovery": "docs/results/takko-asset-runtime-discovery.json",
+  "sourceHashes": "docs/results/takko-asset-source-hashes.json",
+  "liveAssetSearch": "not run",
+  "liveAssetImport": "not run",
+  "paidModelGeneration": "not run",
+  "butterCrunchGeneration": "not run",
+  "butterCrunchQualityScore": null,
+  "manualAssetRescueCountedAsWorkerOutput": false,
+  "limitations": [
+    "The app-owned MCP discovery check found no connected Studio and no model keys loaded.",
+    "Offline Engine, adapter, client and plugin tests do not prove a successful native asset loop.",
+    "Audio semantic evaluation, animation retrieval and image import remain unsupported and cannot pass required asset needs.",
+    "Asset-stage acceptance never substitutes for final-game native quality verification."
+  ]
+}

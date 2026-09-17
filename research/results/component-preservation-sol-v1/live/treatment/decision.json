@@ -1,0 +1,287 @@
+{
+  "packetHash": "907e1f06cba0434b54bd0e33e12753ad3e0a9059c50c5044bff0f6c16f3931dd",
+  "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+  "disposition": "needs_more_evidence",
+  "reason": "The component retains useful looping motion, waypoint geometry, welding, and character-carry logic, but it is not yet integrated or natively verified. Its server script scans all Workspace rather than the supplied namespace, and the adaptation removed original live activation/reset and non-loop movement controls needed for reliable replay/reset integration.",
+  "serializedMedia": [],
+  "sources": [
+    {
+      "sha256": "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+      "behavior": "Binding 16 registers a collision group, locates a MovingPlatform model's PlatformModel/Handle and Start/Finish children, welds platform parts, tags them for character carry, and tweens the anchored handle between waypoint CFrames. Loop mode reverses after each completed tween, endpoint markers are hidden, and tweens/connections are cleaned when the model is destroyed. Compared with the original, live Active/reset handling and Once/LoopOnce completion behavior were not preserved.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "TweenService",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 1,
+            "end": 1
+          }
+        },
+        {
+          "kind": "service",
+          "value": "PhysicsService",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 2,
+            "end": 2
+          }
+        },
+        {
+          "kind": "service",
+          "value": "CollectionService",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 3,
+            "end": 3
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "MovingPlatforms collision group",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 5,
+            "end": 7
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "PlatformModel.Handle",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 20,
+            "end": 25
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "___Stick collection tag on platform parts",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 28,
+            "end": 37
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "MovingPlatform.PlatformModel, Start, and Finish children",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 62,
+            "end": 64
+          }
+        },
+        {
+          "kind": "dynamic_or_unresolved",
+          "value": "MovingPlatform attributes Stick, AlignCFrame, Length, Delay, Style, Direction, and MovementType",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 70,
+            "end": 85
+          }
+        },
+        {
+          "kind": "dynamic_or_unresolved",
+          "value": "MovingPlatform GoalReached attribute",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 90,
+            "end": 94
+          }
+        },
+        {
+          "kind": "dynamic_or_unresolved",
+          "value": "MovingPlatform Active attribute",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 140,
+            "end": 142
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "Global workspace descendant scan for models named or tagged MovingPlatform",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 155,
+            "end": 164
+          }
+        }
+      ],
+      "unresolved": [
+        "The script scans every Workspace descendant and can configure models named or tagged MovingPlatform outside the supplied namespace.",
+        "No captured configuration values establish the intended speed, delay, movement type, alignment, stick setting, or initial endpoint; defaults are used when attributes are absent.",
+        "The adaptation no longer observes Active changes and does not implement the original reset-on-deactivation, Once, or LoopOnce lifecycle controls, leaving replay/reset integration incomplete.",
+        "Tween motion, pauses, reversal, collision behavior, and character carriage have not been verified in native play."
+      ]
+    },
+    {
+      "sha256": "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc",
+      "behavior": "Binding 18 is a character LocalScript. Each Heartbeat, while the humanoid is alive and grounded, it raycasts below HumanoidRootPart. When it detects a part tagged ___Stick, it applies the platform's frame-to-frame horizontal and rotational delta to the character root. It clears tracking in ignored humanoid states and disconnects its Heartbeat when the humanoid dies.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "instance_reference",
+          "value": "script.Parent character, Humanoid, and HumanoidRootPart",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 1,
+            "end": 4
+          }
+        },
+        {
+          "kind": "service",
+          "value": "RunService",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 4,
+            "end": 4
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "MovingPlatforms collision group",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 6,
+            "end": 11
+          }
+        },
+        {
+          "kind": "instance_reference",
+          "value": "workspace raycast and ___Stick-tagged platform part",
+          "verification": "unverified",
+          "sourceLines": {
+            "start": 33,
+            "end": 40
+          }
+        }
+      ],
+      "unresolved": [
+        "The script discards the platform's vertical translation, so it cannot faithfully carry a character on a vertically moving or rising crossing.",
+        "Reliable boarding, standing carry, rotation, dismount, death cleanup, and fresh-script delivery after respawn remain unverified in native play."
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "movingCrossing",
+      "status": "integration_needed",
+      "reason": "Static code provides repeated waypoint tweening and a client carry mechanism, but the model is not placed in the ordered route, its cadence is not captured, and boarding, carry, reversal, and dismount have not been natively verified.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ],
+      "nodeIndices": [
+        3,
+        4,
+        9,
+        13,
+        14,
+        16,
+        18
+      ]
+    },
+    {
+      "requirementId": "marketplaceFirst",
+      "status": "unknown",
+      "reason": "The captured candidate and its current hierarchy and scripts were inspected, but reference research is unavailable and current evidence does not establish that Marketplace searches for all requested component categories occurred first. No media is present in this component.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ],
+      "nodeIndices": [
+        3,
+        16,
+        18
+      ]
+    },
+    {
+      "requirementId": "courseCore",
+      "status": "integration_needed",
+      "reason": "This component contributes one moving platform and its two waypoints only. It still requires placement between the appropriate checkpoints and connection to safe approach and dismount geometry in the complete course.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ],
+      "nodeIndices": [
+        3,
+        4,
+        9,
+        13,
+        14,
+        16,
+        18
+      ]
+    },
+    {
+      "requirementId": "compactComfortableLayout",
+      "status": "integration_needed",
+      "reason": "The component exposes movable Start and Finish waypoints and a platform handle, but captured evidence does not establish its dimensions, travel gap, boarding clearance, dismount spacing, or achievable placement within the compact course.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9"
+      ],
+      "nodeIndices": [
+        3,
+        4,
+        9,
+        13,
+        14
+      ]
+    },
+    {
+      "requirementId": "nativeVerification",
+      "status": "integration_needed",
+      "reason": "No imported code was executed and runtime verification was not performed. Native traversal must cover looping motion, endpoint timing, boarding, standing carry, dismount, fall/respawn recovery, and replay reset.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ],
+      "nodeIndices": [
+        3,
+        16,
+        18
+      ]
+    }
+  ],
+  "permissionImpacts": [
+    {
+      "capability": "DataStore",
+      "impact": "none_observed",
+      "reason": "Neither current source accesses DataStoreService or persistence APIs.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ]
+    },
+    {
+      "capability": "Network",
+      "impact": "none_observed",
+      "reason": "Neither current source performs HTTP networking or loads external code.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ]
+    },
+    {
+      "capability": "ScriptGlobals",
+      "impact": "none_observed",
+      "reason": "Neither current source uses shared or _G; ordinary script references do not require ScriptGlobals.",
+      "sourceHashes": [
+        "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+        "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc"
+      ]
+    }
+  ],
+  "integrationNotes": [
+    "Scope discovery and setup to the supplied namespace before integration; the unchanged global Workspace scan could alter unrelated models.",
+    "Place the MovingPlatform model between Checkpoints 1 and 2, configure its waypoint CFrames and readable cadence, and provide broad approach and dismount surfaces.",
+    "Ensure the Stick LocalScript is delivered through the namespace's character lifecycle integration on every spawn without duplicate Heartbeat handlers.",
+    "The removed live Active/reset behavior was not replaced. Replay integration must establish a deterministic platform reset path before this component can satisfy the run lifecycle.",
+    "No require calls, module assets, audio, or other serialized media references occur in the current sources.",
+    "Perform native tests for continuous looping, visible endpoint pause/reversal, character carry, dismount, fall recovery, respawn, and deliberate replay reset. Vertical routes require special review because the carry script omits Y translation."
+  ],
+  "runtimeVerification": "not_performed"
+}

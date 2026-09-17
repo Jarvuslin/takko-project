@@ -1,0 +1,28 @@
+import fs from "node:fs";
+import path from "node:path";
+import { randomUUID } from "node:crypto";
+import { StudioAssetAdapter } from "../src/generation/studio-asset-adapter";
+import { StdioStudioClient } from "../src/generation/studio-mcp-client";
+const project = JSON.parse(fs.readFileSync("benchmarks/runs/marketplace-diversity-v3-20260916/combat-training/final-project.json", "utf8"));
+const selected = project.assetPipeline.events.find((e: any) => e.step === "candidate_selected");
+const need = project.spec.assetNeeds.find((n: any) => n.id === selected.needId);
+const scope = "AdapterRegression_" + randomUUID().replaceAll("-", "").slice(0, 12);
+const directory = path.resolve(process.argv[2]);
+fs.mkdirSync(directory);
+const save = (name: string, data: unknown) => fs.writeFileSync(path.join(directory, name), JSON.stringify(data, null, 2));
+const client = new StdioStudioClient();
+const adapter = new StudioAssetAdapter(client, {studioId: project.assetStudioId, scope, evidenceDirectory: directory});
+save("protocol.json", {scope, candidate: selected.data.candidate, need, purpose: "Controlled inert replay of frozen raw worker selection. No paid calls or gameplay execution."});
+try {
+  const found = await adapter.search(need, need.query, AbortSignal.timeout(30000));
+  const candidate = found.candidates.find((c) => c.id === selected.data.candidate.id);
+  if (!candidate) throw Error("Frozen candidate unavailable; no replacement");
+  const inspection = await adapter.inspect(need, candidate, "frozen-combat-import", AbortSignal.timeout(90000));
+  save("inspection.json", inspection);
+  let error: any;
+  try { save("prepared.json", await adapter.prepareComponentReview(inspection, project.assetPipeline.inputHash, AbortSignal.timeout(90000))); }
+  catch (e) { error = e; save("failure.json", {message: String(e), effects: error.effects, receipts: error.receipts}); }
+  if (error?.effects === "unknown") throw error;
+  save("cleanup.json", await adapter.discard(inspection, AbortSignal.timeout(30000)));
+  console.log(JSON.stringify({scope, error: error?.message, comparison: error?.receipts?.find((r: any) => r.operation === "restricted_component_validation")?.data}));
+} finally { await client.close(); }

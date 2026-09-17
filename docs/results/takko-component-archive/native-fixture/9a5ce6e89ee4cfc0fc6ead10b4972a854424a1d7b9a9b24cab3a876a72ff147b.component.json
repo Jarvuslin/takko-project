@@ -1,0 +1,92 @@
+{
+  "status": "captured",
+  "format": "roblox-native-rbxm-v1",
+  "engineVersion": "0.739.0.7390687",
+  "bytes": 6962,
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Unmodified Component Name",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Root Part",
+      "className": "Part"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "Shoulder",
+      "className": "Motor6D"
+    },
+    {
+      "index": 4,
+      "parentIndex": 2,
+      "name": "Original Behavior",
+      "className": "Script"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "name": "Original Module",
+      "className": "ModuleScript"
+    },
+    {
+      "index": 6,
+      "parentIndex": 4,
+      "name": "Target",
+      "className": "ObjectValue"
+    },
+    {
+      "index": 7,
+      "parentIndex": 2,
+      "name": "Existing Sound",
+      "className": "Sound"
+    },
+    {
+      "index": 8,
+      "parentIndex": 2,
+      "name": "Existing Animation",
+      "className": "Animation"
+    },
+    {
+      "index": 9,
+      "parentIndex": 1,
+      "name": "Arm",
+      "className": "Part"
+    }
+  ],
+  "sources": [
+    {
+      "index": 4,
+      "className": "Script",
+      "source": "error('This fixture must never execute')\n",
+      "sourceBytes": 41,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "e1ea24df0bceab6e55f6ab5477c4e81f49153116f6eb9b864bcc128d1150d796"
+    },
+    {
+      "index": 5,
+      "className": "ModuleScript",
+      "source": "return {answer=42}",
+      "sourceBytes": 18,
+      "sha256": "e675555d1ec5531b250b79237dcd9207d04fbf8382e6db292fa08abb76c51cd0"
+    }
+  ],
+  "sourceBytes": 59,
+  "roundTrip": {
+    "passed": false,
+    "stage": "compare",
+    "reason": "AssistantCommand:93: Component round trip changed property ObjectValue.Value"
+  },
+  "executed": false,
+  "sha256": "aae8c02961918688a279929c7f8e12950fad2db58c6ae16ef509256011975438",
+  "securityReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "identityBoundary": "exact imported hierarchy before static normalization; import tool controls the outer root name"
+}

@@ -1,0 +1,31 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+const root = 'research/results/component-repair-routing-v1';
+const out = root + '/syntax';
+assert(!fs.existsSync(out));
+fs.mkdirSync(out);
+const compiler = path.resolve('research/tools/luau/luau-compile.exe');
+assert(fs.existsSync(compiler));
+const hash = x => createHash('sha256').update(x).digest('hex');
+const results = [];
+for (const [arm, file] of [['historical-gemini', 'offline/decision.json'], ['fresh-sol', 'live/decision.json']]) {
+  const decision = JSON.parse(fs.readFileSync(root + '/' + file, 'utf8'));
+  assert.equal(decision.action, 'adapt');
+  const sources = [...decision.plan.replaceSources.map(x=>({kind:'replace',...x})), ...(decision.plan.addSources ?? []).map(x=>({kind:'add',...x}))];
+  for (let i = 0; i < sources.length; i++) {
+    const source = sources[i];
+    assert.equal(typeof source.source, 'string');
+    const name = `${arm}-${source.kind}-${i + 1}.luau`;
+    fs.writeFileSync(out + '/' + name, source.source, {flag:'wx'});
+    const run = spawnSync(compiler, [path.resolve(out, name)], {encoding:'utf8'});
+    fs.writeFileSync(out + '/' + name + '.compile.txt', (run.stdout ?? '') + (run.stderr ?? ''), {flag:'wx'});
+    results.push({arm,file:name,kind:source.kind,sha256:hash(source.source),sourceBytes:Buffer.byteLength(source.source),exitCode:run.status,error:run.error?.message,syntaxPassed:run.status===0});
+  }
+}
+const result = {at:new Date().toISOString(),compilerSha256:hash(fs.readFileSync(compiler)),results,allSyntaxPassed:results.every(x=>x.syntaxPassed),sourcesUnchanged:true,nativeOperations:0,runtimeBehaviorVerified:false,rawGamePass:false};
+fs.writeFileSync(out + '/result.json', JSON.stringify(result,null,2), {flag:'wx'});
+console.log(JSON.stringify(result));
+assert(result.allSyntaxPassed);

@@ -1,0 +1,32 @@
+{
+  "nativeProductRegressionPassed": true,
+  "benchmarkEligible": false,
+  "paidCalls": 0,
+  "originalScriptMatched": true,
+  "originalSourceSha256": "66b10d277bc21b0c7f8851725fe7bafcd18de29e61a100e6f71a4c7f008ee073",
+  "sourceHashesAtNativeStart": {
+    "src/generation/studio-asset-adapter.ts": "e37baac3568e7ca30ed3ffb3d8b64a023dd7da73c39039f25149cac09055fa0a",
+    "src/generation/asset-pipeline.ts": "92b3c22aa6fa98c00f8f9fa78199222309083619c66e50675f4fad589034ffe4",
+    "src/generation/asset-contract.ts": "b064b76d598f0fba24add0c77296ad927e401876aadc0f7ef75d16d40c1b8c58",
+    "src/generation/marketplace-policy.ts": "1435a3b4f059be72a8fb3654d93ac03475cedf222155a9b93f2758e4404ea611",
+    "src/generation/engine.ts": "7ad1b2ea08ee3b5dc478c4a9afccd4bc640ee1c7b7b9a68d29ee2efcdcaa73c3"
+  },
+  "gameplayExecuted": false,
+  "userAssetMutated": false,
+  "automaticEmbeddedBehaviorReuse": false,
+  "fullCheck": "passed:657unit/API+10desktop+36browser+Luau/plugin/guards/build/production",
+  "recordedCostMicrosUnchanged": 510904,
+  "reservationsMicrosUnchanged": 4515084,
+  "fullCheckLog": ".forge/marketplace-complete-assets-final-check.log",
+  "loadedRuntime": {
+    "reloaded": true,
+    "pid": 22236,
+    "port": 4324,
+    "configuredProfiles": 4,
+    "keyObjectsPreserved": true,
+    "moduleUrl": "file:///D:/RobloxProjects/Roblox%20Gen/.forge/hot/asset-audio.mjs?reload=1789531020978",
+    "at": "2026-09-16T03:57:01.242Z"
+  },
+  "inspectorClosed": true,
+  "keysStillPresent": 4
+}

@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "kind": "takko-component-adaptation",
+  "original": {
+    "archiveHash": "04e5a70ad99e31511dbd1e59bf29850745e78516ecab1107b5c621afdd10d9d1",
+    "manifestHash": "36b78d3f2ccc9a8440c16f28d4d7046cc53626c50b63fec0d64e231f3b9f6d06"
+  },
+  "plan": {
+    "packetHash": "ce2d85ed59ce6de1aba00c3ecac44d99bc4fc9af3469288a2e61e720e006ddb0",
+    "inputHash": "c1f2c3c3b94e20f3b92887376e4484755d2175da3b93574a67946ddf20f586da",
+    "reason": "Adapt the checkpoint pad script to support strict sequential progression (1 -> 2 -> 3), R15/R6 HumanoidRootPart teleportation on fall recovery, and visual pulse animation upon valid stage activation.",
+    "removeSubtrees": [],
+    "replaceSources": [
+      {
+        "index": 3,
+        "beforeSha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96",
+        "source": "local TweenService = game:GetService(\"TweenService\")\nlocal Players = game:GetService(\"Players\")\n\nlocal pad = script.Parent\nlocal checkpointIndex = pad:GetAttribute(\"CheckpointIndex\") or 1\nlocal baseColor = pad.Color\nlocal activeColor = Color3.fromRGB(0, 255, 170)\n\nlocal function triggerVisualFeedback()\n\tpad.Material = Enum.Material.Neon\n\tpad.Color = activeColor\n\tlocal tweenInfo = TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)\n\tlocal tween = TweenService:Create(pad, tweenInfo, { Color = Color3.fromRGB(255, 255, 255) })\n\ttween:Play()\n\ttween.Completed:Connect(function()\n\t\tpad.Color = activeColor\n\tend)\nend\n\nlocal function onTouched(hit)\n\tlocal character = hit and hit.Parent\n\tif not character then return end\n\tlocal humanoid = character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoid or humanoid.Health <= 0 then return end\n\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tif not player then return end\n\n\tlocal currentProgress = player:GetAttribute(\"CurrentCheckpoint\") or 0\n\tif checkpointIndex == currentProgress + 1 then\n\t\tplayer:SetAttribute(\"CurrentCheckpoint\", checkpointIndex)\n\t\tplayer:SetAttribute(\"LastCheckpointCFrame\", pad.CFrame + Vector3.new(0, 3.5, 0))\n\t\ttriggerVisualFeedback()\n\tend\nend\n\npad.Touched:Connect(onTouched)\n",
+        "reason": "Replaces legacy unrestricted Torso repositioning with strictly sequential checkpoint validation (currentProgress + 1), R15/R6 compatible CFrame tracking, and neon visual activation tweening."
+      }
+    ],
+    "preservedBehavior": [
+      "Preserves the Checkpoint BasePart geometry, collision properties, and surface Decal (rbxassetid://398136610).",
+      "Maintains the Touched detection paradigm on the checkpoint platform for physical player traversal."
+    ],
+    "remainingIntegration": [
+      "Duplicate checkpoint pads across course waypoints with assigned CheckpointIndex attributes 1, 2, and 3.",
+      "Integrate fall-hazard boundary script to read player's LastCheckpointCFrame attribute and safely teleport them back upon falling.",
+      "Wire client HUD to observe player CurrentCheckpoint attribute updates and trigger synchronized confirmation audio playback."
+    ],
+    "nativeTestPlan": [
+      "Spawn a test player and step on Checkpoint 2 or 3 before Checkpoint 1; verify that CurrentCheckpoint attribute remains 0 and no activation tween occurs.",
+      "Step onto Checkpoint 1; verify that CurrentCheckpoint updates to 1, LastCheckpointCFrame is set, and the pad triggers the neon pulse animation.",
+      "Traverse sequentially to Checkpoint 2 and Checkpoint 3; verify incremental progress updates.",
+      "Simulate falling off the course into the hazard volume; verify the character's HumanoidRootPart teleports back to the latest valid checkpoint CFrame without progress loss."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "planHash": "4d2031a990db9784f0541acf438bc837db3329e2ef472a34e46b00e4532053cb",
+  "adapted": {
+    "archiveHash": "e185787f232201786f52f28f6059778a6aee2a51c4ccb770570b4d189d11661a",
+    "manifestHash": "442f70a7afb94bfedd48418f4ed4fc2d03769e5a0d48118fffa712cd0753781e"
+  },
+  "indexMap": [
+    {
+      "before": 1,
+      "after": 1
+    },
+    {
+      "before": 2,
+      "after": 2
+    },
+    {
+      "before": 3,
+      "after": 3
+    },
+    {
+      "before": 4,
+      "after": 4
+    }
+  ],
+  "sourceReview": "required",
+  "runtimeVerification": "not_performed",
+  "exported": false,
+  "executed": false
+}

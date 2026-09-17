@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-16T17:48:18.290Z",
+  "passed": true,
+  "rawDecisionsChanged": false,
+  "inputMessagesAndSchemaEqual": true,
+  "comparison": "Sol versus prior Gemini treatment",
+  "assessments": [
+    {
+      "arm": "treatment",
+      "attempt": 1,
+      "responseSha256": "bf1be461d81e960f06dc59e95199d2bf9f64a3a257d1dea8fb5802720e888d02",
+      "validationError": null
+    }
+  ],
+  "costUSD": 0.0920235,
+  "chargedMicros": 92024,
+  "conservativePriorMicros": 5418108,
+  "remaining": 4.896761264,
+  "nativeOperations": 0,
+  "semanticAccuracy": "independent assessment required",
+  "rawGamePass": false
+}

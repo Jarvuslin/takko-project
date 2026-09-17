@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 2,
+  "id": "a4ea1e2f-6f86-40a8-97d5-91c0734b373c",
+  "name": "Strike Lab: 1-Player Training Arena",
+  "request": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+  "revision": 1,
+  "scope": "Forge_a4ea1e2f6f86",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "trainingDummyRig",
+        "requirementId": "req-dummy-rig",
+        "role": "Sparring humanoid dummy target with rig and hitboxes",
+        "kind": "Model",
+        "query": "combat training dummy rig",
+        "constraints": "Must contain Humanoid, standard R15 or R6 humanoid rig, anchored root or stable positioning, proper hit parts (Torso/Head).",
+        "intent": {
+          "experienceRole": "Provides the primary physical interaction target for combat validation, strikes, and feedback in the arena.",
+          "interaction": "Receives melee strikes, flashes on contact, displays health decrement, collapses/resets upon defeat.",
+          "reusableFeatures": [
+            "Humanoid rig",
+            "Hit reactions",
+            "Ragdoll or reset mechanics"
+          ],
+          "relatedRequirementIds": [
+            "req-dummy-rig",
+            "req-dummy-health",
+            "req-defeat-reset"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          -12
+        ],
+        "maxSize": 8
+      },
+      {
+        "id": "hitImpactSound",
+        "requirementId": "req-combat-audio",
+        "role": "Punch impact sound effect for accepted strikes",
+        "kind": "Audio",
+        "query": "punch hit impact sound",
+        "constraints": "Short punch impact audio asset, under 1 second, crisp hit sound.",
+        "intent": {
+          "experienceRole": "Provides clear acoustic confirmation when an attack successfully connects within valid range and timing.",
+          "interaction": "Plays synchronously when server approves a strike hit on the dummy.",
+          "reusableFeatures": [
+            "Punch impact sound"
+          ],
+          "relatedRequirementIds": [
+            "req-combat-audio",
+            "req-hit-miss-feedback"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          -12
+        ],
+        "maxSize": 4
+      },
+      {
+        "id": "swingMissSound",
+        "requirementId": "req-combat-audio",
+        "role": "Whoosh sound effect for missed or out-of-range attacks",
+        "kind": "Audio",
+        "query": "punch swing whoosh",
+        "constraints": "Short air whoosh sound, under 0.8 seconds.",
+        "intent": {
+          "experienceRole": "Gives clear audio feedback for whiffed swings to reinforce timing and spacing.",
+          "interaction": "Plays when attack is performed out of range or with no target hit.",
+          "reusableFeatures": [
+            "Air swing whoosh sound"
+          ],
+          "relatedRequirementIds": [
+            "req-combat-audio",
+            "req-hit-miss-feedback"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 4
+      }
+    ],
+    "assetStrategy": "Search Marketplace first for reusable fighting dummy rigs, punch/strike animation packs, and verified combat sound effects (punches, whooshes, resets). If Marketplace rig/animation components require custom glue, author the server-side strike arbiter and client presentation layers while referencing the imported assets.",
+    "title": "Strike Lab: 1-Player Training Arena",
+    "summary": "Strike Lab is a clean, responsive single-player fighting game training arena designed for desktop and touch. Upon spawning in a minimalist indoor dojo/lab ring, the player approaches an interactive humanoid training dummy. Pressing or tapping the strike input initiates a deterministic 3-hit light-attack sequence (Jab -> Cross -> Hook) with distinct windup, active contact, and recovery animation phases. The server strictly validates attack range (under 6.5 studs) and contact timing windows to prevent button-holding or recovery spam exploits. On verified hit, dummy health decreases, the active combo hit counter increments, distinct impact audio plays, and hit sparks appear. On miss or out-of-range swings, a light whoosh sound and miss indicator trigger with zero damage and no combo increment. When the dummy is defeated (0 HP), it ragdolls/dissolves and automatically resets after a short delay, with an explicit manual Reset Dummy button always available on the HUD. Touch controls provide dedicated on-screen strike and reset buttons alongside desktop keyboard/mouse input.",
+    "visualDirection": "A modern, high-contrast training dojo / martial arts laboratory. Clean floor grid with distinct ring boundaries marked by neon floor lines. A dedicated central training platform hosts the humanoid sparring dummy. Clean, readable HUD with crisp combo counter styling, dummy health bar with damage lag indicator, attack phase indicator (Windup/Active/Recovery), and mobile-friendly touch action buttons. Particle effects include sharp directional impact sparks for clean hits and subtle air streaks for misses.",
+    "requirements": [
+      {
+        "id": "req-core-combo",
+        "description": "Implement a deterministic 3-hit light-attack combo sequence (Jab -> Cross -> Hook) with explicit windup, active contact window, and recovery timing phases.",
+        "sourceId": "request",
+        "sourceQuote": "Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Player can execute a 3-strike combo string. Each attack step progresses cleanly when timed correctly within the combo window and resets to strike 1 if the chain times out."
+      },
+      {
+        "id": "req-server-validation",
+        "description": "Server strictly validates attack timing, active contact frames, player-dummy distance, and state to ensure button-holding or spamming during recovery produces no duplicate hits.",
+        "sourceId": "request",
+        "sourceQuote": "The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits.",
+        "origin": "user",
+        "category": "network",
+        "priority": "required",
+        "acceptance": "Server rejects attack requests when out of range (>6.5 studs), during attack cooldown/recovery, or when held down. Exactly one damage and combo count event is processed per contact."
+      },
+      {
+        "id": "req-dummy-rig",
+        "description": "Provide a humanoid training dummy placed in the center of the training arena with standard humanoid collision and health parameters.",
+        "sourceId": "request",
+        "sourceQuote": "Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "Dummy model exists in workspace under the namespace, is targetable, has a Humanoid with configured max health (e.g. 100 HP), and stands stably in the arena."
+      },
+      {
+        "id": "req-dummy-health",
+        "description": "Display dummy health and accepted combo hit counter on an intuitive HUD.",
+        "sourceId": "request",
+        "sourceQuote": "a visible accepted-hit counter and dummy health.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "HUD displays a dummy health bar and an accepted-hit counter that increments on verified hits and resets after combo cooldown."
+      },
+      {
+        "id": "req-hit-miss-feedback",
+        "description": "Provide distinct visual and audio feedback for confirmed hits (impact spark, hit sound, dummy flinch) versus missed swings (whoosh sound, subtle miss indicator, no damage).",
+        "sourceId": "request",
+        "sourceQuote": "Show distinct hit and miss feedback.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "Hitting within range triggers hit impact sound and visual sparks. Whiffing or swinging out of range triggers whoosh audio and miss visual with zero damage applied."
+      },
+      {
+        "id": "req-defeat-reset",
+        "description": "Provide automatic reset after dummy defeat and a clear interactive manual reset control to allow continuous practice.",
+        "sourceId": "request",
+        "sourceQuote": "After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena.",
+        "origin": "user",
+        "category": "lifecycle",
+        "priority": "required",
+        "acceptance": "When dummy HP reaches 0, it triggers defeat feedback and respawns to full health after 2 seconds. Pressing the HUD Reset Dummy button resets it immediately."
+      },
+      {
+        "id": "req-combat-audio",
+        "description": "Synchronize hit impact and whiff audio with combat strike timing.",
+        "sourceId": "request",
+        "sourceQuote": "synchronized hit sound effects",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "Punch impact sounds play exactly upon verified strike contact; whiff sounds play on missed swings."
+      },
+      {
+        "id": "req-cross-platform-controls",
+        "description": "Support both desktop (keyboard / mouse click / keybind 'F' or left mouse button) and mobile touch (on-screen action buttons for Strike and Reset).",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Clicking/pressing Strike (or mouse click/F key on PC) triggers attack. Touch screen UI features dedicated touch buttons on mobile."
+      },
+      {
+        "id": "req-arena-environment",
+        "description": "Build an uncluttered, modern Strike Lab training arena with clean floor markings, lighting, and safe spawn location.",
+        "sourceId": "request",
+        "sourceQuote": "provide a clear reset control and an uncluttered arena.",
+        "origin": "inferred",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "Arena contains bounded fighting ring, proper lighting, floor decals/mats, clear spawn point, and no visual clutter."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "task-arena-setup",
+        "title": "Construct Strike Lab Arena and Spawn Environment",
+        "requirements": [
+          "req-arena-environment",
+          "req-dummy-rig"
+        ],
+        "dependsOn": [],
+        "files": []
+      },
+      {
+        "id": "task-combat-config",
+        "title": "Author Shared Combat Definitions and Animation Profiles",
+        "requirements": [
+          "req-core-combo",
+          "req-server-validation"
+        ],
+        "dependsOn": [
+          "task-arena-setup"
+        ],
+        "files": [
+          "ReplicatedStorage/Forge_a4ea1e2f6f86/CombatConfig.luau"
+        ]
+      },
+      {
+        "id": "task-dummy-service",
+        "title": "Implement Server Dummy Manager and Reset Controller",
+        "requirements": [
+          "req-dummy-rig",
+          "req-defeat-reset",
+          "req-dummy-health"
+        ],
+        "dependsOn": [
+          "task-combat-config"
+        ],
+        "files": [
+          "ServerScriptService/Forge_a4ea1e2f6f86/DummyManager.server.luau"
+        ]
+      },
+      {
+        "id": "task-server-combat-arbiter",
+        "title": "Implement Server Strike Validation and Damage Arbiter",
+        "requirements": [
+          "req-server-validation",
+          "req-core-combo",
+          "req-hit-miss-feedback",
+          "req-defeat-reset"
+        ],
+        "dependsOn": [
+          "task-dummy-service"
+        ],
+        "files": [
+          "ServerScriptService/Forge_a4ea1e2f6f86/CombatServer.server.luau"
+        ]
+      },
+      {
+        "id": "task-client-combat-controller",
+        "title": "Implement Client Combat Controller, Animations, and Audio Sync",
+        "requirements": [
+          "req-core-combo",
+          "req-combat-audio",
+          "req-hit-miss-feedback",
+          "req-cross-platform-controls"
+        ],
+        "dependsOn": [
+          "task-server-combat-arbiter"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_a4ea1e2f6f86/CombatClient.client.luau"
+        ]
+      },
+      {
+        "id": "task-training-hud",
+        "title": "Implement Training HUD, Combo Counter, Health Bar, and Mobile Controls",
+        "requirements": [
+          "req-dummy-health",
+          "req-defeat-reset",
+          "req-cross-platform-controls",
+          "req-hit-miss-feedback"
+        ],
+        "dependsOn": [
+          "task-client-combat-controller"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_a4ea1e2f6f86/TrainingHud.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": []
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 70635,
+      "chargedMicros": 18057,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6841,
+      "outputTokens": 3447,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T15:47:06.124Z"
+    }
+  ],
+  "budgetMicros": 1000000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T15:46:44.817Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T15:47:06.135Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T15:46:44.801Z",
+  "studioEvidence": null,
+  "failure": null,
+  "visualEvidence": null
+}

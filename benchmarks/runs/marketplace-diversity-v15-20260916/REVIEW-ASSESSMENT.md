@@ -1,0 +1,23 @@
+# V15 independent initial source-review assessment
+
+The initial Sol review passed the contract on its first response at 20:51:43 UTC with `needs_more_evidence`. The prior V14 configuration-index error is absent: all ten dependency entries omit `configurationIndex`, while the two dynamic loader entries retain their actual source citations, the initial captured value and the uncertainty about the overwritten target. This is an observed successful review-interface use in one fresh trial, not a controlled estimate of the guidance's causal effect or a game pass.
+
+This assessment uses only the completed initial review from project `9a9e4e8b-3eae-4ca1-a3cb-3efef74e7f79`, its raw reviewer trace and original captured packet `c13791e3c1732657b7f2a078467eb53cb7acb753e59d93e4a7002e4d88c01474`. The packet file hash and all five source-body hashes were independently checked. Active adaptation output was not inspected, changed or supplied with feedback.
+
+## Grounded findings
+
+The dynamic dependency analysis is sound. Source `699c263e…` line 4 requires the captured local `Type` ModuleScript, correctly classified `instance_reference`. Lines 37–43 obtain Marketplace product metadata through that module, read initial Pose value `99292559910041`, derive a value from Description and overwrite Pose. The same source later requires Pose at line 86. Helper `772345…` exposes MarketplaceService/GetProductInfo at lines 137–140 and performs character-to-byte conversion at lines 130–134. The review does not mistake the initial captured scalar for the final external module target or claim that external code was inspected.
+
+The ten source ranges are relevant to the claimed dependencies. The helper conversion is described through the combined source analysis rather than given its own dependency citation; that does not invalidate the grounded unresolved-target conclusion. The review also correctly identifies `4051dc…` line 5 as a local lookup passed to `print`, leaving the `Type` variable nil for later diagnostic calls.
+
+Useful content is recognized separately from the unsafe loader. The repeated bubble source `3ea385…` disables its ClickDetector, plays its sibling Sound and makes its own Part transparent (lines 5–7); its MouseClick binding is at line 11. The regeneration source `ab1a438…` clones the startup model, destroys sibling contents when configured and recreates them on humanoid touch. Both gameplay sources are marked `reuse: adapt`. The review preserves geometry, meshes, targets, existing one-use behavior and sound bindings as candidates for useful reuse instead of treating the whole asset as unusable.
+
+The raw media assessment covers all 72 nonempty captured SoundId bindings to `rbxassetid://421058925`, explicitly `unverified`. The native packet also contains 144 empty MeshId/TextureId values; these are not additional playable-media claims. No rights, loading, audibility, suitability or synchronized gameplay is established by retained provenance alone.
+
+## Disposition and remaining limits
+
+`needs_more_evidence` is reasonable: unsafe unrelated loading must remain quarantined until an actual adaptation and recapture remove or resolve it, while useful interaction content can be retained. Missing timing, count/completion interfaces, deliberate reset, input/HUD/lifecycle integration and native tests are explicitly called deferred work. Proposed removal is not counted as already completed. The three removed-capability rows stay limited to DataStore, Network and ScriptGlobals, without inventing additional permission coverage or clearing the external-loading concern.
+
+Two qualifications remain. Calling the detector change “one-use locking” describes useful intended behavior, not proven exclusion of already queued callbacks: the original handler contains no explicit state guard. Likewise, the review does not call out the original `CanNPCsActivate` condition's inverted naming/behavior. Neither omission changes the quarantine verdict, and the raw review already requires duplicate-input stress testing and replacement of touch-driven reset. Per-player/HUD/respawn facilities are broader integration responsibilities; their absence in the imported component alone should not become an intrinsic rejection of a usable component interface.
+
+The core improvement over V14 is observed first-attempt valid uncertainty plus an adaptation-permitting disposition. It is not evidence that the adapter will preserve behavior or produce correct code. No imported gameplay was executed for this review, no pop was listened to, and no exact-count/reset/desktop/touch test passed. Adaptation, later review, verified audio and untouched full-game acceptance require separate evidence.

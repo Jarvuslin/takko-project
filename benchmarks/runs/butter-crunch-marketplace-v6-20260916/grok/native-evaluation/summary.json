@@ -1,0 +1,161 @@
+{
+  "overall": "failed",
+  "failure": "Counter increments during action rather than after completed crunch",
+  "artifactUnmodified": true,
+  "autonomousBridgeDelivery": false,
+  "nativeDesktop": {
+    "initial": 0,
+    "threeRapidClicksAfterTen": 11,
+    "gameAudioCaptured": true,
+    "completionTiming": "failed",
+    "tenControlledClicks": 10,
+    "recoveryObserved": true
+  },
+  "nativeMobile": {
+    "portraitHudVisible": true,
+    "controlledCounting": "inconclusive: additional unattributed inputs",
+    "actualTouchEventsObserved": true,
+    "landscapeHudVisible": true,
+    "device": "iPhone 17 Pro"
+  },
+  "restored": {
+    "viewport": "default",
+    "studio": "Edit"
+  },
+  "costMicros": 0,
+  "report": "RESULTS.md",
+  "files": [
+    {
+      "name": "apply.luau",
+      "sha256": "5979af70bdd70dc81e0d8ea04528092748423c8fc1859c82b48c0462aa08226b"
+    },
+    {
+      "name": "desktop-first-sequence-nine.jpg",
+      "sha256": "3dc8c4f6bec8d262d03d15fa2261ca546e155e16bb58d25921cb4e2c4315aaf6"
+    },
+    {
+      "name": "desktop-initial-targeting-result.json",
+      "sha256": "a487d10f802930b0861ab8954c7810ffee4b0d219fb228ecf8cc926e58b1beac"
+    },
+    {
+      "name": "desktop-initial.jpg",
+      "sha256": "787552735324d37ace06d2512b376d22b135e0262aa2f6de770d43a31fc0f435"
+    },
+    {
+      "name": "desktop-overlap-input.json",
+      "sha256": "6557d7f97239e1791ea4ee9564fd7d1682a5dd101c38f5c3008eaa8c2a3b35c4"
+    },
+    {
+      "name": "desktop-overlap-result.json",
+      "sha256": "bfbba0e5bfe5eb2725ae31716577cd44aff8bf54fe9413ae774c947e007dc93e"
+    },
+    {
+      "name": "desktop-replay-initial.json",
+      "sha256": "3696a55d013a7f8863d3c14123b08f1ef1018cb74f512ad12e2011d8218725a0"
+    },
+    {
+      "name": "desktop-ten-inputs.json",
+      "sha256": "8cd3d0fce4af05ddd65543225f0c67b3d32c660dfc4ca90a309484ef604d8b07"
+    },
+    {
+      "name": "desktop-ten-result.json",
+      "sha256": "25ceec57755cf39c7d51ac9470b3cbef5f9d0c97b50958ffa6cefc0c283a21c7"
+    },
+    {
+      "name": "desktop-timing-console.json",
+      "sha256": "071f302abd46c84bcc53cfdee9a5195d8fdb4ec7b07c5b87b356410c7d30d7d7"
+    },
+    {
+      "name": "desktop-tool-position-errors.json",
+      "sha256": "238078d356bc79efe08afe82836cffe1a82c0c9b161ffca6f852785d8c111e20"
+    },
+    {
+      "name": "e0fd5ca075b1f8b070bd7c9dedeca397ad76d27425c95298a8d23f03f849ccd4.wav",
+      "sha256": "e0fd5ca075b1f8b070bd7c9dedeca397ad76d27425c95298a8d23f03f849ccd4"
+    },
+    {
+      "name": "first-click-audio-v2.json",
+      "sha256": "776f00e4e14111eb254ff39923427bb7f82d9d6d12914887095386debedd7d6d"
+    },
+    {
+      "name": "first-click-audio-v3.json",
+      "sha256": "9d74c6e4fe6b4a9d20758a54e4df3dcd980a6552a775ef1732ca695cc40a0602"
+    },
+    {
+      "name": "first-click-audio.json",
+      "sha256": "5e6c8fe64f62e0e89b029ee1e5d0aaea89473a6be105d145eb9b23c93896ef10"
+    },
+    {
+      "name": "freeze.json",
+      "sha256": "5eed11698dd0432d2de6536adec89770fafa50138a1008487ea358365c79c455"
+    },
+    {
+      "name": "phone-console.json",
+      "sha256": "6dd9b380a6ff19154aeb76065238ce48eef0a4a413b87663700e63bcc48c2b62"
+    },
+    {
+      "name": "phone-final.json",
+      "sha256": "2774198225ebbe88ada8d6ada5b28028958b9a28e6394903a97d1d48d0bec951"
+    },
+    {
+      "name": "phone-first-input.json",
+      "sha256": "6557d7f97239e1791ea4ee9564fd7d1682a5dd101c38f5c3008eaa8c2a3b35c4"
+    },
+    {
+      "name": "phone-first-result.json",
+      "sha256": "b30164dddc08d47e7a61cf20bbda8a0978591ed81a416e66a6fec3137cfa608e"
+    },
+    {
+      "name": "phone-initial.json",
+      "sha256": "6c3fa7ccc7d9d0a7bccc3eb9dedcdfe7ecd30d1edbf357e1ce96eec7bb2110cc"
+    },
+    {
+      "name": "phone-landscape.jpg",
+      "sha256": "1bce658eddf74e3e0b5624140439c87e3440ea5bec7b56096c4ea4f932aa72b2"
+    },
+    {
+      "name": "phone-portrait-uncontrolled-six.jpg",
+      "sha256": "993641e17da5d4d66c40fe0fc534c248dad4b7d3beb0d402bcf5a34f2eca7ba8"
+    },
+    {
+      "name": "RESULTS.md",
+      "sha256": "e7f8f5394bc1ae8cb5fdba52d8f4c9a8e1b41676d2fe38f0b75c48b6eb2d04a2"
+    },
+    {
+      "name": "scene-apply.json",
+      "sha256": "a5e47424b9598b3d4f52928f2e002af1a28c650842ed286057d1b3d448c68cae"
+    },
+    {
+      "name": "script-0.json",
+      "sha256": "0c087c7988be763388fc5ac765a7308ac28e29427bd544382880d83a22bf9dcc"
+    },
+    {
+      "name": "script-1.json",
+      "sha256": "ec6e1f7d1a9185136fdef138d2c5826a7ddce9066b31b6d7b03c3c7a74bdcab7"
+    },
+    {
+      "name": "transport.json",
+      "sha256": "088b0cda028769417303e6e1b45e3df5d9e31b757e600f9d12a49378d784a1e7"
+    },
+    {
+      "name": "verification-v1.json",
+      "sha256": "610415d73bae0e15203d034d6015aeae83d5a84a93b3d8a2e8a8c006cdc1b8f6"
+    },
+    {
+      "name": "verification-v2.json",
+      "sha256": "cfd25ed41d4bab3a0647d255eb3d1957e9c021998bb05d178c5500776099c958"
+    },
+    {
+      "name": "verify-v2.luau",
+      "sha256": "7786b0ed260587d6aa8575ec57c4167c2d84fb9058b65a29140ebcf2220af1b4"
+    },
+    {
+      "name": "verify.luau",
+      "sha256": "0865c279a25278fa98c76c9c01302faef76dd0952a9d0978f2bde21133c320ea"
+    },
+    {
+      "name": "viewport-restored.json",
+      "sha256": "aad4070bed4958741af8bc478236fc824751101a30cf4d16b1d793e17c2d13ca"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+const assert = require('node:assert/strict');
+const { evaluate, stageCost, offlineBreakEvenVolume } = require('../scripts/cost-model.cjs');
+const rates = { example: { input: 1, cacheRead: 0.1, cacheWrite: 1.25, output: 2 } };
+const stage = { model: 'example', inputTokens: 1e6, cacheReadTokens: 1e6, cacheWriteTokens: 1e6, outputTokens: 1e6, nonTokenCost: 0.65, conditionalSuccess: 0.5 };
+const close = (a, b) => assert.ok(Math.abs(a - b) < 1e-10, `${a} != ${b}`);
+close(stageCost(stage, rates), 5);
+const scenario = { name: 'test', offlineCost: 10, amortizationRequests: 100, stages: [stage, { ...stage, conditionalSuccess: 0.8 }] };
+const r = evaluate(scenario, rates);
+close(r.success, 0.9); close(r.onlineCost, 7.5); close(r.totalCost, 7.6); close(r.costPerAccepted, 7.6/0.9);
+close(evaluate({ ...scenario, stages: [{ ...stage, conditionalSuccess: 1 }, stage] }, rates).onlineCost, 5);
+assert.equal(evaluate({ ...scenario, stages: [{ ...stage, conditionalSuccess: 0 }] }, rates).costPerAccepted, null);
+assert.equal(offlineBreakEvenVolume(1, 0.5, 0.75, 100), 400);
+assert.equal(offlineBreakEvenVolume(1, 0.8, 0.75, 100), null);
+assert.throws(() => evaluate({ ...scenario, stages: [{ ...stage, conditionalSuccess: 1.1 }] }, rates));
+assert.throws(() => evaluate({ ...scenario, amortizationRequests: 0 }, rates));
+assert.throws(() => stageCost({ ...stage, inputTokens: -1 }, rates));
+console.log('Cost model checks passed: disjoint billing buckets, conditional repair reach, amortization, early success, zero success, break-even and invalid input.');

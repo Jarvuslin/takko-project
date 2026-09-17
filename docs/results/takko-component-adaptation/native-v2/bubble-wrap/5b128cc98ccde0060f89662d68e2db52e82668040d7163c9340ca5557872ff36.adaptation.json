@@ -1,0 +1,1616 @@
+{
+  "version": 1,
+  "kind": "takko-component-adaptation",
+  "original": {
+    "archiveHash": "afc94ed56c59d08e2ae4bec37b55029f077b12df617697b3b24faf4d6a8a9098",
+    "manifestHash": "42d98ffb5f3fa12458980778e5b24af95c91e4fba873366fbf52ea29719d1e84"
+  },
+  "plan": {
+    "packetHash": "eca6b2a3bc77f3a01653e0232b803cc793113d3c1cca79245fa0e93e18473ce8",
+    "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+    "reason": "Adapt the bubble wrap model by stripping malicious backdoor scripts, replacing the bubble interaction logic with animated tactile pops, debounced single-increment counting, satisfying audio triggers, and adding a central manager for HUD display, completion celebration, and sheet reset.",
+    "removeSubtrees": [
+      {
+        "index": 15,
+        "reason": "Remove TypeConfig script and its child modules which contain obfuscated backdoor code attempting numeric module loading and unauthorized MarketplaceService calls."
+      }
+    ],
+    "replaceSources": [
+      {
+        "indices": [
+          14,
+          23,
+          28,
+          34,
+          39,
+          44,
+          49,
+          54,
+          59,
+          64,
+          69,
+          74,
+          79,
+          84,
+          89,
+          94,
+          99,
+          104,
+          109,
+          114,
+          119,
+          124,
+          129,
+          134,
+          139,
+          144,
+          149,
+          154,
+          159,
+          164,
+          169,
+          174,
+          179,
+          184,
+          189,
+          194,
+          199,
+          204,
+          209,
+          214,
+          219,
+          224,
+          229,
+          234,
+          239,
+          244,
+          249,
+          254,
+          259,
+          264,
+          269,
+          274,
+          279,
+          284,
+          289,
+          294,
+          299,
+          304,
+          309,
+          314,
+          319,
+          324,
+          329,
+          334,
+          339,
+          344,
+          349,
+          354,
+          359,
+          364,
+          369,
+          374
+        ],
+        "beforeSha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+        "source": "local TweenService = game:GetService(\"TweenService\")\n\nlocal part = script.Parent\nlocal clickDetector = part:FindFirstChildOfClass(\"ClickDetector\")\nlocal sound = part:FindFirstChildOfClass(\"Sound\")\nlocal mesh = part:FindFirstChildOfClass(\"SpecialMesh\")\nlocal bubbleWrapModel = part:FindFirstAncestor(\"working bubble wrap\") or part.Parent.Parent\n\nlocal initialCFrame = part.CFrame\nlocal initialSize = part.Size\nlocal initialTransparency = part.Transparency\nlocal initialColor = part.Color\nlocal initialMeshScale = mesh and mesh.Scale or Vector3.new(1, 1, 1)\n\nlocal popped = false\nlocal isPopping = false\n\nlocal function popBubble(player)\n\tif popped or isPopping then\n\t\treturn\n\tend\n\tisPopping = true\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 0\n\tend\n\n\tif sound then\n\t\tsound.PlaybackSpeed = 0.95 + math.random() * 0.2\n\t\tsound:Play()\n\tend\n\n\tif mesh then\n\t\tlocal depressTween = TweenService:Create(mesh, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\t\tScale = Vector3.new(initialMeshScale.X * 1.15, initialMeshScale.Y * 0.2, initialMeshScale.Z * 1.15)\n\t\t})\n\t\tdepressTween:Play()\n\tend\n\n\tlocal partTween = TweenService:Create(part, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\tTransparency = math.clamp(initialTransparency + 0.35, 0, 0.85),\n\t\tColor = Color3.fromRGB(180, 210, 225)\n\t})\n\tpartTween:Play()\n\tpartTween.Completed:Wait()\n\n\tpopped = true\n\tisPopping = false\n\n\tif bubbleWrapModel then\n\t\tlocal currentCount = bubbleWrapModel:GetAttribute(\"PoppedCount\") or 0\n\t\tbubbleWrapModel:SetAttribute(\"PoppedCount\", currentCount + 1)\n\tend\nend\n\nlocal function resetBubble()\n\tpopped = false\n\tisPopping = false\n\n\tif mesh then\n\t\tmesh.Scale = initialMeshScale\n\tend\n\tpart.CFrame = initialCFrame\n\tpart.Size = initialSize\n\tpart.Transparency = initialTransparency\n\tpart.Color = initialColor\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 32\n\tend\nend\n\nif clickDetector then\n\tclickDetector.MouseClick:Connect(popBubble)\nend\n\nif bubbleWrapModel then\n\tbubbleWrapModel:GetAttributeChangedSignal(\"ResetTrigger\"):Connect(resetBubble)\nend\n",
+        "reason": "Implement animated bubble squash and burst response, synchronized pop audio playback with slight pitch ASMR variation, strict debouncing, and accurate single-count reporting to the parent bubble wrap model."
+      },
+      {
+        "index": 4,
+        "beforeSha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+        "source": "local Players = game:GetService(\"Players\")\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal regenPart = script.Parent\nlocal bubbleWrapModel = regenPart.Parent\nlocal bubblesFolder = bubbleWrapModel:FindFirstChild(\"bubble wrap\")\n\nlocal totalBubbles = 0\nif bubblesFolder then\n\tfor _, child in ipairs(bubblesFolder:GetChildren()) do\n\t\tif child:IsA(\"BasePart\") and child:FindFirstChildOfClass(\"ClickDetector\") then\n\t\t\ttotalBubbles = totalBubbles + 1\n\t\tend\n\tend\nend\n\nbubbleWrapModel:SetAttribute(\"TotalBubbles\", totalBubbles)\nbubbleWrapModel:SetAttribute(\"PoppedCount\", 0)\nbubbleWrapModel:SetAttribute(\"ResetTrigger\", 0)\n\nlocal function triggerReset()\n\tbubbleWrapModel:SetAttribute(\"PoppedCount\", 0)\n\tlocal currentTrigger = bubbleWrapModel:GetAttribute(\"ResetTrigger\") or 0\n\tbubbleWrapModel:SetAttribute(\"ResetTrigger\", currentTrigger + 1)\nend\n\nlocal resetRemote = bubbleWrapModel:FindFirstChild(\"ResetRequest\")\nif not resetRemote then\n\tresetRemote = Instance.new(\"RemoteEvent\")\n\tresetRemote.Name = \"ResetRequest\"\n\tresetRemote.Parent = bubbleWrapModel\nend\n\nresetRemote.OnServerEvent:Connect(function(player)\n\ttriggerReset()\nend)\n\nlocal function onTouched(hit)\n\tlocal character = hit and hit.Parent\n\tlocal player = character and Players:GetPlayerFromCharacter(character)\n\tif player then\n\t\ttriggerReset()\n\tend\nend\nregenPart.Touched:Connect(onTouched)\n\nlocal function createHUD(player)\n\tlocal playerGui = player:FindFirstChildOfClass(\"PlayerGui\")\n\tif not playerGui or playerGui:FindFirstChild(\"BubbleHUD\") then\n\t\treturn\n\tend\n\n\tlocal screenGui = Instance.new(\"ScreenGui\")\n\tscreenGui.Name = \"BubbleHUD\"\n\tscreenGui.ResetOnSpawn = false\n\tscreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling\n\n\tlocal counterFrame = Instance.new(\"Frame\")\n\tcounterFrame.Name = \"CounterFrame\"\n\tcounterFrame.Size = UDim2.new(0, 220, 0, 50)\n\tcounterFrame.Position = UDim2.new(0.5, -110, 0.05, 0)\n\tcounterFrame.BackgroundColor3 = Color3.fromRGB(30, 35, 45)\n\tcounterFrame.BackgroundTransparency = 0.25\n\tcounterFrame.BorderSizePixel = 0\n\tcounterFrame.Parent = screenGui\n\n\tlocal counterCorner = Instance.new(\"UICorner\")\n\tcounterCorner.CornerRadius = UDim.new(0, 12)\n\tcounterCorner.Parent = counterFrame\n\n\tlocal counterLabel = Instance.new(\"TextLabel\")\n\tcounterLabel.Name = \"CounterLabel\"\n\tcounterLabel.Size = UDim2.new(1, 0, 1, 0)\n\tcounterLabel.BackgroundTransparency = 1\n\tcounterLabel.Font = Enum.Font.GothamBold\n\tcounterLabel.TextSize = 20\n\tcounterLabel.TextColor3 = Color3.fromRGB(240, 245, 255)\n\tcounterLabel.Text = \"Popped: 0 / \" .. tostring(totalBubbles)\n\tcounterLabel.Parent = counterFrame\n\n\tlocal resetButton = Instance.new(\"TextButton\")\n\tresetButton.Name = \"ResetButton\"\n\tresetButton.Size = UDim2.new(0, 160, 0, 44)\n\tresetButton.Position = UDim2.new(0.5, -80, 0.9, -50)\n\tresetButton.BackgroundColor3 = Color3.fromRGB(65, 135, 220)\n\tresetButton.BorderSizePixel = 0\n\tresetButton.Font = Enum.Font.GothamBold\n\tresetButton.TextSize = 16\n\tresetButton.TextColor3 = Color3.fromRGB(255, 255, 255)\n\tresetButton.Text = \"Reset Sheet\"\n\tresetButton.Parent = screenGui\n\n\tlocal buttonCorner = Instance.new(\"UICorner\")\n\tbuttonCorner.CornerRadius = UDim.new(0, 10)\n\tbuttonCorner.Parent = resetButton\n\n\tlocal completionBanner = Instance.new(\"TextLabel\")\n\tcompletionBanner.Name = \"CompletionBanner\"\n\tcompletionBanner.Size = UDim2.new(0, 320, 0, 60)\n\tcompletionBanner.Position = UDim2.new(0.5, -160, 0.4, -30)\n\tcompletionBanner.BackgroundColor3 = Color3.fromRGB(40, 180, 110)\n\tcompletionBanner.BackgroundTransparency = 0.15\n\tcompletionBanner.BorderSizePixel = 0\n\tcompletionBanner.Font = Enum.Font.GothamBold\n\tcompletionBanner.TextSize = 22\n\tcompletionBanner.TextColor3 = Color3.fromRGB(255, 255, 255)\n\tcompletionBanner.Text = \"✨ Sheet Complete! ✨\"\n\tcompletionBanner.Visible = false\n\tcompletionBanner.Parent = screenGui\n\n\tlocal bannerCorner = Instance.new(\"UICorner\")\n\tbannerCorner.CornerRadius = UDim.new(0, 14)\n\tbannerCorner.Parent = completionBanner\n\n\tlocal clientScript = Instance.new(\"LocalScript\")\n\tclientScript.Name = \"HUDController\"\n\tclientScript.Source = [[\n\t\tlocal screenGui = script.Parent\n\t\tlocal counterLabel = screenGui:WaitForChild(\"CounterFrame\"):WaitForChild(\"CounterLabel\")\n\t\tlocal resetButton = screenGui:WaitForChild(\"ResetButton\")\n\t\tlocal completionBanner = screenGui:WaitForChild(\"CompletionBanner\")\n\t\tlocal bubbleWrapModel = workspace:FindFirstChild(\"working bubble wrap\", true)\n\n\t\tif not bubbleWrapModel then return end\n\t\tlocal resetRemote = bubbleWrapModel:WaitForChild(\"ResetRequest\")\n\n\t\tlocal function updateDisplay()\n\t\t\tlocal popped = bubbleWrapModel:GetAttribute(\"PoppedCount\") or 0\n\t\t\tlocal total = bubbleWrapModel:GetAttribute(\"TotalBubbles\") or 0\n\t\t\tcounterLabel.Text = \"Popped: \" .. tostring(popped) .. \" / \" .. tostring(total)\n\t\t\tif total > 0 and popped >= total then\n\t\t\t\tcompletionBanner.Visible = true\n\t\t\telse\n\t\t\t\tcompletionBanner.Visible = false\n\t\t\tend\n\t\tend\n\n\t\tbubbleWrapModel:GetAttributeChangedSignal(\"PoppedCount\"):Connect(updateDisplay)\n\t\tbubbleWrapModel:GetAttributeChangedSignal(\"TotalBubbles\"):Connect(updateDisplay)\n\t\tresetButton.MouseButton1Click:Connect(function()\n\t\t\tresetRemote:FireServer()\n\t\tend)\n\t\tupdateDisplay()\n\t]]\n\tclientScript.Parent = screenGui\n\tscreenGui.Parent = playerGui\nend\n\nPlayers.PlayerAdded:Connect(createHUD)\nfor _, player in ipairs(Players:GetPlayers()) do\n\tcreateHUD(player)\nend\n",
+        "reason": "Convert RegenButton script into the authoritative sheet controller managing total bubble tracking, player HUD creation with live counter and reset button, server reset event propagation, and completion banner trigger."
+      }
+    ],
+    "preservedBehavior": [
+      "Retains all physical bubble metal parts, SpecialMesh dome shapes, and ClickDetector objects within the bubble wrap sheet.",
+      "Preserves verified Marketplace Sound instances (rbxassetid://421058925) positioned on each bubble dome for ASMR popping feedback."
+    ],
+    "remainingIntegration": [
+      "Tabletop ambient camera framing can be optionally locked on local clients for tailored close-up desk presentation if custom camera scripts are added."
+    ],
+    "nativeTestPlan": [
+      "1. Tabletop & Sheet Setup: Launch Play Solo and observe spawn near the bubble wrap model with all bubble domes unpopped and pristine.",
+      "2. Bubble Click & Pop Animation: Click or tap an individual unpopped bubble dome. Verify the SpecialMesh smoothly squashes downward, the bubble deflates/fades, and the pop sound (rbxassetid://421058925) plays audibly.",
+      "3. Exact Counting & Anti-Spam: Observe the HUD counter increment from 'Popped: 0 / N' to 'Popped: 1 / N'. Click the same popped bubble repeatedly or hold click; verify the count does not increment further.",
+      "4. Sheet Completion: Pop all bubbles sequentially until every dome is burst. Verify the completion banner ('Sheet Complete!') becomes visible upon reaching total bubble count.",
+      "5. Sheet Reset: Click the 'Reset Sheet' UI button or touch the in-world RegenButton. Verify all bubble domes smoothly restore their original height, color, and ClickDetector activation distance, while the counter resets to 'Popped: 0 / N'."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "planHash": "c258d1632b931d5526e24cda148cdf2855f8b879120b7bbf341c6f94e9c8d379",
+  "adapted": {
+    "archiveHash": "9f51509ac1ed774daf2c0552adb628e9fbb69055862527482af7bb647366e0d9",
+    "manifestHash": "61125a482e6324d57e72ef17750d27fa04040887237038ee4a9628d41e10d830"
+  },
+  "indexMap": [
+    {
+      "before": 1,
+      "after": 1
+    },
+    {
+      "before": 2,
+      "after": 2
+    },
+    {
+      "before": 3,
+      "after": 3
+    },
+    {
+      "before": 4,
+      "after": 4
+    },
+    {
+      "before": 5,
+      "after": 5
+    },
+    {
+      "before": 6,
+      "after": 6
+    },
+    {
+      "before": 7,
+      "after": 7
+    },
+    {
+      "before": 8,
+      "after": 8
+    },
+    {
+      "before": 9,
+      "after": 9
+    },
+    {
+      "before": 10,
+      "after": 10
+    },
+    {
+      "before": 11,
+      "after": 11
+    },
+    {
+      "before": 12,
+      "after": 12
+    },
+    {
+      "before": 13,
+      "after": 13
+    },
+    {
+      "before": 14,
+      "after": 14
+    },
+    {
+      "before": 19,
+      "after": 15
+    },
+    {
+      "before": 20,
+      "after": 16
+    },
+    {
+      "before": 21,
+      "after": 17
+    },
+    {
+      "before": 22,
+      "after": 18
+    },
+    {
+      "before": 23,
+      "after": 19
+    },
+    {
+      "before": 24,
+      "after": 20
+    },
+    {
+      "before": 25,
+      "after": 21
+    },
+    {
+      "before": 26,
+      "after": 22
+    },
+    {
+      "before": 27,
+      "after": 23
+    },
+    {
+      "before": 28,
+      "after": 24
+    },
+    {
+      "before": 29,
+      "after": 25
+    },
+    {
+      "before": 30,
+      "after": 26
+    },
+    {
+      "before": 31,
+      "after": 27
+    },
+    {
+      "before": 32,
+      "after": 28
+    },
+    {
+      "before": 33,
+      "after": 29
+    },
+    {
+      "before": 34,
+      "after": 30
+    },
+    {
+      "before": 35,
+      "after": 31
+    },
+    {
+      "before": 36,
+      "after": 32
+    },
+    {
+      "before": 37,
+      "after": 33
+    },
+    {
+      "before": 38,
+      "after": 34
+    },
+    {
+      "before": 39,
+      "after": 35
+    },
+    {
+      "before": 40,
+      "after": 36
+    },
+    {
+      "before": 41,
+      "after": 37
+    },
+    {
+      "before": 42,
+      "after": 38
+    },
+    {
+      "before": 43,
+      "after": 39
+    },
+    {
+      "before": 44,
+      "after": 40
+    },
+    {
+      "before": 45,
+      "after": 41
+    },
+    {
+      "before": 46,
+      "after": 42
+    },
+    {
+      "before": 47,
+      "after": 43
+    },
+    {
+      "before": 48,
+      "after": 44
+    },
+    {
+      "before": 49,
+      "after": 45
+    },
+    {
+      "before": 50,
+      "after": 46
+    },
+    {
+      "before": 51,
+      "after": 47
+    },
+    {
+      "before": 52,
+      "after": 48
+    },
+    {
+      "before": 53,
+      "after": 49
+    },
+    {
+      "before": 54,
+      "after": 50
+    },
+    {
+      "before": 55,
+      "after": 51
+    },
+    {
+      "before": 56,
+      "after": 52
+    },
+    {
+      "before": 57,
+      "after": 53
+    },
+    {
+      "before": 58,
+      "after": 54
+    },
+    {
+      "before": 59,
+      "after": 55
+    },
+    {
+      "before": 60,
+      "after": 56
+    },
+    {
+      "before": 61,
+      "after": 57
+    },
+    {
+      "before": 62,
+      "after": 58
+    },
+    {
+      "before": 63,
+      "after": 59
+    },
+    {
+      "before": 64,
+      "after": 60
+    },
+    {
+      "before": 65,
+      "after": 61
+    },
+    {
+      "before": 66,
+      "after": 62
+    },
+    {
+      "before": 67,
+      "after": 63
+    },
+    {
+      "before": 68,
+      "after": 64
+    },
+    {
+      "before": 69,
+      "after": 65
+    },
+    {
+      "before": 70,
+      "after": 66
+    },
+    {
+      "before": 71,
+      "after": 67
+    },
+    {
+      "before": 72,
+      "after": 68
+    },
+    {
+      "before": 73,
+      "after": 69
+    },
+    {
+      "before": 74,
+      "after": 70
+    },
+    {
+      "before": 75,
+      "after": 71
+    },
+    {
+      "before": 76,
+      "after": 72
+    },
+    {
+      "before": 77,
+      "after": 73
+    },
+    {
+      "before": 78,
+      "after": 74
+    },
+    {
+      "before": 79,
+      "after": 75
+    },
+    {
+      "before": 80,
+      "after": 76
+    },
+    {
+      "before": 81,
+      "after": 77
+    },
+    {
+      "before": 82,
+      "after": 78
+    },
+    {
+      "before": 83,
+      "after": 79
+    },
+    {
+      "before": 84,
+      "after": 80
+    },
+    {
+      "before": 85,
+      "after": 81
+    },
+    {
+      "before": 86,
+      "after": 82
+    },
+    {
+      "before": 87,
+      "after": 83
+    },
+    {
+      "before": 88,
+      "after": 84
+    },
+    {
+      "before": 89,
+      "after": 85
+    },
+    {
+      "before": 90,
+      "after": 86
+    },
+    {
+      "before": 91,
+      "after": 87
+    },
+    {
+      "before": 92,
+      "after": 88
+    },
+    {
+      "before": 93,
+      "after": 89
+    },
+    {
+      "before": 94,
+      "after": 90
+    },
+    {
+      "before": 95,
+      "after": 91
+    },
+    {
+      "before": 96,
+      "after": 92
+    },
+    {
+      "before": 97,
+      "after": 93
+    },
+    {
+      "before": 98,
+      "after": 94
+    },
+    {
+      "before": 99,
+      "after": 95
+    },
+    {
+      "before": 100,
+      "after": 96
+    },
+    {
+      "before": 101,
+      "after": 97
+    },
+    {
+      "before": 102,
+      "after": 98
+    },
+    {
+      "before": 103,
+      "after": 99
+    },
+    {
+      "before": 104,
+      "after": 100
+    },
+    {
+      "before": 105,
+      "after": 101
+    },
+    {
+      "before": 106,
+      "after": 102
+    },
+    {
+      "before": 107,
+      "after": 103
+    },
+    {
+      "before": 108,
+      "after": 104
+    },
+    {
+      "before": 109,
+      "after": 105
+    },
+    {
+      "before": 110,
+      "after": 106
+    },
+    {
+      "before": 111,
+      "after": 107
+    },
+    {
+      "before": 112,
+      "after": 108
+    },
+    {
+      "before": 113,
+      "after": 109
+    },
+    {
+      "before": 114,
+      "after": 110
+    },
+    {
+      "before": 115,
+      "after": 111
+    },
+    {
+      "before": 116,
+      "after": 112
+    },
+    {
+      "before": 117,
+      "after": 113
+    },
+    {
+      "before": 118,
+      "after": 114
+    },
+    {
+      "before": 119,
+      "after": 115
+    },
+    {
+      "before": 120,
+      "after": 116
+    },
+    {
+      "before": 121,
+      "after": 117
+    },
+    {
+      "before": 122,
+      "after": 118
+    },
+    {
+      "before": 123,
+      "after": 119
+    },
+    {
+      "before": 124,
+      "after": 120
+    },
+    {
+      "before": 125,
+      "after": 121
+    },
+    {
+      "before": 126,
+      "after": 122
+    },
+    {
+      "before": 127,
+      "after": 123
+    },
+    {
+      "before": 128,
+      "after": 124
+    },
+    {
+      "before": 129,
+      "after": 125
+    },
+    {
+      "before": 130,
+      "after": 126
+    },
+    {
+      "before": 131,
+      "after": 127
+    },
+    {
+      "before": 132,
+      "after": 128
+    },
+    {
+      "before": 133,
+      "after": 129
+    },
+    {
+      "before": 134,
+      "after": 130
+    },
+    {
+      "before": 135,
+      "after": 131
+    },
+    {
+      "before": 136,
+      "after": 132
+    },
+    {
+      "before": 137,
+      "after": 133
+    },
+    {
+      "before": 138,
+      "after": 134
+    },
+    {
+      "before": 139,
+      "after": 135
+    },
+    {
+      "before": 140,
+      "after": 136
+    },
+    {
+      "before": 141,
+      "after": 137
+    },
+    {
+      "before": 142,
+      "after": 138
+    },
+    {
+      "before": 143,
+      "after": 139
+    },
+    {
+      "before": 144,
+      "after": 140
+    },
+    {
+      "before": 145,
+      "after": 141
+    },
+    {
+      "before": 146,
+      "after": 142
+    },
+    {
+      "before": 147,
+      "after": 143
+    },
+    {
+      "before": 148,
+      "after": 144
+    },
+    {
+      "before": 149,
+      "after": 145
+    },
+    {
+      "before": 150,
+      "after": 146
+    },
+    {
+      "before": 151,
+      "after": 147
+    },
+    {
+      "before": 152,
+      "after": 148
+    },
+    {
+      "before": 153,
+      "after": 149
+    },
+    {
+      "before": 154,
+      "after": 150
+    },
+    {
+      "before": 155,
+      "after": 151
+    },
+    {
+      "before": 156,
+      "after": 152
+    },
+    {
+      "before": 157,
+      "after": 153
+    },
+    {
+      "before": 158,
+      "after": 154
+    },
+    {
+      "before": 159,
+      "after": 155
+    },
+    {
+      "before": 160,
+      "after": 156
+    },
+    {
+      "before": 161,
+      "after": 157
+    },
+    {
+      "before": 162,
+      "after": 158
+    },
+    {
+      "before": 163,
+      "after": 159
+    },
+    {
+      "before": 164,
+      "after": 160
+    },
+    {
+      "before": 165,
+      "after": 161
+    },
+    {
+      "before": 166,
+      "after": 162
+    },
+    {
+      "before": 167,
+      "after": 163
+    },
+    {
+      "before": 168,
+      "after": 164
+    },
+    {
+      "before": 169,
+      "after": 165
+    },
+    {
+      "before": 170,
+      "after": 166
+    },
+    {
+      "before": 171,
+      "after": 167
+    },
+    {
+      "before": 172,
+      "after": 168
+    },
+    {
+      "before": 173,
+      "after": 169
+    },
+    {
+      "before": 174,
+      "after": 170
+    },
+    {
+      "before": 175,
+      "after": 171
+    },
+    {
+      "before": 176,
+      "after": 172
+    },
+    {
+      "before": 177,
+      "after": 173
+    },
+    {
+      "before": 178,
+      "after": 174
+    },
+    {
+      "before": 179,
+      "after": 175
+    },
+    {
+      "before": 180,
+      "after": 176
+    },
+    {
+      "before": 181,
+      "after": 177
+    },
+    {
+      "before": 182,
+      "after": 178
+    },
+    {
+      "before": 183,
+      "after": 179
+    },
+    {
+      "before": 184,
+      "after": 180
+    },
+    {
+      "before": 185,
+      "after": 181
+    },
+    {
+      "before": 186,
+      "after": 182
+    },
+    {
+      "before": 187,
+      "after": 183
+    },
+    {
+      "before": 188,
+      "after": 184
+    },
+    {
+      "before": 189,
+      "after": 185
+    },
+    {
+      "before": 190,
+      "after": 186
+    },
+    {
+      "before": 191,
+      "after": 187
+    },
+    {
+      "before": 192,
+      "after": 188
+    },
+    {
+      "before": 193,
+      "after": 189
+    },
+    {
+      "before": 194,
+      "after": 190
+    },
+    {
+      "before": 195,
+      "after": 191
+    },
+    {
+      "before": 196,
+      "after": 192
+    },
+    {
+      "before": 197,
+      "after": 193
+    },
+    {
+      "before": 198,
+      "after": 194
+    },
+    {
+      "before": 199,
+      "after": 195
+    },
+    {
+      "before": 200,
+      "after": 196
+    },
+    {
+      "before": 201,
+      "after": 197
+    },
+    {
+      "before": 202,
+      "after": 198
+    },
+    {
+      "before": 203,
+      "after": 199
+    },
+    {
+      "before": 204,
+      "after": 200
+    },
+    {
+      "before": 205,
+      "after": 201
+    },
+    {
+      "before": 206,
+      "after": 202
+    },
+    {
+      "before": 207,
+      "after": 203
+    },
+    {
+      "before": 208,
+      "after": 204
+    },
+    {
+      "before": 209,
+      "after": 205
+    },
+    {
+      "before": 210,
+      "after": 206
+    },
+    {
+      "before": 211,
+      "after": 207
+    },
+    {
+      "before": 212,
+      "after": 208
+    },
+    {
+      "before": 213,
+      "after": 209
+    },
+    {
+      "before": 214,
+      "after": 210
+    },
+    {
+      "before": 215,
+      "after": 211
+    },
+    {
+      "before": 216,
+      "after": 212
+    },
+    {
+      "before": 217,
+      "after": 213
+    },
+    {
+      "before": 218,
+      "after": 214
+    },
+    {
+      "before": 219,
+      "after": 215
+    },
+    {
+      "before": 220,
+      "after": 216
+    },
+    {
+      "before": 221,
+      "after": 217
+    },
+    {
+      "before": 222,
+      "after": 218
+    },
+    {
+      "before": 223,
+      "after": 219
+    },
+    {
+      "before": 224,
+      "after": 220
+    },
+    {
+      "before": 225,
+      "after": 221
+    },
+    {
+      "before": 226,
+      "after": 222
+    },
+    {
+      "before": 227,
+      "after": 223
+    },
+    {
+      "before": 228,
+      "after": 224
+    },
+    {
+      "before": 229,
+      "after": 225
+    },
+    {
+      "before": 230,
+      "after": 226
+    },
+    {
+      "before": 231,
+      "after": 227
+    },
+    {
+      "before": 232,
+      "after": 228
+    },
+    {
+      "before": 233,
+      "after": 229
+    },
+    {
+      "before": 234,
+      "after": 230
+    },
+    {
+      "before": 235,
+      "after": 231
+    },
+    {
+      "before": 236,
+      "after": 232
+    },
+    {
+      "before": 237,
+      "after": 233
+    },
+    {
+      "before": 238,
+      "after": 234
+    },
+    {
+      "before": 239,
+      "after": 235
+    },
+    {
+      "before": 240,
+      "after": 236
+    },
+    {
+      "before": 241,
+      "after": 237
+    },
+    {
+      "before": 242,
+      "after": 238
+    },
+    {
+      "before": 243,
+      "after": 239
+    },
+    {
+      "before": 244,
+      "after": 240
+    },
+    {
+      "before": 245,
+      "after": 241
+    },
+    {
+      "before": 246,
+      "after": 242
+    },
+    {
+      "before": 247,
+      "after": 243
+    },
+    {
+      "before": 248,
+      "after": 244
+    },
+    {
+      "before": 249,
+      "after": 245
+    },
+    {
+      "before": 250,
+      "after": 246
+    },
+    {
+      "before": 251,
+      "after": 247
+    },
+    {
+      "before": 252,
+      "after": 248
+    },
+    {
+      "before": 253,
+      "after": 249
+    },
+    {
+      "before": 254,
+      "after": 250
+    },
+    {
+      "before": 255,
+      "after": 251
+    },
+    {
+      "before": 256,
+      "after": 252
+    },
+    {
+      "before": 257,
+      "after": 253
+    },
+    {
+      "before": 258,
+      "after": 254
+    },
+    {
+      "before": 259,
+      "after": 255
+    },
+    {
+      "before": 260,
+      "after": 256
+    },
+    {
+      "before": 261,
+      "after": 257
+    },
+    {
+      "before": 262,
+      "after": 258
+    },
+    {
+      "before": 263,
+      "after": 259
+    },
+    {
+      "before": 264,
+      "after": 260
+    },
+    {
+      "before": 265,
+      "after": 261
+    },
+    {
+      "before": 266,
+      "after": 262
+    },
+    {
+      "before": 267,
+      "after": 263
+    },
+    {
+      "before": 268,
+      "after": 264
+    },
+    {
+      "before": 269,
+      "after": 265
+    },
+    {
+      "before": 270,
+      "after": 266
+    },
+    {
+      "before": 271,
+      "after": 267
+    },
+    {
+      "before": 272,
+      "after": 268
+    },
+    {
+      "before": 273,
+      "after": 269
+    },
+    {
+      "before": 274,
+      "after": 270
+    },
+    {
+      "before": 275,
+      "after": 271
+    },
+    {
+      "before": 276,
+      "after": 272
+    },
+    {
+      "before": 277,
+      "after": 273
+    },
+    {
+      "before": 278,
+      "after": 274
+    },
+    {
+      "before": 279,
+      "after": 275
+    },
+    {
+      "before": 280,
+      "after": 276
+    },
+    {
+      "before": 281,
+      "after": 277
+    },
+    {
+      "before": 282,
+      "after": 278
+    },
+    {
+      "before": 283,
+      "after": 279
+    },
+    {
+      "before": 284,
+      "after": 280
+    },
+    {
+      "before": 285,
+      "after": 281
+    },
+    {
+      "before": 286,
+      "after": 282
+    },
+    {
+      "before": 287,
+      "after": 283
+    },
+    {
+      "before": 288,
+      "after": 284
+    },
+    {
+      "before": 289,
+      "after": 285
+    },
+    {
+      "before": 290,
+      "after": 286
+    },
+    {
+      "before": 291,
+      "after": 287
+    },
+    {
+      "before": 292,
+      "after": 288
+    },
+    {
+      "before": 293,
+      "after": 289
+    },
+    {
+      "before": 294,
+      "after": 290
+    },
+    {
+      "before": 295,
+      "after": 291
+    },
+    {
+      "before": 296,
+      "after": 292
+    },
+    {
+      "before": 297,
+      "after": 293
+    },
+    {
+      "before": 298,
+      "after": 294
+    },
+    {
+      "before": 299,
+      "after": 295
+    },
+    {
+      "before": 300,
+      "after": 296
+    },
+    {
+      "before": 301,
+      "after": 297
+    },
+    {
+      "before": 302,
+      "after": 298
+    },
+    {
+      "before": 303,
+      "after": 299
+    },
+    {
+      "before": 304,
+      "after": 300
+    },
+    {
+      "before": 305,
+      "after": 301
+    },
+    {
+      "before": 306,
+      "after": 302
+    },
+    {
+      "before": 307,
+      "after": 303
+    },
+    {
+      "before": 308,
+      "after": 304
+    },
+    {
+      "before": 309,
+      "after": 305
+    },
+    {
+      "before": 310,
+      "after": 306
+    },
+    {
+      "before": 311,
+      "after": 307
+    },
+    {
+      "before": 312,
+      "after": 308
+    },
+    {
+      "before": 313,
+      "after": 309
+    },
+    {
+      "before": 314,
+      "after": 310
+    },
+    {
+      "before": 315,
+      "after": 311
+    },
+    {
+      "before": 316,
+      "after": 312
+    },
+    {
+      "before": 317,
+      "after": 313
+    },
+    {
+      "before": 318,
+      "after": 314
+    },
+    {
+      "before": 319,
+      "after": 315
+    },
+    {
+      "before": 320,
+      "after": 316
+    },
+    {
+      "before": 321,
+      "after": 317
+    },
+    {
+      "before": 322,
+      "after": 318
+    },
+    {
+      "before": 323,
+      "after": 319
+    },
+    {
+      "before": 324,
+      "after": 320
+    },
+    {
+      "before": 325,
+      "after": 321
+    },
+    {
+      "before": 326,
+      "after": 322
+    },
+    {
+      "before": 327,
+      "after": 323
+    },
+    {
+      "before": 328,
+      "after": 324
+    },
+    {
+      "before": 329,
+      "after": 325
+    },
+    {
+      "before": 330,
+      "after": 326
+    },
+    {
+      "before": 331,
+      "after": 327
+    },
+    {
+      "before": 332,
+      "after": 328
+    },
+    {
+      "before": 333,
+      "after": 329
+    },
+    {
+      "before": 334,
+      "after": 330
+    },
+    {
+      "before": 335,
+      "after": 331
+    },
+    {
+      "before": 336,
+      "after": 332
+    },
+    {
+      "before": 337,
+      "after": 333
+    },
+    {
+      "before": 338,
+      "after": 334
+    },
+    {
+      "before": 339,
+      "after": 335
+    },
+    {
+      "before": 340,
+      "after": 336
+    },
+    {
+      "before": 341,
+      "after": 337
+    },
+    {
+      "before": 342,
+      "after": 338
+    },
+    {
+      "before": 343,
+      "after": 339
+    },
+    {
+      "before": 344,
+      "after": 340
+    },
+    {
+      "before": 345,
+      "after": 341
+    },
+    {
+      "before": 346,
+      "after": 342
+    },
+    {
+      "before": 347,
+      "after": 343
+    },
+    {
+      "before": 348,
+      "after": 344
+    },
+    {
+      "before": 349,
+      "after": 345
+    },
+    {
+      "before": 350,
+      "after": 346
+    },
+    {
+      "before": 351,
+      "after": 347
+    },
+    {
+      "before": 352,
+      "after": 348
+    },
+    {
+      "before": 353,
+      "after": 349
+    },
+    {
+      "before": 354,
+      "after": 350
+    },
+    {
+      "before": 355,
+      "after": 351
+    },
+    {
+      "before": 356,
+      "after": 352
+    },
+    {
+      "before": 357,
+      "after": 353
+    },
+    {
+      "before": 358,
+      "after": 354
+    },
+    {
+      "before": 359,
+      "after": 355
+    },
+    {
+      "before": 360,
+      "after": 356
+    },
+    {
+      "before": 361,
+      "after": 357
+    },
+    {
+      "before": 362,
+      "after": 358
+    },
+    {
+      "before": 363,
+      "after": 359
+    },
+    {
+      "before": 364,
+      "after": 360
+    },
+    {
+      "before": 365,
+      "after": 361
+    },
+    {
+      "before": 366,
+      "after": 362
+    },
+    {
+      "before": 367,
+      "after": 363
+    },
+    {
+      "before": 368,
+      "after": 364
+    },
+    {
+      "before": 369,
+      "after": 365
+    },
+    {
+      "before": 370,
+      "after": 366
+    },
+    {
+      "before": 371,
+      "after": 367
+    },
+    {
+      "before": 372,
+      "after": 368
+    },
+    {
+      "before": 373,
+      "after": 369
+    },
+    {
+      "before": 374,
+      "after": 370
+    },
+    {
+      "before": 375,
+      "after": 371
+    }
+  ],
+  "sourceReview": "required",
+  "runtimeVerification": "not_performed",
+  "exported": false,
+  "executed": false
+}

@@ -1,0 +1,44 @@
+{
+  "createdAt": "2026-09-16T22:39:48.024Z",
+  "ids": [
+    "anthropic/claude-sonnet-5",
+    "qwen/qwen3.8-max-0902",
+    "moonshotai/kimi-k2.7-code",
+    "openai/gpt-5.6-luna"
+  ],
+  "priorMicros": 9017482,
+  "capMicros": 500000,
+  "headroomMicros": 400000,
+  "campaignCeilingMicros": 10000000,
+  "maxCalls": 4,
+  "maxOutputTokens": 8000,
+  "perCallTimeoutMs": 180000,
+  "batchDeadlineMs": 780000,
+  "retries": 0,
+  "nativeScope": "isolated synthetic 12-bubble controller in Studio Edit; no full game or physical input claim",
+  "discoveryScope": "query proposals; actual returned candidates inspected separately; no model selection loop",
+  "reviewRubric": [
+    "stale pending callback after reset",
+    "old/new press double count",
+    "original transparency lost",
+    "missing containment/lifecycle checks"
+  ],
+  "nativeRubric": [
+    "nonblocking accepted press",
+    "invalid part rejected",
+    "duplicate blocked",
+    "delayed count",
+    "visible depression",
+    "completion at twelve",
+    "originals restored",
+    "reset race cancelled",
+    "replay",
+    "destroy cancels"
+  ],
+  "sourceProvenance": {
+    "file": "research/results/component-adaptation-v1/worker-v2/bubble-wrap-input.json",
+    "sha256": "5ac02d96f6da8f923d5b2fe8a7fca772536482c1798079c58cf43822078fc0fb",
+    "selectedSourceSha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+  },
+  "messagesSha256": "21d338e2c35998c4cf27789adf5d833b2ac260963b5c309000e363b5091fdeec"
+}

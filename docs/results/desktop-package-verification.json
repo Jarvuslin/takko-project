@@ -1,0 +1,76 @@
+{
+  "verifiedAt": "2026-09-15T05:32:52.829Z",
+  "status": "verified_enum_normalization_and_quality_package",
+  "executable": "release/Takko-win32-x64/Takko.exe",
+  "previousBundle": "release/Takko-win32-x64-previous-20260915-013156-a0472516",
+  "nativeSmoke": "passed-invisible-Electron-renderer-and-utility-process-against-packaged-resources",
+  "scope": "Current quality validation, exact enum normalization, grouped scene-property feedback and Takko UI. No generated Crystal Hollow game, native Studio result or visible application launch is implied.",
+  "sourceHashes": {
+    "src/generation/engine.ts": "c5ade9c168cb43ac1e865de69355453f91fb4458bbf423c3e2e7953281d3f189",
+    "src/generation/validation.ts": "69c59e850e770061a09994b042f8997d00a7da09dcd803a060756e50d6abed26",
+    "src/generation/normalize-scene.ts": "da361723bb42d9269b5d0c525d772026a467fa870271d1e1c5c2ecafbe43dfe6"
+  },
+  "offlineChecks": {
+    "fullCheck": "passed",
+    "unitAndApi": 196,
+    "desktop": 10,
+    "browser": 34,
+    "luau": "passed",
+    "plugin": "10 mock scenarios and 8 injected source compiles passed",
+    "guards": "passed",
+    "webBuild": "passed",
+    "productionSmoke": "passed"
+  },
+  "resources": [
+    {
+      "file": "service.cjs",
+      "sourceSha256": "7f946b534ae22534c1a7dad092c1e63913f8eb6f3fdb6746cd12b015a22f45cb",
+      "packagedSha256": "7f946b534ae22534c1a7dad092c1e63913f8eb6f3fdb6746cd12b015a22f45cb"
+    },
+    {
+      "file": "main.mjs",
+      "sourceSha256": "67087b40b165f8d8a45c0d496db37ee47c6a43e835a1a2984d5cca12ecab5901",
+      "packagedSha256": "67087b40b165f8d8a45c0d496db37ee47c6a43e835a1a2984d5cca12ecab5901"
+    },
+    {
+      "file": "identity.mjs",
+      "sourceSha256": "197056fa3f44b395b1cfce257c246d450fe6fcd866792f31f3dab5a4ac905707",
+      "packagedSha256": "197056fa3f44b395b1cfce257c246d450fe6fcd866792f31f3dab5a4ac905707"
+    },
+    {
+      "file": "policy.mjs",
+      "sourceSha256": "3607b0cbdaf8279e2c79871cd78866bb6176a85c83454b0103eafb203655ad65",
+      "packagedSha256": "3607b0cbdaf8279e2c79871cd78866bb6176a85c83454b0103eafb203655ad65"
+    },
+    {
+      "file": "supervisor.mjs",
+      "sourceSha256": "7e935ae05f3bbd2e59718393d50512f7662bd650bfb379e73cc292ebaea8429d",
+      "packagedSha256": "7e935ae05f3bbd2e59718393d50512f7662bd650bfb379e73cc292ebaea8429d"
+    },
+    {
+      "file": "status.html",
+      "sourceSha256": "237160c8623a60e2442956e2b6d78427a85bb0b2bd9c16367442737d42a60d89",
+      "packagedSha256": "237160c8623a60e2442956e2b6d78427a85bb0b2bd9c16367442737d42a60d89"
+    },
+    {
+      "file": "plugin/Forge.plugin.luau",
+      "sourceSha256": "3ce055198d9c97ff6a961f3493bb710301a4cafbc7690175e9fc295f99856cb7",
+      "packagedSha256": "3ce055198d9c97ff6a961f3493bb710301a4cafbc7690175e9fc295f99856cb7"
+    },
+    {
+      "file": "web/index.html",
+      "sourceSha256": "4926cdf6443d8ca73079ee99d1164acc39ce02bb2123d1b727856da08792620f",
+      "packagedSha256": "4926cdf6443d8ca73079ee99d1164acc39ce02bb2123d1b727856da08792620f"
+    },
+    {
+      "file": "web/assets/index-CAhQJXtb.css",
+      "sourceSha256": "4040682d577c741d61b7ea1f6527addfcfb55c3a067fa57347e4ecadda3c281c",
+      "packagedSha256": "4040682d577c741d61b7ea1f6527addfcfb55c3a067fa57347e4ecadda3c281c"
+    },
+    {
+      "file": "web/assets/index-CQdGE2nX.js",
+      "sourceSha256": "ad67278d55ecf2a246a0e16ff4e785930a0d78c3674c038e82950b438715eb23",
+      "packagedSha256": "ad67278d55ecf2a246a0e16ff4e785930a0d78c3674c038e82950b438715eb23"
+    }
+  ]
+}

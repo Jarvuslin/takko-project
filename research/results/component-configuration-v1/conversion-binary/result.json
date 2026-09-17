@@ -1,0 +1,67 @@
+{
+  "kind": "frozen-component-rojo-native-comparison",
+  "rojoVersion": "7.7.0",
+  "executableHash": "d9154aa9b1d5997967565679d107bf719e273f5881c3c9e263fd6fd223d5e81e",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "results": [
+    {
+      "case": "combat-training",
+      "sourceHash": "74ef7ed34d3d2b8b1cefba9345f86a14a2c2cd32c58be9cfb021e77f00fdf311",
+      "convertedHash": "2c9adea6e9c9b91949e1fb92168478ea3c334dae2fb380a51fb7852a113bfe77",
+      "xmlHash": "3dfcd3c59f83c053e72715e61e00e963ace13b77bd93193134d60df8816a0c83",
+      "logs": [
+        "Building project 'Imported'\nBuilt project to combat-training.rbxm\n",
+        "Building project 'Imported'\nBuilt project to combat-training.rbxmx\n"
+      ],
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"cleanup\":true,\"checkedProperties\":447,\"passed\":false,\"engineVersion\":\"0.739.0.7390687\",\"checkedSecurity\":40,\"checkedSources\":2,\"importedCodeExecuted\":false,\"checkedReferences\":13,\"unobservableProperties\":[\"Humanoid.Health_XML\",\"Humanoid.InternalBodyScale\",\"Humanoid.InternalHeadScale\",\"Model.ModelMeshCFrame\",\"Model.ModelMeshData\",\"Model.ModelMeshSize\",\"Model.NeedsPivotMigration\",\"Model.ScaleFactor\",\"Model.WorldPivotData\",\"ModuleScript.ScriptGuid\",\"Part.Color3uint8\",\"Part.MaterialVariantSerialized\",\"Part.formFactorRaw\",\"Script.ScriptGuid\"],\"differences\":[{\"before\":\"-1, -1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08\",\"property\":\"C0\",\"index\":6,\"after\":\"-1, -1, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0\"},{\"before\":\"-0.5, 1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08\",\"property\":\"C1\",\"index\":6,\"after\":\"-0.5, 1, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0\"},{\"before\":\"1, -1, 0, -4.37113883e-08, 0, 1, -0, 0.99999994, 0, -1, 0, -4.37113883e-08\",\"property\":\"C0\",\"index\":7,\"after\":\"1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0\"},{\"before\":\"0.5, 1, 0, -4.37113883e-08, 0, 1, 0, 0.99999994, 0, -1, 0, -4.37113883e-08\",\"property\":\"C1\",\"index\":7,\"after\":\"0.5, 1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0\"},{\"before\":\"-1, 0.5, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08\",\"property\":\"C0\",\"index\":8,\"after\":\"-1, 0.5, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0\"},{\"before\":\"0.5, 0.5, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08\",\"property\":\"C1\",\"index\":8,\"after\":\"0.5, 0.5, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0\"},{\"before\":\"1, 0.5, 0, -4.37113883e-08, 0, 1, -0, 0.99999994, 0, -1, 0, -4.37113883e-08\",\"property\":\"C0\",\"index\":9,\"after\":\"1, 0.5, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0\"},{\"before\":\"-0.5, 0.5, 0, -4.37113883e-08, 0, 1, 0, 0.99999994, 0, -1, 0, -4.37113883e-08\",\"property\":\"C1\",\"index\":9,\"after\":\"-0.5, 0.5, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0\"}],\"error\":\"\",\"restoredRoots\":2}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "case": "bubble-wrap",
+      "sourceHash": "ebf4bb5259497007fc3a567da10175b6825d10fd8ff609bec612fb924c9bd31a",
+      "convertedHash": "19c389be58663a1ace7bb77dda913a196998ab77105af03677ef376d690de10a",
+      "xmlHash": "ac4258d12ed6fb893a000334d04b0dcb6642fbcbc7aa776a5f63e58cfb625d15",
+      "logs": [
+        "Building project 'Imported'\nBuilt project to bubble-wrap.rbxm\n",
+        "Building project 'Imported'\nBuilt project to bubble-wrap.rbxmx\n"
+      ],
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"cleanup\":true,\"checkedProperties\":5981,\"passed\":true,\"engineVersion\":\"0.739.0.7390687\",\"checkedSecurity\":750,\"checkedSources\":76,\"importedCodeExecuted\":false,\"checkedReferences\":0,\"unobservableProperties\":[\"Model.ModelMeshCFrame\",\"Model.ModelMeshData\",\"Model.ModelMeshSize\",\"Model.NeedsPivotMigration\",\"Model.ScaleFactor\",\"Model.WorldPivotData\",\"ModuleScript.ScriptGuid\",\"Part.Color3uint8\",\"Part.MaterialVariantSerialized\",\"Part.formFactorRaw\",\"Script.ScriptGuid\"],\"differences\":[],\"error\":\"\",\"restoredRoots\":2}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "case": "checkpoint-parkour",
+      "sourceHash": "998c28e16ca23bf0f1c24620a7fccc4c6f5e66cb299329cc78f03e7e2e54a8ca",
+      "convertedHash": "920fecec00f9e6fcf0f51f006575547686a361af87030e01f5981bdc296e7349",
+      "xmlHash": "e753ff4a62346d458707b11d2a6fdd7c3518fd33f8c3beb87ec5662141fe791d",
+      "logs": [
+        "Building project 'Imported'\nBuilt project to checkpoint-parkour.rbxm\n",
+        "Building project 'Imported'\nBuilt project to checkpoint-parkour.rbxmx\n"
+      ],
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"cleanup\":true,\"checkedProperties\":70,\"passed\":true,\"engineVersion\":\"0.739.0.7390687\",\"checkedSecurity\":8,\"checkedSources\":1,\"importedCodeExecuted\":false,\"checkedReferences\":0,\"unobservableProperties\":[\"Model.ModelMeshCFrame\",\"Model.ModelMeshData\",\"Model.ModelMeshSize\",\"Model.NeedsPivotMigration\",\"Model.ScaleFactor\",\"Model.WorldPivotData\",\"Part.Color3uint8\",\"Part.MaterialVariantSerialized\",\"Part.formFactorRaw\",\"Script.ScriptGuid\"],\"differences\":[],\"error\":\"\",\"restoredRoots\":2}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "paidCalls": 0,
+  "rawGameBenchmark": false
+}

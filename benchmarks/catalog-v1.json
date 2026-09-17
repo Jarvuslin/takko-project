@@ -1,0 +1,1035 @@
+{
+  "benchmarkVersion": "roblox-quality-v1",
+  "benchmarkCases": [
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "dev_task",
+      "status": "unrun",
+      "comparisonProfileId": "dev-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [],
+      "checkpoints": [],
+      "referenceIds": [],
+      "id": "dev.animated-ability",
+      "title": "Readable server-authoritative firebolt",
+      "prompt": "In the supplied R15 test arena, add one firebolt ability without replacing the existing movement or HUD. Input starts a readable cast anticipation, then launches one projectile, followed by recovery. Use an actual rig-compatible animation or verifiable authored joint/keyframe motion, travel and impact VFX, scoped cast/impact sound, and a visible cooldown. The server owns cooldown, range, hit detection and damage. Verify accepted/rejected casts and the action as seen by a second client, including interruption and respawn. Keep this a focused feature; do not build a new game.",
+      "requiredGates": [
+        "runtime_errors",
+        "required_features",
+        "animation",
+        "combat_feedback",
+        "ui"
+      ],
+      "requiredDevChecks": [
+        "cast-input",
+        "server-hit-validation",
+        "cooldown-rejection",
+        "animation-replication",
+        "interrupt-respawn-cleanup",
+        "cooldown-ui"
+      ],
+      "devCheckEvidence": {
+        "cast-input": [
+          [
+            "native_test"
+          ]
+        ],
+        "server-hit-validation": [
+          [
+            "deterministic_test"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "cooldown-rejection": [
+          [
+            "deterministic_test"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "animation-replication": [
+          [
+            "gameplay_video",
+            "native_animation"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "interrupt-respawn-cleanup": [
+          [
+            "native_test"
+          ]
+        ],
+        "cooldown-ui": [
+          [
+            "native_test"
+          ],
+          [
+            "gameplay_video"
+          ]
+        ]
+      },
+      "fixture": {
+        "status": "unprepared",
+        "description": "Pin a minimal R15 arena with movement, basic HUD, server-owned target health and two-client test harness. Record starting hashes and known passing tests before running any model.",
+        "artifactSha256": null
+      },
+      "scope": [
+        "One ability, one target class, one arena, desktop and touch activation",
+        "Two-client observation of the same accepted cast"
+      ],
+      "exclusions": [
+        "No round system, progression, shop or fifteen-minute content requirement",
+        "No general requirement for custom locomotion animations"
+      ],
+      "featureDoD": [
+        {
+          "id": "cast-input",
+          "requirement": "One valid activation produces one cast; rejected input never launches a duplicate projectile.",
+          "evidence": [
+            "native_test",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "server-hit-validation",
+          "requirement": "Damage occurs only on a valid server hit; spoofed targets/range and client-reported damage are rejected.",
+          "evidence": [
+            "deterministic_test",
+            "native_test"
+          ]
+        },
+        {
+          "id": "cooldown-rejection",
+          "requirement": "Requests before and at the exact cooldown boundary behave correctly without duplicate damage.",
+          "evidence": [
+            "deterministic_test",
+            "native_test"
+          ]
+        },
+        {
+          "id": "animation-replication",
+          "requirement": "Anticipation, projectile release and recovery are visually distinguishable, rig-compatible and visible to the observing client.",
+          "evidence": [
+            "gameplay_video",
+            "native_test",
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "interrupt-respawn-cleanup",
+          "requirement": "Death/interruption cancels stale cast state; respawn restores one working input binding and no leaked effects.",
+          "evidence": [
+            "native_test",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "cooldown-ui",
+          "requirement": "HUD shows availability and rejection reason without obscuring the target; actual cast and impact include audible and visible feedback.",
+          "evidence": [
+            "gameplay_video",
+            "screenshot"
+          ]
+        }
+      ],
+      "actionStoryboard": [
+        {
+          "action": "Cast firebolt",
+          "anticipation": "0.15–0.35 second readable arm/upper-body windup and cast cue",
+          "execution": "Projectile leaves the indicated hand direction at a documented release marker",
+          "recovery": "Arm settles and cooldown remains visible; interruption cleans up",
+          "feedback": "Travel trail, localized impact flash and cast/impact sound; distinct miss versus hit",
+          "nativeEvidence": "Synchronized caster/observer capture including accepted cast, early retry, miss, hit and respawn"
+        }
+      ],
+      "assetPolicy": {
+        "requiredBeforeProceduralFallback": true,
+        "minimumCandidateQuota": null,
+        "searchEvidence": [
+          "Timestamped query, retrieval tool/catalog URL/version and desired role/style/rig/platform constraints.",
+          "Returned candidate IDs and canonical source URLs, including zero-result or access-error evidence.",
+          "Reason each seriously considered candidate was chosen or rejected: relevance, permission, style, rig/animation compatibility, script trust and measured/estimated performance.",
+          "Chosen candidate creator/owner, exact asset/version identity and available license/usage/experience permission evidence; public availability alone is not permission proof.",
+          "Import receipt and resulting scoped instance path, native hierarchy/visual inspection, sanitized executable content and runtime compatibility proof for every imported choice.",
+          "Record dimensions, collision behavior, material palette, rig mapping, animation ownership, mesh/texture costs and measured runtime impact where relevant."
+        ],
+        "fallbackRule": "After a relevant search, record why no suitable permissioned compatible match was available and identify the exact procedural replacement. A relevant accepted first result may finish the search; unrelated queries or a token candidate count cannot satisfy it. In the focused integration case, fallback does not pass the external-integration gate.",
+        "incompletePermissionRule": "Keep permission/import evidence pending and do not claim integration complete; do not spend or upload without the run's existing authorization."
+      }
+    },
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "dev_task",
+      "status": "unrun",
+      "comparisonProfileId": "dev-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [],
+      "checkpoints": [],
+      "referenceIds": [],
+      "id": "dev.asset-integration",
+      "title": "Retrieve and integrate a coherent merchant prop",
+      "prompt": "In the supplied stylized quarry scene, search the available Roblox Creator Store or authorized catalog for a suitable merchant kiosk/workbench asset. Record the query, actual candidates, relevance and rejection reasoning, exact chosen identity and permission evidence. Import one appropriate asset into the assigned World scope, remove or justify executable content, match scale/materials and preserve the existing sell interaction. Show its appearance and collision/access behavior in Studio and record performance impact. If no suitable permissioned asset exists, document a procedural fallback honestly; that is useful progress but not a successful external-integration benchmark result.",
+      "requiredGates": [
+        "runtime_errors",
+        "required_features",
+        "asset_integration"
+      ],
+      "requiredDevChecks": [
+        "relevant-search",
+        "selection-provenance",
+        "permission-and-import",
+        "style-and-scale",
+        "interaction-preservation",
+        "asset-performance"
+      ],
+      "devCheckEvidence": {
+        "relevant-search": [
+          [
+            "asset_provenance"
+          ]
+        ],
+        "selection-provenance": [
+          [
+            "asset_provenance"
+          ]
+        ],
+        "permission-and-import": [
+          [
+            "asset_provenance"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "style-and-scale": [
+          [
+            "screenshot",
+            "gameplay_video"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "interaction-preservation": [
+          [
+            "native_test"
+          ]
+        ],
+        "asset-performance": [
+          [
+            "performance_capture"
+          ]
+        ]
+      },
+      "fixture": {
+        "status": "prepared",
+        "description": "Prepared public bundle of the frozen authored Crystal Hollow visual V2 quarry with its existing sell interaction. This is a starting fixture, not evidence that a model completed the asset task. Pin equal catalog access and permissions; no preselected asset IDs.",
+        "artifactSha256": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+        "exportHash": "6ff9e32c4cd1a98336fbb784628c680fa6660324331508d545ce24d920b7c35a",
+        "directory": "benchmarks/fixtures/v1/quarry-asset-integration"
+      },
+      "scope": [
+        "One external asset integrated into an existing interaction",
+        "Search quality and import evidence, not candidate-count quotas"
+      ],
+      "exclusions": [
+        "No new gameplay loop, animation or audio requirement",
+        "No paid purchase/upload implied by this case",
+        "No fifteen-minute play requirement"
+      ],
+      "featureDoD": [
+        {
+          "id": "relevant-search",
+          "requirement": "Query matches intended function, visual style and available runtime/tool constraints; preserve returned evidence even if empty.",
+          "evidence": [
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "selection-provenance",
+          "requirement": "Record chosen/rejected candidate reasoning and exact source/creator/version identity.",
+          "evidence": [
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "permission-and-import",
+          "requirement": "Show permission for this use plus a real import receipt and scoped hierarchy; search results alone cannot pass.",
+          "evidence": [
+            "asset_provenance",
+            "native_test"
+          ]
+        },
+        {
+          "id": "style-and-scale",
+          "requirement": "The imported asset fits the quarry palette and human scale, reads as the merchant and does not visually duplicate unrelated kits.",
+          "evidence": [
+            "screenshot",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "interaction-preservation",
+          "requirement": "Player can reach, face and use the original station; no unwanted scripts, collisions or interaction identity changes.",
+          "evidence": [
+            "native_test",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "asset-performance",
+          "requirement": "Record mesh/texture/instance cost and same-environment before/after frame-time and memory observations; counts are diagnostics, not visual scores.",
+          "evidence": [
+            "performance_capture",
+            "native_test"
+          ]
+        }
+      ],
+      "actionStoryboard": [],
+      "assetPolicy": {
+        "requiredBeforeProceduralFallback": true,
+        "minimumCandidateQuota": null,
+        "searchEvidence": [
+          "Timestamped query, retrieval tool/catalog URL/version and desired role/style/rig/platform constraints.",
+          "Returned candidate IDs and canonical source URLs, including zero-result or access-error evidence.",
+          "Reason each seriously considered candidate was chosen or rejected: relevance, permission, style, rig/animation compatibility, script trust and measured/estimated performance.",
+          "Chosen candidate creator/owner, exact asset/version identity and available license/usage/experience permission evidence; public availability alone is not permission proof.",
+          "Import receipt and resulting scoped instance path, native hierarchy/visual inspection, sanitized executable content and runtime compatibility proof for every imported choice.",
+          "Record dimensions, collision behavior, material palette, rig mapping, animation ownership, mesh/texture costs and measured runtime impact where relevant."
+        ],
+        "fallbackRule": "After a relevant search, record why no suitable permissioned compatible match was available and identify the exact procedural replacement. A relevant accepted first result may finish the search; unrelated queries or a token candidate count cannot satisfy it. In the focused integration case, fallback does not pass the external-integration gate.",
+        "incompletePermissionRule": "Keep permission/import evidence pending and do not claim integration complete; do not spend or upload without the run's existing authorization."
+      }
+    },
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "dev_task",
+      "status": "unrun",
+      "comparisonProfileId": "dev-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [],
+      "checkpoints": [],
+      "referenceIds": [],
+      "id": "dev.replication-repair",
+      "title": "Repair double rewards and late-join state",
+      "prompt": "Repair the supplied collect-and-sell fixture: rapid duplicate sell requests can award coins twice, late joiners see stale shared-node stock, and respawn sometimes installs duplicate listeners. Preserve the existing economics, visuals and public interaction contract. Reproduce each bug, implement server-authoritative correction, and verify two clients, replayed requests, late join, death/respawn and repeated successful sales. Submit the minimal repair with before/after evidence; do not redesign the game.",
+      "requiredGates": [
+        "runtime_errors",
+        "required_features"
+      ],
+      "requiredDevChecks": [
+        "bug-reproduced",
+        "single-award",
+        "late-join-stock",
+        "respawn-listeners",
+        "existing-economics"
+      ],
+      "devCheckEvidence": {
+        "bug-reproduced": [
+          [
+            "deterministic_test"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "single-award": [
+          [
+            "deterministic_test"
+          ],
+          [
+            "native_test"
+          ]
+        ],
+        "late-join-stock": [
+          [
+            "native_test"
+          ]
+        ],
+        "respawn-listeners": [
+          [
+            "native_test"
+          ]
+        ],
+        "existing-economics": [
+          [
+            "deterministic_test"
+          ],
+          [
+            "source_inspection"
+          ]
+        ]
+      },
+      "fixture": {
+        "status": "unprepared",
+        "description": "Create and freeze an intentionally buggy isolated fixture with exactly the three documented failures and protected passing economics tests. A retrospective real project is not an equivalent paired starting state.",
+        "artifactSha256": null
+      },
+      "scope": [
+        "Three linked replication/lifecycle defects in existing code",
+        "Two-client native tests plus adversarial deterministic requests"
+      ],
+      "exclusions": [
+        "No new art, animation, VFX, audio, combat or fifteen-minute content gate",
+        "Do not alter prices or rewards to hide failures"
+      ],
+      "featureDoD": [
+        {
+          "id": "bug-reproduced",
+          "requirement": "Each named regression fails on the immutable fixture and is tied to a specific observed behavior.",
+          "evidence": [
+            "deterministic_test",
+            "native_test"
+          ]
+        },
+        {
+          "id": "single-award",
+          "requirement": "Concurrent/replayed sell requests award exactly once and preserve nonnegative carry/coins.",
+          "evidence": [
+            "deterministic_test",
+            "native_test"
+          ]
+        },
+        {
+          "id": "late-join-stock",
+          "requirement": "A newly joined observer sees authoritative current stock and its next respawn transition.",
+          "evidence": [
+            "native_test"
+          ]
+        },
+        {
+          "id": "respawn-listeners",
+          "requirement": "Repeated respawns produce one active interaction listener, no stale callback effects and continued valid sales.",
+          "evidence": [
+            "native_test",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "existing-economics",
+          "requirement": "Protected prices, yields and progression remain unchanged; unrelated passing paths still work.",
+          "evidence": [
+            "deterministic_test",
+            "source_inspection"
+          ]
+        }
+      ],
+      "actionStoryboard": [],
+      "assetPolicy": null
+    },
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "game_quality",
+      "status": "unrun",
+      "comparisonProfileId": "game-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [
+        {
+          "id": "onboarding",
+          "minElapsedSeconds": 120
+        },
+        {
+          "id": "development",
+          "minElapsedSeconds": 300
+        },
+        {
+          "id": "progression",
+          "minElapsedSeconds": 600
+        },
+        {
+          "id": "continued_play",
+          "minElapsedSeconds": 900
+        }
+      ],
+      "requiredDevChecks": [],
+      "assetPolicy": {
+        "requiredBeforeProceduralFallback": true,
+        "minimumCandidateQuota": null,
+        "searchEvidence": [
+          "Timestamped query, retrieval tool/catalog URL/version and desired role/style/rig/platform constraints.",
+          "Returned candidate IDs and canonical source URLs, including zero-result or access-error evidence.",
+          "Reason each seriously considered candidate was chosen or rejected: relevance, permission, style, rig/animation compatibility, script trust and measured/estimated performance.",
+          "Chosen candidate creator/owner, exact asset/version identity and available license/usage/experience permission evidence; public availability alone is not permission proof.",
+          "Import receipt and resulting scoped instance path, native hierarchy/visual inspection, sanitized executable content and runtime compatibility proof for every imported choice.",
+          "Record dimensions, collision behavior, material palette, rig mapping, animation ownership, mesh/texture costs and measured runtime impact where relevant."
+        ],
+        "fallbackRule": "After a relevant search, record why no suitable permissioned compatible match was available and identify the exact procedural replacement. A relevant accepted first result may finish the search; unrelated queries or a token candidate count cannot satisfy it. In the focused integration case, fallback does not pass the external-integration gate.",
+        "incompletePermissionRule": "Keep permission/import evidence pending and do not claim integration complete; do not spend or upload without the run's existing authorization."
+      },
+      "fixture": {
+        "status": "prepared",
+        "description": "Prepared empty floor/spawn template shared byte-for-byte across all three game cases; use its pinned export as the fresh session starting point.",
+        "artifactSha256": "a1f9a263ad9e6098845841d6bc0ff190457e088948fa690cc46101277c43bc54",
+        "exportHash": "294c7287cc12b0e42304f4b07d105e54bcba0ae8041e150f9a2f7409aae77793",
+        "directory": "benchmarks/fixtures/v1/fresh-game"
+      },
+      "id": "game.crystal-hollow",
+      "title": "Crystal Hollow: collect and upgrade",
+      "prompt": "Create Crystal Hollow, a small inviting luminous quarry for solo play that remains correct with a second player. The complete loop is harvest crystals, sell, choose between pick power and bag capacity, open a second quarry tier and light a personal beacon. Compose a readable camp, connected mining routes and a distinct deeper pocket before Play. Add two ore behaviors with a meaningful tradeoff, a readable harvesting action animation, depletion/respawn feedback, contextual audio and a responsive HUD. Introduce a short optional route challenge or changing quarry condition that gives repeat play a different decision. Search relevant authorized assets before procedural fallback and preserve provenance. Target a fifteen-minute observed session with early completion permitted only if replay/mastery remains meaningful; avoid timer padding or pure repeated grinding. No monetization or persistence is required.",
+      "requiredGates": [
+        "runtime_errors",
+        "core_progress",
+        "required_features",
+        "animation",
+        "ui",
+        "asset_sourcing"
+      ],
+      "scope": [
+        "Two connected quarry regions, one camp, two ore behaviors, two upgrade tracks and one personal goal",
+        "A bounded optional route/condition variation rather than an enormous world",
+        "Solo primary; two-client state and shared-stock verification"
+      ],
+      "exclusions": [
+        "No combat requirement",
+        "No pets, trading, paid assets or live persistence",
+        "Primitive geometry is allowed when deliberately composed; object counts alone never establish polish"
+      ],
+      "featureDoD": [
+        {
+          "id": "collect-loop",
+          "requirement": "Server-owned harvesting, selling and both upgrade choices work repeatedly; stock/carry/currency cannot be spoofed or duplicated.",
+          "evidence": [
+            "deterministic_test",
+            "native_test"
+          ]
+        },
+        {
+          "id": "quarry-progression",
+          "requirement": "New ore/tier access and optional route/condition variation change a decision rather than only increasing numbers.",
+          "evidence": [
+            "gameplay_checkpoint",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "quarry-presentation",
+          "requirement": "Camp, paths, resources and goal have distinct silhouettes and coherent style; mining uses anticipation, strike and recovery with visible/audible outcome.",
+          "evidence": [
+            "screenshot",
+            "gameplay_video",
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "quarry-usability",
+          "requirement": "Desktop/touch HUD communicates bag, coins, upgrade benefits and next goal; respawn and second-client stock preserve correct state.",
+          "evidence": [
+            "native_test",
+            "screenshot",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "asset-search-and-fit",
+          "requirement": "Record relevant asset searches, considered choices, permission/import proof and style/performance compatibility; document exact procedural fallback only after a relevant search finds no suitable authorized match.",
+          "evidence": [
+            "asset_provenance",
+            "native_test"
+          ]
+        },
+        {
+          "id": "audio-and-performance",
+          "requirement": "Contextual sound is audible and proportionate to the requested actions. Record same-environment frame-time/memory observations and actual hitches rather than inferring quality from object/audio counts.",
+          "evidence": [
+            "audio_capture",
+            "performance_capture"
+          ]
+        }
+      ],
+      "actionStoryboard": [
+        {
+          "action": "Harvest a crystal",
+          "anticipation": "Player/tool draws back toward the selected reachable node",
+          "execution": "A visible stroke reaches a documented impact moment; server applies one allowed yield",
+          "recovery": "Tool settles with cooldown feedback and can be interrupted by death or movement",
+          "feedback": "Node hit, remaining stock, bag gain and depletion are distinct; contextual impact sound matches the contact",
+          "nativeEvidence": "Uncut action at first node plus depleted/full-bag rejection and an observing client"
+        }
+      ],
+      "checkpoints": [
+        {
+          "id": "onboarding",
+          "observe": "At >=2 minutes: identify next goal and complete harvest→sell→first meaningful purchase without evaluator instructions.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "development",
+          "observe": "At >=5 minutes: demonstrate both ore behaviors and explain a real power-versus-capacity tradeoff.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "progression",
+          "observe": "At >=10 minutes: reach a new tier/route or changed quarry condition; capture the actual state transition and player decision.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "continued_play",
+          "observe": "At >=15 minutes: show goal completion or a documented progression obstacle, then meaningful replay/mastery variation. Repeated unchanged harvesting is evidence of weak depth.",
+          "evidenceStatus": "pending"
+        }
+      ],
+      "referenceIds": [
+        "reference.mining-simulator-2",
+        "history.crystal-hollow-v2"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "game_quality",
+      "status": "unrun",
+      "comparisonProfileId": "game-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [
+        {
+          "id": "onboarding",
+          "minElapsedSeconds": 120
+        },
+        {
+          "id": "development",
+          "minElapsedSeconds": 300
+        },
+        {
+          "id": "progression",
+          "minElapsedSeconds": 600
+        },
+        {
+          "id": "continued_play",
+          "minElapsedSeconds": 900
+        }
+      ],
+      "requiredDevChecks": [],
+      "assetPolicy": {
+        "requiredBeforeProceduralFallback": true,
+        "minimumCandidateQuota": null,
+        "searchEvidence": [
+          "Timestamped query, retrieval tool/catalog URL/version and desired role/style/rig/platform constraints.",
+          "Returned candidate IDs and canonical source URLs, including zero-result or access-error evidence.",
+          "Reason each seriously considered candidate was chosen or rejected: relevance, permission, style, rig/animation compatibility, script trust and measured/estimated performance.",
+          "Chosen candidate creator/owner, exact asset/version identity and available license/usage/experience permission evidence; public availability alone is not permission proof.",
+          "Import receipt and resulting scoped instance path, native hierarchy/visual inspection, sanitized executable content and runtime compatibility proof for every imported choice.",
+          "Record dimensions, collision behavior, material palette, rig mapping, animation ownership, mesh/texture costs and measured runtime impact where relevant."
+        ],
+        "fallbackRule": "After a relevant search, record why no suitable permissioned compatible match was available and identify the exact procedural replacement. A relevant accepted first result may finish the search; unrelated queries or a token candidate count cannot satisfy it. In the focused integration case, fallback does not pass the external-integration gate.",
+        "incompletePermissionRule": "Keep permission/import evidence pending and do not claim integration complete; do not spend or upload without the run's existing authorization."
+      },
+      "fixture": {
+        "status": "prepared",
+        "description": "Prepared empty floor/spawn template shared byte-for-byte across all three game cases; use its pinned export as the fresh session starting point.",
+        "artifactSha256": "a1f9a263ad9e6098845841d6bc0ff190457e088948fa690cc46101277c43bc54",
+        "exportHash": "294c7287cc12b0e42304f4b07d105e54bcba0ae8041e150f9a2f7409aae77793",
+        "directory": "benchmarks/fixtures/v1/fresh-game"
+      },
+      "id": "game.round-combat",
+      "title": "Rift Watch: compact combat rounds",
+      "prompt": "Create Rift Watch, a compact stylized round-based PvE arena for one or two cooperating players. Use one readable arena with cover and safe spawn, three short escalating round patterns, two enemy behaviors with distinguishable telegraphs, one basic attack, one cooldown ability and one evade. The server owns damage, enemy state, cooldowns, rewards and round transitions. Animate attack anticipation, contact/release, recovery, enemy hit/death and relevant locomotion; align impact VFX and audio with actual accepted hits. Show health, ability state, enemy threat and round progression clearly on desktop and touch. After the initial sequence, offer a different round modifier or tactical challenge for meaningful replay during a fifteen-minute session. Search authorized compatible assets/animations/audio and document imports or justified fallback. No PvP, monetization, persistent inventory or large campaign.",
+      "requiredGates": [
+        "runtime_errors",
+        "core_progress",
+        "required_features",
+        "animation",
+        "combat_feedback",
+        "ui",
+        "asset_sourcing"
+      ],
+      "scope": [
+        "One arena, two enemy behaviors, three round patterns, two attacks and one evade",
+        "One/two-player PvE and bounded replay modifiers",
+        "Two-client hit/round/respawn consistency"
+      ],
+      "exclusions": [
+        "No PvP matchmaking, open world, inventory economy or persistence",
+        "No requirement for a full studio-scale animation library"
+      ],
+      "featureDoD": [
+        {
+          "id": "combat-authority",
+          "requirement": "Valid hits, misses, cooldowns, death, respawn and second-client observations agree with server state.",
+          "evidence": [
+            "deterministic_test",
+            "native_test",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "combat-loop",
+          "requirement": "Rounds start, progress, end and restart without softlock; both enemy behaviors require distinguishable player responses.",
+          "evidence": [
+            "native_test",
+            "gameplay_checkpoint"
+          ]
+        },
+        {
+          "id": "combat-feel",
+          "requirement": "Telegraphs, action animation, hit reactions, VFX, audio and HUD communicate the same actual events; no silent instantaneous damage-only attacks.",
+          "evidence": [
+            "gameplay_video",
+            "native_test",
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "combat-replay",
+          "requirement": "Later patterns/modifiers change positioning, target priority or timing; difficulty is readable and not merely inflated enemy health.",
+          "evidence": [
+            "gameplay_checkpoint",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "asset-search-and-fit",
+          "requirement": "Record relevant asset searches, considered choices, permission/import proof and style/performance compatibility; document exact procedural fallback only after a relevant search finds no suitable authorized match.",
+          "evidence": [
+            "asset_provenance",
+            "native_test"
+          ]
+        },
+        {
+          "id": "audio-and-performance",
+          "requirement": "Contextual sound is audible and proportionate to the requested actions. Record same-environment frame-time/memory observations and actual hitches rather than inferring quality from object/audio counts.",
+          "evidence": [
+            "audio_capture",
+            "performance_capture"
+          ]
+        }
+      ],
+      "actionStoryboard": [
+        {
+          "action": "Attack and evade a telegraphed enemy",
+          "anticipation": "Distinct player windup and enemy warning define readable vulnerability windows",
+          "execution": "Release/contact marker aligns with authoritative hit resolution and evade state",
+          "recovery": "Attack settles, cooldown/health update, interrupted or dead actors stop acting",
+          "feedback": "Different hit, miss, damage-taken and enemy-death visual/audio outcomes without obscuring targets",
+          "nativeEvidence": "Caster and observer capture, repeated round transition, loss/respawn and both enemy patterns"
+        }
+      ],
+      "checkpoints": [
+        {
+          "id": "onboarding",
+          "observe": "At >=2 minutes: complete first round using basic attack, cooldown ability and evade; identify enemy warning cues.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "development",
+          "observe": "At >=5 minutes: encounter both enemy behaviors and a changed round pattern requiring a different response.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "progression",
+          "observe": "At >=10 minutes: finish the initial round sequence and demonstrate recovery after death or loss without state corruption.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "continued_play",
+          "observe": "At >=15 minutes: show a materially different modifier/tactic, readable challenge and stable repeated round lifecycle.",
+          "evidenceStatus": "pending"
+        }
+      ],
+      "referenceIds": [
+        "reference.super-bomb-survival"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "suiteVersion": "roblox-quality-v1",
+      "track": "game_quality",
+      "status": "unrun",
+      "comparisonProfileId": "game-v1",
+      "assistanceTracks": [
+        "untouched_model",
+        "automated_repair",
+        "expert_assisted"
+      ],
+      "requiredCheckpoints": [
+        {
+          "id": "onboarding",
+          "minElapsedSeconds": 120
+        },
+        {
+          "id": "development",
+          "minElapsedSeconds": 300
+        },
+        {
+          "id": "progression",
+          "minElapsedSeconds": 600
+        },
+        {
+          "id": "continued_play",
+          "minElapsedSeconds": 900
+        }
+      ],
+      "requiredDevChecks": [],
+      "assetPolicy": {
+        "requiredBeforeProceduralFallback": true,
+        "minimumCandidateQuota": null,
+        "searchEvidence": [
+          "Timestamped query, retrieval tool/catalog URL/version and desired role/style/rig/platform constraints.",
+          "Returned candidate IDs and canonical source URLs, including zero-result or access-error evidence.",
+          "Reason each seriously considered candidate was chosen or rejected: relevance, permission, style, rig/animation compatibility, script trust and measured/estimated performance.",
+          "Chosen candidate creator/owner, exact asset/version identity and available license/usage/experience permission evidence; public availability alone is not permission proof.",
+          "Import receipt and resulting scoped instance path, native hierarchy/visual inspection, sanitized executable content and runtime compatibility proof for every imported choice.",
+          "Record dimensions, collision behavior, material palette, rig mapping, animation ownership, mesh/texture costs and measured runtime impact where relevant."
+        ],
+        "fallbackRule": "After a relevant search, record why no suitable permissioned compatible match was available and identify the exact procedural replacement. A relevant accepted first result may finish the search; unrelated queries or a token candidate count cannot satisfy it. In the focused integration case, fallback does not pass the external-integration gate.",
+        "incompletePermissionRule": "Keep permission/import evidence pending and do not claim integration complete; do not spend or upload without the run's existing authorization."
+      },
+      "fixture": {
+        "status": "prepared",
+        "description": "Prepared empty floor/spawn template shared byte-for-byte across all three game cases; use its pinned export as the fresh session starting point.",
+        "artifactSha256": "a1f9a263ad9e6098845841d6bc0ff190457e088948fa690cc46101277c43bc54",
+        "exportHash": "294c7287cc12b0e42304f4b07d105e54bcba0ae8041e150f9a2f7409aae77793",
+        "directory": "benchmarks/fixtures/v1/fresh-game"
+      },
+      "id": "game.lantern-adventure",
+      "title": "Lantern Vale: small environmental adventure",
+      "prompt": "Create Lantern Vale, a compact solo environmental adventure in two connected stylized regions. Restore a dim village lantern by solving three distinct environmental interactions: redirect light, operate a timed traversal mechanism and unlock a route using an observed clue. Use safe checkpoints, recoverable falls and an optional discovery route; completion should resolve a visible world state. Give lantern use and mechanism operation readable anticipation, motion and recovery, with contextual VFX/audio and clear objective feedback on desktop and touch. Compose landmarks, paths and scenery in Edit mode. Support a fifteen-minute observed session through exploration and one purposeful alternate-solution or mastery variation after early completion, not empty travel or forced waits. Search authorized style-compatible assets and record imports or a reasoned procedural fallback. No combat, collectible currency economy or monetization is required.",
+      "requiredGates": [
+        "runtime_errors",
+        "core_progress",
+        "required_features",
+        "animation",
+        "ui",
+        "asset_sourcing"
+      ],
+      "scope": [
+        "Two connected regions, three distinct interactions, checkpoint recovery and one optional discovery",
+        "Solo primary, with a second client verifying personal progress isolation",
+        "One bounded post-completion alternate route/solution"
+      ],
+      "exclusions": [
+        "No combat, enemy animation, shop, currency or persistence requirement",
+        "No large narrative campaign or dialogue tree quota"
+      ],
+      "featureDoD": [
+        {
+          "id": "adventure-interactions",
+          "requirement": "Three interactions have different reasoning/action requirements and observable persistent-in-session consequences.",
+          "evidence": [
+            "native_test",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "adventure-recovery",
+          "requirement": "Falls, respawn, re-entry and repeated mechanism use cannot softlock progress or grant another player personal completion.",
+          "evidence": [
+            "deterministic_test",
+            "native_test",
+            "runtime_log"
+          ]
+        },
+        {
+          "id": "adventure-guidance",
+          "requirement": "Landmarks and clues make next steps discoverable; objective/HUD text fits and readable action animation confirms accepted interaction.",
+          "evidence": [
+            "screenshot",
+            "gameplay_video",
+            "asset_provenance"
+          ]
+        },
+        {
+          "id": "adventure-depth",
+          "requirement": "Second region and optional variation introduce a new route or solution decision; a completed goal changes the visible world.",
+          "evidence": [
+            "gameplay_checkpoint",
+            "gameplay_video"
+          ]
+        },
+        {
+          "id": "asset-search-and-fit",
+          "requirement": "Record relevant asset searches, considered choices, permission/import proof and style/performance compatibility; document exact procedural fallback only after a relevant search finds no suitable authorized match.",
+          "evidence": [
+            "asset_provenance",
+            "native_test"
+          ]
+        },
+        {
+          "id": "audio-and-performance",
+          "requirement": "Contextual sound is audible and proportionate to the requested actions. Record same-environment frame-time/memory observations and actual hitches rather than inferring quality from object/audio counts.",
+          "evidence": [
+            "audio_capture",
+            "performance_capture"
+          ]
+        }
+      ],
+      "actionStoryboard": [
+        {
+          "action": "Aim lantern and operate a mechanism",
+          "anticipation": "Player raises the lantern or reaches for the mechanism with a visible target cue",
+          "execution": "Lantern/mechanism motion reveals the beam, clue or timed traversal state",
+          "recovery": "Interaction releases cleanly, restores locomotion and can be repeated after failure",
+          "feedback": "Light/color change, localized mechanism sound and concise objective update agree with server-accepted state",
+          "nativeEvidence": "Capture intended solution, wrong alignment, interrupted use, fall recovery and final world-state change"
+        }
+      ],
+      "checkpoints": [
+        {
+          "id": "onboarding",
+          "observe": "At >=2 minutes: discover the first clue and complete the first light interaction without evaluator walkthrough.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "development",
+          "observe": "At >=5 minutes: reach a new region or mechanism with a different interaction requirement.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "progression",
+          "observe": "At >=10 minutes: complete the clue/traversal sequence and demonstrate checkpoint recovery after a failed attempt.",
+          "evidenceStatus": "pending"
+        },
+        {
+          "id": "continued_play",
+          "observe": "At >=15 minutes: show final world-state resolution and optional discovery or alternate-solution mastery, recording any repetition or empty travel.",
+          "evidenceStatus": "pending"
+        }
+      ],
+      "referenceIds": [
+        "reference.adventure-forward-2"
+      ]
+    }
+  ],
+  "comparisonProfiles": {
+    "dev-v1": {
+      "generationWallSeconds": 600,
+      "maxModelCostMicros": 1000000,
+      "maxOutputTokens": 30000,
+      "nativePlaySeconds": null,
+      "automaticRepairAttempts": 2,
+      "interpretation": "Focused task verification; no mandatory fifteen-minute session or whole-game polish score."
+    },
+    "game-v1": {
+      "generationWallSeconds": 1800,
+      "maxModelCostMicros": 2000000,
+      "maxOutputTokens": 90000,
+      "nativePlaySeconds": 900,
+      "automaticRepairAttempts": 2,
+      "interpretation": "Same ceilings for every game case and compared model; generation and native evaluation clocks are separate."
+    }
+  },
+  "comparisonProtocol": {
+    "status": "planned_not_executed",
+    "pairedUnit": "Same case version, immutable starting artifact, assistance track, seed and replicate index.",
+    "requiredFrozenManifest": [
+      "caseId",
+      "caseVersion",
+      "suiteVersion",
+      "assistance",
+      "startingArtifactSha256",
+      "promptSha256",
+      "providerModelId",
+      "modelSettings",
+      "pricingSnapshot",
+      "wallClockCeiling",
+      "costCeilingMicros",
+      "outputTokenCeiling",
+      "toolProfile",
+      "environmentProfile",
+      "assetCatalogSnapshotOrQueryCapture",
+      "seed",
+      "replicateId",
+      "repairPolicy"
+    ],
+    "toolProfile": "Pin tool names/versions, permissions, Studio bridge, asset-search access, animation/audio import rights, and model-tool context. Missing tool access is an environment limitation, not silent model failure.",
+    "environmentProfile": "Pin Studio version, OS, test hardware, viewport, graphics level, network/client count and latency policy. Capture baseline and generated frame time/memory with the same measurement procedure.",
+    "assistance": {
+      "untouched_model": "Freeze the first completed candidate before evaluator-directed edits. Log tool use and every model call; deterministic validators may report findings but no post-freeze repair is included.",
+      "automated_repair": "Fork that exact frozen candidate. Count all automated repairs, reviewer calls and retry costs inside the same run ceiling; preserve each attempt. No expert edits.",
+      "expert_assisted": "Fork a named candidate and log every human/stronger-agent code, scene or design edit, attribution, time and available cost. Never merge this score into untouched-model results."
+    },
+    "reporting": "Report per-case outcomes and variance across predeclared matched seeds. Do not select only the best attempt, compare across assistance tracks, or infer commercial competitiveness from a rubric total."
+  },
+  "nativeSessionProtocol": {
+    "warmup": "Before the scored run, allow a separate 60-second renderer/network warmup in an isolated copy; do not earn progression. Restart into a fresh session and reset all player state before starting the scored timer.",
+    "freshSession": "Use the same pinned project export, seed and template. Confirm no inherited currency, upgrades, checkpoint flags, client effects or old Studio test scripts. Record start artifact hash and session identity.",
+    "activePlayClock": "Measure real unaccelerated active gameplay with timestamped capture. Pause the scored clock during disconnected clients, setup, evaluator idle time or gaps between MCP commands. Wall-clock waiting alone is not gameplay/content evidence; do not advance game clocks to satisfy checkpoints.",
+    "checkpointCapture": "At 120, 300, 600 and 900 seconds or later, record the same session's active elapsed time, player/state snapshot, actual decision/transition, capture segment and any stalls. Unreached checkpoints remain pending; do not invent observations. If play ends early, document why and observe actual replay/mastery for the remaining session.",
+    "device": "Predeclare one matched primary device/viewport/input mode and graphics level for the 15-minute session. Also run a separate fresh desktop/touch usability check; do not splice different devices or sessions into one long-form result.",
+    "players": "Predeclare solo primary observation plus a separate two-client correctness session. For a paired cooperative comparison use two clients for both runs with the same roles and join schedule; never compare solo footage to a cooperative session as equivalent.",
+    "performance": "Record identical warmup, capture duration, camera route and hardware for baseline/candidate performance. Report frame-time distribution, memory and observed hitches; do not infer frame rate from instance counts."
+  },
+  "referenceLibrary": [
+    {
+      "id": "reference.mining-simulator-2",
+      "title": "Mining Simulator 2",
+      "creator": "Rumble Studios",
+      "sourceUrl": "https://www.roblox.com/games/9551640993/Mining-Simulator-2",
+      "kind": "external_reference",
+      "provenance": "Official experience page title/creator checked 2026-09-15; no gameplay review performed.",
+      "intendedComparison": "Potential reference for resource-loop clarity and presentation, not an equal-budget or required feature-depth target.",
+      "reviewStatus": "unreviewed",
+      "rating": null,
+      "captures": [],
+      "rightsStatus": "metadata_only_no_reuse_permission_inferred"
+    },
+    {
+      "id": "reference.super-bomb-survival",
+      "title": "Super Bomb Survival",
+      "creator": "Polyhex Games",
+      "sourceUrl": "https://www.roblox.com/games/164051105/Super-Bomb-Survival",
+      "kind": "external_reference",
+      "provenance": "Official experience page title/creator checked 2026-09-15; no gameplay review performed.",
+      "intendedComparison": "Potential reference for hazard/round readability and feedback; different mechanics and production scale from Rift Watch.",
+      "reviewStatus": "unreviewed",
+      "rating": null,
+      "captures": [],
+      "rightsStatus": "metadata_only_no_reuse_permission_inferred"
+    },
+    {
+      "id": "reference.adventure-forward-2",
+      "title": "Adventure Forward 2",
+      "creator": null,
+      "sourceUrl": "https://www.roblox.com/games/718034741/Adventure-Forward-2",
+      "kind": "external_reference",
+      "provenance": "Official Roblox page title located 2026-09-15; creator/version/current playability not independently verified.",
+      "intendedComparison": "Candidate for later landmark/traversal study only; no quality tier assigned.",
+      "reviewStatus": "unreviewed",
+      "rating": null,
+      "captures": [],
+      "rightsStatus": "metadata_only_no_reuse_permission_inferred"
+    },
+    {
+      "id": "history.crystal-hollow-v2",
+      "title": "Crystal Hollow visual V2 (authored expert refinement)",
+      "creator": "Takko evaluation with expert assistance",
+      "sourceUrl": null,
+      "localEvidence": "docs/crystal-hollow-polished-native-verification.md",
+      "kind": "retrospective_anchor",
+      "provenance": "Historical gameplay/visual evidence exists, but the candidate was not run under this benchmark's prompt, budgets or fifteen-minute protocol.",
+      "intendedComparison": "Retrospective debugging/presentation discussion only. Not a fair paired run or preassigned quality tier.",
+      "reviewStatus": "unreviewed",
+      "rating": null,
+      "captures": [],
+      "rightsStatus": "local_evidence_preserve_originals"
+    }
+  ]
+}

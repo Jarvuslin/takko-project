@@ -1,0 +1,30 @@
+{
+  "kind": "offline-revalidation-of-native-evidence",
+  "passed": true,
+  "checks": [
+    {
+      "case": "combat-training",
+      "sourceCount": 2,
+      "uniqueSources": 2,
+      "changedInstances": 2,
+      "derivativeHash": "c660e141d0f7351b0f15db2be989ffc65c74cc6ac1cf54d681107b217511ca1e",
+      "reviewHash": "1a0da00d0559267bb8509347ab28256120116fbdc75efdcfd7384a680c24b0ce"
+    },
+    {
+      "case": "bubble-wrap",
+      "sourceCount": 76,
+      "uniqueSources": 5,
+      "changedInstances": 76,
+      "derivativeHash": "a5e214454dbdd5ef38e68e73cedfc8de195b513b96541927fb02b3fba1ecad07",
+      "reviewHash": "206f5f9abda9e5bbd749554f29659b69699a3d3cce0257410756e2be487bc0e4"
+    },
+    {
+      "case": "checkpoint-parkour",
+      "sourceCount": 1,
+      "uniqueSources": 1,
+      "changedInstances": 1,
+      "derivativeHash": "09c016e7f05dad57fcd7e83cc278644d81cecb92841abe7a28a0c7d52d39fa4b",
+      "reviewHash": "56e0549d9ca41a1777121a4bd69284e51273455105afd01d0f31d4aef2b2e1c4"
+    }
+  ]
+}

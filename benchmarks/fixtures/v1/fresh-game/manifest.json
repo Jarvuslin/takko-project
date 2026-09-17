@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "fresh-game",
+  "fixtureVersion": "1.0.0",
+  "purpose": "starting_fixture_not_candidate_quality_evidence",
+  "scope": "Forge_BenchmarkFresh",
+  "artifactSha256": "a1f9a263ad9e6098845841d6bc0ff190457e088948fa690cc46101277c43bc54",
+  "bundleFileSha256": "311a66a0a5734da5b6a37f8cdacbbf85d5010055db0a1657e89df9d1d07ad11a",
+  "exportHash": "294c7287cc12b0e42304f4b07d105e54bcba0ae8041e150f9a2f7409aae77793",
+  "bundlePath": "bundle.json",
+  "exportPath": "export.rbxlx",
+  "caseBindings": [
+    {
+      "caseId": "game.crystal-hollow",
+      "caseVersion": "1.0.0",
+      "promptSha256": "88832e3e32232689371858c21a3853691c68420e563bf8a706ca4746c6019bfe"
+    },
+    {
+      "caseId": "game.round-combat",
+      "caseVersion": "1.0.0",
+      "promptSha256": "5a1d8b116e68743c54df40e6399149b83e97de68ae7e08c917e42d4f7fb05e6e"
+    },
+    {
+      "caseId": "game.lantern-adventure",
+      "caseVersion": "1.0.0",
+      "promptSha256": "ae961e24ab46b3807702e9a17abfa54f84cd934f8c9db9b6693153f28b40c6a4"
+    }
+  ],
+  "provenance": "Authored empty floor/spawn template shared byte-for-byte across all three GameBench cases. No generated gameplay or quality result."
+}

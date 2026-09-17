@@ -1,0 +1,213 @@
+{
+  "verifiedAt": "2026-09-16T06:17:35.060Z",
+  "previousGoalTurn": "progress: source study established selective adaptations; this turn implemented and natively verified derivative persistence",
+  "goalComplete": false,
+  "kind": "product-regression-not-worker-benchmark",
+  "checks": [
+    {
+      "case": "combat-training",
+      "instances": 20,
+      "sourceCount": 2,
+      "uniqueBodies": 2,
+      "originalHash": "5f0a4ae634776bc81c6c3d20d247bfa62d31bfff2a341cfeadb778f6dcb168e8",
+      "derivativeHash": "c660e141d0f7351b0f15db2be989ffc65c74cc6ac1cf54d681107b217511ca1e",
+      "reviewHash": "1a0da00d0559267bb8509347ab28256120116fbdc75efdcfd7384a680c24b0ce",
+      "reviewPending": true
+    },
+    {
+      "case": "bubble-wrap",
+      "instances": 375,
+      "sourceCount": 76,
+      "uniqueBodies": 5,
+      "originalHash": "226eac45b2b1cea02b91cf45457b75d846d7669a29a4c78526170d285b05e0fc",
+      "derivativeHash": "a5e214454dbdd5ef38e68e73cedfc8de195b513b96541927fb02b3fba1ecad07",
+      "reviewHash": "206f5f9abda9e5bbd749554f29659b69699a3d3cce0257410756e2be487bc0e4",
+      "reviewPending": true
+    },
+    {
+      "case": "checkpoint-parkour",
+      "instances": 4,
+      "sourceCount": 1,
+      "uniqueBodies": 1,
+      "originalHash": "929ad2e506239130f3cc1e2e380aebf8250c52d516c0741ed24e7f36a5a6c9f0",
+      "derivativeHash": "09c016e7f05dad57fcd7e83cc278644d81cecb92841abe7a28a0c7d52d39fa4b",
+      "reviewHash": "56e0549d9ca41a1777121a4bd69284e51273455105afd01d0f31d4aef2b2e1c4",
+      "reviewPending": true
+    }
+  ],
+  "fullCheck": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "unitApi": 724,
+    "desktop": 10,
+    "browser": 36
+  },
+  "nativeCleanup": {
+    "butterScripts": [
+      {
+        "name": "Script",
+        "disabled": false
+      }
+    ],
+    "running": false,
+    "diagnosticScopes": [],
+    "butterPresent": true
+  },
+  "paidCalls": 0,
+  "importedScriptsExecuted": false,
+  "productionAcceptanceEnabled": false,
+  "liveServiceReloaded": false,
+  "sourceFiles": [
+    {
+      "file": "src/generation/component-derivative.ts",
+      "sha256": "066b971ef1de3a692409801bde5ea5dbf73028d9782e51122c4e3620e46f9de9"
+    },
+    {
+      "file": "src/generation/studio-asset-adapter.ts",
+      "sha256": "1eb36ea7b8900b0c672713001b2bf8cb9a26666c73337746d76dbbd24f0e2c70"
+    },
+    {
+      "file": "tests/component-derivative.test.ts",
+      "sha256": "688e073f517a9e0496604718d75fda93616d7f287d132e7d0ea35425eacec456"
+    },
+    {
+      "file": "tests/studio-asset-adapter.test.ts",
+      "sha256": "1e26b02821807e1457e4aada6ebb8f453bbe8f111aaa8d73cc8bbe8e1cc16e09"
+    },
+    {
+      "file": "scripts/verify-component-derivative.ts",
+      "sha256": "97292614ff5669afac5bc560b757654565d27c46a27c0a5e416a3593622ef711"
+    },
+    {
+      "file": "scripts/recheck-component-derivative.ts",
+      "sha256": "39876ac3a3931cd92ed8ac4a981d74149518cdeed58b5559f953c3da3befc457"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "check.log",
+      "bytes": 11383,
+      "sha256": "e330a76e8fc14362c5de651a76a2304f43168de4561db3e7f5ddafb26b75ca5c"
+    },
+    {
+      "file": "host-recheck.json",
+      "bytes": 1035,
+      "sha256": "30da0b8a7fe0cba25fa1f885fa108d7f4c6cc847e2a994b3de572171f2f3ee70"
+    },
+    {
+      "file": "native-cleanup.json",
+      "bytes": 221,
+      "sha256": "a18fc762df74453d05d3cc26ddf5d42b24f1d17738b44e93957b45c95c11c3b4"
+    },
+    {
+      "file": "native-v1/bubble-wrap/206f5f9abda9e5bbd749554f29659b69699a3d3cce0257410756e2be487bc0e4.review.json",
+      "bytes": 293320,
+      "sha256": "206f5f9abda9e5bbd749554f29659b69699a3d3cce0257410756e2be487bc0e4"
+    },
+    {
+      "file": "native-v1/bubble-wrap/226eac45b2b1cea02b91cf45457b75d846d7669a29a4c78526170d285b05e0fc.rbxm",
+      "bytes": 23460,
+      "sha256": "226eac45b2b1cea02b91cf45457b75d846d7669a29a4c78526170d285b05e0fc"
+    },
+    {
+      "file": "native-v1/bubble-wrap/294992ca5c28a702a5845f46a39c0381d0d776f890aa89ea329f60bb254f1a52.component.json",
+      "bytes": 99667,
+      "sha256": "294992ca5c28a702a5845f46a39c0381d0d776f890aa89ea329f60bb254f1a52"
+    },
+    {
+      "file": "native-v1/bubble-wrap/590b444cfe3b30b3aade506d4348ba10dacc4353f12f27dce17cdea5501a5440.audit.json",
+      "bytes": 75071,
+      "sha256": "590b444cfe3b30b3aade506d4348ba10dacc4353f12f27dce17cdea5501a5440"
+    },
+    {
+      "file": "native-v1/bubble-wrap/70b62bc5a40c60acf52172f8d767a9b43637b22b5b010f33a2b859f804db21aa.component.json",
+      "bytes": 100076,
+      "sha256": "70b62bc5a40c60acf52172f8d767a9b43637b22b5b010f33a2b859f804db21aa"
+    },
+    {
+      "file": "native-v1/bubble-wrap/a5e214454dbdd5ef38e68e73cedfc8de195b513b96541927fb02b3fba1ecad07.rbxm",
+      "bytes": 23460,
+      "sha256": "a5e214454dbdd5ef38e68e73cedfc8de195b513b96541927fb02b3fba1ecad07"
+    },
+    {
+      "file": "native-v1/bubble-wrap.json",
+      "bytes": 42756,
+      "sha256": "9407b65aebb6e210106c526bd8de246bcf3fb87fcd261bf8c1f064d8c0f5321f"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/09c016e7f05dad57fcd7e83cc278644d81cecb92841abe7a28a0c7d52d39fa4b.rbxm",
+      "bytes": 5599,
+      "sha256": "09c016e7f05dad57fcd7e83cc278644d81cecb92841abe7a28a0c7d52d39fa4b"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/3218fb778ed757b5d9175c2e7a5c82ead1b1a14ac7e4ea83a5805248633af065.component.json",
+      "bytes": 2720,
+      "sha256": "3218fb778ed757b5d9175c2e7a5c82ead1b1a14ac7e4ea83a5805248633af065"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/56e0549d9ca41a1777121a4bd69284e51273455105afd01d0f31d4aef2b2e1c4.review.json",
+      "bytes": 6351,
+      "sha256": "56e0549d9ca41a1777121a4bd69284e51273455105afd01d0f31d4aef2b2e1c4"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/5fa5200dcebca0e567f326cf36297fd0c915f37e0616990ba5aa863b9e7afcf4.component.json",
+      "bytes": 2346,
+      "sha256": "5fa5200dcebca0e567f326cf36297fd0c915f37e0616990ba5aa863b9e7afcf4"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/929ad2e506239130f3cc1e2e380aebf8250c52d516c0741ed24e7f36a5a6c9f0.rbxm",
+      "bytes": 5599,
+      "sha256": "929ad2e506239130f3cc1e2e380aebf8250c52d516c0741ed24e7f36a5a6c9f0"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour/c14be2d586b7fa1825a53c6489f2b1db16e50b5f7e04934facba650cf834bf30.audit.json",
+      "bytes": 3337,
+      "sha256": "c14be2d586b7fa1825a53c6489f2b1db16e50b5f7e04934facba650cf834bf30"
+    },
+    {
+      "file": "native-v1/checkpoint-parkour.json",
+      "bytes": 42008,
+      "sha256": "bc04069434fc1325e284eca3dc4d4116b2579559a4c65a3bc1256376fb3c06a6"
+    },
+    {
+      "file": "native-v1/combat-training/1a0da00d0559267bb8509347ab28256120116fbdc75efdcfd7384a680c24b0ce.review.json",
+      "bytes": 36938,
+      "sha256": "1a0da00d0559267bb8509347ab28256120116fbdc75efdcfd7384a680c24b0ce"
+    },
+    {
+      "file": "native-v1/combat-training/23c2b062c0298c346bfaa79ce6a2fbde4cd5ad379c7fc97ba37e24e17f517264.component.json",
+      "bytes": 28197,
+      "sha256": "23c2b062c0298c346bfaa79ce6a2fbde4cd5ad379c7fc97ba37e24e17f517264"
+    },
+    {
+      "file": "native-v1/combat-training/5f0a4ae634776bc81c6c3d20d247bfa62d31bfff2a341cfeadb778f6dcb168e8.rbxm",
+      "bytes": 18467,
+      "sha256": "5f0a4ae634776bc81c6c3d20d247bfa62d31bfff2a341cfeadb778f6dcb168e8"
+    },
+    {
+      "file": "native-v1/combat-training/aead1c8b32abf4d8c1bbd0ba8024c372c1904d663ad2066fec3b08182754caa3.component.json",
+      "bytes": 28707,
+      "sha256": "aead1c8b32abf4d8c1bbd0ba8024c372c1904d663ad2066fec3b08182754caa3"
+    },
+    {
+      "file": "native-v1/combat-training/c660e141d0f7351b0f15db2be989ffc65c74cc6ac1cf54d681107b217511ca1e.rbxm",
+      "bytes": 18467,
+      "sha256": "c660e141d0f7351b0f15db2be989ffc65c74cc6ac1cf54d681107b217511ca1e"
+    },
+    {
+      "file": "native-v1/combat-training/f8bbb8574d5d7a4d441a4fe295219ae7a05c01afa35fb2b1d1164b39931d958e.audit.json",
+      "bytes": 30994,
+      "sha256": "f8bbb8574d5d7a4d441a4fe295219ae7a05c01afa35fb2b1d1164b39931d958e"
+    },
+    {
+      "file": "native-v1/combat-training.json",
+      "bytes": 48060,
+      "sha256": "d50e7328171e10047f755c77454b888d8bdf7fa038b895ab55347cfa92a83977"
+    },
+    {
+      "file": "native-v1/result.json",
+      "bytes": 140683,
+      "sha256": "248ba3fde8ec38ad9214bcb56c97b1da316c169095e3c19db6410301d66b575c"
+    }
+  ]
+}

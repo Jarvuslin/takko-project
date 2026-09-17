@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.png binary
+*.zip binary
+# Historical evidence includes byte hashes; never normalize its line endings.
+benchmarks/runs/** -text
+research/results/** -text
+docs/results/** -text

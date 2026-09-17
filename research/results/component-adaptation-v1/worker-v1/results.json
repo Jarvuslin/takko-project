@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "case": "combat-training",
+      "contractPassed": true,
+      "removedSubtrees": 1,
+      "replacedSources": 0,
+      "reason": "Preserve the complete R6 humanoid training dummy rig with HumanoidRootPart, Torso, Head, limbs, Humanoid, and standard Motor6D joint tree. Remove the Package script and child Module NumberPose which contain an unresolved external numeric asset require and irrelevant lighting manipulation logic. Register remaining integration needs for combat combo state machine, server validation, UI, audio, and arena setup.",
+      "mediaBindings": 0,
+      "mediaGroups": 0,
+      "costUSD": 0.021303,
+      "durationMs": 19069
+    },
+    {
+      "case": "bubble-wrap",
+      "contractPassed": true,
+      "removedSubtrees": 2,
+      "replacedSources": 1,
+      "reason": "Adapt the bubble wrap model by removing the obfuscated TypeConfig backdoor loader and legacy physical RegenButton, while replacing legacy bubble pop scripts with a robust squash-and-deflate tween animation, debounce, synchronized audio playback, and attribute-driven state management for reset integration.",
+      "mediaBindings": 0,
+      "mediaGroups": 0,
+      "costUSD": 0.03917925,
+      "durationMs": 33449
+    },
+    {
+      "case": "checkpoint-parkour",
+      "contractPassed": true,
+      "removedSubtrees": 0,
+      "replacedSources": 1,
+      "reason": "Preserve checkpoint pad geometry and decal while upgrading the legacy unconditional touch script to enforce sequential checkpoint progression (CP1 -> CP2 -> CP3), add visual illumination/color transitions, play audio confirmation, and support safe character fall recovery.",
+      "mediaBindings": 0,
+      "mediaGroups": 0,
+      "costUSD": 0.01576425,
+      "durationMs": 17582
+    }
+  ],
+  "costUSD": 0.0762465,
+  "semanticAccuracy": "not_scored",
+  "nativeGameplay": false
+}

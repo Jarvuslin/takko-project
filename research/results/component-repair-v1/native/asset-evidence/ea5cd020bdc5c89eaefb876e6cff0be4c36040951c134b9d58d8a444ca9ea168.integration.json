@@ -1,0 +1,682 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "d6bbf3114a17ab6d1da3cb516a1949b1fb1c83a2a75e2565f2d336490c3cb388",
+  "scope": "ChainRegression_294e0c2cd706",
+  "need": {
+    "id": "bubbleWrapInteraction",
+    "requirementId": "marketplaceFirst",
+    "role": "A complete reusable bubble-wrap popping interaction that may provide the sheet geometry, individual bubble targets, press/pop animation, state behavior, and embedded sound references before any missing integration is authored.",
+    "kind": "Model",
+    "query": "bubble wrap pop game",
+    "constraints": "Must be suitable for a close tabletop arrangement with at least 12 individually addressable bubbles, preferably 16. Inspect all scripts, dependencies, animation objects or tween behavior, interaction methods, per-bubble state, reset behavior, and embedded sound provenance. Reject arbitrary HTTP execution and numeric require dependencies. Do not strip unsupported behavior merely to import static geometry; record importer or serialization gaps. Candidate claims are not verification. Final placement and scaling must keep all targets readable for desktop and touch.",
+    "intent": {
+      "experienceRole": "This component is the physical and behavioral centerpiece of the ASMR loop, supplying as much of the authentic reusable press-pop interaction as can be safely preserved instead of treating bubble wrap as a decorative prop.",
+      "interaction": "The player clicks or taps one intact bubble, sees it depress and collapse, hears its synchronized pop, receives one count after completion, continues until the sheet is complete, and deliberately resets to a fresh sheet.",
+      "reusableFeatures": [
+        "Individual bubble geometry and reliable hit targets",
+        "Existing press, collapse, settle, and reset animation",
+        "Per-bubble intact, busy, and popped state handling",
+        "Desktop and touch interaction behavior",
+        "Embedded Marketplace sound references and playback setup",
+        "Completion, counter, or reset interfaces",
+        "Source scripts, dependencies, cleanup, and configuration surfaces"
+      ],
+      "relatedRequirementIds": [
+        "marketplaceFirst",
+        "bubbleSheet",
+        "popSequence",
+        "exactCounting",
+        "duplicateProtection",
+        "completionReset",
+        "desktopTouchInput",
+        "popAudio"
+      ]
+    },
+    "required": false,
+    "position": [
+      0,
+      3,
+      0
+    ],
+    "maxSize": 12
+  },
+  "review": {
+    "packetHash": "eda6faac74b4356b1dbd6abba7a48fa023780c52dff5a6cb8f1751a5716f3d23",
+    "inputHash": "0361814a5bf5fbe2a3d320adc7c0d5f75fe0dcdf83c02ae50ee0178f9015e664",
+    "disposition": "integration_candidate",
+    "reason": "Synthetic serialization-contract fixture only, not source approval or runtime acceptance",
+    "serializedMedia": [
+      {
+        "index": 6,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 11,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 16,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 22,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 27,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 32,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 37,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 42,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 47,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 52,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 57,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 62,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 67,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 72,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 77,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 82,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 87,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 92,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 97,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 102,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 107,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 112,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 117,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 122,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 127,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 132,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 137,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 142,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 147,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 152,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 157,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 162,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 167,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 172,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 177,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 182,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 187,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 192,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 197,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 202,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 207,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 212,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 217,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 222,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 227,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 232,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 237,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 242,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 247,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 252,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 257,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 262,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 267,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 272,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 277,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 282,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 287,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 292,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 297,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 302,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 307,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 312,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 317,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 322,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 327,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 332,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 337,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 342,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 347,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 352,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 357,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      },
+      {
+        "index": 362,
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Retained fixture media",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [
+      {
+        "sha256": "c73a7c41ea3c60394adb35faa280f9507105700902e80813162b2cd4d14e9080",
+        "behavior": "Serialization fixture; executable behavior not assessed",
+        "reuse": "preserve",
+        "dependencies": [],
+        "unresolved": []
+      }
+    ],
+    "requirements": [
+      {
+        "requirementId": "marketplaceFirst",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "bubbleSheet",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "popSequence",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "exactCounting",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "duplicateProtection",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "completionReset",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "desktopTouchInput",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "popAudio",
+        "status": "integration_needed",
+        "reason": "Unverified diagnostic only",
+        "sourceHashes": [],
+        "nodeIndices": []
+      }
+    ],
+    "permissionImpacts": [
+      {
+        "capability": "DataStore",
+        "impact": "none_observed",
+        "reason": "Synthetic fixture only",
+        "sourceHashes": []
+      },
+      {
+        "capability": "Network",
+        "impact": "none_observed",
+        "reason": "Synthetic fixture only",
+        "sourceHashes": []
+      },
+      {
+        "capability": "ScriptGlobals",
+        "impact": "none_observed",
+        "reason": "Synthetic fixture only",
+        "sourceHashes": []
+      }
+    ],
+    "integrationNotes": [
+      "Known V12 reset defect is NOT fixed; never execute this fixture"
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 5903,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "1428123eaee154118c5cf768244279691bb9968f403b84e021ce7ad99b2cc8eb",
+  "metadata": {
+    "needId": "bubbleWrapInteraction",
+    "candidateId": "120019574381006",
+    "inputHash": "0361814a5bf5fbe2a3d320adc7c0d5f75fe0dcdf83c02ae50ee0178f9015e664",
+    "packetHash": "eda6faac74b4356b1dbd6abba7a48fa023780c52dff5a6cb8f1751a5716f3d23",
+    "archiveHash": "31b4ac633b7c92443084183efe5e7539cc4245889e6dba7bd81c3741f7ab970f",
+    "conversionHash": "3d062e8f53dd8e31b98ebae5a08c62fb174a1f6fe222a44e8add681e05e08fb9",
+    "destinationPath": "Workspace/ChainRegression_294e0c2cd706/Assets/bubbleWrapInteraction",
+    "rootName": "Imported",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

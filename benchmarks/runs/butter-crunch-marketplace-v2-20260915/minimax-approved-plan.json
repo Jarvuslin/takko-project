@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 2,
+  "id": "6910370f-c548-4641-8bfe-3001b0921d86",
+  "name": "Butter Crunch",
+  "request": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+  "revision": 1,
+  "scope": "Forge_6910370fc548",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "crunchSound",
+        "requirementId": "req-crunch-audio",
+        "role": "Satisfying crisp crunch sound effect for butter compression",
+        "kind": "Audio",
+        "query": "crunch sound effect bite snap crisp",
+        "constraints": "Short punchy crunch or crisp bite sound under 1.5 seconds, clean without background music or noise.",
+        "required": true,
+        "position": [
+          0,
+          4,
+          0
+        ],
+        "maxSize": 5
+      },
+      {
+        "id": "butterProp",
+        "requirementId": "req-butter-stage",
+        "role": "Butter block or stick food model for the pedestal",
+        "kind": "Model",
+        "query": "butter block food dairy",
+        "constraints": "Single clean food prop representing a stick or pat of butter.",
+        "required": false,
+        "position": [
+          0,
+          3.5,
+          0
+        ],
+        "maxSize": 6
+      }
+    ],
+    "assetStrategy": "Audio sourcing is strictly handled through Creator Store / Marketplace asset retrieval for an authentic, high-quality crunch sound effect. Visuals for the butter model are searched on the marketplace first; if unviable or malformed, a multi-part stylized procedural butter block and porcelain plate are authored with custom materials and part hierarchy. The entire interaction, debounce handling, procedural squash/recovery animation, particle feedback, and HUD counter are implemented directly in Luau.",
+    "title": "Butter Crunch",
+    "summary": "Butter Crunch is a focused tactile interaction game where a player steps up to a clean, well-lit pedestal in a minimalist kitchen studio. On the pedestal sits a smooth golden block of butter on a ceramic plate. When clicked or tapped on desktop or mobile, a satisfying crunch interaction triggers: the butter compresses and flakes with a visible procedural squish and crumb effect, a verified crunch sound plays in sync, and an overhead and HUD counter increments by exactly 1. Overlapping clicks are strictly debounced on both client and server to prevent double-counting. Once the crunch completes, the butter smoothly recovers its form and is ready for the next crunch, cleanly tracking total crunches up to 10 and beyond with zero extraneous shops, economies, or distractions.",
+    "visualDirection": "Minimalist, warm gourmet studio aesthetic. The environment features a soft warm-gray floor with subtle bevels, an elegant cylindrical white ceramic pedestal with a soft rim light, and a golden pat of rich yellow butter resting on a matte porcelain plate. Clean warm lighting with soft shadows emphasizes the glossy, creamy texture of the butter. When crunched, the butter dynamically flattens with a snappy squash-and-stretch tween accompanied by golden crumb particle puffs, followed by an elastic recovery animation. The UI consists of a crisp, rounded counter card at top-center with bold, readable typography showing the current crunch count.",
+    "requirements": [
+      {
+        "id": "req-butter-stage",
+        "description": "Construct a small clean stage featuring a pedestal, plate, and butter object in the workspace.",
+        "sourceId": "request",
+        "sourceQuote": "one butter object on a small clean stage",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "A clean stage with a pedestal and butter object is spawned and visible in the workspace."
+      },
+      {
+        "id": "req-crunch-interaction",
+        "description": "Provide a repeatable click/tap interaction on the butter that works across desktop and mobile devices, strictly debounced to prevent double-counting from overlapping inputs.",
+        "sourceId": "request",
+        "sourceQuote": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Clicking or tapping the butter triggers a crunch action. Rapid spamming or overlapping input only registers one crunch per completion cycle."
+      },
+      {
+        "id": "req-crunch-animation",
+        "description": "Animate the butter with a snappy squash/crunch deformation upon interaction, emitting crumb particles, followed by an elastic recovery/reset back to its original shape.",
+        "sourceId": "request",
+        "sourceQuote": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+        "origin": "user",
+        "category": "animation",
+        "priority": "required",
+        "acceptance": "Butter visibly compresses and squashes during the crunch, then smoothly resets to its original form."
+      },
+      {
+        "id": "req-crunch-audio",
+        "description": "Play a synchronized crunch sound effect sourced from the Creator Store / Marketplace each time the butter is crunched.",
+        "sourceId": "request",
+        "sourceQuote": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "Audible crunch sound effect plays immediately upon initiating the crunch interaction."
+      },
+      {
+        "id": "req-counter-ui",
+        "description": "Display a readable counter starting at zero that increments by exactly one per completed crunch, accurately reading 10 after ten separated crunches.",
+        "sourceId": "request",
+        "sourceQuote": "one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "Counter starts at 0, increments to 1 after first crunch, and reads 10 after 10 valid crunches."
+      },
+      {
+        "id": "req-no-bloat",
+        "description": "Ensure no shops, upgrades, economy, persistent saving, monetization, or unrelated gameplay features exist.",
+        "sourceId": "request",
+        "sourceQuote": "No shops, upgrades, economy, saving, monetization or unrelated gameplay.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Only the core butter crunch interaction and counter are present; no shops or external systems exist."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "task-butter-setup",
+        "title": "Create stage environment, butter prop, and shared configuration",
+        "requirements": [
+          "req-butter-stage",
+          "req-no-bloat"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_6910370fc548/ButterConfig.luau"
+        ]
+      },
+      {
+        "id": "task-server-interaction",
+        "title": "Implement server-side crunch state validation, debounce, and counter replication",
+        "requirements": [
+          "req-crunch-interaction",
+          "req-counter-ui",
+          "req-no-bloat"
+        ],
+        "dependsOn": [
+          "task-butter-setup"
+        ],
+        "files": [
+          "ServerScriptService/Forge_6910370fc548/ButterServer.server.luau"
+        ]
+      },
+      {
+        "id": "task-client-interaction",
+        "title": "Implement client crunch input, squash/recovery animation, audio playback, and HUD counter",
+        "requirements": [
+          "req-crunch-interaction",
+          "req-crunch-animation",
+          "req-crunch-audio",
+          "req-counter-ui"
+        ],
+        "dependsOn": [
+          "task-butter-setup",
+          "task-server-interaction"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_6910370fc548/ButterClient.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": [
+      {
+        "mechanicId": "butter-crunch-core",
+        "action": "include",
+        "requirementIds": [
+          "req-butter-stage",
+          "req-crunch-interaction",
+          "req-crunch-animation",
+          "req-crunch-audio",
+          "req-counter-ui"
+        ],
+        "reason": "Direct implementation of the requested single butter object crunch loop with debounce, animations, Marketplace audio, and counter."
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109220,
+      "chargedMicros": 14487,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5396,
+      "outputTokens": 2784,
+      "status": "ok",
+      "at": "2026-09-16T01:49:27.413Z"
+    }
+  ],
+  "budgetMicros": 1800000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T01:49:02.13Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T01:49:02.221Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T01:49:27.417Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T01:49:02.119Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

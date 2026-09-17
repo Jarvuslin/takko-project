@@ -1,0 +1,344 @@
+import { sceneClasses } from "./capabilities";
+import { z } from "zod";
+import { assetNeedSchema, type AssetPipelineRun } from "./asset-contract";
+import type { ResearchDossier } from "./research";
+export const phaseSchema = z.enum([
+  "research",
+  "planner",
+  "builder",
+  "reviewer",
+  "repair",
+]);
+export type Phase = z.infer<typeof phaseSchema>;
+const id = z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/);
+const text = z.string().trim().min(1).max(12000);
+const scriptPath = z
+  .string()
+  .min(1)
+  .max(240)
+  .regex(/\.luau$/)
+  .describe(
+    "A script path ending in .luau, .server.luau or .client.luau; never a scene object path",
+  );
+export const providerSchema = z
+  .object({
+    id: z.uuid(),
+    name: z.string().min(1).max(80),
+    provider: z.enum([
+      "openrouter",
+      "openai",
+      "anthropic",
+      "gemini",
+      "compatible",
+    ]),
+    baseUrl: z.url(),
+    model: z.string().trim().max(160),
+    inputRate: z.number().finite().min(0).max(1000),
+    outputRate: z.number().finite().min(0).max(1000),
+    maxOutputTokens: z.number().int().min(512).max(32768).default(8192),
+    requestTimeoutMs: z.number().int().min(1000).max(600000).optional(),
+    jsonMode: z.boolean().default(true),
+  })
+  .strict();
+export type Profile = z.infer<typeof providerSchema>;
+export const settingsSchema = z
+  .object({
+    profiles: z.array(providerSchema).max(30),
+    routes: z
+      .object({
+        research: z.array(z.uuid()).max(3).optional(),
+        planner: z.array(z.uuid()).max(3),
+        builder: z.array(z.uuid()).max(3),
+        reviewer: z.array(z.uuid()).max(3),
+        componentReviewer: z.array(z.uuid()).max(1).optional(),
+        componentAdapter: z.array(z.uuid()).max(1).optional(),
+        repair: z.array(z.uuid()).max(3),
+      })
+      .strict(),
+    budgetMicros: z.number().int().min(1000).max(100_000_000),
+    reservationBudgetMicros: z
+      .number()
+      .int()
+      .min(1000)
+      .max(100_000_000)
+      .optional(),
+    repairLimit: z.number().int().min(0).max(3),
+    researchEnabled: z.boolean().optional(),
+  })
+  .strict();
+export type Settings = z.infer<typeof settingsSchema>;
+export const requirementSchema = z
+  .object({
+    id,
+    description: text,
+    sourceId: z
+      .string()
+      .min(1)
+      .max(100)
+      .optional()
+      .describe(
+        "For user requirements, select an id from userSources. Forge copies the evidence from that source.",
+      ),
+    sourceQuote: z.string().max(3000).default(""),
+    origin: z.enum(["user", "inferred"]),
+    category: z.enum([
+      "mechanic",
+      "world",
+      "ui",
+      "animation",
+      "audio",
+      "network",
+      "lifecycle",
+      "presentation",
+    ]),
+    priority: z.enum(["required", "optional"]),
+    acceptance: text,
+  })
+  .strict();
+export const taskSchema = z
+  .object({
+    id,
+    title: text,
+    requirements: z.array(id).min(1),
+    dependsOn: z.array(id),
+    files: z
+      .array(scriptPath)
+      .max(8)
+      .describe(
+        "Owned script paths; use an empty array for scene-only tasks or discovery-dependent tasks whose necessary integration scripts are not yet known. After inspection, declare only necessary integration scripts with exclusive ownership.",
+      ),
+  })
+  .strict();
+export const specSchema = z
+  .object({
+    assetNeeds: z.array(assetNeedSchema).max(16).optional(),
+    assetStrategy: z.string().min(1).max(3000).optional(),
+    title: z.string().min(1).max(80),
+    summary: text,
+    visualDirection: text,
+    requirements: z.array(requirementSchema).min(1).max(40),
+    questions: z
+      .array(
+        z
+          .object({
+            id,
+            prompt: text,
+            options: z.array(z.string().max(200)).max(5),
+          })
+          .strict(),
+      )
+      .max(6),
+    tasks: z.array(taskSchema).min(1).max(12),
+    referenceDecisions: z
+      .array(
+        z
+          .object({
+            mechanicId: id,
+            action: z.enum(["include", "adapt", "omit"]),
+            requirementIds: z.array(id).max(40),
+            reason: z.string().min(1).max(1500),
+            userSourceId: z.string().max(100).optional(),
+            userQuote: z.string().max(3000).optional(),
+          })
+          .strict(),
+      )
+      .max(20)
+      .optional(),
+  })
+  .strict();
+export type Spec = z.infer<typeof specSchema>;
+export const valueSchema = z.union([
+  z.string().max(3000),
+  z.number().finite(),
+  z.boolean(),
+  z
+    .object({
+      type: z.literal("Ref"),
+      path: z.string().min(1).max(240).nullable(),
+    })
+    .strict()
+    .describe(
+      "Instance reference to an exact scene path in this project; null clears the reference. Resolve after all instances exist.",
+    ),
+  z
+    .object({
+      type: z.enum(["Vector3", "Color3", "CFrame", "UDim2", "UDim", "Vector2"]),
+      value: z.array(z.number().finite()).max(12),
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal("Enum"),
+      enum: z.string().regex(/^[A-Za-z]+$/),
+      value: z.number().int().nonnegative(),
+    })
+    .strict(),
+]);
+export type PropertyValue = z.infer<typeof valueSchema>;
+export const nodeSchema = z
+  .object({
+    path: z.string().min(1).max(240),
+    className: z.enum(sceneClasses),
+    properties: z.record(z.string(), valueSchema),
+  })
+  .strict();
+export const fileSchema = z
+  .object({
+    path: z.string().min(1).max(240),
+    kind: z.enum(["Script", "LocalScript", "ModuleScript"]),
+    source: z.string().min(1).max(120000),
+  })
+  .strict();
+export const coverageSchema = z
+  .object({
+    requirementId: id,
+    status: z.enum(["implemented", "blocked"]),
+    detail: text,
+    files: z
+      .array(z.string())
+      .max(20)
+      .describe(
+        "Exact existing script OR scene-node paths proving this requirement. Implemented coverage must have at least one path, including for scene-only tasks.",
+      ),
+  })
+  .strict();
+export const assetSchema = z
+  .object({
+    id,
+    requirementId: id,
+    kind: z.enum(["animation", "audio", "image", "mesh", "model"]),
+    assetId: z.string().regex(/^\d+$/).nullable(),
+    sourceUrl: z.string().max(2000).nullable().default(null),
+    status: z.enum([
+      "provided",
+      "needed",
+      "procedural",
+      "builtin",
+      "retrieved",
+    ]),
+    description: text,
+  })
+  .strict();
+export const bundleSchema = z
+  .object({
+    files: z.array(fileSchema).max(60).default([]),
+    scene: z.array(nodeSchema).max(600).default([]),
+    coverage: z.array(coverageSchema).max(80).default([]),
+    assets: z.array(assetSchema).max(80).default([]),
+  })
+  .strict();
+export type Bundle = z.infer<typeof bundleSchema>;
+export const reviewSchema = z
+  .object({
+    issues: z
+      .array(
+        z
+          .object({
+            requirementId: id,
+            severity: z.enum(["error", "warning"]),
+            message: text,
+          })
+          .strict(),
+      )
+      .max(80),
+    tests: z
+      .array(
+        z
+          .object({
+            id,
+            requirementId: id,
+            mode: z.enum(["server", "client"]),
+            source: z.string().min(1).max(12000),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(40),
+  })
+  .strict();
+export type Review = z.infer<typeof reviewSchema>;
+export type Check = {
+  id: string;
+  status: "passed" | "failed" | "pending";
+  detail: string;
+};
+export type Charge = {
+  billingSource?: "provider" | "configured-rate" | "reservation";
+  phase: Phase;
+  profileId: string;
+  model: string;
+  reservedMicros: number;
+  chargedMicros: number;
+  estimated: boolean;
+  inputTokens: number | null;
+  outputTokens: number | null;
+  /** Provider-reported cache reads; absent means unreported, not zero. */
+  cachedInputTokens?: number;
+  status: "ok" | "error";
+  at: string;
+};
+export type Project = {
+  assetStudioId?: string;
+  assetPipeline?: AssetPipelineRun | null;
+  schemaVersion: 2;
+  id: string;
+  name: string;
+  request: string;
+  revision: number;
+  scope: string;
+  spec: Spec | null;
+  research?: ResearchDossier | null;
+  answers: Record<string, string>;
+  /** Planner-authored question text retained to interpret exact user answers. */
+  answerQuestions?: Record<string, string>;
+  approvedRevision: number | null;
+  stage:
+    | "draft"
+    | "planning"
+    | "clarification"
+    | "review"
+    | "generating"
+    | "repairing"
+    | "ready_to_test"
+    | "verified"
+    | "failed"
+    | "interrupted"
+    | "needs_input";
+  artifact: Bundle | null;
+  completedBuildTasks?: string[];
+  review: Review | null;
+  checks: Check[];
+  charges: Charge[];
+  budgetMicros: number;
+  reservedMicros: number;
+  events: { at: string; message: string }[];
+  jobId: string | null;
+  error: string | null;
+  failure?: {
+    code: string;
+    phase: Phase;
+    taskId?: string;
+    attempts: number;
+    details: string;
+    at: string;
+  } | null;
+  createdAt: string;
+  studioEvidence: {
+    revision: number;
+    artifactHash: string;
+    checks: Check[];
+    logs: string[];
+    at: string;
+    screenshot?: string;
+  } | null;
+  legacyImport?: boolean;
+  visualEvidence?: {
+    revision: number;
+    artifactHash: string;
+    dataUrl: string;
+    notes: string;
+    at: string;
+    source: "user-upload";
+    reviewStatus?: "unaddressed" | "awaiting_inspection";
+  } | null;
+};

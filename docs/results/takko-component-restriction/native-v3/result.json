@@ -1,0 +1,1613 @@
+{
+  "kind": "native-permission-restriction-regression-not-worker-benchmark",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "results": [
+    {
+      "case": "combat-training",
+      "sourceProject": "950ab3b0-d8ac-4895-b40a-32ab1e1cdb7d",
+      "candidate": {
+        "id": "125989241853035",
+        "name": "Dummy Training Practice Humanoid Test RP",
+        "kind": "Model",
+        "creator": "XxAidenLionxX72",
+        "sourceUrl": "https://create.roblox.com/store/asset/125989241853035",
+        "price": 0,
+        "source": "creator_store",
+        "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): Dummy, Training, Practice, Humanoid, Test, RP, Roleplay, Simulator, Game, NPC, AI, Character, Mannequin, Target, Avatar, Rig, Mesh, Player, Victim, Ragdoll, Scripted, Animation, Tools, Weapons, Sword, Gun, Melee, Combat, Battle, Arena, Fighting, Physics, Realistic, Customizable, Poseable, Dummy, Exercise, Target, Practice, Simulated, Interactive, Dummy, Practice, Dummy, Test, Humanoid, Roleplay, Dummy, Practice, AI, Training, Character, Target, Humanoid, Test, RP, Practice, Dummy, Humanoid, Training, Target, Practice, Simulator, Roleplay, Game"
+      },
+      "scope": "RestrictionRegression_c94a3682a58b",
+      "original": {
+        "token": "a4405636-b7b1-4c8c-b41c-56fb02684bc2",
+        "candidateId": "125989241853035",
+        "status": "captured",
+        "sha256": "8894ae3f04f5d3651e298de761e4f9fc1b540c80066e72850fab1fc9545e5568",
+        "bytes": 18467,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\combat-training\\8894ae3f04f5d3651e298de761e4f9fc1b540c80066e72850fab1fc9545e5568.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\combat-training\\ec211f8d4b75f700d85326bc61317543d80e79b890ba234d6f33ab93ade177a5.component.json",
+        "instanceCount": 20,
+        "scriptCount": 2,
+        "sourceBytes": 22505,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "probe": {
+        "ok": true,
+        "running": false,
+        "changes": [
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 18,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 19,
+            "className": "ModuleScript",
+            "sandboxedBefore": true
+          }
+        ],
+        "policy": "remove_only_capabilities_unavailable_to_current_thread",
+        "result": {
+          "bytes": 18467,
+          "archiveSha256": "f46a2075ea0c7580890913de9563425c97f4ed2e5122821b077dd20500d0bc7c",
+          "roundTrip": {
+            "checkedAttributes": 1,
+            "checkedReferences": 13,
+            "checkedProperties": 447,
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ],
+            "passed": true,
+            "unobservableProperties": [
+              "Humanoid.Health_XML",
+              "Humanoid.InternalBodyScale",
+              "Humanoid.InternalHeadScale",
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "ModuleScript.ScriptGuid",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw",
+              "Script.ScriptGuid"
+            ]
+          },
+          "sourceBytes": 22505,
+          "runtimeVerification": "not_performed",
+          "executed": false,
+          "sandboxingUnchanged": true,
+          "status": "captured",
+          "sourceUnchanged": true,
+          "instanceCount": 20,
+          "sourceHashes": [
+            {
+              "index": 18,
+              "sha256": "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873"
+            },
+            {
+              "index": 19,
+              "sha256": "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28"
+            }
+          ]
+        }
+      },
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:41:11.379Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "5cafa9b3-46d8-426b-923c-89167e595e05",
+            "token": "a4405636-b7b1-4c8c-b41c-56fb02684bc2",
+            "scope": "RestrictionRegression_c94a3682a58b",
+            "stagingPath": "ServerStorage/RestrictionRegression_c94a3682a58b/AssetStaging/attempt_4f318f7b3a992f4f60ef4f00",
+            "previewPath": "Workspace/RestrictionRegression_c94a3682a58b/AssetPreviews/attempt_4f318f7b3a992f4f60ef4f00",
+            "finalPath": "Workspace/RestrictionRegression_c94a3682a58b/Assets/TrainingDummyModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:41:11.380Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:41:11.391Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:41:11.416Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    },
+    {
+      "case": "bubble-wrap",
+      "sourceProject": "7680d1f6-d631-4265-9e89-3f7942fef6cd",
+      "candidate": {
+        "id": "120019574381006",
+        "name": "Working Bubble Wrap Pop Relax ASMR",
+        "kind": "Model",
+        "creator": "Frosb2611",
+        "sourceUrl": "https://create.roblox.com/store/asset/120019574381006",
+        "price": 0,
+        "source": "creator_store",
+        "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): functional, interactive, pop, popping, popping simulator, stress relief, sensory, toy, playtime, fun, game, entertainment, playful, tactile, simulation, digital, virtual, unwrapping, packaging, novelty, casual, amusing, engaging, satisfying, immersive, creative, experience, escape, relaxation, therapy, anti-stress, fidg"
+      },
+      "scope": "RestrictionRegression_a174e0995010",
+      "original": {
+        "token": "909cb3f1-2034-430f-95b1-d0f71d0cf5ef",
+        "candidateId": "120019574381006",
+        "status": "captured",
+        "sha256": "3e76aa953a04d09a2750d6a1d64c500617d867d6b7ef8df6c56ac0d2a7a7980e",
+        "bytes": 23460,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\bubble-wrap\\3e76aa953a04d09a2750d6a1d64c500617d867d6b7ef8df6c56ac0d2a7a7980e.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\bubble-wrap\\5e5986d2499e65e23187cb3febf1c0f59735bd2fd513c35cb1c689f4f57b73a0.component.json",
+        "instanceCount": 375,
+        "scriptCount": 76,
+        "sourceBytes": 33947,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "probe": {
+        "ok": true,
+        "running": false,
+        "changes": [
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 4,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 14,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 15,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 16,
+            "className": "ModuleScript",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 18,
+            "className": "ModuleScript",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 23,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 28,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 34,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 39,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 44,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 49,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 54,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 59,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 64,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 69,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 74,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 79,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 84,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 89,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 94,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 99,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 104,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 109,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 114,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 119,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 124,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 129,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 134,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 139,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 144,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 149,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 154,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 159,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 164,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 169,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 174,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 179,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 184,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 189,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 194,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 199,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 204,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 209,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 214,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 219,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 224,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 229,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 234,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 239,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 244,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 249,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 254,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 259,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 264,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 269,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 274,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 279,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 284,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 289,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 294,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 299,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 304,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 309,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 314,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 319,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 324,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 329,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 334,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 339,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 344,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 349,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 354,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 359,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 364,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 369,
+            "className": "Script",
+            "sandboxedBefore": true
+          },
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 374,
+            "className": "Script",
+            "sandboxedBefore": true
+          }
+        ],
+        "policy": "remove_only_capabilities_unavailable_to_current_thread",
+        "result": {
+          "bytes": 23460,
+          "archiveSha256": "c1ef524ac01a17a3513361f08a3e54df9238a5efe8901f49d9977fd090f926a3",
+          "roundTrip": {
+            "checkedAttributes": 1,
+            "checkedReferences": 0,
+            "checkedProperties": 5981,
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ],
+            "passed": true,
+            "unobservableProperties": [
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "ModuleScript.ScriptGuid",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw",
+              "Script.ScriptGuid"
+            ]
+          },
+          "sourceBytes": 33947,
+          "runtimeVerification": "not_performed",
+          "executed": false,
+          "sandboxingUnchanged": true,
+          "status": "captured",
+          "sourceUnchanged": true,
+          "instanceCount": 375,
+          "sourceHashes": [
+            {
+              "index": 4,
+              "sha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3"
+            },
+            {
+              "index": 14,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 15,
+              "sha256": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677"
+            },
+            {
+              "index": 16,
+              "sha256": "4051dc6c09016a3672e9eccdf1293d4d27c1260c5675ec4fc15b864bf3d1ae0e"
+            },
+            {
+              "index": 18,
+              "sha256": "772345d6803455068d11cc71ff99235e9e107e6e2857306455ad37aa3255db70"
+            },
+            {
+              "index": 23,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 28,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 34,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 39,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 44,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 49,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 54,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 59,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 64,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 69,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 74,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 79,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 84,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 89,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 94,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 99,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 104,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 109,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 114,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 119,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 124,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 129,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 134,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 139,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 144,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 149,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 154,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 159,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 164,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 169,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 174,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 179,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 184,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 189,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 194,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 199,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 204,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 209,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 214,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 219,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 224,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 229,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 234,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 239,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 244,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 249,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 254,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 259,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 264,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 269,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 274,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 279,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 284,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 289,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 294,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 299,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 304,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 309,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 314,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 319,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 324,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 329,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 334,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 339,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 344,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 349,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 354,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 359,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 364,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 369,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            },
+            {
+              "index": 374,
+              "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+            }
+          ]
+        }
+      },
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:41:12.055Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "117aecab-36f5-487f-a68f-eaea48e5d30b",
+            "token": "909cb3f1-2034-430f-95b1-d0f71d0cf5ef",
+            "scope": "RestrictionRegression_a174e0995010",
+            "stagingPath": "ServerStorage/RestrictionRegression_a174e0995010/AssetStaging/attempt_a9991dd11aca3c9a21210f9a",
+            "previewPath": "Workspace/RestrictionRegression_a174e0995010/AssetPreviews/attempt_a9991dd11aca3c9a21210f9a",
+            "finalPath": "Workspace/RestrictionRegression_a174e0995010/Assets/SheetModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:41:12.056Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:41:12.066Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:41:12.091Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    },
+    {
+      "case": "checkpoint-parkour",
+      "sourceProject": "fd665994-b18b-47cd-9cfd-aec90b2993b3",
+      "candidate": {
+        "id": "398137408",
+        "name": "CheckPoint Pad ",
+        "kind": "Model",
+        "creator": "HunterTheCoder",
+        "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+        "price": 0,
+        "source": "creator_store",
+        "description": "For my obby"
+      },
+      "scope": "RestrictionRegression_9fecd8ae3387",
+      "original": {
+        "token": "65bca528-48f0-400a-a433-6bf33734ad85",
+        "candidateId": "398137408",
+        "status": "captured",
+        "sha256": "a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718",
+        "bytes": 5599,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\checkpoint-parkour\\a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\checkpoint-parkour\\1b9caa8f397a56fe93b3a5e1ee3e33e265cdeb2aec109ff0778856f69c55c999.component.json",
+        "instanceCount": 4,
+        "scriptCount": 1,
+        "sourceBytes": 885,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "probe": {
+        "ok": true,
+        "running": false,
+        "changes": [
+          {
+            "removed": [
+              "ScriptGlobals",
+              "DataStore",
+              "Network"
+            ],
+            "sandboxedAfter": true,
+            "index": 3,
+            "className": "Script",
+            "sandboxedBefore": true
+          }
+        ],
+        "policy": "remove_only_capabilities_unavailable_to_current_thread",
+        "result": {
+          "bytes": 5599,
+          "archiveSha256": "785b43cd4bcd7b148ed5f7786c4032da785a3654e495f3a0389939fd8c6cca2a",
+          "roundTrip": {
+            "checkedAttributes": 0,
+            "checkedReferences": 0,
+            "checkedProperties": 70,
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ],
+            "passed": true,
+            "unobservableProperties": [
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw",
+              "Script.ScriptGuid"
+            ]
+          },
+          "sourceBytes": 885,
+          "runtimeVerification": "not_performed",
+          "executed": false,
+          "sandboxingUnchanged": true,
+          "status": "captured",
+          "sourceUnchanged": true,
+          "instanceCount": 4,
+          "sourceHashes": [
+            {
+              "index": 3,
+              "sha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+            }
+          ]
+        }
+      },
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:41:12.542Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "d8588e51-6aa0-4188-8358-d92d5aaa36e1",
+            "token": "65bca528-48f0-400a-a433-6bf33734ad85",
+            "scope": "RestrictionRegression_9fecd8ae3387",
+            "stagingPath": "ServerStorage/RestrictionRegression_9fecd8ae3387/AssetStaging/attempt_bb6faafe9d531540f548a3e4",
+            "previewPath": "Workspace/RestrictionRegression_9fecd8ae3387/AssetPreviews/attempt_bb6faafe9d531540f548a3e4",
+            "finalPath": "Workspace/RestrictionRegression_9fecd8ae3387/Assets/checkpointPadModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:41:12.542Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:41:12.553Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:41:12.578Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    }
+  ]
+}

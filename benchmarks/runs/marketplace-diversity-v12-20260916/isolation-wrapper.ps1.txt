@@ -1,0 +1,22 @@
+$ErrorActionPreference = 'Stop'
+$taskPaused = $false
+$taskExit = 2
+$taskEvidence = 'benchmarks/runs/marketplace-diversity-v12-20260916/isolation-bubble'
+try {
+    & .\node_modules\.bin\tsx.cmd .forge/run-studio-isolation.ts pause $taskEvidence
+    if ($LASTEXITCODE -ne 0) { throw 'Isolation pause failed; preserve recovery evidence.' }
+    $taskPaused = $true
+    & .\node_modules\.bin\tsx.cmd .forge/run-diversity-v12.ts
+    $taskExit = $LASTEXITCODE
+} finally {
+    if ($taskPaused) {
+        $taskResultPath = 'benchmarks/runs/marketplace-diversity-v12-20260916/bubble-wrap/results.json'
+        if (!(Test-Path -LiteralPath $taskResultPath)) { throw 'No authoritative terminal result; preserve isolation recovery record.' }
+        $taskResult = Get-Content -LiteralPath $taskResultPath -Raw | ConvertFrom-Json
+        if (!$taskResult.noFurtherCallsPending) { throw 'Calls may be pending; preserve isolation recovery record.' }
+        & .\node_modules\.bin\tsx.cmd .forge/run-studio-isolation.ts restore $taskEvidence
+        if ($LASTEXITCODE -ne 0) { throw 'Isolation restoration needs reconciliation; preserve evidence.' }
+    }
+}
+exit $taskExit
+

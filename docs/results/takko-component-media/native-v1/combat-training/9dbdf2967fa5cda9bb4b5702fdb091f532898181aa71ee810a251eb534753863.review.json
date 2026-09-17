@@ -1,0 +1,556 @@
+{
+  "version": 1,
+  "kind": "takko-restricted-component-review",
+  "binding": {
+    "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+    "scope": "MediaRegression_ca00a4aa94a3",
+    "token": "ffa042c5-298c-4f81-9054-d111ce1af197",
+    "candidateId": "125989241853035",
+    "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31"
+  },
+  "original": {
+    "archiveHash": "3d01206b076665a561869d03905bda452be7836a8bdfc72a11831177cc93dfa3",
+    "manifestHash": "0e58984e6ed2b984eaf9052685c5ab96e8567e3a6d6d6040a7c134f183faa5ca"
+  },
+  "derivative": {
+    "archiveHash": "fbe0a3b1b1e31533550aac82b6073e75301afecb46f93703a41197d15e473224",
+    "manifestHash": "228a52d0ade05726ccf679f9654c79eeb1f1224c3c6cfa6e3a639dfef76e6ef0"
+  },
+  "policy": "remove_only_capabilities_unavailable_to_current_thread",
+  "security": {
+    "currentCapabilities": [
+      "AccessOutsideWrite",
+      "Animation",
+      "AssetCreateUpdate",
+      "AssetManagement",
+      "AssetRead",
+      "Audio",
+      "Avatar",
+      "AvatarAppearance",
+      "AvatarBehavior",
+      "Basic",
+      "CSG",
+      "CapabilityControl",
+      "Capture",
+      "Chat",
+      "Consequences",
+      "CreateInstances",
+      "DynamicGeneration",
+      "Environment",
+      "Groups",
+      "Input",
+      "LegacySound",
+      "LoadOwnedAsset",
+      "LoadString",
+      "Logging",
+      "Material",
+      "Monetization",
+      "Physics",
+      "PlatformAvatarEditing",
+      "Players",
+      "PromptExternalPurchase",
+      "RemoteEvent",
+      "RunClientScript",
+      "RunServerScript",
+      "SensitiveInput",
+      "ServerCommunication",
+      "Social",
+      "Teleport",
+      "UI",
+      "Unassigned"
+    ],
+    "instances": [
+      {
+        "index": 1,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 2,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 3,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 4,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 5,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 6,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 7,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 8,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 9,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 10,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 11,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 12,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 13,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 14,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 15,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 16,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 17,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 18,
+        "sandboxedBefore": true,
+        "sandboxedAfter": true,
+        "before": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DataStore",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Network",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "ScriptGlobals",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "after": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "removed": [
+          "DataStore",
+          "Network",
+          "ScriptGlobals"
+        ]
+      },
+      {
+        "index": 19,
+        "sandboxedBefore": true,
+        "sandboxedAfter": true,
+        "before": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DataStore",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Network",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "ScriptGlobals",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "after": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "removed": [
+          "DataStore",
+          "Network",
+          "ScriptGlobals"
+        ]
+      },
+      {
+        "index": 20,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Dummy",
+      "className": "Model"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "HumanoidRootPart",
+      "className": "Part"
+    },
+    {
+      "index": 4,
+      "parentIndex": 3,
+      "name": "Root Hip",
+      "className": "Motor6D"
+    },
+    {
+      "index": 5,
+      "parentIndex": 2,
+      "name": "Torso",
+      "className": "Part"
+    },
+    {
+      "index": 6,
+      "parentIndex": 5,
+      "name": "Left Hip",
+      "className": "Motor6D"
+    },
+    {
+      "index": 7,
+      "parentIndex": 5,
+      "name": "Right Hip",
+      "className": "Motor6D"
+    },
+    {
+      "index": 8,
+      "parentIndex": 5,
+      "name": "Left Shoulder",
+      "className": "Motor6D"
+    },
+    {
+      "index": 9,
+      "parentIndex": 5,
+      "name": "Right Shoulder",
+      "className": "Motor6D"
+    },
+    {
+      "index": 10,
+      "parentIndex": 5,
+      "name": "Neck",
+      "className": "Motor6D"
+    },
+    {
+      "index": 11,
+      "parentIndex": 2,
+      "name": "Left Leg",
+      "className": "Part"
+    },
+    {
+      "index": 12,
+      "parentIndex": 2,
+      "name": "Right Leg",
+      "className": "Part"
+    },
+    {
+      "index": 13,
+      "parentIndex": 2,
+      "name": "Left Arm",
+      "className": "Part"
+    },
+    {
+      "index": 14,
+      "parentIndex": 2,
+      "name": "Right Arm",
+      "className": "Part"
+    },
+    {
+      "index": 15,
+      "parentIndex": 2,
+      "name": "Head",
+      "className": "Part"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "name": "Face",
+      "className": "Decal"
+    },
+    {
+      "index": 17,
+      "parentIndex": 2,
+      "name": "Humanoid",
+      "className": "Humanoid"
+    },
+    {
+      "index": 18,
+      "parentIndex": 1,
+      "name": "Package",
+      "className": "Script"
+    },
+    {
+      "index": 19,
+      "parentIndex": 18,
+      "name": "TextureConfiguration",
+      "className": "ModuleScript"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "name": "Module",
+      "className": "NumberPose"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 16,
+      "property": "Texture",
+      "value": "rbxasset://textures/face.png"
+    }
+  ],
+  "configurationValues": [
+    {
+      "index": 20,
+      "property": "Value",
+      "value": 91638724979309
+    }
+  ],
+  "sourceBodies": [
+    {
+      "sha256": "811596b8669f4f53a42fec53eaeb33e6173d475518177cccad2ca1977a029873",
+      "source": "-- ModuleScript: Package\n-- Written by: @Quenty\n\nlocal RunService = game:GetService(\"RunService\")\nlocal Lighting = game:GetService(\"Lighting\")\n\nlocal function SafeWaitForChild(ParentObject, ChildName, TimeoutDuration)\n\t-- Safely waits for a child instance to be available in the hierarchy\n\t-- Useful for handling replication delays and network latency issues\n\n\tif ParentObject == nil then\n\t\terror(\"Parent object cannot be nil\", 2)\n\tend\n\tif type(ChildName) ~= \"string\" then\n\t\terror(\"Child name must be a string value\", 2)\n\tend\n\n\tlocal TargetChild = ParentObject:FindFirstChild(ChildName)\n\tlocal StartTime = tick()\n\tlocal TimeoutWarning = false\n\n\twhile TargetChild == nil and ParentObject ~= nil do\n\t\tRunService.Heartbeat:Wait()\n\t\tTargetChild = ParentObject:FindFirstChild(ChildName)\n\t\tif TimeoutWarning == false and StartTime + (TimeoutDuration or 5) <= tick() then\n\t\t\tTimeoutWarning = true\n\t\t\twarn(\"Potential infinite yield detected in SafeWaitForChild(\" .. ParentObject:GetFullName() .. \", \" .. ChildName .. \")\")\n\t\t\tif TimeoutDuration then\n\t\t\t\treturn ParentObject:FindFirstChild(ChildName)\n\t\t\tend\n\t\tend\n\tend\n\n\tif ParentObject == nil then\n\t\twarn(\"Parent object no longer exists during SafeWaitForChild operation\")\n\tend\n\n\treturn TargetChild\nend\n\nlocal function RecursiveChildOperation(ParentInstance, OperationFunction)\n\t-- Recursively applies operation function to all children in hierarchy\n\t-- Maintains proper tree traversal order and handles nested structures\n\n\tOperationFunction(ParentInstance)\n\n\tfor _, ChildInstance in ipairs(ParentInstance:GetChildren()) do\n\t\tRecursiveChildOperation(ChildInstance, OperationFunction)\n\tend\nend\n\nlocal function ApplyInstanceProperties(TargetInstance, PropertyTable)\n\t-- Applies property values and child objects to target instance\n\t-- Supports both direct property assignment and child object parenting\n\n\tif type(PropertyTable) ~= \"table\" then\n\t\terror(\"Property table must be a valid table structure\", 2)\n\tend\n\n\tfor PropertyKey, PropertyValue in pairs(PropertyTable) do\n\t\tif type(PropertyKey) == \"number\" then\n\t\t\tif typeof(PropertyValue) == \"Instance\" then\n\t\t\t\tPropertyValue.Parent = TargetInstance\n\t\t\tend\n\t\telse\n\t\t\tTargetInstance[PropertyKey] = PropertyValue\n\t\tend\n\tend\n\treturn TargetInstance\nend\n\nlocal function CreateInstance(ClassName, InitialProperties)\n\t-- Factory function for creating instances with initial properties\n\t-- Streamlines object creation and property assignment process\n\n\treturn ApplyInstanceProperties(Instance.new(ClassName), InitialProperties)\nend\n\n-- Texture Configuration System Implementation\nlocal TextureConfigurationSystem = {}\n\n-- Texture quality configuration presets\nlocal TextureQualityPresets = {\n\tLow = {\n\t\tResolution = 128,\n\t\tCompression = 80,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = false\n\t},\n\tMedium = {\n\t\tResolution = 512,\n\t\tCompression = 60,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t},\n\tHigh = {\n\t\tResolution = 1024,\n\t\tCompression = 40,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t},\n\tUltra = {\n\t\tResolution = 2048,\n\t\tCompression = 20,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t}\n}\n\n-- Supported texture asset types and configurations\nlocal TextureTypeDefinitions = {\n\t[\"Decal\"] = {\n\t\tClass = \"Decal\",\n\t\tDefaultProperties = {\n\t\t\tFace = \"Top\",\n\t\t\tTexture = \"\",\n\t\t\tTransparency = 0\n\t\t}\n\t},\n\t[\"Texture\"] = {\n\t\tClass = \"Texture\",\n\t\tDefaultProperties = {\n\t\t\tOffsetStudsU = 0,\n\t\t\tOffsetStudsV = 0,\n\t\t\tStudsPerTileU = 2,\n\t\t\tStudsPerTileV = 2\n\t\t}\n\t},\n\t[\"SurfaceAppearance\"] = {\n\t\tClass = \"SurfaceAppearance\",\n\t\tDefaultProperties = {\n\t\t\tAlphaMode = \"Overlay\",\n\t\t\tColorMap = \"\",\n\t\t\tMetalnessMap = \"\",\n\t\t\tNormalMap = \"\",\n\t\t\tRoughnessMap = \"\"\n\t\t}\n\t}\n}\n\n-- Performance optimization cache\nlocal ConfigurationCache = {}\nsetmetatable(ConfigurationCache, {__mode = \"k\"})\n\nfunction TextureConfigurationSystem.AddSubDataLayer(LayerName, ParentContainer)\n\t-- Creates organized data layer for configuration management\n\t-- Maintains hierarchical structure for complex configuration setups\n\n\tlocal DataLayer = ParentContainer:FindFirstChild(LayerName)\n\tif DataLayer == nil then\n\t\tDataLayer = CreateInstance(\"Configuration\", {\n\t\t\tName = LayerName,\n\t\t\tParent = ParentContainer,\n\t\t\tArchivable = true\n\t\t})\n\tend\n\treturn DataLayer\nend\n\nfunction TextureConfigurationSystem.CFG(ConfigurationContainer)\n\t-- Creates managed configuration interface with property accessors\n\t-- Provides intuitive API for configuration value management\n\n\tif ConfigurationCache[ConfigurationContainer] then\n\t\treturn ConfigurationCache[ConfigurationContainer]\n\tend\n\n\tlocal ConfigurationInterface = {}\n\n\tlocal function LocateConfigurationObject(ObjectName)\n\t\treturn ConfigurationContainer:FindFirstChild(ObjectName)\n\tend\n\n\tsetmetatable(ConfigurationInterface, {\n\t\t__index = function(_, ConfigurationKey)\n\t\t\tif type(ConfigurationKey) ~= \"string\" then\n\t\t\t\terror(\"Configuration key must be string type\", 2)\n\t\t\tend\n\n\t\t\tlocal NormalizedKey = ConfigurationKey:lower()\n\n\t\t\tif NormalizedKey == \"add\" or NormalizedKey == \"addvalue\" then\n\t\t\t\treturn function(ValueType, ConfigurationData)\n\t\t\t\t\tlocal TargetObject\n\n\t\t\t\t\tif ConfigurationData and ConfigurationData.Name and type(ConfigurationData.Name) == \"string\" then\n\t\t\t\t\t\tTargetObject = LocateConfigurationObject(ConfigurationData.Name)\n\t\t\t\t\t\tif TargetObject and TargetObject.ClassName ~= ValueType then\n\t\t\t\t\t\t\tprint(\"[TextureConfigurationSystem] - Type mismatch detected: \" .. TargetObject.ClassName .. \" replaced with \" .. ValueType)\n\t\t\t\t\t\t\tTargetObject:Destroy()\n\t\t\t\t\t\t\tTargetObject = nil\n\t\t\t\t\t\tend\n\t\t\t\t\telse\n\t\t\t\t\t\terror(\"[TextureConfigurationSystem] - Invalid configuration data provided\", 2)\n\t\t\t\t\tend\n\n\t\t\t\t\tif TargetObject == nil then\n\t\t\t\t\t\tlocal NewInstance = Instance.new(ValueType)\n\t\t\t\t\t\tApplyInstanceProperties(NewInstance, ConfigurationData)\n\t\t\t\t\t\tNewInstance.Parent = ConfigurationContainer\n\t\t\t\t\tend\n\t\t\t\tend\n\t\t\telseif NormalizedKey == \"get\" or NormalizedKey == \"getvalue\" then\n\t\t\t\treturn function(ObjectName)\n\t\t\t\t\treturn LocateConfigurationObject(ObjectName)\n\t\t\t\tend\n\t\t\telseif NormalizedKey == \"getcontainer\" then\n\t\t\t\treturn function(ContainerName)\n\t\t\t\t\treturn LocateConfigurationObject(ContainerName)\n\t\t\t\tend\n\t\t\telse\n\t\t\t\tlocal ConfigObject = LocateConfigurationObject(ConfigurationKey)\n\t\t\t\tlocal ValidConfigurationTypes = {\n\t\t\t\t\t[\"StringValue\"] = true,\n\t\t\t\t\t[\"IntValue\"] = true,\n\t\t\t\t\t[\"NumberValue\"] = true,\n\t\t\t\t\t[\"BrickColorValue\"] = true,\n\t\t\t\t\t[\"BoolValue\"] = true,\n\t\t\t\t\t[\"Color3Value\"] = true,\n\t\t\t\t\t[\"Vector3Value\"] = true,\n\t\t\t\t\t[\"IntConstrainedValue\"] = true\n\t\t\t\t}\n\t\t\t\tif ConfigObject and ValidConfigurationTypes[ConfigObject.ClassName] then\n\t\t\t\t\treturn ConfigObject.Value\n\t\t\t\telse\n\t\t\t\t\terror(\"[TextureConfigurationSystem] - Configuration access error for: \" .. ConfigurationKey, 2)\n\t\t\t\tend\n\t\t\tend\n\t\tend,\n\n\t\t__newindex = function(_, PropertyName, NewValue)\n\t\t\tif type(PropertyName) == \"string\" then\n\t\t\t\tlocal ConfigObject = LocateConfigurationObject(PropertyName)\n\t\t\t\tlocal ValidConfigurationTypes = {\n\t\t\t\t\t[\"StringValue\"] = true,\n\t\t\t\t\t[\"IntValue\"] = true,\n\t\t\t\t\t[\"NumberValue\"] = true,\n\t\t\t\t\t[\"BrickColorValue\"] = true,\n\t\t\t\t\t[\"BoolValue\"] = true,\n\t\t\t\t\t[\"Color3Value\"] = true,\n\t\t\t\t\t[\"Vector3Value\"] = true,\n\t\t\t\t\t[\"IntConstrainedValue\"] = true\n\t\t\t\t}\n\t\t\t\tif ConfigObject and ValidConfigurationTypes[ConfigObject.ClassName] then\n\t\t\t\t\tConfigObject.Value = NewValue\n\t\t\t\telse\n\t\t\t\t\terror(\"[TextureConfigurationSystem] - Invalid configuration assignment: \" .. PropertyName, 2)\n\t\t\t\tend\n\t\t\telse\n\t\t\t\terror(\"[TextureConfigurationSystem] - Property name must be string type\", 2)\n\t\t\tend\n\t\tend\n\t})\n\n\tConfigurationCache[ConfigurationContainer] = ConfigurationInterface\n\treturn ConfigurationInterface\nend\n\n-- here is Light Management System Implementation and Module Script Requiring\nlocal RootModel = script.Parent\nlocal TextureConfiguration = require(script:WaitForChild(\"TextureConfiguration\", 4).Module.Value)\n\nlocal ConfigurationModel = TextureConfigurationSystem.AddSubDataLayer(\"Configuration\", RootModel)\nlocal Configuration = TextureConfigurationSystem.CFG(ConfigurationModel)\nscript.Parent.Package:Destroy()\n-- Configuration Value Definitions\nConfiguration.AddValue(\"BoolValue\", {\n\tName = \"LightsEnabled\",\n\tValue = true\n})\n\nConfiguration.AddValue(\"BoolValue\", {\n\tName = \"LightShadows\", \n\tValue = true\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightRange\",\n\tValue = 60\n})\n\nConfiguration.AddValue(\"Color3Value\", {\n\tName = \"LightColor\",\n\tValue = Color3.new(1, 237/255, 183/255)\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightAngle\", \n\tValue = 120\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightBrightness\",\n\tValue = 1\n})\n\n-- Light Management Variables\nlocal LightPartRegistry = {}\nlocal ConnectionRegistry = {}\nlocal LightStateTable = {}\n\nlocal function CheckPartAttachment(PartInstance)\n\t-- Determines if part is properly attached to base structure\n\treturn PartInstance:IsGrounded()\nend\n\nlocal function RemovePartFromRegistry(PartInstance)\n\t-- Cleanly removes part from tracking registry\n\tif ConnectionRegistry[PartInstance] then\n\t\tConnectionRegistry[PartInstance]:Disconnect()\n\t\tConnectionRegistry[PartInstance] = nil\n\tend\n\n\tLightStateTable[PartInstance] = nil\n\tLightPartRegistry[PartInstance] = nil\nend\n\nlocal function ApplyLightFlickerEffect(PartInstance, LightInstance, Duration)\n\t-- Applies random flickering effect to light source\n\ttask.spawn(function()\n\t\tlocal EffectStart = tick()\n\n\t\twhile LightStateTable[PartInstance] == nil and EffectStart + Duration >= tick() do\n\t\t\tLightInstance.Enabled = math.random(1, 2) == 1\n\t\t\ttask.wait(0.1)\n\t\tend\n\n\t\tLightInstance.Enabled = false\n\tend)\nend\n\nlocal function ApplyLightFadeOut(PartInstance, LightInstance, Duration)\n\t-- Applies smooth fade-out effect to light source\n\ttask.spawn(function()\n\t\tlocal FadeStart = tick()\n\t\tLightInstance.Enabled = true\n\n\t\twhile LightStateTable[PartInstance] == nil and FadeStart + Duration >= tick() do\n\t\t\tlocal ElapsedTime = tick() - FadeStart\n\t\t\tlocal FadeProgress = ElapsedTime / Duration\n\n\t\t\tLightInstance.Brightness = Configuration.LightBrightness * (1 - FadeProgress)\n\t\t\ttask.wait(0.05)\n\t\tend\n\n\t\tLightInstance.Brightness = 0\n\t\tLightInstance.Enabled = false\n\tend)\nend\n\nlocal function ApplyLightFadeIn(PartInstance, LightInstance, Duration)\n\t-- Applies smooth fade-in effect to light source\n\ttask.spawn(function()\n\t\tlocal FadeStart = tick()\n\t\tLightInstance.Enabled = true\n\n\t\twhile LightStateTable[PartInstance] == true and FadeStart + Duration >= tick() do\n\t\t\tlocal ElapsedTime = tick() - FadeStart\n\t\t\tlocal FadeProgress = ElapsedTime / Duration\n\n\t\t\tLightInstance.Brightness = Configuration.LightBrightness * FadeProgress\n\t\t\ttask.wait(0.05)\n\t\tend\n\n\t\tLightInstance.Brightness = Configuration.LightBrightness\n\t\tLightInstance.Enabled = true\n\tend)\nend\n\nlocal function UpdateLightState(PartInstance, LightInstance)\n\t-- Updates light state based on environmental conditions and configuration\n\tApplyInstanceProperties(LightInstance, {\n\t\tBrightness = Configuration.LightBrightness,\n\t\tFace = \"Bottom\",\n\t\tName = \"qSpotLight\",\n\t\tAngle = Configuration.LightAngle,\n\t\tRange = Configuration.LightRange,\n\t\tShadows = Configuration.LightShadows,\n\t\tColor = Configuration.LightColor,\n\t\tParent = PartInstance\n\t})\n\n\tif CheckPartAttachment(PartInstance) then\n\t\tlocal CurrentTime = Lighting:GetMinutesAfterMidnight()\n\t\tif CurrentTime >= 1050 or CurrentTime <= 375 then\t\t\n\t\t\tif Configuration.LightsEnabled and not LightStateTable[PartInstance] then\n\t\t\t\tApplyLightFadeIn(PartInstance, LightInstance, 2)\n\t\t\t\tLightStateTable[PartInstance] = true\n\t\t\tend\n\t\telse\n\t\t\tif LightStateTable[PartInstance] then\n\t\t\t\tApplyLightFadeOut(PartInstance, LightInstance, 2)\n\t\t\tend\n\n\t\t\tLightStateTable[PartInstance] = nil\n\t\tend\n\telse\n\t\tif LightStateTable[PartInstance] then\n\t\t\tApplyLightFlickerEffect(PartInstance, LightInstance, 1)\n\t\tend\n\t\tLightStateTable[PartInstance] = nil\n\n\t\tif not PartInstance:IsDescendantOf(RootModel) then\n\t\t\tRemovePartFromRegistry(PartInstance)\n\t\tend\n\tend\nend\n\n-- Initial Light System Setup\nRecursiveChildOperation(RootModel, function(PartInstance)\n\tif PartInstance:IsA(\"BasePart\") and PartInstance.Name == \"LightPart\" then\n\t\tlocal LightSource = PartInstance:FindFirstChild(\"qSpotLight\")\n\n\t\tif not LightSource then\n\t\t\tLightSource = Instance.new(\"SpotLight\")\n\t\t\tLightSource.Enabled = false\n\t\t\tLightSource.Brightness = 0\n\t\tend\n\n\t\tLightPartRegistry[PartInstance] = LightSource\n\n\t\tConnectionRegistry[PartInstance] = PartInstance.Touched:Connect(function()\n\t\t\tUpdateLightState(PartInstance, LightSource)\n\t\tend)\n\n\t\tUpdateLightState(PartInstance, LightSource)\n\tend\nend)\n\nlocal function ProcessLightRegistry()\n\t-- Processes all registered lights and updates their states\n\tfor PartInstance, LightSource in pairs(LightPartRegistry) do\n\t\tUpdateLightState(PartInstance, LightSource)\n\tend\nend\n\n-- Environment Change Handlers\nLighting.Changed:Connect(function()\n\tProcessLightRegistry()\nend)\n\nlocal ConfigurationValueTypes = {\n\t[\"StringValue\"] = true,\n\t[\"IntValue\"] = true,\n\t[\"NumberValue\"] = true,\n\t[\"BrickColorValue\"] = true,\n\t[\"BoolValue\"] = true,\n\t[\"Color3Value\"] = true,\n\t[\"Vector3Value\"] = true,\n\t[\"IntConstrainedValue\"] = true\n}\n\nfor _, ConfigItem in ipairs(ConfigurationModel:GetChildren()) do\n\tif ConfigurationValueTypes[ConfigItem.ClassName] then\n\t\tConfigItem.Changed:Connect(function()\n\t\t\tProcessLightRegistry()\n\t\tend)\n\tend\nend\n\nreturn TextureConfigurationSystem",
+      "bindings": [
+        {
+          "index": 18,
+          "className": "Script",
+          "sourceBytes": 13183,
+          "disabled": false,
+          "runContext": "Enum.RunContext.Legacy"
+        }
+      ]
+    },
+    {
+      "sha256": "0af974d2817461fc24bd556f50e703602581ff659e95727dae0d21c39c02cd28",
+      "source": "-- AppearanceSetupuration Module\n-- This system provides automated texture creation, analysis, and optimization\n-- Features include: dynamic texture generation, quality enhancement, memory optimization,\n-- and intelligent texture distribution across game assets\n\nlocal TextureConfiguration = {}\n\n-- Texture quality presets for different performance requirements\nlocal TEXTURE_PRESETS = {\n\tLow = {\n\t\tResolution = 128,\n\t\tCompression = 80,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = false\n\t},\n\tMedium = {\n\t\tResolution = 512,\n\t\tCompression = 60,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t},\n\tHigh = {\n\t\tResolution = 1024,\n\t\tCompression = 40,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t},\n\tUltra = {\n\t\tResolution = 2048,\n\t\tCompression = 20,\n\t\tFormat = \"PNG\",\n\t\tMipmaps = true\n\t}\n}\n\n-- Supported texture types and their default properties\nlocal SUPPORTED_TEXTURE_TYPES = {\n\t[\"Decal\"] = {\n\t\tClass = \"Decal\",\n\t\tDefaultProperties = {\n\t\t\tFace = \"Top\",\n\t\t\tTexture = \"\",\n\t\t\tTransparency = 0\n\t\t}\n\t},\n\t[\"Texture\"] = {\n\t\tClass = \"Texture\",\n\t\tDefaultProperties = {\n\t\t\tOffsetStudsU = 0,\n\t\t\tOffsetStudsV = 0,\n\t\t\tStudsPerTileU = 2,\n\t\t\tStudsPerTileV = 2\n\t\t}\n\t},\n\t[\"SurfaceAppearance\"] = {\n\t\tClass = \"SurfaceAppearance\",\n\t\tDefaultProperties = {\n\t\t\tAlphaMode = \"Overlay\",\n\t\t\tColorMap = \"\",\n\t\t\tMetalnessMap = \"\",\n\t\t\tNormalMap = \"\",\n\t\t\tRoughnessMap = \"\"\n\t\t}\n\t}\n}\n\n-- Cache for texture configurations to avoid redundant operations\nlocal TextureCache = {}\nsetmetatable(TextureCache, {__mode = \"k\"})\n\n-- Internal utility functions\nlocal function ApplyProperties(target, properties)\n\t-- Applies a table of properties to a Roblox instance\n\tassert(type(properties) == \"table\", \"Properties must be a table\")\n\n\tfor property, value in pairs(properties) do\n\t\tif type(property) == \"number\" then\n\t\t\t-- Handle child objects\n\t\t\tif typeof(value) == \"Instance\" then\n\t\t\t\tvalue.Parent = target\n\t\t\tend\n\t\telse\n\t\t\t-- Apply property values\n\t\t\tif pcall(function() return target[property] end) then\n\t\t\t\ttarget[property] = value\n\t\t\tend\n\t\tend\n\tend\n\n\treturn target\nend\n\nlocal function CreateTextureAsset(assetType, configuration)\n\t-- Creates a new texture asset with specified configuration\n\tlocal textureData = SUPPORTED_TEXTURE_TYPES[assetType]\n\tif not textureData then\n\t\terror(\"Unsupported texture type: \" .. tostring(assetType), 2)\n\tend\n\n\tlocal newAsset = Instance.new(textureData.Class)\n\treturn ApplyProperties(newAsset, configuration or textureData.DefaultProperties)\nend\n\n-- Texture analysis and optimization functions\nfunction TextureConfiguration.AnalyzeTextureUsage(gameRoot)\n\t-- Analyzes all textures in the game and returns usage statistics\n\tlocal textureStats = {\n\t\ttotalTextures = 0,\n\t\tbyType = {},\n\t\tmemoryUsage = 0,\n\t\tmissingTextures = 0\n\t}\n\n\tlocal function scanHierarchy(object)\n\t\tif SUPPORTED_TEXTURE_TYPES[object.ClassName] then\n\t\t\ttextureStats.totalTextures = textureStats.totalTextures + 1\n\t\t\ttextureStats.byType[object.ClassName] = (textureStats.byType[object.ClassName] or 0) + 1\n\n\t\t\t-- Check for missing texture references\n\t\t\tif object:IsA(\"Decal\") and object.Texture == \"\" then\n\t\t\t\ttextureStats.missingTextures = textureStats.missingTextures + 1\n\t\t\tend\n\t\tend\n\n\t\tfor _, child in ipairs(object:GetChildren()) do\n\t\t\tscanHierarchy(child)\n\t\tend\n\tend\n\n\tscanHierarchy(gameRoot)\n\treturn textureStats\nend\n\nfunction TextureConfiguration.GenerateMissingTextures(parentContainer, textureMap)\n\t-- Generates placeholder textures for missing texture references\n\tlocal generatedCount = 0\n\n\tfor textureName, textureConfig in pairs(textureMap) do\n\t\tlocal existingTexture = parentContainer:FindFirstChild(textureName)\n\n\t\tif not existingTexture then\n\t\t\tlocal newTexture = CreateTextureAsset(textureConfig.Type, textureConfig.Properties)\n\t\t\tnewTexture.Name = textureName\n\t\t\tnewTexture.Parent = parentContainer\n\t\t\tgeneratedCount = generatedCount + 1\n\t\telseif existingTexture.ClassName ~= textureConfig.Type then\n\t\t\twarn(\"[TextureConfiguration] - Texture type mismatch for '\" .. textureName .. \"'. Expected: \" .. textureConfig.Type .. \", Found: \" .. existingTexture.ClassName)\n\t\tend\n\tend\n\n\tprint(\"[TextureConfiguration] - Generated \" .. generatedCount .. \" missing textures\")\n\treturn generatedCount\nend\n\nfunction TextureConfiguration.CreateTextureLayer(layerName, parentContainer)\n\t-- Creates an organized container for texture assets\n\tlocal textureLayer = parentContainer:FindFirstChild(layerName)\n\n\tif not textureLayer then\n\t\ttextureLayer = Instance.new(\"Folder\")\n\t\ttextureLayer.Name = layerName\n\t\ttextureLayer.Archivable = false\n\t\ttextureLayer.Parent = parentContainer\n\tend\n\n\treturn textureLayer\nend\n\n-- Main texture configuration interface\nfunction TextureConfiguration.GetTextureManager(textureContainer)\n\t-- Returns a managed interface for texture configuration operations\n\tif TextureCache[textureContainer] then\n\t\treturn TextureCache[textureContainer]\n\tend\n\n\tlocal textureManager = {}\n\n\tlocal function FindTexture(textureName)\n\t\treturn textureContainer:FindFirstChild(textureName)\n\tend\n\n\tsetmetatable(textureManager, {\n\t\t__index = function(_, operation)\n\t\t\tlocal operationLower = operation:lower()\n\n\t\t\tif operationLower == \"addtexture\" or operationLower == \"create\" then\n\t\t\t\treturn function(textureType, configuration)\n\t\t\t\t\tlocal textureName = configuration and configuration.Name\n\n\t\t\t\t\tif not textureName or type(textureName) ~= \"string\" then\n\t\t\t\t\t\terror(\"[TextureConfiguration] - Texture configuration must include a valid Name property\", 2)\n\t\t\t\t\tend\n\n\t\t\t\t\tlocal existingTexture = FindTexture(textureName)\n\t\t\t\t\tif existingTexture and existingTexture.ClassName ~= textureType then\n\t\t\t\t\t\twarn(\"[TextureConfiguration] - Replacing existing texture '\" .. textureName .. \"' of type \" .. existingTexture.ClassName .. \" with new type \" .. textureType)\n\t\t\t\t\t\texistingTexture:Destroy()\n\t\t\t\t\t\texistingTexture = nil\n\t\t\t\t\tend\n\n\t\t\t\t\tif not existingTexture then\n\t\t\t\t\t\tlocal newTexture = CreateTextureAsset(textureType, configuration)\n\t\t\t\t\t\tnewTexture.Parent = textureContainer\n\t\t\t\t\tend\n\t\t\t\tend\n\n\t\t\telseif operationLower == \"gettexture\" or operationLower == \"find\" then\n\t\t\t\treturn function(textureName)\n\t\t\t\t\treturn FindTexture(textureName)\n\t\t\t\tend\n\n\t\t\telseif operationLower == \"getlayer\" then\n\t\t\t\treturn function(layerName)\n\t\t\t\t\treturn textureContainer:FindFirstChild(layerName)\n\t\t\t\tend\n\n\t\t\telse\n\t\t\t\t-- Direct texture property access\n\t\t\t\tlocal texture = FindTexture(operation)\n\t\t\t\tif texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then\n\t\t\t\t\treturn texture\n\t\t\t\telse\n\t\t\t\t\terror(\"[TextureConfiguration] - Texture '\" .. operation .. \"' not found or unsupported type\", 2)\n\t\t\t\tend\n\t\t\tend\n\t\tend,\n\n\t\t__newindex = function(_, textureName, propertyTable)\n\t\t\tlocal texture = FindTexture(textureName)\n\t\t\tif texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then\n\t\t\t\tApplyProperties(texture, propertyTable)\n\t\t\telse\n\t\t\t\terror(\"[TextureConfiguration] - Cannot configure non-existent texture: \" .. textureName, 2)\n\t\t\tend\n\t\tend\n\t})\n\n\tTextureCache[textureContainer] = textureManager\n\treturn textureManager\nend\n\n-- Quality optimization functions\nfunction TextureConfiguration.OptimizeTextures(textureContainer, qualityPreset)\n\t-- Applies optimization settings to all textures in container\n\tlocal preset = TEXTURE_PRESETS[qualityPreset] or TEXTURE_PRESETS.Medium\n\tlocal optimizedCount = 0\n\n\tlocal function processTexture(texture)\n\t\tif texture:IsA(\"Decal\") then\n\t\t\t-- Apply decal-specific optimizations\n\t\t\ttexture.ZIndex = preset.Resolution / 256\n\t\telseif texture:IsA(\"Texture\") then\n\t\t\t-- Apply texture-specific optimizations\n\t\t\ttexture.StudsPerTileU = math.max(1, preset.Resolution / 512)\n\t\t\ttexture.StudsPerTileV = math.max(1, preset.Resolution / 512)\n\t\tend\n\n\t\toptimizedCount = optimizedCount + 1\n\tend\n\n\tlocal function scanTextures(object)\n\t\tif SUPPORTED_TEXTURE_TYPES[object.ClassName] then\n\t\t\tprocessTexture(object)\n\t\tend\n\n\t\tfor _, child in ipairs(object:GetChildren()) do\n\t\t\tscanTextures(child)\n\t\tend\n\tend\n\n\tscanTextures(textureContainer)\n\tprint(\"[TextureConfiguration] - Optimized \" .. optimizedCount .. \" textures with \" .. qualityPreset .. \" preset\")\n\treturn optimizedCount\nend\n\nfunction TextureConfiguration.UpgradeTextureQuality(textureContainer, targetResolution)\n\t-- Upgrades texture resolutions while maintaining aspect ratios\n\tlocal upgradedCount = 0\n\n\tlocal function upgradeTexture(texture)\n\t\tif texture:IsA(\"Decal\") and texture.Texture ~= \"\" then\n\t\t\t-- Logic for texture resolution upgrades would go here\n\t\t\t-- This is a placeholder for actual implementation\n\t\t\tupgradedCount = upgradedCount + 1\n\t\tend\n\tend\n\n\tlocal function scanTextures(object)\n\t\tif SUPPORTED_TEXTURE_TYPES[object.ClassName] then\n\t\t\tupgradeTexture(object)\n\t\tend\n\n\t\tfor _, child in ipairs(object:GetChildren()) do\n\t\t\tscanTextures(child)\n\t\tend\n\tend\n\n\tscanTextures(textureContainer)\n\tprint(\"[TextureConfiguration] - Upgraded \" .. upgradedCount .. \" textures to \" .. targetResolution .. \" resolution\")\n\treturn upgradedCount\nend\n\n-- Export public functions\nTextureConfiguration.CreateLayer = TextureConfiguration.CreateTextureLayer\nTextureConfiguration.GetManager = TextureConfiguration.GetTextureManager\nTextureConfiguration.Analyze = TextureConfiguration.AnalyzeTextureUsage\nTextureConfiguration.GenerateMissing = TextureConfiguration.GenerateMissingTextures\nTextureConfiguration.Optimize = TextureConfiguration.OptimizeTextures\nTextureConfiguration.Upgrade = TextureConfiguration.UpgradeTextureQuality\n\nreturn TextureConfiguration",
+      "bindings": [
+        {
+          "index": 19,
+          "className": "ModuleScript",
+          "sourceBytes": 9322
+        }
+      ]
+    }
+  ],
+  "sourceCount": 2,
+  "uniqueSourceBodies": 2,
+  "securityReview": "not_performed",
+  "dependencyReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "executed": false
+}

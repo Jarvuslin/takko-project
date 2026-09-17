@@ -1,0 +1,646 @@
+{
+  "kind": "native-product-audio-regression",
+  "benchmarkEligible": false,
+  "paidCalls": 0,
+  "sourceProject": "D:\\RobloxProjects\\Roblox Gen\\benchmarks\\runs\\marketplace-diversity-v6-20260916\\checkpoint-parkour\\final-project.json",
+  "sourceSha256": "e366240240f26d69ca56194625fd0a0e80130ba5f3b3d5725ec198c3ba2020c2",
+  "sourceHashesAtStart": {
+    "src/generation/studio-audio-runtime.ts": "60b2cd7a79c0fb552bcc36b2440cf8bc31f9a688388f8df86087efbb6180f202",
+    "src/generation/studio-asset-adapter.ts": "371494dca2eef54910a7b6bcf2a866402d9dc80d6f645abdf18f4d41da599585",
+    "src/generation/audio-capture.ts": "5b98723827c174fc68a15063fe6fe636baf8455f57b04c52de33278343e43247",
+    "src/generation/audio-evidence.ts": "85c621b71e01e9befe4640451f36da0a0afb9d22741070e7f1d50b992893a4f5",
+    "src/generation/studio-state.ts": "8deb7ea2ea17edb4316d5bc932f11997d5379c400d99ca2f9f6e0e957fc29c2c"
+  },
+  "selection": {
+    "at": "2026-09-16T10:12:23.149Z",
+    "needId": "checkpointSfx",
+    "step": "candidate_selected",
+    "data": {
+      "candidate": {
+        "id": "1840084286",
+        "name": "Musical Doorbell (d)",
+        "description": "Single door chime\r\nDuration: 3 seconds\r\n\r\nGenre: Sound Elements/Atmospheres\r\nLibrary: Juice Music - Online\r\nAlbum: LOGOS LINKS STINGS AND MUSICAL FX\r\nAlbum Info: A collection of popular ringtones ranging from action to children.\r\n\r\nCourtesy of APM Music.",
+        "kind": "Audio",
+        "creator": "APMOfficial",
+        "sourceUrl": "https://create.roblox.com/store/asset/1840084286",
+        "price": 0,
+        "source": "creator_store"
+      },
+      "reason": "APMOfficial's 'Musical Doorbell (d)' is a verified 3-second licensed chime sound effect from APM Music that directly matches the short positive confirmation audio requirement for checkpoint activation. Selecting for native audition and integration into the checkpoint trigger sequence.",
+      "attempt": 1
+    }
+  },
+  "query": "checkpoint chime ding",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "scope": "TakkoAudioDiagnostic_b1dcabee1dc24223",
+  "startedAt": "2026-09-16T10:13:47.918Z",
+  "passed": false,
+  "discovery": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+      }
+    ],
+    "isError": false
+  },
+  "before": {
+    "content": [
+      {
+        "type": "text",
+        "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+      }
+    ],
+    "isError": false
+  },
+  "search": {
+    "candidates": [
+      {
+        "id": "84477431394025",
+        "name": "Electric Piano #2 (instrument)",
+        "kind": "Audio",
+        "creator": "Herobook2rr337",
+        "sourceUrl": "https://create.roblox.com/store/asset/84477431394025",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Instrumental timbre created for beatmerger"
+      },
+      {
+        "id": "70807797551574",
+        "name": "Electric Piano #2 (Longer Version)",
+        "kind": "Audio",
+        "creator": "Herobook2rr337",
+        "sourceUrl": "https://create.roblox.com/store/asset/70807797551574",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Instrument sound samples produced for Beatmerger"
+      },
+      {
+        "id": "120295987263577",
+        "name": "2",
+        "kind": "Audio",
+        "creator": "AllCharle",
+        "sourceUrl": "https://create.roblox.com/store/asset/120295987263577",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "85309927512706",
+        "name": "bell",
+        "kind": "Audio",
+        "creator": "itemcrate",
+        "sourceUrl": "https://create.roblox.com/store/asset/85309927512706",
+        "price": 0,
+        "source": "creator_store",
+        "description": "probably a troll door"
+      },
+      {
+        "id": "121787666719802",
+        "name": "Sound Effect BELL",
+        "kind": "Audio",
+        "creator": "meed3r",
+        "sourceUrl": "https://create.roblox.com/store/asset/121787666719802",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "1840084286",
+        "name": "Musical Doorbell (d)",
+        "kind": "Audio",
+        "creator": "APMOfficial",
+        "sourceUrl": "https://create.roblox.com/store/asset/1840084286",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Single door chime\r\nDuration: 3 seconds\r\n\r\nGenre: Sound Elements/Atmospheres\r\nLibrary: Juice Music - Online\r\nAlbum: LOGOS LINKS STINGS AND MUSICAL FX\r\nAlbum Info: A collection of popular ringtones ranging from action to children.\r\n\r\nCourtesy of APM Music."
+      },
+      {
+        "id": "1053866619",
+        "name": "Sonic Unleashed SFX - Trick Jump Success",
+        "kind": "Audio",
+        "creator": "penguinology",
+        "sourceUrl": "https://create.roblox.com/store/asset/1053866619",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "2305346708",
+        "name": "Door open bell",
+        "kind": "Audio",
+        "creator": "HeadlessDeathSpeaker",
+        "sourceUrl": "https://create.roblox.com/store/asset/2305346708",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "117091335334155",
+        "name": "killsound",
+        "kind": "Audio",
+        "creator": "Artisticiant",
+        "sourceUrl": "https://create.roblox.com/store/asset/117091335334155",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "72736992076010",
+        "name": "DHX1",
+        "kind": "Audio",
+        "creator": "em_foray",
+        "sourceUrl": "https://create.roblox.com/store/asset/72736992076010",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "136971883800678",
+        "name": "Claw_Blue_Cast2",
+        "kind": "Audio",
+        "creator": "Shadowyenz",
+        "sourceUrl": "https://create.roblox.com/store/asset/136971883800678",
+        "price": 0,
+        "source": "creator_store",
+        "description": "W serum Finish Lobotomy Corp\n"
+      },
+      {
+        "id": "104020492215717",
+        "name": "Claw_Blue_Cast2",
+        "kind": "Audio",
+        "creator": "P3rl0v",
+        "sourceUrl": "https://create.roblox.com/store/asset/104020492215717",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "101933744391575",
+        "name": "American Dream II Chime U3",
+        "kind": "Audio",
+        "creator": "Calviores Elevator LLC.",
+        "sourceUrl": "https://create.roblox.com/store/asset/101933744391575",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio made in Scratch"
+      },
+      {
+        "id": "84108988867664",
+        "name": "black soul ドアチャイム1",
+        "kind": "Audio",
+        "creator": "IWASTHEREWHENITDID",
+        "sourceUrl": "https://create.roblox.com/store/asset/84108988867664",
+        "price": 0,
+        "source": "creator_store",
+        "description": "correct effect"
+      },
+      {
+        "id": "115436623915938",
+        "name": "Electric Piano (instrument)",
+        "kind": "Audio",
+        "creator": "Herobook2rr337",
+        "sourceUrl": "https://create.roblox.com/store/asset/115436623915938",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Instrumental timbre created for beatmerger"
+      },
+      {
+        "id": "89893376560375",
+        "name": "MWII Elevator Bell",
+        "kind": "Audio",
+        "creator": "Arad19961",
+        "sourceUrl": "https://create.roblox.com/store/asset/89893376560375",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Credit: Infinity Ward"
+      },
+      {
+        "id": "127488139302452",
+        "name": "Shop Bell open",
+        "kind": "Audio",
+        "creator": "KOT’s Clan",
+        "sourceUrl": "https://create.roblox.com/store/asset/127488139302452",
+        "price": 0,
+        "source": "creator_store",
+        "description": "For all your purposes!"
+      },
+      {
+        "id": "107375298355612",
+        "name": "new-cp",
+        "kind": "Audio",
+        "creator": "DevNub Community",
+        "sourceUrl": "https://create.roblox.com/store/asset/107375298355612",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "127095638488054",
+        "name": "pvz gw2 vanquish",
+        "kind": "Audio",
+        "creator": "Ballamouch",
+        "sourceUrl": "https://create.roblox.com/store/asset/127095638488054",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      },
+      {
+        "id": "86855123090967",
+        "name": "plants vs zombies garden warfare 2 vanquish",
+        "kind": "Audio",
+        "creator": "Ballamouch",
+        "sourceUrl": "https://create.roblox.com/store/asset/86855123090967",
+        "price": 0,
+        "source": "creator_store",
+        "description": "Audio"
+      }
+    ],
+    "receipts": [
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:48.003Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "search_asset",
+        "at": "2026-09-16T10:13:48.211Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"scope\":\"creator_store\",\"nextSteps\":[\"Review the results and choose the best asset for the user's request. Prefer inventory results (source='inventory') as these are already owned and always insertable.\",\"For free/owned assets: call insert_asset with assetId, assetType, and assetName from the chosen result to insert it.\",\"For paid assets (isFree=false): show the user the creatorStoreUrl link and priceLabel so they can purchase it. Do not attempt to insert paid assets — they will fail.\",\"Some Creator Store assets may be restricted or moderated and fail to insert. If insert_asset fails, try the next result from the list rather than retrying the same asset.\"],\"resultCount\":20,\"query\":\"checkpoint chime ding\",\"status\":\"success\",\"searchSources\":[\"creator_store\"],\"context\":{\"userId\":\"11119876005\",\"isPublished\":false},\"results\":[{\"description\":\"Instrumental timbre created for beatmerger\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/84477431394025\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=84477431394025&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"84477431394025\",\"name\":\"Electric Piano #2 (instrument)\",\"priceCents\":0,\"creatorName\":\"Herobook2rr337\",\"source\":\"creator_store\"},{\"description\":\"Instrument sound samples produced for Beatmerger\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/70807797551574\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=70807797551574&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"70807797551574\",\"name\":\"Electric Piano #2 (Longer Version)\",\"priceCents\":0,\"creatorName\":\"Herobook2rr337\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/120295987263577\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=120295987263577&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"120295987263577\",\"name\":\"2\",\"priceCents\":0,\"creatorName\":\"AllCharle\",\"source\":\"creator_store\"},{\"description\":\"probably a troll door\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/85309927512706\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=85309927512706&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"85309927512706\",\"name\":\"bell\",\"priceCents\":0,\"creatorName\":\"itemcrate\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/121787666719802\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=121787666719802&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"121787666719802\",\"name\":\"Sound Effect BELL\",\"priceCents\":0,\"creatorName\":\"meed3r\",\"source\":\"creator_store\"},{\"description\":\"Single door chime\\r\\nDuration: 3 seconds\\r\\n\\r\\nGenre: Sound Elements/Atmospheres\\r\\nLibrary: Juice Music - Online\\r\\nAlbum: LOGOS LINKS STINGS AND MUSICAL FX\\r\\nAlbum Info: A collection of popular ringtones ranging from action to children.\\r\\n\\r\\nCourtesy of APM Music.\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/1840084286\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=1840084286&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"1840084286\",\"name\":\"Musical Doorbell (d)\",\"priceCents\":0,\"creatorName\":\"APMOfficial\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/1053866619\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=1053866619&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"1053866619\",\"name\":\"Sonic Unleashed SFX - Trick Jump Success\",\"priceCents\":0,\"creatorName\":\"penguinology\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/2305346708\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=2305346708&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"2305346708\",\"name\":\"Door open bell\",\"priceCents\":0,\"creatorName\":\"HeadlessDeathSpeaker\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/117091335334155\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=117091335334155&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"117091335334155\",\"name\":\"killsound\",\"priceCents\":0,\"creatorName\":\"Artisticiant\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/72736992076010\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=72736992076010&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"72736992076010\",\"name\":\"DHX1\",\"priceCents\":0,\"creatorName\":\"em_foray\",\"source\":\"creator_store\"},{\"description\":\"W serum Finish Lobotomy Corp\\n\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/136971883800678\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=136971883800678&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"136971883800678\",\"name\":\"Claw_Blue_Cast2\",\"priceCents\":0,\"creatorName\":\"Shadowyenz\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/104020492215717\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=104020492215717&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"104020492215717\",\"name\":\"Claw_Blue_Cast2\",\"priceCents\":0,\"creatorName\":\"P3rl0v\",\"source\":\"creator_store\"},{\"description\":\"Audio made in Scratch\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/101933744391575\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=101933744391575&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"101933744391575\",\"name\":\"American Dream II Chime U3\",\"priceCents\":0,\"creatorName\":\"Calviores Elevator LLC.\",\"source\":\"creator_store\"},{\"description\":\"correct effect\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/84108988867664\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=84108988867664&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"84108988867664\",\"name\":\"black soul ドアチャイム1\",\"priceCents\":0,\"creatorName\":\"IWASTHEREWHENITDID\",\"source\":\"creator_store\"},{\"description\":\"Instrumental timbre created for beatmerger\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/115436623915938\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=115436623915938&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"115436623915938\",\"name\":\"Electric Piano (instrument)\",\"priceCents\":0,\"creatorName\":\"Herobook2rr337\",\"source\":\"creator_store\"},{\"description\":\"Credit: Infinity Ward\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/89893376560375\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=89893376560375&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"89893376560375\",\"name\":\"MWII Elevator Bell\",\"priceCents\":0,\"creatorName\":\"Arad19961\",\"source\":\"creator_store\"},{\"description\":\"For all your purposes!\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/127488139302452\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=127488139302452&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"127488139302452\",\"name\":\"Shop Bell open\",\"priceCents\":0,\"creatorName\":\"KOT’s Clan\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/107375298355612\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=107375298355612&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"107375298355612\",\"name\":\"new-cp\",\"priceCents\":0,\"creatorName\":\"DevNub Community\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/127095638488054\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=127095638488054&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"127095638488054\",\"name\":\"pvz gw2 vanquish\",\"priceCents\":0,\"creatorName\":\"Ballamouch\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/86855123090967\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=86855123090967&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"86855123090967\",\"name\":\"plants vs zombies garden warfare 2 vanquish\",\"priceCents\":0,\"creatorName\":\"Ballamouch\",\"source\":\"creator_store\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    ]
+  },
+  "error": {
+    "message": "Active place scripts prevent isolated audition",
+    "classification": "infrastructure_failure",
+    "effects": "none",
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T10:13:48.216Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "prepare",
+          "sessionId": "acb25399-dbc0-4cbe-8e89-7282ed091802",
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3",
+          "scope": "TakkoAudioDiagnostic_b1dcabee1dc24223",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetStaging/attempt_b4d54755ddb6d27b855815cf",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetPreviews/attempt_b4d54755ddb6d27b855815cf",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/Assets/checkpointSfx"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:48.218Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T10:13:48.229Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T10:13:48.261Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:48.265Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T10:13:48.273Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "insert_asset",
+        "at": "2026-09-16T10:13:48.335Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"insertGuid\":\"0e7dfef8-4c42-4d00-bd77-527fe97b279e\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.TakkoAudioDiagnostic_b1dcabee1dc24223.AssetStaging.attempt_b4d54755ddb6d27b855815cf.Imported\",\"name\":\"Imported\",\"className\":\"Sound\"}],\"sandboxed\":false,\"assetType\":\"Audio\",\"assetId\":\"1840084286\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:0e7dfef8-4c42-4d00-bd77-527fe97b279e\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T10:13:48.335Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "inspect",
+          "sessionId": "acb25399-dbc0-4cbe-8e89-7282ed091802",
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3",
+          "scope": "TakkoAudioDiagnostic_b1dcabee1dc24223",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetStaging/attempt_b4d54755ddb6d27b855815cf",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetPreviews/attempt_b4d54755ddb6d27b855815cf",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/Assets/checkpointSfx"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:48.336Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T10:13:48.354Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T10:13:48.448Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"reasons\":[],\"center\":[0,0,0],\"ok\":true,\"functional\":{\"scriptCount\":0,\"contentLoaded\":true,\"instanceCount\":1},\"operation\":\"inspect\",\"marker\":\"takko_asset_v1\",\"size\":1}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T10:13:48.449Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "preview",
+          "sessionId": "acb25399-dbc0-4cbe-8e89-7282ed091802",
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3",
+          "scope": "TakkoAudioDiagnostic_b1dcabee1dc24223",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetStaging/attempt_b4d54755ddb6d27b855815cf",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetPreviews/attempt_b4d54755ddb6d27b855815cf",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/Assets/checkpointSfx"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:48.450Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T10:13:48.465Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T10:13:48.560Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"preview\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_binding",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:49.064Z",
+        "data": {
+          "binding": {
+            "pid": 12712,
+            "startedAt": "2026-09-15T18:52:26.9645393Z",
+            "executable": "C:\\Users\\7474g\\AppData\\Local\\Roblox\\Versions\\version-55808de4b1914919\\RobloxStudioBeta.exe"
+          },
+          "marker": "TakkoAudition_b13b27faa5914d5e83b61ef8590dde90",
+          "nonce": "b13b27fa-a591-4d5e-83b6-1ef8590dde90",
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3"
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:49.524Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:49.554Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":false,\"nonce\":\"b13b27fa-a591-4d5e-83b6-1ef8590dde90\",\"operation\":\"prepare\",\"marker\":\"takko_audio_runtime_v1\",\"reason\":\"Active place scripts prevent isolated audition\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:50.052Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:50.080Z",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"operation\":\"restore\",\"marker\":\"takko_audio_runtime_v1\",\"ok\":true,\"nonce\":\"b13b27fa-a591-4d5e-83b6-1ef8590dde90\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "audio_runtime_restored",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "at": "2026-09-16T10:13:50.080Z",
+        "data": {
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3",
+          "nonce": "b13b27fa-a591-4d5e-83b6-1ef8590dde90",
+          "editVerified": true,
+          "markerRemoved": true
+        }
+      },
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T10:13:50.080Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "discard",
+          "sessionId": "acb25399-dbc0-4cbe-8e89-7282ed091802",
+          "token": "720fe411-d4e7-4da1-8ae4-319502b824c3",
+          "scope": "TakkoAudioDiagnostic_b1dcabee1dc24223",
+          "stagingPath": "ServerStorage/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetStaging/attempt_b4d54755ddb6d27b855815cf",
+          "previewPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/AssetPreviews/attempt_b4d54755ddb6d27b855815cf",
+          "finalPath": "Workspace/TakkoAudioDiagnostic_b1dcabee1dc24223/Assets/checkpointSfx"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T10:13:50.081Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T10:13:50.097Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T10:13:50.122Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"removed\":2,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    ]
+  },
+  "finishedAt": "2026-09-16T10:13:50.123Z"
+}

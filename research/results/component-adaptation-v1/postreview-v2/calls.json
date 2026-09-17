@@ -1,0 +1,62 @@
+[
+  {
+    "case": "bubble-wrap",
+    "id": 1,
+    "reserve": 0.111912,
+    "status": 200,
+    "cost": 0.02813325,
+    "usage": {
+      "prompt_tokens": 21271,
+      "completion_tokens": 3248,
+      "total_tokens": 24519,
+      "cost": 0.02813325,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.02813325,
+        "upstream_inference_prompt_cost": 0.01595325,
+        "upstream_inference_completions_cost": 0.01218
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1022,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  },
+  {
+    "case": "checkpoint-parkour",
+    "id": 2,
+    "reserve": 0.074691,
+    "status": 200,
+    "cost": 0.01416825,
+    "usage": {
+      "prompt_tokens": 7531,
+      "completion_tokens": 2272,
+      "total_tokens": 9803,
+      "cost": 0.01416825,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.01416825,
+        "upstream_inference_prompt_cost": 0.00564825,
+        "upstream_inference_completions_cost": 0.00852
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 966,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+]

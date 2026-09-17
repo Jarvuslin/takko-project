@@ -1,0 +1,46 @@
+{
+  "verifiedAt": "2026-09-16T03:34:40.2874439Z",
+  "offline": {
+    "log": ".forge/asset-audio-final-evaluation-check.log",
+    "note": "Final full check includes9 harness tests and10 frozen-evaluator tests; all stages passed",
+    "desktopTests": 10,
+    "command": "npm run check",
+    "browserTests": 36,
+    "unitApiTests": 637,
+    "additionalHarnessTests": 9,
+    "exitCode": 0
+  },
+  "native": {
+    "gameplay": "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/native-evaluation/RESULTS.md",
+    "autonomousAssetTrial": "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json",
+    "diagnosticReplay": "docs/results/takko-audio-runtime-native-v2/result.json",
+    "assetStagePassed": true
+  },
+  "loadedRuntime": {
+    "reloaded": true,
+    "pid": 22236,
+    "port": 4324,
+    "configuredProfiles": 4,
+    "keyObjectsPreserved": true,
+    "moduleUrl": "file:///D:/RobloxProjects/Roblox%20Gen/.forge/hot/asset-audio.mjs?reload=1789528057992",
+    "at": "2026-09-16T03:07:38.247Z"
+  },
+  "sourceHashes": {
+    "src/generation/engine.ts": "aa09f46d7726412d38a4b5fc3aa9119bf921eab074acb36363d15d8dd2993c40",
+    "src/generation/requirements.ts": "5f1bdaaeccf4d80dfdee44f7fce6b672f60cfd75bc526e84d8e6dc43d1e5c3ef",
+    "src/generation/diagnostics.ts": "2659338f808f7489c8fe48efbd71c0790805ad962066e496cc145719df600d70",
+    "src/generation/asset-contract.ts": "dfd9188207ef9709e4987eaceec1bc381d8586e2320e4789a76ca2aca7462606",
+    "src/generation/asset-pipeline.ts": "518991905f644d12ec98165338e6ef1c11f8833639822975ef7db51f1443b8d1",
+    "src/generation/studio-asset-adapter.ts": "11166b3fdf3bf1ca90ef96609331bb9acb2bf26eb15347cd72b50fb9cd1d40d7",
+    "src/generation/studio-audio-runtime.ts": "60b2cd7a79c0fb552bcc36b2440cf8bc31f9a688388f8df86087efbb6180f202",
+    "src/generation/audio-capture.ts": "5b98723827c174fc68a15063fe6fe636baf8455f57b04c52de33278343e43247",
+    "src/generation/audio-evidence.ts": "85c621b71e01e9befe4640451f36da0a0afb9d22741070e7f1d50b992893a4f5",
+    "scripts/run-butter-crunch-benchmark.ts": "d9d073f4513175bcb0c3245ad379df7953f4b84d33cae9ae7693baf4c6991242"
+  },
+  "cost": {
+    "combinedReservationsMicros": 4515084,
+    "combinedChargedMicros": 510904,
+    "pendingCalls": 0,
+    "ceilingMicros": 6000000
+  }
+}

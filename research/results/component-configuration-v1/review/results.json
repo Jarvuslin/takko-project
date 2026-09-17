@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "case": "combat-training",
+      "contractPassed": true,
+      "disposition": "needs_more_evidence",
+      "reason": "The R6 humanoid dummy model hierarchy with Motor6D joints and Humanoid is reusable for training, but the included Package script requires an uninspected external numeric asset (91638724979309) and contains irrelevant lighting code.",
+      "sourceBodies": 2,
+      "mediaBindings": 1,
+      "mediaGroups": 1,
+      "costUSD": 0.0495795,
+      "durationMs": 35786
+    },
+    {
+      "case": "bubble-wrap",
+      "contractPassed": true,
+      "disposition": "unsuitable",
+      "reason": "Asset contains an obfuscated backdoor loader in TypeConfig that attempts numeric require via NumberPose (ID 99292559910041) and MarketplaceService hijacking.",
+      "sourceBodies": 5,
+      "mediaBindings": 72,
+      "mediaGroups": 1,
+      "costUSD": 0.07376250000000001,
+      "durationMs": 49170
+    },
+    {
+      "case": "checkpoint-parkour",
+      "contractPassed": true,
+      "disposition": "integration_candidate",
+      "reason": "Compact checkpoint pad model with decal texture and legacy spawn tracking script. Usable as a checkpoint platform asset after adapting checkpoint logic to enforce ordered progression and adding activation visual/audio effects.",
+      "sourceBodies": 1,
+      "mediaBindings": 1,
+      "mediaGroups": 1,
+      "costUSD": 0.016425,
+      "durationMs": 18237
+    }
+  ],
+  "costUSD": 0.139767,
+  "semanticAccuracy": "not_scored",
+  "nativeGameplay": false
+}

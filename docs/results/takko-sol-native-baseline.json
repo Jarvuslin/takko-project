@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-09-15",
+  "artifactSha256": "f0341c78c67fb063bfa2c65d538939bcc188c5371125c25cbde842b5549ad257",
+  "studioId": "d72be294-1b78-4b57-a8bf-9b44e20ad492",
+  "place": "Takko-Sol.rbxlx",
+  "clientCount": 1,
+  "visualObservation": "Flat gray platform with three colored block forms; user rejected the scene as terrible and too simple. No visual-quality pass.",
+  "passed": [
+    "Fresh player Carry=0 Coins=0; exactly one named HUD and its four controls",
+    "Native keyboard E collects one item",
+    "Five further spaced E presses reach capacity5 and do not overflow",
+    "Native keyboard Q at SellPad clears inventory and awards50coins",
+    "HUD reads Carry: 0/5 and Coins: 50 after sale",
+    "Empty Q sale leaves coins50",
+    "Collecting twice then actual LoadCharacterAsync preserves Carry2 Coins50",
+    "Post-respawn HUD reads Carry: 2/5 and Coins: 50 without duplicate controls",
+    "Native Q sale after respawn clears inventory and brings coins70"
+  ],
+  "arrangement": "Server-side avatar positioning at the generated interaction parts; no game source, reward, inventory or cooldown modifications. Actual generated input handlers received official MCP keyboard events.",
+  "blocked": [
+    "MCP direct Action:FireServer rejected by capability sandbox: Action has additional capabilities LoadUnownedAsset and3more. Malformed-remote oracle stopped before issuing its first action."
+  ],
+  "notVerified": ["adversarial remotes", "cooldown burst", "distant/dead-player rejection", "multiplayer isolation", "touch button activation", "mobile layout", "complete visual acceptance"],
+  "endState": "Play stopped; original exported artifact unchanged"
+}

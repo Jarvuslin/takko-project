@@ -1,0 +1,151 @@
+[
+  {
+    "repo": "anomalyco/opencode",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "packages/opencode/src/session/processor.ts",
+      "packages/opencode/src/session/compaction.ts",
+      "packages/opencode/src/agent/agent.ts",
+      "packages/opencode/src/permission/evaluate.ts",
+      "packages/opencode/test/session/compaction.test.ts",
+      "packages/opencode/src/permission/index.ts"
+    ]
+  },
+  {
+    "repo": "cline/cline",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "sdk/packages/core/src/extensions/context/basic-compaction.ts",
+      "sdk/packages/core/src/extensions/context/agentic-compaction.ts",
+      "sdk/packages/core/src/extensions/tools/runtime.ts",
+      "sdk/packages/core/src/extensions/tools/executors/output-limits.ts",
+      "sdk/packages/core/src/extensions/tools/team/delegated-agent.ts",
+      "sdk/packages/core/src/runtime/safety/loop-detection.ts",
+      "sdk/packages/core/src/hooks/checkpoint-hooks.ts",
+      "sdk/packages/core/src/extensions/tools/model-tool-routing.ts",
+      "sdk/packages/core/src/extensions/tools/executors/apply-patch.ts",
+      "sdk/packages/core/src/runtime/tools/tool-approval.ts"
+    ]
+  },
+  {
+    "repo": "block/goose",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "crates/goose/src/agents/state_machine/mod.rs",
+      "crates/goose/src/agents/state_machine/ops_tool_pair_compaction.rs",
+      "crates/goose/src/agents/state_machine/ops_compaction.rs",
+      "crates/goose/src/agents/large_response_handler.rs",
+      "documentation/docs/guides/recipes/recipe-reference.md",
+      "crates/goose-context-management/src/structured.rs"
+    ]
+  },
+  {
+    "repo": "Aider-AI/aider",
+    "files": [
+      "LICENSE.txt",
+      "README.md",
+      "aider/repomap.py",
+      "aider/coders/architect_coder.py",
+      "aider/coders/editblock_coder.py",
+      "tests/basic/test_repomap.py"
+    ]
+  },
+  {
+    "repo": "SWE-agent/SWE-agent",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "sweagent/agent/agents.py",
+      "sweagent/agent/history_processors.py",
+      "tests/test_history_processors.py"
+    ]
+  },
+  {
+    "repo": "SWE-agent/mini-swe-agent",
+    "files": [
+      "LICENSE.md",
+      "README.md",
+      "src/minisweagent/agents/default.py",
+      "src/minisweagent/environments/local.py",
+      "src/minisweagent/config/default.yaml",
+      "tests/agents/test_default.py"
+    ]
+  },
+  {
+    "repo": "SWE-agent/SWE-ReX",
+    "files": [
+      "LICENSE.txt",
+      "README.md",
+      "src/swerex/runtime/abstract.py",
+      "src/swerex/runtime/remote.py",
+      "src/swerex/runtime/local.py",
+      "src/swerex/deployment/abstract.py"
+    ]
+  },
+  {
+    "repo": "All-Hands-AI/OpenHands",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "package.json",
+      "scripts/check-sdk-version-sync.mjs"
+    ]
+  },
+  {
+    "repo": "OpenHands/software-agent-sdk",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "openhands-sdk/openhands/sdk/conversation/event_store.py",
+      "openhands-sdk/openhands/sdk/conversation/state.py",
+      "openhands-sdk/openhands/sdk/conversation/stuck_detector.py",
+      "openhands-sdk/openhands/sdk/event/types.py",
+      "openhands-sdk/openhands/sdk/tool/schema.py",
+      "openhands-sdk/openhands/sdk/context/condenser/llm_summarizing_condenser.py",
+      "openhands-sdk/openhands/sdk/agent/parallel_executor.py"
+    ]
+  },
+  {
+    "repo": "continuedev/continue",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "core/context/retrieval/pipelines/BaseRetrievalPipeline.ts",
+      "extensions/cli/src/compaction.ts",
+      "core/util/conversationCompaction.ts",
+      "core/context/retrieval/pipelines/RerankerRetrievalPipeline.ts"
+    ]
+  },
+  {
+    "repo": "RooCodeInc/Roo-Code",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "src/core/tools/NewTaskTool.ts",
+      "src/core/tools/ToolRepetitionDetector.ts",
+      "src/core/task/build-tools.ts",
+      "src/core/condense/index.ts",
+      "src/core/checkpoints/index.ts",
+      "src/core/task/__tests__/new-task-isolation.spec.ts",
+      "src/shared/modes.ts"
+    ]
+  },
+  {
+    "repo": "spacedriveapp/spacebot",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "docs/content/docs/(core)/architecture.mdx",
+      "docs/content/docs/(core)/chronicles.mdx",
+      "docs/content/docs/(features)/workers.mdx",
+      "src/agent/branch.rs",
+      "src/agent/worker.rs",
+      "src/agent/compactor.rs",
+      "src/memory/search.rs",
+      "src/llm/routing.rs"
+    ]
+  }
+]

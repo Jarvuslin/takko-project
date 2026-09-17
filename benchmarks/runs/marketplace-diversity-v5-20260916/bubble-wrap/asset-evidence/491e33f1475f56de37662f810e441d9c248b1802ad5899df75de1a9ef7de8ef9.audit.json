@@ -1,0 +1,2239 @@
+{
+  "kind": "takko-inert-asset-audit-v1",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "scope": "Forge_62170ec12d10",
+  "token": "29d2470a-0f84-4307-8318-35265686b4d4",
+  "candidate": {
+    "id": "75847720340440",
+    "name": "working bubble wrap",
+    "kind": "Model",
+    "creator": "randomcontentcreato1",
+    "sourceUrl": "https://create.roblox.com/store/asset/75847720340440",
+    "price": 0,
+    "source": "creator_store"
+  },
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "audit": {
+    "mode": "inert_quarantine_static_inspection",
+    "sourceOrigin": "ScriptEditorService:GetEditorSource",
+    "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+    "executed": false,
+    "instanceLimit": 300,
+    "sourceLimit": 8,
+    "sourceByteLimit": 65536,
+    "instanceListTruncated": true,
+    "sourceListTruncated": true,
+    "sourceBytesReturned": 2867,
+    "nodes": [
+      {
+        "index": 1,
+        "parentIndex": 0,
+        "name": "Imported",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 2,
+        "parentIndex": 1,
+        "name": "working bubble wrap",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 3,
+        "parentIndex": 2,
+        "name": "RegenButton",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 4,
+        "parentIndex": 3,
+        "name": "RegenButton",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 5,
+        "parentIndex": 4,
+        "name": "CanNPCsActivate",
+        "nameTruncated": false,
+        "className": "BoolValue"
+      },
+      {
+        "index": 6,
+        "parentIndex": 4,
+        "name": "Cooldown",
+        "nameTruncated": false,
+        "className": "NumberValue"
+      },
+      {
+        "index": 7,
+        "parentIndex": 4,
+        "name": "RemovesPreviousModel",
+        "nameTruncated": false,
+        "className": "BoolValue"
+      },
+      {
+        "index": 8,
+        "parentIndex": 4,
+        "name": "OffColor",
+        "nameTruncated": false,
+        "className": "BrickColorValue"
+      },
+      {
+        "index": 9,
+        "parentIndex": 2,
+        "name": "bubble wrap",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 10,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 11,
+        "parentIndex": 10,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 12,
+        "parentIndex": 10,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 13,
+        "parentIndex": 10,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 14,
+        "parentIndex": 10,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 15,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 16,
+        "parentIndex": 15,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 17,
+        "parentIndex": 15,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 18,
+        "parentIndex": 15,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 19,
+        "parentIndex": 15,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 20,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 21,
+        "parentIndex": 20,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 22,
+        "parentIndex": 20,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 23,
+        "parentIndex": 20,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 24,
+        "parentIndex": 20,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 25,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 26,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 27,
+        "parentIndex": 26,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 28,
+        "parentIndex": 26,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 29,
+        "parentIndex": 26,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 30,
+        "parentIndex": 26,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 31,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 32,
+        "parentIndex": 31,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 33,
+        "parentIndex": 31,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 34,
+        "parentIndex": 31,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 35,
+        "parentIndex": 31,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 36,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 37,
+        "parentIndex": 36,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 38,
+        "parentIndex": 36,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 39,
+        "parentIndex": 36,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 40,
+        "parentIndex": 36,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 41,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 42,
+        "parentIndex": 41,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 43,
+        "parentIndex": 41,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 44,
+        "parentIndex": 41,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 45,
+        "parentIndex": 41,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 46,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 47,
+        "parentIndex": 46,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 48,
+        "parentIndex": 46,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 49,
+        "parentIndex": 46,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 50,
+        "parentIndex": 46,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 51,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 52,
+        "parentIndex": 51,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 53,
+        "parentIndex": 51,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 54,
+        "parentIndex": 51,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 55,
+        "parentIndex": 51,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 56,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 57,
+        "parentIndex": 56,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 58,
+        "parentIndex": 56,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 59,
+        "parentIndex": 56,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 60,
+        "parentIndex": 56,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 61,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 62,
+        "parentIndex": 61,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 63,
+        "parentIndex": 61,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 64,
+        "parentIndex": 61,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 65,
+        "parentIndex": 61,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 66,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 67,
+        "parentIndex": 66,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 68,
+        "parentIndex": 66,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 69,
+        "parentIndex": 66,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 70,
+        "parentIndex": 66,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 71,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 72,
+        "parentIndex": 71,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 73,
+        "parentIndex": 71,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 74,
+        "parentIndex": 71,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 75,
+        "parentIndex": 71,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 76,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 77,
+        "parentIndex": 76,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 78,
+        "parentIndex": 76,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 79,
+        "parentIndex": 76,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 80,
+        "parentIndex": 76,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 81,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 82,
+        "parentIndex": 81,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 83,
+        "parentIndex": 81,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 84,
+        "parentIndex": 81,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 85,
+        "parentIndex": 81,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 86,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 87,
+        "parentIndex": 86,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 88,
+        "parentIndex": 86,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 89,
+        "parentIndex": 86,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 90,
+        "parentIndex": 86,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 91,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 92,
+        "parentIndex": 91,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 93,
+        "parentIndex": 91,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 94,
+        "parentIndex": 91,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 95,
+        "parentIndex": 91,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 96,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 97,
+        "parentIndex": 96,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 98,
+        "parentIndex": 96,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 99,
+        "parentIndex": 96,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 100,
+        "parentIndex": 96,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 101,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 102,
+        "parentIndex": 101,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 103,
+        "parentIndex": 101,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 104,
+        "parentIndex": 101,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 105,
+        "parentIndex": 101,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 106,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 107,
+        "parentIndex": 106,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 108,
+        "parentIndex": 106,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 109,
+        "parentIndex": 106,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 110,
+        "parentIndex": 106,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 111,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 112,
+        "parentIndex": 111,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 113,
+        "parentIndex": 111,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 114,
+        "parentIndex": 111,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 115,
+        "parentIndex": 111,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 116,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 117,
+        "parentIndex": 116,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 118,
+        "parentIndex": 116,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 119,
+        "parentIndex": 116,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 120,
+        "parentIndex": 116,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 121,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 122,
+        "parentIndex": 121,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 123,
+        "parentIndex": 121,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 124,
+        "parentIndex": 121,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 125,
+        "parentIndex": 121,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 126,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 127,
+        "parentIndex": 126,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 128,
+        "parentIndex": 126,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 129,
+        "parentIndex": 126,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 130,
+        "parentIndex": 126,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 131,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 132,
+        "parentIndex": 131,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 133,
+        "parentIndex": 131,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 134,
+        "parentIndex": 131,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 135,
+        "parentIndex": 131,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 136,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 137,
+        "parentIndex": 136,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 138,
+        "parentIndex": 136,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 139,
+        "parentIndex": 136,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 140,
+        "parentIndex": 136,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 141,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 142,
+        "parentIndex": 141,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 143,
+        "parentIndex": 141,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 144,
+        "parentIndex": 141,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 145,
+        "parentIndex": 141,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 146,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 147,
+        "parentIndex": 146,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 148,
+        "parentIndex": 146,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 149,
+        "parentIndex": 146,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 150,
+        "parentIndex": 146,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 151,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 152,
+        "parentIndex": 151,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 153,
+        "parentIndex": 151,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 154,
+        "parentIndex": 151,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 155,
+        "parentIndex": 151,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 156,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 157,
+        "parentIndex": 156,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 158,
+        "parentIndex": 156,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 159,
+        "parentIndex": 156,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 160,
+        "parentIndex": 156,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 161,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 162,
+        "parentIndex": 161,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 163,
+        "parentIndex": 161,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 164,
+        "parentIndex": 161,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 165,
+        "parentIndex": 161,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 166,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 167,
+        "parentIndex": 166,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 168,
+        "parentIndex": 166,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 169,
+        "parentIndex": 166,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 170,
+        "parentIndex": 166,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 171,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 172,
+        "parentIndex": 171,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 173,
+        "parentIndex": 171,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 174,
+        "parentIndex": 171,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 175,
+        "parentIndex": 171,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 176,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 177,
+        "parentIndex": 176,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 178,
+        "parentIndex": 176,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 179,
+        "parentIndex": 176,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 180,
+        "parentIndex": 176,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 181,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 182,
+        "parentIndex": 181,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 183,
+        "parentIndex": 181,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 184,
+        "parentIndex": 181,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 185,
+        "parentIndex": 181,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 186,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 187,
+        "parentIndex": 186,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 188,
+        "parentIndex": 186,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 189,
+        "parentIndex": 186,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 190,
+        "parentIndex": 186,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 191,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 192,
+        "parentIndex": 191,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 193,
+        "parentIndex": 191,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 194,
+        "parentIndex": 191,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 195,
+        "parentIndex": 191,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 196,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 197,
+        "parentIndex": 196,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 198,
+        "parentIndex": 196,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 199,
+        "parentIndex": 196,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 200,
+        "parentIndex": 196,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 201,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 202,
+        "parentIndex": 201,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 203,
+        "parentIndex": 201,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 204,
+        "parentIndex": 201,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 205,
+        "parentIndex": 201,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 206,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 207,
+        "parentIndex": 206,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 208,
+        "parentIndex": 206,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 209,
+        "parentIndex": 206,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 210,
+        "parentIndex": 206,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 211,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 212,
+        "parentIndex": 211,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 213,
+        "parentIndex": 211,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 214,
+        "parentIndex": 211,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 215,
+        "parentIndex": 211,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 216,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 217,
+        "parentIndex": 216,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 218,
+        "parentIndex": 216,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 219,
+        "parentIndex": 216,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 220,
+        "parentIndex": 216,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 221,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 222,
+        "parentIndex": 221,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 223,
+        "parentIndex": 221,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 224,
+        "parentIndex": 221,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 225,
+        "parentIndex": 221,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 226,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 227,
+        "parentIndex": 226,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 228,
+        "parentIndex": 226,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 229,
+        "parentIndex": 226,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 230,
+        "parentIndex": 226,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 231,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 232,
+        "parentIndex": 231,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 233,
+        "parentIndex": 231,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 234,
+        "parentIndex": 231,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 235,
+        "parentIndex": 231,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 236,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 237,
+        "parentIndex": 236,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 238,
+        "parentIndex": 236,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 239,
+        "parentIndex": 236,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 240,
+        "parentIndex": 236,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 241,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 242,
+        "parentIndex": 241,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 243,
+        "parentIndex": 241,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 244,
+        "parentIndex": 241,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 245,
+        "parentIndex": 241,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 246,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 247,
+        "parentIndex": 246,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 248,
+        "parentIndex": 246,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 249,
+        "parentIndex": 246,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 250,
+        "parentIndex": 246,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 251,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 252,
+        "parentIndex": 251,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 253,
+        "parentIndex": 251,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 254,
+        "parentIndex": 251,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 255,
+        "parentIndex": 251,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 256,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 257,
+        "parentIndex": 256,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 258,
+        "parentIndex": 256,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 259,
+        "parentIndex": 256,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 260,
+        "parentIndex": 256,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 261,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 262,
+        "parentIndex": 261,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 263,
+        "parentIndex": 261,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 264,
+        "parentIndex": 261,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 265,
+        "parentIndex": 261,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 266,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 267,
+        "parentIndex": 266,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 268,
+        "parentIndex": 266,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 269,
+        "parentIndex": 266,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 270,
+        "parentIndex": 266,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 271,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 272,
+        "parentIndex": 271,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 273,
+        "parentIndex": 271,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 274,
+        "parentIndex": 271,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 275,
+        "parentIndex": 271,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 276,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 277,
+        "parentIndex": 276,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 278,
+        "parentIndex": 276,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 279,
+        "parentIndex": 276,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 280,
+        "parentIndex": 276,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 281,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 282,
+        "parentIndex": 281,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 283,
+        "parentIndex": 281,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 284,
+        "parentIndex": 281,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 285,
+        "parentIndex": 281,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 286,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 287,
+        "parentIndex": 286,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 288,
+        "parentIndex": 286,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 289,
+        "parentIndex": 286,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 290,
+        "parentIndex": 286,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 291,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 292,
+        "parentIndex": 291,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 293,
+        "parentIndex": 291,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 294,
+        "parentIndex": 291,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 295,
+        "parentIndex": 291,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 296,
+        "parentIndex": 9,
+        "name": "metal",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 297,
+        "parentIndex": 296,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 298,
+        "parentIndex": 296,
+        "name": "Click",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 299,
+        "parentIndex": 296,
+        "name": "ClickDetector",
+        "nameTruncated": false,
+        "className": "ClickDetector"
+      },
+      {
+        "index": 300,
+        "parentIndex": 296,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      }
+    ],
+    "sources": [
+      {
+        "index": 4,
+        "className": "Script",
+        "readable": true,
+        "source": "local Button = script.Parent\nlocal ButtonColor = Button.BrickColor\nlocal CanNPCsActivate = script.CanNPCsActivate.Value\nlocal Cooldown = script.Cooldown.Value\nlocal RemovesPreviousModel = script.RemovesPreviousModel.Value\nlocal OffColor = script.OffColor.Value\nlocal Backup = Button.Parent:clone()\nBackup:findFirstChild(Button.Name):remove()\nActive = true\n\nfunction Regen()\n\tif RemovesPreviousModel == true then\n\t\tlocal PreviousModel = Button.Parent:children()\n\t\tfor i = 1, #PreviousModel do\n\t\t\tif PreviousModel[i] ~= Button then\n\t\t\t\tPreviousModel[i]:Destroy()\n\t\t\tend\n\t\tend\n\tend\n\tlocal Clone = Backup:clone()\n\tlocal Children = Clone:children()\n\tfor i = 1, #Children do\n\t\tChildren[i].Parent = Button.Parent\n\t\tif Children[i]:isA(\"BasePart\") == true or Children[i]:isA(\"Model\") == true then\n\t\t\tChildren[i]:makeJoints()\n\t\tend\n\tend\n\tClone:Destroy()\nend\n\nfunction Start(Part)\n\tif Active == true then\n\t\tlocal Humanoid = Part.Parent:findFirstChild(\"Humanoid\")\n\t\tif Humanoid ~= nil then\n\t\t\tif CanNPCsActivate == false then\n\t\t\t\tRegen()\n\t\t\t\tActive = false\n\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\twait(Cooldown)\n\t\t\t\tActive = true\n\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\telse\n\t\t\t\tlocal Plr = game.Players:playerFromCharacter(Part.Parent)\n\t\t\t\tif Plr ~= nil then\n\t\t\t\t\tRegen()\n\t\t\t\t\tActive = false\n\t\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\t\twait(Cooldown)\n\t\t\t\t\tActive = true\n\t\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\t\tend\n\t\t\tend\n\t\tend\n\tend\nend\nButton.Touched:connect(Start)",
+        "sourceBytes": 1446,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3"
+      },
+      {
+        "index": 14,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 19,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 24,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 30,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 35,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 40,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      },
+      {
+        "index": 45,
+        "className": "Script",
+        "readable": true,
+        "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+        "sourceBytes": 203,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      }
+    ]
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "model": "openai/gpt-4.1-mini",
+  "perRunCapUSD": 0.15,
+  "aggregateCapUSD": 1,
+  "calls": [
+    {
+      "trial": "crunch-takko",
+      "id": 1,
+      "liability": 0.031048799999999994,
+      "status": 200,
+      "charged": 0.0046276,
+      "inputTokens": 9141,
+      "outputTokens": 607
+    },
+    {
+      "trial": "crunch-takko",
+      "id": 2,
+      "liability": 0.028232799999999995,
+      "status": 200,
+      "charged": 0.003778,
+      "inputTokens": 7861,
+      "outputTokens": 396
+    },
+    {
+      "trial": "crunch-opencode",
+      "id": 3,
+      "liability": 0.023158799999999997,
+      "status": 200,
+      "charged": 0.0020648,
+      "inputTokens": 5066,
+      "outputTokens": 24
+    },
+    {
+      "trial": "crunch-opencode",
+      "id": 4,
+      "liability": 0.024214799999999995,
+      "status": 200,
+      "charged": 0.001242,
+      "inputTokens": 5693,
+      "outputTokens": 289
+    },
+    {
+      "trial": "crunch-opencode",
+      "id": 5,
+      "liability": 0.024852799999999994,
+      "status": 200,
+      "charged": 0.0012436,
+      "inputTokens": 5989,
+      "outputTokens": 384
+    },
+    {
+      "trial": "crunch-opencode",
+      "id": 6,
+      "liability": 0.025583199999999997,
+      "status": 200,
+      "charged": 0.0009424,
+      "inputTokens": 6384,
+      "outputTokens": 97
+    },
+    {
+      "trial": "crunch-opencode",
+      "id": 7,
+      "liability": 0.025816799999999994,
+      "status": 200,
+      "charged": 0.0008084,
+      "inputTokens": 6489,
+      "outputTokens": 59
+    },
+    {
+      "trial": "combat-opencode",
+      "id": 8,
+      "liability": 0.023158799999999997,
+      "status": 200,
+      "charged": 0.0006056,
+      "inputTokens": 5066,
+      "outputTokens": 24
+    },
+    {
+      "trial": "combat-opencode",
+      "id": 9,
+      "liability": 0.024101199999999996,
+      "status": 200,
+      "charged": 0.0018908,
+      "inputTokens": 5667,
+      "outputTokens": 701
+    },
+    {
+      "trial": "combat-opencode",
+      "id": 10,
+      "liability": 0.025310799999999994,
+      "status": 200,
+      "charged": 0.0009948,
+      "inputTokens": 6379,
+      "outputTokens": 107
+    },
+    {
+      "trial": "combat-opencode",
+      "id": 11,
+      "liability": 0.0255712,
+      "status": 200,
+      "charged": 0.0008968,
+      "inputTokens": 6494,
+      "outputTokens": 113
+    },
+    {
+      "trial": "combat-takko",
+      "id": 12,
+      "liability": 0.030291199999999997,
+      "status": 200,
+      "charged": 0.0047004,
+      "inputTokens": 8975,
+      "outputTokens": 694
+    },
+    {
+      "trial": "combat-takko",
+      "id": 13,
+      "liability": 0.0275136,
+      "status": 200,
+      "charged": 0.003734,
+      "inputTokens": 7783,
+      "outputTokens": 388
+    },
+    {
+      "trial": "checkpoint-takko",
+      "id": 14,
+      "liability": 0.030321599999999997,
+      "status": 200,
+      "charged": 0.0037492,
+      "inputTokens": 8849,
+      "outputTokens": 491
+    },
+    {
+      "trial": "checkpoint-takko",
+      "id": 15,
+      "liability": 0.027286,
+      "status": 200,
+      "charged": 0.0037636,
+      "inputTokens": 7453,
+      "outputTokens": 489
+    },
+    {
+      "trial": "checkpoint-opencode",
+      "id": 16,
+      "liability": 0.023158799999999997,
+      "status": 200,
+      "charged": 0.0006068,
+      "inputTokens": 5065,
+      "outputTokens": 25
+    },
+    {
+      "trial": "checkpoint-opencode",
+      "id": 17,
+      "liability": 0.0241264,
+      "status": 200,
+      "charged": 0.0012728,
+      "inputTokens": 5662,
+      "outputTokens": 316
+    },
+    {
+      "trial": "checkpoint-opencode",
+      "id": 18,
+      "liability": 0.02483,
+      "status": 200,
+      "charged": 0.0012168,
+      "inputTokens": 6026,
+      "outputTokens": 358
+    },
+    {
+      "trial": "checkpoint-opencode",
+      "id": 19,
+      "liability": 0.0255076,
+      "status": 200,
+      "charged": 0.0009148,
+      "inputTokens": 6395,
+      "outputTokens": 77
+    },
+    {
+      "trial": "checkpoint-opencode",
+      "id": 20,
+      "liability": 0.025724799999999996,
+      "status": 200,
+      "charged": 0.0009408,
+      "inputTokens": 6480,
+      "outputTokens": 96
+    }
+  ],
+  "rows": [
+    {
+      "harness": "Takko",
+      "case": "crunch",
+      "durationMs": 9730,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "c62798902915595186e42bf2be3a639e659ea1dac660f049034d50da97a92859"
+      },
+      "accountedUSD": 0.0084056,
+      "calls": 2
+    },
+    {
+      "harness": "OpenCode",
+      "version": "1.18.31",
+      "case": "crunch",
+      "durationMs": 22932,
+      "code": 0,
+      "timeout": false,
+      "workDirectory": "C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-agent-comparison-dcLyT7",
+      "testsUnchanged": true,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS crunch\r\n",
+        "sourceHash": "fae37411ee8b41c630c2469d4df9a81f0914ad60c3697209f601f9c968dc4bbd"
+      },
+      "accountedUSD": 0.0063012,
+      "calls": 5
+    },
+    {
+      "harness": "OpenCode",
+      "version": "1.18.31",
+      "case": "combat",
+      "durationMs": 27001,
+      "code": 0,
+      "timeout": false,
+      "workDirectory": "C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-agent-comparison-4M4lec",
+      "testsUnchanged": true,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "7177394b5f7274e841bb0688f25479f3f4c877dbc4b9a078eddd39320d8d5e77"
+      },
+      "accountedUSD": 0.0043879999999999995,
+      "calls": 4
+    },
+    {
+      "harness": "Takko",
+      "case": "combat",
+      "durationMs": 9247,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS combat\r\n",
+        "sourceHash": "3c67bb9fb7a9d0dcaa131580a845d9c5ca571974ab537b95878c9aa59929d6e2"
+      },
+      "accountedUSD": 0.0084344,
+      "calls": 2
+    },
+    {
+      "harness": "Takko",
+      "case": "checkpoint",
+      "durationMs": 8873,
+      "stage": "ready_to_test",
+      "error": null,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "7f40a16c24f61d8781fac357685c3aae546b2d107b19640ada48c64a686bcc8d"
+      },
+      "accountedUSD": 0.0075128,
+      "calls": 2
+    },
+    {
+      "harness": "OpenCode",
+      "version": "1.18.31",
+      "case": "checkpoint",
+      "durationMs": 25238,
+      "code": 0,
+      "timeout": false,
+      "workDirectory": "C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-agent-comparison-638dRq",
+      "testsUnchanged": true,
+      "evaluation": {
+        "passed": true,
+        "output": "PASS checkpoint\r\n",
+        "sourceHash": "2788f3084f452c16caf6a5982e691be99d8f3e3c0b210d6f6f844c49c0265ff0"
+      },
+      "accountedUSD": 0.004952000000000001,
+      "calls": 5
+    }
+  ],
+  "accountedUSD": 0.03999399999999999,
+  "nativeStudio": false
+}

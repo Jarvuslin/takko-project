@@ -1,0 +1,39 @@
+{
+  "type": "component-review-diagnostic-replay",
+  "nativeStudioOperations": 0,
+  "importedCodeExecution": false,
+  "model": "google/gemini-3.7-flash",
+  "perCaseUSD": 0.25,
+  "batchUSD": 0.75,
+  "maxOutputTokens": 12288,
+  "intervention": "No supplied decisions or replacement code. Frozen prior worker selections and game context, retained native archives, production instructions/schema and automatic validation feedback only.",
+  "boundary": "Schema/source-quote/media-coverage validation is not semantic accuracy, dependency verification or gameplay proof.",
+  "sources": [
+    {
+      "file": "src/generation/engine.ts",
+      "sha256": "87b5eae0fa21195f9f7f634db1beaef90e88645a2bd53fd13b0149af2e7234c5"
+    },
+    {
+      "file": "src/generation/component-review.ts",
+      "sha256": "466802b897da19644a9efb883b081d17eb79986ed00d11469c0535bb3d103bbc"
+    },
+    {
+      "file": "scripts/test-component-reviewers.ts",
+      "sha256": "45927029ec619efa90e2e74d570d9b55aa0a140f7525db7fa524daccad4d6965"
+    }
+  ],
+  "inputs": [
+    {
+      "case": "combat-training",
+      "sha256": "a1c8a675dbd844073e3ecb9c97a3cda230a07001b8ec96192dbb1fbf7a1da9b7"
+    },
+    {
+      "case": "bubble-wrap",
+      "sha256": "e8bfef188771c547acefcea68629eb57dfc4006bb33f6b91931f643e6705befe"
+    },
+    {
+      "case": "checkpoint-parkour",
+      "sha256": "c25e160860625f78ba69f35e45ec74133250748db075d1de8b5ba051782fd42e"
+    }
+  ]
+}

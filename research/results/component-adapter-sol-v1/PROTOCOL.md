@@ -1,0 +1,7 @@
+# Stronger adapter diagnostic
+
+Registered before dispatch on2026-09-16. Reconstruct the exact initial component-adaptation context used by production V10 from the original172-node component, unchanged accepted plan/brief and initial validated Sol source review. Keep current production schema/instructions,12,000output limit and300-second request timeout; replace only Gemini with Sol. The historical raw Gemini adaptation is the comparison, not a fresh randomized control. Later adaptation/review/findings are excluded from live requests. Offline transport uses the historical answer strictly as a harness fixture.
+
+Cap$0.80 total, at most two format attempts through Engine.call. Existing cumulative ceiling$7.50, headroom$0.40, prior5,899,407microdollars carrying older unknown liabilities; admission7,099,407. Check provider usage/prices and original app idle before dispatch. Unknown charge/outcome stops calls and retains the full reservation. No Studio operations, app restart, game editing or output injection into fresh generation. Use encrypted saved key without displaying/persisting plaintext.
+
+Assess raw output contract acceptance, retained behavior versus replacement, dependence on invented/unacquired assets, ownership/remaining integration and independently inspect timing/lifecycle correctness. Do not equate a plausible manifest with native application, playback or full game success. Any native application/review is a separately recorded follow-up using this unchanged raw result. Preserve all failed attempts and actual charges.

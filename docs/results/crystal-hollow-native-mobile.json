@@ -1,0 +1,18 @@
+{
+  "device": "iPhone 17 Pro",
+  "preset": "874x402",
+  "renderViewport": "750x361",
+  "orientation": "LandscapeSensor; landscape test only",
+  "observations": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"screenInsets\":\"Enum.ScreenInsets.CoreUISafeInsets\",\"orientation\":\"Enum.ScreenOrientation.LandscapeSensor\",\"viewport\":\"750, 361\",\"ignoreInset\":false,\"ui\":{\"1\":{\"name\":\"Title\",\"position\":\"25, 23\",\"text\":\"CRYSTAL HOLLOW\",\"fits\":true,\"size\":\"314, 27\"},\"3\":{\"name\":\"CarryLabel\",\"position\":\"25, 73\",\"text\":\"Bag  0 / 8\",\"fits\":true,\"size\":\"163.279999, 31\"},\"2\":{\"name\":\"Subtitle\",\"position\":\"25, 50\",\"text\":\"Quarry loop  •  restore the beacon\",\"fits\":true,\"size\":\"314, 18\"},\"5\":{\"name\":\"PowerInfo\",\"position\":\"33, 110\",\"text\":\"PICK  Lv 1  •  Yield 1\",\"fits\":true,\"size\":\"147, 20\"},\"4\":{\"name\":\"CoinsLabel\",\"position\":\"188.280014, 73\",\"text\":\"Coins  0\",\"fits\":true,\"size\":\"150.720001, 31\"},\"7\":{\"name\":\"PowerNext\",\"position\":\"33, 130\",\"text\":\"Next: yield 2  •  40 coins\",\"fits\":true,\"size\":\"147, 18\"},\"6\":{\"name\":\"BagInfo\",\"position\":\"184, 110\",\"text\":\"BAG  Lv 1  •  Holds 8\",\"fits\":true,\"size\":\"147, 20\"},\"9\":{\"name\":\"GoalLabel\",\"position\":\"25, 160\",\"text\":\"Beacon goal  •  Sold 0 / 40  •  Pick 0/1  •  Bag 0/1\",\"fits\":true,\"size\":\"314, 20\"},\"8\":{\"name\":\"BagNext\",\"position\":\"184, 130\",\"text\":\"Next: 14 slots  •  30 coins\",\"fits\":true,\"size\":\"147, 18\"},\"15\":{\"name\":\"Footer\",\"position\":\"25, 257\",\"text\":\"E/Q/1/2  or  tap a button\",\"fits\":true,\"size\":\"314, 18\"},\"14\":{\"name\":\"CapacityButton\",\"position\":\"262.5, 208\",\"text\":\"2  BAG  30\",\"fits\":true,\"size\":\"76.5, 42\"},\"13\":{\"name\":\"PowerButton\",\"position\":\"184, 208\",\"text\":\"1  PICK  40\",\"fits\":true,\"size\":\"74.5, 42\"},\"12\":{\"name\":\"SellButton\",\"position\":\"105.5, 208\",\"text\":\"Q  SELL\",\"fits\":true,\"size\":\"74.5, 42\"},\"11\":{\"name\":\"HarvestButton\",\"position\":\"25, 208\",\"text\":\"E  HARVEST\",\"fits\":true,\"size\":\"74.5, 42\"},\"10\":{\"name\":\"Hint\",\"position\":\"25, 181\",\"text\":\"Follow the pale path to a glowing crystal cluster.\",\"fits\":true,\"size\":\"314, 23\"}}}"
+      }
+    ],
+    "isError": false
+  },
+  "visualAssessment": "HUD fits and text reports TextFits=true, but panel occupies much of left viewport; touch navigation/playthrough not verified",
+  "console": "empty",
+  "endState": "Play stopped; device default restored"
+}

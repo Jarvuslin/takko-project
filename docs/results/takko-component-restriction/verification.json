@@ -1,0 +1,158 @@
+{
+  "at": "2026-09-16T05:47:36.165Z",
+  "kind": "native-restricted-restoration-product-regression",
+  "cases": [
+    {
+      "case": "combat-training",
+      "candidateId": "125989241853035",
+      "archive": "docs\\results\\takko-component-restriction\\native-v3\\combat-training\\8894ae3f04f5d3651e298de761e4f9fc1b540c80066e72850fab1fc9545e5568.rbxm",
+      "manifest": "docs\\results\\takko-component-restriction\\native-v3\\combat-training\\ec211f8d4b75f700d85326bc61317543d80e79b890ba234d6f33ab93ade177a5.component.json",
+      "originalSha256": "8894ae3f04f5d3651e298de761e4f9fc1b540c80066e72850fab1fc9545e5568",
+      "manifestSha256": "ec211f8d4b75f700d85326bc61317543d80e79b890ba234d6f33ab93ade177a5",
+      "restrictedNativeBufferSha256": "f46a2075ea0c7580890913de9563425c97f4ed2e5122821b077dd20500d0bc7c",
+      "restrictedArchivePersisted": false,
+      "sourceHashesVerified": 2,
+      "roundTrip": {
+        "checkedAttributes": 1,
+        "checkedReferences": 13,
+        "checkedProperties": 447,
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ],
+        "passed": true,
+        "unobservableProperties": [
+          "Humanoid.Health_XML",
+          "Humanoid.InternalBodyScale",
+          "Humanoid.InternalHeadScale",
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "ModuleScript.ScriptGuid",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ]
+      },
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ]
+    },
+    {
+      "case": "bubble-wrap",
+      "candidateId": "120019574381006",
+      "archive": "docs\\results\\takko-component-restriction\\native-v3\\bubble-wrap\\3e76aa953a04d09a2750d6a1d64c500617d867d6b7ef8df6c56ac0d2a7a7980e.rbxm",
+      "manifest": "docs\\results\\takko-component-restriction\\native-v3\\bubble-wrap\\5e5986d2499e65e23187cb3febf1c0f59735bd2fd513c35cb1c689f4f57b73a0.component.json",
+      "originalSha256": "3e76aa953a04d09a2750d6a1d64c500617d867d6b7ef8df6c56ac0d2a7a7980e",
+      "manifestSha256": "5e5986d2499e65e23187cb3febf1c0f59735bd2fd513c35cb1c689f4f57b73a0",
+      "restrictedNativeBufferSha256": "c1ef524ac01a17a3513361f08a3e54df9238a5efe8901f49d9977fd090f926a3",
+      "restrictedArchivePersisted": false,
+      "sourceHashesVerified": 76,
+      "roundTrip": {
+        "checkedAttributes": 1,
+        "checkedReferences": 0,
+        "checkedProperties": 5981,
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ],
+        "passed": true,
+        "unobservableProperties": [
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "ModuleScript.ScriptGuid",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ]
+      },
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ]
+    },
+    {
+      "case": "checkpoint-parkour",
+      "candidateId": "398137408",
+      "archive": "docs\\results\\takko-component-restriction\\native-v3\\checkpoint-parkour\\a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718.rbxm",
+      "manifest": "docs\\results\\takko-component-restriction\\native-v3\\checkpoint-parkour\\1b9caa8f397a56fe93b3a5e1ee3e33e265cdeb2aec109ff0778856f69c55c999.component.json",
+      "originalSha256": "a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718",
+      "manifestSha256": "1b9caa8f397a56fe93b3a5e1ee3e33e265cdeb2aec109ff0778856f69c55c999",
+      "restrictedNativeBufferSha256": "785b43cd4bcd7b148ed5f7786c4032da785a3654e495f3a0389939fd8c6cca2a",
+      "restrictedArchivePersisted": false,
+      "sourceHashesVerified": 1,
+      "roundTrip": {
+        "checkedAttributes": 0,
+        "checkedReferences": 0,
+        "checkedProperties": 70,
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ],
+        "passed": true,
+        "unobservableProperties": [
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ]
+      },
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ]
+    }
+  ],
+  "sourceHashes": {
+    "src/generation/component-archive.ts": "43d98bb571e17bc6105ff1ef8b783a1d138f9edb65e27da09324fdf871f960ab",
+    "tests/component-archive.test.ts": "fe769a736a46c6c324970ef062f4fbfe2bb31aa3566db36094db68d17d382442",
+    "scripts/verify-restricted-component.ts": "be6e488d4658e4d36f3d240efb153d79f54703b0cb3964653af43cc3314d8d04"
+  },
+  "check": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "unitApi": 696,
+    "desktop": 10,
+    "browser": 36
+  },
+  "native": {
+    "running": false,
+    "butterEnabled": true,
+    "ownedDiagnosticScopes": []
+  },
+  "paidCalls": 0,
+  "newRawWorkerTrials": 0,
+  "completedGames": 0,
+  "productionAssetGateChanged": false,
+  "activation": {
+    "previousPid": 22236,
+    "keysPresent": 0,
+    "previousProcessMissing": true,
+    "dataDirectory": ".forge/asset-loop-runtime",
+    "restarted": true,
+    "pid": 24564,
+    "previousPortListenerMissing": true,
+    "port": 4324,
+    "reason": "Previous in-memory-key server was no longer running; restarted current checked source with preserved project/configuration data",
+    "at": "2026-09-16T05:46:30.5628071Z"
+  }
+}

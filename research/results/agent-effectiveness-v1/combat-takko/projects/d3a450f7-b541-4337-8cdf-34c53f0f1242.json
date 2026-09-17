@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "id": "d3a450f7-b541-4337-8cdf-34c53f0f1242",
+  "name": "Implement only a pure Luau combat-state module, without instance",
+  "request": "Implement only a pure Luau combat-state module, without instances, effects, assets or services. Return new(cooldown, resetAfter), producing independent controllers. attack(now) uses colon syntax and returns the accepted combo step cycling 1,2,3,1; reject with nil if elapsed since last accepted attack is less than cooldown. After a gap strictly greater than resetAfter, restart at 1. Rejected input must not update timing or combo. hit(targetId) returns true once per nonempty string target for the current accepted attack, otherwise false; reject hits before any attack. A new accepted attack permits hitting targets again. getHits() counts all accepted hits. reset() returns combo/timing/hits to initial state. All time is supplied by caller. Implement the module at the specified path.\nOutput path: ReplicatedStorage/Forge_AgentComparison/Logic.module.luau\nPublic acceptance test (executed against a copy named Logic.luau):\n```luau\nlocal M=require('./Logic')\nlocal a=M.new(0.25,1)\nassert(a:getHits()==0 and a:hit('dummy')==false,'initial')\nassert(a:attack(0)==1,'first')\nassert(a:hit('dummy')==true and a:hit('dummy')==false,'dedup')\nassert(a:hit('')==false and a:hit('other')==true,'target identities')\nassert(a:attack(0.2)==nil and a:attack(0.25)==2,'cooldown and rejected timing')\nassert(a:hit('dummy')==true and a:getHits()==3,'new swing')\nassert(a:attack(0.5)==3 and a:attack(0.75)==1,'cycle')\nassert(a:attack(1.75)==2,'exact reset boundary')\nassert(a:attack(3)==1,'expired combo')\nassert(M.new(0.25,1):getHits()==0,'independent')\na:reset()\nassert(a:getHits()==0 and a:hit('dummy')==false and a:attack(0)==1,'reset')\nprint('PASS combat')\n```\nThis is one isolated logic component, not a whole game. Do not add other gameplay or presentation. Do not modify tests. A native Studio/gameplay pass is not claimed.",
+  "revision": 1,
+  "scope": "Forge_AgentComparison",
+  "spec": {
+    "title": "combat",
+    "summary": "Implement only a pure Luau combat-state module, without instances, effects, assets or services. Return new(cooldown, resetAfter), producing independent controllers. attack(now) uses colon syntax and returns the accepted combo step cycling 1,2,3,1; reject with nil if elapsed since last accepted attack is less than cooldown. After a gap strictly greater than resetAfter, restart at 1. Rejected input must not update timing or combo. hit(targetId) returns true once per nonempty string target for the current accepted attack, otherwise false; reject hits before any attack. A new accepted attack permits hitting targets again. getHits() counts all accepted hits. reset() returns combo/timing/hits to initial state. All time is supplied by caller. Implement the module at the specified path.\nOutput path: ReplicatedStorage/Forge_AgentComparison/Logic.module.luau\nPublic acceptance test (executed against a copy named Logic.luau):\n```luau\nlocal M=require('./Logic')\nlocal a=M.new(0.25,1)\nassert(a:getHits()==0 and a:hit('dummy')==false,'initial')\nassert(a:attack(0)==1,'first')\nassert(a:hit('dummy')==true and a:hit('dummy')==false,'dedup')\nassert(a:hit('')==false and a:hit('other')==true,'target identities')\nassert(a:attack(0.2)==nil and a:attack(0.25)==2,'cooldown and rejected timing')\nassert(a:hit('dummy')==true and a:getHits()==3,'new swing')\nassert(a:attack(0.5)==3 and a:attack(0.75)==1,'cycle')\nassert(a:attack(1.75)==2,'exact reset boundary')\nassert(a:attack(3)==1,'expired combo')\nassert(M.new(0.25,1):getHits()==0,'independent')\na:reset()\nassert(a:getHits()==0 and a:hit('dummy')==false and a:attack(0)==1,'reset')\nprint('PASS combat')\n```\nThis is one isolated logic component, not a whole game. Do not add other gameplay or presentation. Do not modify tests. A native Studio/gameplay pass is not claimed.",
+    "visualDirection": "Pure logic slice; no visuals requested.",
+    "requirements": [
+      {
+        "id": "core",
+        "description": "Implement only a pure Luau combat-state module, without instances, effects, assets or services. Return new(cooldown, resetAfter), producing independent controllers. attack(now) uses colon syntax and returns the accepted combo step cycling 1,2,3,1; reject with nil if elapsed since last accepted attack is less than cooldown. After a gap strictly greater than resetAfter, restart at 1. Rejected input must not update timing or combo. hit(targetId) returns true once per nonempty string target for the current accepted attack, otherwise false; reject hits before any attack. A new accepted attack permits hitting targets again. getHits() counts all accepted hits. reset() returns combo/timing/hits to initial state. All time is supplied by caller. Implement the module at the specified path.",
+        "sourceId": "request",
+        "sourceQuote": "Implement only a pure Luau combat-state module, without instances, effects, assets or services. Return new(cooldown, resetAfter), producing independent controllers. attack(now) uses colon syntax and returns the accepted combo step cycling 1,2,3,1; reject with nil if elapsed since last accepted attack is less than cooldown. After a gap strictly greater than resetAfter, restart at 1. Rejected input must not update timing or combo. hit(targetId) returns true once per nonempty string target for the current accepted attack, otherwise false; reject hits before any attack. A new accepted attack permits hitting targets again. getHits() counts all accepted hits. reset() returns combo/timing/hits to initial state. All time is supplied by caller. Implement the module at the specified path.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "All supplied public acceptance assertions must pass without changing the tests."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "logic",
+        "title": "Implement the requested pure Luau state module",
+        "requirements": [
+          "core"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau"
+        ]
+      }
+    ],
+    "assetNeeds": [],
+    "assetStrategy": "Pure internal state module only; no external content required for this isolated slice."
+  },
+  "answers": {},
+  "approvedRevision": 1,
+  "stage": "ready_to_test",
+  "artifact": {
+    "files": [
+      {
+        "path": "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau",
+        "kind": "ModuleScript",
+        "source": "local Logic = {}\n\nlocal function new(cooldown, resetAfter)\n\tlocal self = {}\n\n\t-- Internal state\n\tlocal lastAttackTime = nil\n\tlocal currentCombo = 0\n\tlocal hits = 0\n\tlocal hitsThisAttack = {}\n\n\t-- Accept an attack at given time 'now'\n\t-- Returns combo step 1,2,3 cycling, or nil if rejected\n\tfunction self:attack(now)\n\t\t-- Reject if cooldown not elapsed from last accepted attack\n\t\tif lastAttackTime then\n\t\t\tlocal elapsed = now - lastAttackTime\n\t\t\tif elapsed < cooldown then\n\t\t\t\treturn nil\n\t\t\tend\n\n\t\t\t-- If gap strictly greater than resetAfter, reset combo\n\t\t\tif elapsed > resetAfter then\n\t\t\t\tcurrentCombo = 1\n\t\t\telse\n\t\t\t\tcurrentCombo = currentCombo % 3 + 1\n\t\t\tend\n\t\telse\n\t\t\t-- First attack ever\n\t\t\tcurrentCombo = 1\n\t\tend\n\n\t\t-- Accept attack\n\t\tlastAttackTime = now\n\t\thitsThisAttack = {}\t-- reset hits for this attack\n\t\treturn currentCombo\n\tend\n\n\t-- Register hit on targetId for current attack\n\t-- Returns true if this targetId was not hit before on this swing and targetId is nonempty and combo started\n\tfunction self:hit(targetId)\n\t\tif currentCombo == 0 then\n\t\t\t-- No accepted attack yet\n\t\t\treturn false\n\t\tend\n\n\t\tif type(targetId) ~= \"string\" or targetId == \"\" then\n\t\t\treturn false\n\t\tend\n\n\t\tif not hitsThisAttack[targetId] then\n\t\t\thitsThisAttack[targetId] = true\n\t\t\thits = hits + 1\n\t\t\treturn true\n\t\telse\n\t\t\treturn false\n\t\tend\n\tend\n\n\tfunction self:getHits()\n\t\treturn hits\n\tend\n\n\tfunction self:reset()\n\t\tlastAttackTime = nil\n\t\tcurrentCombo = 0\n\t\thits = 0\n\t\thitsThisAttack = {}\n\tend\n\n\treturn self\nend\n\nLogic.new = new\n\nreturn Logic\n"
+      }
+    ],
+    "scene": [],
+    "coverage": [
+      {
+        "requirementId": "core",
+        "status": "implemented",
+        "detail": "Implemented a pure Luau state module with new(cooldown, resetAfter) constructor. The attack(now) method: returns 1,2,3 cycling accepted combo step or nil when cooldown not elapsed. Resets combo after gap > resetAfter. The hit(targetId) method tracks unique hits per accepted attack, rejects empty strings and hits before any attack. getHits() returns total accepted hits. reset() clears all state. All time is caller-supplied. Matches all public acceptance tests exactly.",
+        "files": [
+          "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau"
+        ]
+      }
+    ],
+    "assets": []
+  },
+  "review": {
+    "issues": [],
+    "tests": [
+      {
+        "id": "core_functionality",
+        "requirementId": "core",
+        "mode": "server",
+        "source": "local Logic = require(script.Parent.Logic)\n\nreturn function()\n\t-- Create a new instance with cooldown 0.25, resetAfter 1\n\tlocal a = Logic.new(0.25, 1)\n\n\tassert(a:getHits() == 0 and a:hit('dummy') == false, 'initial')\n\n\tassert(a:attack(0) == 1, 'first')\n\n\tassert(a:hit('dummy') == true and a:hit('dummy') == false, 'dedup')\n\tassert(a:hit('') == false and a:hit('other') == true, 'target identities')\n\n\tassert(a:attack(0.2) == nil and a:attack(0.25) == 2, 'cooldown and rejected timing')\n\n\tassert(a:hit('dummy') == true and a:getHits() == 3, 'new swing')\n\n\tassert(a:attack(0.5) == 3 and a:attack(0.75) == 1, 'cycle')\n\n\tassert(a:attack(1.75) == 2, 'exact reset boundary')\n\n\tassert(a:attack(3) == 1, 'expired combo')\n\n\tlocal b = Logic.new(0.25,1)\n\tassert(b:getHits() == 0, 'independent')\n\n\ta:reset()\n\tassert(a:getHits() == 0 and a:hit('dummy') == false and a:attack(0) == 1, 'reset')\n\n\tprint('PASS combat')\nend\n"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "structure",
+      "status": "passed",
+      "detail": "Paths, script placement, property shapes and duplicate instances checked."
+    },
+    {
+      "id": "coverage:core",
+      "status": "passed",
+      "detail": "Implemented a pure Luau state module with new(cooldown, resetAfter) constructor. The attack(now) method: returns 1,2,3 cycling accepted combo step or nil when cooldown not elapsed. Resets combo after gap > resetAfter. The hit(targetId) method tracks unique hits per accepted attack, rejects empty strings and hits before any attack. getHits() returns total accepted hits. reset() clears all state. All time is caller-supplied. Matches all public acceptance tests exactly."
+    },
+    {
+      "id": "compile:ReplicatedStorage/Forge_AgentComparison/Logic.module.luau",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:core_functionality",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "test-coverage:core",
+      "status": "passed",
+      "detail": "Acceptance tests must assert observable behavior; execution remains pending."
+    },
+    {
+      "id": "studio",
+      "status": "pending",
+      "detail": "Static validation passed. Apply and run acceptance tests in Studio; visual quality still needs inspection."
+    }
+  ],
+  "charges": [
+    {
+      "phase": "builder",
+      "profileId": "d9eb1448-40ba-4943-b478-487360616fc6",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 29726,
+      "chargedMicros": 4701,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8975,
+      "outputTokens": 694,
+      "status": "ok",
+      "at": "2026-09-16T06:41:53.150Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "d9eb1448-40ba-4943-b478-487360616fc6",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 27258,
+      "chargedMicros": 3734,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7783,
+      "outputTokens": 388,
+      "status": "ok",
+      "at": "2026-09-16T06:41:56.564Z"
+    }
+  ],
+  "budgetMicros": 150000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T06:41:47.446Z",
+      "message": "Building: Implement the requested pure Luau state module"
+    },
+    {
+      "at": "2026-09-16T06:41:47.448Z",
+      "message": "builder: Matched pilot / openai/gpt-4.1-mini"
+    },
+    {
+      "at": "2026-09-16T06:41:53.210Z",
+      "message": "reviewer: Matched pilot / openai/gpt-4.1-mini"
+    },
+    {
+      "at": "2026-09-16T06:41:56.685Z",
+      "message": "Ready for Studio testing. No runtime or visual-quality pass has been claimed."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T06:41:47.436Z",
+  "studioEvidence": null,
+  "failure": null,
+  "visualEvidence": null,
+  "completedBuildTasks": [
+    "logic"
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 2,
+  "id": "f9218794-5c1a-4af9-95ee-f4642bf884b3",
+  "name": "Butter Crunch",
+  "request": "Create a super simple playable Roblox game called Butter Crunch. Give the player one clearly visible butter-crunch object on a small clean stage. Clicking/tapping an obvious control or the object performs one satisfying crunch: visible animated motion or deformation, a matching short crunch sound synchronized with the action, and a readable counter that increases by exactly one per completed crunch. The object recovers or resets so the action can be repeated. Start the counter at zero in a fresh session. Prevent overlapping input from double-counting the same crunch. Keep the counter correct after ten separated crunches and allow another crunch after recovery. Keep the UI readable on desktop and mobile. Do not add shops, upgrades, rebirth, currency, saving, monetization, or unrelated mechanics.\n\nMarketplace first: use Takko's asset tools to search Creator Store for relevant butter/food/utensil visual assets and short crunch audio, inspect actual returned candidates, select appropriate results, import/place them, and verify them visually and functionally. Declare asset needs so Takko executes the sourcing loop. Never invent asset IDs or claim a sound is suitable because it merely loads. Search again or reject an unsuitable candidate within the system's limits. Required unavailable assets or missing visual/audio evidence must surface as a failure, not be silently replaced. Animation may be implemented in your own generated game code; choose its design and implementation yourself. No external assistant will select assets, write game code, fix your output, or rescue a failed run.",
+  "revision": 1,
+  "scope": "Forge_f92187945c1a",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "crunch_sfx",
+        "requirementId": "req_audio_crunch",
+        "role": "Short crisp crunch sound effect for tactile butter crushing",
+        "kind": "Audio",
+        "query": "crunch crisp snap crack food bite",
+        "constraints": "Short duration under 1.5s, punchy impact sound, audible and clean",
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 5
+      }
+    ],
+    "assetStrategy": "Takko will search the Creator Store for a short, punchy crunch/snap sound effect suitable for tactile food crushing, and optionally a food/butter prop model. Procedural geometry with rich golden materials, smooth squash-and-stretch Tweens, and particle crumbs will ensure a complete and polished look even if mesh variants are fallback-backed by procedural primitives.",
+    "title": "Butter Crunch",
+    "summary": "Butter Crunch is a focused, responsive tactile experience centered on a single satisfying action: crunching a block of butter on a clean, stylized kitchen cutting board stage. When the player clicks the butter block or presses the prominent onscreen 'CRUNCH' button, the butter model squashes and squishes with synchronized particle crumbs and a crisp audio crunch effect. A clean, modern counter increments by exactly one per crunch upon completion. The butter smoothly recovers to its pristine shape, ready for the next crunch. Debounce guards on both client and server prevent double-counting or spamming mid-animation.",
+    "visualDirection": "A bright, warm, minimalist culinary aesthetic. The environment is a clean studio-style cutting board sitting on a marble countertop with soft warm lighting. The centerpiece is a rich golden-yellow block of butter with subtle bevels and a pat/stick silhouette, accompanied by a decorative butter knife resting nearby. On crunch, the butter squashes down with dynamic particle crumbs flying outward and a gentle screen punch, accompanied by a popping counter animation (+1 toast effect) before smoothly springing back up to rest height.",
+    "requirements": [
+      {
+        "id": "req_stage_object",
+        "description": "A small clean stage featuring one clearly visible butter-crunch object positioned as the focal point, with safe player spawn and clean bounds.",
+        "sourceId": "request",
+        "sourceQuote": "Give the player one clearly visible butter-crunch object on a small clean stage.",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "The player spawns facing a clean stage with a prominent butter block object clearly visible and interactable."
+      },
+      {
+        "id": "req_interaction_crunch",
+        "description": "Clicking/tapping the butter object (via ClickDetector/ProximityPrompt) or clicking an onscreen Crunch button initiates a single crunch action.",
+        "sourceId": "request",
+        "sourceQuote": "Clicking/tapping an obvious control or the object performs one satisfying crunch",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Clicking the 3D butter object or tapping the UI button triggers the crunch sequence."
+      },
+      {
+        "id": "req_motion_deformation",
+        "description": "The crunch action displays visible animated motion and deformation (squash, particle crumbs, and dynamic recovery) created procedurally with TweenService.",
+        "sourceId": "request",
+        "sourceQuote": "visible animated motion or deformation, a matching short crunch sound synchronized with the action",
+        "origin": "user",
+        "category": "animation",
+        "priority": "required",
+        "acceptance": "Butter visibly flattens/squashes and ejects particle flakes during crunch, then smoothly resets to its original shape."
+      },
+      {
+        "id": "req_audio_crunch",
+        "description": "A matching short crunch sound plays synchronized with the crunch impact.",
+        "sourceId": "request",
+        "sourceQuote": "a matching short crunch sound synchronized with the action",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "A crisp crunch audio plays at the exact moment the butter deformation hits peak squash."
+      },
+      {
+        "id": "req_counter_tracking",
+        "description": "A clean, readable onscreen counter starts at zero and increments by exactly 1 per completed crunch, remaining accurate across multiple crunches without double-counting.",
+        "sourceId": "request",
+        "sourceQuote": "a readable counter that increases by exactly one per completed crunch. The object recovers or resets so the action can be repeated. Start the counter at zero in a fresh session. Prevent overlapping input from double-counting the same crunch. Keep the counter correct after ten separated crunches and allow another crunch after recovery.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Session starts with Counter = 0. Crunching 10 times consecutively (after recoveries) produces exactly Counter = 10. Rapid spam clicks during a single crunch do not increment more than 1."
+      },
+      {
+        "id": "req_responsive_ui",
+        "description": "A responsive, clean UI displaying the Crunch Counter and an onscreen Crunch button formatted for desktop and mobile screens.",
+        "sourceId": "request",
+        "sourceQuote": "Keep the UI readable on desktop and mobile. Do not add shops, upgrades, rebirth, currency, saving, monetization, or unrelated mechanics.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "The counter and crunch button are legibly scaled and accessible across phone, tablet, and PC viewports."
+      },
+      {
+        "id": "req_state_network",
+        "description": "Client-server communication handles crunch requests, validates debounces, and replicates counter updates per player.",
+        "sourceId": "request",
+        "sourceQuote": "Prevent overlapping input from double-counting the same crunch. Keep the counter correct after ten separated crunches and allow another crunch after recovery.",
+        "origin": "user",
+        "category": "network",
+        "priority": "required",
+        "acceptance": "Server tracks player crunch count and validates crunch state transitions so rapid network signals cannot artificially double-count."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "task_world_stage",
+        "title": "Build Clean Kitchen Stage and Butter Object",
+        "requirements": [
+          "req_stage_object"
+        ],
+        "dependsOn": [],
+        "files": []
+      },
+      {
+        "id": "task_network_config",
+        "title": "Setup Remote Events and Shared Config",
+        "requirements": [
+          "req_state_network"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_f92187945c1a/ButterConfig.luau"
+        ]
+      },
+      {
+        "id": "task_server_logic",
+        "title": "Implement Crunch Server State & Rate Control",
+        "requirements": [
+          "req_counter_tracking",
+          "req_state_network"
+        ],
+        "dependsOn": [
+          "task_network_config"
+        ],
+        "files": [
+          "ServerScriptService/Forge_f92187945c1a/CrunchServer.server.luau"
+        ]
+      },
+      {
+        "id": "task_client_controller",
+        "title": "Implement Client Interaction, Animation, Audio, and HUD",
+        "requirements": [
+          "req_interaction_crunch",
+          "req_motion_deformation",
+          "req_audio_crunch",
+          "req_counter_tracking",
+          "req_responsive_ui"
+        ],
+        "dependsOn": [
+          "task_world_stage",
+          "task_network_config",
+          "task_server_logic"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_f92187945c1a/ButterClient.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": [
+      {
+        "mechanicId": "butter_crunch_loop",
+        "action": "include",
+        "requirementIds": [
+          "req_stage_object",
+          "req_interaction_crunch",
+          "req_motion_deformation",
+          "req_audio_crunch",
+          "req_counter_tracking",
+          "req_responsive_ui",
+          "req_state_network"
+        ],
+        "reason": "Directly implements the requested single-action butter crunch game with squash deformation, synchronized audio, debounce protection, and responsive mobile/desktop UI without extraneous systems.",
+        "userSourceId": "request",
+        "userQuote": "Create a super simple playable Roblox game called Butter Crunch. Give the player one clearly visible butter-crunch object on a small clean stage. Clicking/tapping an obvious control or the object performs one satisfying crunch: visible animated motion or deformation, a matching short crunch sound synchronized with the action, and a readable counter that increases by exactly one per completed crunch."
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 108443,
+      "chargedMicros": 10714,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5195,
+      "outputTokens": 1818,
+      "status": "ok",
+      "at": "2026-09-16T00:29:11.165Z"
+    }
+  ],
+  "budgetMicros": 2000000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T00:28:55.837Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T00:28:55.849Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T00:29:11.17Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T00:07:41.466Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

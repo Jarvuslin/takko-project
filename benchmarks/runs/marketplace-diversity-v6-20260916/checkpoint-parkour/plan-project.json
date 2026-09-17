@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 2,
+  "id": "70007bd4-28de-4f53-880b-c75050a85d25",
+  "name": "Sky Steps Parkour",
+  "request": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+  "revision": 1,
+  "scope": "Forge_70007bd428de",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "checkpointPadAsset",
+        "requirementId": "reqCheckpointAudioAnim",
+        "role": "Interactive checkpoint pad model with neon trim or particle indicator",
+        "kind": "Model",
+        "query": "checkpoint pad platform",
+        "constraints": "Model with BasePart trigger pad, distinct visual state or lights, clean pivot",
+        "intent": {
+          "experienceRole": "Provides clear visual landmarks indicating sequential stage goals across the sky parkour course.",
+          "interaction": "Player touches pad; pad pulses with light and activates confirmation sound if it is the valid next checkpoint in sequence.",
+          "reusableFeatures": [
+            "Pad geometry",
+            "Neon accents",
+            "Particle emitters or light parts"
+          ],
+          "relatedRequirementIds": [
+            "reqCheckpointAudioAnim",
+            "reqOrderedProgression"
+          ]
+        },
+        "required": false,
+        "position": [
+          0,
+          50,
+          -50
+        ],
+        "maxSize": 10
+      },
+      {
+        "id": "checkpointSfx",
+        "requirementId": "reqCheckpointAudioAnim",
+        "role": "Audio chime played upon successfully activating an in-sequence checkpoint",
+        "kind": "Audio",
+        "query": "checkpoint chime ding",
+        "constraints": "Short crisp positive chime sound effect under 3 seconds",
+        "intent": {
+          "experienceRole": "Gives immediate, satisfying acoustic feedback that progress was registered.",
+          "interaction": "Plays once precisely when the player triggers the next valid checkpoint in order.",
+          "reusableFeatures": [
+            "Sound asset and audio properties"
+          ],
+          "relatedRequirementIds": [
+            "reqCheckpointAudioAnim"
+          ]
+        },
+        "required": false,
+        "position": [
+          0,
+          50,
+          -50
+        ],
+        "maxSize": 1
+      },
+      {
+        "id": "finishSfx",
+        "requirementId": "reqFinishReplay",
+        "role": "Audio celebration fanfare played when reaching the course finish line",
+        "kind": "Audio",
+        "query": "level complete victory fanfare",
+        "constraints": "Rewarding victory jingle under 6 seconds",
+        "intent": {
+          "experienceRole": "Celebrates player course completion and punctuates the stop of the run timer.",
+          "interaction": "Plays on finish line contact as the results modal appears.",
+          "reusableFeatures": [
+            "Sound asset and audio properties"
+          ],
+          "relatedRequirementIds": [
+            "reqFinishReplay"
+          ]
+        },
+        "required": false,
+        "position": [
+          0,
+          80,
+          -250
+        ],
+        "maxSize": 1
+      }
+    ],
+    "assetStrategy": "Search Roblox Marketplace for reusable checkpoint pads, moving platform components, and audio chimes/fanfares. Inspect any included scripts and models to preserve pre-built visual effects, tweening mechanisms, and sound instances before layering our authoritative sequential progression and fall-recovery logic. If pre-built moving platform scripts are incompatible with single-player server-authoritative teleportation, implement clean PrismaticConstraint or TweenService motion while preserving visual assets. All sound effects will be sourced directly from verified Marketplace audio.",
+    "title": "Sky Steps Parkour",
+    "summary": "Sky Steps is a focused single-player 3D parkour obstacle course set high in an atmospheric sky setting. Upon spawning on the starting island, the player immediately sees the linear route ahead: a sequence of floating stepping stones, Checkpoint 1, a series of precision jumps leading to a moving platform crossing over a marked void hazard, Checkpoint 2, an ascending stair sequence leading to Checkpoint 3, and a final jump sequence toward the glowing Finish Gateway. Stepping on checkpoints in strict sequential order (1 -> 2 -> 3 -> Finish) activates visual pulse animations and synchronized audio chimes while updating the checkpoint tracker on the player's HUD. Touching a subsequent checkpoint out of order does not register. Slipping off any platform into the fall hazard volume immediately and safely respawns/teleports the player back to their most recently validated checkpoint with their run timer intact. Upon touching the Finish zone, the elapsed timer stops, a celebration fanfare plays, and a clean results modal displays total completion time alongside a prominent Replay button that resets the course and timer for another run.",
+    "visualDirection": "A vibrant, clean floating-island sky aesthetic. Stepping platforms are crafted from smooth white stone slabs trimmed with subtle cyan and gold neon edge-glow for crisp depth perception against the skybox. Checkpoint pads feature circular pedestals with idle floating light rings that illuminate with bright emerald energy and particle sparks upon activation. The moving platform is distinguished by amber warning indicators and pulsing directional guide arrows. Below the course sits a clearly marked danger layer—a swirling crimson-tinted void plane indicating instant fall-out. The HUD is sleek and unobtrusive, displaying a digital stopwatch and checkpoint counter at the top center, using bold typography and semi-transparent dark backing cards with rounded corners that scale naturally for mobile touch and desktop displays.",
+    "requirements": [
+      {
+        "id": "reqOrderedProgression",
+        "description": "The course must feature three ordered checkpoints between start and finish. Progression must be strictly sequential (Start -> Checkpoint 1 -> Checkpoint 2 -> Checkpoint 3 -> Finish); touching a checkpoint ahead of order must not skip progress or activate.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Touching Checkpoint 2 or 3 before Checkpoint 1 does not update current checkpoint state or trigger activation. Touching Checkpoint 1 updates state to 1; subsequently touching Checkpoint 2 updates state to 2, and Checkpoint 3 updates state to 3."
+      },
+      {
+        "id": "reqMovingPlatform",
+        "description": "Include a moving platform crossing obstacle along the course that moves smoothly back and forth between two waypoints, allowing the player to ride it across a gap.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "The moving platform travels cyclically between its defined waypoints without jittering; a player standing on it is carried across the hazard gap smoothly."
+      },
+      {
+        "id": "reqFallHazardRecovery",
+        "description": "A clearly marked fall hazard zone below the course detects player falls and immediately teleports the player back to their last validated checkpoint without resetting sequential progress or halting the run timer.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Falling off any platform into the hazard zone teleports the player to their latest active checkpoint CFrame with zero horizontal velocity within 0.5 seconds, preserving current checkpoint index and run timer."
+      },
+      {
+        "id": "reqCheckpointAudioAnim",
+        "description": "Reaching an in-sequence checkpoint displays a visible activation animation (color tween, ring pulse, or particle burst) and plays a synchronized confirmation sound.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "When the player steps on the correct next checkpoint, the pad visibly changes appearance with an animated tween and a verified Marketplace sound plays."
+      },
+      {
+        "id": "reqHUDProgressTimer",
+        "description": "Provide a clean HUD on desktop and touch showing the player's current checkpoint progress (e.g. Checkpoint: 1 / 3) and a live elapsed run timer formatted in seconds and tenths.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "The HUD is visible on screen, increments timer steadily from run start, and updates checkpoint text immediately upon reaching each checkpoint in order."
+      },
+      {
+        "id": "reqFinishReplay",
+        "description": "Reaching the finish line stops the timer, plays a completion fanfare, displays a completion results screen with total elapsed time, and provides a deliberate replay button that resets the run to Start with a fresh timer.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Touching the finish pad after completing Checkpoints 1-3 halts the timer, presents the final time modal, and pressing Replay resets the player to Start, resets checkpoint status to 0, and starts a fresh timer."
+      },
+      {
+        "id": "reqResponsiveControls",
+        "description": "UI elements and touch-friendly controls must be comfortably sized and legible across both desktop mouse/keyboard and mobile touch viewports.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "HUD text, buttons, and dialogs are fully visible, centered or appropriately pinned, and replay buttons respond to both mouse clicks and touch taps without overlapping default mobile controls."
+      },
+      {
+        "id": "reqCourseDesign",
+        "description": "Construct a coherent, readable sky obstacle course with comfortable jump clearances (within standard Roblox jump power of 50 and walkspeed of 16), distinct platform stepping stones, clear hazard boundaries, and visual focal points for each checkpoint.",
+        "sourceQuote": "",
+        "origin": "inferred",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "All jumps between platforms are physically achievable with default character physics without requiring glitches or excessive precision; clear sightlines show the entire route from start to finish."
+      },
+      {
+        "id": "reqServerStateValidation",
+        "description": "Checkpoint validation, fall teleportation, and timer start/finish logic must be verified and managed on the server to prevent desync and ensure reliable state transitions.",
+        "sourceQuote": "",
+        "origin": "inferred",
+        "category": "network",
+        "priority": "required",
+        "acceptance": "Server maintains player checkpoint index, validates touch distances, executes teleports on fall, and notifies the client of state updates via RemoteEvents."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "taskCourseWorld",
+        "title": "Build Sky Steps Course Environment & Platforms",
+        "requirements": [
+          "reqCourseDesign",
+          "reqMovingPlatform",
+          "reqFallHazardRecovery"
+        ],
+        "dependsOn": [],
+        "files": []
+      },
+      {
+        "id": "taskParkourServer",
+        "title": "Implement Server Checkpoint Progression, Moving Platform & Fall Recovery",
+        "requirements": [
+          "reqOrderedProgression",
+          "reqMovingPlatform",
+          "reqFallHazardRecovery",
+          "reqFinishReplay",
+          "reqServerStateValidation"
+        ],
+        "dependsOn": [
+          "taskCourseWorld"
+        ],
+        "files": [
+          "ServerScriptService/Forge_70007bd428de/ParkourServer.server.luau"
+        ]
+      },
+      {
+        "id": "taskParkourClient",
+        "title": "Implement Parkour HUD, Timer, Audio & Replay Interface",
+        "requirements": [
+          "reqCheckpointAudioAnim",
+          "reqHUDProgressTimer",
+          "reqFinishReplay",
+          "reqResponsiveControls"
+        ],
+        "dependsOn": [
+          "taskParkourServer"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_70007bd428de/ParkourClient.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": []
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 115421,
+      "chargedMicros": 17890,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6743,
+      "outputTokens": 3422,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:11:30.788Z"
+    }
+  ],
+  "budgetMicros": 1000000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T10:11:07.828Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T10:11:07.853Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T10:11:30.802Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T10:11:07.814Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

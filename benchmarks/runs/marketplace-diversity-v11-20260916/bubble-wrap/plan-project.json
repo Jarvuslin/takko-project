@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 2,
+  "id": "305070b3-6e1b-47c1-8e1f-e664af70611a",
+  "name": "Bubble Break ASMR Tabletop",
+  "request": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+  "revision": 1,
+  "scope": "Forge_305070b36e1b",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "bubbleWrapInteraction",
+        "requirementId": "marketplaceFirst",
+        "role": "Complete reusable bubble-wrap interaction system to supply as much of the individual bubble geometry, press detection, pop animation, state behavior, and embedded media as can be safely preserved.",
+        "kind": "Model",
+        "query": "bubble wrap pop game",
+        "constraints": "Inspect the full hierarchy, scripts, dependencies, animations, interaction interfaces, and sound references before assigning replacement work. Candidate should expose at least 12 individually pressable bubbles, support click or tap interaction, and fit a compact tabletop area. Audit all source; reject arbitrary HTTP execution and numeric require IDs. Unsupported script, rig, animation, or serialization import is a capability gap requiring explicit escalation, not permission to recreate the component procedurally. Native tests must establish which claimed behavior and media actually function.",
+        "intent": {
+          "experienceRole": "This component is the tactile centerpiece of the requested ASMR loop and should preserve any useful existing bubble geometry, depression/pop motion, interaction behavior, and media rather than reducing the Marketplace search to a decorative prop.",
+          "interaction": "The player selects one intact bubble by mouse or touch, observes a brief depression followed by its pop and settled popped state, hears synchronized audio, and receives one counter increment only after that pop finishes. Repeated, held, or overlapping input on the same bubble must be ignored.",
+          "reusableFeatures": [
+            "Individually addressable bubble geometry and intact/popping/popped states",
+            "Existing desktop and touch interaction handling",
+            "Existing depression, pop, settle, or recovery animation timing",
+            "Embedded Marketplace sound references and playback placement",
+            "Completion or reset behavior that can be safely retained",
+            "Documented events, attributes, modules, or callbacks usable for counter integration"
+          ],
+          "relatedRequirementIds": [
+            "marketplaceFirst",
+            "bubbleSheet",
+            "popPhases",
+            "exactCounting",
+            "crossDeviceInput",
+            "sheetCompletion",
+            "sheetReset",
+            "nativeVerification"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3.4,
+          0
+        ],
+        "maxSize": 12
+      },
+      {
+        "id": "verifiedPopAudio",
+        "requirementId": "popAudio",
+        "role": "Marketplace-sourced close, satisfying bubble-wrap pop sound used for every successful bubble pop when the retained component does not already contain a suitable verified sound.",
+        "kind": "Audio",
+        "query": "bubble wrap pop",
+        "constraints": "First inspect and prefer relevant captured sounds from the retained interaction component. Otherwise search Marketplace separately. The selected audio must load, play, and be listened to in native gameplay; confirm audible synchronization with the visible pop completion at the tabletop camera. Do not use generated, built-in, procedural, placeholder, or invented audio IDs. If no suitable audio can be imported and verified, report the audio requirement as blocked.",
+        "intent": {
+          "experienceRole": "The synchronized pop is essential ASMR feedback and confirms that a valid bubble transitioned from pressed to popped.",
+          "interaction": "A successful intact-bubble press triggers one audible pop aligned with the visible pop phase; rejected repeat, hold, spam, or popped-bubble inputs produce no additional pop sound or reward.",
+          "reusableFeatures": [
+            "Relevant embedded sound already referenced by the retained component",
+            "Clean transient bubble-pop character without unrelated speech or music",
+            "Reliable loading and playback through a preserved Marketplace reference",
+            "Playback behavior suitable for rapid but distinct presses",
+            "Existing spatial emitter or sound attachment near the sheet"
+          ],
+          "relatedRequirementIds": [
+            "popAudio",
+            "popPhases",
+            "exactCounting",
+            "nativeVerification"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          3.4,
+          0
+        ],
+        "maxSize": 4
+      }
+    ],
+    "assetStrategy": "Discovery begins with a complete reusable bubble-wrap interaction Model, not separate decorative bubble meshes. The selected candidate must be inspected for individually addressable geometry, state handling, click/tap support, animation, embedded audio, completion/reset behavior, scripts, dependencies, and integration interfaces. Useful verified behavior and media will be retained; only gaps established by that inspection may receive integration work. The model acquisition and audit are blocking because importer or capability limitations do not authorize silently rebuilding an apparently suitable scripted component. The separate Audio need represents the mandatory pop-audio obligation: retained component audio is preferred, but it still requires provenance, loading, playback, synchronization, and listening checks; Marketplace search supplies missing audio when necessary. No asset IDs, interfaces, or final glue-script ownership are assumed before discovery. If source auditing, animation preservation, sound capture, or importer support cannot preserve a candidate, the exact capability gap must be escalated rather than treated as evidence that no suitable component exists.",
+    "title": "Bubble Break ASMR Tabletop",
+    "summary": "Create a compact one-player Bubble Break ASMR experience centered on a reusable 4-by-4 sheet of 16 individually selectable bubbles. The player begins already positioned at a safe, collidable workstation with a close angled view of the bubble-wrap sheet; no travel or large map is needed. The first intact bubbles and a minimal “Popped 0 / 16” display are immediately readable. Clicking with a mouse or tapping on touch teaches the loop without a separate tutorial: the chosen bubble depresses, visibly pops, plays a synchronized Marketplace pop sound, settles into a clearly popped state, and only then increases the counter by exactly one.\n\nEach bubble owns an authoritative intact, popping, or popped state. Intact-to-popping is accepted once; held input, spam during the transition, and interaction with a popped bubble do nothing further. Finishing all 16 bubbles produces clear sheet-complete feedback and exposes or emphasizes a deliberate Reset Sheet control. Reset returns every bubble to its fresh visual and interaction state and sets the counter to zero, allowing the short ASMR loop to repeat.\n\nThe space is a small bounded tabletop vignette rather than a map: a safe spawn/view position, one desk, the centered interaction sheet, a soft backdrop, and restrained environmental dressing. The server remains authoritative for bubble transitions, distance, rates, count, completion, and reset even though the intended session has one player. The client handles pointer/touch targeting, close camera presentation, UI, and local feedback through inspected component interfaces. State is session-only and rebuilt cleanly across reset, respawn, and player removal. There is no persistence, multiplayer gameplay, purchases, progression system, or unrelated activity.\n\nMarketplace discovery and inspection precede implementation ownership. Existing verified geometry, behavior, animation, and media are preserved. Assumed reasonable details are a 16-bubble sheet, a compact fixed/limited tabletop viewpoint, warm neutral styling, and a two-step or equivalently guarded reset interaction to prevent accidental sheet loss. Questions are omitted because the user explicitly delegated incidental choices and the core loop is fully specified. Success remains pending native desktop and touch observation, including actual audio playback and listening; code inspection alone cannot pass the experience.",
+    "visualDirection": "Use a close, calm tabletop composition with the bubble sheet as the unmistakable focal point. Place the 4-by-4 sheet centrally on a warm matte wood or light neutral desk, framed by a softly colored back panel and a few restrained, noninteractive desk-edge forms. Keep the playable area compact and bounded, with the player/viewpoint already aligned to the sheet so each bubble occupies a generous touch target. Avoid distant scenery, visual clutter, neon arcade styling, or unrelated props that compete with the tactile surface.\n\nThe sheet should read as a thin translucent or softly glossy base with rounded raised bubbles arranged on a precise grid. Intact bubbles need a consistent convex silhouette and gentle highlight; the active press should visibly flatten or sink before the pop; popped bubbles should settle into a lower, wrinkled, inverted, or otherwise unmistakably collapsed silhouette. Motion should be short and tactile rather than bouncy: a readable press phase, a crisp pop transition synchronized to sound, and a quick settle with no restoration until reset. A subtle selection highlight may be used for mouse hover, but touch must not depend on hover.\n\nUse a restrained palette: warm neutral tabletop and background, cool translucent bubble material, dark charcoal text, and one soft accent color for completion/reset emphasis. Lighting should be broad and soft enough to reveal bubble curvature without hard glare. Keep the camera close and slightly angled from above so all 16 bubbles remain visible and individually targetable on desktop and common touch screens.\n\nThe HUD should be minimal and device-safe: a compact counter near the top edge, a small Reset Sheet control away from the bubble grid, and a centered but unobtrusive completion card or banner after the final pop. Use large readable numerals, short labels, high contrast, rounded panels, and touch targets large enough for fingers. The counter changes only after the corresponding visible/audio pop completes. Completion feedback should clearly acknowledge “Sheet Complete” and direct the player toward the deliberate reset without adding currencies, unlocks, or progression.",
+    "requirements": [
+      {
+        "id": "marketplaceFirst",
+        "description": "Search Marketplace first for a complete reusable bubble-wrap interaction and inspect its geometry, source, animation, sounds, behavior, dependencies, and interfaces before deciding what integration is missing.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Asset-pipeline records show complete interaction Model discovery before replacement design, followed by hierarchy/source/dependency inspection. Verified useful behavior and media are retained. Any unsupported importer or serialization capability is recorded and escalated rather than used to justify a silent procedural replacement."
+      },
+      {
+        "id": "bubbleSheet",
+        "description": "Provide a reusable sheet containing at least twelve individually pressable bubbles; use a compact 4-by-4, 16-bubble layout as the chosen default.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Native play shows 16 distinct bubbles on one readable sheet, and each intact bubble can be independently targeted without triggering a neighboring bubble."
+      },
+      {
+        "id": "popPhases",
+        "description": "A valid press must visibly depress the selected bubble, transition through a crisp pop, and settle it into a clearly popped state with observable timing.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "animation",
+        "priority": "required",
+        "acceptance": "Slow and normal-speed native observation confirms a visible press/depression phase, pop transition, and settled popped phase for individual bubbles. A popped bubble does not visually return to intact before sheet reset."
+      },
+      {
+        "id": "popAudio",
+        "description": "Play a satisfying Marketplace-sourced bubble pop synchronized with every successful visible pop.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "The selected Marketplace audio reference passes loading and playback checks and is audibly listened to in native play. Exactly one audible pop aligns with each accepted visual pop; rejected inputs produce no extra pop audio. Missing or unverifiable audio leaves this requirement blocked."
+      },
+      {
+        "id": "exactCounting",
+        "description": "Increase the popped counter by exactly one only after a bubble's pop completes, while preventing held, spammed, overlapping, or already-popped input from counting twice.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "For each of the 16 bubbles, the count remains unchanged during the press phase and increases once after pop completion. Holding input, rapidly repeating input during transition, and pressing a popped bubble leave both count and audio unchanged. The final count is exactly 16."
+      },
+      {
+        "id": "crossDeviceInput",
+        "description": "Support usable individual-bubble interaction on desktop pointer input and touch input.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "Native desktop and touch runs each demonstrate reliable targeting and completion of the full sheet. Touch interaction uses sufficiently large targets and does not require hover, right-click, keyboard input, or precision unsuitable for fingers."
+      },
+      {
+        "id": "sheetCompletion",
+        "description": "When every bubble is popped, present clear sheet-completion feedback after the final pop and count update.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "After the sixteenth pop finishes, the HUD reads 16 / 16 and a clearly readable Sheet Complete state appears once. It does not appear early or duplicate due to repeated input."
+      },
+      {
+        "id": "sheetReset",
+        "description": "Let the player deliberately reset a completed or partially completed sheet to a fresh state and repeat the loop.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "lifecycle",
+        "priority": "required",
+        "acceptance": "A touch-usable Reset Sheet control requires an intentional confirmation or equivalent guard. Confirming reset returns all 16 bubbles to intact, cancels stale transitions, clears completion feedback, and sets the displayed and authoritative count to zero without duplicating the sheet."
+      },
+      {
+        "id": "tabletopWorld",
+        "description": "Build a small, bounded, close-readable tabletop presentation with a safe collidable spawn/view position and the bubble sheet as the only interaction focus.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "On spawn, the player is safely supported and already faces the centered sheet at a practical interaction distance. All bubbles are readable, the desk/background frame the action, and there is no large traversal area or unrelated gameplay landmark."
+      },
+      {
+        "id": "minimalHud",
+        "description": "Present only the current popped count, reset control, and completion feedback in a compact interface suitable for desktop and touch.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "The HUD shows a clear Popped N / 16 value, an intentional Reset Sheet control, and completion feedback without currency, shop, progression, or unrelated panels. It remains within common screen safe areas and is legible on desktop and touch resolutions."
+      },
+      {
+        "id": "authoritativeState",
+        "description": "Maintain validated authoritative per-bubble state and reject invalid, distant, or rate-abusive interaction requests.",
+        "sourceQuote": "",
+        "origin": "inferred",
+        "category": "network",
+        "priority": "required",
+        "acceptance": "The server or retained audited authoritative component validates player health, workstation distance, request rate, sheet generation, and each bubble's intact state before accepting a transition. State is indexed safely for the active player/session, and client payloads cannot directly set count or bubble state."
+      },
+      {
+        "id": "sessionLifecycle",
+        "description": "Keep the session loop clean across character respawn, reset, and player removal without persistence or duplicate connections/UI.",
+        "sourceQuote": "",
+        "origin": "inferred",
+        "category": "lifecycle",
+        "priority": "required",
+        "acceptance": "Respawn restores the close workstation presentation and rebinds input/HUD once without stale character connections or duplicate interfaces. Leaving cleans player state and connections. No DataStore or cross-session save is used."
+      },
+      {
+        "id": "scopeLimits",
+        "description": "Keep the experience to one-player bubble popping with no multiplayer systems, purchases, saving, progression economy, or large map.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "Native review finds one bubble station and the repeatable sheet loop only; no trading, shared competition, monetization prompts, save data, upgrade system, or large traversal environment is present."
+      },
+      {
+        "id": "nativeVerification",
+        "description": "Verify the complete interaction and presentation through observed native gameplay rather than code inspection alone.",
+        "sourceId": "request",
+        "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "Protected native review records observed desktop and touch interaction, press/pop/settle timing, audible synchronized Marketplace sound, per-bubble lockout, exact delayed counting, completion, deliberate reset, respawn behavior, and readable presentation. Required missing objects fail review rather than causing skipped tests."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "discoverInteraction",
+        "title": "Discover, import, audit, and natively probe a complete Marketplace bubble-wrap interaction plus its captured media; record any source, dependency, animation, audio, or importer capability gaps before implementation ownership is assigned.",
+        "requirements": [
+          "marketplaceFirst",
+          "bubbleSheet",
+          "popPhases",
+          "popAudio",
+          "crossDeviceInput",
+          "nativeVerification"
+        ],
+        "dependsOn": [],
+        "files": []
+      },
+      {
+        "id": "composeTabletop",
+        "title": "Compose the compact bounded tabletop, safe spawn/view position, sheet placement, soft lighting, backdrop, and interaction clearances around the retained component without destroying unrelated objects.",
+        "requirements": [
+          "tabletopWorld",
+          "bubbleSheet",
+          "scopeLimits"
+        ],
+        "dependsOn": [
+          "discoverInteraction"
+        ],
+        "files": []
+      },
+      {
+        "id": "integrateBubbleLoop",
+        "title": "After inspection, preserve the retained component's verified interfaces and implement only proven gaps for authoritative per-bubble transitions, input validation, delayed exact counting, synchronized verified audio, completion, and fresh-sheet reset. Register exclusive script ownership only once the imported hierarchy establishes what glue is necessary.",
+        "requirements": [
+          "bubbleSheet",
+          "popPhases",
+          "popAudio",
+          "exactCounting",
+          "crossDeviceInput",
+          "sheetCompletion",
+          "sheetReset",
+          "authoritativeState"
+        ],
+        "dependsOn": [
+          "discoverInteraction",
+          "composeTabletop"
+        ],
+        "files": []
+      },
+      {
+        "id": "integratePresentation",
+        "title": "Integrate the close desktop/touch camera and minimal persistent counter, guarded reset, and completion presentation against the authoritative inspected loop, with respawn rebinding and cleanup. Preserve any verified retained UI rather than duplicating it.",
+        "requirements": [
+          "crossDeviceInput",
+          "minimalHud",
+          "tabletopWorld",
+          "sheetCompletion",
+          "sheetReset",
+          "sessionLifecycle"
+        ],
+        "dependsOn": [
+          "integrateBubbleLoop"
+        ],
+        "files": []
+      },
+      {
+        "id": "verifyNativeLoop",
+        "title": "Run protected native gameplay verification on desktop and touch, including listening checks and observed timing/state tests; report every missing asset, capability, or failed interaction honestly and repair only through the owning integration task.",
+        "requirements": [
+          "nativeVerification",
+          "popPhases",
+          "popAudio",
+          "exactCounting",
+          "crossDeviceInput",
+          "sheetCompletion",
+          "sheetReset",
+          "tabletopWorld",
+          "minimalHud",
+          "authoritativeState",
+          "sessionLifecycle",
+          "scopeLimits"
+        ],
+        "dependsOn": [
+          "integrateBubbleLoop",
+          "integratePresentation"
+        ],
+        "files": []
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 189408,
+      "chargedMicros": 68939,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6740,
+      "outputTokens": 5209,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T18:55:57.391Z"
+    }
+  ],
+  "budgetMicros": 1300000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T18:54:11.921Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T18:54:11.935Z",
+      "message": "planner: GPT-5.6 Sol · lead / openai/gpt-5.6-sol"
+    },
+    {
+      "at": "2026-09-16T18:55:57.402Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T18:54:11.913Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

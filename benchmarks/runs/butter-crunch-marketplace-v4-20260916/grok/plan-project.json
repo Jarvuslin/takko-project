@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 2,
+  "id": "4fbdea98-2e3f-4223-a387-d1bec0b5ffe7",
+  "name": "Roblox Butter Crunch",
+  "request": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+  "revision": 1,
+  "scope": "Forge_4fbdea982e3f",
+  "spec": {
+    "assetNeeds": [
+      {
+        "id": "crunchSound",
+        "requirementId": "req-audio-crunch",
+        "role": "Sound effect played when the player clicks or taps the butter to crunch it.",
+        "kind": "Audio",
+        "query": "crunch bite snap sound effect",
+        "constraints": "Short crisp crunchy food sound effect under 2 seconds",
+        "required": true,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 10
+      },
+      {
+        "id": "butterModel",
+        "requirementId": "req-butter-obj",
+        "role": "Visual butter stick or food mesh resting on the pedestal.",
+        "kind": "Model",
+        "query": "butter stick food",
+        "constraints": "Clean single butter stick or block food prop",
+        "required": false,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 5
+      }
+    ],
+    "assetStrategy": "Audio is sourced strictly from Creator Store with an executable Audio assetNeed for the crunch sound effect. For visual models, a Marketplace query is declared for a butter stick / dish prop with a robust procedural fallback if unavailable. Stage, lighting, UI layout, debounce logic, deformation tweens, and counter replication are authored directly.",
+    "title": "Roblox Butter Crunch",
+    "summary": "A minimalist, tactile Butter Crunch experience where players interact with a stylized butter block resting on a clean kitchen pedestal stage. Clicking or tapping the butter triggers an animated crunch/squish deformation, emits a crisp crunch sound effect retrieved from Creator Store audio, and increments a clear counter HUD from 0 upwards (reading exactly 10 after ten distinct crunches). Overlapping clicks are strictly debounced during the crunch and recovery phase so duplicate inputs cannot glitch or double-count.",
+    "visualDirection": "A clean, warm aesthetic featuring a smooth circular pedestal stage, soft warm lighting, and a golden-yellow butter stick resting on a porcelain dish. Upon interaction, the butter squishes, ripples with particle crumbs, and smoothly springs back to its pristine resting shape. A large, readable, modern minimalist counter HUD sits cleanly at the top of the screen with punchy number bounce animations on each crunch.",
+    "requirements": [
+      {
+        "id": "req-stage",
+        "description": "Construct a small clean presentation stage with a stable spawn point and pedestal holding the butter interaction area.",
+        "sourceId": "request",
+        "sourceQuote": "one butter object on a small clean stage",
+        "origin": "user",
+        "category": "world",
+        "priority": "required",
+        "acceptance": "Player spawns facing a clean stage with a centered pedestal holding the interactable butter."
+      },
+      {
+        "id": "req-butter-obj",
+        "description": "Render a golden butter stick object on the stage ready for interaction.",
+        "sourceId": "request",
+        "sourceQuote": "one butter object on a small clean stage",
+        "origin": "user",
+        "category": "presentation",
+        "priority": "required",
+        "acceptance": "Butter object is clearly visible and positioned atop the pedestal."
+      },
+      {
+        "id": "req-crunch-mechanic",
+        "description": "Provide a repeatable click/tap crunch interaction that increments the counter once per completed crunch, prevents double-counting during overlapping inputs, and resets/recovers the butter after each action.",
+        "sourceId": "request",
+        "sourceQuote": "one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Clicking/tapping triggers a single crunch action. Rapid repeated clicks during the active crunch animation do not cause extra counts. After completion, the butter recovers and can be crunched again."
+      },
+      {
+        "id": "req-counter-ui",
+        "description": "Display a readable counter starting at zero that increments by one for each completed crunch and displays 10 after ten crunches.",
+        "sourceId": "request",
+        "sourceQuote": "and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches.",
+        "origin": "user",
+        "category": "ui",
+        "priority": "required",
+        "acceptance": "Counter UI starts at '0' and displays exactly '10' after 10 completed crunches."
+      },
+      {
+        "id": "req-animation",
+        "description": "Provide visible crunch deformation animation (squish and bounce back) on the butter object during each interaction.",
+        "sourceId": "request",
+        "sourceQuote": "with visible animation",
+        "origin": "user",
+        "category": "animation",
+        "priority": "required",
+        "acceptance": "Butter squashes/deforms visibly on crunch and smoothly restores to normal size upon recovery."
+      },
+      {
+        "id": "req-audio-crunch",
+        "description": "Play a synchronized crunch sound effect sourced from the Creator Store on every crunch interaction.",
+        "sourceId": "request",
+        "sourceQuote": "and synchronized crunch sound",
+        "origin": "user",
+        "category": "audio",
+        "priority": "required",
+        "acceptance": "A crisp crunch audio plays in sync with the deformation whenever crunch is triggered."
+      },
+      {
+        "id": "req-cross-platform",
+        "description": "Support both desktop (mouse click / ClickDetector) and mobile (tap / TouchTap / screen button) controls seamlessly.",
+        "sourceId": "request",
+        "sourceQuote": "Support desktop and mobile controls.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "Game can be played via mouse clicks on desktop and touchscreen taps on mobile devices."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "task-shared-config",
+        "title": "Create shared Butter crunch configurations and network remotes",
+        "requirements": [
+          "req-crunch-mechanic",
+          "req-counter-ui"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_4fbdea982e3f/ButterConfig.luau"
+        ]
+      },
+      {
+        "id": "task-server-game",
+        "title": "Implement server stage, butter initialization, rate-limiting, and crunch validation",
+        "requirements": [
+          "req-stage",
+          "req-butter-obj",
+          "req-crunch-mechanic",
+          "req-counter-ui"
+        ],
+        "dependsOn": [
+          "task-shared-config"
+        ],
+        "files": [
+          "ServerScriptService/Forge_4fbdea982e3f/GameServer.server.luau"
+        ]
+      },
+      {
+        "id": "task-client-interaction",
+        "title": "Implement client crunch interaction, animation tweens, crunch audio playback, and counter HUD",
+        "requirements": [
+          "req-butter-obj",
+          "req-crunch-mechanic",
+          "req-counter-ui",
+          "req-animation",
+          "req-audio-crunch",
+          "req-cross-platform"
+        ],
+        "dependsOn": [
+          "task-shared-config",
+          "task-server-game"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_4fbdea982e3f/ButterClient.client.luau"
+        ]
+      }
+    ],
+    "referenceDecisions": [
+      {
+        "mechanicId": "butterCrunchCore",
+        "action": "include",
+        "requirementIds": [
+          "req-stage",
+          "req-butter-obj",
+          "req-crunch-mechanic",
+          "req-counter-ui",
+          "req-animation",
+          "req-audio-crunch",
+          "req-cross-platform"
+        ],
+        "reason": "Implements the exact single-button/single-prop crunch loop with strict debouncing and audio-visual synchronization requested."
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "review",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109644,
+      "chargedMicros": 14571,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5527,
+      "outputTokens": 2780,
+      "status": "ok",
+      "at": "2026-09-16T02:56:05.194Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 115644,
+      "chargedMicros": 13809,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7537,
+      "outputTokens": 2175,
+      "status": "ok",
+      "at": "2026-09-16T02:56:17.199Z"
+    }
+  ],
+  "budgetMicros": 1400000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T02:55:46.104Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T02:55:46.119Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T02:56:05.199Z",
+      "message": "Validation feedback: Asset needs must have unique IDs and refer to existing requirements"
+    },
+    {
+      "at": "2026-09-16T02:56:05.200Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash — correcting output"
+    },
+    {
+      "at": "2026-09-16T02:56:17.202Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T02:55:46.095Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": null,
+  "visualEvidence": null
+}

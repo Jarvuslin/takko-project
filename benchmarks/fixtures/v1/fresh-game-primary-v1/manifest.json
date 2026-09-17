@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "fixtureId": "fresh-game-primary-v1",
+  "fixtureVersion": "1.0.0",
+  "purpose": "starting_fixture_not_candidate_quality_evidence",
+  "scope": "Forge_BenchmarkFresh",
+  "artifactSha256": "a1f9a263ad9e6098845841d6bc0ff190457e088948fa690cc46101277c43bc54",
+  "bundleFileSha256": "311a66a0a5734da5b6a37f8cdacbbf85d5010055db0a1657e89df9d1d07ad11a",
+  "exportHash": "294c7287cc12b0e42304f4b07d105e54bcba0ae8041e150f9a2f7409aae77793",
+  "bundlePath": "bundle.json",
+  "exportPath": "export.rbxlx",
+  "caseBindings": [
+    {
+      "caseId": "game.asmr-interaction",
+      "caseVersion": "1.0.0",
+      "promptSha256": "1bae9825fb29a383315201a213dc4f9534ab0db9af291b0cc61e93ec180166e0"
+    },
+    {
+      "caseId": "game.collect-and-steal",
+      "caseVersion": "1.0.0",
+      "promptSha256": "7c1403f09d080b318310046d3c97f98f33d114a56c29d3e16933d53f7c5f544d"
+    },
+    {
+      "caseId": "game.small-fighting",
+      "caseVersion": "1.0.0",
+      "promptSha256": "2e471416a81908c2b91a6ffbf0b87a3d92b0eb7bcc7938a608f789d34c9c2dbe"
+    }
+  ],
+  "provenance": "Identical authored empty floor/spawn template for the three user-selected primary archetypes. Separate prompt bindings preserve the original supplementary fresh-game fixture unchanged. No generated gameplay or quality result."
+}

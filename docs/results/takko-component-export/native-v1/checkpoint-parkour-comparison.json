@@ -1,0 +1,30 @@
+{
+  "case": "checkpoint-parkour",
+  "sourceHash": "b85cc7f16c09ed94b1f9392262ce6ba21509e276d1c1ae61aeb044835a5f0bc0",
+  "exportedSubtreeHash": "df7508811a964765982f654cae4d1ca5fec9b7366f84be36a2a2cbfe3198b9f0",
+  "result": {
+    "cleanup": true,
+    "checkedProperties": 70,
+    "passed": true,
+    "engineVersion": "0.739.0.7390687",
+    "checkedSecurity": 8,
+    "checkedSources": 1,
+    "importedCodeExecuted": false,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "differences": [],
+    "error": "",
+    "restoredRoots": 2
+  }
+}

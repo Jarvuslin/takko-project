@@ -1,0 +1,35 @@
+{
+  "combinedCeilingMicros": 6000000,
+  "priorReservationsMicros": 583718,
+  "manualGameAssetOrPlanRescue": false,
+  "repairRounds": 1,
+  "stateGuardSha256": "7EDD23427A17F8292FA5AF77FB5E9754A9A303E6921DFAB589DDBECC50E4AC5A",
+  "priorRunAudit": "v2 receipts contain no execute_luau or insert_asset dispatch; native preparation and cleanup stopped at state guard. Old record unchanged; fresh scopes.",
+  "perRunBudgetMicros": 1800000,
+  "plannerReviewer": "google/gemini-3.7-flash",
+  "runs": [
+    {
+      "status": "prepared",
+      "qualityScore": null,
+      "model": "minimax/minimax-m3",
+      "profileId": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+      "projectId": "ba59314d-9788-4242-95b5-2351e0a5d7c2"
+    },
+    {
+      "status": "prepared",
+      "qualityScore": null,
+      "model": "xiaomi/mimo-v2.5-pro",
+      "profileId": "3feda1ba-ad30-45de-9d47-b33785414efc",
+      "projectId": "93d16edb-774b-4b51-b6c9-71e917bf0eab"
+    },
+    {
+      "status": "prepared",
+      "qualityScore": null,
+      "model": "x-ai/grok-build-0.1",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "projectId": "66340e18-f617-490f-95a4-9dd9aa79f934"
+    }
+  ],
+  "promptFileSha256": "591FB62A702E0B7C96925F36DEF1179CD8D9F7C21999CBE4ECF648CF2E48A0BD",
+  "createdAt": "2026-09-16T02:05:48.3870294Z"
+}

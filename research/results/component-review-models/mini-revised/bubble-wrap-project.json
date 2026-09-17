@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 2,
+  "id": "1a2f9f52-38d7-4512-9eb8-15dff2efc0b6",
+  "name": "Create a small, playable Bubble Break ASMR game for one player o",
+  "request": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+  "revision": 1,
+  "scope": "Forge_1a2f9f5238d7",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "draft",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "reviewer",
+      "profileId": "365ae710-622d-42d0-aea6-7c0f7ec9cb7b",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 57205,
+      "chargedMicros": 14704,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 23140,
+      "outputTokens": 3405,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T07:16:58.709Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "365ae710-622d-42d0-aea6-7c0f7ec9cb7b",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 62289,
+      "chargedMicros": 9118,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 26662,
+      "outputTokens": 3329,
+      "cachedInputTokens": 22912,
+      "status": "ok",
+      "at": "2026-09-16T07:17:26.332Z"
+    }
+  ],
+  "budgetMicros": 150000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T07:16:31.680Z",
+      "message": "reviewer: Component review diagnostic / openai/gpt-4.1-mini"
+    },
+    {
+      "at": "2026-09-16T07:16:58.714Z",
+      "message": "Validation feedback: disposition: Invalid option: expected one of \"integration_candidate\"|\"unsuitable\"|\"needs_more_evidence\"; sources.0.unresolved: Invalid input: expected array, received undefined; sources.1.unresolved: Invalid input: expected array, received undefined; sources.2.unresolved: Invalid input: expected array, received undefined; sources.3.unresolved: Invalid input: expected array, received undefined; sources.4.unresolved: Invalid input: expected array, received undefined"
+    },
+    {
+      "at": "2026-09-16T07:16:58.716Z",
+      "message": "reviewer: Component review diagnostic / openai/gpt-4.1-mini — correcting output"
+    },
+    {
+      "at": "2026-09-16T07:17:26.335Z",
+      "message": "Validation feedback: disposition: Invalid option: expected one of \"integration_candidate\"|\"unsuitable\"|\"needs_more_evidence\""
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T07:16:31.675Z",
+  "studioEvidence": null
+}

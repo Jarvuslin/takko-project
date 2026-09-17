@@ -1,0 +1,32 @@
+{
+  "profiles": [
+    {
+      "id": "c86ba8c6-8daa-4f7f-8d34-5c9c320cb575",
+      "name": "Component review diagnostic",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "google/gemini-3.7-flash",
+      "inputRate": 0.75,
+      "outputRate": 3.75,
+      "maxOutputTokens": 12288,
+      "jsonMode": true
+    }
+  ],
+  "routes": {
+    "planner": [
+      "c86ba8c6-8daa-4f7f-8d34-5c9c320cb575"
+    ],
+    "builder": [
+      "c86ba8c6-8daa-4f7f-8d34-5c9c320cb575"
+    ],
+    "reviewer": [
+      "c86ba8c6-8daa-4f7f-8d34-5c9c320cb575"
+    ],
+    "repair": [
+      "c86ba8c6-8daa-4f7f-8d34-5c9c320cb575"
+    ]
+  },
+  "budgetMicros": 250000,
+  "repairLimit": 0,
+  "researchEnabled": false
+}

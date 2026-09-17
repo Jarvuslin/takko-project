@@ -1,0 +1,47 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import {createHash} from "node:crypto";
+import {validateComponentReview} from "../src/generation/component-review";
+const directory="research/results/schema-interface-v1";
+const read=(f:string)=>JSON.parse(fs.readFileSync(path.join(directory,f),"utf8"));
+const digest=(text:string)=>createHash("sha256").update(text).digest("hex");
+const result=read("plan-checkpoint-parkour/results.json");
+const project=read("plan-checkpoint-parkour/final-project.json");
+const before=read("key-before-plan.json"),after=read("key-after-plan.json");
+const rows=fs.readFileSync(path.join(directory,"plan-checkpoint-parkour/model-events.jsonl"),"utf8").trim().split("\n").map(s=>JSON.parse(s)).filter(r=>typeof r.response==="string");
+assert.equal(result.mode,"plan");assert.equal(result.noFurtherCallsPending,true);assert.equal(result.routesRestored,true);assert.equal(result.requiresReconciliation,false);
+assert.equal(project.jobId,null);assert.equal(project.reservedMicros,0);assert(!project.artifact);assert(!project.assetPipeline?.entries?.length);
+assert.equal(digest(project.request),digest(fs.readFileSync("benchmarks/fixtures/marketplace-diversity-v1/checkpoint-parkour.txt","utf8").trim()));
+assert(project.charges.every((c:any)=>c.phase==="planner" && c.billingSource==="provider"));
+assert(rows.every(r=>r.phase==="planner"));
+assert.equal(result.priorChargedMicros,5153698);
+assert.equal(result.chargedMicros,project.charges.reduce((n:number,c:any)=>n+c.chargedMicros,0));
+assert(Math.abs((after.usage-before.usage)*1e6-result.chargedMicros)<=project.charges.length+0.00001);
+const choices=rows.map(r=>{
+  const raw=JSON.parse(r.response);
+  return {responseSha256:digest(r.response),rootSchemaCopied:Object.hasOwn(raw,"$schema"),needs:(raw.assetNeeds??[]).map((n:any)=>({id:n.id,kind:n.kind,query:n.query,explicitRequired:Object.hasOwn(n,"required"),required:n.required,defaultCopied:Object.hasOwn(n,"default")}))};
+});
+const reviewInput=read("review-live/input.json"),evidence=read("review-live/original-evidence.json"),review=read("review-live/result.json");
+const calls=read("review-live/calls.json");
+const reviewBefore=read("review-live/key-before.json"),reviewAfter=read("review-live/key-after-settled.json");
+assert.equal(review.unknownLiability,false);assert.equal(review.inFlightReservations,0);assert.equal(review.nativeGameplay,false);
+assert.equal(read("review-live/protocol.json").priorMicros,result.combinedChargedMicros);
+assert.equal(review.conservativePriorMicros,result.combinedChargedMicros+review.chargedOrUnknownMicros);
+const reviewed=[];
+for(const call of calls){
+  const text=fs.readFileSync(path.join(directory,`review-live/call-${call.id}-response.txt`),"utf8");
+  assert(!/sk-or-v1-[a-f0-9]{30,}/i.test(text));
+  const wire=JSON.parse(text),raw=JSON.parse(wire.choices[0].message.content);
+  assert.equal(call.chargedMicros,Math.ceil(wire.usage.cost*1e6));
+  let error:string|undefined;
+  try{validateComponentReview(raw,evidence,reviewInput.context.requirementIds);}catch(e){error=(e as Error).message;}
+  if(call.id===calls.length){assert.equal(!error,review.contractPassed);if(!error)assert.deepEqual(raw,read("review-live/decision.json"));}
+  reviewed.push({attempt:call.id,responseSha256:digest(wire.choices[0].message.content),rootSchemaCopied:Object.hasOwn(raw,"$schema"),validationError:error??null});
+}
+const cost=calls.reduce((n:number,c:any)=>n+c.costUSD,0);
+assert(Math.abs(reviewAfter.usage-reviewBefore.usage-cost)<0.000002);
+assert(Math.abs(reviewBefore.usage-after.usage)<0.000002);
+const output={at:new Date().toISOString(),nativeOperations:0,rawDecisionsChanged:false,plan:{stage:project.stage,calls:project.charges.length,chargedMicros:result.chargedMicros,choices},review:{calls:calls.length,chargedMicros:review.chargedOrUnknownMicros,contractPassed:review.contractPassed,reviews:reviewed},conservativePriorMicros:review.conservativePriorMicros,remaining:reviewAfter.remaining};
+fs.writeFileSync(path.join(directory,"verification.json"),JSON.stringify(output,null,2)+"\n",{flag:"wx"});
+console.log(JSON.stringify(output,null,2));

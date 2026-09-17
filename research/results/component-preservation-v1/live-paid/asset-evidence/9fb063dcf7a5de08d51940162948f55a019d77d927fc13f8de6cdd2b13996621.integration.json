@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "7164f2cce5911ea939d2f6c2b85ef23d9adbfb1669d934cd0da5447d3154d23c",
+  "scope": "Forge_c405e7e9b70b",
+  "need": {
+    "id": "checkpointSystem",
+    "requirementId": "marketplaceFirst",
+    "role": "Reusable checkpoint system or obby checkpoint component that may supply beacon geometry, touch behavior, activation animation, progression interfaces, and embedded confirmation media for the three ordered checkpoints.",
+    "kind": "Model",
+    "query": "obby checkpoint system",
+    "constraints": "Must be inspectable and retainable inside Workspace/Forge_c405e7e9b70b. Prefer a compact component with source-visible behavior, numbered or easily distinguishable checkpoints, clear dormant and active states, and no datastore, monetization, admin, or competitive dependencies. Audit all scripts and dependencies; ordered progression, server validation, respawn integration, animation, and media claims require native verification. Unsupported serialization or hidden dependencies are capability gaps, not permission to rebuild it procedurally.",
+    "intent": {
+      "experienceRole": "Provides the recurring progression landmark and immediate reward feedback that makes the short parkour run understandable and satisfying.",
+      "interaction": "The player physically touches the next valid checkpoint; the server accepts it, the beacon visibly activates, confirmation audio begins, and the new location becomes the fall-recovery destination. Early and repeated touches produce no progress reward.",
+      "reusableFeatures": [
+        "Checkpoint beacon geometry and numbering",
+        "Touch detection and progression interfaces",
+        "Dormant-to-active visual animation",
+        "Embedded confirmation sound references",
+        "Respawn or checkpoint-location hooks",
+        "Reset and replay behavior"
+      ],
+      "relatedRequirementIds": [
+        "marketplaceFirst",
+        "orderedCheckpoints",
+        "checkpointFeedback",
+        "verifiedAudio",
+        "fallRecovery",
+        "runLifecycle"
+      ]
+    },
+    "required": true,
+    "position": [
+      0,
+      32,
+      28
+    ],
+    "maxSize": 24
+  },
+  "review": {
+    "packetHash": "23fb06bd5cf66561a43cda28805ee052525d88ce7c108299caa482654ef7d706",
+    "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+    "disposition": "integration_candidate",
+    "reason": "Clean, self-contained obby checkpoint model with ordered stage validation, activation tweening, embedded confirmation audio, and respawn positioning.",
+    "serializedMedia": [
+      {
+        "index": 13,
+        "property": "SoundId",
+        "value": "rbxassetid://6817150445",
+        "purpose": "Checkpoint activation confirmation sound cue",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [
+      {
+        "sha256": "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+        "behavior": "Listens for PlayerAdded and CharacterAdded, checking the player's Stage value against the checkpoint's CheckpointIndex attribute to position respawned characters at the checkpoint.",
+        "reuse": "adapt",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "Players",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 1,
+              "end": 1
+            }
+          },
+          {
+            "kind": "instance_reference",
+            "value": "script.Parent",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 3,
+              "end": 3
+            }
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "sha256": "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+        "behavior": "Handles checkpoint touch events, verifying that the touching player is exactly at Stage checkpointOrder - 1, then increments Stage, plays visual tween feedback, and triggers activation sound.",
+        "reuse": "adapt",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "TweenService",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 1,
+              "end": 1
+            }
+          },
+          {
+            "kind": "service",
+            "value": "Players",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 2,
+              "end": 2
+            }
+          },
+          {
+            "kind": "instance_reference",
+            "value": "script.Parent",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 4,
+              "end": 4
+            }
+          },
+          {
+            "kind": "instance_reference",
+            "value": "script:FindFirstChildOfClass(\"Sound\")",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 5,
+              "end": 5
+            }
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "sha256": "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68",
+        "behavior": "Initializes leaderstats folder and Stage IntValue for incoming and existing players.",
+        "reuse": "adapt",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "Players",
+            "verification": "unverified",
+            "sourceLines": {
+              "start": 1,
+              "end": 1
+            }
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "requirements": [
+      {
+        "requirementId": "marketplaceFirst",
+        "status": "static_evidence_present",
+        "reason": "Model provides inspectable obby checkpoint geometry, touch collection script, activation tweening, and sound reference.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+          "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68"
+        ],
+        "nodeIndices": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "requirementId": "orderedCheckpoints",
+        "status": "static_evidence_present",
+        "reason": "CollectScript strictly validates that stageValue.Value == checkpointOrder - 1 before advancing stage, preventing sequence skipping.",
+        "sourceHashes": [
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6"
+        ],
+        "nodeIndices": [
+          10,
+          12
+        ]
+      },
+      {
+        "requirementId": "checkpointFeedback",
+        "status": "static_evidence_present",
+        "reason": "CollectScript triggers a TweenService color/transparency pulse on the checkpoint part and calls Play() on the child Sound object upon valid touch.",
+        "sourceHashes": [
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6"
+        ],
+        "nodeIndices": [
+          10,
+          12,
+          13
+        ]
+      },
+      {
+        "requirementId": "verifiedAudio",
+        "status": "integration_needed",
+        "reason": "Sound instance with SoundId rbxassetid://6817150445 is present on the checkpoint, but runtime audio loading and native playback verification remain to be performed.",
+        "sourceHashes": [
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6"
+        ],
+        "nodeIndices": [
+          13
+        ]
+      },
+      {
+        "requirementId": "fallRecovery",
+        "status": "static_evidence_present",
+        "reason": "Respawn script teleports the player's HumanoidRootPart to the matching checkpoint CFrame on CharacterAdded when their Stage matches CheckpointIndex.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7"
+        ],
+        "nodeIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "requirementId": "runLifecycle",
+        "status": "static_evidence_present",
+        "reason": "Player lifecycle events (PlayerAdded, PlayerRemoving, CharacterAdded) are handled, and per-player activation state is cleaned up on player removal.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+          "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68"
+        ],
+        "nodeIndices": [
+          11,
+          12,
+          14
+        ]
+      }
+    ],
+    "permissionImpacts": [
+      {
+        "capability": "DataStore",
+        "impact": "none_observed",
+        "reason": "No data store calls or persistence logic exist in candidate source code.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+          "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68"
+        ]
+      },
+      {
+        "capability": "Network",
+        "impact": "none_observed",
+        "reason": "No HTTP service or external networking calls are present.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+          "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68"
+        ]
+      },
+      {
+        "capability": "ScriptGlobals",
+        "impact": "none_observed",
+        "reason": "No shared or _G global state access is used.",
+        "sourceHashes": [
+          "e1f268ed16e427bde573ad4e2593573223b70c351e0e0fc2f11b519e1aa7b3c7",
+          "b7c02ea881c2bc2cc9f179ba91db92ed83ac172628be5b813cbd39abd7d228b6",
+          "615d503f8d6b2428013b9c2b92c9e12d8037f5926e23b0076ed865d224728d68"
+        ]
+      }
+    ],
+    "integrationNotes": [
+      "Replicate or clone the checkpoint model for Checkpoints 1, 2, and 3, configuring the CheckpointIndex attribute to 1, 2, and 3 respectively.",
+      "Centralize or coordinate the leaderstats setup script to prevent duplicate folder creation if multiple checkpoints are placed.",
+      "Integrate the fall hazard volume to reset player character position or trigger respawn to activate the last valid checkpoint spawn logic.",
+      "Verify the checkpoint sound asset rbxassetid://6817150445 natively during runtime execution."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 380,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid",
+      "UnionOperation.Color3uint8",
+      "UnionOperation.MaterialVariantSerialized",
+      "UnionOperation.SolidMeshHolder"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "7f70af6625b08f4d8ba7b7ee2f06f097c95aaf8d1933ff4ab96006f468619916",
+  "metadata": {
+    "needId": "checkpointSystem",
+    "candidateId": "136434663585151",
+    "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+    "packetHash": "23fb06bd5cf66561a43cda28805ee052525d88ce7c108299caa482654ef7d706",
+    "archiveHash": "c6c555d08b38fd5cee2cbd1045bd7f4d39de88ed80946378125d4fcda358eac8",
+    "conversionHash": "fc7d30ef82f07a5e9eae9841afc1fa46433ad500ebe4a7ede51e3e91bc75094a",
+    "destinationPath": "Workspace/Forge_c405e7e9b70b/Assets/checkpointSystem",
+    "rootName": "Imported",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "version": 13,
+  "benchmark": "marketplace-diversity-v6/checkpoint-parkour",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 82351,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 3627610,
+    "shouldCancel": false
+  },
+  "model": "google/gemini-3.7-flash",
+  "projectId": "70007bd4-28de-4f53-880b-c75050a85d25",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: StudioAssetError: Audio capture requires one unambiguous Roblox Studio process",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 2,
+    "details": "StudioAssetError: Audio capture requires one unambiguous Roblox Studio process",
+    "at": "2026-09-16T10:12:24.625Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 7251936,
+  "priorChargedMicros": 3545259,
+  "reservedMicros": 744725,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 7996661,
+  "chargedMicros": 82351,
+  "combinedChargedMicros": 3627610,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 115421,
+      "chargedMicros": 17890,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6743,
+      "outputTokens": 3422,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:11:30.788Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 134437,
+      "chargedMicros": 10025,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 11406,
+      "outputTokens": 392,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:11:34.843Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 120153,
+      "chargedMicros": 15927,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7846,
+      "outputTokens": 2678,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:11:50.912Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 121343,
+      "chargedMicros": 13264,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8520,
+      "outputTokens": 1833,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:12:02.059Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 120279,
+      "chargedMicros": 15360,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7915,
+      "outputTokens": 2513,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:12:18.171Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 133092,
+      "chargedMicros": 9885,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 11215,
+      "outputTokens": 393,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T10:12:23.114Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "checkpointPadAsset",
+      "status": "passed",
+      "attempts": 1,
+      "component": {
+        "recordHash": "1c7dd3b67cd4ea05e03208ca4e91127dabe13d1dbfc2d826991fd4ebb4bab863",
+        "needId": "checkpointPadAsset",
+        "candidateId": "398137408",
+        "inputHash": "c1f2c3c3b94e20f3b92887376e4484755d2175da3b93574a67946ddf20f586da",
+        "packetHash": "e43b1a263109f2c3671397fbf34dfd7bbd1f812d6dd7b0667dea29f78c6413cd",
+        "archiveHash": "e185787f232201786f52f28f6059778a6aee2a51c4ccb770570b4d189d11661a",
+        "conversionHash": "8ba71e8620570a44e6eae891feeaee121225653844533d9556da72487f26a5ed",
+        "destinationPath": "Workspace/Forge_70007bd428de/Assets/checkpointPadAsset",
+        "rootName": "Imported",
+        "runtimeVerification": "not_performed",
+        "placement": "worker_integration_required"
+      },
+      "componentContextHash": "c1f2c3c3b94e20f3b92887376e4484755d2175da3b93574a67946ddf20f586da",
+      "bundle": {
+        "files": [],
+        "scene": [],
+        "coverage": [],
+        "assets": [
+          {
+            "id": "checkpointPadAsset",
+            "requirementId": "reqCheckpointAudioAnim",
+            "kind": "model",
+            "assetId": "398137408",
+            "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+            "status": "retrieved",
+            "description": "Interactive checkpoint pad model with neon trim or particle indicator"
+          }
+        ]
+      },
+      "selected": {
+        "id": "398137408",
+        "name": "CheckPoint Pad ",
+        "description": "For my obby",
+        "kind": "Model",
+        "creator": "HunterTheCoder",
+        "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+        "price": 0,
+        "source": "creator_store"
+      },
+      "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified."
+    },
+    {
+      "needId": "checkpointSfx",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "StudioAssetError: Audio capture requires one unambiguous Roblox Studio process"
+    },
+    {
+      "needId": "finishSfx",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

@@ -1,0 +1,104 @@
+{
+  "scope": "component diagnostic, not full game",
+  "workerSourceChanged": false,
+  "setup": {
+    "studio": "Place1",
+    "componentOffsetX": 100,
+    "reason": "existing geometry occluded 37 of 72 bubbles during initial sweep",
+    "camera": "test overhead camera",
+    "input": "official mouse input; no gameplay state injected",
+    "visualLimitation": "Existing Place1 white 0 overlay remains over counter; screenshot is not visual-polish acceptance"
+  },
+  "observations": {
+    "bubbleClick1": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":1,\"complete\":false,\"counter\":\"Popped: 1 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleRepeat": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":1,\"complete\":false,\"counter\":\"Popped: 1 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleClick2": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":2,\"complete\":false,\"counter\":\"Popped: 2 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleReset": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":0,\"complete\":false,\"counter\":\"Popped: 0 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleAllClicks": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":35,\"complete\":false,\"counter\":\"Popped: 35 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleIsolatedSweep": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":72,\"complete\":true,\"counter\":\"Popped: 72 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleCompleteReset": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":0,\"complete\":false,\"counter\":\"Popped: 0 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleRepop": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"popped\":1,\"complete\":false,\"counter\":\"Popped: 1 / 72\"}"
+        }
+      ],
+      "isError": false
+    },
+    "bubbleConsole": {
+      "content": [
+        {
+          "type": "text",
+          "text": ""
+        }
+      ],
+      "isError": false
+    },
+    "bubbleRestoration": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"restorationRecordRemoved\":true,\"fixtureRemoved\":true,\"restoredScripts\":3}"
+        }
+      ],
+      "isError": false
+    }
+  }
+}

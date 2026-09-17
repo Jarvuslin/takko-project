@@ -1,0 +1,15 @@
+{
+  "name": "Forge landing explorations",
+  "id": "forge-landing-explorations",
+  "api": "1.0.0",
+  "main": "figma-plugin.js",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

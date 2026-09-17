@@ -1,0 +1,31 @@
+{
+  "kind": "recorded-native-reconciliation-receipts",
+  "cases": [
+    {
+      "scope": "ArchiveRegression_8417d048eefe",
+      "failure": "Native result exceeded tool response bound",
+      "receipt": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removedOwnedDescendants\":375,\"running\":false,\"scopeAbsent\":true}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "scope": "ArchiveRegression_45b53c85625f",
+      "failure": "Encoded evidence exceeded the 200000-character StringValue limit",
+      "receipt": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removedOwnedDescendants\":375,\"running\":false,\"scopeAbsent\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

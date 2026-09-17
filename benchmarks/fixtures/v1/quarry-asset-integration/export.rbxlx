@@ -1,0 +1,897 @@
+<roblox version="4"><External>null</External><External>nil</External><Item class="Workspace" referent="RBX1"><Properties><string name="Name">Workspace</string></Properties><Item class="Folder" referent="RBX2"><Properties><string name="Name">Forge_GenerationPilot</string></Properties><Item class="Folder" referent="RBX3"><Properties><string name="Name">World</string></Properties><Item class="Part" referent="RBX4"><Properties><string name="Name">Ground</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">1360</token><Vector3 name="Size"><X>2</X><Y>96</Y><Z>96</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>-1</Y><Z>0</Z><R00>6.123233995736766e-17</R00><R01>-1</R01><R02>0</R02><R10>1</R10><R11>6.123233995736766e-17</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.31</R><G>0.41</G><B>0.4</B></Color3><token name="Shape">2</token></Properties></Item><Item class="SpawnLocation" referent="RBX5"><Properties><string name="Name">Spawn</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><bool name="Neutral">true</bool><Vector3 name="Size"><X>5</X><Y>0.25</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.2</Y><Z>18</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token><double name="Transparency">1</double></Properties></Item><Item class="Part" referent="RBX6"><Properties><string name="Name">PathSpawn</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">912</token><Vector3 name="Size"><X>8</X><Y>0.18</Y><Z>22</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.1</Y><Z>7</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3></Properties></Item><Item class="Part" referent="RBX7"><Properties><string name="Name">PathCross</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">912</token><Vector3 name="Size"><X>39</X><Y>0.18</Y><Z>7</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.11</Y><Z>5</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3></Properties></Item><Item class="Part" referent="RBX8"><Properties><string name="Name">PathBeacon</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">912</token><Vector3 name="Size"><X>8</X><Y>0.18</Y><Z>31</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.12</Y><Z>-10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3></Properties></Item><Item class="Part" referent="RBX9"><Properties><string name="Name">TerraceWest</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>17</X><Y>2.5</Y><Z>25</Z></Vector3><CoordinateFrame name="CFrame"><X>-35</X><Y>0.55</Y><Z>-19</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3></Properties></Item><Item class="Part" referent="RBX10"><Properties><string name="Name">TerraceEast</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>17</X><Y>2.5</Y><Z>25</Z></Vector3><CoordinateFrame name="CFrame"><X>35</X><Y>0.55</Y><Z>-19</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX11"><Properties><string name="Name">RampNorth</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">912</token><Vector3 name="Size"><X>10</X><Y>1.8</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.8</Y><Z>-29</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3></Properties></Item><Item class="Folder" referent="RBX12"><Properties><string name="Name">Nodes</string></Properties><Item class="WedgePart" referent="RBX13"><Properties><string name="Name">Node01</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>4.8500000000000005</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-6</X><Y>2.5</Y><Z>10</Z><R00>0.5835169556457914</R00><R01>0.16289332094801906</R01><R02>0.79559646081691</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>-0.7970082251737846</R20><R21>-0.07312825010639247</R21><R22>0.5995249352960316</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3></Properties><Item class="WedgePart" referent="RBX14"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-7.25</X><Y>1.65</Y><Z>10.25</Z><R00>-0.18235170378984522</R00><R01>-0.373574414406752</R01><R02>0.9094998697226916</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>-0.915649137797655</R20><R21>-0.2725029966779874</R21><R22>-0.29551442139416473</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX15"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-4.8</X><Y>1.4</Y><Z>10.6</Z><R00>0.9109135127383177</R00><R01>-0.3913223487800597</R01><R02>0.13077993598406573</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>0.023384682301074572</R20><R21>0.36542348957091575</R21><R22>0.9305475967963663</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item><Item class="WedgePart" referent="RBX16"><Properties><string name="Name">Node02</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>5.5</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-25</X><Y>2.5</Y><Z>4</Z><R00>-0.28534980025196827</R00><R01>0.0396288303950614</R01><R02>0.9576038049724329</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>-0.9456688849787543</R20><R21>-0.17410206998946592</R21><R22>-0.27458847246092244</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties><Item class="WedgePart" referent="RBX17"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-26.25</X><Y>1.65</Y><Z>4.25</Z><R00>-0.8410119110274952</R00><R01>-0.44245326459655254</R01><R02>0.3113423744974873</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>-0.40541886109865305</R20><R21>0.13435339573558955</R21><R22>-0.9042039106970214</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX18"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-23.8</X><Y>1.4</Y><Z>4.6</Z><R00>0.5668772744349369</R00><R01>0.05633650658574421</R01><R02>0.8218736847928225</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>-0.7134146247343129</R20><R21>0.5324412694472905</R21><R22>0.45557202263150154</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item><Item class="WedgePart" referent="RBX19"><Properties><string name="Name">Node03</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>4.2</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>24</X><Y>2.5</Y><Z>4</Z><R00>-0.9269725489359328</R00><R01>-0.11519486998463416</R01><R02>0.35700425130303826</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>-0.34122725864153675</R20><R21>-0.13642623245666746</R21><R22>-0.930027871118743</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3></Properties><Item class="WedgePart" referent="RBX20"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>22.75</X><Y>1.65</Y><Z>4.25</Z><R00>-0.8299155016224756</R00><R01>-0.15897562894699527</R01><R02>-0.5347588330898536</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>0.42767481524092926</R20><R21>0.43421478060832774</R21><R22>-0.7928125735064365</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX21"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>25.2</X><Y>1.4</Y><Z>4.6</Z><R00>-0.22860299266145442</R00><R01>0.4591306608104701</R01><R02>0.8584519252992379</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>-0.8820719601040554</R20><R21>0.2754388202281386</R21><R22>-0.3822074221015612</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item><Item class="WedgePart" referent="RBX22"><Properties><string name="Name">Node04</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>4.8500000000000005</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-25</X><Y>2.5</Y><Z>-24</Z><R00>-0.830382211746415</R00><R01>-0.17828083708866094</R01><R02>-0.5279027614457974</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>0.5349575038598212</R20><R21>0.0098953575005538</R21><R22>-0.8448210171178304</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties><Item class="WedgePart" referent="RBX23"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-26.25</X><Y>1.65</Y><Z>-23.75</Z><R00>-0.15789932261885292</R00><R01>0.25110542096585764</R01><R02>-0.9549941735309524</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>0.9201811187701885</R20><R21>0.38828056075393513</R21><R22>-0.050049123863000956</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX24"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-23.8</X><Y>1.4</Y><Z>-23.4</Z><R00>-0.8420307050772984</R00><R01>0.49628695194519235</R01><R02>0.2113848458049396</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>-0.34827368944927617</R20><R21>-0.2009148295021505</R21><R22>-0.9156083597933731</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item><Item class="WedgePart" referent="RBX25"><Properties><string name="Name">Node05</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>5.5</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>25</X><Y>2.5</Y><Z>-24</Z><R00>-0.07250043103850268</R00><R01>-0.09938930221552394</R01><R02>-0.9924038765061041</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>0.9851181837830575</R20><R21>0.14833658206325465</R21><R22>-0.08682408883346525</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3></Properties><Item class="WedgePart" referent="RBX26"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>23.75</X><Y>1.65</Y><Z>-23.75</Z><R00>0.6398631326273604</R00><R01>0.4612136584113403</R01><R02>-0.6147008482173492</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>0.6798828273525882</R20><R21>0.03313136871091177</R21><R22>0.7325719442337334</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX27"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>26.2</X><Y>1.4</Y><Z>-23.4</Z><R00>-0.7848904638802052</R00><R01>0.13821522613944076</R01><R02>-0.6040227735550536</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>0.4628792831457242</R20><R21>-0.5172659457649915</R21><R22>-0.7198463103929543</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item><Item class="WedgePart" referent="RBX28"><Properties><string name="Name">Node06</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>2.2</X><Y>4.2</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>2.5</Y><Z>-34</Z><R00>0.743118514578475</R00><R01>0.05865288666085804</R01><R02>-0.6665843623856093</R02><R10>-0.1558391846718965</R10><R11>0.9839298882679104</R11><R12>-0.08715574274765817</R12><R20>0.6507603413019876</R20><R21>0.16864700963683277</R21><R22>0.7403169350548957</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties><Item class="WedgePart" referent="RBX29"><Properties><string name="Name">CrystalA</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>1.5</X><Y>3.3</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.25</X><Y>1.65</Y><Z>-33.75</Z><R00>0.9280578145714069</R00><R01>0.30402519606386547</R01><R02>0.21512176312793718</R02><R10>-0.35823806689874776</R10><R11>0.8866703297743582</R11><R12>0.29237170472273677</R12><R20>-0.1018537198024328</R20><R21>-0.3484026498983023</R21><R22>0.9317947270221314</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX30"><Properties><string name="Name">CrystalB</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>1.8</X><Y>2.7</Y><Z>1.6</Z></Vector3><CoordinateFrame name="CFrame"><X>1.2</X><Y>1.4</Y><Z>-33.4</Z><R00>-0.1026870403064767</R00><R01>-0.3299269529070462</R01><R02>-0.9384048047077379</R02><R10>0.4119341318031523</R10><R11>0.8445901329136354</R11><R12>-0.3420201433256687</R12><R20>0.9054091024551715</R20><R21>-0.42168200475049855</R21><R22>0.04917971188326862</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item></Item></Item><Item class="Part" referent="RBX31"><Properties><string name="Name">SellStation</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">528</token><Vector3 name="Size"><X>6</X><Y>2.6</Y><Z>4</Z></Vector3><CoordinateFrame name="CFrame"><X>-16</X><Y>1.4</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3></Properties></Item><Item class="Part" referent="RBX32"><Properties><string name="Name">SellSign</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><Vector3 name="Size"><X>7.6</X><Y>2.1</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-16</X><Y>5.35</Y><Z>11.5</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">512</token></Properties><Item class="SurfaceGui" referent="RBX33"><Properties><string name="Name">SurfaceGui</string><token name="Face">2</token><bool name="AlwaysOnTop">false</bool><Vector2 name="CanvasSize"><X>760</X><Y>210</Y></Vector2></Properties><Item class="TextLabel" referent="RBX34"><Properties><string name="Name">TextLabel</string><double name="BackgroundTransparency">1</double><UDim2 name="Size"><XS>1</XS><XO>0</XO><YS>1</YS><YO>0</YO></UDim2><string name="Text">CRYSTAL EXCHANGE
+SELL  •  5 COINS EACH</string><Color3 name="TextColor3"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><bool name="TextScaled">true</bool><token name="Font">19</token></Properties></Item></Item></Item><Item class="Part" referent="RBX35"><Properties><string name="Name">UpgradeStation</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>6</X><Y>2.6</Y><Z>4</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>1.4</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3></Properties></Item><Item class="Part" referent="RBX36"><Properties><string name="Name">UpgradeSign</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><Vector3 name="Size"><X>7.6</X><Y>2.1</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>5.35</Y><Z>11.5</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">512</token></Properties><Item class="SurfaceGui" referent="RBX37"><Properties><string name="Name">SurfaceGui</string><token name="Face">2</token><bool name="AlwaysOnTop">false</bool><Vector2 name="CanvasSize"><X>760</X><Y>210</Y></Vector2></Properties><Item class="TextLabel" referent="RBX38"><Properties><string name="Name">TextLabel</string><double name="BackgroundTransparency">1</double><UDim2 name="Size"><XS>1</XS><XO>0</XO><YS>1</YS><YO>0</YO></UDim2><string name="Text">QUARRY WORKSHOP
+PICK POWER  /  BIGGER BAG</string><Color3 name="TextColor3"><R>0.59</R><G>0.94</G><B>0.93</B></Color3><bool name="TextScaled">true</bool><token name="Font">19</token></Properties></Item></Item></Item><Item class="Part" referent="RBX39"><Properties><string name="Name">Beacon</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">272</token><Vector3 name="Size"><X>3.8</X><Y>6.5</Y><Z>3.8</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>5.4</Y><Z>-18</Z><R00>0.7032331762534042</R00><R01>0.07391278520356671</R01><R02>0.7071067811865475</R02><R10>-0.10452846326765346</R10><R11>0.9945218953682733</R11><R12>0</R12><R20>-0.7032331762534041</R20><R21>-0.0739127852035667</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3></Properties><Item class="WedgePart" referent="RBX40"><Properties><string name="Name">BeaconViolet</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">272</token><Vector3 name="Size"><X>2.6</X><Y>7.5</Y><Z>2.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-2.5</X><Y>4.7</Y><Z>-18</Z><R00>0.9032138000437332</R00><R01>0.3442601058269218</R01><R02>0.25630023594721063</R02><R10>-0.38692856000628745</R10><R11>0.9115465634955904</R11><R12>0.13917310096006544</R12><R20>-0.1857178528360158</R20><R21>-0.22487294660633675</R21><R22>0.9565255025468813</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3></Properties></Item><Item class="WedgePart" referent="RBX41"><Properties><string name="Name">BeaconCyan</string><bool name="Anchored">true</bool><bool name="CanCollide">false</bool><token name="Material">288</token><Vector3 name="Size"><X>2</X><Y>6.5</Y><Z>2</Z></Vector3><CoordinateFrame name="CFrame"><X>2.5</X><Y>4.3</Y><Z>-18</Z><R00>0.2419160701424693</R00><R01>0.11642213739185144</R01><R02>0.9632873407929415</R02><R10>0.3978484715551162</R10><R11>0.8935822975543766</R11><R12>-0.20791169081775931</R12><R20>-0.8849820386245597</R20><R21>0.4335395753821725</R21><R22>0.1698535483567056</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3></Properties></Item></Item><Item class="Part" referent="RBX42"><Properties><string name="Name">ArchLeft</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>5</X><Y>11</Y><Z>7</Z></Vector3><CoordinateFrame name="CFrame"><X>31</X><Y>5</Y><Z>-8</Z><R00>0.9686283355228664</R00><R01>-0.1361318347907717</R01><R02>-0.20791169081775931</R02><R10>0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.205888308534897</R20><R21>-0.028935714736957927</R21><R22>0.9781476007338057</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3></Properties></Item><Item class="Part" referent="RBX43"><Properties><string name="Name">ArchRight</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>6</X><Y>14</Y><Z>8</Z></Vector3><CoordinateFrame name="CFrame"><X>42</X><Y>6.5</Y><Z>-8</Z><R00>0.9671072580770909</R00><R01>0.11874584002900763</R01><R02>0.224951054343865</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>-0.2232743032966611</R20><R21>-0.027414637291182476</R21><R22>0.9743700647852352</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3></Properties></Item><Item class="Part" referent="RBX44"><Properties><string name="Name">ArchTop</string><bool name="Anchored">true</bool><bool name="CanCollide">true</bool><token name="Material">800</token><Vector3 name="Size"><X>17</X><Y>3.5</Y><Z>7</Z></Vector3><CoordinateFrame name="CFrame"><X>36</X><Y>12</Y><Z>-8</Z><R00>0.9902680687415704</R00><R01>-0.13917310096006544</R01><R02>0</R02><R10>0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3></Properties></Item><Item class="Folder" referent="RBX45"><Properties><string name="Name">Art</string></Properties><Item class="Part" referent="RBX46"><Properties><string name="Name">Cliff0Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>11</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>38.1051177665153</X><Y>4.9</Y><Z>-21.999999999999996</Z><R00>0.4962730758206611</R00><R01>0.06093467170257375</R01><R02>0.8660254037844386</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>-0.8595701817498665</R20><R21>-0.10554194733138725</R21><R22>0.5000000000000001</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX47"><Properties><string name="Name">Cliff0Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>7</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>36.373066958946424</X><Y>12</Y><Z>-20.999999999999996</Z><R00>0.05182662631444345</R00><R01>0.007283757322040807</R01><R02>0.9986295347545738</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.9889109407697048</R20><R21>-0.13898236906210149</R21><R22>0.052335956242943966</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX48"><Properties><string name="Name">Cliff0Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>36.291504778060904</X><Y>1.2</Y><Z>-20.952910052910052</Z><R00>0.20791169081775945</R00><R01>0</R01><R02>0.9781476007338056</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.9781476007338056</R20><R21>0</R21><R22>0.20791169081775945</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX49"><Properties><string name="Name">Cliff1Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>18</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>36.71423688305041</X><Y>8.4</Y><Z>-36.714236883050404</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX50"><Properties><string name="Name">Cliff1Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>8</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>34.42688610702438</X><Y>19</Y><Z>-33.50708813238922</Z><R00>0.3060096622280039</R00><R01>0.04300685335652053</R01><R02>0.9510565162951535</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.9418008996556876</R20><R21>-0.13236148456107352</R21><R22>0.30901699437494745</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX51"><Properties><string name="Name">Cliff1Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>35.42249554946313</X><Y>1.2</Y><Z>-35.42249554946312</Z><R00>0.45399049973954686</R00><R01>0</R01><R02>0.8910065241883678</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.8910065241883678</R20><R21>0</R21><R22>0.45399049973954686</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX52"><Properties><string name="Name">Cliff2Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>14</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>21.003835391164163</X><Y>6.4</Y><Z>-36.379710051309644</Z><R00>0.8595701817498665</R00><R01>-0.10554194733138725</R01><R02>0.5</R02><R10>0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>-0.496273075820661</R20><R21>0.06093467170257374</R21><R22>0.8660254037844386</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX53"><Properties><string name="Name">Cliff2Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>9</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>21.94664615116303</X><Y>15</Y><Z>-36.359923881626294</Z><R00>0.5393386453656034</R00><R01>0.07579910340693898</R01><R02>0.838670567945424</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.8305086836297111</R20><R21>-0.11672038362490392</R21><R22>0.5446390350150271</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX54"><Properties><string name="Name">Cliff2Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>21.173171799580274</X><Y>1.2</Y><Z>-36.67300931425758</Z><R00>0.6691306063588581</R00><R01>0</R01><R02>0.7431448254773944</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7431448254773944</R20><R21>0</R21><R22>0.6691306063588581</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX55"><Properties><string name="Name">Cliff3Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>21</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>11.798870701810902</X><Y>9.9</Y><Z>-44.03398493109415</Z><R00>0.9587259616541788</R00><R01>0.11771674622792329</R01><R02>0.2588190451025205</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>-0.25688984718798846</R20><R21>-0.03154210708739143</R21><R22>0.9659258262890683</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX56"><Properties><string name="Name">Cliff3Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>10</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>11.422352619665727</X><Y>22</Y><Z>-42.102133278516014</Z><R00>0.7359125911207908</R00><R01>0.10342576982411562</R01><R02>0.669130606358858</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.6626186732948622</R20><R21>-0.09312498143425114</R21><R22>0.7431448254773945</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX57"><Properties><string name="Name">Cliff3Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>11.786541663228764</X><Y>1.2</Y><Z>-43.98797233269714</Z><R00>0.8386705679454242</R00><R01>0</R01><R02>0.5446390350150269</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.5446390350150269</R20><R21>0</R21><R22>0.8386705679454242</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX58"><Properties><string name="Name">Cliff4Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>17</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>2.6728740846611385e-15</X><Y>7.9</Y><Z>-43.65134643755404</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX59"><Properties><string name="Name">Cliff4Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>11</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-0.831214643630502</X><Y>18</Y><Z>-45.746689923023425</Z><R00>0.8823353099441544</R00><R01>0.12400414094694472</R01><R02>0.45399049973954675</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.4495722954041014</R20><R21>-0.0631832656551625</R21><R22>0.8910065241883679</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX60"><Properties><string name="Name">Cliff4Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>2.825843295900093e-15</X><Y>1.2</Y><Z>-46.14952323996691</Z><R00>0.9510565162951535</R00><R01>0</R01><R02>0.3090169943749474</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.3090169943749474</R20><R21>0</R21><R22>0.9510565162951535</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX61"><Properties><string name="Name">Cliff5Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>13</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-11.653221261514727</X><Y>5.9</Y><Z>-43.49041381981484</Z><R00>0.9587259616541788</R00><R01>-0.11771674622792329</R01><R02>-0.25881904510252074</R02><R10>0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.2568898471879887</R20><R21>-0.031542107087391455</R21><R22>0.9659258262890683</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX62"><Properties><string name="Name">Cliff5Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>7</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-11.551573588439522</X><Y>14</Y><Z>-39.53230542577306</Z><R00>0.9686283355228664</R00><R01>0.1361318347907717</R01><R02>0.20791169081775931</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.205888308534897</R20><R21>-0.028935714736957927</R21><R22>0.9781476007338057</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX63"><Properties><string name="Name">Cliff5Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-10.051022472603787</X><Y>1.2</Y><Z>-37.5109265357739</Z><R00>0.9986295347545738</R00><R01>0</R01><R02>0.05233595624294383</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.05233595624294383</R20><R21>0</R21><R22>0.9986295347545738</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX64"><Properties><string name="Name">Cliff6Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>20</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-21.965657776549268</X><Y>9.4</Y><Z>-38.04563529065377</Z><R00>0.8595701817498667</R00><R01>0.10554194733138728</R01><R02>-0.4999999999999998</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.49627307582066077</R20><R21>0.06093467170257371</R21><R22>0.8660254037844388</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX65"><Properties><string name="Name">Cliff6Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>8</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-22.245073274748194</X><Y>21</Y><Z>-38.04563529065377</Z><R00>0.9889109407697048</R00><R01>0.13898236906210149</R01><R02>-0.052335956242943585</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.051826626314443076</R20><R21>0.007283757322040754</R21><R22>0.9986295347545738</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX66"><Properties><string name="Name">Cliff6Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-20.769091998894343</X><Y>1.2</Y><Z>-35.97312256915727</Z><R00>0.9781476007338057</R00><R01>0</R01><R02>-0.2079116908177591</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.2079116908177591</R20><R21>0</R21><R22>0.9781476007338057</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX67"><Properties><string name="Name">Cliff7Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>16</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-36.25333612381128</X><Y>7.4</Y><Z>-36.25333612381129</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>-0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX68"><Properties><string name="Name">Cliff7Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>9</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-33.81276486160007</X><Y>17</Y><Z>-34.61224310354406</Z><R00>0.9418008996556876</R00><R01>0.13236148456107352</R01><R02>-0.3090169943749474</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.30600966222800385</R20><R21>0.043006853356520526</R21><R22>0.9510565162951535</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX69"><Properties><string name="Name">Cliff7Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-35.346132788989365</X><Y>1.2</Y><Z>-35.346132788989365</Z><R00>0.8910065241883679</R00><R01>0</R01><R02>-0.45399049973954675</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.45399049973954675</R20><R21>0</R21><R22>0.8910065241883679</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX70"><Properties><string name="Name">Cliff8Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>12</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-36.96770585865938</X><Y>5.4</Y><Z>-21.343314928819893</Z><R00>0.4962730758206605</R00><R01>-0.060934671702573676</R01><R02>-0.8660254037844389</R02><R10>0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.8595701817498668</R20><R21>-0.10554194733138729</R21><R22>0.4999999999999995</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX71"><Properties><string name="Name">Cliff8Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>10</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-37.69845214996288</X><Y>13</Y><Z>-22.363726795961455</Z><R00>0.8305086836297108</R00><R01>0.11672038362490388</R01><R02>-0.5446390350150274</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.5393386453656037</R20><R21>0.07579910340693903</R21><R22>0.8386705679454237</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX72"><Properties><string name="Name">Cliff8Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-38.74228816256625</X><Y>1.2</Y><Z>-22.367870499679672</Z><R00>0.7431448254773939</R00><R01>0</R01><R02>-0.6691306063588586</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.6691306063588586</R20><R21>0</R21><R22>0.7431448254773939</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX73"><Properties><string name="Name">Cliff9Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>19</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-41.30540409649069</X><Y>8.9</Y><Z>-11.06774967069588</Z><R00>0.25688984718798935</R00><R01>0.03154210708739153</R01><R02>-0.9659258262890681</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.9587259616541786</R20><R21>0.11771674622792326</R21><R22>0.2588190451025214</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX74"><Properties><string name="Name">Cliff9Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>11</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-40.893285611248935</X><Y>20</Y><Z>-11.06774967069588</Z><R00>0.6626186732948628</R00><R01>0.09312498143425123</R01><R02>-0.7431448254773939</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.7359125911207902</R20><R21>0.10342576982411555</R21><R22>0.6691306063588586</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX75"><Properties><string name="Name">Cliff9Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-37.174863686841626</X><Y>1.2</Y><Z>-9.960974703626292</Z><R00>0.5446390350150275</R00><R01>0</R01><R02>-0.8386705679454237</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.8386705679454237</R20><R21>0</R21><R22>0.5446390350150275</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX76"><Properties><string name="Name">Cliff10Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>15</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-40.188843275986756</X><Y>6.9</Y><Z>-4.921713827937181e-15</Z><R00>6.123233995736766e-17</R00><R01>0</R01><R02>-1</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>1</R20><R21>0</R21><R22>6.123233995736766e-17</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX77"><Properties><string name="Name">Cliff10Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>7</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-40.73286438687612</X><Y>16</Y><Z>-4.921713827937181e-15</Z><R00>0.4495722954041015</R00><R01>0.06318326565516252</R01><R02>-0.8910065241883678</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.8823353099441543</R20><R21>0.1240041409469447</R21><R22>0.45399049973954686</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX78"><Properties><string name="Name">Cliff10Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-38.16995894838808</X><Y>1.2</Y><Z>-4.6744718049729335e-15</Z><R00>0.30901699437494745</R00><R01>0</R01><R02>-0.9510565162951535</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9510565162951535</R20><R21>0</R21><R22>0.30901699437494745</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX79"><Properties><string name="Name">Cliff11Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>11</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-42.41242194096727</X><Y>4.9</Y><Z>11.364374208130192</Z><R00>-0.2568898471879888</R00><R01>0.03154210708739147</R01><R02>-0.9659258262890683</R02><R10>0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.9587259616541788</R20><R21>-0.11771674622792329</R21><R22>-0.25881904510252085</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX80"><Properties><string name="Name">Cliff11Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>8</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-43.412412147517976</X><Y>12</Y><Z>11.364374208130192</Z><R00>0.20588830853489715</R00><R01>0.028935714736957947</R01><R02>-0.9781476007338056</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.9686283355228663</R20><R21>0.1361318347907717</R21><R22>0.20791169081775945</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX81"><Properties><string name="Name">Cliff11Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-38.17117974687054</X><Y>1.2</Y><Z>10.227936787317173</Z><R00>0.052335956242943966</R00><R01>0</R01><R02>-0.9986295347545738</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9986295347545738</R20><R21>0</R21><R22>0.052335956242943966</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX82"><Properties><string name="Name">Cliff12Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>18</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-35.50394239488432</X><Y>8.4</Y><Z>20.49821069897943</Z><R00>-0.49627307582066077</R00><R01>-0.06093467170257371</R01><R02>-0.8660254037844387</R02><R10>-0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>0.8595701817498667</R20><R21>0.10554194733138726</R21><R22>-0.4999999999999998</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX83"><Properties><string name="Name">Cliff12Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>9</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-36.04051531288476</X><Y>19</Y><Z>20.49821069897943</Z><R00>-0.05182662631444311</R00><R01>-0.00728375732204076</R01><R02>-0.9986295347545738</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.9889109407697048</R20><R21>0.13898236906210149</R21><R22>-0.05233595624294362</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX84"><Properties><string name="Name">Cliff12Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-31.95354815539589</X><Y>1.2</Y><Z>18.44838962908149</Z><R00>-0.20791169081775912</R00><R01>0</R01><R02>-0.9781476007338057</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9781476007338057</R20><R21>0</R21><R22>-0.20791169081775912</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX85"><Properties><string name="Name">Cliff13Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>14</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>-29.39548596157567</X><Y>6.4</Y><Z>29.39548596157566</Z><R00>-0.7071067811865475</R00><R01>0</R01><R02>-0.7071067811865476</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.7071067811865476</R20><R21>0</R21><R22>-0.7071067811865475</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX86"><Properties><string name="Name">Cliff13Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>10</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>-28.97531892474903</X><Y>15</Y><Z>29.39548596157566</Z><R00>-0.3060096622280038</R00><R01>-0.04300685335652052</R01><R02>-0.9510565162951536</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>0.9418008996556877</R20><R21>0.13236148456107355</R21><R22>-0.30901699437494734</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX87"><Properties><string name="Name">Cliff13Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>-26.4559373654181</X><Y>1.2</Y><Z>26.455937365418094</Z><R00>-0.45399049973954675</R00><R01>0</R01><R02>-0.8910065241883679</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.8910065241883679</R20><R21>0</R21><R22>-0.45399049973954675</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX88"><Properties><string name="Name">Cliff19Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>12</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>31.111142865622313</X><Y>5.4</Y><Z>31.111142865622327</Z><R00>-0.7071067811865477</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>-0.7071067811865477</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX89"><Properties><string name="Name">Cliff19Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>11</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>31.261020075285266</X><Y>13</Y><Z>31.111142865622327</Z><R00>-0.9418008996556876</R00><R01>-0.13236148456107352</R01><R02>0.30901699437494773</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.3060096622280042</R20><R21>-0.043006853356520575</R21><R22>-0.9510565162951535</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX90"><Properties><string name="Name">Cliff19Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>28.000028579060082</X><Y>1.2</Y><Z>28.000028579060096</Z><R00>-0.8910065241883681</R00><R01>0</R01><R02>0.45399049973954625</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.45399049973954625</R20><R21>0</R21><R22>-0.8910065241883681</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX91"><Properties><string name="Name">Cliff20Mass</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>13</X><Y>19</Y><Z>10</Z></Vector3><CoordinateFrame name="CFrame"><X>35.042410852382204</X><Y>8.9</Y><Z>20.23174533867635</Z><R00>-0.4962730758206622</R00><R01>0.060934671702573884</R01><R02>0.8660254037844379</R02><R10>0.12186934340514748</R10><R11>0.992546151641322</R11><R12>0</R12><R20>-0.8595701817498659</R20><R21>0.10554194733138716</R21><R22>-0.5000000000000012</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX92"><Properties><string name="Name">Cliff20Crown</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>7</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>35.955356103109835</X><Y>20</Y><Z>20.23174533867635</Z><R00>-0.8305086836297118</R00><R01>-0.11672038362490401</R01><R02>0.544639035015026</R02><R10>-0.13917310096006544</R10><R11>0.9902680687415704</R11><R12>0</R12><R20>-0.5393386453656023</R20><R21>-0.07579910340693882</R21><R22>-0.8386705679454247</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX93"><Properties><string name="Name">Cliff20Foot</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>11</X><Y>4</Y><Z>12</Z></Vector3><CoordinateFrame name="CFrame"><X>31.538169767143984</X><Y>1.2</Y><Z>18.208570804808716</Z><R00>-0.7431448254773951</R00><R01>0</R01><R02>0.6691306063588572</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.6691306063588572</R20><R21>0</R21><R22>-0.7431448254773951</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">1360</token></Properties></Item><Item class="Part" referent="RBX94"><Properties><string name="Name">QuarryWalk0</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>7.0827625302982185</Z></Vector3><CoordinateFrame name="CFrame"><X>-22</X><Y>0.12</Y><Z>4.5</Z><R00>-0.1643989873053575</R00><R01>0</R01><R02>-0.9863939238321437</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9863939238321437</R20><R21>0</R21><R22>-0.1643989873053575</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX95"><Properties><string name="Name">QuarryWalk1</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>6.099019513592785</Z></Vector3><CoordinateFrame name="CFrame"><X>21.5</X><Y>0.12</Y><Z>4.5</Z><R00>-0.1961161351381841</R00><R01>0</R01><R02>0.9805806756909201</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.9805806756909201</R20><R21>0</R21><R22>-0.1961161351381841</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX96"><Properties><string name="Name">QuarryWalk2</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>29</Z></Vector3><CoordinateFrame name="CFrame"><X>-25</X><Y>0.12</Y><Z>-10</Z><R00>-1</R00><R01>0</R01><R02>1.2246467991473532e-16</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-1.2246467991473532e-16</R20><R21>0</R21><R22>-1</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX97"><Properties><string name="Name">QuarryWalk3</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>29.017851452243796</Z></Vector3><CoordinateFrame name="CFrame"><X>24.5</X><Y>0.12</Y><Z>-10</Z><R00>-0.9993628543475496</R00><R01>0</R01><R02>0.03569153051241243</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.03569153051241243</R20><R21>0</R21><R22>-0.9993628543475496</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX98"><Properties><string name="Name">QuarryWalk4</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>26</Z></Vector3><CoordinateFrame name="CFrame"><X>-12.5</X><Y>0.12</Y><Z>-24</Z><R00>6.123233995736766e-17</R00><R01>0</R01><R02>1</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-1</R20><R21>0</R21><R22>6.123233995736766e-17</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX99"><Properties><string name="Name">QuarryWalk5</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5.5</X><Y>0.16</Y><Z>26</Z></Vector3><CoordinateFrame name="CFrame"><X>12.5</X><Y>0.12</Y><Z>-24</Z><R00>6.123233995736766e-17</R00><R01>0</R01><R02>1</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-1</R20><R21>0</R21><R22>6.123233995736766e-17</R22></CoordinateFrame><Color3 name="Color"><R>0.66</R><G>0.65</G><B>0.53</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX100"><Properties><string name="Name">WalkPaver0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.1</X><Y>0.25</Y><Z>20</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>-0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX101"><Properties><string name="Name">WalkPaver1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>1.1</X><Y>0.25</Y><Z>16.6</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX102"><Properties><string name="Name">WalkPaver2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.1</X><Y>0.25</Y><Z>13.2</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX103"><Properties><string name="Name">WalkPaver3</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>1.1</X><Y>0.25</Y><Z>9.8</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>-0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX104"><Properties><string name="Name">WalkPaver4</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.1</X><Y>0.25</Y><Z>6.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX105"><Properties><string name="Name">WalkPaver5</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>1.1</X><Y>0.25</Y><Z>3</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX106"><Properties><string name="Name">WalkPaver6</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.1</X><Y>0.25</Y><Z>-0.3999999999999986</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>-0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX107"><Properties><string name="Name">WalkPaver7</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>1.1</X><Y>0.25</Y><Z>-3.8000000000000007</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX108"><Properties><string name="Name">WalkPaver8</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-1.1</X><Y>0.25</Y><Z>-7.199999999999999</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX109"><Properties><string name="Name">WalkPaver9</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.4</X><Y>0.09</Y><Z>2.1</Z></Vector3><CoordinateFrame name="CFrame"><X>1.1</X><Y>0.25</Y><Z>-10.599999999999998</Z><R00>0.9876883405951378</R00><R01>0</R01><R02>-0.15643446504023087</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.15643446504023087</R20><R21>0</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">912</token></Properties></Item><Item class="Part" referent="RBX110"><Properties><string name="Name">Node1Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-6</X><Y>0.2</Y><Z>10</Z><R00>0.6018150231520483</R00><R01>0</R01><R02>0.7986355100472928</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7986355100472928</R20><R21>0</R21><R22>0.6018150231520483</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX111"><Properties><string name="Name">Node1Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>-4.2</X><Y>0.3</Y><Z>8.8</Z><R00>0.12186934340514749</R00><R01>0</R01><R02>0.992546151641322</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.992546151641322</R20><R21>0</R21><R22>0.12186934340514749</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX112"><Properties><string name="Name">Node2Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-25</X><Y>0.2</Y><Z>4</Z><R00>-0.27563735581699905</R00><R01>0</R01><R02>0.9612616959383189</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.9612616959383189</R20><R21>0</R21><R22>-0.27563735581699905</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX113"><Properties><string name="Name">Node2Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>-23.2</X><Y>0.3</Y><Z>2.8</Z><R00>-0.7193398003386513</R00><R01>0</R01><R02>0.6946583704589971</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.6946583704589971</R20><R21>0</R21><R22>-0.7193398003386513</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX114"><Properties><string name="Name">Node3Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>24</X><Y>0.2</Y><Z>4</Z><R00>-0.9335804264972017</R00><R01>0</R01><R02>0.3583679495453002</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.3583679495453002</R20><R21>0</R21><R22>-0.9335804264972017</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX115"><Properties><string name="Name">Node3Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>25.8</X><Y>0.3</Y><Z>2.8</Z><R00>-0.9876883405951378</R00><R01>0</R01><R02>-0.15643446504023073</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.15643446504023073</R20><R21>0</R21><R22>-0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX116"><Properties><string name="Name">Node4Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-25</X><Y>0.2</Y><Z>-24</Z><R00>-0.8480480961564261</R00><R01>0</R01><R02>-0.5299192642332048</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.5299192642332048</R20><R21>0</R21><R22>-0.8480480961564261</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX117"><Properties><string name="Name">Node4Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>-23.2</X><Y>0.3</Y><Z>-25.2</Z><R00>-0.46947156278589075</R00><R01>0</R01><R02>-0.882947592858927</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.882947592858927</R20><R21>0</R21><R22>-0.46947156278589075</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX118"><Properties><string name="Name">Node5Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>25</X><Y>0.2</Y><Z>-24</Z><R00>-0.08715574274765825</R00><R01>0</R01><R02>-0.9961946980917455</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9961946980917455</R20><R21>0</R21><R22>-0.08715574274765825</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX119"><Properties><string name="Name">Node5Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>26.8</X><Y>0.3</Y><Z>-25.2</Z><R00>0.4226182617406996</R00><R01>0</R01><R02>-0.9063077870366498</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.9063077870366498</R20><R21>0</R21><R22>0.4226182617406996</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX120"><Properties><string name="Name">Node6Bed</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>5</X><Y>0.45</Y><Z>4.3</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.2</Y><Z>-34</Z><R00>0.7431448254773942</R00><R01>0</R01><R02>-0.6691306063588581</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.6691306063588581</R20><R21>0</R21><R22>0.7431448254773942</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX121"><Properties><string name="Name">Node6Ore</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.6</Y><Z>1.5</Z></Vector3><CoordinateFrame name="CFrame"><X>1.8</X><Y>0.3</Y><Z>-35.2</Z><R00>0.9781476007338056</R00><R01>0</R01><R02>-0.20791169081775987</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.20791169081775987</R20><R21>0</R21><R22>0.9781476007338056</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX122"><Properties><string name="Name">SellStationCounter</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>0.45</Y><Z>4.6</Z></Vector3><CoordinateFrame name="CFrame"><X>-16</X><Y>2.9</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">528</token></Properties></Item><Item class="Part" referent="RBX123"><Properties><string name="Name">SellStationPostL</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.4</X><Y>6.7</Y><Z>0.4</Z></Vector3><CoordinateFrame name="CFrame"><X>-19.3</X><Y>3.35</Y><Z>8.3</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX124"><Properties><string name="Name">SellStationPostR</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.4</X><Y>6.7</Y><Z>0.4</Z></Vector3><CoordinateFrame name="CFrame"><X>-12.7</X><Y>3.35</Y><Z>8.3</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX125"><Properties><string name="Name">UpgradeStationCounter</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>0.45</Y><Z>4.6</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>2.9</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">528</token></Properties></Item><Item class="Part" referent="RBX126"><Properties><string name="Name">UpgradeStationPostL</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.4</X><Y>6.7</Y><Z>0.4</Z></Vector3><CoordinateFrame name="CFrame"><X>10.7</X><Y>3.35</Y><Z>8.3</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX127"><Properties><string name="Name">UpgradeStationPostR</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.4</X><Y>6.7</Y><Z>0.4</Z></Vector3><CoordinateFrame name="CFrame"><X>17.3</X><Y>3.35</Y><Z>8.3</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX128"><Properties><string name="Name">MerchantCanvas0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.5</X><Y>0.25</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>-19</X><Y>6.7</Y><Z>9.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992546151641322</R11><R12>0.12186934340514748</R12><R20>0</R20><R21>-0.12186934340514748</R21><R22>0.992546151641322</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX129"><Properties><string name="Name">MerchantCanvas1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.5</X><Y>0.25</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>-17.5</X><Y>6.7</Y><Z>9.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992546151641322</R11><R12>0.12186934340514748</R12><R20>0</R20><R21>-0.12186934340514748</R21><R22>0.992546151641322</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX130"><Properties><string name="Name">MerchantCanvas2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.5</X><Y>0.25</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>-16</X><Y>6.7</Y><Z>9.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992546151641322</R11><R12>0.12186934340514748</R12><R20>0</R20><R21>-0.12186934340514748</R21><R22>0.992546151641322</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX131"><Properties><string name="Name">MerchantCanvas3</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.5</X><Y>0.25</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>-14.5</X><Y>6.7</Y><Z>9.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992546151641322</R11><R12>0.12186934340514748</R12><R20>0</R20><R21>-0.12186934340514748</R21><R22>0.992546151641322</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX132"><Properties><string name="Name">MerchantCanvas4</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.5</X><Y>0.25</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>-13</X><Y>6.7</Y><Z>9.4</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.992546151641322</R11><R12>0.12186934340514748</R12><R20>0</R20><R21>-0.12186934340514748</R21><R22>0.992546151641322</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX133"><Properties><string name="Name">MerchantCrate</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2.4</X><Y>2.1</Y><Z>2.4</Z></Vector3><CoordinateFrame name="CFrame"><X>-21</X><Y>1.1</Y><Z>10</Z><R00>0.9659258262890683</R00><R01>0</R01><R02>0.25881904510252074</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.25881904510252074</R20><R21>0</R21><R22>0.9659258262890683</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">528</token></Properties></Item><Item class="WedgePart" referent="RBX134"><Properties><string name="Name">MerchantOre</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.2</X><Y>1.8</Y><Z>1.2</Z></Vector3><CoordinateFrame name="CFrame"><X>-21</X><Y>2.6</Y><Z>10</Z><R00>0.7969045380297319</R00><R01>0.2900495313944813</R01><R02>0.5299192642332049</R02><R10>-0.3420201433256687</R10><R11>0.9396926207859084</R11><R12>0</R12><R20>-0.4979612222122406</R20><R21>-0.18124306270407364</R21><R22>0.848048096156426</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3><token name="Material">272</token></Properties></Item><Item class="Part" referent="RBX135"><Properties><string name="Name">MerchantScalesStem</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.2</X><Y>1.4</Y><Z>0.2</Z></Vector3><CoordinateFrame name="CFrame"><X>-17.5</X><Y>3.8</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX136"><Properties><string name="Name">MerchantScalesBeam</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>0.15</Y><Z>0.15</Z></Vector3><CoordinateFrame name="CFrame"><X>-17.5</X><Y>4.5</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX137"><Properties><string name="Name">MerchantScalesPan</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.8</X><Y>0.1</Y><Z>0.8</Z></Vector3><CoordinateFrame name="CFrame"><X>-18.2</X><Y>3.65</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX138"><Properties><string name="Name">SmithyRoof</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7.7</X><Y>0.4</Y><Z>4.4</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>7</Y><Z>8.5</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>0.9876883405951378</R11><R12>0.15643446504023087</R12><R20>0</R20><R21>-0.15643446504023087</R21><R22>0.9876883405951378</R22></CoordinateFrame><Color3 name="Color"><R>0.57</R><G>0.43</G><B>0.85</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX139"><Properties><string name="Name">SmithyAnvilFoot</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.3</X><Y>0.8</Y><Z>1.4</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>3.5</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX140"><Properties><string name="Name">SmithyAnvilTop</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2.8</X><Y>0.4</Y><Z>1.3</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>4.1</Y><Z>10</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX141"><Properties><string name="Name">SmithyPickHandle</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.22</X><Y>2.4</Y><Z>0.22</Z></Vector3><CoordinateFrame name="CFrame"><X>16.5</X><Y>4.3</Y><Z>9.5</Z><R00>0.882947592858927</R00><R01>0.4694715627858908</R01><R02>0</R02><R10>-0.4694715627858908</R10><R11>0.882947592858927</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="WedgePart" referent="RBX142"><Properties><string name="Name">SmithyPickHead</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>2.3</X><Y>0.35</Y><Z>0.35</Z></Vector3><CoordinateFrame name="CFrame"><X>17.05</X><Y>5.35</Y><Z>9.5</Z><R00>0.882947592858927</R00><R01>0.4694715627858908</R01><R02>0</R02><R10>-0.4694715627858908</R10><R11>0.882947592858927</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX143"><Properties><string name="Name">SmithyBag</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.4</X><Y>1.8</Y><Z>1.1</Z></Vector3><CoordinateFrame name="CFrame"><X>11.6</X><Y>3.9</Y><Z>9.8</Z><R00>0.9702957262759965</R00><R01>0</R01><R02>-0.24192189559966773</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.24192189559966773</R20><R21>0</R21><R22>0.9702957262759965</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">1312</token></Properties></Item><Item class="Part" referent="RBX144"><Properties><string name="Name">BeaconPlinth</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>10</X><Y>0.6</Y><Z>9</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.3</Y><Z>-18</Z><R00>0.9781476007338057</R00><R01>0</R01><R02>0.20791169081775931</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.20791169081775931</R20><R21>0</R21><R22>0.9781476007338057</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">800</token></Properties></Item><Item class="Part" referent="RBX145"><Properties><string name="Name">BeaconDais</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>0.6</Y><Z>6.8</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0.8</Y><Z>-18</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX146"><Properties><string name="Name">BeaconCrown</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.8</X><Y>4.3</Y><Z>3.8</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>10.4</Y><Z>-18</Z><R00>0.7032331762534042</R00><R01>0.07391278520356671</R01><R02>0.7071067811865475</R02><R10>-0.10452846326765346</R10><R11>0.9945218953682733</R11><R12>0</R12><R20>-0.7032331762534041</R20><R21>-0.0739127852035667</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.59</R><G>0.94</G><B>0.93</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX147"><Properties><string name="Name">BeaconCrownFacet</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>3.5</X><Y>3.9</Y><Z>3.5</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>10.2</Y><Z>-18</Z><R00>-0.7032331762534043</R00><R01>0.07391278520356671</R01><R02>-0.7071067811865475</R02><R10>0.10452846326765346</R10><R11>0.9945218953682733</R11><R12>0</R12><R20>0.7032331762534041</R20><R21>-0.0739127852035667</R21><R22>-0.7071067811865477</R22></CoordinateFrame><Color3 name="Color"><R>0.18</R><G>0.77</G><B>0.86</B></Color3><token name="Material">288</token></Properties></Item><Item class="WedgePart" referent="RBX148"><Properties><string name="Name">ArchCrest</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>9</X><Y>5</Y><Z>6</Z></Vector3><CoordinateFrame name="CFrame"><X>38</X><Y>15</Y><Z>-8</Z><R00>0.8660254037844387</R00><R01>0</R01><R02>0.49999999999999994</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.49999999999999994</R20><R21>0</R21><R22>0.8660254037844387</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX149"><Properties><string name="Name">Garden0Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>-11</X><Y>0.8</Y><Z>-7</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX150"><Properties><string name="Name">Garden0Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-9</X><Y>1.1</Y><Z>-6</Z><R00>0.9205048534524404</R00><R01>0.3907311284892737</R01><R02>0</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX151"><Properties><string name="Name">Garden0Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-8.55</X><Y>1.1</Y><Z>-6</Z><R00>0.6427876096865394</R00><R01>0</R01><R02>0.766044443118978</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.766044443118978</R20><R21>0</R21><R22>0.6427876096865394</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX152"><Properties><string name="Name">Garden0Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-8.1</X><Y>1.1</Y><Z>-6</Z><R00>-0.159843990335581</R00><R01>0.06784974841990557</R01><R02>0.984807753012208</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.9065203163653296</R20><R21>0.384795044679446</R21><R22>-0.1736481776669303</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX153"><Properties><string name="Name">Garden1Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>12</X><Y>0.8</Y><Z>-8</Z><R00>0.8571673007021123</R00><R01>0</R01><R02>0.5150380749100542</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.5150380749100542</R20><R21>0</R21><R22>0.8571673007021123</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX154"><Properties><string name="Name">Garden1Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>1.1</Y><Z>-7</Z><R00>0.8342607166889769</R00><R01>0.3541226643874466</R01><R02>0.42261826174069944</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.38902216108994764</R20><R21>-0.16513011033011873</R21><R22>0.9063077870366499</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX155"><Properties><string name="Name">Garden1Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14.45</X><Y>1.1</Y><Z>-7</Z><R00>0.25881904510252074</R00><R01>0</R01><R02>0.9659258262890683</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.9659258262890683</R20><R21>0</R21><R22>0.25881904510252074</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX156"><Properties><string name="Name">Garden1Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14.9</X><Y>1.1</Y><Z>-7</Z><R00>-0.5279798934870924</R00><R01>0.22411416825030023</R01><R02>0.819152044288992</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.7540334324835055</R20><R21>0.3200682026693334</R21><R22>-0.5735764363510458</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX157"><Properties><string name="Name">Garden2Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>-15</X><Y>0.8</Y><Z>-30</Z><R00>0.46947156278589086</R00><R01>0</R01><R02>0.8829475928589269</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.8829475928589269</R20><R21>0</R21><R22>0.46947156278589086</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX158"><Properties><string name="Name">Garden2Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-13</X><Y>1.1</Y><Z>-29</Z><R00>0.5916891144555524</R00><R01>0.25115712811174434</R01><R02>0.766044443118978</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.7051476278512911</R20><R21>-0.2993174097328155</R21><R22>0.6427876096865394</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX159"><Properties><string name="Name">Garden2Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-12.55</X><Y>1.1</Y><Z>-29</Z><R00>-0.1736481776669303</R00><R01>0</R01><R02>0.984807753012208</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.984807753012208</R20><R21>0</R21><R22>-0.1736481776669303</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX160"><Properties><string name="Name">Garden2Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-12.1</X><Y>1.1</Y><Z>-29</Z><R00>-0.7971805873966853</R00><R01>0.3383830833210727</R01><R02>0.49999999999999994</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.46025242672622013</R20><R21>0.19536556424463683</R21><R22>-0.8660254037844387</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX161"><Properties><string name="Name">Garden3Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>15</X><Y>0.8</Y><Z>-31</Z><R00>-0.05233595624294362</R00><R01>0</R01><R02>0.9986295347545738</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.9986295347545738</R20><R21>0</R21><R22>-0.05233595624294362</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX162"><Properties><string name="Name">Garden3Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>17</X><Y>1.1</Y><Z>-30</Z><R00>0.2382441871827964</R00><R01>0.10112865756742416</R01><R02>0.9659258262890683</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.8891394111741462</R20><R21>-0.37741728814286185</R21><R22>0.25881904510252074</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX163"><Properties><string name="Name">Garden3Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>17.45</X><Y>1.1</Y><Z>-30</Z><R00>-0.5735764363510458</R00><R01>0</R01><R02>0.819152044288992</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.819152044288992</R20><R21>0</R21><R22>-0.5735764363510458</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX164"><Properties><string name="Name">Garden3Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>17.9</X><Y>1.1</Y><Z>-30</Z><R00>-0.9170020545770403</R00><R01>0.38924427858041905</R01><R02>0.08715574274765864</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.08022728420547211</R20><R21>0.03405446171811349</R21><R22>-0.9961946980917455</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX165"><Properties><string name="Name">Garden4Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>-30</X><Y>0.8</Y><Z>21</Z><R00>-0.5591929034707467</R00><R01>0</R01><R02>0.8290375725550417</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.8290375725550417</R20><R21>0</R21><R22>-0.5591929034707467</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX166"><Properties><string name="Name">Garden4Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-28</X><Y>1.1</Y><Z>22</Z><R00>-0.159843990335581</R00><R01>-0.06784974841990557</R01><R02>0.984807753012208</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.9065203163653296</R20><R21>-0.384795044679446</R21><R22>-0.1736481776669303</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX167"><Properties><string name="Name">Garden4Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-27.55</X><Y>1.1</Y><Z>22</Z><R00>-0.8660254037844387</R00><R01>0</R01><R02>0.49999999999999994</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.49999999999999994</R20><R21>0</R21><R22>-0.8660254037844387</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX168"><Properties><string name="Name">Garden4Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-27.1</X><Y>1.1</Y><Z>22</Z><R00>-0.8649916181868723</R00><R01>0.36716715815272116</R01><R02>-0.34202014332566866</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>0.31483120190977726</R20><R21>-0.13363791656770166</R21><R22>-0.9396926207859084</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX169"><Properties><string name="Name">Garden5Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>29</X><Y>0.8</Y><Z>21</Z><R00>-0.9063077870366499</R00><R01>0</R01><R02>0.4226182617406995</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.4226182617406995</R20><R21>0</R21><R22>-0.9063077870366499</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX170"><Properties><string name="Name">Garden5Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>31</X><Y>1.1</Y><Z>22</Z><R00>-0.5279798934870924</R00><R01>-0.22411416825030023</R01><R02>0.819152044288992</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.7540334324835055</R20><R21>-0.3200682026693334</R21><R22>-0.5735764363510458</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX171"><Properties><string name="Name">Garden5Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>31.45</X><Y>1.1</Y><Z>22</Z><R00>-0.9961946980917455</R00><R01>0</R01><R02>0.08715574274765864</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.08715574274765864</R20><R21>0</R21><R22>-0.9961946980917455</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX172"><Properties><string name="Name">Garden5Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>31.9</X><Y>1.1</Y><Z>22</Z><R00>-0.6508952239913499</R00><R01>0.27628863057543773</R01><R02>-0.7071067811865475</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>0.6508952239913497</R20><R21>-0.2762886305754376</R21><R22>-0.7071067811865477</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX173"><Properties><string name="Name">Garden6Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>-11</X><Y>0.8</Y><Z>28</Z><R00>-0.9945218953682734</R00><R01>0</R01><R02>-0.10452846326765305</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.10452846326765305</R20><R21>0</R21><R22>-0.9945218953682734</R22></CoordinateFrame><Color3 name="Color"><R>0.29</R><G>0.36</G><B>0.43</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX174"><Properties><string name="Name">Garden6Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-9</X><Y>1.1</Y><Z>29</Z><R00>-0.7971805873966853</R00><R01>-0.3383830833210727</R01><R02>0.49999999999999994</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.46025242672622013</R20><R21>-0.19536556424463683</R21><R22>-0.8660254037844387</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX175"><Properties><string name="Name">Garden6Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-8.55</X><Y>1.1</Y><Z>29</Z><R00>-0.9396926207859084</R00><R01>0</R01><R02>-0.34202014332566866</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.34202014332566866</R20><R21>0</R21><R22>-0.9396926207859084</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX176"><Properties><string name="Name">Garden6Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>-8.1</X><Y>1.1</Y><Z>29</Z><R00>-0.3148312019097779</R00><R01>0.13363791656770194</R01><R02>-0.9396926207859082</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>0.8649916181868721</R20><R21>-0.36716715815272105</R21><R22>-0.3420201433256694</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX177"><Properties><string name="Name">Garden7Rock</string><bool name="CanCollide">true</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>7</X><Y>2.3</Y><Z>5</Z></Vector3><CoordinateFrame name="CFrame"><X>12</X><Y>0.8</Y><Z>28</Z><R00>-0.798635510047293</R00><R01>0</R01><R02>-0.601815023152048</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.601815023152048</R20><R21>0</R21><R22>-0.798635510047293</R22></CoordinateFrame><Color3 name="Color"><R>0.43</R><G>0.51</G><B>0.54</B></Color3><token name="Material">800</token></Properties></Item><Item class="WedgePart" referent="RBX178"><Properties><string name="Name">Garden7Fern0</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.4</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14</X><Y>1.1</Y><Z>29</Z><R00>-0.9170020545770403</R00><R01>-0.38924427858041905</R01><R02>0.08715574274765864</R02><R10>-0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>-0.08022728420547211</R20><R21>-0.03405446171811349</R21><R22>-0.9961946980917455</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX179"><Properties><string name="Name">Garden7Fern1</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>2.6999999999999997</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14.45</X><Y>1.1</Y><Z>29</Z><R00>-0.7071067811865477</R00><R01>0</R01><R02>-0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0.7071067811865475</R20><R21>0</R21><R22>-0.7071067811865477</R22></CoordinateFrame><Color3 name="Color"><R>0.3</R><G>0.49</G><B>0.4</B></Color3><token name="Material">272</token></Properties></Item><Item class="WedgePart" referent="RBX180"><Properties><string name="Name">Garden7Fern2</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.65</X><Y>3</Y><Z>1.7</Z></Vector3><CoordinateFrame name="CFrame"><X>14.9</X><Y>1.1</Y><Z>29</Z><R00>0.08022728420547141</R00><R01>-0.0340544617181132</R01><R02>-0.9961946980917455</R02><R10>0.3907311284892737</R10><R11>0.9205048534524404</R11><R12>0</R12><R20>0.9170020545770403</R20><R21>-0.38924427858041905</R21><R22>0.08715574274765789</R22></CoordinateFrame><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><token name="Material">272</token></Properties></Item><Item class="Part" referent="RBX181"><Properties><string name="Name">Lantern0Post</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.3</X><Y>3.2</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-7</X><Y>1.6</Y><Z>17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX182"><Properties><string name="Name">Lantern0Glow</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.8</X><Y>1</Y><Z>0.8</Z></Vector3><CoordinateFrame name="CFrame"><X>-7</X><Y>3.3</Y><Z>17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">288</token></Properties><Item class="PointLight" referent="RBX183"><Properties><string name="Name">Light</string><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><double name="Brightness">1.4</double><double name="Range">13</double><bool name="Shadows">false</bool></Properties></Item></Item><Item class="Part" referent="RBX184"><Properties><string name="Name">Lantern0Cap</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.1</X><Y>0.25</Y><Z>1.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-7</X><Y>3.95</Y><Z>17</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX185"><Properties><string name="Name">Lantern1Post</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.3</X><Y>3.2</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>7</X><Y>1.6</Y><Z>17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX186"><Properties><string name="Name">Lantern1Glow</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.8</X><Y>1</Y><Z>0.8</Z></Vector3><CoordinateFrame name="CFrame"><X>7</X><Y>3.3</Y><Z>17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">288</token></Properties><Item class="PointLight" referent="RBX187"><Properties><string name="Name">Light</string><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><double name="Brightness">1.4</double><double name="Range">13</double><bool name="Shadows">false</bool></Properties></Item></Item><Item class="Part" referent="RBX188"><Properties><string name="Name">Lantern1Cap</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.1</X><Y>0.25</Y><Z>1.1</Z></Vector3><CoordinateFrame name="CFrame"><X>7</X><Y>3.95</Y><Z>17</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX189"><Properties><string name="Name">Lantern2Post</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.3</X><Y>3.2</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>-10</X><Y>1.6</Y><Z>-17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX190"><Properties><string name="Name">Lantern2Glow</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.8</X><Y>1</Y><Z>0.8</Z></Vector3><CoordinateFrame name="CFrame"><X>-10</X><Y>3.3</Y><Z>-17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">288</token></Properties><Item class="PointLight" referent="RBX191"><Properties><string name="Name">Light</string><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><double name="Brightness">1.4</double><double name="Range">13</double><bool name="Shadows">false</bool></Properties></Item></Item><Item class="Part" referent="RBX192"><Properties><string name="Name">Lantern2Cap</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.1</X><Y>0.25</Y><Z>1.1</Z></Vector3><CoordinateFrame name="CFrame"><X>-10</X><Y>3.95</Y><Z>-17</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">1088</token></Properties></Item><Item class="Part" referent="RBX193"><Properties><string name="Name">Lantern3Post</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.3</X><Y>3.2</Y><Z>0.3</Z></Vector3><CoordinateFrame name="CFrame"><X>10</X><Y>1.6</Y><Z>-17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.39</R><G>0.26</G><B>0.18</B></Color3><token name="Material">512</token></Properties></Item><Item class="Part" referent="RBX194"><Properties><string name="Name">Lantern3Glow</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>0.8</X><Y>1</Y><Z>0.8</Z></Vector3><CoordinateFrame name="CFrame"><X>10</X><Y>3.3</Y><Z>-17</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3 name="Color"><R>0.97</R><G>0.88</G><B>0.66</B></Color3><token name="Material">288</token></Properties><Item class="PointLight" referent="RBX195"><Properties><string name="Name">Light</string><Color3 name="Color"><R>0.91</R><G>0.65</G><B>0.29</B></Color3><double name="Brightness">1.4</double><double name="Range">13</double><bool name="Shadows">false</bool></Properties></Item></Item><Item class="Part" referent="RBX196"><Properties><string name="Name">Lantern3Cap</string><bool name="CanCollide">false</bool><bool name="CanTouch">false</bool><bool name="Anchored">true</bool><Vector3 name="Size"><X>1.1</X><Y>0.25</Y><Z>1.1</Z></Vector3><CoordinateFrame name="CFrame"><X>10</X><Y>3.95</Y><Z>-17</Z><R00>0.7071067811865476</R00><R01>0</R01><R02>0.7071067811865475</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>-0.7071067811865475</R20><R21>0</R21><R22>0.7071067811865476</R22></CoordinateFrame><Color3 name="Color"><R>0.21</R><G>0.28</G><B>0.35</B></Color3><token name="Material">1088</token></Properties></Item></Item></Item></Item></Item><Item class="ReplicatedStorage" referent="RBX197"><Properties><string name="Name">ReplicatedStorage</string></Properties><Item class="Folder" referent="RBX198"><Properties><string name="Name">Forge_GenerationPilot</string></Properties><Item class="RemoteEvent" referent="RBX199"><Properties><string name="Name">Action</string></Properties></Item><Item class="RemoteEvent" referent="RBX200"><Properties><string name="Name">Feedback</string></Properties></Item><Item class="ModuleScript" referent="RBX201"><Properties><string name="Name">Contract</string><ProtectedString name="Source">local Contract = {
+	CAPACITIES = {8, 14, 20},
+	POWER_YIELDS = {1, 2, 3},
+	POWER_COSTS = {40, 100},
+	CAPACITY_COSTS = {30, 80},
+	SELL_VALUE = 5,
+	INTERACT_DISTANCE = 10,
+	ACTION_COOLDOWN = 0.2,
+	HARVEST_COOLDOWN = 0.65,
+	NODE_CAPACITY = 6,
+	NODE_RESPAWN = 6,
+	GOAL_SOLD = 40,
+}
+
+return Contract</ProtectedString></Properties></Item></Item></Item><Item class="ServerScriptService" referent="RBX202"><Properties><string name="Name">ServerScriptService</string></Properties><Item class="Folder" referent="RBX203"><Properties><string name="Name">Forge_GenerationPilot</string></Properties><Item class="ModuleScript" referent="RBX204"><Properties><string name="Name">World</string><ProtectedString name="Source">local World = {}
+
+local function required(parent, name, className)
+	local instance = parent:FindFirstChild(name)
+	assert(instance, &quot;Missing authored world object: &quot; .. name)
+	if className then
+		assert(instance:IsA(className), name .. &quot; must be a &quot; .. className)
+	end
+	return instance
+end
+
+local function requiredBasePart(parent, name)
+	return required(parent, name, &quot;BasePart&quot;)
+end
+
+local function requireShardCluster(nodeId, node)
+	local count = 0
+	for _, child in ipairs(node:GetChildren()) do
+		if child:IsA(&quot;BasePart&quot;) then
+			count += 1
+		end
+	end
+	assert(count &gt;= 2, nodeId .. &quot; must contain two shards alongside its main crystal&quot;)
+end
+
+local function requireSurfaceLabel(signName, sign)
+	local surfaceGui = required(sign, &quot;SurfaceGui&quot;, &quot;SurfaceGui&quot;)
+	local textLabel = surfaceGui:FindFirstChildOfClass(&quot;TextLabel&quot;)
+	assert(textLabel, signName .. &quot; must contain a readable TextLabel&quot;)
+end
+
+function World.resolve(root)
+	assert(root and root.Name == &quot;Forge_GenerationPilot&quot;, &quot;World resolver requires Workspace/Forge_GenerationPilot&quot;)
+	local world = required(root, &quot;World&quot;, &quot;Folder&quot;)
+	local nodesFolder = required(world, &quot;Nodes&quot;, &quot;Folder&quot;)
+	local nodes = {}
+
+	requiredBasePart(world, &quot;Ground&quot;)
+	required(world, &quot;Spawn&quot;, &quot;SpawnLocation&quot;)
+	for _, pathName in ipairs({&quot;PathSpawn&quot;, &quot;PathCross&quot;, &quot;PathBeacon&quot;}) do
+		requiredBasePart(world, pathName)
+	end
+	for _, terraceName in ipairs({&quot;TerraceWest&quot;, &quot;TerraceEast&quot;}) do
+		requiredBasePart(world, terraceName)
+	end
+	requiredBasePart(world, &quot;RampNorth&quot;)
+	for _, archName in ipairs({&quot;ArchLeft&quot;, &quot;ArchRight&quot;, &quot;ArchTop&quot;}) do
+		requiredBasePart(world, archName)
+	end
+
+	for index = 1, 6 do
+		local nodeId = string.format(&quot;Node%02d&quot;, index)
+		local node = requiredBasePart(nodesFolder, nodeId)
+		requireShardCluster(nodeId, node)
+		nodes[nodeId] = node
+	end
+
+	local sellSign = requiredBasePart(world, &quot;SellSign&quot;)
+	local upgradeSign = requiredBasePart(world, &quot;UpgradeSign&quot;)
+	requireSurfaceLabel(&quot;SellSign&quot;, sellSign)
+	requireSurfaceLabel(&quot;UpgradeSign&quot;, upgradeSign)
+
+	return {
+		nodes = nodes,
+		sell = requiredBasePart(world, &quot;SellStation&quot;),
+		upgrades = requiredBasePart(world, &quot;UpgradeStation&quot;),
+		beacon = requiredBasePart(world, &quot;Beacon&quot;),
+		spawn = world:WaitForChild(&quot;Spawn&quot;),
+	}
+end
+
+return World</ProtectedString></Properties></Item><Item class="ModuleScript" referent="RBX205"><Properties><string name="Name">Economy</string><ProtectedString name="Source">local Contract = require(game:GetService(&quot;ReplicatedStorage&quot;):WaitForChild(&quot;Forge_GenerationPilot&quot;):WaitForChild(&quot;Contract&quot;))
+
+local Economy = {}
+
+local function result(ok, amount, message)
+	return { ok = ok, amount = amount or 0, message = message }
+end
+
+local function updateGoal(state)
+	if not state.GoalComplete
+		and state.TotalSold &gt;= Contract.GOAL_SOLD
+		and state.PowerLevel &gt;= 1
+		and state.CapacityLevel &gt;= 1 then
+		state.GoalComplete = true
+		return true
+	end
+	return false
+end
+
+function Economy.newState()
+	return {
+		Carry = 0,
+		Coins = 0,
+		PowerLevel = 0,
+		CapacityLevel = 0,
+		Capacity = Contract.CAPACITIES[1],
+		TotalSold = 0,
+		GoalComplete = false,
+	}
+end
+
+function Economy.apply(state, action, nodeRemaining)
+	if type(action) ~= &quot;string&quot; then
+		return result(false, 0, &quot;Unknown action.&quot;)
+	end
+
+	if action == &quot;harvest&quot; then
+		if type(nodeRemaining) ~= &quot;number&quot; or nodeRemaining &lt;= 0 then
+			return result(false, 0, &quot;That node is empty. It will refill soon.&quot;)
+		end
+		local freeSpace = state.Capacity - state.Carry
+		if freeSpace &lt;= 0 then
+			return result(false, 0, &quot;Your bag is full. Sell your crystals first.&quot;)
+		end
+		local yield = Contract.POWER_YIELDS[state.PowerLevel + 1]
+		local amount = math.min(yield, freeSpace, nodeRemaining)
+		if amount &lt;= 0 then
+			return result(false, 0, &quot;Nothing to harvest.&quot;)
+		end
+		state.Carry += amount
+		return result(true, amount, string.format(&quot;Harvested %d crystal%s.&quot;, amount, amount == 1 and &quot;&quot; or &quot;s&quot;))
+	end
+
+	if action == &quot;sell&quot; then
+		if state.Carry &lt;= 0 then
+			return result(false, 0, &quot;Your bag is empty.&quot;)
+		end
+		local sold = state.Carry
+		local coins = sold * Contract.SELL_VALUE
+		state.Carry = 0
+		state.Coins += coins
+		state.TotalSold += sold
+		updateGoal(state)
+		return result(true, coins, string.format(&quot;Sold %d crystals for %d coins.&quot;, sold, coins))
+	end
+
+	if action == &quot;upgradePower&quot; then
+		if state.PowerLevel &gt;= 2 then
+			return result(false, 0, &quot;Pick power is already maxed.&quot;)
+		end
+		local cost = Contract.POWER_COSTS[state.PowerLevel + 1]
+		if state.Coins &lt; cost then
+			return result(false, 0, string.format(&quot;You need %d more coins for pick power.&quot;, cost - state.Coins))
+		end
+		state.Coins -= cost
+		state.PowerLevel += 1
+		updateGoal(state)
+		return result(true, 0, string.format(&quot;Pick power upgraded: harvest %d each time.&quot;, Contract.POWER_YIELDS[state.PowerLevel + 1]))
+	end
+
+	if action == &quot;upgradeCapacity&quot; then
+		if state.CapacityLevel &gt;= 2 then
+			return result(false, 0, &quot;Bag capacity is already maxed.&quot;)
+		end
+		local cost = Contract.CAPACITY_COSTS[state.CapacityLevel + 1]
+		if state.Coins &lt; cost then
+			return result(false, 0, string.format(&quot;You need %d more coins for bag capacity.&quot;, cost - state.Coins))
+		end
+		state.Coins -= cost
+		state.CapacityLevel += 1
+		state.Capacity = Contract.CAPACITIES[state.CapacityLevel + 1]
+		updateGoal(state)
+		return result(true, 0, string.format(&quot;Bag upgraded: capacity %d.&quot;, state.Capacity))
+	end
+
+	return result(false, 0, &quot;Unknown action.&quot;)
+end
+
+return Economy</ProtectedString></Properties></Item><Item class="Script" referent="RBX206"><Properties><string name="Name">Game</string><ProtectedString name="Source">local Players = game:GetService(&quot;Players&quot;)
+local ReplicatedStorage = game:GetService(&quot;ReplicatedStorage&quot;)
+
+local namespace = ReplicatedStorage:WaitForChild(&quot;Forge_GenerationPilot&quot;)
+local Contract = require(namespace:WaitForChild(&quot;Contract&quot;))
+local Economy = require(game:GetService(&quot;ServerScriptService&quot;):WaitForChild(&quot;Forge_GenerationPilot&quot;):WaitForChild(&quot;Economy&quot;))
+local World = require(game:GetService(&quot;ServerScriptService&quot;):WaitForChild(&quot;Forge_GenerationPilot&quot;):WaitForChild(&quot;World&quot;))
+
+local root = workspace:WaitForChild(&quot;Forge_GenerationPilot&quot;)
+local authored = World.resolve(root)
+local actionRemote = namespace:WaitForChild(&quot;Action&quot;)
+local feedbackRemote = namespace:WaitForChild(&quot;Feedback&quot;)
+
+local states = {}
+local cooldowns = {}
+local nodeState = {}
+local originalNodeColors = {}
+
+local validActions = {
+	harvest = true,
+	sell = true,
+	upgradePower = true,
+	upgradeCapacity = true,
+}
+
+local function send(player, kind, message, position)
+	local payload = { kind = kind, message = message }
+	if position then
+		payload.position = position
+	end
+	feedbackRemote:FireClient(player, payload)
+end
+
+local function mirror(player, state)
+	for key, value in pairs(state) do
+		player:SetAttribute(key, value)
+	end
+end
+
+local function setNodeVisual(nodeId, remaining)
+	local node = authored.nodes[nodeId]
+	if not node then
+		return
+	end
+	local available = remaining &gt; 0
+	node:SetAttribute(&quot;Remaining&quot;, remaining)
+	node:SetAttribute(&quot;Available&quot;, available)
+	if not originalNodeColors[nodeId] then
+		originalNodeColors[nodeId] = node.Color
+	end
+	node.Color = available and originalNodeColors[nodeId] or Color3.fromRGB(45, 48, 60)
+	for _, child in ipairs(node:GetChildren()) do
+		if child:IsA(&quot;BasePart&quot;) then
+			child.Transparency = available and 0 or 0.72
+		end
+	end
+end
+
+local function refill(nodeId)
+	local data = nodeState[nodeId]
+	if not data then
+		return
+	end
+	data.remaining = Contract.NODE_CAPACITY
+	data.refillPending = false
+	setNodeVisual(nodeId, data.remaining)
+end
+
+local function depleteNode(nodeId)
+	local data = nodeState[nodeId]
+	if not data or data.refillPending then
+		return
+	end
+	data.refillPending = true
+	setNodeVisual(nodeId, 0)
+	task.delay(Contract.NODE_RESPAWN, function()
+		refill(nodeId)
+	end)
+end
+
+for nodeId in pairs(authored.nodes) do
+	nodeState[nodeId] = { remaining = Contract.NODE_CAPACITY, refillPending = false }
+	setNodeVisual(nodeId, Contract.NODE_CAPACITY)
+end
+
+local function characterRoot(player)
+	local character = player.Character
+	if not character then
+		return nil
+	end
+	local humanoid = character:FindFirstChildOfClass(&quot;Humanoid&quot;)
+	local rootPart = character:FindFirstChild(&quot;HumanoidRootPart&quot;)
+	if not humanoid or humanoid.Health &lt;= 0 or not rootPart then
+		return nil
+	end
+	return rootPart
+end
+
+local function initialize(player)
+	if states[player] then
+		return
+	end
+	states[player] = Economy.newState()
+	cooldowns[player] = { general = 0, harvest = 0 }
+	mirror(player, states[player])
+end
+
+local function removePlayer(player)
+	states[player] = nil
+	cooldowns[player] = nil
+end
+
+local function process(player, action, nodeId, argumentCount)
+	if argumentCount &gt; 2 or type(action) ~= &quot;string&quot; or not validActions[action] then
+		send(player, &quot;error&quot;, &quot;That action is not available.&quot;)
+		return
+	end
+
+	if action == &quot;harvest&quot; then
+		if argumentCount ~= 2 or type(nodeId) ~= &quot;string&quot; or not authored.nodes[nodeId] then
+			send(player, &quot;error&quot;, &quot;Choose a known crystal node.&quot;)
+			return
+		end
+	else
+		if argumentCount ~= 1 or nodeId ~= nil then
+			send(player, &quot;error&quot;, &quot;That action needs no node.&quot;)
+			return
+		end
+	end
+
+	local state = states[player]
+	local timers = cooldowns[player]
+	local rootPart = characterRoot(player)
+	if not state or not timers or not rootPart then
+		send(player, &quot;error&quot;, &quot;You must be alive to do that.&quot;)
+		return
+	end
+
+	local now = os.clock()
+	if now - timers.general &lt; Contract.ACTION_COOLDOWN then
+		return
+	end
+	if action == &quot;harvest&quot; and now - timers.harvest &lt; Contract.HARVEST_COOLDOWN then
+		send(player, &quot;error&quot;, &quot;Your pick is still recovering.&quot;)
+		return
+	end
+
+	local target = action == &quot;harvest&quot; and authored.nodes[nodeId]
+		or action == &quot;sell&quot; and authored.sell
+		or authored.upgrades
+
+	if (rootPart.Position - target.Position).Magnitude &gt; Contract.INTERACT_DISTANCE then
+		send(player, &quot;error&quot;, &quot;You are too far away.&quot;)
+		return
+	end
+
+	if action == &quot;harvest&quot; and state.Carry &gt;= state.Capacity then
+		send(player, &quot;error&quot;, &quot;Your bag is full. Sell your crystals first.&quot;)
+		return
+	end
+
+	local remaining = action == &quot;harvest&quot; and nodeState[nodeId].remaining or nil
+	local beforeGoal = state.GoalComplete
+	local outcome = Economy.apply(state, action, remaining)
+	if not outcome.ok then
+		send(player, &quot;error&quot;, outcome.message)
+		return
+	end
+
+	timers.general = now
+	if action == &quot;harvest&quot; then
+		timers.harvest = now
+		nodeState[nodeId].remaining -= outcome.amount
+		setNodeVisual(nodeId, nodeState[nodeId].remaining)
+		if nodeState[nodeId].remaining &lt;= 0 then
+			depleteNode(nodeId)
+		end
+		mirror(player, state)
+		send(player, &quot;harvest&quot;, outcome.message, target.Position)
+	elseif action == &quot;sell&quot; then
+		mirror(player, state)
+		send(player, &quot;sell&quot;, outcome.message)
+	else
+		mirror(player, state)
+		send(player, &quot;upgrade&quot;, outcome.message)
+	end
+
+	if not beforeGoal and state.GoalComplete then
+		send(player, &quot;goal&quot;, &quot;Crystal Hollow restored! Your beacon shines for you.&quot;)
+	end
+end
+
+actionRemote.OnServerEvent:Connect(function(player, ...)
+	local argumentCount = select(&quot;#&quot;, ...)
+	local action, nodeId = ...
+	process(player, action, nodeId, argumentCount)
+end)
+
+Players.PlayerAdded:Connect(initialize)
+Players.PlayerRemoving:Connect(removePlayer)
+for _, player in ipairs(Players:GetPlayers()) do
+	initialize(player)
+end</ProtectedString></Properties></Item></Item></Item><Item class="ServerStorage" referent="RBX207"><Properties><string name="Name">ServerStorage</string></Properties><Item class="Folder" referent="RBX208"><Properties><string name="Name">Forge_GenerationPilot</string></Properties></Item></Item><Item class="StarterGui" referent="RBX209"><Properties><string name="Name">StarterGui</string></Properties><Item class="Folder" referent="RBX210"><Properties><string name="Name">Forge_GenerationPilot</string></Properties></Item></Item><Item class="StarterPlayer" referent="RBX211"><Properties><string name="Name">StarterPlayer</string></Properties><Item class="StarterPlayerScripts" referent="RBX212"><Properties><string name="Name">StarterPlayerScripts</string></Properties><Item class="Folder" referent="RBX213"><Properties><string name="Name">Forge_GenerationPilot</string></Properties><Item class="ModuleScript" referent="RBX214"><Properties><string name="Name">HUD</string><ProtectedString name="Source">local HUD = {}
+
+local PANEL_COLOR = Color3.fromRGB(18, 25, 38)
+local PANEL_ALT = Color3.fromRGB(28, 38, 56)
+local TEXT = Color3.fromRGB(236, 246, 255)
+local MUTED = Color3.fromRGB(166, 188, 208)
+local CYAN = Color3.fromRGB(70, 225, 245)
+local AMBER = Color3.fromRGB(255, 185, 78)
+local VIOLET = Color3.fromRGB(169, 125, 255)
+
+local function make(className, name, parent, properties)
+	local object = Instance.new(className)
+	object.Name = name
+	object.Parent = parent
+	for property, value in pairs(properties or {}) do
+		object[property] = value
+	end
+	return object
+end
+
+local function label(parent, name, text, size, color, properties)
+	local values = {
+		BackgroundTransparency = 1,
+		Text = text,
+		TextColor3 = color or TEXT,
+		Font = Enum.Font.Gotham,
+		TextSize = size or 14,
+		TextWrapped = true,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		TextYAlignment = Enum.TextYAlignment.Center,
+	}
+	for property, value in pairs(properties or {}) do
+		values[property] = value
+	end
+	return make(&quot;TextLabel&quot;, name, parent, values)
+end
+
+local function button(parent, name, text, color)
+	local item = make(&quot;TextButton&quot;, name, parent, {
+		BackgroundColor3 = color,
+		BorderSizePixel = 0,
+		AutoButtonColor = true,
+		Text = text,
+		TextColor3 = TEXT,
+		Font = Enum.Font.GothamBold,
+		TextSize = 13,
+		TextWrapped = true,
+		TextXAlignment = Enum.TextXAlignment.Center,
+		TextYAlignment = Enum.TextYAlignment.Center,
+		Active = true,
+		Selectable = true,
+	})
+	make(&quot;UICorner&quot;, &quot;Corner&quot;, item, {CornerRadius = UDim.new(0, 7)})
+	make(&quot;UIStroke&quot;, &quot;Outline&quot;, item, {Color = Color3.fromRGB(95, 116, 142), Thickness = 1, Transparency = 0.25})
+	return item
+end
+
+function HUD.mount(playerGui)
+	assert(playerGui, &quot;HUD.mount requires a PlayerGui&quot;)
+	local previous = playerGui:FindFirstChild(&quot;CrystalHollowHUD&quot;)
+	if previous then
+		previous:Destroy()
+	end
+
+	local gui = make(&quot;ScreenGui&quot;, &quot;CrystalHollowHUD&quot;, playerGui, {
+		ResetOnSpawn = false,
+		IgnoreGuiInset = false,
+		DisplayOrder = 20,
+		ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+	})
+
+	local main = make(&quot;Frame&quot;, &quot;MainPanel&quot;, gui, {
+		AnchorPoint = Vector2.new(0, 0),
+		Position = UDim2.new(0, 12, 0, 12),
+		Size = UDim2.new(0, 340, 0, 282),
+		BackgroundColor3 = PANEL_COLOR,
+		BackgroundTransparency = 0.06,
+		BorderSizePixel = 0,
+	})
+	make(&quot;UICorner&quot;, &quot;Corner&quot;, main, {CornerRadius = UDim.new(0, 12)})
+	make(&quot;UIStroke&quot;, &quot;Outline&quot;, main, {Color = Color3.fromRGB(78, 130, 157), Thickness = 1, Transparency = 0.15})
+	make(&quot;UIPadding&quot;, &quot;Padding&quot;, main, {
+		PaddingTop = UDim.new(0, 11),
+		PaddingBottom = UDim.new(0, 10),
+		PaddingLeft = UDim.new(0, 13),
+		PaddingRight = UDim.new(0, 13),
+	})
+
+	label(main, &quot;Title&quot;, &quot;CRYSTAL HOLLOW&quot;, 20, CYAN, {
+		Size = UDim2.new(1, 0, 0, 27),
+		Font = Enum.Font.GothamBlack,
+	})
+	label(main, &quot;Subtitle&quot;, &quot;Quarry loop  •  restore the beacon&quot;, 11, MUTED, {
+		Position = UDim2.new(0, 0, 0, 27),
+		Size = UDim2.new(1, 0, 0, 18),
+	})
+
+	local statsRow = make(&quot;Frame&quot;, &quot;StatsRow&quot;, main, {
+		Position = UDim2.new(0, 0, 0, 50),
+		Size = UDim2.new(1, 0, 0, 31),
+		BackgroundTransparency = 1,
+	})
+	local carryLabel = label(statsRow, &quot;CarryLabel&quot;, &quot;Bag  0 / 8&quot;, 16, TEXT, {
+		Size = UDim2.new(0.52, 0, 1, 0),
+		Font = Enum.Font.GothamBold,
+	})
+	local coinsLabel = label(statsRow, &quot;CoinsLabel&quot;, &quot;Coins  0&quot;, 16, AMBER, {
+		Position = UDim2.new(0.52, 0, 0, 0),
+		Size = UDim2.new(0.48, 0, 1, 0),
+		Font = Enum.Font.GothamBold,
+		TextXAlignment = Enum.TextXAlignment.Right,
+	})
+
+	local tracks = make(&quot;Frame&quot;, &quot;UpgradeTracks&quot;, main, {
+		Position = UDim2.new(0, 0, 0, 84),
+		Size = UDim2.new(1, 0, 0, 47),
+		BackgroundColor3 = PANEL_ALT,
+		BackgroundTransparency = 0.18,
+		BorderSizePixel = 0,
+	})
+	make(&quot;UICorner&quot;, &quot;Corner&quot;, tracks, {CornerRadius = UDim.new(0, 7)})
+	local powerInfo = label(tracks, &quot;PowerInfo&quot;, &quot;PICK  Lv 1  •  Yield 1&quot;, 11, VIOLET, {
+		Position = UDim2.new(0, 8, 0, 3), Size = UDim2.new(0.5, -10, 0, 20), Font = Enum.Font.GothamBold,
+	})
+	local bagInfo = label(tracks, &quot;BagInfo&quot;, &quot;BAG  Lv 1  •  Holds 8&quot;, 11, CYAN, {
+		Position = UDim2.new(0.5, 2, 0, 3), Size = UDim2.new(0.5, -10, 0, 20), Font = Enum.Font.GothamBold,
+	})
+	local powerNext = label(tracks, &quot;PowerNext&quot;, &quot;Next: yield 2  •  40 coins&quot;, 10, MUTED, {
+		Position = UDim2.new(0, 8, 0, 23), Size = UDim2.new(0.5, -10, 0, 18),
+	})
+	local bagNext = label(tracks, &quot;BagNext&quot;, &quot;Next: 14 slots  •  30 coins&quot;, 10, MUTED, {
+		Position = UDim2.new(0.5, 2, 0, 23), Size = UDim2.new(0.5, -10, 0, 18),
+	})
+
+	local goalLabel = label(main, &quot;GoalLabel&quot;, &quot;Beacon goal  •  Sold 0 / 40  •  Pick 0/1  •  Bag 0/1&quot;, 11, TEXT, {
+		Position = UDim2.new(0, 0, 0, 137), Size = UDim2.new(1, 0, 0, 20), Font = Enum.Font.GothamMedium,
+	})
+	local hint = label(main, &quot;Hint&quot;, &quot;Find a glowing crystal cluster nearby.&quot;, 11, MUTED, {
+		Position = UDim2.new(0, 0, 0, 158), Size = UDim2.new(1, 0, 0, 23), TextXAlignment = Enum.TextXAlignment.Center,
+	})
+
+	local actions = make(&quot;Frame&quot;, &quot;Actions&quot;, main, {
+		Position = UDim2.new(0, 0, 0, 185), Size = UDim2.new(1, 0, 0, 42), BackgroundTransparency = 1,
+	})
+	local harvestButton = button(actions, &quot;HarvestButton&quot;, &quot;E  HARVEST&quot;, Color3.fromRGB(24, 117, 132))
+	harvestButton.Position = UDim2.new(0, 0, 0, 0); harvestButton.Size = UDim2.new(0.25, -4, 1, 0)
+	local sellButton = button(actions, &quot;SellButton&quot;, &quot;Q  SELL&quot;, Color3.fromRGB(143, 82, 27))
+	sellButton.Position = UDim2.new(0.25, 2, 0, 0); sellButton.Size = UDim2.new(0.25, -4, 1, 0)
+	local powerButton = button(actions, &quot;PowerButton&quot;, &quot;1  PICK&quot;, Color3.fromRGB(77, 54, 132))
+	powerButton.Position = UDim2.new(0.5, 2, 0, 0); powerButton.Size = UDim2.new(0.25, -4, 1, 0)
+	local capacityButton = button(actions, &quot;CapacityButton&quot;, &quot;2  BAG&quot;, Color3.fromRGB(39, 91, 116))
+	capacityButton.Position = UDim2.new(0.75, 2, 0, 0); capacityButton.Size = UDim2.new(0.25, -2, 1, 0)
+	label(main, &quot;Footer&quot;, &quot;E/Q/1/2  or  tap a button&quot;, 10, MUTED, {
+		Position = UDim2.new(0, 0, 0, 234), Size = UDim2.new(1, 0, 0, 18), TextXAlignment = Enum.TextXAlignment.Center,
+	})
+
+	local toastMessage = nil
+	local toastUntil = 0
+	local toastPriority = nil
+	local destroyed = false
+	local handles = {
+		gui = gui,
+		harvestButton = harvestButton,
+		sellButton = sellButton,
+		powerButton = powerButton,
+		capacityButton = capacityButton,
+		coinsLabel = coinsLabel,
+	}
+
+	local function setButtonState(item, available)
+		item.Active = true
+		item.AutoButtonColor = available
+		item.BackgroundTransparency = available and 0 or 0.42
+		item.TextTransparency = available and 0 or 0.35
+		local outline = item:FindFirstChild(&quot;Outline&quot;)
+		if outline then outline.Transparency = available and 0.25 or 0.7 end
+	end
+
+	function handles.render(stats, context)
+		if destroyed or not gui.Parent then return end
+		stats = stats or {}; context = context or {}
+		local carry = tonumber(stats.Carry) or 0
+		local capacity = tonumber(stats.Capacity) or 8
+		local coins = tonumber(stats.Coins) or 0
+		local powerLevel = tonumber(stats.PowerLevel) or 0
+		local capacityLevel = tonumber(stats.CapacityLevel) or 0
+		local totalSold = tonumber(stats.TotalSold) or 0
+		local goalComplete = stats.GoalComplete == true
+		carryLabel.Text = string.format(&quot;Bag  %d / %d&quot;, carry, capacity)
+		coinsLabel.Text = string.format(&quot;Coins  %d&quot;, coins)
+		powerInfo.Text = string.format(&quot;PICK  Lv %d  •  Yield %d&quot;, powerLevel + 1, ({1, 2, 3})[powerLevel + 1] or 1)
+		bagInfo.Text = string.format(&quot;BAG  Lv %d  •  Holds %d&quot;, capacityLevel + 1, capacity)
+		if powerLevel &gt;= 2 then
+			powerNext.Text = &quot;MAX LEVEL  •  Yield 3&quot;; powerButton.Text = &quot;1  PICK MAX&quot;
+		else
+			powerNext.Text = string.format(&quot;Next: yield %d  •  %d coins&quot;, ({1, 2, 3})[powerLevel + 2], ({40, 100})[powerLevel + 1])
+			powerButton.Text = string.format(&quot;1  PICK  %d&quot;, ({40, 100})[powerLevel + 1])
+		end
+		if capacityLevel &gt;= 2 then
+			bagNext.Text = &quot;MAX LEVEL  •  Holds 20&quot;; capacityButton.Text = &quot;2  BAG MAX&quot;
+		else
+			bagNext.Text = string.format(&quot;Next: %d slots  •  %d coins&quot;, ({8, 14, 20})[capacityLevel + 2], ({30, 80})[capacityLevel + 1])
+			capacityButton.Text = string.format(&quot;2  BAG  %d&quot;, ({30, 80})[capacityLevel + 1])
+		end
+		goalLabel.Text = goalComplete and &quot;Beacon restored  •  Goal complete!&quot; or string.format(&quot;Beacon goal  •  Sold %d / 40  •  Pick %d/1  •  Bag %d/1&quot;, math.min(totalSold, 40), math.min(powerLevel, 1), math.min(capacityLevel, 1))
+		goalLabel.TextColor3 = goalComplete and CYAN or TEXT
+		local remaining = tonumber(context.nodeRemaining)
+		local nearNode = context.nodeId ~= nil
+		local nearSell = context.nearSell == true
+		local nearUpgrades = context.nearUpgrades == true
+		if toastMessage and os.clock() &lt; toastUntil then hint.Text = toastMessage
+		elseif goalComplete then hint.Text = &quot;The beacon shines again. Keep quarrying!&quot;
+		elseif nearNode and carry &gt;= capacity then hint.Text = &quot;Bag full — visit the amber SELL station.&quot;
+		elseif nearNode and remaining == 0 then hint.Text = &quot;This node is dim. Try another crystal cluster.&quot;
+		elseif nearNode then hint.Text = &quot;Crystal nearby — press E or tap HARVEST.&quot;
+		elseif nearSell and carry &gt; 0 then hint.Text = &quot;Amber station ready — press Q or tap SELL.&quot;
+		elseif nearUpgrades then hint.Text = &quot;Choose PICK for yield or BAG for capacity.&quot;
+		else hint.Text = &quot;Follow the pale path to a glowing crystal cluster.&quot; end
+		setButtonState(harvestButton, nearNode and remaining ~= 0 and carry &lt; capacity)
+		setButtonState(sellButton, nearSell and carry &gt; 0)
+		setButtonState(powerButton, nearUpgrades and powerLevel &lt; 2 and coins &gt;= (({40, 100})[powerLevel + 1] or math.huge))
+		setButtonState(capacityButton, nearUpgrades and capacityLevel &lt; 2 and coins &gt;= (({30, 80})[capacityLevel + 1] or math.huge))
+	end
+
+	function handles.toast(message, priority)
+		if destroyed or not gui.Parent then return end
+		if toastPriority == &quot;goal&quot; and os.clock() &lt; toastUntil and priority ~= &quot;goal&quot; then return end
+		toastPriority = priority
+		toastMessage = tostring(message or &quot;&quot;)
+		toastUntil = os.clock() + 3
+		hint.Text = toastMessage; hint.TextColor3 = TEXT
+	end
+
+	function handles.destroy()
+		if destroyed then return end
+		destroyed = true
+		if gui.Parent then gui:Destroy() end
+	end
+
+	return handles
+end
+
+return HUD</ProtectedString></Properties></Item><Item class="ModuleScript" referent="RBX215"><Properties><string name="Name">Feedback</string><ProtectedString name="Source">local TweenService = game:GetService(&quot;TweenService&quot;)
+local Debris = game:GetService(&quot;Debris&quot;)
+
+local Feedback = {}
+local effectFolder
+local goalHighlight
+local activeTweens = {}
+local baseButtonColors = setmetatable({}, {__mode = &quot;k&quot;})
+
+local function getFolder()
+	if effectFolder and effectFolder.Parent then return effectFolder end
+	local root = workspace:FindFirstChild(&quot;Forge_GenerationPilot&quot;)
+	if not root then return nil end
+	effectFolder = Instance.new(&quot;Folder&quot;)
+	effectFolder.Name = &quot;LocalFeedbackEffects&quot;
+	effectFolder.Parent = root
+	return effectFolder
+end
+
+local function pulseButton(hud, buttonName, color)
+	if not hud or not hud[buttonName] then return end
+	local button = hud[buttonName]
+	if not button.Parent then return end
+	local original = baseButtonColors[button] or button.BackgroundColor3
+	baseButtonColors[button] = original
+	local existing = activeTweens[button]
+	if existing then existing:Cancel() end
+	button.BackgroundColor3 = color
+	local tween = TweenService:Create(button, TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundColor3 = original})
+	activeTweens[button] = tween
+	tween:Play()
+	tween.Completed:Connect(function()
+		if activeTweens[button] == tween then activeTweens[button] = nil end
+	end)
+end
+
+local function pulseCoins(hud)
+	if not hud or not hud.coinsLabel or not hud.coinsLabel.Parent then return end
+	local label = hud.coinsLabel
+	local originalColor = label.TextColor3
+	local originalSize = label.TextSize
+	local existing = activeTweens[label]
+	if existing then existing:Cancel() end
+	label.TextColor3 = Color3.fromRGB(255, 236, 130)
+	label.TextSize = originalSize + 4
+	local tween = TweenService:Create(label, TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextColor3 = originalColor, TextSize = originalSize})
+	activeTweens[label] = tween
+	tween:Play()
+	tween.Completed:Connect(function()
+		if activeTweens[label] == tween then activeTweens[label] = nil end
+	end)
+end
+
+local function harvestSparkle(position)
+	local folder = getFolder()
+	if not folder or typeof(position) ~= &quot;Vector3&quot; then return end
+	local orb = Instance.new(&quot;Part&quot;)
+	orb.Name = &quot;HarvestSparkle&quot;
+	orb.Shape = Enum.PartType.Ball
+	orb.Size = Vector3.new(0.35, 0.35, 0.35)
+	orb.CFrame = CFrame.new(position + Vector3.new(0, 2.2, 0))
+	orb.Anchored = true; orb.CanCollide = false; orb.CanQuery = false
+	orb.Material = Enum.Material.Neon; orb.Color = Color3.fromRGB(100, 235, 255); orb.Transparency = 0.1
+	orb.Parent = folder
+	local emitter = Instance.new(&quot;ParticleEmitter&quot;)
+	emitter.Name = &quot;CrystalBurst&quot;
+	emitter.Color = ColorSequence.new(Color3.fromRGB(85, 235, 255), Color3.fromRGB(174, 115, 255))
+	emitter.LightEmission = 0.8; emitter.Lifetime = NumberRange.new(0.25, 0.55); emitter.Speed = NumberRange.new(2, 5)
+	emitter.SpreadAngle = Vector2.new(360, 360); emitter.Rate = 0
+	emitter.Size = NumberSequence.new({NumberSequenceKeypoint.new(0, 0.18), NumberSequenceKeypoint.new(0.7, 0.1), NumberSequenceKeypoint.new(1, 0)})
+	emitter.Parent = orb; emitter:Emit(18)
+	TweenService:Create(orb, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = Vector3.new(1.1, 1.1, 1.1), Transparency = 1, CFrame = orb.CFrame + Vector3.new(0, 1.1, 0)}):Play()
+	Debris:AddItem(orb, 0.75)
+end
+
+local function ensureGoalGlow()
+	if goalHighlight and goalHighlight.Parent then return end
+	local root = workspace:FindFirstChild(&quot;Forge_GenerationPilot&quot;)
+	local world = root and root:FindFirstChild(&quot;World&quot;)
+	local beacon = world and world:FindFirstChild(&quot;Beacon&quot;)
+	if not beacon then return end
+	goalHighlight = Instance.new(&quot;Highlight&quot;)
+	goalHighlight.Name = &quot;LocalBeaconGlow&quot;
+	goalHighlight.Adornee = beacon
+	goalHighlight.FillColor = Color3.fromRGB(80, 225, 255)
+	goalHighlight.OutlineColor = Color3.fromRGB(190, 125, 255)
+	goalHighlight.FillTransparency = 0.28; goalHighlight.OutlineTransparency = 0
+	goalHighlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	goalHighlight.Parent = beacon
+end
+
+function Feedback.play(payload, hud)
+	if type(payload) ~= &quot;table&quot; then return end
+	local kind = payload.kind
+	if kind == &quot;harvest&quot; then
+		harvestSparkle(payload.position); pulseButton(hud, &quot;harvestButton&quot;, Color3.fromRGB(75, 190, 205))
+	elseif kind == &quot;sell&quot; then
+		pulseButton(hud, &quot;sellButton&quot;, Color3.fromRGB(255, 172, 58)); pulseCoins(hud)
+	elseif kind == &quot;upgrade&quot; then
+		local target = string.find(tostring(payload.message), &quot;Pick&quot;) and &quot;powerButton&quot; or &quot;capacityButton&quot;
+		pulseButton(hud, target, Color3.fromRGB(151, 112, 245))
+	elseif kind == &quot;goal&quot; then
+		ensureGoalGlow()
+		if not payload.steady and hud then hud.toast(payload.message, &quot;goal&quot;) end
+		return
+	end
+	if hud and payload.message then hud.toast(payload.message) end
+end
+
+function Feedback.destroy()
+	for object, tween in pairs(activeTweens) do
+		tween:Cancel(); activeTweens[object] = nil
+	end
+	if effectFolder then effectFolder:Destroy(); effectFolder = nil end
+	if goalHighlight then goalHighlight:Destroy(); goalHighlight = nil end
+end
+
+return Feedback</ProtectedString></Properties></Item><Item class="LocalScript" referent="RBX216"><Properties><string name="Name">Controller</string><ProtectedString name="Source">local Players = game:GetService(&quot;Players&quot;)
+local ReplicatedStorage = game:GetService(&quot;ReplicatedStorage&quot;)
+local UserInputService = game:GetService(&quot;UserInputService&quot;)
+local RunService = game:GetService(&quot;RunService&quot;)
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild(&quot;PlayerGui&quot;)
+local scriptFolder = script.Parent
+local HUD = require(scriptFolder:WaitForChild(&quot;HUD&quot;))
+local Feedback = require(scriptFolder:WaitForChild(&quot;Feedback&quot;))
+local shared = ReplicatedStorage:WaitForChild(&quot;Forge_GenerationPilot&quot;)
+local Contract = require(shared:WaitForChild(&quot;Contract&quot;))
+local actionRemote = shared:WaitForChild(&quot;Action&quot;)
+local feedbackRemote = shared:WaitForChild(&quot;Feedback&quot;)
+local worldRoot = workspace:WaitForChild(&quot;Forge_GenerationPilot&quot;):WaitForChild(&quot;World&quot;)
+local nodesFolder = worldRoot:WaitForChild(&quot;Nodes&quot;)
+local hud = HUD.mount(playerGui)
+local connections = {}
+local characterConnection
+local destroyed = false
+local goalCelebrated = false
+
+local function connect(signal, callback)
+	local connection = signal:Connect(callback)
+	table.insert(connections, connection)
+	return connection
+end
+
+local function snapshot()
+	return {
+		Carry = player:GetAttribute(&quot;Carry&quot;), Coins = player:GetAttribute(&quot;Coins&quot;),
+		PowerLevel = player:GetAttribute(&quot;PowerLevel&quot;), CapacityLevel = player:GetAttribute(&quot;CapacityLevel&quot;),
+		Capacity = player:GetAttribute(&quot;Capacity&quot;), TotalSold = player:GetAttribute(&quot;TotalSold&quot;),
+		GoalComplete = player:GetAttribute(&quot;GoalComplete&quot;),
+	}
+end
+
+local function getRootPart()
+	local character = player.Character
+	if not character then return nil end
+	local humanoid = character:FindFirstChildOfClass(&quot;Humanoid&quot;)
+	local rootPart = character:FindFirstChild(&quot;HumanoidRootPart&quot;)
+	if not humanoid or humanoid.Health &lt;= 0 or not rootPart then return nil end
+	return rootPart
+end
+
+local function nearestNode(rootPart)
+	if not rootPart then return nil, nil end
+	local nearestId, nearestDistance = nil, math.huge
+	for index = 1, 6 do
+		local id = string.format(&quot;Node%02d&quot;, index)
+		local node = nodesFolder:FindFirstChild(id)
+		if node then
+			local distance = (rootPart.Position - node.Position).Magnitude
+			if distance &lt; nearestDistance then nearestDistance = distance; nearestId = id end
+		end
+	end
+	if nearestDistance &lt;= Contract.INTERACT_DISTANCE then
+		local node = nodesFolder:FindFirstChild(nearestId)
+		return nearestId, node and (node:GetAttribute(&quot;Remaining&quot;) or Contract.NODE_CAPACITY) or nil
+	end
+	return nil, nil
+end
+
+local function refresh()
+	if destroyed then return end
+	local rootPart = getRootPart()
+	local nodeId, nodeRemaining = nearestNode(rootPart)
+	local nearSell, nearUpgrades = false, false
+	if rootPart then
+		nearSell = (rootPart.Position - worldRoot:WaitForChild(&quot;SellStation&quot;).Position).Magnitude &lt;= Contract.INTERACT_DISTANCE
+		nearUpgrades = (rootPart.Position - worldRoot:WaitForChild(&quot;UpgradeStation&quot;).Position).Magnitude &lt;= Contract.INTERACT_DISTANCE
+	end
+	hud.render(snapshot(), {nodeId = nodeId, nodeRemaining = nodeRemaining, nearSell = nearSell, nearUpgrades = nearUpgrades})
+end
+
+local function request(action)
+	if destroyed then return end
+	if action == &quot;harvest&quot; then
+		local nodeId = nearestNode(getRootPart())
+		if nodeId then actionRemote:FireServer(&quot;harvest&quot;, nodeId) else hud.toast(&quot;Move closer to a glowing crystal cluster.&quot;) end
+	elseif action == &quot;sell&quot; then actionRemote:FireServer(&quot;sell&quot;)
+	elseif action == &quot;upgradePower&quot; then actionRemote:FireServer(&quot;upgradePower&quot;)
+	elseif action == &quot;upgradeCapacity&quot; then actionRemote:FireServer(&quot;upgradeCapacity&quot;) end
+end
+
+local function onInput(input, gameProcessed)
+	if gameProcessed or UserInputService:GetFocusedTextBox() then return end
+	if input.UserInputType ~= Enum.UserInputType.Keyboard or input.UserInputState ~= Enum.UserInputState.Begin then return end
+	if input.KeyCode == Enum.KeyCode.E then request(&quot;harvest&quot;)
+	elseif input.KeyCode == Enum.KeyCode.Q then request(&quot;sell&quot;)
+	elseif input.KeyCode == Enum.KeyCode.One then request(&quot;upgradePower&quot;)
+	elseif input.KeyCode == Enum.KeyCode.Two then request(&quot;upgradeCapacity&quot;) end
+end
+
+connect(UserInputService.InputBegan, onInput)
+connect(hud.harvestButton.Activated, function() request(&quot;harvest&quot;) end)
+connect(hud.sellButton.Activated, function() request(&quot;sell&quot;) end)
+connect(hud.powerButton.Activated, function() request(&quot;upgradePower&quot;) end)
+connect(hud.capacityButton.Activated, function() request(&quot;upgradeCapacity&quot;) end)
+connect(feedbackRemote.OnClientEvent, function(payload)
+	if type(payload) == &quot;table&quot; and payload.kind == &quot;goal&quot; then
+		if goalCelebrated then
+			payload = {kind = &quot;goal&quot;, steady = true}
+		else
+			goalCelebrated = true
+		end
+	end
+	Feedback.play(payload, hud)
+	refresh()
+end)
+
+for _, attributeName in ipairs({&quot;Carry&quot;, &quot;Coins&quot;, &quot;PowerLevel&quot;, &quot;CapacityLevel&quot;, &quot;Capacity&quot;, &quot;TotalSold&quot;, &quot;GoalComplete&quot;}) do
+	connect(player:GetAttributeChangedSignal(attributeName), function()
+		if attributeName == &quot;GoalComplete&quot; and player:GetAttribute(&quot;GoalComplete&quot;) == true then
+			if not goalCelebrated then
+				goalCelebrated = true
+				Feedback.play({kind = &quot;goal&quot;, message = &quot;Crystal Hollow restored! Your beacon shines for you.&quot;}, hud)
+			else
+				Feedback.play({kind = &quot;goal&quot;, steady = true}, hud)
+			end
+		end
+		refresh()
+	end)
+end
+
+connect(RunService.Heartbeat, refresh)
+characterConnection = player.CharacterAdded:Connect(function()
+	task.defer(function()
+		if destroyed then return end
+		refresh()
+		if player:GetAttribute(&quot;GoalComplete&quot;) == true then Feedback.play({kind = &quot;goal&quot;, steady = true}, hud) end
+	end)
+end)
+
+task.defer(function()
+	refresh()
+	if player:GetAttribute(&quot;GoalComplete&quot;) == true then
+		goalCelebrated = true
+		Feedback.play({kind = &quot;goal&quot;, steady = true}, hud)
+	end
+end)
+
+script.Destroying:Connect(function()
+	if destroyed then return end
+	destroyed = true
+	for _, connection in ipairs(connections) do connection:Disconnect() end
+	if characterConnection then characterConnection:Disconnect() end
+	Feedback.destroy()
+	hud.destroy()
+end)</ProtectedString></Properties></Item></Item></Item></Item></roblox>

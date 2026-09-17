@@ -1,0 +1,49 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { parseJson } from "../src/generation/providers";
+import { validateComponentReview } from "../src/generation/component-review";
+const root = "research/results/component-preservation-v1";
+const read = (file: string) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
+const protocol = read("live/protocol.json"), result = read("live/result.json"), calls = read("live/calls.json");
+const inputs = read("live/inputs.json"), current = read("live/current-evidence.json");
+const treatment = structuredClone(inputs.treatment); delete treatment.context.preservation;
+assert.deepEqual(treatment, inputs.baseline);
+assert.deepEqual(read("offline/inputs.json"), inputs);
+for (const [file, expected] of Object.entries(protocol.sources)) assert.equal(hash(fs.readFileSync(file)), expected, file);
+assert.equal(result.unknownLiability, false); assert.equal(result.noFurtherCallsPending, true); assert.equal(result.nativeOperations, 0); assert.equal(result.rawGamePass, false);
+assert.equal(protocol.priorMicros, 5271258); assert.equal(result.conservativePriorMicros, protocol.priorMicros + result.chargedOrUnknownMicros);
+const assessments: any[] = [];
+for (const arm of ["baseline", "treatment"]) {
+  const armResult = read(`live/${arm}/result.json`), project = read(`live/${arm}/project.json`);
+  assert.equal(project.reservedMicros, 0); assert.equal(project.jobId, null); assert(!project.artifact);
+  const armCalls = calls.filter((call: any) => call.arm === arm);
+  assert.equal(armCalls.length, armResult.calls);
+  assert.equal(project.charges.length, armCalls.length);
+  assert(project.charges.every((call: any) => call.phase === "reviewer" && call.billingSource === "provider" && call.status === "ok"));
+  assert.equal(project.charges.reduce((sum: number, call: any) => sum + call.chargedMicros, 0), armResult.chargedOrUnknownMicros);
+  assert.deepEqual(read(`offline/${arm}/call-1-request.json`), read(`live/${arm}/call-1-request.json`));
+  for (const call of armCalls) {
+    const text = fs.readFileSync(path.join(root, `live/${arm}/call-${call.id}-response.txt`), "utf8");
+    assert(!/sk-or-v1-[a-f0-9]{30,}/i.test(text));
+    const wire = JSON.parse(text), content = wire.choices[0].message.content;
+    assert.equal(call.chargedMicros, Math.ceil(wire.usage.cost * 1e6));
+    let error: string | undefined, decision: any;
+    try { decision = parseJson(content); validateComponentReview(decision, current, inputs[arm].context.requirementIds); } catch (e) { error = (e as Error).message; }
+    if (call.id === armCalls.length) { assert.equal(!error, armResult.contractPassed); if (!error) assert.deepEqual(decision, read(`live/${arm}/decision.json`)); }
+    assessments.push({ arm, attempt: call.id, responseSha256: hash(content), validationError: error ?? null });
+  }
+}
+const before = read("live/key-before.json"), after = read(fs.existsSync(path.join(root, "live/key-after-settled.json")) ? "live/key-after-settled.json" : "live/key-after.json");
+const costUSD = calls.reduce((sum: number, call: any) => sum + call.costUSD, 0);
+assert(Math.abs(after.usage - before.usage - costUSD) < 0.000002, "Official key usage has not reconciled");
+assert.equal(calls.reduce((sum: number, call: any) => sum + call.chargedMicros, 0), result.chargedOrUnknownMicros);
+let spent = 0;
+for (const call of calls) { assert(spent + call.reserveMicros <= protocol.capMicros); assert(protocol.priorMicros + spent + call.reserveMicros + protocol.headroomMicros <= protocol.campaignCeilingMicros); spent += call.chargedMicros; }
+const output = { at: new Date().toISOString(), passed: true, rawDecisionsChanged: false, onlyContextDifference: "preservation", assessments,
+  costUSD, chargedMicros: result.chargedOrUnknownMicros, conservativePriorMicros: result.conservativePriorMicros, remaining: after.remaining,
+  nativeOperations: 0, semanticAccuracy: "independent assessment required", rawGamePass: false };
+fs.writeFileSync(path.join(root, "verification.json"), JSON.stringify(output, null, 2) + "\n", { flag: "wx" });
+console.log(JSON.stringify(output, null, 2));

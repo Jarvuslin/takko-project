@@ -1,0 +1,24 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "args": {
+      "query": "wood tap",
+      "assetType": "Audio",
+      "audioMaxDuration": 3,
+      "maxResults": 4,
+      "studio_id": "4794fbfd-333b-4cda-8655-a702bbf75cd9",
+      "scope": "creator_store",
+      "priceFilter": "free"
+    },
+    "retrievedAt": "2026-09-15T18:52:21.385Z",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"scope\":\"creator_store\",\"nextSteps\":[\"Review the results and choose the best asset for the user's request. Prefer inventory results (source='inventory') as these are already owned and always insertable.\",\"For free/owned assets: call insert_asset with assetId, assetType, and assetName from the chosen result to insert it.\",\"For paid assets (isFree=false): show the user the creatorStoreUrl link and priceLabel so they can purchase it. Do not attempt to insert paid assets — they will fail.\",\"Some Creator Store assets may be restricted or moderated and fail to insert. If insert_asset fails, try the next result from the list rather than retrying the same asset.\"],\"resultCount\":4,\"query\":\"wood tap\",\"status\":\"success\",\"searchSources\":[\"creator_store\"],\"context\":{\"userId\":\"11119876005\",\"isPublished\":false},\"results\":[{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/131756063709696\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=131756063709696&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"131756063709696\",\"name\":\"BlinkerE60\",\"priceCents\":0,\"creatorName\":\"Poorbeaconman5\",\"source\":\"creator_store\"},{\"description\":\"Plastic Impacts, Dish Shaped Planter, Hits on Asphalt, Bounces, Various Versions\\n\\nDuration: 1.4 seconds\\nCategory: Plastic\\nAsset Type: Sound Effect\\n\\nCourtesy of Pro Sound Effects.\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/9117557254\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=9117557254&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"9117557254\",\"name\":\"Plastic Impacts Dish Shaped Planter 5 (SFX)\",\"priceCents\":0,\"creatorName\":\"ProSoundEffects\",\"source\":\"creator_store\"},{\"description\":\"Audio\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/131426322720851\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=131426322720851&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"131426322720851\",\"name\":\"1st Blink\",\"priceCents\":0,\"creatorName\":\"Poorbeaconman5\",\"source\":\"creator_store\"},{\"description\":\"Rock Impacts, Hit Rock with Wood, Light Strikes\\n\\nDuration: 0.5 seconds\\nCategory: Rocks - Hits\\nAsset Type: Sound Effect\\n\\nCourtesy of Pro Sound Effects.\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/9118623491\",\"assetType\":\"Audio\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=9118623491&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"9118623491\",\"name\":\"Rock Impacts 19 (SFX)\",\"priceCents\":0,\"creatorName\":\"ProSoundEffects\",\"source\":\"creator_store\"}]}"
+        }
+      ],
+      "isError": false
+    }
+  }
+}

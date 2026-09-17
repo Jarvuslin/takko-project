@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "kind": "takko-component-adaptation",
+  "original": {
+    "archiveHash": "5c533317d33cdc005cc9b112052fef16bf4a9bc2bca6331a5e10310a5cc60f4b",
+    "manifestHash": "429391fa39203da1dd8dd20a8f2d41f4864d69b7416df75b1dc6f751f351d82f"
+  },
+  "plan": {
+    "packetHash": "7164f2cce5911ea939d2f6c2b85ef23d9adbfb1669d934cd0da5447d3154d23c",
+    "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+    "reason": "Preserve checkpoint pad and spawn geometry, visual parts, and embedded Marketplace audio (rbxassetid://6817150445) while removing the unverified external numeric require script and adapting touch, activation visual/audio feedback, and respawn recovery logic for ordered progression.",
+    "removeSubtrees": [
+      {
+        "index": 17,
+        "reason": "Removes the Package script and its child TextureConfiguration hierarchy containing an unverified external numeric module require (ID 91638724979309)."
+      },
+      {
+        "index": 11,
+        "reason": "Removes unused default hello world debug script inside Checkpoint Spawn model."
+      },
+      {
+        "index": 3,
+        "reason": "Removes unused studio thumbnail camera."
+      }
+    ],
+    "replaceSources": [
+      {
+        "index": 14,
+        "beforeSha256": "af318341cf7786235f9825339ec49d0c47e9c988272967b59567b79e14b04111",
+        "source": "local TweenService = game:GetService(\"TweenService\")\nlocal Players = game:GetService(\"Players\")\n\nlocal checkpoint = script.Parent\nlocal sound = script:FindFirstChildOfClass(\"Sound\")\n\nlocal checkpointOrder = checkpoint:GetAttribute(\"CheckpointIndex\") or 1\nlocal activatedPlayers = {}\n\nlocal function playActivationFeedback()\n\tif sound and sound.SoundId ~= \"\" then\n\t\tsound:Play()\n\tend\n\t\n\tlocal initialColor = checkpoint.Color\n\tlocal tweenInfo = TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true)\n\tlocal tween = TweenService:Create(checkpoint, tweenInfo, {\n\t\tColor = Color3.fromRGB(220, 255, 255),\n\t\tTransparency = 0.2\n\t})\n\ttween:Play()\nend\n\nlocal function onTouched(hit)\n\tlocal character = hit and hit.Parent\n\tlocal humanoid = character and character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoid or humanoid.Health <= 0 then return end\n\t\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tif not player then return end\n\t\n\tlocal userId = player.UserId\n\tif activatedPlayers[userId] then return end\n\t\n\tlocal leaderstats = player:FindFirstChild(\"leaderstats\")\n\tlocal stageValue = leaderstats and leaderstats:FindFirstChild(\"Stage\")\n\tif not stageValue then return end\n\t\n\tif stageValue.Value == checkpointOrder - 1 then\n\t\tstageValue.Value = checkpointOrder\n\t\tactivatedPlayers[userId] = true\n\t\tplayActivationFeedback()\n\tend\nend\n\ncheckpoint.Touched:Connect(onTouched)\n\nPlayers.PlayerRemoving:Connect(function(player)\n\tactivatedPlayers[player.UserId] = nil\nend)",
+        "reason": "Implements server-authoritative ordered checkpoint validation (progress == N-1), activation visual feedback tweening, synchronized sound playback, and per-player cleanup."
+      },
+      {
+        "index": 13,
+        "beforeSha256": "1141d89dedb81707871a632610ef64fc608750fe08d518fbab78b343ddbdfff7",
+        "source": "local Players = game:GetService(\"Players\")\n\nlocal checkpoint = script.Parent\nlocal checkpointOrder = checkpoint:GetAttribute(\"CheckpointIndex\") or 1\n\nlocal function onCharacterAdded(player, character)\n\tlocal leaderstats = player:FindFirstChild(\"leaderstats\")\n\tlocal stageValue = leaderstats and leaderstats:FindFirstChild(\"Stage\")\n\tif stageValue and stageValue.Value == checkpointOrder then\n\t\tlocal rootPart = character:WaitForChild(\"HumanoidRootPart\", 5)\n\t\tif rootPart then\n\t\t\ttask.defer(function()\n\t\t\t\tif character.Parent and rootPart.Parent then\n\t\t\t\t\trootPart.CFrame = checkpoint.CFrame + Vector3.new(0, 3.5, 0)\n\t\t\t\tend\n\t\t\tend)\n\t\tend\n\tend\nend\n\nlocal function onPlayerAdded(player)\n\tplayer.CharacterAdded:Connect(function(character)\n\t\tonCharacterAdded(player, character)\n\tend)\nend\n\nPlayers.PlayerAdded:Connect(onPlayerAdded)\nfor _, player in ipairs(Players:GetPlayers()) do\n\tonPlayerAdded(player)\nend",
+        "reason": "Replaces unowned ServerStorage write and random offset spawn positioning with safe checkpoint CFrame respawn alignment scoped to player stage progression."
+      },
+      {
+        "index": 16,
+        "beforeSha256": "3866e95a2635e257718de21aa599dad18d700ecc503075e590a06eb6169d53e6",
+        "source": "local Players = game:GetService(\"Players\")\n\nlocal function setupLeaderstats(player)\n\tif player:FindFirstChild(\"leaderstats\") then return end\n\tlocal leaderstats = Instance.new(\"Folder\")\n\tleaderstats.Name = \"leaderstats\"\n\t\n\tlocal stage = Instance.new(\"IntValue\")\n\tstage.Name = \"Stage\"\n\tstage.Value = 0\n\tstage.Parent = leaderstats\n\t\n\tleaderstats.Parent = player\nend\n\nPlayers.PlayerAdded:Connect(setupLeaderstats)\nfor _, player in ipairs(Players:GetPlayers()) do\n\tsetupLeaderstats(player)\nend",
+        "reason": "Safely initializes leaderstats Stage value for new and existing players without race conditions."
+      }
+    ],
+    "preservedBehavior": [
+      "Checkpoint platform and beacon visual geometry and orientation.",
+      "Captured Marketplace checkpoint sound reference (rbxassetid://6817150445) under CollectScript.",
+      "Player respawn and stage progression tracking under leaderstats."
+    ],
+    "remainingIntegration": [
+      "Clone and position the checkpoint assembly across the 3 Sky Steps course checkpoints, setting the CheckpointIndex attribute to 1, 2, and 3 respectively.",
+      "Integrate hazard volume detection and finish line gate validation with the active player Stage value.",
+      "Connect run HUD and replay button to reset Stage progression and checkpoint activation states."
+    ],
+    "nativeTestPlan": [
+      "1. Touch Checkpoint 2 and Checkpoint 3 before Checkpoint 1; verify Stage remains 0 and no visual or audio activation triggers.",
+      "2. Touch Checkpoint 1; verify Stage advances to 1, activation tween plays on beacon, and confirmation audio rbxassetid://6817150445 plays.",
+      "3. Reset character or fall into hazard; verify character respawns on Checkpoint 1 with Stage preserved at 1.",
+      "4. Progress sequentially through Checkpoint 2 and 3; verify each activates in strict order with feedback.",
+      "5. Trigger replay; verify Stage resets to 0 and all checkpoints return to dormant state."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "planHash": "d4f0c1aae6e063c65dd5c89b003221032d2875752e1d93749b9a9701030ba9e4",
+  "adapted": {
+    "archiveHash": "c6c555d08b38fd5cee2cbd1045bd7f4d39de88ed80946378125d4fcda358eac8",
+    "manifestHash": "897c800f1ccee2cbea57ff270a204313d0e89f4049f89208a5bb6ff21cc392c5"
+  },
+  "indexMap": [
+    {
+      "before": 1,
+      "after": 1
+    },
+    {
+      "before": 2,
+      "after": 2
+    },
+    {
+      "before": 4,
+      "after": 3
+    },
+    {
+      "before": 5,
+      "after": 4
+    },
+    {
+      "before": 6,
+      "after": 5
+    },
+    {
+      "before": 7,
+      "after": 6
+    },
+    {
+      "before": 8,
+      "after": 7
+    },
+    {
+      "before": 9,
+      "after": 8
+    },
+    {
+      "before": 10,
+      "after": 9
+    },
+    {
+      "before": 12,
+      "after": 10
+    },
+    {
+      "before": 13,
+      "after": 11
+    },
+    {
+      "before": 14,
+      "after": 12
+    },
+    {
+      "before": 15,
+      "after": 13
+    },
+    {
+      "before": 16,
+      "after": 14
+    }
+  ],
+  "sourceReview": "required",
+  "runtimeVerification": "not_performed",
+  "exported": false,
+  "executed": false
+}

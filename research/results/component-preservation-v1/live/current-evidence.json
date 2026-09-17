@@ -1,0 +1,199 @@
+{
+  "packetHash": "907e1f06cba0434b54bd0e33e12753ad3e0a9059c50c5044bff0f6c16f3931dd",
+  "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+  "candidateId": "18628600401",
+  "token": "281eb806-5abc-4bf2-9002-143851d07001",
+  "originalHash": "1ffbc6ee8dab0fd0531c2feb5f338e7e90157cc7c24806441f3c6bfb6062f0a1",
+  "derivativeHash": "8dfb7f48d60a73491933837a16e655549998fddabbdaafaba153499ff923a53a",
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Folder"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Workspace",
+      "className": "Folder"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "MovingPlatform",
+      "className": "Model"
+    },
+    {
+      "index": 4,
+      "parentIndex": 3,
+      "name": "Start",
+      "className": "Part"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "name": "BillboardGui",
+      "className": "BillboardGui"
+    },
+    {
+      "index": 6,
+      "parentIndex": 5,
+      "name": "TextLabel",
+      "className": "TextLabel"
+    },
+    {
+      "index": 7,
+      "parentIndex": 4,
+      "name": "Attachment",
+      "className": "Attachment"
+    },
+    {
+      "index": 8,
+      "parentIndex": 7,
+      "name": "Beam",
+      "className": "Beam"
+    },
+    {
+      "index": 9,
+      "parentIndex": 3,
+      "name": "Finish",
+      "className": "Part"
+    },
+    {
+      "index": 10,
+      "parentIndex": 9,
+      "name": "BillboardGui",
+      "className": "BillboardGui"
+    },
+    {
+      "index": 11,
+      "parentIndex": 10,
+      "name": "TextLabel",
+      "className": "TextLabel"
+    },
+    {
+      "index": 12,
+      "parentIndex": 9,
+      "name": "Attachment",
+      "className": "Attachment"
+    },
+    {
+      "index": 13,
+      "parentIndex": 3,
+      "name": "PlatformModel",
+      "className": "Folder"
+    },
+    {
+      "index": 14,
+      "parentIndex": 13,
+      "name": "Handle",
+      "className": "Part"
+    },
+    {
+      "index": 15,
+      "parentIndex": 1,
+      "name": "ServerScriptService",
+      "className": "Folder"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "name": "PlatformFunctions",
+      "className": "Script"
+    },
+    {
+      "index": 17,
+      "parentIndex": 1,
+      "name": "StarterCharacterScripts",
+      "className": "Folder"
+    },
+    {
+      "index": 18,
+      "parentIndex": 17,
+      "name": "Stick",
+      "className": "LocalScript"
+    }
+  ],
+  "sourceBodies": [
+    {
+      "sha256": "a8e3e8cd413c6ee1f06908178df35e3f23eac9d5a798a8ea82c45ef76d208bb9",
+      "source": "local TweenService = game:GetService(\"TweenService\")\nlocal PhysicsService = game:GetService(\"PhysicsService\")\nlocal CollectionService = game:GetService(\"CollectionService\")\n\npcall(function()\n\tPhysicsService:RegisterCollisionGroup(\"MovingPlatforms\")\nend)\n\nlocal function getEasingEnum(name, enumType, defaultEnum)\n\tif typeof(name) == \"string\" then\n\t\tfor _, item in enumType:GetEnumItems() do\n\t\t\tif item.Name:lower() == name:lower() then\n\t\t\t\treturn item\n\t\t\tend\n\t\tend\n\tend\n\treturn defaultEnum\nend\n\nlocal function weldPlatformModel(folder: Folder, canStick: boolean): BasePart?\n\tlocal handle = folder:WaitForChild(\"Handle\", 5)\n\tif not handle or not handle:IsA(\"BasePart\") then\n\t\thandle = folder:FindFirstChildWhichIsA(\"BasePart\", true)\n\tend\n\tif not handle then return nil end\n\thandle.Anchored = true\n\n\tfor _, part in folder:GetDescendants() do\n\t\tif part:IsA(\"BasePart\") then\n\t\t\tpart.CanCollide = true\n\t\t\tpart.CanTouch = true\n\t\t\tpcall(function()\n\t\t\t\tpart.CollisionGroup = \"MovingPlatforms\"\n\t\t\tend)\n\t\t\tif canStick ~= false then\n\t\t\t\tpart:AddTag(\"___Stick\")\n\t\t\tend\n\t\t\tif part ~= handle then\n\t\t\t\tlocal weld = Instance.new(\"WeldConstraint\")\n\t\t\t\tweld.Part0 = part\n\t\t\t\tweld.Part1 = handle\n\t\t\t\tweld.Parent = part\n\t\t\t\tpart.Anchored = false\n\t\t\tend\n\t\tend\n\tend\n\treturn handle\nend\n\nlocal function checkCFrame(align: boolean, cf: CFrame): CFrame\n\tif align then\n\t\treturn cf\n\telse\n\t\treturn CFrame.new(cf.Position)\n\tend\nend\n\nlocal function setup(platformModel: Model)\n\tif platformModel:GetAttribute(\"_SetupDone\") then return end\n\tplatformModel:SetAttribute(\"_SetupDone\", true)\n\n\tlocal platformFolder = platformModel:WaitForChild(\"PlatformModel\", 5)\n\tlocal startPart = platformModel:WaitForChild(\"Start\", 5)\n\tlocal finishPart = platformModel:WaitForChild(\"Finish\", 5)\n\n\tif not platformFolder or not startPart or not finishPart then\n\t\treturn\n\tend\n\n\tlocal function getAttr(key, default)\n\t\tlocal val = platformModel:GetAttribute(key)\n\t\tif val == nil then return default end\n\t\treturn val\n\tend\n\n\tlocal canStick = getAttr(\"Stick\", true)\n\tlocal handle = weldPlatformModel(platformFolder, canStick)\n\tif not handle then return end\n\n\tlocal alignCFrame = getAttr(\"AlignCFrame\", true)\n\tlocal length = getAttr(\"Length\", 4)\n\tlocal delayTime = getAttr(\"Delay\", 0.8)\n\tlocal styleName = getAttr(\"Style\", \"Sine\")\n\tlocal directionName = getAttr(\"Direction\", \"InOut\")\n\tlocal movementType = getAttr(\"MovementType\", \"Loop\")\n\n\tlocal startCF = startPart.CFrame\n\tlocal finishCF = finishPart.CFrame\n\n\tif getAttr(\"GoalReached\", false) then\n\t\thandle.CFrame = checkCFrame(alignCFrame, finishCF)\n\telse\n\t\thandle.CFrame = checkCFrame(alignCFrame, startCF)\n\tend\n\n\tlocal easingStyle = getEasingEnum(styleName, Enum.EasingStyle, Enum.EasingStyle.Sine)\n\tlocal easingDirection = getEasingEnum(directionName, Enum.EasingDirection, Enum.EasingDirection.InOut)\n\tlocal tweenInfo = TweenInfo.new(length, easingStyle, easingDirection, 0, false, delayTime)\n\n\tlocal tweenEnd = TweenService:Create(handle, tweenInfo, { CFrame = checkCFrame(alignCFrame, finishCF) })\n\tlocal tweenStart = TweenService:Create(handle, tweenInfo, { CFrame = checkCFrame(alignCFrame, startCF) })\n\n\tlocal connections = {}\n\tlocal isLooping = (movementType == \"Loop\")\n\n\tlocal function playNext(toFinish)\n\t\tif not platformModel.Parent then return end\n\t\tif toFinish then\n\t\t\ttweenEnd:Play()\n\t\telse\n\t\t\ttweenStart:Play()\n\t\tend\n\tend\n\n\ttable.insert(connections, tweenEnd.Completed:Connect(function(playbackState)\n\t\tif playbackState == Enum.PlaybackState.Completed and isLooping then\n\t\t\tplatformModel:SetAttribute(\"GoalReached\", true)\n\t\t\tplayNext(false)\n\t\tend\n\tend))\n\n\ttable.insert(connections, tweenStart.Completed:Connect(function(playbackState)\n\t\tif playbackState == Enum.PlaybackState.Completed and isLooping then\n\t\t\tplatformModel:SetAttribute(\"GoalReached\", false)\n\t\t\tplayNext(true)\n\t\tend\n\tend))\n\n\tif startPart:IsA(\"BasePart\") then\n\t\tstartPart.Transparency = 1\n\t\tstartPart.CanCollide = false\n\t\tstartPart.CanTouch = false\n\tend\n\tif finishPart:IsA(\"BasePart\") then\n\t\tfinishPart.Transparency = 1\n\t\tfinishPart.CanCollide = false\n\t\tfinishPart.CanTouch = false\n\tend\n\n\tif getAttr(\"Active\", true) ~= false then\n\t\tplayNext(true)\n\tend\n\n\ttable.insert(connections, platformModel.Destroying:Connect(function()\n\t\tfor _, conn in ipairs(connections) do\n\t\t\tconn:Disconnect()\n\t\tend\n\t\ttweenEnd:Cancel()\n\t\ttweenStart:Cancel()\n\t\ttweenEnd:Destroy()\n\t\ttweenStart:Destroy()\n\tend))\nend\n\nlocal function onDescendantAdded(desc: Instance)\n\tif desc:IsA(\"Model\") and (desc.Name == \"MovingPlatform\" or desc:HasTag(\"MovingPlatform\")) then\n\t\ttask.defer(setup, desc)\n\tend\nend\n\nworkspace.DescendantAdded:Connect(onDescendantAdded)\nfor _, desc in ipairs(workspace:GetDescendants()) do\n\tonDescendantAdded(desc)\nend\n",
+      "bindings": [
+        {
+          "index": 16,
+          "className": "Script",
+          "disabled": false,
+          "runContext": "Enum.RunContext.Legacy"
+        }
+      ]
+    },
+    {
+      "sha256": "c2e4e409600a809a55b3db7588bcc77774d25212b14a385a6d0066b86b095efc",
+      "source": "local character = script.Parent\nlocal humanoid = character:WaitForChild(\"Humanoid\")\nlocal rootPart = character:WaitForChild(\"HumanoidRootPart\")\nlocal RunService = game:GetService(\"RunService\")\n\nlocal raycastParams = RaycastParams.new()\nraycastParams.FilterDescendantsInstances = { character }\nraycastParams.FilterType = Enum.RaycastFilterType.Exclude\npcall(function()\n\traycastParams.CollisionGroup = \"MovingPlatforms\"\nend)\n\nlocal ignoreStates = {\n\t[Enum.HumanoidStateType.Jumping] = true,\n\t[Enum.HumanoidStateType.FallingDown] = true,\n\t[Enum.HumanoidStateType.Freefall] = true,\n\t[Enum.HumanoidStateType.Physics] = true,\n\t[Enum.HumanoidStateType.Dead] = true,\n}\n\nlocal lastPlatform: BasePart? = nil\nlocal lastPlatformCF: CFrame? = nil\n\nlocal heartbeatConn = RunService.Heartbeat:Connect(function()\n\tif not character or not humanoid or humanoid.Health <= 0 then return end\n\tlocal currentState = humanoid:GetState()\n\tif ignoreStates[currentState] then\n\t\tlastPlatform = nil\n\t\tlastPlatformCF = nil\n\t\treturn\n\tend\n\n\tlocal rayOrigin = rootPart.Position\n\tlocal rayDirection = Vector3.new(0, -3.8, 0)\n\tlocal rayResult = workspace:Raycast(rayOrigin, rayDirection, raycastParams)\n\n\tif rayResult and rayResult.Instance and rayResult.Instance:HasTag(\"___Stick\") then\n\t\tlocal hitPart = rayResult.Instance\n\t\tif lastPlatform == hitPart and lastPlatformCF then\n\t\t\tlocal delta = hitPart.CFrame * lastPlatformCF:Inverse()\n\t\t\tlocal deltaPos = delta.Position\n\t\t\tlocal deltaRot = delta - deltaPos\n\t\t\trootPart.CFrame = CFrame.new(deltaPos.X, 0, deltaPos.Z) * deltaRot * rootPart.CFrame\n\t\tend\n\t\tlastPlatform = hitPart\n\t\tlastPlatformCF = hitPart.CFrame\n\telse\n\t\tlastPlatform = nil\n\t\tlastPlatformCF = nil\n\tend\nend)\n\nhumanoid.Died:Connect(function()\n\theartbeatConn:Disconnect()\n\tscript:Destroy()\nend)\n",
+      "bindings": [
+        {
+          "index": 18,
+          "className": "LocalScript",
+          "disabled": false,
+          "runContext": "Enum.RunContext.Legacy"
+        }
+      ]
+    }
+  ],
+  "securityProfiles": [
+    {
+      "indices": [
+        16,
+        18
+      ],
+      "sandboxed": true,
+      "capabilities": [
+        "AccessOutsideWrite",
+        "Animation",
+        "AssetCreateUpdate",
+        "AssetManagement",
+        "AssetRead",
+        "Audio",
+        "Avatar",
+        "AvatarAppearance",
+        "AvatarBehavior",
+        "Basic",
+        "CSG",
+        "Capture",
+        "Chat",
+        "Consequences",
+        "CreateInstances",
+        "DynamicGeneration",
+        "Environment",
+        "Groups",
+        "Input",
+        "LegacySound",
+        "LoadOwnedAsset",
+        "Logging",
+        "Material",
+        "Monetization",
+        "Physics",
+        "PlatformAvatarEditing",
+        "Players",
+        "PromptExternalPurchase",
+        "RemoteEvent",
+        "RunClientScript",
+        "RunServerScript",
+        "SensitiveInput",
+        "ServerCommunication",
+        "Social",
+        "Teleport",
+        "UI"
+      ]
+    }
+  ],
+  "configurationValues": [],
+  "contentReferences": [],
+  "removedCapabilities": [
+    "DataStore",
+    "Network",
+    "ScriptGlobals"
+  ],
+  "boundary": "Worker-authored adaptation applied to an unparented copy and recaptured. Review the actual surviving sources and bindings; a proposed feature is not proof it exists. runtimeOnlyHistory preserves original TouchInterest observations with surviving parent remapping, not newly observed instances. Native archives omit those engine markers; verify that retained sources reconnect required touch listeners and do not depend on preexisting markers. Original evidence retained; native restoration passed but no imported code executed. Media, behavior, runtime integration and external dependencies remain unverified."
+}

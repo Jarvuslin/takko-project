@@ -1,0 +1,37 @@
+{
+  "mode": "live",
+  "arms": [
+    {
+      "arm": "gemini",
+      "contractPassed": true,
+      "action": "adapt",
+      "predictedInventory": true,
+      "durationMs": 25451,
+      "calls": 1,
+      "chargedOrUnknownMicros": 36140,
+      "inFlightReservations": 0,
+      "semanticAssessment": "pending",
+      "nativeOperations": 0
+    },
+    {
+      "arm": "sol",
+      "contractPassed": false,
+      "error": "Generation cancelled",
+      "predictedInventory": false,
+      "durationMs": 300027,
+      "calls": 1,
+      "chargedOrUnknownMicros": 390396,
+      "inFlightReservations": 0,
+      "semanticAssessment": "pending",
+      "nativeOperations": 0
+    }
+  ],
+  "calls": 2,
+  "actualPaidCalls": 2,
+  "chargedOrUnknownMicros": 426536,
+  "conservativePriorMicros": 6325943,
+  "unknownLiability": true,
+  "noFurtherCallsPending": true,
+  "nativeOperations": 0,
+  "rawGamePass": false
+}

@@ -1,0 +1,262 @@
+Function 0 (??):
+   46: 		isAttacking = false
+LOADB R0 0
+SETUPVAL R0 0
+   47: 	end)
+RETURN R0 0
+
+Function 1 (performAttack):
+   30: 	if isAttacking then return end
+GETUPVAL R0 0
+JUMPIFNOT R0 L0
+RETURN R0 0
+   31: 	if not humanoid or humanoid.Health <= 0 then return end
+L0: GETUPVAL R0 1
+JUMPIFNOT R0 L1
+GETUPVAL R0 1
+GETTABLEKS R0 R0 K0 ['Health']
+LOADN R1 0
+JUMPIFNOTLE R0 R1 L2
+L1: RETURN R0 0
+   33: 	isAttacking = true
+L2: LOADB R0 1
+SETUPVAL R0 0
+   34: 	local step = currentStep
+GETUPVAL R0 2
+   35: 	currentStep = (currentStep % 2) + 1
+GETUPVAL R3 2
+MODK R2 R3 K2 [2]
+ADDK R1 R2 K1 [1]
+SETUPVAL R1 2
+   37: 	if animTracks[step] then
+GETUPVAL R2 3
+GETTABLE R1 R2 R0
+JUMPIFNOT R1 L3
+   38: 		animTracks[step]:Play()
+GETUPVAL R2 3
+GETTABLE R1 R2 R0
+NAMECALL R1 R1 K3 ['Play']
+CALLFB R1 1 0 [0]
+   41: 	if punchingRemote and punchingRemote:IsA("RemoteEvent") then
+L3: GETUPVAL R1 4
+JUMPIFNOT R1 L4
+GETUPVAL R1 4
+LOADK R3 K4 ['RemoteEvent']
+NAMECALL R1 R1 K5 ['IsA']
+CALLFB R1 2 1 [1]
+JUMPIFNOT R1 L4
+   42: 		punchingRemote:FireServer(step)
+GETUPVAL R1 4
+MOVE R3 R0
+NAMECALL R1 R1 K6 ['FireServer']
+CALLFB R1 2 0 [2]
+   45: 	task.delay(ATTACK_DEBOUNCE, function()
+L4: GETIMPORT R1 9 [task.delay]
+LOADK R2 K10 [0.5]
+REMARK allocation: closure with 1 upvalues
+NEWCLOSURE R3 P0
+CAPTURE UPVAL U0
+CALLFB R1 2 0 [3]
+   48: end
+RETURN R0 0
+
+Function 2 (??):
+   51: 	if processed then return end
+JUMPIFNOT R1 L0
+RETURN R0 0
+   52: 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.KeyCode == Enum.KeyCode.F or input.KeyCode == Enum.KeyCode.E then
+L0: GETTABLEKS R2 R0 K0 ['UserInputType']
+GETIMPORT R3 3 [Enum.UserInputType.MouseButton1]
+JUMPIFEQ R2 R3 L1
+GETTABLEKS R2 R0 K4 ['KeyCode']
+GETIMPORT R3 6 [Enum.KeyCode.F]
+JUMPIFEQ R2 R3 L1
+GETTABLEKS R2 R0 K4 ['KeyCode']
+GETIMPORT R3 8 [Enum.KeyCode.E]
+JUMPIFNOTEQ R2 R3 L2
+   53: 		performAttack()
+L1: GETUPVAL R2 0
+CALLFB R2 0 0 [0]
+   55: end)
+L2: RETURN R0 0
+
+Function 3 (??):
+   58: 	character = newChar
+SETUPVAL R0 0
+   59: 	humanoid = newChar:WaitForChild("Humanoid")
+LOADK R3 K0 ['Humanoid']
+NAMECALL R1 R0 K1 ['WaitForChild']
+CALLFB R1 2 1 [0]
+SETUPVAL R1 1
+   60: 	animator = humanoid:WaitForChild("Animator")
+GETUPVAL R1 1
+LOADK R3 K2 ['Animator']
+NAMECALL R1 R1 K1 ['WaitForChild']
+CALLFB R1 2 1 [1]
+SETUPVAL R1 2
+   61: 	isAttacking = false
+LOADB R1 0
+SETUPVAL R1 3
+   62: 	currentStep = 1
+LOADN R1 1
+SETUPVAL R1 4
+   63: 	table.clear(animTracks)
+GETIMPORT R1 5 [table.clear]
+GETUPVAL R2 5
+CALLFB R1 1 0 [2]
+   64: 	if animationsFolder then
+GETUPVAL R1 6
+JUMPIFNOT R1 L1
+   65: 		local leftPunchAnim = animationsFolder:FindFirstChild("LeftPunch")
+GETUPVAL R1 6
+LOADK R3 K6 ['LeftPunch']
+NAMECALL R1 R1 K7 ['FindFirstChild']
+CALLFB R1 2 1 [3]
+   66: 		local rightPunchAnim = animationsFolder:FindFirstChild("RightPunch")
+GETUPVAL R2 6
+LOADK R4 K8 ['RightPunch']
+NAMECALL R2 R2 K7 ['FindFirstChild']
+CALLFB R2 2 1 [4]
+   67: 		if leftPunchAnim and leftPunchAnim:IsA("Animation") then
+JUMPIFNOT R1 L0
+LOADK R5 K9 ['Animation']
+NAMECALL R3 R1 K10 ['IsA']
+CALLFB R3 2 1 [5]
+JUMPIFNOT R3 L0
+   68: 			animTracks[1] = animator:LoadAnimation(leftPunchAnim)
+GETUPVAL R3 5
+GETUPVAL R4 2
+MOVE R6 R1
+NAMECALL R4 R4 K11 ['LoadAnimation']
+CALLFB R4 2 1 [6]
+SETTABLEN R4 R3 1
+   70: 		if rightPunchAnim and rightPunchAnim:IsA("Animation") then
+L0: JUMPIFNOT R2 L1
+LOADK R5 K9 ['Animation']
+NAMECALL R3 R2 K10 ['IsA']
+CALLFB R3 2 1 [7]
+JUMPIFNOT R3 L1
+   71: 			animTracks[2] = animator:LoadAnimation(rightPunchAnim)
+GETUPVAL R3 5
+GETUPVAL R4 2
+MOVE R6 R2
+NAMECALL R4 R4 K11 ['LoadAnimation']
+CALLFB R4 2 1 [8]
+SETTABLEN R4 R3 2
+   74: end)
+L1: RETURN R0 0
+
+Function 4 (??):
+    1: local Players = game:GetService("Players")
+GETIMPORT R0 1 [game]
+LOADK R2 K2 ['Players']
+NAMECALL R0 R0 K3 ['GetService']
+CALL R0 2 1
+    2: local UserInputService = game:GetService("UserInputService")
+GETIMPORT R1 1 [game]
+LOADK R3 K4 ['UserInputService']
+NAMECALL R1 R1 K3 ['GetService']
+CALL R1 2 1
+    4: local LocalPlayer = Players.LocalPlayer
+GETTABLEKS R2 R0 K5 ['LocalPlayer']
+    5: local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+GETTABLEKS R3 R2 K6 ['Character']
+JUMPIF R3 L0
+GETTABLEKS R3 R2 K7 ['CharacterAdded']
+NAMECALL R3 R3 K8 ['Wait']
+CALL R3 1 1
+    6: local humanoid = character:WaitForChild("Humanoid")
+L0: LOADK R6 K9 ['Humanoid']
+NAMECALL R4 R3 K10 ['WaitForChild']
+CALL R4 2 1
+    7: local animator = humanoid:WaitForChild("Animator")
+LOADK R7 K11 ['Animator']
+NAMECALL R5 R4 K10 ['WaitForChild']
+CALL R5 2 1
+    9: local combatFolder = script.Parent:FindFirstChild("CombatSystem")
+GETIMPORT R6 14 [script.Parent]
+LOADK R8 K15 ['CombatSystem']
+NAMECALL R6 R6 K16 ['FindFirstChild']
+CALL R6 2 1
+   10: local punchingRemote = combatFolder and combatFolder:FindFirstChild("Punching")
+MOVE R7 R6
+JUMPIFNOT R7 L1
+LOADK R9 K17 ['Punching']
+NAMECALL R7 R6 K16 ['FindFirstChild']
+CALL R7 2 1
+   11: local animationsFolder = combatFolder and combatFolder:FindFirstChild("CombatAnimations")
+L1: MOVE R8 R6
+JUMPIFNOT R8 L2
+LOADK R10 K18 ['CombatAnimations']
+NAMECALL R8 R6 K16 ['FindFirstChild']
+CALL R8 2 1
+REMARK allocation: table hash 0
+   13: local animTracks = {}
+L2: NEWTABLE R9 0 2
+   14: if animationsFolder then
+JUMPIFNOT R8 L4
+   15: 	local leftPunchAnim = animationsFolder:FindFirstChild("LeftPunch")
+LOADK R12 K19 ['LeftPunch']
+NAMECALL R10 R8 K16 ['FindFirstChild']
+CALL R10 2 1
+   16: 	local rightPunchAnim = animationsFolder:FindFirstChild("RightPunch")
+LOADK R13 K20 ['RightPunch']
+NAMECALL R11 R8 K16 ['FindFirstChild']
+CALL R11 2 1
+   17: 	if leftPunchAnim and leftPunchAnim:IsA("Animation") then
+JUMPIFNOT R10 L3
+LOADK R14 K21 ['Animation']
+NAMECALL R12 R10 K22 ['IsA']
+CALL R12 2 1
+JUMPIFNOT R12 L3
+   18: 		animTracks[1] = animator:LoadAnimation(leftPunchAnim)
+MOVE R14 R10
+NAMECALL R12 R5 K23 ['LoadAnimation']
+CALL R12 2 1
+SETTABLEN R12 R9 1
+   20: 	if rightPunchAnim and rightPunchAnim:IsA("Animation") then
+L3: JUMPIFNOT R11 L4
+LOADK R14 K21 ['Animation']
+NAMECALL R12 R11 K22 ['IsA']
+CALL R12 2 1
+JUMPIFNOT R12 L4
+   21: 		animTracks[2] = animator:LoadAnimation(rightPunchAnim)
+MOVE R14 R11
+NAMECALL R12 R5 K23 ['LoadAnimation']
+CALL R12 2 1
+SETTABLEN R12 R9 2
+   25: local currentStep = 1
+L4: LOADN R10 1
+   26: local isAttacking = false
+LOADB R11 0
+REMARK allocation: closure with 5 upvalues
+   29: local function performAttack()
+NEWCLOSURE R12 P0
+CAPTURE REF R11
+CAPTURE REF R4
+CAPTURE REF R10
+CAPTURE VAL R9
+CAPTURE VAL R7
+   50: UserInputService.InputBegan:Connect(function(input, processed)
+GETTABLEKS R13 R1 K24 ['InputBegan']
+DUPCLOSURE R15 K25 []
+CAPTURE VAL R12
+NAMECALL R13 R13 K26 ['Connect']
+CALL R13 2 0
+   57: LocalPlayer.CharacterAdded:Connect(function(newChar)
+GETTABLEKS R13 R2 K7 ['CharacterAdded']
+REMARK allocation: closure with 7 upvalues
+NEWCLOSURE R15 P2
+CAPTURE REF R3
+CAPTURE REF R4
+CAPTURE REF R5
+CAPTURE REF R11
+CAPTURE REF R10
+CAPTURE VAL R9
+CAPTURE VAL R8
+NAMECALL R13 R13 K26 ['Connect']
+CALL R13 2 0
+   75: 
+CLOSEUPVALS R3
+RETURN R0 0
+

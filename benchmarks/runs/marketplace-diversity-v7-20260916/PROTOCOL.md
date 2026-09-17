@@ -1,0 +1,20 @@
+# V7: paired raw planning probes, then evidence-based next action
+
+Registered before paid dispatch, 2026-09-16. Previous goal turn made progress through importer, coverage and native audio verification. It did not establish consistent worker understanding or a completed game. Current authoritative source and v6 failed outputs confirm a planning gap. This probe diagnoses that gap; it does not replace the full diverse-game objective.
+
+Use the unchanged frozen combat-training, checkpoint-parkour and bubble-wrap briefs, in that order. For each brief, run a new Gemini 3.7 Flash plan, then a new GPT-5.6 Sol plan. No root-added queries, candidates, components, clarification answers, plans or game code. No manual plan repair. Retain all raw responses, automatic schema corrections, gates and failures. Root evaluation is read-only. The original prompts and all application prompts are unchanged from the end of v6.
+
+Both planner profiles have a 12,000-token maximum output and 300-second deadline. Preserve profile provider settings, validate current official catalog pricing before dispatch, and keep reviewer/worker routing fixed to Gemini (neither is dispatched in plan mode). Distinct projects have distinct generated namespaces; note this small context difference. One run per model/case is a diagnostic sample, not a reliable population estimate or model-quality leaderboard.
+
+The controller's explicit plan mode must stop after recording the unchanged plan and structural gate; no approval, build, export, asset-studio or native operation. Settings are restored after each trial. A structural gate pass is not a semantic understanding pass or game success. No Studio scripts need to be paused for this probe.
+
+Read-only rubric, registered before outputs:
+
+- Combat: discovery explicitly investigates reusable attack/combat behavior and compatible animation, plus a dummy and impact/miss audio (included media may satisfy the discovery intention). A rig-only Model search with separate sound searches is insufficient. Preserve requested attack timing, valid-hit counting, miss behavior and reset/feedback requirements.
+- Parkour: discovery investigates checkpoint behavior, moving-platform behavior and course components. Map useful existing motion/progression/media to the requested ordered traversal, fall recovery, finish and replay. A decorative checkpoint model alone is insufficient.
+- Bubble: discovery investigates the complete press/pop interaction, existing geometry/deformation, sound and state/reset behavior. A decorative sheet need with procedural mechanics planned in advance is insufficient. Preserve completion-timed exact counting and deliberate reset.
+- All cases: relevant short searches, explicit gameplay-oriented reusableFeatures/related requirement IDs, useful embedded media inspection, no invented asset IDs or silent importer-driven procedural substitutes, no premature commitment to replace the unknown component's core scripts. Known integration responsibilities can be planned; do not equate every planned file with a failure.
+
+Rate each case's behavior discovery as complete / partial / missing, report the exact evidence and any remaining conflict. Evaluate preservation of user intent and premature replacement separately. Do not supply a winning answer to the models or change scoring after outputs. Even a complete planning score proves neither Marketplace availability nor implementation/native gameplay.
+
+Unchanged $1 per-project, $6 campaign ceiling, $0.40 admission headroom, provider $10 limit. Start with conservative prior **3,804,565 micros**, retaining all unknown liabilities, and historical reservations **8,401,451** separately. Before each serial dispatch, add all preceding charged/unknown liabilities and reject if admission exceeds the remaining allowance. Official initial key balance is captured separately; raise the prior if official usage exceeds it. Stop if provider/scheduling failure repeats; no free retries or budget resets. Use isolated service4335/.forge/diversity-v7-runtime and saved DPAPI key. Original4324 and Studio remain unchanged.

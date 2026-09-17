@@ -1,0 +1,14 @@
+import assert from "node:assert/strict";
+import {expectNativeRejection} from "./probe-expected-rejection";
+let uncertain=false;
+const unknown=Object.assign(Error("uncertain native mutation"),{effects:"unknown"});
+await assert.rejects(()=>expectNativeRejection(async()=>{throw unknown;},()=>{uncertain=true;},/expected host rejection/),e=>e===unknown);
+assert.equal(uncertain,true);
+let wouldDiscard=false;
+try{await expectNativeRejection(async()=>{throw unknown;},()=>{uncertain=true;});}catch{}finally{if(!uncertain)wouldDiscard=true;}
+assert.equal(wouldDiscard,false);
+let knownMarked=false;
+assert.match(await expectNativeRejection(async()=>{throw Object.assign(Error("stale input"),{effects:"owned"});},()=>{knownMarked=true;},/stale input/),/stale input/);
+assert.equal(knownMarked,false);
+await assert.rejects(()=>expectNativeRejection(async()=>{},()=>{}),/Expected operation to reject/);
+console.log("PASS unknown error identity retained, sticky uncertainty blocks cleanup, known host rejection and unexpected success checks");

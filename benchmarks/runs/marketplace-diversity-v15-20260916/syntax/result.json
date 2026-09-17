@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-16T20:55:09.810Z",
+  "adaptationSidecarHash": "b21769f37aebcdda6eb0ac61dc903a103236928c77b5367b382fb5511f1ec619",
+  "compilerSha256": "93aff82037113eed7201adbc144a79a2c38d08298ef72fe59397f2a3c1616db6",
+  "results": [
+    {
+      "file": "replace-1.luau",
+      "kind": "replace",
+      "sha256": "98fe3293c56c4f4ba58d22fe3fa08a40a78474f901c4857b570d20a6660d5a84",
+      "sourceBytes": 180,
+      "exitCode": 0,
+      "syntaxPassed": true
+    },
+    {
+      "file": "add-2.luau",
+      "kind": "add",
+      "sha256": "1b7ce5fd8728e712766bbc738c9b0894baf61163ce4ce35c54e5a7f737272a0e",
+      "sourceBytes": 7702,
+      "exitCode": 0,
+      "syntaxPassed": true
+    }
+  ],
+  "allSyntaxPassed": true,
+  "sourcesUnchanged": true,
+  "nativeOperations": 0,
+  "runtimeBehaviorVerified": false,
+  "rawGamePass": false
+}

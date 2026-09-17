@@ -1,0 +1,163 @@
+{
+  "version": 4,
+  "model": "x-ai/grok-build-0.1",
+  "projectId": "4fbdea98-2e3f-4223-a387-d1bec0b5ffe7",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: One or more required asset needs failed",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 2,
+    "details": "One or more required asset needs failed",
+    "at": "2026-09-16T02:57:36.361Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 2300599,
+  "priorChargedMicros": 230421,
+  "reservedMicros": 757720,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 3058319,
+  "chargedMicros": 66877,
+  "combinedChargedMicros": 297298,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109644,
+      "chargedMicros": 14571,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5527,
+      "outputTokens": 2780,
+      "status": "ok",
+      "at": "2026-09-16T02:56:05.194Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 115644,
+      "chargedMicros": 13809,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7537,
+      "outputTokens": 2175,
+      "status": "ok",
+      "at": "2026-09-16T02:56:17.199Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 63232,
+      "chargedMicros": 5149,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3111,
+      "outputTokens": 1070,
+      "status": "ok",
+      "at": "2026-09-16T02:56:25.359Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 63267,
+      "chargedMicros": 7062,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3122,
+      "outputTokens": 2021,
+      "status": "ok",
+      "at": "2026-09-16T02:56:38.185Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 149222,
+      "chargedMicros": 4037,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3127,
+      "outputTokens": 451,
+      "status": "ok",
+      "at": "2026-09-16T02:57:01.035Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 63387,
+      "chargedMicros": 5945,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3131,
+      "outputTokens": 1458,
+      "status": "ok",
+      "at": "2026-09-16T02:57:11.288Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 63173,
+      "chargedMicros": 4529,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3095,
+      "outputTokens": 768,
+      "status": "ok",
+      "at": "2026-09-16T02:57:17.392Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 65082,
+      "chargedMicros": 5836,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3420,
+      "outputTokens": 1259,
+      "status": "ok",
+      "at": "2026-09-16T02:57:28.427Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 65069,
+      "chargedMicros": 5939,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3413,
+      "outputTokens": 1314,
+      "status": "ok",
+      "at": "2026-09-16T02:57:36.337Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "crunchSound",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "Both remaining candidates are unsuitable for the required short crisp crunchy food sound effect under 2 seconds: 'Squishy Bone Cracks 10 (SFX)' implies bone cracking/squishy sounds rather than food crunch, and 'Scrapbook Grabs And Handling 11 (SFX)' is unrelated paper/handling audio. No viable option remains after searches exhausted; asset need cannot be satisfied."
+    },
+    {
+      "needId": "butterModel",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "Both offered candidates (Chestburster and baby girl/boy) are unrelated to the butter stick food query and constraints. No search budget remains (searchesRemaining:0) and escalation is disallowed by policy. Since assetNeed is required:false, abandon this need and use procedural fallback per assetStrategy."
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

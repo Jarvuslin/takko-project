@@ -1,0 +1,39 @@
+{
+  "packetHash": "eca6b2a3bc77f3a01653e0232b803cc793113d3c1cca79245fa0e93e18473ce8",
+  "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+  "reason": "Adapt the bubble wrap model by removing the obfuscated TypeConfig backdoor loader and legacy physical RegenButton, while replacing legacy bubble pop scripts with a robust squash-and-deflate tween animation, debounce, synchronized audio playback, and attribute-driven state management for reset integration.",
+  "removeSubtrees": [
+    {
+      "index": 3,
+      "reason": "RegenButton and its legacy script perform destructive whole-model re-cloning on player touch, conflicting with clean UI-driven sheet resets and server/client state management."
+    },
+    {
+      "index": 15,
+      "reason": "TypeConfig contains an obfuscated backdoor loader attempting numeric require on external ID 99292559910041 and MarketplaceService hijacking."
+    }
+  ],
+  "replaceSources": [
+    {
+      "index": 14,
+      "beforeSha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+      "source": "--!strict\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal bubblePart = script.Parent :: BasePart\nlocal clickDetector = bubblePart:FindFirstChildOfClass(\"ClickDetector\")\nlocal sound = bubblePart:FindFirstChildOfClass(\"Sound\")\n\nlocal isPopped = false\nbubblePart:SetAttribute(\"Popped\", false)\n\nlocal originalSize = bubblePart.Size\nlocal originalTransparency = bubblePart.Transparency\n\nlocal function pop()\n\tif isPopped then return end\n\tisPopped = true\n\tbubblePart:SetAttribute(\"Popped\", true)\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 0\n\tend\n\n\tif sound then\n\t\tsound:Play()\n\tend\n\n\tlocal squashInfo = TweenInfo.new(0.08, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)\n\tlocal squashGoal = {\n\t\tSize = Vector3.new(originalSize.X * 1.15, math.max(0.05, originalSize.Y * 0.25), originalSize.Z * 1.15),\n\t\tTransparency = 0.65,\n\t}\n\tlocal tween = TweenService:Create(bubblePart, squashInfo, squashGoal)\n\ttween:Play()\nend\n\nlocal function reset()\n\tisPopped = false\n\tbubblePart:SetAttribute(\"Popped\", false)\n\tbubblePart.Size = originalSize\n\tbubblePart.Transparency = originalTransparency\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 32\n\tend\nend\n\nif clickDetector then\n\tclickDetector.MouseClick:Connect(function()\n\t\tpop()\n\tend)\nend\n\nbubblePart:GetAttributeChangedSignal(\"Reset\"):Connect(function()\n\tif bubblePart:GetAttribute(\"Reset\") == true then\n\t\treset()\n\t\tbubblePart:SetAttribute(\"Reset\", false)\n\tend\nend)\n",
+      "reason": "Replaces crude instant invisibility with smooth physical squash/deflate tweening, audio playback, debounce, and reset attribute listener."
+    }
+  ],
+  "preservedBehavior": [
+    "Preserved bubble grid geometry and physical placement across the bubble wrap sheet.",
+    "Preserved ClickDetector interaction targets and associated pop audio Sound objects (rbxassetid://421058925)."
+  ],
+  "remainingIntegration": [
+    "Implement client HUD manager with live popped counter (Popped: X / Total), completion banner, and tactile Reset Sheet button.",
+    "Implement tabletop camera framing module focusing cleanly on the bubble wrap sheet on desktop and touch viewports."
+  ],
+  "nativeTestPlan": [
+    "1. In Studio Play mode, inspect the bubble sheet to ensure all bubble domes render with intact materials and ClickDetectors.",
+    "2. Click and tap unpopped bubbles on desktop and mobile emulator, verifying the depression/squash tween, pop audio playback, and ClickDetector disabling.",
+    "3. Attempt rapid spam clicking on already popped bubbles to confirm debounce prevents duplicate pop counts.",
+    "4. Pop all bubbles sequentially and verify the completion state triggers accurately.",
+    "5. Trigger the Reset action and confirm all bubble domes smoothly restore their original geometry, transparency, and clickability."
+  ],
+  "runtimeVerification": "not_performed"
+}

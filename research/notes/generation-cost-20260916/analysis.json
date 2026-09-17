@@ -1,0 +1,280 @@
+{
+  "analyzedAt": "2026-09-16T04:29:02.235Z",
+  "runs": [
+    {
+      "id": "v4-minimax",
+      "file": "benchmarks/runs/butter-crunch-marketplace-v4-20260916/minimax/results.json",
+      "sha256": "873c2d3bad86d0ed5bcba857da090c01dd3e16735daf964f3de78fb47055513c",
+      "chargedUSD": 0.029194,
+      "cumulativeReservationsUSD": 0.329422,
+      "calls": 5,
+      "stage": "failed",
+      "error": "Error: Build ended at failed: One or more required asset needs failed",
+      "cancellationReason": null
+    },
+    {
+      "id": "v4-mimo",
+      "file": "benchmarks/runs/butter-crunch-marketplace-v4-20260916/mimo/results.json",
+      "sha256": "5c0dc216a974af393abf6084195e56bb471e0d27016092a2b4c25f0dfe780855",
+      "chargedUSD": 0.040133,
+      "cumulativeReservationsUSD": 0.480623,
+      "calls": 11,
+      "stage": "failed",
+      "error": "Error: Build ended at failed: One or more required asset needs failed",
+      "cancellationReason": null
+    },
+    {
+      "id": "v4-grok",
+      "file": "benchmarks/runs/butter-crunch-marketplace-v4-20260916/grok/results.json",
+      "sha256": "23c8b93b270d3b1d67cd040811980b9e6d2a393d86c0dcca1536e7d5a38f10fd",
+      "chargedUSD": 0.066877,
+      "cumulativeReservationsUSD": 0.75772,
+      "calls": 9,
+      "stage": "failed",
+      "error": "Error: Build ended at failed: One or more required asset needs failed",
+      "cancellationReason": null
+    },
+    {
+      "id": "v5-grok",
+      "file": "benchmarks/runs/butter-crunch-marketplace-v5-20260916/grok/results.json",
+      "sha256": "48cabe592bc56f94ec918239516a957ac98eb59adc6ac5ad58ce81056f804e86",
+      "chargedUSD": 0.028309,
+      "cumulativeReservationsUSD": 0.22569,
+      "calls": 2,
+      "stage": "failed",
+      "error": "Error: Planning ended at failed",
+      "cancellationReason": null
+    },
+    {
+      "id": "v6-grok",
+      "file": "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/results.json",
+      "sha256": "7c757614cb22f4372e936a6b131ca30bff7c24dd5aee7c1070ef5a4f6b5c05c6",
+      "chargedUSD": 0.185297,
+      "cumulativeReservationsUSD": 1.231075,
+      "calls": 11,
+      "stage": "ready_to_test",
+      "error": null,
+      "cancellationReason": null
+    }
+  ],
+  "v6": {
+    "byRole": {
+      "planner": {
+        "calls": 2,
+        "chargedMicros": 26705,
+        "inputTokens": 13136,
+        "outputTokens": 4494,
+        "responseBytes": 13777
+      },
+      "asset_selection": {
+        "calls": 3,
+        "chargedMicros": 23026,
+        "inputTokens": 18130,
+        "outputTokens": 2985,
+        "responseBytes": 1118
+      },
+      "asset_evaluation": {
+        "calls": 2,
+        "chargedMicros": 12312,
+        "inputTokens": 12225,
+        "outputTokens": 838,
+        "responseBytes": 640
+      },
+      "builder": {
+        "calls": 3,
+        "chargedMicros": 102917,
+        "inputTokens": 35445,
+        "outputTokens": 33889,
+        "responseBytes": 17465
+      },
+      "reviewer": {
+        "calls": 1,
+        "chargedMicros": 20337,
+        "inputTokens": 13245,
+        "outputTokens": 2774,
+        "responseBytes": 6070
+      }
+    },
+    "firstBlockedUnderHypotheticalOneDollarCumulativeCap": {
+      "call": 10,
+      "role": "builder",
+      "spentBeforeUSD": 0.127354,
+      "reserveForCallUSD": 0.109249,
+      "cumulativeReservationAfterUSD": 1.098115,
+      "monetaryCapWouldAdmit": true,
+      "cumulativeCapWouldAdmit": false
+    },
+    "monetaryOnlyOneDollarCapAdmitsAllRecordedCalls": true,
+    "reservationToChargeRatio": 6.643793477498287,
+    "replay": [
+      {
+        "call": 1,
+        "role": "planner",
+        "spentBeforeUSD": 0,
+        "reserveForCallUSD": 0.110148,
+        "cumulativeReservationAfterUSD": 0.110148,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 2,
+        "role": "planner",
+        "spentBeforeUSD": 0.014401,
+        "reserveForCallUSD": 0.115396,
+        "cumulativeReservationAfterUSD": 0.225544,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 3,
+        "role": "asset_selection",
+        "spentBeforeUSD": 0.026705,
+        "reserveForCallUSD": 0.079095,
+        "cumulativeReservationAfterUSD": 0.304639,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 4,
+        "role": "asset_evaluation",
+        "spentBeforeUSD": 0.034203,
+        "reserveForCallUSD": 0.16062,
+        "cumulativeReservationAfterUSD": 0.465259,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 5,
+        "role": "asset_evaluation",
+        "spentBeforeUSD": 0.04064,
+        "reserveForCallUSD": 0.160653,
+        "cumulativeReservationAfterUSD": 0.625912,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 6,
+        "role": "asset_selection",
+        "spentBeforeUSD": 0.046515,
+        "reserveForCallUSD": 0.079004,
+        "cumulativeReservationAfterUSD": 0.704916,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 7,
+        "role": "asset_selection",
+        "spentBeforeUSD": 0.054508,
+        "reserveForCallUSD": 0.079009,
+        "cumulativeReservationAfterUSD": 0.783925,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 8,
+        "role": "builder",
+        "spentBeforeUSD": 0.062043,
+        "reserveForCallUSD": 0.10053,
+        "cumulativeReservationAfterUSD": 0.884455,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 9,
+        "role": "builder",
+        "spentBeforeUSD": 0.096757,
+        "reserveForCallUSD": 0.104411,
+        "cumulativeReservationAfterUSD": 0.988866,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": true
+      },
+      {
+        "call": 10,
+        "role": "builder",
+        "spentBeforeUSD": 0.127354,
+        "reserveForCallUSD": 0.109249,
+        "cumulativeReservationAfterUSD": 1.098115,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": false
+      },
+      {
+        "call": 11,
+        "role": "reviewer",
+        "spentBeforeUSD": 0.16496,
+        "reserveForCallUSD": 0.13296,
+        "cumulativeReservationAfterUSD": 1.231075,
+        "monetaryCapWouldAdmit": true,
+        "cumulativeCapWouldAdmit": false
+      }
+    ]
+  },
+  "gameCraftRepricing": {
+    "tokenSource": "https://github.com/FreedomIntelligence/gamecraft-bench/blob/main/README.md",
+    "priceSnapshot": "2026-09-16T04:27:12.8420969Z",
+    "assumptions": [
+      "Input counts include cached reads; publisher token aggregates are rounded.",
+      "Uses current catalog base rates, not historical billed prices.",
+      "Excludes cache-write charges, long-context tiers, tools, evaluation, sandbox, assets, tax and human work.",
+      "No-cache case holds the recorded workload fixed; no claim the model would behave identically.",
+      "Not an average for successful or production-ready Roblox games."
+    ],
+    "rows": [
+      {
+        "model": "moonshotai/kimi-k2.6",
+        "input": 2240000000,
+        "cache": 2220000000,
+        "output": 10900000,
+        "tasks": 140,
+        "ratesPerMillion": {
+          "input": 0.95,
+          "cache": 0.16,
+          "output": 4
+        },
+        "baseRateScenarioUSD": 2.9842857142857144,
+        "noCacheScenarioUSD": 15.51142857142857
+      },
+      {
+        "model": "anthropic/claude-opus-4.7",
+        "input": 1580000000,
+        "cache": 1500000000,
+        "output": 9400000,
+        "tasks": 140,
+        "ratesPerMillion": {
+          "input": 5,
+          "cache": 0.5,
+          "output": 25
+        },
+        "baseRateScenarioUSD": 9.892857142857142,
+        "noCacheScenarioUSD": 58.10714285714286
+      },
+      {
+        "model": "deepseek/deepseek-v4-pro",
+        "input": 232600000,
+        "cache": 58000000,
+        "output": 7800000,
+        "tasks": 140,
+        "ratesPerMillion": {
+          "input": 1.5999999999999999,
+          "cache": 0.135,
+          "output": 3.1999999999999997
+        },
+        "baseRateScenarioUSD": 2.229642857142857,
+        "noCacheScenarioUSD": 2.8365714285714283
+      },
+      {
+        "model": "openai/gpt-5.5",
+        "input": 148500000,
+        "cache": 130300000,
+        "output": 2800000,
+        "tasks": 140,
+        "ratesPerMillion": {
+          "input": 5,
+          "cache": 0.5,
+          "output": 30
+        },
+        "baseRateScenarioUSD": 1.7153571428571428,
+        "noCacheScenarioUSD": 5.903571428571429
+      }
+    ]
+  }
+}

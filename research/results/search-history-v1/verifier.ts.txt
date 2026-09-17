@@ -1,0 +1,55 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { parseJson } from "../src/generation/providers";
+import { generationContextJson } from "../src/generation/context-layout";
+import { validateAssetDecision } from "../src/generation/asset-contract";
+const root = "research/results/search-history-v1/live";
+const read = (file: string) => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
+const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
+const p = read("protocol.json"), r = read("result.json"), calls = read("calls.json"), searches = read("searches.json"), decisions = read("decisions.json"), native = read("native-calls.json"), project = read("project.json"), run = read("run-final.json");
+const original = JSON.parse(fs.readFileSync("benchmarks/runs/marketplace-diversity-v9-20260916/checkpoint-parkour/final-project.json", "utf8"));
+assert.deepEqual(project.spec, original.spec); assert.equal(project.request, original.request);
+assert.deepEqual(p.need, original.assetPipeline.needs.find((n: any) => n.id === "skyCourseKit"));
+assert.deepEqual(run.needs, [p.need]); assert.equal(p.need.required, true);
+for (const [file, expected] of Object.entries(p.sources)) assert.equal(hash(fs.readFileSync(file)), expected, file);
+assert(r.noFurtherCallsPending && !r.unknownLiability && r.selectionOnly && r.selected); assert.equal(r.rawGamePass, false);
+assert.equal(r.inFlightReservations, 0); assert.equal(project.reservedMicros, 0); assert.equal(r.inspections, 0); assert.equal(r.nativeMutations, 0);
+assert.equal(run.status, "interrupted"); assert.equal(run.entries[0].attempts, 0);
+assert(!run.events.some((e: any) => ["inspect_call", "place_call", "verify_call"].includes(e.step)));
+assert(native.every((n: any) => ["list_roblox_studios", "search_asset"].includes(n.name) && n.finishedAt && !n.error));
+const nativeSearches = native.filter((n: any) => n.name === "search_asset"); assert.equal(nativeSearches.length, searches.length); assert(searches.length <= 3);
+assert.equal(searches[0].query, p.need.query);
+const reviews: any[] = []; let spent = 0;
+for (const call of calls) {
+  assert(spent + call.reserveMicros <= p.capMicros && p.priorMicros + spent + call.reserveMicros + p.headroomMicros <= p.ceilingMicros);
+  spent += call.chargedMicros;
+  const request = read(`call-${call.id}-request.json`), context = read(`decision-${call.decisionNumber}-context.json`);
+  const input = request.messages[1].content; assert(typeof input === "string" && input.startsWith(generationContextJson(context)));
+  assert.deepEqual(context.spec, original.spec); assert.equal(context.request, original.request);
+  const h = context.context.searchHistory;
+  assert.deepEqual(h.map((row: any) => row.query), searches.slice(0, context.context.searches).map((s: any) => s.query));
+  for (const row of h) {
+    const s = searches[row.searchNumber - 1]; assert.equal(row.candidatesReturnedByAdapter, s.candidates.length);
+    assert.equal(nativeSearches[row.searchNumber - 1].args.query, row.query);
+  }
+  const wire = read(`call-${call.id}-response.txt`); assert.equal(call.chargedMicros, Math.ceil(wire.usage.cost * 1e6));
+  const decision = parseJson(wire.choices[0].message.content); let error: string | undefined;
+  try { validateAssetDecision(decision as any, context.context); } catch (e) { error = (e as Error).message; }
+  if (!error) assert.deepEqual(decisions[call.decisionNumber - 1], decision);
+  reviews.push({ call: call.id, decisionNumber: call.decisionNumber, validationError: error ?? null, rawHash: hash(wire.choices[0].message.content) });
+}
+const selection = decisions.at(-1); assert.equal(selection.action, "select"); assert.equal(selection.candidateId, r.selected.id);
+assert(searches.at(-1).candidates.some((candidate: any) => candidate.id === selection.candidateId));
+for (let i = 0; i < decisions.length - 1; i++) { assert.equal(decisions[i].action, "retry"); assert.equal(decisions[i].query, searches[i + 1].query); }
+assert.equal(project.charges.length, calls.length); assert(project.charges.every((c: any) => c.billingSource === "provider" && c.status === "ok" && c.phase === "builder"));
+assert.equal(spent, r.chargedOrUnknownMicros); assert.equal(r.conservativePriorMicros, p.priorMicros + spent);
+const before = read("key-before.json"), after = read("key-after-final.json"), cost = calls.reduce((sum: number, call: any) => sum + call.costUSD, 0);
+assert(Math.abs(after.usage - before.usage - cost) < 0.000002, "Official charges not settled");
+const output = { at: new Date().toISOString(), passed: true, sourceQueriesAndDecisionsUnchanged: true, reviews,
+  searches: searches.map((s: any) => ({ query: s.query, candidates: s.candidates.length })), selected: r.selected.id,
+  inspections: 0, nativeMutations: 0, rawGamePass: false, costUSD: cost, chargedMicros: spent,
+  conservativePriorMicros: r.conservativePriorMicros, remaining: after.remaining };
+fs.writeFileSync(path.join(root, "../verification.json"), JSON.stringify(output, null, 2) + "\n", { flag: "wx" });
+console.log(JSON.stringify(output, null, 2));

@@ -1,0 +1,12 @@
+import { runDiversityBenchmark } from "../scripts/run-marketplace-diversity-benchmark";
+const result = await runDiversityBenchmark("combat-training", {
+  version: 15, mode: "build", plannerModel: "openai/gpt-5.6-sol", componentReviewerModel: "openai/gpt-5.6-sol", model: "google/gemini-3.7-flash",
+  studioId: "af74e97f-57b3-40c6-a281-83e1040ff755",
+  output: "benchmarks/runs/marketplace-diversity-v10-20260916/combat-training",
+  priorChargedMicros: 5437411, priorReservationsMicros: 14328463,
+  budgetMicros: 1300000, campaignCeilingMicros: 7500000, workerRequestTimeoutMs: 300000,
+  baseUrl: "http://127.0.0.1:4335", dataDirectory: ".forge/diversity-v10-runtime",
+});
+console.log(JSON.stringify(result, null, 2));
+if (!result.noFurtherCallsPending || !result.routesRestored || result.requiresReconciliation) process.exitCode = 2;
+else if (result.error) process.exitCode = 1;

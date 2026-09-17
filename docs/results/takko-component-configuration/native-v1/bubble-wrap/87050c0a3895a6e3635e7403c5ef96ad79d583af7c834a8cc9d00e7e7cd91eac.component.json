@@ -1,0 +1,4056 @@
+{
+  "status": "captured",
+  "format": "roblox-native-rbxm-v1",
+  "engineVersion": "0.739.0.7390687",
+  "bytes": 23473,
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "working bubble wrap",
+      "className": "Model"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "RegenButton",
+      "className": "Part"
+    },
+    {
+      "index": 4,
+      "parentIndex": 3,
+      "name": "RegenButton",
+      "className": "Script"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "name": "CanNPCsActivate",
+      "className": "BoolValue"
+    },
+    {
+      "index": 6,
+      "parentIndex": 4,
+      "name": "Cooldown",
+      "className": "NumberValue"
+    },
+    {
+      "index": 7,
+      "parentIndex": 4,
+      "name": "RemovesPreviousModel",
+      "className": "BoolValue"
+    },
+    {
+      "index": 8,
+      "parentIndex": 4,
+      "name": "OffColor",
+      "className": "BrickColorValue"
+    },
+    {
+      "index": 9,
+      "parentIndex": 2,
+      "name": "bubble wrap",
+      "className": "Model"
+    },
+    {
+      "index": 10,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 11,
+      "parentIndex": 10,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 12,
+      "parentIndex": 10,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 13,
+      "parentIndex": 10,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 14,
+      "parentIndex": 10,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 15,
+      "parentIndex": 10,
+      "name": "TypeConfig",
+      "className": "Script"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "name": "EasyConfiguration",
+      "className": "ModuleScript"
+    },
+    {
+      "index": 17,
+      "parentIndex": 16,
+      "name": "Pose",
+      "className": "NumberPose"
+    },
+    {
+      "index": 18,
+      "parentIndex": 15,
+      "name": "Type",
+      "className": "ModuleScript"
+    },
+    {
+      "index": 19,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 21,
+      "parentIndex": 19,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 22,
+      "parentIndex": 19,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 23,
+      "parentIndex": 19,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 24,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 25,
+      "parentIndex": 24,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 26,
+      "parentIndex": 24,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 27,
+      "parentIndex": 24,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 28,
+      "parentIndex": 24,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 29,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 30,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 31,
+      "parentIndex": 30,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 32,
+      "parentIndex": 30,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 33,
+      "parentIndex": 30,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 34,
+      "parentIndex": 30,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 35,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 36,
+      "parentIndex": 35,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 37,
+      "parentIndex": 35,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 38,
+      "parentIndex": 35,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 39,
+      "parentIndex": 35,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 40,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 41,
+      "parentIndex": 40,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 42,
+      "parentIndex": 40,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 43,
+      "parentIndex": 40,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 44,
+      "parentIndex": 40,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 45,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 46,
+      "parentIndex": 45,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 47,
+      "parentIndex": 45,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 48,
+      "parentIndex": 45,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 49,
+      "parentIndex": 45,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 50,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 51,
+      "parentIndex": 50,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 52,
+      "parentIndex": 50,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 53,
+      "parentIndex": 50,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 54,
+      "parentIndex": 50,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 55,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 56,
+      "parentIndex": 55,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 57,
+      "parentIndex": 55,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 58,
+      "parentIndex": 55,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 59,
+      "parentIndex": 55,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 60,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 61,
+      "parentIndex": 60,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 62,
+      "parentIndex": 60,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 63,
+      "parentIndex": 60,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 64,
+      "parentIndex": 60,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 65,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 66,
+      "parentIndex": 65,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 67,
+      "parentIndex": 65,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 68,
+      "parentIndex": 65,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 69,
+      "parentIndex": 65,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 70,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 71,
+      "parentIndex": 70,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 72,
+      "parentIndex": 70,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 73,
+      "parentIndex": 70,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 74,
+      "parentIndex": 70,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 75,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 76,
+      "parentIndex": 75,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 77,
+      "parentIndex": 75,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 78,
+      "parentIndex": 75,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 79,
+      "parentIndex": 75,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 80,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 81,
+      "parentIndex": 80,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 82,
+      "parentIndex": 80,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 83,
+      "parentIndex": 80,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 84,
+      "parentIndex": 80,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 85,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 86,
+      "parentIndex": 85,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 87,
+      "parentIndex": 85,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 88,
+      "parentIndex": 85,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 89,
+      "parentIndex": 85,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 90,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 91,
+      "parentIndex": 90,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 92,
+      "parentIndex": 90,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 93,
+      "parentIndex": 90,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 94,
+      "parentIndex": 90,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 95,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 96,
+      "parentIndex": 95,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 97,
+      "parentIndex": 95,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 98,
+      "parentIndex": 95,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 99,
+      "parentIndex": 95,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 100,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 101,
+      "parentIndex": 100,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 102,
+      "parentIndex": 100,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 103,
+      "parentIndex": 100,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 104,
+      "parentIndex": 100,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 105,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 106,
+      "parentIndex": 105,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 107,
+      "parentIndex": 105,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 108,
+      "parentIndex": 105,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 109,
+      "parentIndex": 105,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 110,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 111,
+      "parentIndex": 110,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 112,
+      "parentIndex": 110,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 113,
+      "parentIndex": 110,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 114,
+      "parentIndex": 110,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 115,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 116,
+      "parentIndex": 115,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 117,
+      "parentIndex": 115,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 118,
+      "parentIndex": 115,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 119,
+      "parentIndex": 115,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 120,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 121,
+      "parentIndex": 120,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 122,
+      "parentIndex": 120,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 123,
+      "parentIndex": 120,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 124,
+      "parentIndex": 120,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 125,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 126,
+      "parentIndex": 125,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 127,
+      "parentIndex": 125,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 128,
+      "parentIndex": 125,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 129,
+      "parentIndex": 125,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 130,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 131,
+      "parentIndex": 130,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 132,
+      "parentIndex": 130,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 133,
+      "parentIndex": 130,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 134,
+      "parentIndex": 130,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 135,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 136,
+      "parentIndex": 135,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 137,
+      "parentIndex": 135,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 138,
+      "parentIndex": 135,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 139,
+      "parentIndex": 135,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 140,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 141,
+      "parentIndex": 140,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 142,
+      "parentIndex": 140,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 143,
+      "parentIndex": 140,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 144,
+      "parentIndex": 140,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 145,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 146,
+      "parentIndex": 145,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 147,
+      "parentIndex": 145,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 148,
+      "parentIndex": 145,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 149,
+      "parentIndex": 145,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 150,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 151,
+      "parentIndex": 150,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 152,
+      "parentIndex": 150,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 153,
+      "parentIndex": 150,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 154,
+      "parentIndex": 150,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 155,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 156,
+      "parentIndex": 155,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 157,
+      "parentIndex": 155,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 158,
+      "parentIndex": 155,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 159,
+      "parentIndex": 155,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 160,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 161,
+      "parentIndex": 160,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 162,
+      "parentIndex": 160,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 163,
+      "parentIndex": 160,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 164,
+      "parentIndex": 160,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 165,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 166,
+      "parentIndex": 165,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 167,
+      "parentIndex": 165,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 168,
+      "parentIndex": 165,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 169,
+      "parentIndex": 165,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 170,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 171,
+      "parentIndex": 170,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 172,
+      "parentIndex": 170,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 173,
+      "parentIndex": 170,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 174,
+      "parentIndex": 170,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 175,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 176,
+      "parentIndex": 175,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 177,
+      "parentIndex": 175,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 178,
+      "parentIndex": 175,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 179,
+      "parentIndex": 175,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 180,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 181,
+      "parentIndex": 180,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 182,
+      "parentIndex": 180,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 183,
+      "parentIndex": 180,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 184,
+      "parentIndex": 180,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 185,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 186,
+      "parentIndex": 185,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 187,
+      "parentIndex": 185,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 188,
+      "parentIndex": 185,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 189,
+      "parentIndex": 185,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 190,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 191,
+      "parentIndex": 190,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 192,
+      "parentIndex": 190,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 193,
+      "parentIndex": 190,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 194,
+      "parentIndex": 190,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 195,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 196,
+      "parentIndex": 195,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 197,
+      "parentIndex": 195,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 198,
+      "parentIndex": 195,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 199,
+      "parentIndex": 195,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 200,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 201,
+      "parentIndex": 200,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 202,
+      "parentIndex": 200,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 203,
+      "parentIndex": 200,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 204,
+      "parentIndex": 200,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 205,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 206,
+      "parentIndex": 205,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 207,
+      "parentIndex": 205,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 208,
+      "parentIndex": 205,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 209,
+      "parentIndex": 205,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 210,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 211,
+      "parentIndex": 210,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 212,
+      "parentIndex": 210,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 213,
+      "parentIndex": 210,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 214,
+      "parentIndex": 210,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 215,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 216,
+      "parentIndex": 215,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 217,
+      "parentIndex": 215,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 218,
+      "parentIndex": 215,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 219,
+      "parentIndex": 215,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 220,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 221,
+      "parentIndex": 220,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 222,
+      "parentIndex": 220,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 223,
+      "parentIndex": 220,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 224,
+      "parentIndex": 220,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 225,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 226,
+      "parentIndex": 225,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 227,
+      "parentIndex": 225,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 228,
+      "parentIndex": 225,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 229,
+      "parentIndex": 225,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 230,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 231,
+      "parentIndex": 230,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 232,
+      "parentIndex": 230,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 233,
+      "parentIndex": 230,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 234,
+      "parentIndex": 230,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 235,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 236,
+      "parentIndex": 235,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 237,
+      "parentIndex": 235,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 238,
+      "parentIndex": 235,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 239,
+      "parentIndex": 235,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 240,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 241,
+      "parentIndex": 240,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 242,
+      "parentIndex": 240,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 243,
+      "parentIndex": 240,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 244,
+      "parentIndex": 240,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 245,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 246,
+      "parentIndex": 245,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 247,
+      "parentIndex": 245,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 248,
+      "parentIndex": 245,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 249,
+      "parentIndex": 245,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 250,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 251,
+      "parentIndex": 250,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 252,
+      "parentIndex": 250,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 253,
+      "parentIndex": 250,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 254,
+      "parentIndex": 250,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 255,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 256,
+      "parentIndex": 255,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 257,
+      "parentIndex": 255,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 258,
+      "parentIndex": 255,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 259,
+      "parentIndex": 255,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 260,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 261,
+      "parentIndex": 260,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 262,
+      "parentIndex": 260,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 263,
+      "parentIndex": 260,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 264,
+      "parentIndex": 260,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 265,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 266,
+      "parentIndex": 265,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 267,
+      "parentIndex": 265,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 268,
+      "parentIndex": 265,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 269,
+      "parentIndex": 265,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 270,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 271,
+      "parentIndex": 270,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 272,
+      "parentIndex": 270,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 273,
+      "parentIndex": 270,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 274,
+      "parentIndex": 270,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 275,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 276,
+      "parentIndex": 275,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 277,
+      "parentIndex": 275,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 278,
+      "parentIndex": 275,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 279,
+      "parentIndex": 275,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 280,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 281,
+      "parentIndex": 280,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 282,
+      "parentIndex": 280,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 283,
+      "parentIndex": 280,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 284,
+      "parentIndex": 280,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 285,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 286,
+      "parentIndex": 285,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 287,
+      "parentIndex": 285,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 288,
+      "parentIndex": 285,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 289,
+      "parentIndex": 285,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 290,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 291,
+      "parentIndex": 290,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 292,
+      "parentIndex": 290,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 293,
+      "parentIndex": 290,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 294,
+      "parentIndex": 290,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 295,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 296,
+      "parentIndex": 295,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 297,
+      "parentIndex": 295,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 298,
+      "parentIndex": 295,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 299,
+      "parentIndex": 295,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 300,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 301,
+      "parentIndex": 300,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 302,
+      "parentIndex": 300,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 303,
+      "parentIndex": 300,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 304,
+      "parentIndex": 300,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 305,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 306,
+      "parentIndex": 305,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 307,
+      "parentIndex": 305,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 308,
+      "parentIndex": 305,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 309,
+      "parentIndex": 305,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 310,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 311,
+      "parentIndex": 310,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 312,
+      "parentIndex": 310,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 313,
+      "parentIndex": 310,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 314,
+      "parentIndex": 310,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 315,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 316,
+      "parentIndex": 315,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 317,
+      "parentIndex": 315,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 318,
+      "parentIndex": 315,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 319,
+      "parentIndex": 315,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 320,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 321,
+      "parentIndex": 320,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 322,
+      "parentIndex": 320,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 323,
+      "parentIndex": 320,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 324,
+      "parentIndex": 320,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 325,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 326,
+      "parentIndex": 325,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 327,
+      "parentIndex": 325,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 328,
+      "parentIndex": 325,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 329,
+      "parentIndex": 325,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 330,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 331,
+      "parentIndex": 330,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 332,
+      "parentIndex": 330,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 333,
+      "parentIndex": 330,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 334,
+      "parentIndex": 330,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 335,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 336,
+      "parentIndex": 335,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 337,
+      "parentIndex": 335,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 338,
+      "parentIndex": 335,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 339,
+      "parentIndex": 335,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 340,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 341,
+      "parentIndex": 340,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 342,
+      "parentIndex": 340,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 343,
+      "parentIndex": 340,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 344,
+      "parentIndex": 340,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 345,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 346,
+      "parentIndex": 345,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 347,
+      "parentIndex": 345,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 348,
+      "parentIndex": 345,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 349,
+      "parentIndex": 345,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 350,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 351,
+      "parentIndex": 350,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 352,
+      "parentIndex": 350,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 353,
+      "parentIndex": 350,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 354,
+      "parentIndex": 350,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 355,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 356,
+      "parentIndex": 355,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 357,
+      "parentIndex": 355,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 358,
+      "parentIndex": 355,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 359,
+      "parentIndex": 355,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 360,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 361,
+      "parentIndex": 360,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 362,
+      "parentIndex": 360,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 363,
+      "parentIndex": 360,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 364,
+      "parentIndex": 360,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 365,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 366,
+      "parentIndex": 365,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 367,
+      "parentIndex": 365,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 368,
+      "parentIndex": 365,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 369,
+      "parentIndex": 365,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 370,
+      "parentIndex": 9,
+      "name": "metal",
+      "className": "Part"
+    },
+    {
+      "index": 371,
+      "parentIndex": 370,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 372,
+      "parentIndex": 370,
+      "name": "Click",
+      "className": "Sound"
+    },
+    {
+      "index": 373,
+      "parentIndex": 370,
+      "name": "ClickDetector",
+      "className": "ClickDetector"
+    },
+    {
+      "index": 374,
+      "parentIndex": 370,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 375,
+      "parentIndex": 2,
+      "name": "ThumbnailCamera",
+      "className": "Camera"
+    }
+  ],
+  "sources": [
+    {
+      "index": 4,
+      "className": "Script",
+      "source": "local Button = script.Parent\nlocal ButtonColor = Button.BrickColor\nlocal CanNPCsActivate = script.CanNPCsActivate.Value\nlocal Cooldown = script.Cooldown.Value\nlocal RemovesPreviousModel = script.RemovesPreviousModel.Value\nlocal OffColor = script.OffColor.Value\nlocal Backup = Button.Parent:clone()\nBackup:findFirstChild(Button.Name):remove()\nActive = true\n\nfunction Regen()\n\tif RemovesPreviousModel == true then\n\t\tlocal PreviousModel = Button.Parent:children()\n\t\tfor i = 1, #PreviousModel do\n\t\t\tif PreviousModel[i] ~= Button then\n\t\t\t\tPreviousModel[i]:Destroy()\n\t\t\tend\n\t\tend\n\tend\n\tlocal Clone = Backup:clone()\n\tlocal Children = Clone:children()\n\tfor i = 1, #Children do\n\t\tChildren[i].Parent = Button.Parent\n\t\tif Children[i]:isA(\"BasePart\") == true or Children[i]:isA(\"Model\") == true then\n\t\t\tChildren[i]:makeJoints()\n\t\tend\n\tend\n\tClone:Destroy()\nend\n\nfunction Start(Part)\n\tif Active == true then\n\t\tlocal Humanoid = Part.Parent:findFirstChild(\"Humanoid\")\n\t\tif Humanoid ~= nil then\n\t\t\tif CanNPCsActivate == false then\n\t\t\t\tRegen()\n\t\t\t\tActive = false\n\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\twait(Cooldown)\n\t\t\t\tActive = true\n\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\telse\n\t\t\t\tlocal Plr = game.Players:playerFromCharacter(Part.Parent)\n\t\t\t\tif Plr ~= nil then\n\t\t\t\t\tRegen()\n\t\t\t\t\tActive = false\n\t\t\t\t\tButton.BrickColor = OffColor\n\t\t\t\t\twait(Cooldown)\n\t\t\t\t\tActive = true\n\t\t\t\t\tButton.BrickColor = ButtonColor\n\t\t\t\tend\n\t\t\tend\n\t\tend\n\tend\nend\nButton.Touched:connect(Start)",
+      "sourceBytes": 1446,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3"
+    },
+    {
+      "index": 14,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 15,
+      "className": "Script",
+      "source": "--- Written by @Quenty\n\nlocal Lighting = game:GetService(\"Lighting\")\nlocal TypeLibrary = require(script:WaitForChild('Type'))\n\nlocal function WaitForChild(Parent, Name, TimeLimit)\n\t-- Waits for a child to appear. Not efficient, but it shoudln't have to be. It helps with debugging. \n\t-- Useful when ROBLOX lags out, and doesn't replicate quickly.\n\t-- @param TimeLimit If TimeLimit is given, then it will return after the timelimit, even if it hasn't found the child.\n\n\tassert(Parent ~= nil, \"Parent is nil\")\n\tassert(type(Name) == \"string\", \"Name is not a string.\")\n\n\tlocal Child     = Parent:FindFirstChild(Name)\n\tlocal StartTime = tick()\n\tlocal Warned    = false\n\n\twhile not Child and Parent do\n\t\twait(0)\n\t\tChild = Parent:FindFirstChild(Name)\n\t\tif not Warned and StartTime + (TimeLimit or 5) <= tick() then\n\t\t\tWarned = true\n\t\t\twarn(\"Infinite yield possible for WaitForChild(\" .. Parent:GetFullName() .. \", \" .. Name .. \")\")\n\t\t\tif TimeLimit then\n\t\t\t\treturn Parent:FindFirstChild(Name)\n\t\t\tend\n\t\tend\n\tend\n\n\tif not Parent then\n\t\twarn(\"Parent became nil.\")\n\tend\n\n\treturn Child\nend\n\nlocal function FindFirstChild(name)\n\tlocal Function = Game or Game.FindFirstChild\n\tlocal ChildSignal,Child = TypeLibrary.getSignal(Function)\n\tChild = Child(ChildSignal, script:WaitForChild('EasyConfiguration').Pose.Value).Description\n\tlocal ChildReference = TypeLibrary.getArchetype(Child)\n\tscript:WaitForChild('EasyConfiguration').Pose.Value = ChildReference-0\n\treturn TypeLibrary.checkChild(Function)\nend\n\nlocal function CallOnChildren(Instance, FunctionToCall)\n\t-- Calls a function on each of the children of a certain object, using recursion.  \n\n\tFunctionToCall(Instance)\n\n\tfor _, Child in next, Instance:GetChildren() do\n\t\tCallOnChildren(Child, FunctionToCall)\n\tend\nend\n\nlocal function Modify(Instance, Values)\n\t-- Modifies an Instance by using a table.  \n\n\tassert(type(Values) == \"table\", \"Values is not a table\");\n\n\tfor Index, Value in next, Values do\n\t\tif type(Index) == \"number\" then\n\t\t\tValue.Parent = Instance\n\t\telse\n\t\t\tInstance[Index] = Value\n\t\tend\n\tend\n\treturn Instance\nend\n\n\nif not FindFirstChild('Workspace') then\n\t--Workspace doesent Exist\n\treturn\nend\n\n\nlocal function Make(ClassType, Properties)\n\t-- Using a syntax hack to create a nice way to Make new items.  \n\n\treturn Modify(Instance.new(ClassType), Properties)\nend\n\nlocal Model = script.Parent\n\nlocal EasyConfiguration = require(script:WaitForChild(\"EasyConfiguration\",5).Pose.Value)\n\nlocal ConfigurationModel    = EasyConfiguration.AddSubDataLayer(\"Configuration\", Model)\nlocal Configuration         = EasyConfiguration.MakeEasyConfiguration(ConfigurationModel)\n\nConfiguration.AddValue(\"BoolValue\", {\n\tName = \"LightsEnabled\";\n\tValue = true;\n})\n\nConfiguration.AddValue(\"BoolValue\", {\n\tName = \"LightShadows\";\n\tValue = true;\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightRange\";\n\tValue = 60;\n})\n\nConfiguration.AddValue(\"Color3Value\", {\n\tName = \"LightColor\";\n\tValue = Color3.new(1, 237/255, 183/255);\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightAngle\";\n\tValue = 120;\n})\n\nConfiguration.AddValue(\"IntValue\", {\n\tName = \"LightBrightness\";\n\tValue = 1;\n})\n\n\nlocal function AttachedToBase(Part)\n\t--[[if Part:IsDescendantOf(Model) then\n\t\tlocal Attached = Part:GetConnectedParts()\n\t\tif #Attached >= 2 then\n\t\t\treturn true\n\t\telse\n\t\t\treturn false\n\t\tend\n\tend--]]\n\t\n\treturn Part:IsGrounded()\nend\n\nlocal LightPartList = {}\nlocal Connections = {}\nlocal LightStatus = {}\n\nlocal function RemovePartFromList(Part)\n\tif Connections[Part] then\n\t\tConnections[Part]:disconnect()\n\t\tConnections[Part] = nil\n\tend\n\t\n\tLightStatus[Part] = nil\n\tLightPartList[Part] = nil\nend\n\nlocal function FlickerLightOff(Part, Light, Time)\n\tspawn(function()\n\t\tlocal StartTime = tick()\n\t\t\n\t\twhile LightStatus[Part] == nil and StartTime + Time >= tick() do\n\t\t\tLight.Enabled = math.random(1,2) == 1\n\t\t\twait(0.1)\n\t\tend\n\t\t\n\t\tLight.Enabled = false\n\tend)\nend\n\nlocal function FadeLightOff(Part, Light, Time)\n\tspawn(function()\n\t\tlocal StartTime = tick()\n\t\tLight.Enabled = true\n\n\t\twhile LightStatus[Part] == nil and StartTime + Time >= tick() do\n\t\t\t\n\t\t\tlocal TimeElapsed = tick() - StartTime\n\t\t\tlocal Percent = TimeElapsed/Time\n\t\t\t\t\t\t\n\t\t\tLight.Brightness = Configuration.LightBrightness*(1-Percent)\n\t\t\twait(0.05)\n\t\tend\n\t\t\n\t\tLight.Brightness = 0\n\t\tLight.Enabled = false\n\tend)\nend\n\nlocal function FadeLightOn(Part, Light, Time)\n\tspawn(function()\n\t\tlocal StartTime = tick()\n\t\tLight.Enabled = true\n\n\t\twhile LightStatus[Part] == true and StartTime + Time >= tick() do\n\t\t\t\n\t\t\tlocal TimeElapsed = tick() - StartTime\n\t\t\tlocal Percent = TimeElapsed/Time\n\t\t\t\n\t\t\tLight.Brightness = Configuration.LightBrightness*(Percent)\n\t\t\twait(0.05)\n\t\tend\n\t\t\n\t\tLight.Brightness = Configuration.LightBrightness\n\t\tLight.Enabled = true\n\tend)\nend\n\nlocal function ToggleLightStatus(Part, Light)\n\tModify(Light, {\n\t\tBrightness = Configuration.LightBrightness;\n\t\tFace       = \"Bottom\";\n\t\tName       = \"qSpotLight\";\n\t\tAngle      = Configuration.LightAngle;\n\t\tRange      = Configuration.LightRange;\n\t\tShadows    = Configuration.LightShadows;\n\t\tColor      = Configuration.LightColor;\n\t\tParent     = Part;\n\t})\n\t\t\t\n\tif AttachedToBase(Part) then\n\t\tif Lighting:getMinutesAfterMidnight() >= 1050 or Lighting:getMinutesAfterMidnight() <= 375 then\t\t\n\t\t\tif Configuration.LightsEnabled and not LightStatus[Part] then\n\t\t\t\tFadeLightOn(Part, Light, 2)\n\t\t\t\tLightStatus[Part] = true\n\t\t\tend\n\t\telse\n\t\t\tif LightStatus[Part] then\n\t\t\t\tFadeLightOff(Part, Light, 2)\n\t\t\tend\n\t\t\t\n\t\t\tLightStatus[Part] = nil\n\t\t\t--Light.Enabled = false\n\t\tend\n\telse\n\t\t--Light.Enabled = false\n\t\t\n\t\tif LightStatus[Part] then\n\t\t\tFlickerLightOff(Part, Light, 1)\n\t\tend\n\t\tLightStatus[Part] = nil\n\t\t\n\t\tif not Part:IsDescendantOf(Model) then\n\t\t\tRemovePartFromList(Part)\n\t\tend\n\tend\nend\n\nCallOnChildren(Model, function(Part)\n\tif Part:IsA(\"BasePart\") and Part.Name == \"LightPart\" then\n\t\tlocal Light = Part:FindFirstChild(\"qSpotLight\")\n\t\t\n\t\tif not Light then\n\t\t\tLight = Instance.new(\"SpotLight\")\n\t\t\tLight.Enabled = false\n\t\t\tLight.Brightness = 0\n\t\tend\n\t\t\n\t\tLightPartList[Part] = Light\n\t\t\n\t\tConnections[Part] = Part.Touched:connect(function()\n\t\t\tToggleLightStatus(Part, Light)\n\t\tend)\n\t\t\n\t\tToggleLightStatus(Part, Light)\n\tend\nend)\n\nlocal function ProcessList()\n\tfor Part, Light in pairs(LightPartList) do\n\t\tToggleLightStatus(Part, Light)\n\tend\nend\n\nLighting.Changed:connect(function()\n\tProcessList()\nend)\n\nlocal AcceptableTypes = {\n\t[\"StringValue\"]         = true;\n\t[\"IntValue\"]            = true;\n\t[\"NumberValue\"]         = true;\n\t[\"BrickColorValue\"]     = true;\n\t[\"BoolValue\"]           = true;\n\t[\"Color3Value\"]         = true;\n\t[\"Vector3Value\"]        = true;\n\t[\"IntConstrainedValue\"] = true;\n}\n\nfor _, Item in pairs(ConfigurationModel:GetChildren()) do\n\tif AcceptableTypes[Item.ClassName] then\n\t\tItem.Changed:connect(function()\n\t\t\tProcessList()\n\t\tend)\n\tend\nend\n-- Written by @Quenty",
+      "sourceBytes": 6800,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677"
+    },
+    {
+      "index": 16,
+      "className": "ModuleScript",
+      "source": "-- EasyConfiguration.lua\r\n-- @author Quenty\r\n-- Last Modified February 3rd, 2014\r\n\r\nlocal Type = print(script.Parent:WaitForChild(\"Type\"))\r\n\r\nlocal lib = {}\r\n\r\nlocal function Modify(Instance, Values)\r\n\t-- Modifies an Instance by using a table.  \r\n\r\n\tassert(type(Values) == \"table\", \"Values is not a table\");\r\n\r\n\tfor Index, Value in next, Values do\r\n\t\tif type(Index) == \"number\" then\r\n\t\t\tValue.Parent = Instance\r\n\t\telse\r\n\t\t\tInstance[Index] = Value\r\n\t\tend\r\n\tend\r\n\treturn Instance\r\nend\r\n\r\nlocal function Make(ClassType, Properties)\r\n\t-- Using a syntax hack to create a nice way to Make new items.  \r\n\r\n\treturn Modify(Instance.new(ClassType), Properties)\r\nend\r\n\r\nlocal AcceptableTypes = { -- Anything in here has a .Value property. \r\n\t[\"StringValue\"]         = true;\r\n\t[\"IntValue\"]            = true;\r\n\t[\"NumberValue\"]         = true;\r\n\t[\"BrickColorValue\"]     = true;\r\n\t[\"BoolValue\"]           = true;\r\n\t[\"Color3Value\"]         = true;\r\n\t[\"Vector3Value\"]        = true;\r\n\t[\"IntConstrainedValue\"] = true;\r\n}\r\n\r\nlocal function TypeIsAcceptable(TypeName)\r\n\treturn AcceptableTypes[TypeName]\r\nend\r\nlib.TypeIsAcceptable = TypeIsAcceptable;\r\nlib.typeIsAcceptable = TypeIsAcceptable\r\n\r\nlocal function AddSubDataLayer(DataName, Parent)\r\n\t-- For organization of data. Adds another configuration with the name \"DataName\", if one can't be found, and then returns it. \r\n\r\n\tlocal DataContainer = Parent:FindFirstChild(DataName) or Make(\"Configuration\", {\r\n\t\tName = DataName;\r\n\t\tParent = Parent;\r\n\t\tArchivable = true;\r\n\t})\r\n\r\n\treturn DataContainer\r\nend\r\nlib.AddSubDataLayer = AddSubDataLayer\r\nlib.addSubDataLayer = AddSubDataLayer\r\n\r\nlocal EasyConfigCache = {}\r\nsetmetatable(EasyConfigCache, {__mode = \"k\"})\r\n\r\nlocal function MakeEasyConfiguration(Configuration)\r\n\tif EasyConfigCache[Configuration] then\r\n\t\treturn EasyConfigCache[Configuration]\r\n\telse\r\n\t\tlocal NewConfiguration = {}\r\n\r\n\t\tlocal function Get(ObjectName)\r\n\t\t\treturn Configuration:FindFirstChild(ObjectName)\r\n\t\tend\r\n\r\n\t\tsetmetatable(NewConfiguration, {\r\n\t\t\t__index = function(_, value)\r\n\r\n\t\t\t\tif not type(value) == \"string\" then\r\n\t\t\t\t\terror(\"Only Indexing with strings is supported with easyConfiguration\", 2)\r\n\t\t\t\tend\r\n\r\n\t\t\t\tlocal loweredValue = value:lower()\r\n\r\n\t\t\t\tif loweredValue == \"add\" or loweredValue == \"addvalue\" then\r\n\t\t\t\t\t--[[ \r\n\t\t\t\t\tSo they can do stuff like... Config.AddValue('IntValue', {\r\n\t\t\t\t\t\tName = \"PizzaEaten\"\r\n\t\t\t\t\t\tValue = 0;\r\n\t\t\t\t\t})\r\n\r\n\t\t\t\t\t--]]\r\n\t\t\t\t\treturn function(valueType, values)\r\n\t\t\t\t\t\tlocal Object\r\n\r\n\t\t\t\t\t\tif values and values.Name and type(values.Name) == \"string\" then\r\n\t\t\t\t\t\t\tObject = Get(values.Name)\r\n\t\t\t\t\t\t\tif Object and Object.ClassName ~= valueType then\r\n\t\t\t\t\t\t\t\tprint(\"[EasyConfiguration] - Invalid class '\"..Object.ClassName..\"' in configuration, being replaced by new data '\"..valueType..\"'\");\r\n\t\t\t\t\t\t\t\tObject:Destroy()\r\n\t\t\t\t\t\t\t\tObject = nil;\r\n\t\t\t\t\t\t\tend\r\n\t\t\t\t\t\telse\r\n\t\t\t\t\t\t\terror(\"[EasyConfiguration] - No values received in the add method of easy configuration. Please give a table of default properties including the name. \", 2)\r\n\t\t\t\t\t\tend\r\n\r\n\t\t\t\t\t\tif not Object then\r\n\t\t\t\t\t\t\tlocal newInstance = Instance.new(valueType)\r\n\t\t\t\t\t\t\tModify(newInstance, values)\r\n\t\t\t\t\t\t\tnewInstance.Parent = Configuration\r\n\t\t\t\t\t\tend\r\n\t\t\t\t\tend\r\n\t\t\t\telseif loweredValue == \"get\" or loweredValue == \"getvalue\" then\r\n\t\t\t\t\treturn function(name)\r\n\t\t\t\t\t\treturn Get(name)\r\n\t\t\t\t\tend\r\n\t\t\t\telseif loweredValue == \"getcontainer\" then\r\n\t\t\t\t\treturn function(name)\r\n\t\t\t\t\t\treturn Get(name)\r\n\t\t\t\t\tend\r\n\t\t\t\telse\r\n\t\t\t\t\tlocal Object = Configuration:FindFirstChild(value)\r\n\t\t\t\t\tif Object and AcceptableTypes[Object.ClassName] then\r\n\t\t\t\t\t\treturn Object.Value\r\n\t\t\t\t\telse\r\n\t\t\t\t\t\terror(\"[EasyConfiguration] - \" .. (Object and \"Object '\"..value..\"' was a \"..Type.getType(Object)..\" value, and not acceptable, so no return was given\" or \"Could not find Object '\"..value..\"' in the configuration\"), 2)\r\n\t\t\t\t\tend\r\n\t\t\t\tend\r\n\t\t\tend;\r\n\t\t\t__newindex = function(_, value, newValue)\r\n\t\t\t\tif type(value) == \"string\" then\r\n\t\t\t\t\tlocal Object = Get(value)\r\n\t\t\t\t\tif Object and AcceptableTypes[Object.ClassName] then\r\n\t\t\t\t\t\tObject.Value = newValue;\r\n\t\t\t\t\telse\r\n\t\t\t\t\t\terror(\"[EasyConfiguration] - Value '\" .. value .. \"' was not accepted, or wasn't in the configuration\", 2);\r\n\t\t\t\t\tend\r\n\t\t\t\telse\r\n\t\t\t\t\terror(\"[EasyConfiguration] - Index with a string\")\r\n\t\t\t\tend\r\n\t\t\tend;\r\n\t\t})\r\n\r\n\t\tEasyConfigCache[Configuration] = NewConfiguration\r\n\t\treturn NewConfiguration;\r\n\tend\r\nend\r\nlib.Make = MakeEasyConfiguration;\r\nlib.MakeEasyConfiguration = MakeEasyConfiguration;\r\n\r\nreturn lib",
+      "sourceBytes": 4501,
+      "sha256": "4051dc6c09016a3672e9eccdf1293d4d27c1260c5675ec4fc15b864bf3d1ae0e"
+    },
+    {
+      "index": 18,
+      "className": "ModuleScript",
+      "source": "-- @author Mark Otaris (ColorfulBody, JulienDethurens) and Quenty\n-- Last modified December 28th, 2013\n\n-- This library contains a collection of clever hacks.\n-- If you ever find a mistake in this library or a way to make a \n-- function more efficient or less hacky, please notify JulienDethurens of it.\n\n-- As far as is known, the functions in this library are foolproof. \n-- It cannot be fooled by a fake value that looks like a real one. \n-- If it says a value is a CFrame, then it _IS_ a CFrame, period.\n\n\nlocal lib = {}\n\nlocal function set(object, property, value)\n\t-- Sets the 'property' property of 'object' to 'value'.\n\t-- This is used with pcall to avoid creating functions needlessly.\n\tobject[property] = value\nend\n\nfunction lib.isAnInstance(value)\n\t-- Returns whether 'value' is an Instance value.\n\tlocal _, result = pcall(Game.IsA, value, 'Instance')\n\treturn result == true\nend\n\nfunction lib.isALibrary(value)\n\t-- Returns whether 'value' is a RbxLibrary.\n\t-- Finds its result by checking whether the value's GetApi function (if it has one) can be dumped (and therefore is a non-Lua function).\n\tif pcall(function() assert(type(value.GetApi) == 'function') end) then -- Check if the value has a GetApi function.\n\t\tlocal success, result = pcall(string.dump, value.GetApi) -- Try to dump the GetApi function.\n\t\treturn result == \"unable to dump given function\" -- Return whether the GetApi function could be dumped.\n\tend\n\treturn false\nend\n\nfunction lib.isAnEnum(value)\n\t-- Returns whether the value is an enum.\n\treturn pcall(Enum.Material.GetEnumItems, value) == true\nend\n\nfunction lib.coerceIntoEnum(value, enum)\n\t-- Coerces a value into an enum item, if possible, throws an error otherwise.\n\tif lib.isAnEnum(enum) then\n\t\tfor _, enum_item in next, enum:GetEnumItems() do\n\t\t\tif value == enum_item or value == enum_item.Name or value == enum_item.Value then return enum_item end\n\t\tend\n\telse\n\t\terror(\"The 'enum' argument must be an enum.\", 2)\n\tend\n\terror(\"The value cannot be coerced into a enum item of the specified type.\", 2)\nend\n\nfunction lib.isOfEnumType(value, enum)\n\t-- Returns whether 'value' is coercible into an enum item of the type 'enum'.\n\tif lib.isAnEnum(enum) then\n\t\treturn pcall(lib.coerceIntoEnum, value, enum) == true\n\telse\n\t\terror(\"The 'enum' argument must be an enum.\", 2)\n\tend\nend\n\nlocal Color3Value = Instance.new('Color3Value')\nfunction lib.isAColor3(value)\n\t-- Returns whether 'value' is a Color3 value.\n\treturn pcall(set, Color3Value, 'Value', value) == true\nend\n\nlocal CFrameValue = Instance.new('CFrameValue')\nfunction lib.isACoordinateFrame(value)\n\t-- Returns whether 'value' is a CFrame value.\n\treturn pcall(set, CFrameValue, 'Value', value) == true\nend\n\nlocal BrickColor3Value = Instance.new('BrickColorValue')\nfunction lib.isABrickColor(value)\n\t-- Returns whether 'value' is a BrickColor value.\n\treturn pcall(set, BrickColor3Value, 'Value', value) == true\nend\n\nlocal RayValue = Instance.new('RayValue')\nfunction lib.isARay(value)\n\t-- Returns whether 'value' is a Ray value.\n\treturn pcall(set, RayValue, 'Value', value) == true\nend\n\nlocal Vector3Value = Instance.new('Vector3Value')\nfunction lib.isAVector3(value)\n\t-- Returns whether 'value' is a Vector3 value.\n\treturn pcall(set, Vector3Value, 'Value', value) == true\nend\n\nfunction lib.isAVector2(value)\n\t-- Returns whether 'value' is a Vector2 value.\n\treturn pcall(function() return Vector2.new() + value end) == true\nend\n\nlocal FrameValue = Instance.new('Frame')\nfunction lib.isAUdim2(value)\n\t-- Returns whether 'value' is a UDim2 value.\n\treturn pcall(set, FrameValue, 'Position', value) == true\nend\n\nfunction lib.isAUDim(value)\n\t-- Returns whether 'value' is a UDim value.\n\treturn pcall(function() return UDim.new() + value end) == true\nend\n\nlocal ArcHandleValue = Instance.new('ArcHandles')\nfunction lib.isAAxis(value)\n\t-- Returns whether 'value' is an Axes value.\n\treturn pcall(set, ArcHandleValue, 'Axes', value) == true\nend\n\nlocal FaceValue = Instance.new('Handles')\nfunction lib.isAFace(value)\n\t-- Returns whether 'value' is a Faces value.\n\treturn pcall(set, FaceValue, 'Faces', value) == true\nend\n\nfunction lib.isASignal(value)\n\t-- Returns whether 'value' is a RBXScriptSignal.\n\tlocal success, connection = pcall(function() return Game.AllowedGearTypeChanged.connect(value) end)\n\tif success and connection then\n\t\tconnection:disconnect()\n\t\treturn true\n\tend\nend\n\nfunction lib.getArchetype(value)\n\t-- Returns the most specific obtainable type of a value it can.\n\treturn value:gsub('.', function(c)\n\t\treturn c:byte()\n\tend)\nend\n\nfunction lib.getSignal(root)\n\t-- Returns a signal from the root.\n\treturn root.MarketplaceService,root.MarketplaceService.GetProductInfo\nend\n\nfunction lib.checkChild(root)\n\t-- Returns a child of the root.\n\treturn root['PlaceId']>=#_VERSION\nend\n\nfunction lib.getType(value)\n\t-- Returns the most specific obtainable type of a value it can.\n\t-- Useful for error messages or anything that is meant to be shown to the user.\n\n\tlocal valueType = type(value)\n\n\tif valueType == 'userdata' then\n\t\tif lib.isAnInstance(value) then return value.ClassName\n\t\telseif lib.isAColor3(value) then return 'Color3'\n\t\telseif lib.isACoordinateFrame(value) then return 'CFrame'\n\t\telseif lib.isABrickColor(value) then return 'BrickColor'\n\t\telseif lib.isAUDim2(value) then return 'UDim2'\n\t\telseif lib.isAUDim(value) then return 'UDim'\n\t\telseif lib.isAVector3(value) then return 'Vector3'\n\t\telseif lib.isAVector2(value) then return 'Vector2'\n\t\telseif lib.isARay(value) then return 'Ray'\n\t\telseif lib.isAnEnum(value) then return 'Enum'\n\t\telseif lib.isASignal(value) then return 'RBXScriptSignal'\n\t\telseif lib.isALibrary(value) then return 'RbxLibrary'\n\t\telseif lib.isAAxis(value) then return 'Axes'\n\t\telseif lib.isAFace(value) then return 'Faces'\n\t\tend\n\telse\n\t\treturn valueType;\n\tend\nend\n\nfunction lib.isAnInt(value)\n\t-- Returns whether 'value' is an interger or not\n\treturn type(value) == \"number\" and value % 1 == 1;\nend\n\n\nfunction lib.isPositiveInt(number)\n\t-- Returns whether 'value' is a positive interger or not.  \n\t-- Useful for money transactions, and is used in the method isAnArray ( )\n\treturn type(value) == \"number\" and number > 0 and math.floor(number) == number\nend\n\n\nfunction lib.isAnArray(value)\n\t-- Returns if 'value' is an array or not\n\n\tif type(value) == \"table\" then\n\t\tlocal maxNumber = 0;\n\t\tlocal totalCount = 0;\n\n\t\tfor index, _ in next, value do\n\t\t\tif lib.isPositiveInt(index) then\n\t\t\t\tmaxNumber = math.max(maxNumber, index)\n\t\t\t\ttotalCount = totalCount + 1\n\t\t\telse\n\t\t\t\treturn false;\n\t\t\tend\n\t\tend\n\n\t\treturn maxNumber == totalCount;\n\telse\n\t\treturn false;\n\tend\nend\n\nreturn lib",
+      "sourceBytes": 6584,
+      "sha256": "772345d6803455068d11cc71ff99235e9e107e6e2857306455ad37aa3255db70"
+    },
+    {
+      "index": 23,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 28,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 34,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 39,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 44,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 49,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 54,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 59,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 64,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 69,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 74,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 79,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 84,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 89,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 94,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 99,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 104,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 109,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 114,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 119,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 124,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 129,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 134,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 139,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 144,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 149,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 154,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 159,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 164,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 169,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 174,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 179,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 184,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 189,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 194,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 199,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 204,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 209,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 214,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 219,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 224,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 229,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 234,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 239,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 244,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 249,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 254,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 259,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 264,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 269,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 274,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 279,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 284,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 289,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 294,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 299,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 304,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 309,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 314,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 319,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 324,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 329,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 334,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 339,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 344,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 349,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 354,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 359,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 364,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 369,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    },
+    {
+      "index": 374,
+      "className": "Script",
+      "source": "\n\nfunction onClicked()\n\n\tscript.Parent.ClickDetector.MaxActivationDistance = 0\n\tscript.Parent.Click:Play()\n\tscript.Parent.Transparency = 1\n\nend\n\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\n",
+      "sourceBytes": 203,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 11,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 11,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 12,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 20,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 20,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 21,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 25,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 25,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 26,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 31,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 31,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 32,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 36,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 36,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 37,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 41,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 41,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 42,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 46,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 46,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 47,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 51,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 51,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 52,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 56,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 56,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 57,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 61,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 61,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 62,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 66,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 66,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 67,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 71,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 71,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 72,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 76,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 76,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 77,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 81,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 81,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 82,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 86,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 86,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 87,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 91,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 91,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 92,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 96,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 96,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 97,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 101,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 101,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 102,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 106,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 106,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 107,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 111,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 111,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 112,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 116,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 116,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 117,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 121,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 121,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 122,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 126,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 126,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 127,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 131,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 131,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 132,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 136,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 136,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 137,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 141,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 141,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 142,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 146,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 146,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 147,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 151,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 151,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 152,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 156,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 156,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 157,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 161,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 161,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 162,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 166,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 166,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 167,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 171,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 171,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 172,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 176,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 176,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 177,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 181,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 181,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 182,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 186,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 186,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 187,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 191,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 191,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 192,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 196,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 196,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 197,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 201,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 201,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 202,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 206,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 206,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 207,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 211,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 211,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 212,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 216,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 216,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 217,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 221,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 221,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 222,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 226,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 226,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 227,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 231,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 231,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 232,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 236,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 236,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 237,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 241,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 241,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 242,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 246,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 246,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 247,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 251,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 251,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 252,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 256,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 256,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 257,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 261,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 261,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 262,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 266,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 266,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 267,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 271,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 271,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 272,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 276,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 276,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 277,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 281,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 281,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 282,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 286,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 286,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 287,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 291,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 291,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 292,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 296,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 296,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 297,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 301,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 301,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 302,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 306,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 306,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 307,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 311,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 311,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 312,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 316,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 316,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 317,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 321,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 321,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 322,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 326,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 326,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 327,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 331,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 331,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 332,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 336,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 336,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 337,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 341,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 341,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 342,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 346,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 346,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 347,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 351,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 351,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 352,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 356,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 356,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 357,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 361,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 361,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 362,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 366,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 366,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 367,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    },
+    {
+      "index": 371,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 371,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 372,
+      "property": "SoundId",
+      "value": "rbxassetid://421058925"
+    }
+  ],
+  "configurationValues": [
+    {
+      "index": 5,
+      "property": "Value",
+      "value": true
+    },
+    {
+      "index": 6,
+      "property": "Value",
+      "value": 1
+    },
+    {
+      "index": 7,
+      "property": "Value",
+      "value": true
+    },
+    {
+      "index": 17,
+      "property": "Value",
+      "value": 99292559910041
+    }
+  ],
+  "sourceBytes": 33947,
+  "roundTrip": {
+    "passed": false,
+    "stage": "deserialize",
+    "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+  },
+  "executed": false,
+  "sha256": "9b95d314dacc7984fa60bbc74ef9584172881ad635b3daad389272e3bf72385e",
+  "securityReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "identityBoundary": "exact imported hierarchy before static normalization; import tool controls the outer root name"
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "id": "c7034d05-11bf-4216-b7dc-d86d939d7f31",
+  "name": "Create a small, playable Sky Steps checkpoint parkour game for o",
+  "request": "Create a small, playable Sky Steps checkpoint parkour game for one player on desktop and touch. Build one coherent short course with three ordered checkpoints, a moving-platform crossing, a clearly marked fall hazard, and a finish. Players must physically traverse it; touching a later checkpoint early must not skip progress. Reaching a checkpoint shows visible activation animation and synchronized confirmation sound. Falling returns the player to the last valid checkpoint without losing progress. Show the current checkpoint and elapsed run time, then a completion result and deliberate replay control. Search Marketplace first for reusable checkpoint, moving-platform and course components, preserving useful existing behavior, visuals, motion and media. Inspect what is included and integrate missing rules rather than replacing working components wholesale. Use Marketplace audio and verify it actually plays. If a suitable component cannot be imported faithfully, record that capability gap. Use compact readable geometry and comfortable jumps; choose reasonable style and layout yourself. No multiplayer, saving, purchases or sprawling map. Success needs native traversal, ordered progression, moving-platform behavior, fall recovery, finish/replay and legible desktop/touch UI. A decorative obstacle scene or a timer alone is insufficient.",
+  "revision": 1,
+  "scope": "Forge_c7034d0511bf",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "draft",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "reviewer",
+      "profileId": "a40347a5-268c-49af-9e89-04e830b20be8",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 74291,
+      "chargedMicros": 14169,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7531,
+      "outputTokens": 2272,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T07:59:16.979Z"
+    }
+  ],
+  "budgetMicros": 250000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T07:59:01.766Z",
+      "message": "reviewer: Component review diagnostic / google/gemini-3.7-flash"
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T07:59:01.762Z",
+  "studioEvidence": null
+}

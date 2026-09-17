@@ -1,0 +1,365 @@
+{
+  "case": "checkpoint-parkour",
+  "candidate": {
+    "id": "398137408",
+    "name": "CheckPoint Pad ",
+    "kind": "Model",
+    "creator": "HunterTheCoder",
+    "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+    "price": 0,
+    "source": "creator_store",
+    "description": "For my obby"
+  },
+  "scope": "AdapterRegression_a95ed58ec323",
+  "result": {
+    "evidence": {
+      "packetHash": "6997bb4323cce322f6bada892a1dbfcd9167ad77ba1482007aa7c54a3da0e61d",
+      "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+      "candidateId": "398137408",
+      "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+      "originalHash": "df5d144ae137e26745d96e3b9c79a7d8d083c5180739cf89c90dae4dd63c4a4e",
+      "derivativeHash": "b85cc7f16c09ed94b1f9392262ce6ba21509e276d1c1ae61aeb044835a5f0bc0",
+      "nodes": [
+        {
+          "index": 1,
+          "parentIndex": 0,
+          "name": "Imported",
+          "className": "Model"
+        },
+        {
+          "index": 2,
+          "parentIndex": 1,
+          "name": "Checkpoint",
+          "className": "Part"
+        },
+        {
+          "index": 3,
+          "parentIndex": 2,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 4,
+          "parentIndex": 2,
+          "name": "Decal",
+          "className": "Decal"
+        }
+      ],
+      "sourceBodies": [
+        {
+          "sha256": "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09",
+          "source": "local Players = game:GetService(\"Players\")\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal pad = script.Parent\nlocal order = pad:GetAttribute(\"CheckpointOrder\") or 1\n\nlocal light = pad:FindFirstChildWhichIsA(\"PointLight\")\nif not light then\n\tlight = Instance.new(\"PointLight\")\n\tlight.Color = Color3.fromRGB(0, 220, 255)\n\tlight.Range = 12\n\tlight.Brightness = 0\n\tlight.Parent = pad\nend\n\nlocal function activateVisuals()\n\tpad.Material = Enum.Material.Neon\n\tpad.Color = Color3.fromRGB(0, 220, 255)\n\t\n\tlocal tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)\n\tlocal tween = TweenService:Create(light, tweenInfo, { Brightness = 2.5, Range = 16 })\n\ttween:Play()\nend\n\nlocal function onTouched(hit)\n\tif not hit or not hit.Parent then return end\n\tlocal character = hit.Parent\n\tlocal humanoid = character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoid or humanoid.Health <= 0 then return end\n\t\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tif not player then return end\n\t\n\tlocal currentCP = player:GetAttribute(\"CurrentCheckpoint\") or 0\n\tif currentCP == order - 1 then\n\t\tplayer:SetAttribute(\"CurrentCheckpoint\", order)\n\t\tplayer:SetAttribute(\"LastCheckpointPosition\", pad.Position + Vector3.new(0, 3.5, 0))\n\t\tactivateVisuals()\n\t\t\n\t\tlocal sound = pad:FindFirstChildWhichIsA(\"Sound\")\n\t\tif sound then\n\t\t\tsound:Play()\n\t\tend\n\tend\nend\n\npad.Touched:Connect(onTouched)\n",
+          "bindings": [
+            {
+              "index": 3,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            }
+          ]
+        }
+      ],
+      "securityProfiles": [
+        {
+          "indices": [
+            3
+          ],
+          "sandboxed": true,
+          "capabilities": [
+            "AccessOutsideWrite",
+            "Animation",
+            "AssetCreateUpdate",
+            "AssetManagement",
+            "AssetRead",
+            "Audio",
+            "Avatar",
+            "AvatarAppearance",
+            "AvatarBehavior",
+            "Basic",
+            "CSG",
+            "Capture",
+            "Chat",
+            "Consequences",
+            "CreateInstances",
+            "DynamicGeneration",
+            "Environment",
+            "Groups",
+            "Input",
+            "LegacySound",
+            "LoadOwnedAsset",
+            "Logging",
+            "Material",
+            "Monetization",
+            "Physics",
+            "PlatformAvatarEditing",
+            "Players",
+            "PromptExternalPurchase",
+            "RemoteEvent",
+            "RunClientScript",
+            "RunServerScript",
+            "SensitiveInput",
+            "ServerCommunication",
+            "Social",
+            "Teleport",
+            "UI"
+          ]
+        }
+      ],
+      "configurationValues": [],
+      "contentReferences": [
+        {
+          "index": 4,
+          "property": "Texture",
+          "value": "rbxassetid://398136610"
+        }
+      ],
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ],
+      "boundary": "Worker-authored adaptation applied to an unparented copy and recaptured. Review the actual surviving sources and bindings; a proposed feature is not proof it exists. Original evidence retained; native restoration passed but no imported code executed. Media, behavior, runtime integration and external dependencies remain unverified."
+    },
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T08:37:25.327Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "component_adapt",
+          "sessionId": "b6773f04-18fd-46b2-b17b-70b789cfbe7b",
+          "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+          "scope": "AdapterRegression_a95ed58ec323",
+          "stagingPath": "ServerStorage/AdapterRegression_a95ed58ec323/AssetStaging/attempt_f9a64bcc860e5bbeac330a47",
+          "previewPath": "Workspace/AdapterRegression_a95ed58ec323/AssetPreviews/attempt_f9a64bcc860e5bbeac330a47",
+          "finalPath": "Workspace/AdapterRegression_a95ed58ec323/Assets/checkpointPadModel"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T08:37:25.328Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T08:37:25.341Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T08:37:25.371Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"componentTransfer\":{\"encodedBytes\":14044,\"chunkSize\":32768,\"sha256\":\"7bb3d4960957aea6a9fdb5fe763c7e9be78903df06ccd15637dfd1fb757bff53\",\"jsonBytes\":10531},\"operation\":\"component_adapt\",\"reasons\":[],\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "adapted_component_transfer",
+        "at": "2026-09-16T08:37:25.397Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "encodedBytes": 14044,
+          "jsonBytes": 10531,
+          "sha256": "7bb3d4960957aea6a9fdb5fe763c7e9be78903df06ccd15637dfd1fb757bff53",
+          "chunkSize": 32768,
+          "chunksRead": 1,
+          "verified": true,
+          "readOnly": true
+        }
+      },
+      {
+        "operation": "adapted_component_archive",
+        "at": "2026-09-16T08:37:25.490Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "version": 1,
+          "kind": "takko-component-adaptation",
+          "original": {
+            "archiveHash": "55221fcf34c79cdefccc181dcbe6c3541b544aeefa362bc5290a27db1df111c3",
+            "manifestHash": "49dc5f659e472f813b0532b530e44049a4e868165806d0a9fe266d9ceeb2e934"
+          },
+          "plan": {
+            "packetHash": "4b4dcc8dd1d53d7bd35b69521f2b2708e1b4e9d147dacc72ddbf73054d53d10c",
+            "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+            "reason": "Adapt legacy checkpoint script into an ordered progression checkpoint pad compatible with R6/R15 characters, sequential order validation (1 -> 2 -> 3), visual activation feedback, and fall recovery checkpoint tracking.",
+            "removeSubtrees": [],
+            "replaceSources": [
+              {
+                "index": 3,
+                "beforeSha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96",
+                "source": "local Players = game:GetService(\"Players\")\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal pad = script.Parent\nlocal order = pad:GetAttribute(\"CheckpointOrder\") or 1\n\nlocal light = pad:FindFirstChildWhichIsA(\"PointLight\")\nif not light then\n\tlight = Instance.new(\"PointLight\")\n\tlight.Color = Color3.fromRGB(0, 220, 255)\n\tlight.Range = 12\n\tlight.Brightness = 0\n\tlight.Parent = pad\nend\n\nlocal function activateVisuals()\n\tpad.Material = Enum.Material.Neon\n\tpad.Color = Color3.fromRGB(0, 220, 255)\n\t\n\tlocal tweenInfo = TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)\n\tlocal tween = TweenService:Create(light, tweenInfo, { Brightness = 2.5, Range = 16 })\n\ttween:Play()\nend\n\nlocal function onTouched(hit)\n\tif not hit or not hit.Parent then return end\n\tlocal character = hit.Parent\n\tlocal humanoid = character:FindFirstChildOfClass(\"Humanoid\")\n\tif not humanoid or humanoid.Health <= 0 then return end\n\t\n\tlocal player = Players:GetPlayerFromCharacter(character)\n\tif not player then return end\n\t\n\tlocal currentCP = player:GetAttribute(\"CurrentCheckpoint\") or 0\n\tif currentCP == order - 1 then\n\t\tplayer:SetAttribute(\"CurrentCheckpoint\", order)\n\t\tplayer:SetAttribute(\"LastCheckpointPosition\", pad.Position + Vector3.new(0, 3.5, 0))\n\t\tactivateVisuals()\n\t\t\n\t\tlocal sound = pad:FindFirstChildWhichIsA(\"Sound\")\n\t\tif sound then\n\t\t\tsound:Play()\n\t\tend\n\tend\nend\n\npad.Touched:Connect(onTouched)\n",
+                "reason": "Replaces legacy ServerStorage spawn logic with attribute-based sequential checkpoint validation, R6/R15 support, and dynamic PointLight activation feedback."
+              }
+            ],
+            "preservedBehavior": [
+              "Retains checkpoint pad part geometry, dimensions, and surface decal texture.",
+              "Retains touch detection when player character steps onto the pad platform."
+            ],
+            "remainingIntegration": [
+              "Marketplace audio asset for checkpoint activation chime must be acquired and attached as a Sound child of the Checkpoint pad.",
+              "Central course manager must duplicate and configure three instances of the pad with CheckpointOrder attributes 1, 2, and 3 along the course path.",
+              "Fall hazard plane and HUD timer controllers need integration with player attributes CurrentCheckpoint and LastCheckpointPosition."
+            ],
+            "nativeTestPlan": [
+              "Step onto Checkpoint 2 or 3 before Checkpoint 1 and verify that no activation light triggers and CurrentCheckpoint attribute remains 0.",
+              "Step onto Checkpoint 1 and verify that the pad material turns to Neon, PointLight activates, and CurrentCheckpoint updates to 1.",
+              "Step onto Checkpoint 2 and verify successful activation to 2, then step onto Checkpoint 3 and verify progression to 3.",
+              "Trigger fall hazard after reaching Checkpoint 2 and verify player respawns/teleports to Checkpoint 2 position without losing progress."
+            ],
+            "runtimeVerification": "not_performed"
+          },
+          "planHash": "e1c8eb31ba0333053050344ba2e68d7e7dbeaa86ff5a8954a440e0b650f38c7e",
+          "adapted": {
+            "archiveHash": "b85cc7f16c09ed94b1f9392262ce6ba21509e276d1c1ae61aeb044835a5f0bc0",
+            "manifestHash": "d29a03f8bb16a89c9e3b06d7c6f1b3ee6bc688a0355de931134f903f8a56f4b4"
+          },
+          "indexMap": [
+            {
+              "before": 1,
+              "after": 1
+            },
+            {
+              "before": 2,
+              "after": 2
+            },
+            {
+              "before": 3,
+              "after": 3
+            },
+            {
+              "before": 4,
+              "after": 4
+            }
+          ],
+          "sourceReview": "required",
+          "runtimeVerification": "not_performed",
+          "exported": false,
+          "executed": false,
+          "sha256": "6997bb4323cce322f6bada892a1dbfcd9167ad77ba1482007aa7c54a3da0e61d",
+          "file": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\6997bb4323cce322f6bada892a1dbfcd9167ad77ba1482007aa7c54a3da0e61d.adaptation.json",
+          "archive": {
+            "status": "captured",
+            "sha256": "b85cc7f16c09ed94b1f9392262ce6ba21509e276d1c1ae61aeb044835a5f0bc0",
+            "bytes": 5960,
+            "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\b85cc7f16c09ed94b1f9392262ce6ba21509e276d1c1ae61aeb044835a5f0bc0.rbxm",
+            "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\d29a03f8bb16a89c9e3b06d7c6f1b3ee6bc688a0355de931134f903f8a56f4b4.component.json",
+            "instanceCount": 4,
+            "scriptCount": 1,
+            "sourceBytes": 1406,
+            "roundTrip": {
+              "passed": true,
+              "checkedProperties": 70,
+              "checkedAttributes": 0,
+              "checkedReferences": 0,
+              "unobservableProperties": [
+                "Model.ModelMeshCFrame",
+                "Model.ModelMeshData",
+                "Model.ModelMeshSize",
+                "Model.NeedsPivotMigration",
+                "Model.ScaleFactor",
+                "Model.WorldPivotData",
+                "Part.Color3uint8",
+                "Part.MaterialVariantSerialized",
+                "Part.formFactorRaw",
+                "Script.ScriptGuid"
+              ],
+              "ignoredIdentityProperties": [
+                "UniqueId",
+                "HistoryId"
+              ]
+            },
+            "persisted": true,
+            "securityReview": "not_performed",
+            "runtimeVerification": "not_performed",
+            "exportConversion": "not_performed"
+          }
+        }
+      }
+    ]
+  },
+  "cleanup": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T08:37:25.490Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "discard",
+        "sessionId": "b6773f04-18fd-46b2-b17b-70b789cfbe7b",
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "scope": "AdapterRegression_a95ed58ec323",
+        "stagingPath": "ServerStorage/AdapterRegression_a95ed58ec323/AssetStaging/attempt_f9a64bcc860e5bbeac330a47",
+        "previewPath": "Workspace/AdapterRegression_a95ed58ec323/AssetPreviews/attempt_f9a64bcc860e5bbeac330a47",
+        "finalPath": "Workspace/AdapterRegression_a95ed58ec323/Assets/checkpointPadModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T08:37:25.491Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T08:37:25.504Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T08:37:25.534Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "paidCalls": 0,
+  "rawGameBenchmark": false,
+  "importedCodeExecuted": false
+}

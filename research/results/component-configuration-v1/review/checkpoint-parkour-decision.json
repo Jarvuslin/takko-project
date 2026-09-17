@@ -1,0 +1,103 @@
+{
+  "packetHash": "3c59796a86e1df7ac717f873763e08212a3b5a9992d59ad2b7f58cb4b173f509",
+  "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+  "disposition": "integration_candidate",
+  "reason": "Compact checkpoint pad model with decal texture and legacy spawn tracking script. Usable as a checkpoint platform asset after adapting checkpoint logic to enforce ordered progression and adding activation visual/audio effects.",
+  "serializedMedia": [
+    {
+      "index": 4,
+      "property": "Texture",
+      "value": "rbxassetid://398136610",
+      "purpose": "Checkpoint indicator surface decal graphic",
+      "verification": "unverified"
+    }
+  ],
+  "sources": [
+    {
+      "sha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96",
+      "behavior": "Listens for Touched events on the checkpoint part, stores the active checkpoint Part reference inside ServerStorage under player userId, and connects to CharacterAdded to teleport the character Torso to the checkpoint.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "Players",
+          "sourceQuote": "local player = game.Players:GetPlayerFromCharacter(hit.Parent)",
+          "verification": "unverified"
+        },
+        {
+          "kind": "service",
+          "value": "ServerStorage",
+          "sourceQuote": "local checkpointData = game.ServerStorage:FindFirstChild(\"CheckpointData\")",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "script.Parent",
+          "sourceQuote": "local spawn = script.Parent",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-checkpoints",
+      "status": "integration_needed",
+      "reason": "Provides basic checkpoint touch detection and spawn tracking, but unconditionally overwrites the player spawn without validating sequential order (1 -> 2 -> 3). Integration needed to enforce sequential checkpoint ordering.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ],
+      "nodeIndices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "requirementId": "req-checkpoint-activation",
+      "status": "integration_needed",
+      "reason": "Checkpoint pad model contains a basic decal and part, but lacks visual light/color tween animations and activation sound confirmation on touch.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ],
+      "nodeIndices": [
+        1,
+        2,
+        4
+      ]
+    }
+  ],
+  "permissionImpacts": [
+    {
+      "capability": "DataStore",
+      "impact": "none_observed",
+      "reason": "Script does not call DataStoreService or persist data across sessions.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    },
+    {
+      "capability": "Network",
+      "impact": "none_observed",
+      "reason": "Script performs no external HTTP or web network requests.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    },
+    {
+      "capability": "ScriptGlobals",
+      "impact": "none_observed",
+      "reason": "Script does not read or write _G or shared globals.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    }
+  ],
+  "integrationNotes": [
+    "Retain the physical platform geometry and decal for checkpoint pad placement along the course.",
+    "Replace or adapt the legacy Touched script to connect to a central checkpoint coordinator validating sequential checkpoint indexing (CP1 -> CP2 -> CP3).",
+    "Add dynamic PointLight/Highlight activation effects and play a checkpoint chime sound when a valid checkpoint is triggered."
+  ],
+  "runtimeVerification": "not_performed"
+}

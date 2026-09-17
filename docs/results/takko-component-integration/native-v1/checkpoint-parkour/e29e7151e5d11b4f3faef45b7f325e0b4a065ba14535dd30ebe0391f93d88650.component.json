@@ -1,0 +1,63 @@
+{
+  "status": "captured",
+  "format": "roblox-native-rbxm-v1",
+  "engineVersion": "0.739.0.7390687",
+  "bytes": 5596,
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Checkpoint",
+      "className": "Part"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "Script",
+      "className": "Script"
+    },
+    {
+      "index": 4,
+      "parentIndex": 2,
+      "name": "Decal",
+      "className": "Decal"
+    }
+  ],
+  "sources": [
+    {
+      "index": 3,
+      "className": "Script",
+      "source": "local spawn = script.Parent\nspawn.Touched:connect(function(hit)\n\tif hit and hit.Parent and hit.Parent:FindFirstChild(\"Humanoid\") then\n\t\tlocal player = game.Players:GetPlayerFromCharacter(hit.Parent)\n\t\tlocal checkpointData = game.ServerStorage:FindFirstChild(\"CheckpointData\")\n\t\tif not checkpointData then\n\t\t\tcheckpointData = Instance.new(\"Model\", game.ServerStorage)\n\t\t\tcheckpointData.Name = \"CheckpointData\"\n\t\tend\n\t\t\n\t\tlocal checkpoint = checkpointData:FindFirstChild(tostring(player.userId))\n\t\tif not checkpoint then\n\t\t\tcheckpoint = Instance.new(\"ObjectValue\", checkpointData)\n\t\t\tcheckpoint.Name = tostring(player.userId)\n\t\t\t\n\t\t\tplayer.CharacterAdded:connect(function(character)\n\t\t\t\twait()\n\t\t\t\tcharacter:WaitForChild(\"Torso\").CFrame = game.ServerStorage.CheckpointData[tostring(player.userId)].Value.CFrame + Vector3.new(0, 4, 0)\n\t\t\tend)\n\t\tend\n\t\t\n\t\tcheckpoint.Value = spawn\n\tend\nend)",
+      "sourceBytes": 885,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 4,
+      "property": "Texture",
+      "value": "rbxassetid://398136610"
+    }
+  ],
+  "configurationValues": [],
+  "sourceBytes": 885,
+  "roundTrip": {
+    "passed": false,
+    "stage": "deserialize",
+    "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+  },
+  "executed": false,
+  "sha256": "32a481c0c9ea1bdc3428d43a736a0728c2227ab30de8af7a47805f91e03a5cb5",
+  "securityReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "identityBoundary": "exact imported hierarchy before static normalization; import tool controls the outer root name"
+}

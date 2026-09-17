@@ -1,0 +1,574 @@
+{
+  "at": "2026-09-14T17:54:04.955Z",
+  "aggregateCapMicros": 1000000,
+  "originalChargedMicros": 371032,
+  "chargedMicros": 779196,
+  "results": [
+    {
+      "model": "openai/gpt-5.6-sol",
+      "withResearch": false,
+      "maxOutputTokens": 12000,
+      "projectId": "00c1c7bf-f053-402c-98fd-04c3e9a6e91b",
+      "stage": "review",
+      "error": null,
+      "durationMs": 99990,
+      "chargedMicros": 57218,
+      "attempts": 1,
+      "indicators": {
+        "acquisition": true,
+        "income": true,
+        "stealing": true,
+        "rebirth": true,
+        "defense": true,
+        "transportRisk": true,
+        "serverAuthority": true,
+        "uncertainty": true
+      },
+      "spec": {
+        "title": "Oddling Heist — Multiplayer First Playable Slice",
+        "summary": "A feasible first playable inspired by the recognizable Steal a Brainrot loop, while using original terminology, primitive-part characters, procedural animation, and code-built UI. Six players receive individual plots around a central conveyor. Original creatures called Oddlings travel along the conveyor with visible prices and income rates. Players begin with enough cash for an entry-tier Oddling, purchase available units, collect generated earnings at their plot, lock their base temporarily, and steal units from unlocked rival plots by carrying them home. All purchases, collections, locks, captures, rates, distances, ownership changes, and carry states are server-authoritative.\n\nSensible defaults: six plots; six unit slots per plot; three rarity tiers; $100 starting cash; conveyor stock rotates continuously; stealing uses a 1.5-second hold; carrying slows movement; locks last 20 seconds with a 60-second cooldown; progress is session-only. Players use ProximityPrompts, making the core interactions usable with keyboard, touch, and gamepad without separate input bindings.\n\nFirst-playable completion means two or more players can join, acquire plots, buy Oddlings, generate and collect cash, steal from an unlocked plot, secure the stolen unit in their own free slot, and use a timed lock to prevent theft. Death, respawn, leaving, full plots, interrupted carries, and plot reassignment are handled without duplicating units or currency.\n\nExplicitly deferred: persistent DataStore progression, rebirths, expanded rarity catalogs, mutations, trading, gifting, combat, owner retaliation tools, elaborate NPC pathfinding, global events, quests, leaderboards, matchmaking, private servers, badges, achievements, localization, analytics, admin tools, uploaded animation/audio/image assets, music, voice lines, and all monetization. These are not represented as completed features.",
+        "visualDirection": "Use a bright, toy-like heist arena made entirely from Roblox primitives within the Forge_PlanningBenchmark namespace. A dark moving conveyor with luminous lane markings occupies the center, while six color-coded plots form a readable ring around it. Each plot has six display pads, a glowing cash collector, a large lock button, a capture zone, low walls, and a gate whose color clearly communicates unlocked, warning, and locked states.\n\nOddlings must be original silhouettes assembled from Parts, spheres, cylinders, Motor6D joints, and small emissive facial pieces rather than meshes, decals, uploaded images, or copied characters. Three initial families provide visual variety: squat box-bodied waddlers, tall spring-legged walkers, and round hovering-looking creatures that remain physically grounded. Tier is communicated through palette, scale, outline, nameplate treatment, and restrained glow rather than external artwork. Original names are assembled from curated fictional word fragments.\n\nMotion is procedural: conveyor units bob, turn their heads, and swing limbs; purchased units visibly travel from the conveyor to their assigned pad; stationed units idle; and carried units wobble behind or above the thief. Theft should be conspicuous through an outline, a progress hold, a carry pose, a movement-speed change, and a clear notification to both players. No uploaded animation IDs are used.\n\nThe code-built HUD uses large rounded panels, high-contrast text, and color-independent labels. It displays cash, plot number, lock state and cooldown, current carried unit, short objective guidance, and transient purchase/theft/error notices. Billboard UI above each Oddling shows its original name, tier, price, and income rate. Layouts must remain readable on desktop, phone, tablet, and gamepad-safe displays. No image asset IDs or monetization surfaces are included. The first slice intentionally remains without music or bespoke sound effects rather than fabricating assets; visual feedback carries all required state.",
+        "requirements": [
+          {
+            "id": "recognizableCoreLoop",
+            "description": "Preserve the recognizable multiplayer loop of acquiring income-producing characters, building value in a personal base, stealing exposed characters from other players, and protecting the base.",
+            "sourceId": "request",
+            "sourceQuote": "Create a Steal a Brainrot style multiplayer Roblox game. Preserve its recognizable core loop.",
+            "origin": "user",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "In a multiplayer session, a player can obtain a plot, buy at least one conveyor unit, earn and collect cash from it, steal a unit from an unlocked rival plot, secure it at their own plot, and activate a timed base lock that prevents theft."
+          },
+          {
+            "id": "originalProceduralContent",
+            "description": "Create original Oddling characters, names, animation, world dressing, and UI without uploaded assets or copied character designs.",
+            "sourceId": "request",
+            "sourceQuote": "Use original procedural characters and UI, no uploaded assets or monetization.",
+            "origin": "user",
+            "category": "presentation",
+            "priority": "required",
+            "acceptance": "All Oddlings and interface elements are built from native Instances, primitive geometry, built-in fonts, colors, gradients, strokes, and procedural motion. No image, mesh, animation, or other uploaded asset IDs are referenced."
+          },
+          {
+            "id": "noMonetization",
+            "description": "Exclude monetization from the first playable.",
+            "sourceId": "request",
+            "sourceQuote": "Use original procedural characters and UI, no uploaded assets or monetization.",
+            "origin": "user",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "The namespace contains no purchase prompts, premium currency, paid boosts, game-pass logic, developer-product logic, advertisements, or monetization UI."
+          },
+          {
+            "id": "firstPlayableScope",
+            "description": "Deliver a feasible first playable and identify systems that are intentionally deferred rather than presenting them as complete.",
+            "sourceId": "request",
+            "sourceQuote": "Choose sensible defaults, ask no questions. Plan a feasible first playable slice and explicitly state what is deferred.",
+            "origin": "user",
+            "category": "lifecycle",
+            "priority": "required",
+            "acceptance": "The implemented slice supports one complete session-based economy and theft loop; deferred systems listed in the plan are absent or clearly inactive, and no persistence or monetization is implied."
+          },
+          {
+            "id": "multiplayerPlots",
+            "description": "Provide six automatically assigned personal plots with finite display capacity and clear ownership.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "world",
+            "priority": "required",
+            "acceptance": "Up to six concurrent players receive distinct plots with six unit pads, a collector, capture zone, lock control, gate, and visible owner label. A player never controls two plots, and unavailable plots are not assigned."
+          },
+          {
+            "id": "conveyorMarket",
+            "description": "Run a central server-controlled conveyor market containing purchasable Oddlings of three rarity tiers.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "The server maintains a bounded rotating set of available Oddlings. Each shows an original name, tier, price, and income rate, moves visibly along the conveyor, and expires at the lane end if unpurchased. A validated purchase charges exactly once and routes the unit to a free buyer slot."
+          },
+          {
+            "id": "sessionEconomy",
+            "description": "Implement a session-only cash economy with starting funds, per-unit income accrual, finite storage slots, and deliberate collection.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "A joining player starts with $100. Owned Oddlings accrue configured income into authoritative uncollected balances, and entering or activating the plot collector transfers the balance to cash exactly once. Insufficient funds and full plots reject purchases without changing state."
+          },
+          {
+            "id": "theftCarryCapture",
+            "description": "Allow players to steal an Oddling from another unlocked plot through an anticipated hold, visible carry state, and successful return to their own base.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "Holding the steal prompt for 1.5 seconds on an eligible foreign Oddling begins one authoritative carry, visibly attaches the unit to the thief, slows the thief, and notifies both parties. Reaching the thief's capture zone transfers the unit to a free slot. Locked plots, own units, occupied units, invalid distances, dead characters, and full destination plots are rejected."
+          },
+          {
+            "id": "carryRecovery",
+            "description": "Recover safely from interrupted theft attempts without duplicating or losing authoritative ownership.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "lifecycle",
+            "priority": "required",
+            "acceptance": "If a carrier dies, resets, disconnects, leaves the arena, or otherwise becomes invalid before capture, the carried Oddling returns to its valid source slot when possible or is resolved once through a defined server cleanup path. Movement speed and carry visuals are restored on every exit path."
+          },
+          {
+            "id": "timedBaseLock",
+            "description": "Give each plot owner a temporary base lock with visible anticipation, active duration, recovery cooldown, and server-enforced protection.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "mechanic",
+            "priority": "required",
+            "acceptance": "Only the current owner can activate their lock. The gate displays a warning transition, remains active for 20 seconds, then enters a visible 60-second cooldown. During the active phase, new thefts are rejected and intruders cannot remain inside the protected plot. Repeated activation cannot bypass the cooldown."
+          },
+          {
+            "id": "serverAuthority",
+            "description": "Keep economy, plot ownership, unit ownership, locking, theft, and carry resolution authoritative on the server.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "network",
+            "priority": "required",
+            "acceptance": "Every client-originating action is checked for player identity, living character, distance, rate limit, ownership, plot state, slot capacity, funds, and current action state. Client-provided prices, income, ownership, or target state are never trusted, and duplicate requests cannot award duplicate cash or units."
+          },
+          {
+            "id": "responsiveHUD",
+            "description": "Provide a persistent, responsive HUD and world-space labels for economy, objectives, locks, purchases, and theft feedback.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "ui",
+            "priority": "required",
+            "acceptance": "The HUD initially displays replicated state even if an early event was missed, survives respawn without duplicates, and updates cash, plot, lock timer, cooldown, carry status, objectives, and notices. Billboard labels expose unit name, tier, price, income, and interaction state. Text remains usable at common phone, tablet, and desktop resolutions."
+          },
+          {
+            "id": "deviceInteractions",
+            "description": "Make the complete core loop operable on keyboard, touch, and gamepad.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "ui",
+            "priority": "required",
+            "acceptance": "Buying, collecting, stealing, locking, and securing units use ProximityPrompt or automatic zone interactions with suitable hold durations and labels, requiring no mouse-only control. Device prompts are visible and do not overlap critical HUD information."
+          },
+          {
+            "id": "proceduralAnimation",
+            "description": "Animate all major Oddling and state transitions procedurally without uploaded animation assets.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "animation",
+            "priority": "required",
+            "acceptance": "Oddlings have connected procedural rigs and visibly distinct conveyor, travel, idle, and carried motion. Purchase travel, theft hold feedback, capture, lock warning, active lock, cooldown, cash collection, and rejected actions each provide observable visual feedback and cleanly stop when their instance or owner is removed."
+          },
+          {
+            "id": "playerLifecycle",
+            "description": "Handle join, character spawn, respawn, death, and leave for plots, HUD state, prompts, carries, and units.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "lifecycle",
+            "priority": "required",
+            "acceptance": "Character-dependent references rebind after respawn; old connections and carry attachments are disconnected; leaving releases the plot and resolves its units and active thefts; a replacement player can claim the cleaned plot without inheriting stale owner state."
+          },
+          {
+            "id": "assetFreeAudioPolicy",
+            "description": "Do not fabricate or load audio assets for the first playable; defer bespoke audio presentation.",
+            "sourceQuote": "",
+            "origin": "inferred",
+            "category": "audio",
+            "priority": "optional",
+            "acceptance": "No uploaded audio IDs, invented IDs, or unsupported claims of bespoke sound are present. The game remains functional with visual feedback only, and audio is identified as deferred."
+          }
+        ],
+        "questions": [],
+        "tasks": [
+          {
+            "id": "sharedContracts",
+            "title": "Define shared tuning, state contracts, and validated action vocabulary",
+            "requirements": [
+              "recognizableCoreLoop",
+              "originalProceduralContent",
+              "noMonetization",
+              "firstPlayableScope",
+              "conveyorMarket",
+              "sessionEconomy",
+              "theftCarryCapture",
+              "timedBaseLock",
+              "serverAuthority",
+              "assetFreeAudioPolicy"
+            ],
+            "dependsOn": [],
+            "files": [
+              "ReplicatedStorage/Forge_PlanningBenchmark/Shared/GameConfig.luau",
+              "ReplicatedStorage/Forge_PlanningBenchmark/Shared/StateTypes.luau"
+            ]
+          },
+          {
+            "id": "buildArena",
+            "title": "Generate the conveyor arena, six plots, zones, gates, and interaction anchors",
+            "requirements": [
+              "multiplayerPlots",
+              "originalProceduralContent",
+              "deviceInteractions",
+              "proceduralAnimation"
+            ],
+            "dependsOn": [
+              "sharedContracts"
+            ],
+            "files": [
+              "ServerScriptService/Forge_PlanningBenchmark/World/WorldBuilder.luau"
+            ]
+          },
+          {
+            "id": "plotLifecycle",
+            "title": "Manage plot assignment, lock phases, character zones, and cleanup",
+            "requirements": [
+              "multiplayerPlots",
+              "timedBaseLock",
+              "serverAuthority",
+              "playerLifecycle"
+            ],
+            "dependsOn": [
+              "sharedContracts",
+              "buildArena"
+            ],
+            "files": [
+              "ServerScriptService/Forge_PlanningBenchmark/Services/PlotService.luau"
+            ]
+          },
+          {
+            "id": "oddlingEconomy",
+            "title": "Implement procedural Oddlings, conveyor stock, purchases, income, and collection",
+            "requirements": [
+              "recognizableCoreLoop",
+              "originalProceduralContent",
+              "conveyorMarket",
+              "sessionEconomy",
+              "serverAuthority",
+              "proceduralAnimation",
+              "playerLifecycle"
+            ],
+            "dependsOn": [
+              "sharedContracts",
+              "buildArena",
+              "plotLifecycle"
+            ],
+            "files": [
+              "ServerScriptService/Forge_PlanningBenchmark/Services/OddlingFactory.luau",
+              "ServerScriptService/Forge_PlanningBenchmark/Services/EconomyService.luau"
+            ]
+          },
+          {
+            "id": "theftSystem",
+            "title": "Implement anticipated stealing, visible carrying, capture, and interruption recovery",
+            "requirements": [
+              "recognizableCoreLoop",
+              "theftCarryCapture",
+              "carryRecovery",
+              "timedBaseLock",
+              "serverAuthority",
+              "proceduralAnimation",
+              "playerLifecycle"
+            ],
+            "dependsOn": [
+              "plotLifecycle",
+              "oddlingEconomy"
+            ],
+            "files": [
+              "ServerScriptService/Forge_PlanningBenchmark/Services/TheftService.luau"
+            ]
+          },
+          {
+            "id": "serverAssembly",
+            "title": "Assemble remotes and services into one authoritative multiplayer session loop",
+            "requirements": [
+              "recognizableCoreLoop",
+              "noMonetization",
+              "firstPlayableScope",
+              "serverAuthority",
+              "playerLifecycle",
+              "assetFreeAudioPolicy"
+            ],
+            "dependsOn": [
+              "sharedContracts",
+              "buildArena",
+              "plotLifecycle",
+              "oddlingEconomy",
+              "theftSystem"
+            ],
+            "files": [
+              "ServerScriptService/Forge_PlanningBenchmark/GameServer.server.luau"
+            ]
+          },
+          {
+            "id": "clientPresentation",
+            "title": "Build the persistent responsive HUD, notices, prompts, and local visual polish",
+            "requirements": [
+              "originalProceduralContent",
+              "responsiveHUD",
+              "deviceInteractions",
+              "proceduralAnimation",
+              "playerLifecycle",
+              "assetFreeAudioPolicy"
+            ],
+            "dependsOn": [
+              "sharedContracts",
+              "serverAssembly"
+            ],
+            "files": [
+              "StarterPlayer/StarterPlayerScripts/Forge_PlanningBenchmark/ClientState.luau",
+              "StarterPlayer/StarterPlayerScripts/Forge_PlanningBenchmark/GameClient.client.luau"
+            ]
+          }
+        ],
+        "referenceDecisions": [
+          {
+            "mechanicId": "centralCharacterMarket",
+            "action": "adapt",
+            "requirementIds": [
+              "conveyorMarket",
+              "originalProceduralContent"
+            ],
+            "reason": "Retain the recognizable central stream of purchasable income units, but use an original conveyor arena and wholly original procedural Oddlings.",
+            "userSourceId": "request",
+            "userQuote": "Create a Steal a Brainrot style multiplayer Roblox game. Preserve its recognizable core loop."
+          },
+          {
+            "mechanicId": "passiveBaseIncome",
+            "action": "include",
+            "requirementIds": [
+              "sessionEconomy",
+              "multiplayerPlots"
+            ],
+            "reason": "Income-producing units and deliberate cash collection are necessary to make acquisition and theft economically meaningful.",
+            "userSourceId": "request",
+            "userQuote": "Preserve its recognizable core loop."
+          },
+          {
+            "mechanicId": "rivalUnitTheft",
+            "action": "include",
+            "requirementIds": [
+              "theftCarryCapture",
+              "carryRecovery",
+              "serverAuthority"
+            ],
+            "reason": "Stealing an exposed rival unit and carrying it back to a personal base is the central multiplayer risk-and-reward interaction.",
+            "userSourceId": "request",
+            "userQuote": "Create a Steal a Brainrot style multiplayer Roblox game. Preserve its recognizable core loop."
+          },
+          {
+            "mechanicId": "temporaryBaseLock",
+            "action": "include",
+            "requirementIds": [
+              "timedBaseLock"
+            ],
+            "reason": "A timed lock gives owners a readable defensive phase and creates windows for theft without requiring combat.",
+            "userSourceId": "request",
+            "userQuote": "Preserve its recognizable core loop."
+          },
+          {
+            "mechanicId": "rebirthProgression",
+            "action": "omit",
+            "requirementIds": [
+              "firstPlayableScope"
+            ],
+            "reason": "Rebirth requires broader balancing and persistence work and is explicitly deferred to keep the first playable feasible."
+          },
+          {
+            "mechanicId": "paidBoostsAndProducts",
+            "action": "omit",
+            "requirementIds": [
+              "noMonetization"
+            ],
+            "reason": "The user explicitly prohibited monetization.",
+            "userSourceId": "request",
+            "userQuote": "no uploaded assets or monetization."
+          }
+        ]
+      }
+    },
+    {
+      "model": "anthropic/claude-sonnet-5",
+      "withResearch": false,
+      "maxOutputTokens": 12000,
+      "projectId": "30fdcda5-f29e-48ca-bbf1-a522706b7ef5",
+      "stage": "failed",
+      "error": "The operation was aborted due to timeout",
+      "durationMs": 120011,
+      "chargedMicros": 154284,
+      "attempts": 1,
+      "indicators": {
+        "acquisition": false,
+        "income": false,
+        "stealing": false,
+        "rebirth": false,
+        "defense": false,
+        "transportRisk": false,
+        "serverAuthority": false,
+        "uncertainty": false
+      },
+      "spec": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5",
+      "withResearch": true,
+      "maxOutputTokens": 12000,
+      "projectId": "ce39751d-c829-4a4b-9a0c-cc4bbaab278c",
+      "stage": "failed",
+      "error": "The operation was aborted due to timeout",
+      "durationMs": 120011,
+      "chargedMicros": 196662,
+      "attempts": 1,
+      "indicators": {
+        "acquisition": false,
+        "income": false,
+        "stealing": false,
+        "rebirth": false,
+        "defense": false,
+        "transportRisk": false,
+        "serverAuthority": false,
+        "uncertainty": false
+      },
+      "spec": null,
+      "research": {
+        "referenceGame": "Steal a Brainrot",
+        "summary": "Steal a Brainrot is described by the retrieved evidence as a multiplayer tycoon/PvP game built around acquiring income-producing collectible characters, defending them at a personal base, and stealing them from other players. A shared central conveyor continuously presents characters with visible prices, rarities, and earning rates. Purchased characters travel toward the buyer’s base, where they generate passive cash that funds stronger purchases. Rival players can contest characters in transit or enter an unprotected base, carry a character home, and claim it. Temporary base locks, theft penalties, owner alerts, and gear-based counterplay turn otherwise idle progression into a recurring risk/reward cycle. Rebirth resets short-term wealth and collections in exchange for permanent economic, capacity, defense, or equipment benefits. The clearest independent account is Kotaku’s gameplay description; the wiki, Game Devourer, and PlayXArena are secondary community/guide sources. No original Roblox experience listing or creator documentation was included in the retrieved pages, so precise statistics and tuning should not be treated as authoritative. The recognizable loop supported by multiple sources is: acquire a producer, wait for passive income, reinvest in better producers, expose or secure the collection through timed defenses, raid competitors, recover from losses, and eventually rebirth for permanent progression.",
+        "mechanics": [
+          {
+            "id": "sharedConveyorAcquisition",
+            "description": "A central shared conveyor or red-carpet marketplace continuously introduces collectible characters. Each offer communicates at least its price, rarity, and income rate. A player with enough cash can purchase an offer, after which the character travels toward that player’s base. Because the marketplace is shared, acquisition is visible and contestable rather than a private shop transaction.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+              "https://steal-a-brainrot.wiki/",
+              "https://playxarena.com/steal-a-brainrot-roblox/"
+            ]
+          },
+          {
+            "id": "passiveIncomeEconomy",
+            "description": "Owned characters occupy the player’s storage or base and repeatedly generate cash. Higher-rarity and more expensive characters generally produce more income, creating an idle-tycoon reinvestment loop in which earnings buy progressively stronger producers.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+              "https://gamedevourer.com/what-is-steal-a-brainrot/",
+              "https://steal-a-brainrot.wiki/"
+            ]
+          },
+          {
+            "id": "contestedPurchases",
+            "description": "A character bought from the shared marketplace is not necessarily safe until it reaches the buyer’s base. Other players can attempt to redirect or buy it during transit, producing costly back-and-forth purchase contests. The community wiki additionally claims prices rise when players contest an offer, but that exact rule and its formula are not independently verified by the retrieved evidence.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+              "https://steal-a-brainrot.wiki/"
+            ]
+          },
+          {
+            "id": "baseRaidingAndTheft",
+            "description": "Players may enter an enemy base while its protection is inactive, pick up one of its income-producing characters, and carry it back to their own base. Successful delivery transfers a valuable economic asset, allowing risky theft to substitute for lengthy saving and making every accumulated collection a multiplayer objective.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+              "https://steal-a-brainrot.wiki/",
+              "https://gamedevourer.com/what-is-steal-a-brainrot/"
+            ]
+          },
+          {
+            "id": "theftRiskAndCounterplay",
+            "description": "Stealing creates a vulnerable carry state. The community wiki reports that the thief moves much more slowly, loses access to items, visibly carries the stolen character, and triggers an immediate owner notification. Other players can attack the carrier to return the character. These consequences turn theft into an exposed escape attempt rather than an instant transfer.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://steal-a-brainrot.wiki/"
+            ]
+          },
+          {
+            "id": "timedBaseDefense",
+            "description": "Each base has a temporary lock or shield activated by its owner. While active, it prevents hostile entry while still allowing the owner to leave, enabling both defensive timing and opportunistic raids. Once protection expires, the collection becomes vulnerable. Retrieved sources mention initial join protection and approximately 60-second activations, but the exact duration, cooldown behavior, intruder trapping, and rebirth scaling require verification.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+              "https://steal-a-brainrot.wiki/",
+              "https://playxarena.com/steal-a-brainrot-roblox/"
+            ]
+          },
+          {
+            "id": "rebirthProgression",
+            "description": "Rebirth is the long-term progression layer. After meeting resource or collection requirements, a player resets cash, owned characters, and some upgrades in exchange for permanent advantages reportedly including income multipliers, extra capacity, longer defense timers, base improvements, and access to additional gear. This gives the repeated acquire-defend-steal loop a reset goal and accelerating progression.",
+            "importance": "core",
+            "sourceUrls": [
+              "https://steal-a-brainrot.wiki/",
+              "https://gamedevourer.com/what-is-steal-a-brainrot/"
+            ]
+          },
+          {
+            "id": "baseCapacityAndLayout",
+            "description": "Personal bases provide finite display or storage slots for income producers. The community wiki describes additional floors and slots unlocked through rebirth progression, with upper floors increasing the time required for a thief to reach and escape with valuable characters. Exact floor counts and thresholds are guide claims rather than independently confirmed rules.",
+            "importance": "supporting",
+            "sourceUrls": [
+              "https://steal-a-brainrot.wiki/"
+            ]
+          },
+          {
+            "id": "onboardingAndStatusUI",
+            "description": "The reported onboarding starts the player with a small cash balance, assigns a base, grants short initial protection, and directs the purchase of an inexpensive first producer. Marketplace labels, cash totals, income rates, rarity, lock timers, interaction prompts, and theft notifications are necessary presentation systems implied or directly described by the guides.",
+            "importance": "supporting",
+            "sourceUrls": [
+              "https://steal-a-brainrot.wiki/",
+              "https://playxarena.com/steal-a-brainrot-roblox/",
+              "https://gamedevourer.com/what-is-steal-a-brainrot/"
+            ]
+          },
+          {
+            "id": "rarityAndSpecialAcquisition",
+            "description": "Characters are divided into rarity tiers that affect scarcity, price, and earning potential. The community wiki also describes timed rare spawns, event variants, traits or mutations, and Lucky Blocks that eventually yield a random character. These extend collection goals but are supplementary to the basic conveyor, income, defense, and theft loop.",
+            "importance": "supporting",
+            "sourceUrls": [
+              "https://steal-a-brainrot.wiki/",
+              "https://gamedevourer.com/what-is-steal-a-brainrot/"
+            ]
+          }
+        ],
+        "unknowns": [
+          "No original Roblox experience listing, creator documentation, or direct first-party gameplay evidence was present in the retrieved material; authorship, release date, platform statistics, and record claims remain unverified.",
+          "The exact current starting cash, first-character price and income, base capacity, rarity table, spawn probabilities, and progression costs may have changed and should not be copied as authoritative tuning.",
+          "Sources are inconsistent or incomplete about initial protection versus repeatable shield duration, whether a cooldown exists, and exactly when the owner may reactivate protection.",
+          "The precise contested-purchase algorithm is unclear, including who receives the character, whether every click raises its price, whether spent money is refunded, and when ownership becomes final.",
+          "The exact theft interaction, valid targets, carry speed reduction, item restrictions, owner notification behavior, hit rules, invulnerability windows, and conditions for returning or transferring a character are not independently verified.",
+          "The available text does not establish authoritative visual specifications for the map, bases, laser gates, conveyor, character silhouettes, animation timing, UI typography, color palette, effects, or sounds beyond broad descriptions such as red conveyor and voxel-style meme creatures.",
+          "Rebirth requirements, reset scope, multiplier values, slot unlock thresholds, lock-time bonuses, and permanent gear unlocks are only described broadly or by a fan wiki and may vary by update.",
+          "Lucky Blocks, event schedules, mutations, traits, rare-spawn guarantees, extra base floors, and specialized gear appear to be later supporting systems rather than requirements of the minimum recognizable core loop.",
+          "The supplied YouTube page contains only a short transcript fragment and does not establish that the full video was watched or verify the implementation shown.",
+          "Claims about paid escape options and Robux purchases describe the reference but are unnecessary to its mechanical identity; their exact behavior and current availability are not verified by the retrieved first-party evidence."
+        ],
+        "sources": [
+          {
+            "url": "https://kotaku.com/steal-a-brainrot-roblox-empire-review-popular-memes-1851787027",
+            "title": "How I Built And Then Lost An Empire In One Of The Most Popular Games On The Planet - Kotaku"
+          },
+          {
+            "url": "https://steal-a-brainrot.wiki/",
+            "title": "STEAL A BRAINROT WIKI - Steal A Brainrot Wiki"
+          },
+          {
+            "url": "https://playxarena.com/steal-a-brainrot-roblox/",
+            "title": "Steal a Brainrot Roblox Game Gameplay & How It Works"
+          },
+          {
+            "url": "https://www.youtube.com/watch?v=is2TjDsAa4A",
+            "title": "How To Make A Steal A Brainrot Game - Roblox Studio Ep5"
+          },
+          {
+            "url": "https://gamedevourer.com/what-is-steal-a-brainrot/",
+            "title": "What Is Steal a Brainrot? The Roblox Game Explained (2026) » Game Devourer"
+          }
+        ],
+        "inputHash": "dcfcc47e63b92f133fbb651c5c7d10da05b547cd08175c0c6bf3f9229d5b9871",
+        "retrievedAt": "2026-09-14T17:38:48.893Z",
+        "method": "openrouter-exa"
+      }
+    }
+  ],
+  "limits": [
+    "Supplementary paired reruns only for truncated cells, raising output cap from 6000 to 12000.",
+    "Same prompt, dossier and provider configuration; samples are stochastic.",
+    "Total accounting includes the original six-cell pilot. No native gameplay tests."
+  ]
+}

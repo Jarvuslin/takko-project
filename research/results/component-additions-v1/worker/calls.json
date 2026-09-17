@@ -1,0 +1,32 @@
+[
+  {
+    "case": "bubble-wrap",
+    "id": 1,
+    "reserve": 0.1271835,
+    "status": 200,
+    "cost": 0.0664305,
+    "usage": {
+      "prompt_tokens": 29364,
+      "completion_tokens": 11842,
+      "total_tokens": 41206,
+      "cost": 0.0664305,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0664305,
+        "upstream_inference_prompt_cost": 0.022023,
+        "upstream_inference_completions_cost": 0.0444075
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 7312,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    }
+  }
+]

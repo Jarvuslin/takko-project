@@ -1,0 +1,153 @@
+{
+  "candidateId": "Crystal Hollow V2 historical expert-assisted baseline",
+  "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+  "track": "game_quality",
+  "status": "pending",
+  "finalScore": null,
+  "observedWeightedScore": null,
+  "goodRatingEligible": null,
+  "dimensions": [
+    {
+      "dimension": "mechanics",
+      "weight": 15,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "content_depth",
+      "weight": 15,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "art_environment",
+      "weight": 15,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "animation",
+      "weight": 10,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "ui_ux",
+      "weight": 8,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "vfx",
+      "weight": 7,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "audio",
+      "weight": 5,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "game_feel",
+      "weight": 10,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "reliability",
+      "weight": 5,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "performance",
+      "weight": 5,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    },
+    {
+      "dimension": "intent_alignment",
+      "weight": 5,
+      "status": "pending",
+      "score": null,
+      "evidenceIds": []
+    }
+  ],
+  "gates": [
+    {
+      "gate": "runtime_errors",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "core_progress",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "required_features",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "animation",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "ui",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "asset_sourcing",
+      "status": "pending",
+      "evidenceIds": []
+    },
+    {
+      "gate": "longform_progression",
+      "status": "pending",
+      "evidenceIds": [],
+      "reason": "Requires completed checkpoints from one session with consistent timestamps and active-play elapsed time"
+    }
+  ],
+  "devChecks": [],
+  "pending": [
+    "gate:runtime_errors",
+    "gate:core_progress",
+    "gate:required_features",
+    "gate:animation",
+    "gate:ui",
+    "gate:asset_sourcing",
+    "gate:longform_progression",
+    "dimension:mechanics",
+    "dimension:content_depth",
+    "dimension:art_environment",
+    "dimension:animation",
+    "dimension:ui_ux",
+    "dimension:vfx",
+    "dimension:audio",
+    "dimension:game_feel",
+    "dimension:reliability",
+    "dimension:performance",
+    "dimension:intent_alignment"
+  ],
+  "integrity": {
+    "verifiedFiles": 4,
+    "integrity": "verified",
+    "authenticity": "not established by hashes"
+  },
+  "assetEvidence": []
+}

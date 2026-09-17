@@ -1,0 +1,98 @@
+{
+  "kind": "takko-inert-asset-audit-v1",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "scope": "TakkoReuseDiagnostic_2d81dda28fc4",
+  "token": "c3c9e0f2-89a5-425a-8b86-80ae36f4331f",
+  "candidate": {
+    "id": "135865294874666",
+    "name": "Butter ASMR [ Virus removed ]",
+    "kind": "Model",
+    "creator": "rvn4x",
+    "sourceUrl": "https://create.roblox.com/store/asset/135865294874666",
+    "price": 0,
+    "source": "creator_store",
+    "description": "I saw a model of this Butter ASMR and it has some viruses, so I decided to remove them COMPLETELY and rewrite the script then publish this model for everyone to use safely. Made by @rvn4x"
+  },
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "audit": {
+    "mode": "inert_quarantine_static_inspection",
+    "sourceOrigin": "ScriptEditorService:GetEditorSource",
+    "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+    "executed": false,
+    "instanceLimit": 300,
+    "sourceLimit": 8,
+    "sourceByteLimit": 65536,
+    "instanceListTruncated": false,
+    "sourceListTruncated": false,
+    "sourceBytesReturned": 2281,
+    "nodes": [
+      {
+        "index": 1,
+        "parentIndex": 0,
+        "name": "Imported",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 2,
+        "parentIndex": 1,
+        "name": "Butter",
+        "nameTruncated": false,
+        "className": "MeshPart"
+      },
+      {
+        "index": 3,
+        "parentIndex": 2,
+        "name": "Script",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 4,
+        "parentIndex": 2,
+        "name": "Camera",
+        "nameTruncated": false,
+        "className": "Camera"
+      }
+    ],
+    "sources": [
+      {
+        "index": 3,
+        "className": "Script",
+        "readable": true,
+        "source": "--[[ Hello! This model is created by @rvn4x on Roblox.\nNotice: Everything is 100% safe to use and edit.\nYou can use it in your game or project without any restrictions. <3 ]]\n\nlocal Part = script.Parent\nlocal TweenService = game:GetService(\"TweenService\")\n\n-- remember what the part looked like before anyone touches it\nlocal OriginalSize = Part.Size\nlocal OriginalCFrame = Part.CFrame\n\nlocal Pressed = false\nlocal Touches = 0 -- how many humanoids are currently standing on it\n\nlocal PressSound = Instance.new(\"Sound\")\nPressSound.SoundId = \"rbxassetid://116062165012558\"\nPressSound.Volume = 0.5\nPressSound.Parent = Part\n\nlocal ReleaseSound = Instance.new(\"Sound\")\nReleaseSound.SoundId = \"rbxassetid://133222321566847\"\nReleaseSound.Volume = 0.5\nReleaseSound.Parent = Part\n\nlocal function Press()\n\tif Pressed then return end\n\tPressed = true\n\n\t-- stop the release sound in case it's still finishing up, then play press once\n\tReleaseSound:Stop()\n\tPressSound:Stop()\n\tPressSound:Play()\n\n\t-- squish the plate down\n\tTweenService:Create(Part, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {\n\t\tSize = Vector3.new(OriginalSize.X * 1.12, OriginalSize.Y * 0.25, OriginalSize.Z * 1.12),\n\t\tCFrame = OriginalCFrame * CFrame.new(0, -OriginalSize.Y * 0.4, 0)\n\t}):Play()\nend\n\nlocal function Release()\n\tif not Pressed then return end\n\tPressed = false\n\n\t-- stop the press sound in case it's still finishing up, then play release once\n\tPressSound:Stop()\n\tReleaseSound:Stop()\n\tReleaseSound:Play()\n\n\t-- pop back to normal with a bit of bounce\n\tTweenService:Create(Part, TweenInfo.new(2, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out), {\n\t\tSize = OriginalSize,\n\t\tCFrame = OriginalCFrame\n\t}):Play()\nend\n\nPart.Touched:Connect(function(Hit)\n\tlocal Character = Hit.Parent\n\tif not Character then return end\n\n\tlocal Humanoid = Character:FindFirstChildOfClass(\"Humanoid\")\n\tif not Humanoid then return end\n\n\tTouches += 1\n\tPress()\nend)\n\nPart.TouchEnded:Connect(function(Hit)\n\tlocal Character = Hit.Parent\n\tif not Character then return end\n\n\tlocal Humanoid = Character:FindFirstChildOfClass(\"Humanoid\")\n\tif not Humanoid then return end\n\n\tTouches -= 1\n\tif Touches < 0 then\n\t\tTouches = 0 -- just in case touch events get a little out of sync\n\tend\n\n\tif Touches == 0 then\n\t\tRelease()\n\tend\nend)",
+        "sourceBytes": 2281,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [
+          {
+            "kind": "content_asset_id",
+            "value": "116062165012558"
+          },
+          {
+            "kind": "content_asset_id",
+            "value": "133222321566847"
+          },
+          {
+            "kind": "service",
+            "value": "TweenService"
+          },
+          {
+            "kind": "constructed_class",
+            "value": "Sound"
+          },
+          {
+            "kind": "constructed_class",
+            "value": "Sound"
+          }
+        ],
+        "dependencyListTruncated": false,
+        "sha256": "66b10d277bc21b0c7f8851725fe7bafcd18de29e61a100e6f71a4c7f008ee073"
+      }
+    ]
+  }
+}

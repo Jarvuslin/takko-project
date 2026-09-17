@@ -1,0 +1,231 @@
+{
+  "version": 15,
+  "mode": "build",
+  "planner": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "reviewer": {
+    "id": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+    "name": "Butter Crunch - Gemini evaluator",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "google/gemini-3.7-flash",
+    "inputRate": 0.75,
+    "outputRate": 3.75,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "componentReviewer": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "componentReviewerModel": "openai/gpt-5.6-sol",
+  "componentReviewerOverride": true,
+  "campaignCeilingMicros": 9500000,
+  "plannerModel": "openai/gpt-5.6-sol",
+  "reviewerModel": "google/gemini-3.7-flash",
+  "planAccepted": true,
+  "benchmark": "marketplace-diversity-v8/combat-training",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 719024,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 8110213,
+    "shouldCancel": false
+  },
+  "model": "google/gemini-3.7-flash",
+  "projectId": "d451eccc-9382-4b11-bbf8-315cec17af00",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: Component source review recorded (needs_more_evidence): Useful two-punch animations, audio, effects, and basic cooldown/range logic survive, but the current component is not safe or complete for Strike Lab: it scans all Workspace humanoids, trusts the requested combo step, lacks a third hit, counting, touch controls, feedback, and reset lifecycle, and has no verified playable animation IDs or media playback.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "Component source review recorded (needs_more_evidence): Useful two-punch animations, audio, effects, and basic cooldown/range logic survive, but the current component is not safe or complete for Strike Lab: it scans all Workspace humanoids, trusts the requested combo step, lacks a third hit, counting, touch controls, feedback, and reset lifecycle, and has no verified playable animation IDs or media playback.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
+    "at": "2026-09-16T19:56:38.078Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 19802914,
+  "priorChargedMicros": 7391189,
+  "reservedMicros": 2441806,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 22244720,
+  "chargedMicros": 719024,
+  "combinedChargedMicros": 8110213,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 190542,
+      "chargedMicros": 83896,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6823,
+      "outputTokens": 6684,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T19:52:10.000Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 140641,
+      "chargedMicros": 19539,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 24037,
+      "outputTokens": 403,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T19:52:15.119Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 369868,
+      "chargedMicros": 112130,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 26968,
+      "outputTokens": 4860,
+      "cachedInputTokens": 1691,
+      "status": "ok",
+      "at": "2026-09-16T19:53:29.148Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 144372,
+      "chargedMicros": 35988,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 31298,
+      "outputTokens": 3337,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T19:53:51.159Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 422254,
+      "chargedMicros": 111472,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 34153,
+      "outputTokens": 2998,
+      "cachedInputTokens": 1691,
+      "status": "ok",
+      "at": "2026-09-16T19:54:32.405Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 160273,
+      "chargedMicros": 48269,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 39793,
+      "outputTokens": 4913,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T19:55:01.495Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 492678,
+      "chargedMicros": 155125,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 44730,
+      "outputTokens": 4719,
+      "cachedInputTokens": 1691,
+      "status": "ok",
+      "at": "2026-09-16T19:56:09.532Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 521178,
+      "chargedMicros": 152605,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 48254,
+      "outputTokens": 3586,
+      "cachedInputTokens": 1691,
+      "status": "ok",
+      "at": "2026-09-16T19:56:37.916Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "completeCombatTrainingSystem",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "Component source review recorded (needs_more_evidence): Useful two-punch animations, audio, effects, and basic cooldown/range logic survive, but the current component is not safe or complete for Strike Lab: it scans all Workspace humanoids, trusts the requested combo step, lacks a third hit, counting, touch controls, feedback, and reset lifecycle, and has no verified playable animation IDs or media playback.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized."
+    },
+    {
+      "needId": "compatibleHumanoidDummy",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "lightComboAnimationModel",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "dummyReactionAnimationModel",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "lightImpactAudio",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "finisherImpactAudio",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

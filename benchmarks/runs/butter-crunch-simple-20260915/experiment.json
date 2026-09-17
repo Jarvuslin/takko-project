@@ -1,0 +1,86 @@
+{
+  "id": "butter-crunch-simple-20260915",
+  "createdAt": "2026-09-16T00:07:41.4701870Z",
+  "status": "blocked_setup",
+  "application": "http://127.0.0.1:4324",
+  "promptFile": "prompt.txt",
+  "promptFileSha256": "cfd58131728bb7f22b6698103f0df0c690cbc4de224cb2ddd34879fa9124e435",
+  "profiles": [
+    {
+      "profileId": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+      "model": "minimax/minimax-m3",
+      "role": "worker"
+    },
+    {
+      "profileId": "3feda1ba-ad30-45de-9d47-b33785414efc",
+      "model": "xiaomi/mimo-v2.5-pro",
+      "role": "worker"
+    },
+    {
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "role": "worker"
+    },
+    {
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "role": "planner-reviewer"
+    }
+  ],
+  "runs": [
+    {
+      "model": "minimax/minimax-m3",
+      "profileId": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+      "projectId": "4edb15f9-801d-43e7-902e-181fff632a53",
+      "status": "awaiting_credentials_and_studio",
+      "generationCalls": 0,
+      "qualityScore": null
+    },
+    {
+      "model": "xiaomi/mimo-v2.5-pro",
+      "profileId": "3feda1ba-ad30-45de-9d47-b33785414efc",
+      "projectId": "0fa57407-671f-4b68-97b1-741c95a270b3",
+      "status": "awaiting_credentials_and_studio",
+      "generationCalls": 0,
+      "qualityScore": null
+    },
+    {
+      "model": "x-ai/grok-build-0.1",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "projectId": "f9218794-5c1a-4af9-95ee-f4642bf884b3",
+      "status": "awaiting_credentials_and_studio",
+      "generationCalls": 0,
+      "qualityScore": null
+    }
+  ],
+  "policy": {
+    "plannerAndReviewer": "google/gemini-3.7-flash",
+    "builderAndRepair": "each candidate model",
+    "automaticRepairRounds": 1,
+    "maxOutputTokens": 24000,
+    "proposedPerRunBudgetMicros": 2000000,
+    "proposedTotalReservationCeilingMicros": 6000000,
+    "marketplaceFirst": true,
+    "manualGameCodeOrAssetRescue": false,
+    "studioMutations": "serial per selected disposable place",
+    "researchEnabled": false,
+    "interpretation": "Small end-to-end pilot with identical prompt and planner model; independently generated plans can vary, not an isolated worker-quality ranking"
+  },
+  "requiredEvidence": [
+    "worker Marketplace search/import/verification receipts",
+    "final artifact hash",
+    "fresh counter zero",
+    "10 separated crunches yield exactly 10",
+    "overlapping input does not double-count one crunch",
+    "visible repeatable action and recovery",
+    "actual synchronized crunch audio",
+    "desktop and mobile controls",
+    "no runtime errors during repeated use"
+  ],
+  "currentBlockers": [
+    "No API credentials loaded at preflight",
+    "Studio discovery returned studios:[]"
+  ],
+  "finishedGames": [],
+  "qualityScore": null
+}

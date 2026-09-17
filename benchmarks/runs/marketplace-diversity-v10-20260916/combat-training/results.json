@@ -1,0 +1,193 @@
+{
+  "version": 15,
+  "mode": "build",
+  "planner": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "reviewer": {
+    "id": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+    "name": "Butter Crunch - Gemini evaluator",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "google/gemini-3.7-flash",
+    "inputRate": 0.75,
+    "outputRate": 3.75,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "componentReviewer": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "componentReviewerModel": "openai/gpt-5.6-sol",
+  "componentReviewerOverride": true,
+  "campaignCeilingMicros": 7500000,
+  "plannerModel": "openai/gpt-5.6-sol",
+  "reviewerModel": "google/gemini-3.7-flash",
+  "planAccepted": true,
+  "benchmark": "marketplace-diversity-v8/combat-training",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 461996,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 5899407,
+    "shouldCancel": false
+  },
+  "model": "google/gemini-3.7-flash",
+  "projectId": "b3ab246d-e40a-499a-a359-f96a46b13604",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: Component source review recorded (needs_more_evidence): Useful combat timing, HUD, input, effects, sounds, and retained R15 keyframe data remain, but the captured component is not integration-ready. Animation bindings/playback are unresolved, the third strike reuses an earlier track, client/server recovery can desynchronize, reset does not cancel pending contacts, and the fallback dummy is not a connected humanoid rig.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "Component source review recorded (needs_more_evidence): Useful combat timing, HUD, input, effects, sounds, and retained R15 keyframe data remain, but the captured component is not integration-ready. Animation bindings/playback are unresolved, the third strike reuses an earlier track, client/server recovery can desynchronize, reset does not cancel pending contacts, and the fallback dummy is not a connected humanoid rig.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
+    "at": "2026-09-16T18:11:57.652Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 14328463,
+  "priorChargedMicros": 5437411,
+  "reservedMicros": 1351062,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 15679525,
+  "chargedMicros": 461996,
+  "combinedChargedMicros": 5899407,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 190542,
+      "chargedMicros": 85404,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6834,
+      "outputTokens": 6832,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T18:07:17.018Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 137047,
+      "chargedMicros": 19052,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 23682,
+      "outputTokens": 344,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T18:07:21.139Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 330000,
+      "chargedMicros": 102267,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 23271,
+      "outputTokens": 4757,
+      "cachedInputTokens": 1513,
+      "status": "ok",
+      "at": "2026-09-16T18:08:35.388Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 130187,
+      "chargedMicros": 52989,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 28111,
+      "outputTokens": 8508,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T18:09:26.842Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 145334,
+      "chargedMicros": 56232,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 35346,
+      "outputTokens": 7926,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T18:10:11.979Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 417952,
+      "chargedMicros": 146052,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 36601,
+      "outputTokens": 5803,
+      "cachedInputTokens": 1513,
+      "status": "ok",
+      "at": "2026-09-16T18:11:57.497Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "combatTrainingComponent",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "Component source review recorded (needs_more_evidence): Useful combat timing, HUD, input, effects, sounds, and retained R15 keyframe data remain, but the captured component is not integration-ready. Animation bindings/playback are unresolved, the third strike reuses an earlier track, client/server recovery can desynchronize, reset does not cancel pending contacts, and the fallback dummy is not a connected humanoid rig.. Complete dependency verification and supported native integration are still required; procedural fallback is not authorized."
+    },
+    {
+      "needId": "comboAnimationModel",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "humanoidDummyRig",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "verifiedHitImpact",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

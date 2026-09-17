@@ -1,0 +1,12 @@
+import { runDiversityBenchmark } from "../scripts/run-marketplace-diversity-benchmark";
+const result = await runDiversityBenchmark("bubble-wrap", {
+  version: 15, mode: "build", plannerModel: "openai/gpt-5.6-sol", componentReviewerModel: "openai/gpt-5.6-sol", model: "google/gemini-3.7-flash",
+  studioId: "af74e97f-57b3-40c6-a281-83e1040ff755",
+  output: "benchmarks/runs/marketplace-diversity-v12-20260916/bubble-wrap",
+  priorChargedMicros: 6814129, priorReservationsMicros: 17847713,
+  budgetMicros: 1000000, campaignCeilingMicros: 8250000, workerRequestTimeoutMs: 300000,
+  baseUrl: "http://127.0.0.1:4335", dataDirectory: ".forge/diversity-v12-runtime",
+});
+console.log(JSON.stringify(result, null, 2));
+if (!result.noFurtherCallsPending || !result.routesRestored || result.requiresReconciliation) process.exitCode = 2;
+else if (result.error) process.exitCode = 1;

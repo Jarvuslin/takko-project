@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "id": "b345ec8c-3660-4f3d-b32a-2095d4723318",
+  "name": "Create a small, playable Strike Lab fighting-game training arena",
+  "request": "Create a small, playable Strike Lab fighting-game training arena for one player on desktop and touch. Include a humanoid training dummy, a three-hit light-attack combo with visible windup, contact and recovery animations, synchronized hit sound effects, a visible accepted-hit counter and dummy health. The server must validate attack timing and range. Each accepted strike damages and counts once at contact; swinging out of range, holding the button or spamming during recovery must not create extra hits. Show distinct hit and miss feedback. After defeat, reset the dummy and let the player practice again; provide a clear reset control and an uncluttered arena. Search Marketplace first for complete reusable combat/training components, compatible dummy rigs, existing animations and sound rather than rebuilding everything. Inspect compatibility, behavior and included media, preserve useful working pieces and author only missing integration. Source missing audio from Marketplace and verify actual playing animations and audible sounds. Record an importer capability gap honestly rather than treating it as a bad asset. Choose reasonable styling and damage values yourself. No PvP, matchmaking, saving, monetization or large world. Success needs native evidence for the full combo, exact counting, misses, recovery spam, defeat/reset and desktop/touch controls. A damage script with a static dummy does not meet the animation requirement.",
+  "revision": 1,
+  "scope": "Forge_b345ec8c3660",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "draft",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [],
+  "budgetMicros": 1000000,
+  "reservedMicros": 0,
+  "events": [],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T09:44:34.327Z",
+  "studioEvidence": null
+}

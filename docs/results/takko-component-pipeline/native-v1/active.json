@@ -1,0 +1,217 @@
+{
+  "name": "checkpoint-parkour",
+  "scope": "AdapterRegression_a95ed58ec323",
+  "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+  "receipts": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T08:37:24.991Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "prepare",
+        "sessionId": "b6773f04-18fd-46b2-b17b-70b789cfbe7b",
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "scope": "AdapterRegression_a95ed58ec323",
+        "stagingPath": "ServerStorage/AdapterRegression_a95ed58ec323/AssetStaging/attempt_f9a64bcc860e5bbeac330a47",
+        "previewPath": "Workspace/AdapterRegression_a95ed58ec323/AssetPreviews/attempt_f9a64bcc860e5bbeac330a47",
+        "finalPath": "Workspace/AdapterRegression_a95ed58ec323/Assets/checkpointPadModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T08:37:24.992Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T08:37:25.004Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T08:37:25.027Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T08:37:25.028Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T08:37:25.041Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "insert_asset",
+      "at": "2026-09-16T08:37:25.109Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"insertGuid\":\"44436868-4291-46f5-863d-0fdca54e974e\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.AdapterRegression_a95ed58ec323.AssetStaging.attempt_f9a64bcc860e5bbeac330a47.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"398137408\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:44436868-4291-46f5-863d-0fdca54e974e\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T08:37:25.109Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "inspect",
+        "sessionId": "b6773f04-18fd-46b2-b17b-70b789cfbe7b",
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "scope": "AdapterRegression_a95ed58ec323",
+        "stagingPath": "ServerStorage/AdapterRegression_a95ed58ec323/AssetStaging/attempt_f9a64bcc860e5bbeac330a47",
+        "previewPath": "Workspace/AdapterRegression_a95ed58ec323/AssetPreviews/attempt_f9a64bcc860e5bbeac330a47",
+        "finalPath": "Workspace/AdapterRegression_a95ed58ec323/Assets/checkpointPadModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T08:37:25.110Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T08:37:25.121Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T08:37:25.153Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"reasons\":[\"Unsupported or executable class: Script\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":15012,\"chunkSize\":32768,\"sha256\":\"2cad33885902dbb5f07c0a1674d94d60f14d8f82e8eb777c895f140250b9bf2a\",\"jsonBytes\":11259},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":1,\"contentLoaded\":false,\"instanceCount\":4},\"size\":1}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "component_transfer",
+      "at": "2026-09-16T08:37:25.179Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "candidateId": "398137408",
+        "encodedBytes": 15012,
+        "jsonBytes": 11259,
+        "sha256": "2cad33885902dbb5f07c0a1674d94d60f14d8f82e8eb777c895f140250b9bf2a",
+        "chunkSize": 32768,
+        "chunksRead": 1,
+        "verified": true,
+        "readOnly": true
+      }
+    },
+    {
+      "operation": "component_archive",
+      "at": "2026-09-16T08:37:25.181Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "candidateId": "398137408",
+        "status": "captured",
+        "sha256": "df5d144ae137e26745d96e3b9c79a7d8d083c5180739cf89c90dae4dd63c4a4e",
+        "bytes": 5596,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\df5d144ae137e26745d96e3b9c79a7d8d083c5180739cf89c90dae4dd63c4a4e.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\b254b94dcde4c56b381833a59195dad44ccd8fa92f3f5dbd7386e25e51d629a3.component.json",
+        "instanceCount": 4,
+        "scriptCount": 1,
+        "sourceBytes": 885,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      }
+    },
+    {
+      "operation": "inert_asset_audit",
+      "at": "2026-09-16T08:37:25.182Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "token": "03fe4567-bb23-425a-a9d1-2625d58ea738",
+        "candidateId": "398137408",
+        "sha256": "b951c708981a4e64b264f60ab4e1727d6b4169d5935568fc96fafadaf2e98c8c",
+        "bytes": 3334,
+        "auditFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-pipeline-native-v1\\checkpoint-parkour\\b951c708981a4e64b264f60ab4e1727d6b4169d5935568fc96fafadaf2e98c8c.audit.json",
+        "persistence": "full_original_sources_in_sidecar",
+        "sourceBytesReturned": 885
+      }
+    }
+  ]
+}

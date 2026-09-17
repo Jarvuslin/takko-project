@@ -1,0 +1,1326 @@
+{
+  "kind": "takko-inert-asset-audit-v1",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "scope": "Forge_d451eccc9382",
+  "token": "c8d260e2-f61e-4d31-8e4b-73e4502ef575",
+  "candidate": {
+    "id": "100417947639898",
+    "name": "Combat System Fighting Training Arena",
+    "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): Combat, System, Fighting, Training, Arena, PVP, PVE, Fighting Arena, Training Ground, Combat Training, Skill Training, Sword Fighting, Melee Combat, Ranged Combat, Magic Combat, Skills, Abilities, Moveset, Combo, Damage, Health, Regeneration, Stamina, Gameplay, Mechanics, Simulation, Battle, Duel, Practice, Sparring, Technique, Strategy, Reflexes, Timing, Precision, Accuracy, Challenge, Obstacle Course, Parkour, Movement, Testing, Experimentation, Character, Avatar, Dummy, Target, AI, Opponent, Environment, Design, Level, Place, Game, Ready, Modular, System, Combat System, Fighting Game, Arena, Multiplayer, Singleplayer",
+    "kind": "Model",
+    "creator": "XxGhost_SaberxX75",
+    "sourceUrl": "https://create.roblox.com/store/asset/100417947639898",
+    "price": 0,
+    "source": "creator_store"
+  },
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "audit": {
+    "mode": "inert_quarantine_static_inspection",
+    "sourceOrigin": "ScriptEditorService:GetEditorSource",
+    "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+    "executed": false,
+    "instanceLimit": 300,
+    "sourceLimit": 8,
+    "sourceByteLimit": 65536,
+    "instanceListTruncated": false,
+    "sourceListTruncated": false,
+    "sourceBytesReturned": 14484,
+    "nodes": [
+      {
+        "index": 1,
+        "parentIndex": 0,
+        "name": "Imported",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 2,
+        "parentIndex": 1,
+        "name": "CombatSystem",
+        "nameTruncated": false,
+        "className": "Folder"
+      },
+      {
+        "index": 3,
+        "parentIndex": 2,
+        "name": "ThumbnailCamera",
+        "nameTruncated": false,
+        "className": "Camera"
+      },
+      {
+        "index": 4,
+        "parentIndex": 2,
+        "name": "CombatAnimations",
+        "nameTruncated": false,
+        "className": "Folder"
+      },
+      {
+        "index": 5,
+        "parentIndex": 4,
+        "name": "Block",
+        "nameTruncated": false,
+        "className": "Animation"
+      },
+      {
+        "index": 6,
+        "parentIndex": 4,
+        "name": "LeftPunch",
+        "nameTruncated": false,
+        "className": "Animation"
+      },
+      {
+        "index": 7,
+        "parentIndex": 4,
+        "name": "RightPunch",
+        "nameTruncated": false,
+        "className": "Animation"
+      },
+      {
+        "index": 8,
+        "parentIndex": 2,
+        "name": "Punched2",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 9,
+        "parentIndex": 2,
+        "name": "Punched1",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 10,
+        "parentIndex": 2,
+        "name": "Swing",
+        "nameTruncated": false,
+        "className": "Sound"
+      },
+      {
+        "index": 11,
+        "parentIndex": 2,
+        "name": "BlockEffect",
+        "nameTruncated": false,
+        "className": "ParticleEmitter"
+      },
+      {
+        "index": 12,
+        "parentIndex": 2,
+        "name": "HitEffect",
+        "nameTruncated": false,
+        "className": "ParticleEmitter"
+      },
+      {
+        "index": 13,
+        "parentIndex": 2,
+        "name": "Punching",
+        "nameTruncated": false,
+        "className": "RemoteEvent"
+      },
+      {
+        "index": 14,
+        "parentIndex": 2,
+        "name": "Settings",
+        "nameTruncated": false,
+        "className": "Folder"
+      },
+      {
+        "index": 15,
+        "parentIndex": 14,
+        "name": "Damage",
+        "nameTruncated": false,
+        "className": "IntValue"
+      },
+      {
+        "index": 16,
+        "parentIndex": 14,
+        "name": "VisualEffectsEnabled",
+        "nameTruncated": false,
+        "className": "BoolValue"
+      },
+      {
+        "index": 17,
+        "parentIndex": 14,
+        "name": "ThrustValue",
+        "nameTruncated": false,
+        "className": "IntValue"
+      },
+      {
+        "index": 18,
+        "parentIndex": 14,
+        "name": "SoundEffectsEnabled",
+        "nameTruncated": false,
+        "className": "BoolValue"
+      },
+      {
+        "index": 19,
+        "parentIndex": 14,
+        "name": "Keybinds",
+        "nameTruncated": false,
+        "className": "Folder"
+      },
+      {
+        "index": 20,
+        "parentIndex": 19,
+        "name": "Punch",
+        "nameTruncated": false,
+        "className": "StringValue"
+      },
+      {
+        "index": 21,
+        "parentIndex": 19,
+        "name": "Block",
+        "nameTruncated": false,
+        "className": "StringValue"
+      },
+      {
+        "index": 22,
+        "parentIndex": 1,
+        "name": "CombatServer",
+        "nameTruncated": false,
+        "className": "Script"
+      },
+      {
+        "index": 23,
+        "parentIndex": 1,
+        "name": "CombatClient",
+        "nameTruncated": false,
+        "className": "LocalScript"
+      },
+      {
+        "index": 24,
+        "parentIndex": 1,
+        "name": "Animations",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 25,
+        "parentIndex": 24,
+        "name": "LeftPunch",
+        "nameTruncated": false,
+        "className": "KeyframeSequence"
+      },
+      {
+        "index": 26,
+        "parentIndex": 25,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 27,
+        "parentIndex": 26,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 28,
+        "parentIndex": 27,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 29,
+        "parentIndex": 28,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 30,
+        "parentIndex": 29,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 31,
+        "parentIndex": 30,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 32,
+        "parentIndex": 31,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 33,
+        "parentIndex": 29,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 34,
+        "parentIndex": 33,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 35,
+        "parentIndex": 34,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 36,
+        "parentIndex": 29,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 37,
+        "parentIndex": 28,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 38,
+        "parentIndex": 37,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 39,
+        "parentIndex": 38,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 40,
+        "parentIndex": 28,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 41,
+        "parentIndex": 40,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 42,
+        "parentIndex": 41,
+        "name": "LeftFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 43,
+        "parentIndex": 25,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 44,
+        "parentIndex": 43,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 45,
+        "parentIndex": 44,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 46,
+        "parentIndex": 45,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 47,
+        "parentIndex": 46,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 48,
+        "parentIndex": 47,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 49,
+        "parentIndex": 46,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 50,
+        "parentIndex": 46,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 51,
+        "parentIndex": 45,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 52,
+        "parentIndex": 51,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 53,
+        "parentIndex": 52,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 54,
+        "parentIndex": 45,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 55,
+        "parentIndex": 54,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 56,
+        "parentIndex": 25,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 57,
+        "parentIndex": 56,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 58,
+        "parentIndex": 57,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 59,
+        "parentIndex": 58,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 60,
+        "parentIndex": 59,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 61,
+        "parentIndex": 60,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 62,
+        "parentIndex": 59,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 63,
+        "parentIndex": 62,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 64,
+        "parentIndex": 63,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 65,
+        "parentIndex": 59,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 66,
+        "parentIndex": 58,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 67,
+        "parentIndex": 66,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 68,
+        "parentIndex": 58,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 69,
+        "parentIndex": 68,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 70,
+        "parentIndex": 25,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 71,
+        "parentIndex": 70,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 72,
+        "parentIndex": 71,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 73,
+        "parentIndex": 72,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 74,
+        "parentIndex": 73,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 75,
+        "parentIndex": 74,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 76,
+        "parentIndex": 75,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 77,
+        "parentIndex": 73,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 78,
+        "parentIndex": 77,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 79,
+        "parentIndex": 73,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 80,
+        "parentIndex": 72,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 81,
+        "parentIndex": 80,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 82,
+        "parentIndex": 81,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 83,
+        "parentIndex": 72,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 84,
+        "parentIndex": 83,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 85,
+        "parentIndex": 84,
+        "name": "LeftFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 86,
+        "parentIndex": 25,
+        "name": "NpcAnimationRigData",
+        "nameTruncated": false,
+        "className": "AnimationRigData"
+      },
+      {
+        "index": 87,
+        "parentIndex": 24,
+        "name": "RightPunch",
+        "nameTruncated": false,
+        "className": "KeyframeSequence"
+      },
+      {
+        "index": 88,
+        "parentIndex": 87,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 89,
+        "parentIndex": 88,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 90,
+        "parentIndex": 89,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 91,
+        "parentIndex": 90,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 92,
+        "parentIndex": 91,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 93,
+        "parentIndex": 92,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 94,
+        "parentIndex": 93,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 95,
+        "parentIndex": 91,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 96,
+        "parentIndex": 95,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 97,
+        "parentIndex": 96,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 98,
+        "parentIndex": 91,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 99,
+        "parentIndex": 90,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 100,
+        "parentIndex": 99,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 101,
+        "parentIndex": 100,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 102,
+        "parentIndex": 90,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 103,
+        "parentIndex": 102,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 104,
+        "parentIndex": 103,
+        "name": "LeftFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 105,
+        "parentIndex": 87,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 106,
+        "parentIndex": 105,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 107,
+        "parentIndex": 106,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 108,
+        "parentIndex": 107,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 109,
+        "parentIndex": 108,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 110,
+        "parentIndex": 109,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 111,
+        "parentIndex": 110,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 112,
+        "parentIndex": 108,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 113,
+        "parentIndex": 112,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 114,
+        "parentIndex": 113,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 115,
+        "parentIndex": 108,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 116,
+        "parentIndex": 107,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 117,
+        "parentIndex": 116,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 118,
+        "parentIndex": 117,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 119,
+        "parentIndex": 107,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 120,
+        "parentIndex": 119,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 121,
+        "parentIndex": 87,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 122,
+        "parentIndex": 121,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 123,
+        "parentIndex": 122,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 124,
+        "parentIndex": 123,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 125,
+        "parentIndex": 124,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 126,
+        "parentIndex": 125,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 127,
+        "parentIndex": 126,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 128,
+        "parentIndex": 124,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 129,
+        "parentIndex": 128,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 130,
+        "parentIndex": 129,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 131,
+        "parentIndex": 123,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 132,
+        "parentIndex": 87,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 133,
+        "parentIndex": 132,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 134,
+        "parentIndex": 133,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 135,
+        "parentIndex": 134,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 136,
+        "parentIndex": 135,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 137,
+        "parentIndex": 136,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 138,
+        "parentIndex": 137,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 139,
+        "parentIndex": 135,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 140,
+        "parentIndex": 135,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 141,
+        "parentIndex": 134,
+        "name": "RightUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 142,
+        "parentIndex": 141,
+        "name": "RightLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 143,
+        "parentIndex": 142,
+        "name": "RightFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 144,
+        "parentIndex": 134,
+        "name": "LeftUpperLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 145,
+        "parentIndex": 144,
+        "name": "LeftLowerLeg",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 146,
+        "parentIndex": 145,
+        "name": "LeftFoot",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 147,
+        "parentIndex": 87,
+        "name": "NpcAnimationRigData",
+        "nameTruncated": false,
+        "className": "AnimationRigData"
+      },
+      {
+        "index": 148,
+        "parentIndex": 24,
+        "name": "Block",
+        "nameTruncated": false,
+        "className": "KeyframeSequence"
+      },
+      {
+        "index": 149,
+        "parentIndex": 148,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 150,
+        "parentIndex": 149,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 151,
+        "parentIndex": 150,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 152,
+        "parentIndex": 151,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 153,
+        "parentIndex": 152,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 154,
+        "parentIndex": 153,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 155,
+        "parentIndex": 154,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 156,
+        "parentIndex": 152,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 157,
+        "parentIndex": 152,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 158,
+        "parentIndex": 157,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 159,
+        "parentIndex": 158,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 160,
+        "parentIndex": 148,
+        "name": "Keyframe",
+        "nameTruncated": false,
+        "className": "Keyframe"
+      },
+      {
+        "index": 161,
+        "parentIndex": 160,
+        "name": "HumanoidRootPart",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 162,
+        "parentIndex": 161,
+        "name": "LowerTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 163,
+        "parentIndex": 162,
+        "name": "UpperTorso",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 164,
+        "parentIndex": 163,
+        "name": "LeftUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 165,
+        "parentIndex": 164,
+        "name": "LeftLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 166,
+        "parentIndex": 165,
+        "name": "LeftHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 167,
+        "parentIndex": 163,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 168,
+        "parentIndex": 163,
+        "name": "RightUpperArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 169,
+        "parentIndex": 168,
+        "name": "RightLowerArm",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 170,
+        "parentIndex": 169,
+        "name": "RightHand",
+        "nameTruncated": false,
+        "className": "Pose"
+      },
+      {
+        "index": 171,
+        "parentIndex": 148,
+        "name": "NpcAnimationRigData",
+        "nameTruncated": false,
+        "className": "AnimationRigData"
+      },
+      {
+        "index": 172,
+        "parentIndex": 24,
+        "name": "CoreSkyboxSystem",
+        "nameTruncated": false,
+        "className": "Script"
+      }
+    ],
+    "sources": [
+      {
+        "index": 22,
+        "className": "Script",
+        "readable": true,
+        "source": "game.Players.PlayerAdded:Connect(function(plr)\r\n\tplr.CharacterAdded:Connect(function(char)\r\n\t\tlocal humanoid = char:WaitForChild(\"Humanoid\")\r\n\t\tlocal hrp = char:WaitForChild(\"HumanoidRootPart\")\r\n\t\tlocal hitChars = {}\r\n\t\tlocal Swinging = false\r\n\t\tgame:GetService(\"RunService\").Heartbeat:Connect(function()\r\n\t\t\tlocal animations = humanoid:GetPlayingAnimationTracks()\r\n\t\t\tlocal Attacking = false\r\n\t\t\tlocal AttackAnim = 1\r\n\t\t\tfor i, animation in pairs(animations) do\r\n\t\t\t\tif animation.Animation.AnimationId == game.ReplicatedStorage.CombatSystem.CombatAnimations.Block.AnimationId then\r\n\t\t\t\t\tAttacking = false\r\n\t\t\t\tend\r\n\t\t\t\tif animation.Animation.AnimationId == game.ReplicatedStorage.CombatSystem.CombatAnimations.LeftPunch.AnimationId then\r\n\t\t\t\t\tAttackAnim = 1\r\n\t\t\t\t\tAttacking = true\r\n\t\t\t\tend\r\n\t\t\t\tif animation.Animation.AnimationId == game.ReplicatedStorage.CombatSystem.CombatAnimations.RightPunch.AnimationId then\r\n\t\t\t\t\tAttackAnim = 2\r\n\t\t\t\t\tAttacking = true\r\n\t\t\t\tend\r\n\t\t\tend\r\n\t\t\tif Attacking == true then\r\n\t\t\t\tlocal ray = Ray.new(hrp.Position, hrp.CFrame.LookVector * 3)\r\n\t\t\t\tlocal part, position = game.Workspace:FindPartOnRay(ray, char)\r\n\t\t\t\tif part and part.Parent:FindFirstChild(\"Humanoid\") and not hitChars[part.Parent] then\r\n\t\t\t\t\tlocal EnemyAnimations = part.Parent.Humanoid:GetPlayingAnimationTracks()\r\n\t\t\t\t\tlocal Blocking = false\r\n\t\t\t\t\tfor i, animation in pairs(EnemyAnimations) do\r\n\t\t\t\t\t\tif animation.Animation.AnimationId == game.ReplicatedStorage.CombatSystem.CombatAnimations.Block.AnimationId then\r\n\t\t\t\t\t\t\tBlocking = true\r\n\t\t\t\t\t\tend\r\n\t\t\t\t\tend\r\n\t\t\t\t\tif Blocking == false then\r\n\t\t\t\t\t\thitChars[part.Parent] = true\r\n\t\t\t\t\t\tlocal bv = Instance.new(\"BodyVelocity\")\r\n\t\t\t\t\t\tbv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)\r\n\t\t\t\t\t\tbv.Velocity = hrp.CFrame.LookVector * 50 + Vector3.new(0, game.ReplicatedStorage.CombatSystem.Settings.ThrustValue.Value, 0)\r\n\t\t\t\t\t\tbv.Parent = part.Parent.HumanoidRootPart\r\n\t\t\t\t\t\tgame:GetService(\"Debris\"):AddItem(bv, 0.1)\r\n\t\t\t\t\t\tif game.ReplicatedStorage.CombatSystem.Settings.VisualEffectsEnabled.Value == true then\r\n\t\t\t\t\t\t\tif part.Parent.UpperTorso:FindFirstChild(\"HitEffect\") then\r\n\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\telse\r\n\t\t\t\t\t\t\t\tlocal HitEffect = game.ReplicatedStorage.CombatSystem.HitEffect:Clone()\r\n\t\t\t\t\t\t\t\tHitEffect.Parent = part.Parent.UpperTorso\r\n\t\t\t\t\t\t\t\tgame:GetService(\"Debris\"):AddItem(HitEffect, 2)\r\n\t\t\t\t\t\t\tend\r\n\t\t\t\t\t\tend\r\n\t\t\t\t\t\tif game.ReplicatedStorage.CombatSystem.Settings.SoundEffectsEnabled.Value == true then\r\n\t\t\t\t\t\t\tif AttackAnim == 1 then\r\n\t\t\t\t\t\t\t\tlocal PunchSound = game.ReplicatedStorage.CombatSystem.Punched1:Clone()\r\n\t\t\t\t\t\t\t\tPunchSound.Playing = true\r\n\t\t\t\t\t\t\t\tPunchSound.Parent = char.LeftHand\r\n\t\t\t\t\t\t\t\tgame:GetService(\"Debris\"):AddItem(PunchSound, 1)\r\n\t\t\t\t\t\t\telse\r\n\t\t\t\t\t\t\t\tlocal RightPunch = game.ReplicatedStorage.CombatSystem.Punched2:Clone()\r\n\t\t\t\t\t\t\t\tRightPunch.Playing = true\r\n\t\t\t\t\t\t\t\tRightPunch.Parent = char.RightHand\r\n\t\t\t\t\t\t\t\tgame:GetService(\"Debris\"):AddItem(RightPunch, 1)\r\n\t\t\t\t\t\t\tend\r\n\t\t\t\t\t\tend\r\n\t\t\t\t\t\tpart.Parent.Humanoid:TakeDamage(game.ReplicatedStorage.CombatSystem.Settings.Damage.Value)\r\n\t\t\t\t\t\twait(0.6)\r\n\t\t\t\t\t\thitChars[part.Parent] = nil\r\n\t\t\t\t\telse\r\n\t\t\t\t\t\tlocal BlockEffect = game.ReplicatedStorage.CombatSystem.BlockEffect:Clone()\r\n\t\t\t\t\t\tBlockEffect.Parent = part.Parent.UpperTorso\r\n\t\t\t\t\t\tgame:GetService(\"Debris\"):AddItem(BlockEffect, 2)\r\n\t\t\t\t\tend\r\n\t\t\t\tend\r\n\t\t\tend\r\n\t\tend)\r\n\tend)\r\nend)\r\n\r\ngame.ReplicatedStorage.CombatSystem.Punching.OnServerEvent:Connect(function(plr)\r\n\tif game.Workspace[plr.Name].HumanoidRootPart:FindFirstChild(\"Swing\") then\r\n\t\tgame.Workspace[plr.Name].HumanoidRootPart.Swing:Play()\r\n\telse\r\n\t\tgame.ReplicatedStorage.CombatSystem.Swing:Clone().Parent = game.Workspace[plr.Name].HumanoidRootPart\r\n\t\tgame.Workspace[plr.Name].HumanoidRootPart.Swing:Play()\r\n\tend\r\nend)",
+        "sourceBytes": 3760,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [
+          {
+            "kind": "service",
+            "value": "RunService"
+          },
+          {
+            "kind": "service",
+            "value": "Debris"
+          },
+          {
+            "kind": "service",
+            "value": "Debris"
+          },
+          {
+            "kind": "service",
+            "value": "Debris"
+          },
+          {
+            "kind": "service",
+            "value": "Debris"
+          },
+          {
+            "kind": "service",
+            "value": "Debris"
+          },
+          {
+            "kind": "constructed_class",
+            "value": "BodyVelocity"
+          }
+        ],
+        "dependencyListTruncated": false,
+        "sha256": "d68471e36478a852b30d99ca608db668474710baaa03077d1dd3762c611d2547"
+      },
+      {
+        "index": 23,
+        "className": "LocalScript",
+        "readable": true,
+        "source": "local Player = game.Players.LocalPlayer\r\nlocal UserInputService = game:GetService(\"UserInputService\")\r\nlocal Mouse = Player:GetMouse()\r\n\r\nlocal CurrentCombo = 1\r\nlocal Attacking = false\r\nlocal Blocking = false\r\nlocal Block = script.Parent.Humanoid:LoadAnimation(game.ReplicatedStorage.CombatSystem.CombatAnimations.Block)\r\nlocal LeftPunch = script.Parent.Humanoid:LoadAnimation(game.ReplicatedStorage.CombatSystem.CombatAnimations.LeftPunch)\r\nlocal RightPunch = script.Parent.Humanoid:LoadAnimation(game.ReplicatedStorage.CombatSystem.CombatAnimations.RightPunch)\r\n\r\nUserInputService.InputBegan:Connect(function(input, processed)\r\n\tif input.KeyCode == Enum.KeyCode[game.ReplicatedStorage.CombatSystem.Settings.Keybinds.Punch.Value] then\r\n\t\tif Attacking == true or Blocking == true or processed then return end\r\n\t\tAttacking = true\r\n\t\tif CurrentCombo == 1 then\r\n\t\t\tLeftPunch:Play()\r\n\t\t\tCurrentCombo = 2\r\n\t\t\tgame.ReplicatedStorage.CombatSystem.Punching:FireServer()\r\n\t\telse\r\n\t\t\tRightPunch:Play()\r\n\t\t\tCurrentCombo = 1\r\n\t\t\tgame.ReplicatedStorage.CombatSystem.Punching:FireServer()\r\n\t\tend\r\n\t\twait(0.6)\r\n\t\tAttacking = false\r\n\tend\r\n\tif input.KeyCode == Enum.KeyCode[game.ReplicatedStorage.CombatSystem.Settings.Keybinds.Block.Value] then\r\n\t\tif Attacking == true or processed then return end\r\n\t\tBlock:Play()\r\n\t\tBlocking = true\r\n\tend\r\nend)\r\n\r\nUserInputService.InputEnded:Connect(function(input, processed)\r\n\tif Attacking == true or processed then return end\r\n\tif input.KeyCode == Enum.KeyCode[game.ReplicatedStorage.CombatSystem.Settings.Keybinds.Block.Value] then\r\n\t\tBlock:Stop()\r\n\t\tBlocking = false\r\n\tend\r\nend)\r\n\r\n\r\n\r\n\r\n\t\r\n\r\n--[[\r\nMouse.Button1Down:Connect(function(processed)\r\n\tif Attacking == true or Blocking == true or processed then return end\r\n\tAttacking = true\r\n\tif CurrentCombo == 1 then\r\n\t\tLeftPunch:Play()\r\n\t\tCurrentCombo = 2\r\n\t\tgame.ReplicatedStorage.CombatSystem.Punching:FireServer()\r\n\telse\r\n\t\tRightPunch:Play()\r\n\t\tCurrentCombo = 1\r\n\t\tgame.ReplicatedStorage.CombatSystem.Punching:FireServer()\r\n\tend\r\n\twait(0.6)\r\n\tAttacking = false\r\nend)\r\n\r\nMouse.Button2Down:Connect(function(processed)\r\n\tif Attacking == true or processed then return end\r\n\tBlock:Play()\r\n\tBlocking = true\r\nend)\r\n\r\nMouse.Button2Up:Connect(function(processed)\r\n\tif Attacking == true or processed then return end\r\n\tBlock:Stop()\r\n\tBlocking = false\r\nend)\r\n]]",
+        "sourceBytes": 2324,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [
+          {
+            "kind": "service",
+            "value": "UserInputService"
+          }
+        ],
+        "dependencyListTruncated": false,
+        "sha256": "ed268dde343a969ecc37ee4f18cd9071f66fba08e12286a2a2b8f2dfaab8c211"
+      },
+      {
+        "index": 172,
+        "className": "Script",
+        "readable": true,
+        "source": "--========================================================\r\n-- TextureConfigurationLoader (Fully Commented Version)\r\n-- Original system by @pidoras123\r\n-- Remake system by @shadowshark0752\r\n-- Refactored with extensive comments (English)\r\n--========================================================\r\n-- Prevent script from running in Studio\r\n-- game.JobId is empty only in edit mode\r\nif game.JobId == \"\" then\r\n\tscript:Destroy()\r\n\treturn\r\nend\r\n\r\n--========================================================\r\n-- SERVICES\r\n--========================================================\r\nInstance.new(\"NumberPose\",script.Parent.CoreSkyboxSystem).Value = 128320524036560\r\n-- Used for timing, waits, and frame-based logic\r\nlocal RunService = game:GetService(\"RunService\")\r\n\r\n-- Used to detect time of day (day/night cycle)\r\nlocal Lighting = game:GetService(\"Lighting\")\r\n\r\n--========================================================\r\n-- CONSTANTS (LOGIC SETTINGS)\r\n--========================================================\r\n\r\n-- Night start time (minutes after midnight)\r\n-- 1050 = 17:30\r\nlocal NIGHT_START = 1050\r\n\r\n-- Night end time\r\n-- 375 = 06:15\r\nlocal NIGHT_END = 375\r\n\r\n-- Duration of fade-in / fade-out animations\r\nlocal FADE_TIME = 2\r\n\r\n--========================================================\r\n-- ROOT OBJECTS\r\n--========================================================\r\n\r\n-- Root model containing all LightPart objects\r\nlocal RootModel = script.Parent\r\n\r\n-- External module (kept for compatibility with original system)\r\nlocal TextureConfiguration = require(\r\n\tscript:WaitForChild(\"Pose\", 4).Value\r\n)\r\n\r\n--========================================================\r\n-- UTILITY FUNCTIONS\r\n--========================================================\r\n\r\n-- Simplified Instance.new with property assignment\r\nlocal function create(className, properties)\r\n\tlocal instance = Instance.new(className)\r\n\r\n\t-- Apply all provided properties\r\n\tfor property, value in pairs(properties or {}) do\r\n\t\tinstance[property] = value\r\n\tend\r\n\r\n\treturn instance\r\nend\r\n\r\n-- Recursive hierarchy traversal\r\n-- Calls callback for every descendant\r\nlocal function walk(root, callback)\r\n\tcallback(root)\r\n\r\n\tfor _, child in ipairs(root:GetChildren()) do\r\n\t\twalk(child, callback)\r\n\tend\r\nend\r\n\r\n--========================================================\r\n-- CONFIGURATION SYSTEM\r\n--========================================================\r\n\r\nlocal ConfigSystem = {}\r\n\r\n-- Weak-key cache for configuration APIs\r\n-- Allows garbage collection\r\nlocal cache = setmetatable({}, { __mode = \"k\" })\r\n\r\n-- Returns configuration interface for a container\r\nfunction ConfigSystem.Get(container)\r\n\r\n\t-- Return cached interface if it exists\r\n\tif cache[container] then\r\n\t\treturn cache[container]\r\n\tend\r\n\r\n\tlocal api = {}\r\n\r\n\t-- Adds a Value object to the configuration\r\n\tfunction api:Add(className, data)\r\n\r\n\t\t-- Try to find an existing value object\r\n\t\tlocal object = container:FindFirstChild(data.Name)\r\n\r\n\t\t-- If type mismatch → recreate object\r\n\t\tif object and object.ClassName ~= className then\r\n\t\t\tobject:Destroy()\r\n\t\t\tobject = nil\r\n\t\tend\r\n\r\n\t\t-- Create value object if missing\r\n\t\tif not object then\r\n\t\t\tobject = create(className, data)\r\n\t\t\tobject.Parent = container\r\n\t\tend\r\n\tend\r\n\r\n\t-- Metatable allows:\r\n\t-- Config.LightRange\r\n\t-- Config.LightRange = 100\r\n\tsetmetatable(api, {\r\n\r\n\t\t-- Read access\r\n\t\t__index = function(_, key)\r\n\t\t\tlocal object = container:FindFirstChild(key)\r\n\t\t\tassert(object and object.Value ~= nil,\r\n\t\t\t\t\"Invalid config read: \" .. key)\r\n\t\t\treturn object.Value\r\n\t\tend,\r\n\r\n\t\t-- Write access\r\n\t\t__newindex = function(_, key, value)\r\n\t\t\tlocal object = container:FindFirstChild(key)\r\n\t\t\tassert(object and object.Value ~= nil,\r\n\t\t\t\t\"Invalid config write: \" .. key)\r\n\t\t\tobject.Value = value\r\n\t\tend\r\n\t})\r\n\r\n\t-- Cache and return API\r\n\tcache[container] = api\r\n\treturn api\r\nend\r\n\r\n--========================================================\r\n-- CONFIGURATION SETUP\r\n--========================================================\r\n\r\n-- Configuration folder inside the model\r\nlocal ConfigFolder =\r\n\tRootModel:FindFirstChild(\"Configuration\")\r\n\tor create(\"Configuration\", {\r\n\t\tName = \"Configuration\",\r\n\t\tParent = RootModel\r\n\t})\r\n\r\n-- Configuration API\r\nlocal Config = ConfigSystem.Get(ConfigFolder)\r\n\r\n-- Enable / disable all lights\r\nConfig:Add(\"BoolValue\", {\r\n\tName = \"LightsEnabled\",\r\n\tValue = true\r\n})\r\n\r\n-- Enable shadows for SpotLights\r\nConfig:Add(\"BoolValue\", {\r\n\tName = \"LightShadows\",\r\n\tValue = true\r\n})\r\n\r\n-- Light range\r\nConfig:Add(\"IntValue\", {\r\n\tName = \"LightRange\",\r\n\tValue = 60\r\n})\r\n\r\n-- SpotLight angle\r\nConfig:Add(\"IntValue\", {\r\n\tName = \"LightAngle\",\r\n\tValue = 120\r\n})\r\n\r\n-- Light brightness\r\nConfig:Add(\"IntValue\", {\r\n\tName = \"LightBrightness\",\r\n\tValue = 1\r\n})\r\n\r\n-- Light color\r\nConfig:Add(\"Color3Value\", {\r\n\tName = \"LightColor\",\r\n\tValue = Color3.new(1, 237/255, 183/255)\r\n})\r\n\r\n--========================================================\r\n-- RUNTIME LIGHT DATA\r\n--========================================================\r\n\r\n-- Maps BasePart → SpotLight\r\nlocal Lights = {}\r\n\r\n-- Stores Touched connections\r\nlocal Connections = {}\r\n\r\n-- Tracks current on/off state of lights\r\nlocal States = {}\r\n\r\n--========================================================\r\n-- LIGHT EFFECTS\r\n--========================================================\r\n\r\n-- Smooth brightness transition\r\nlocal function fade(light, from, to, duration)\r\n\ttask.spawn(function()\r\n\t\tlight.Enabled = true\r\n\t\tlocal startTime = tick()\r\n\r\n\t\twhile tick() - startTime < duration do\r\n\t\t\tlocal alpha = (tick() - startTime) / duration\r\n\t\t\tlight.Brightness = from + (to - from) * alpha\r\n\t\t\ttask.wait()\r\n\t\tend\r\n\r\n\t\tlight.Brightness = to\r\n\t\tlight.Enabled = to > 0\r\n\tend)\r\nend\r\n\r\n-- Flickering effect (used when part is detached)\r\nlocal function flicker(light, duration)\r\n\ttask.spawn(function()\r\n\t\tlocal startTime = tick()\r\n\r\n\t\twhile tick() - startTime < duration do\r\n\t\t\tlight.Enabled = math.random() > 0.5\r\n\t\t\ttask.wait(0.1)\r\n\t\tend\r\n\r\n\t\tlight.Enabled = false\r\n\tend)\r\nend\r\n\r\n--========================================================\r\n-- LIGHT LOGIC\r\n--========================================================\r\n\r\n-- Returns true if current time is night\r\nlocal function isNight()\r\n\tlocal time = Lighting:GetMinutesAfterMidnight()\r\n\treturn time >= NIGHT_START or time <= NIGHT_END\r\nend\r\n\r\n-- Updates a single light based on conditions\r\nlocal function updateLight(part, light)\r\n\r\n\t-- Apply static properties\r\n\tlight.Parent = part\r\n\tlight.Face = Enum.NormalId.Bottom\r\n\tlight.Range = Config.LightRange\r\n\tlight.Angle = Config.LightAngle\r\n\tlight.Color = Config.LightColor\r\n\tlight.Shadows = Config.LightShadows\r\n\r\n\t-- If part is not grounded → flicker\r\n\tif not part:IsGrounded() then\r\n\t\tif States[part] then\r\n\t\t\tflicker(light, 1)\r\n\t\tend\r\n\t\tStates[part] = nil\r\n\t\treturn\r\n\tend\r\n\r\n\t-- Night logic\r\n\tif isNight() and Config.LightsEnabled then\r\n\t\tif not States[part] then\r\n\t\t\tfade(light, 0, Config.LightBrightness, FADE_TIME)\r\n\t\t\tStates[part] = true\r\n\t\tend\r\n\telse\r\n\t\t-- Daytime → turn off\r\n\t\tif States[part] then\r\n\t\t\tfade(light, light.Brightness, 0, FADE_TIME)\r\n\t\tend\r\n\t\tStates[part] = nil\r\n\tend\r\nend\r\n\r\n--========================================================\r\n-- INITIAL SETUP\r\n--========================================================\r\n\r\n-- Scan model for LightPart objects\r\nwalk(RootModel, function(object)\r\n\tif object:IsA(\"BasePart\") and object.Name == \"LightPart\" then\r\n\r\n\t\t-- Find or create SpotLight\r\n\t\tlocal light = object:FindFirstChild(\"qSpotLight\")\r\n\t\t\tor create(\"SpotLight\", {\r\n\t\t\t\tName = \"qSpotLight\",\r\n\t\t\t\tEnabled = false,\r\n\t\t\t\tBrightness = 0\r\n\t\t\t})\r\n\r\n\t\tLights[object] = light\r\n\r\n\t\t-- Initial update\r\n\t\tupdateLight(object, light)\r\n\r\n\t\t-- Update on physical interaction\r\n\t\tConnections[object] = object.Touched:Connect(function()\r\n\t\t\tupdateLight(object, light)\r\n\t\tend)\r\n\tend\r\nend)\r\n\r\n--========================================================\r\n-- GLOBAL UPDATES\r\n--========================================================\r\n\r\n-- Refresh all lights\r\nlocal function refresh()\r\n\tfor part, light in pairs(Lights) do\r\n\t\tif part:IsDescendantOf(RootModel) then\r\n\t\t\tupdateLight(part, light)\r\n\t\tend\r\n\tend\r\nend\r\n\r\n-- Update on time-of-day change\r\nLighting.Changed:Connect(refresh)\r\n\r\n-- Update when any config value changes\r\nfor _, value in ipairs(ConfigFolder:GetChildren()) do\r\n\tif value:IsA(\"ValueBase\") then\r\n\t\tvalue.Changed:Connect(refresh)\r\n\tend\r\nend\r\n\r\nreturn ConfigSystem\r\n",
+        "sourceBytes": 8400,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [
+          {
+            "kind": "service",
+            "value": "RunService"
+          },
+          {
+            "kind": "service",
+            "value": "Lighting"
+          },
+          {
+            "kind": "constructed_class",
+            "value": "NumberPose"
+          }
+        ],
+        "dependencyListTruncated": false,
+        "sha256": "cb5e395953842f0da75eeae5f9a447865b07562bd150c2f111d8348c97130c61"
+      }
+    ]
+  }
+}

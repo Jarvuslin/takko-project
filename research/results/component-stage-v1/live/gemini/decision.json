@@ -1,0 +1,54 @@
+{
+  "action": "adapt",
+  "plan": {
+    "packetHash": "b2673032181d879afcbf69c3839df12fb93d775ad18cf9c40ed2e1028a9e5e5d",
+    "inputHash": "775dfdb66048b2db8778848b7a44c84d321b2fc4c05448afa87add0dee1d58e3",
+    "reason": "Preserve the candidate's R15 punch KeyframeSequences, Animation objects, impact sounds, swing audio, hit effect particles, and remote hierarchy. Remove the unrelated CoreSkyboxSystem script containing an unresolved external require, and neutralize global hardcoded paths in the candidate scripts so integration tasks can safely bind authoritative Strike Lab combat validation, dummy lifecycle, and touch/desktop input.",
+    "removeSubtrees": [
+      {
+        "index": 172,
+        "reason": "Remove unrelated skybox/lighting script containing an unresolved external require of a non-existent child Pose module."
+      }
+    ],
+    "replaceSources": [
+      {
+        "index": 22,
+        "beforeSha256": "d68471e36478a852b30d99ca608db668474710baaa03077d1dd3762c611d2547",
+        "source": "-- Quarantined candidate server combat script.\n-- Authoritative strike validation, dummy health, and hit token accounting are handled by project integration.\nlocal root = script.Parent\nlocal combatSystem = root:FindFirstChild(\"CombatSystem\")\nif not combatSystem then\n\treturn\nend\n",
+        "reason": "Neutralize unverified Heartbeat raycast loop and hardcoded ReplicatedStorage path to prevent errors prior to namespace-bound combat authority integration."
+      },
+      {
+        "index": 23,
+        "beforeSha256": "ed268dde343a969ecc37ee4f18cd9071f66fba08e12286a2a2b8f2dfaab8c211",
+        "source": "-- Quarantined candidate client combat script.\n-- Input handling, 3-hit combo playback, and touch controls are managed by project client controllers.\n",
+        "reason": "Neutralize unparented Humanoid animation loader to prevent immediate runtime script exceptions."
+      }
+    ],
+    "preservedBehavior": [
+      "R15 punch KeyframeSequences (LeftPunch, RightPunch) and Animation containers for fighting-game strike motions.",
+      "Marketplace impact sounds (Punched1 rbxassetid://3932504231, Punched2 rbxassetid://4306980885) and swing audio (Swing rbxassetid://4059010105).",
+      "HitEffect particle emitter for synchronized visual hit feedback on strike contact.",
+      "CombatSystem configuration folder and RemoteEvent structure for client-server communication."
+    ],
+    "remainingIntegration": [
+      "Source and inspect 3rd light-attack animation (comboAnimationModel) to complete the required 3-hit combo sequence (20/30/50 damage).",
+      "Integrate stationary humanoid training dummy rig (humanoidDummyRig) with 100 health on the Strike Lab mat.",
+      "Verify Marketplace audio loading and spatial audibility for Punched1 and Punched2 impact sounds (verifiedHitImpact).",
+      "Implement server-authoritative combat state machine with 6-stud forward-facing range check, contact timing, per-swing hit token deduplication, and KO state locking.",
+      "Implement Strike Lab HUD displaying dummy health bar, authoritative accepted-hit counter, and combo status indicator.",
+      "Build desktop (MB1, F, R) and touch on-screen controls with recovery lockout and defeat reset handling.",
+      "Harden lifecycle for player respawn, Animator rebinding, connection cleanup, and automatic dummy restoration (~2.5s)."
+    ],
+    "nativeTestPlan": [
+      "Assert presence of preserved KeyframeSequences, Animation instances, Sound effects, and HitEffect in the candidate model hierarchy.",
+      "Verify LeftPunch and RightPunch KeyframeSequences load and play cleanly on an R15 Animator with visible windup, contact, and recovery phases.",
+      "Verify audio assets (rbxassetid://3932504231, rbxassetid://4306980885) load successfully without content errors.",
+      "Test full 3-hit combo sequence verifying damage transitions (20 -> 30 -> 50) and continuation timeout reset.",
+      "Test range validation by swinging beyond 6 studs and verifying whiff presentation, zero damage, zero count increment, and no impact sound.",
+      "Test input rejection by holding attack key and spamming during recovery, confirming exactly one hit token per swing.",
+      "Test dummy defeat at 100 cumulative damage, checking KO state lock, ~2.5s automatic restoration, and manual reset via R key or touch button.",
+      "Test cross-platform controls verifying desktop keyboard/mouse and mobile touch button input paths."
+    ],
+    "runtimeVerification": "not_performed"
+  }
+}

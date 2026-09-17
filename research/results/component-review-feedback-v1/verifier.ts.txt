@@ -1,0 +1,42 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {validateComponentReview} from '../src/generation/component-review';
+const root='research/results/component-review-feedback-v1';
+const read=(p:string)=>JSON.parse(fs.readFileSync(root+'/'+p,'utf8'));
+const hash=(p:string|Buffer)=>createHash('sha256').update(p).digest('hex');
+const protocol=read('live/protocol.json'),result=read('live/result.json');
+const project=read('live/project.json'),input=read('live/input.json'),evidence=read('live/original-evidence.json');
+assert.equal(protocol.priorMicros,6680835);assert.equal(protocol.capMicros,750000);
+assert.equal(hash(JSON.stringify(input)),protocol.inputHash);
+assert.deepEqual(read('offline/input.json'),input);
+assert.deepEqual(read('offline/protocol.json').sources,protocol.sources);
+for(const [f,h] of Object.entries(protocol.sources))assert.equal(hash(fs.readFileSync(f)),h);
+assert.equal(project.jobId,null);assert.equal(project.reservedMicros,0);assert.equal(result.noFurtherCallsPending,true);
+assert.equal(result.rawGamePass,false);assert.equal(result.nativeGameplay,false);
+assert.equal(result.unknownLiability,false,'Unknown outcome needs explicit separate reconciliation');
+const calls=read('live/calls.json');assert(calls.length>=1&&calls.length<=2);
+let actualCost=0,rounded=0;const reviews=[];
+for(const call of calls){
+ const raw=fs.readFileSync(root+'/live/call-'+call.id+'-response.txt','utf8');
+ assert(!/sk-or-v1-[a-f0-9]{30,}/i.test(raw));const wire=JSON.parse(raw);
+ assert(Number.isFinite(wire.usage.cost)&&wire.usage.cost>=0);
+ assert.equal(call.chargedMicros,Math.ceil(wire.usage.cost*1e6));
+ actualCost+=wire.usage.cost;rounded+=call.chargedMicros;
+ let decision:any,error:string|undefined;
+ try{decision=JSON.parse(wire.choices[0].message.content);validateComponentReview(decision,evidence,input.context.requirementIds);}catch(e){error=(e as Error).message;}
+ if(call.id===calls.length){assert.equal(!error,result.contractPassed);if(!error)assert.deepEqual(decision,read('live/decision.json'));}
+ reviews.push({attempt:call.id,rawSha256:hash(wire.choices[0].message.content),error:error??null});
+}
+assert.equal(rounded,result.chargedOrUnknownMicros);assert.equal(result.conservativePriorMicros,6680835+rounded);
+assert.equal(result.historicalEngineReservationsMicros,17447951+project.charges.reduce((n:number,c:any)=>n+c.reservedMicros,0));
+assert(rounded<=750000);assert(result.conservativePriorMicros+400000<=8250000);
+const before=read('live/key-before.json'),after=read('live/key-after.json');
+assert(Math.abs((after.usage-before.usage)-actualCost)<0.000002);
+assert.deepEqual(read('live/call-1-request.json'),read('offline/call-1-request.json'));
+const firstFeedback=read('offline/project.json').events.find((e:any)=>e.message.includes('Validation feedback')).message;
+assert(firstFeedback.includes('removed capability')&&firstFeedback.includes('numeric asset ID'));
+assert.equal(read('offline/result.json').contractPassed,false);
+assert(!fs.existsSync('.forge/component-review-feedback-probe.lock'));
+const out={verifiedAt:new Date().toISOString(),calls:calls.length,actualCostUSD:actualCost,chargedMicros:rounded,conservativePriorMicros:result.conservativePriorMicros,historicalEngineReservationsMicros:result.historicalEngineReservationsMicros,remaining:after.remaining,contractPassed:result.contractPassed,rawGamePass:false,reviews};
+fs.writeFileSync(root+'/verification.json',JSON.stringify(out,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(out,null,2));

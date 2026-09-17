@@ -1,0 +1,58 @@
+[
+  {
+    "operation": "ownership_intent",
+    "at": "2026-09-16T19:42:42.980Z",
+    "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+    "data": {
+      "operation": "discard",
+      "sessionId": "b4528cea-0c0b-454e-80ca-c39014f760ba",
+      "token": "78f504ff-8371-4ed2-a5d4-901f9b3c9c5d",
+      "scope": "ChainRegression_294e0c2cd706",
+      "stagingPath": "ServerStorage/ChainRegression_294e0c2cd706/AssetStaging/attempt_da2a6e2cd57626b3fdd21073",
+      "previewPath": "Workspace/ChainRegression_294e0c2cd706/AssetPreviews/attempt_da2a6e2cd57626b3fdd21073",
+      "finalPath": "Workspace/ChainRegression_294e0c2cd706/Assets/bubbleWrapInteraction"
+    }
+  },
+  {
+    "operation": "list_roblox_studios",
+    "at": "2026-09-16T19:42:42.982Z",
+    "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+    "data": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "operation": "get_studio_state",
+    "at": "2026-09-16T19:42:42.998Z",
+    "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+    "data": {
+      "content": [
+        {
+          "type": "text",
+          "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "operation": "execute_luau",
+    "at": "2026-09-16T19:42:43.033Z",
+    "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+    "data": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+        }
+      ],
+      "isError": false
+    }
+  }
+]

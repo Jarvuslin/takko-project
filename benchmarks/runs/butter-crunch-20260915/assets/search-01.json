@@ -1,0 +1,23 @@
+{
+  "status": "fulfilled",
+  "value": {
+    "args": {
+      "query": "butter",
+      "assetType": "Model",
+      "maxResults": 4,
+      "studio_id": "4794fbfd-333b-4cda-8655-a702bbf75cd9",
+      "scope": "creator_store",
+      "priceFilter": "free"
+    },
+    "retrievedAt": "2026-09-15T18:52:21.384Z",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"scope\":\"creator_store\",\"nextSteps\":[\"Review the results and choose the best asset for the user's request. Prefer inventory results (source='inventory') as these are already owned and always insertable.\",\"For free/owned assets: call insert_asset with assetId, assetType, and assetName from the chosen result to insert it.\",\"For paid assets (isFree=false): show the user the creatorStoreUrl link and priceLabel so they can purchase it. Do not attempt to insert paid assets — they will fail.\",\"Some Creator Store assets may be restricted or moderated and fail to insert. If insert_asset fails, try the next result from the list rather than retrying the same asset.\"],\"resultCount\":4,\"query\":\"butter\",\"status\":\"success\",\"searchSources\":[\"creator_store\"],\"context\":{\"userId\":\"11119876005\",\"isPublished\":false},\"results\":[{\"description\":\"ASMR Butter\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/75968939114112\",\"assetType\":\"Model\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=75968939114112&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"75968939114112\",\"name\":\"ASMR Butter\",\"priceCents\":0,\"creatorName\":\"DM1ner\",\"source\":\"creator_store\"},{\"description\":\"I saw a model of this Butter ASMR and it has some viruses, so I decided to remove them COMPLETELY and rewrite the script then publish this model for everyone to use safely. Made by @rvn4x\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/135865294874666\",\"assetType\":\"Model\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=135865294874666&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"135865294874666\",\"name\":\"Butter ASMR [ Virus removed ]\",\"priceCents\":0,\"creatorName\":\"rvn4x\",\"source\":\"creator_store\"},{\"description\":\"ASMR BUTTER MODEL BY NYTRIX PRIME\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/116499018618337\",\"assetType\":\"Model\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=116499018618337&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"116499018618337\",\"name\":\"ASMR BUTTER MODEL BY NYTRIX PRIME\",\"priceCents\":0,\"creatorName\":\"NytrixPrime_Dev\",\"source\":\"creator_store\"},{\"description\":\"ASMR Squishy Butter\",\"creatorStoreUrl\":\"https://create.roblox.com/store/asset/102797968117555\",\"assetType\":\"Model\",\"thumbnailUrl\":\"https://thumbnails.roblox.com/v1/assets?assetIds=102797968117555&returnPolicy=PlaceHolder&size=150x150&format=Png\",\"isFree\":true,\"assetId\":\"102797968117555\",\"name\":\"ASMR Squishy Butter\",\"priceCents\":0,\"creatorName\":\"SejeVilly2020\",\"source\":\"creator_store\"}]}"
+        }
+      ],
+      "isError": false
+    }
+  }
+}

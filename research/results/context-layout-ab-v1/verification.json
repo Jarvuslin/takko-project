@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "scope": "Paid harness calls plus offline pure-Luau evaluations; no Studio/Marketplace test",
+  "aggregate": {
+    "Takko baseline": {
+      "cases": 6,
+      "passed": 6,
+      "calls": 12,
+      "costUSD": 0.037231600000000004,
+      "durationMs": 65657,
+      "inputTokens": 100615,
+      "cachedInputTokens": 41472,
+      "outputTokens": 5892,
+      "tools": {}
+    },
+    "Takko reordered": {
+      "cases": 6,
+      "passed": 6,
+      "calls": 12,
+      "costUSD": 0.0317784,
+      "durationMs": 51482,
+      "inputTokens": 100338,
+      "cachedInputTokens": 56448,
+      "outputTokens": 5361,
+      "tools": {}
+    }
+  },
+  "totalCostUSD": 0.06901,
+  "inspectedFiles": 149,
+  "noPlaintextProviderKey": true
+}

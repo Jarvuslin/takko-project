@@ -1,0 +1,66 @@
+{
+  "candidateId": "Crystal Hollow V2 historical expert-assisted baseline",
+  "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+  "caseId": "game.crystal-hollow",
+  "caseVersion": "1.0.0",
+  "protocolVersion": "roblox-quality-v1",
+  "track": "game_quality",
+  "budgetMicros": null,
+  "runKind": "retrospective",
+  "assistance": "expert_assisted",
+  "toolProfile": "historical-json-generation-plus-expert-Studio-tools-no-worker-store-search",
+  "environmentProfile": "historical-Windows-solo-Studio-uncontrolled",
+  "evidence": [
+    {
+      "id": "historical-core",
+      "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+      "kind": "native_test",
+      "uri": "docs/results/crystal-hollow-polished-native-verification.json",
+      "observation": "Historical solo V2 session: real harvest/sale/upgrade inputs, goal and respawn checks passed; console empty at completion. This does not verify new case requirements, multiple clients, touch or longform play.",
+      "outcome": "passed",
+      "dimensions": [],
+      "gates": [],
+      "devChecks": []
+    },
+    {
+      "id": "authored-inventory",
+      "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+      "kind": "source_inspection",
+      "uri": "benchmarks/runs/crystal-hollow-v2-retrospective-r2/inventory.json",
+      "observation": "Authored manifest and source mention inventory. No declared custom animation/audio IDs or mesh assets. Counts and source mentions do not prove runtime behavior or quality.",
+      "outcome": "observed",
+      "dimensions": [],
+      "gates": [],
+      "devChecks": []
+    },
+    {
+      "id": "historical-spawn",
+      "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+      "kind": "screenshot",
+      "uri": "docs/results/crystal-hollow-polished-spawn.jpg",
+      "observation": "Previously captured V2 native spawn view; preserved for calibration, no numeric aesthetic score assigned.",
+      "outcome": "observed",
+      "dimensions": [
+        "art_environment"
+      ],
+      "gates": [],
+      "devChecks": []
+    },
+    {
+      "id": "historical-goal",
+      "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+      "kind": "screenshot",
+      "uri": "docs/results/crystal-hollow-polished-goal.jpg",
+      "observation": "Previously captured V2 goal view. A still image cannot verify action animation, audio or a sustained play loop.",
+      "outcome": "observed",
+      "dimensions": [
+        "art_environment"
+      ],
+      "gates": [],
+      "devChecks": []
+    }
+  ],
+  "dimensionScores": [],
+  "gateResults": [],
+  "devChecks": []
+}

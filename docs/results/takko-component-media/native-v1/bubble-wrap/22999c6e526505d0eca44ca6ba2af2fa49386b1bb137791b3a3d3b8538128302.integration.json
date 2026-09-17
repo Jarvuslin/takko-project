@@ -1,0 +1,312 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "e5aaf779cf9defabbef787558faa31d6d19f6123c04b4128f02982d2911f9087",
+  "scope": "MediaRegression_38c29b7b2390",
+  "need": {
+    "id": "SheetModel",
+    "requirementId": "req-bubble-sheet",
+    "role": "Tabletop bubble wrap sheet prop model",
+    "kind": "Model",
+    "query": "bubble wrap",
+    "constraints": "Rectangular tabletop sheet model with distinct bubble domes or reusable modular layout",
+    "intent": {
+      "experienceRole": "Provides the primary interactive surface holding the bubble domes on the desk.",
+      "interaction": "Hosts click/tap targets for each bubble dome.",
+      "reusableFeatures": [
+        "Base mesh",
+        "Dome geometry",
+        "Plastic material definitions"
+      ],
+      "relatedRequirementIds": [
+        "req-bubble-sheet",
+        "req-bubble-press"
+      ]
+    },
+    "required": false,
+    "position": [
+      0,
+      3,
+      0
+    ],
+    "maxSize": 8
+  },
+  "review": {
+    "packetHash": "4047e90c5726db267561aafb8e37467157b781e660a9ffe4023ee3f0ed36ec6a",
+    "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+    "disposition": "integration_candidate",
+    "reason": "The bubble wrap model provides over 70 interactive bubble parts with ClickDetectors, squash/pop tweens, audio references, reset logic, server state aggregation, and a responsive client counter HUD.",
+    "serializedMedia": [
+      {
+        "indices": [
+          6,
+          11,
+          16,
+          22,
+          27,
+          32,
+          37,
+          42,
+          47,
+          52,
+          57,
+          62,
+          67,
+          72,
+          77,
+          82,
+          87,
+          92,
+          97,
+          102,
+          107,
+          112,
+          117,
+          122,
+          127,
+          132,
+          137,
+          142,
+          147,
+          152,
+          157,
+          162,
+          167,
+          172,
+          177,
+          182,
+          187,
+          192,
+          197,
+          202,
+          207,
+          212,
+          217,
+          222,
+          227,
+          232,
+          237,
+          242,
+          247,
+          252,
+          257,
+          262,
+          267,
+          272,
+          277,
+          282,
+          287,
+          292,
+          297,
+          302,
+          307,
+          312,
+          317,
+          322,
+          327,
+          332,
+          337,
+          342,
+          347,
+          352,
+          357,
+          362
+        ],
+        "property": "SoundId",
+        "value": "rbxassetid://421058925",
+        "purpose": "Plays pop sound effect when the bubble dome is clicked or tapped",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [
+      {
+        "sha256": "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9",
+        "behavior": "Handles individual bubble press state, disables ClickDetector on click, plays pop sound, tweens mesh squash and part deflation, fires the BubblePoppedEvent bindable, and restores initial transform on ResetBubble attribute trigger.",
+        "reuse": "preserve",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "TweenService",
+            "sourceQuote": "local TweenService = game:GetService(\"TweenService\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "instance_reference",
+            "value": "ClickDetector",
+            "sourceQuote": "local clickDetector = part:WaitForChild(\"ClickDetector\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "instance_reference",
+            "value": "Click",
+            "sourceQuote": "local clickSound = part:WaitForChild(\"Click\")",
+            "verification": "unverified"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "sha256": "34ed5b930009d7549ecc8613a69964dfeaca4b2c97412d2a608b6b1ac11e83e1",
+        "behavior": "Collects bubble parts, listens to BubblePoppedEvent to track popped set and count without duplicates, handles ResetRequest remote to reset all bubbles, and replicates state updates to all clients.",
+        "reuse": "preserve",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "Players",
+            "sourceQuote": "local Players = game:GetService(\"Players\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "instance_reference",
+            "value": "bubble wrap",
+            "sourceQuote": "local bubbleWrapModel = model:WaitForChild(\"bubble wrap\")",
+            "verification": "unverified"
+          }
+        ],
+        "unresolved": []
+      },
+      {
+        "sha256": "169522d5a938a9b0f8089267acc988361b71f97dc9b29148cd99b3cb5e2facc6",
+        "behavior": "Constructs minimal top HUD showing popped counter and completion banner, binds reset button interactions, and sends ResetRequest to server.",
+        "reuse": "preserve",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "Players",
+            "sourceQuote": "local Players = game:GetService(\"Players\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "service",
+            "value": "TweenService",
+            "sourceQuote": "local TweenService = game:GetService(\"TweenService\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "instance_reference",
+            "value": "BubbleBreakNetwork",
+            "sourceQuote": "local netFolder = model:WaitForChild(\"BubbleBreakNetwork\", 10)",
+            "verification": "unverified"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "requirements": [
+      {
+        "requirementId": "req-bubble-sheet",
+        "status": "static_evidence_present",
+        "reason": "Model contains 72 interactive bubble parts arranged in a bubble wrap sheet layout, fulfilling the requirement for at least 12 individual bubbles.",
+        "sourceHashes": [
+          "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9",
+          "34ed5b930009d7549ecc8613a69964dfeaca4b2c97412d2a608b6b1ac11e83e1"
+        ],
+        "nodeIndices": [
+          3,
+          4,
+          9,
+          14,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60
+        ]
+      },
+      {
+        "requirementId": "req-bubble-press",
+        "status": "static_evidence_present",
+        "reason": "Each bubble part has a ClickDetector that triggers downward deflation and scale tweens along with audio playback and activation disabling.",
+        "sourceHashes": [
+          "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9"
+        ],
+        "nodeIndices": [
+          7,
+          8,
+          12,
+          13,
+          17,
+          18,
+          23,
+          24
+        ]
+      }
+    ],
+    "permissionImpacts": [
+      {
+        "capability": "DataStore",
+        "impact": "none_observed",
+        "reason": "No DataStore APIs are called in any of the candidate scripts.",
+        "sourceHashes": [
+          "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9",
+          "34ed5b930009d7549ecc8613a69964dfeaca4b2c97412d2a608b6b1ac11e83e1",
+          "169522d5a938a9b0f8089267acc988361b71f97dc9b29148cd99b3cb5e2facc6"
+        ]
+      },
+      {
+        "capability": "Network",
+        "impact": "none_observed",
+        "reason": "No external HTTP requests or HttpService methods are used.",
+        "sourceHashes": [
+          "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9",
+          "34ed5b930009d7549ecc8613a69964dfeaca4b2c97412d2a608b6b1ac11e83e1",
+          "169522d5a938a9b0f8089267acc988361b71f97dc9b29148cd99b3cb5e2facc6"
+        ]
+      },
+      {
+        "capability": "ScriptGlobals",
+        "impact": "none_observed",
+        "reason": "No shared or _G globals are accessed in any script.",
+        "sourceHashes": [
+          "da4a0547ca6868c94b3f13d6749687b0dc975c2b1f8ece332ac38844d5e9cbe9",
+          "34ed5b930009d7549ecc8613a69964dfeaca4b2c97412d2a608b6b1ac11e83e1",
+          "169522d5a938a9b0f8089267acc988361b71f97dc9b29148cd99b3cb5e2facc6"
+        ]
+      }
+    ],
+    "integrationNotes": [
+      "Place the model directly on top of the tabletop desk surface.",
+      "Verify camera positioning and lighting to ensure the bubble domes are clearly visible and tactilely responsive."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 5911,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "f678be326d9e717bde2c67a647e9b1eb5deabd9e60f44989818f1b56d7e90c25",
+  "metadata": {
+    "needId": "SheetModel",
+    "candidateId": "120019574381006",
+    "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+    "packetHash": "4047e90c5726db267561aafb8e37467157b781e660a9ffe4023ee3f0ed36ec6a",
+    "archiveHash": "888c22f2f9826728cfe0c29e5d7b9583b062eb3698ac334966593f1e8caa88b7",
+    "conversionHash": "55872fa42ce793df960005a70a7cb3cf14b3c168fa5bcd841d72f96748279ed1",
+    "destinationPath": "Workspace/MediaRegression_38c29b7b2390/Assets/SheetModel",
+    "rootName": "Imported",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

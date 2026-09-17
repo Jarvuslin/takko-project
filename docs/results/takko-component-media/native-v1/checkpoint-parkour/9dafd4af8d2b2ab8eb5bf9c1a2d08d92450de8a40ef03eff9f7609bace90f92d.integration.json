@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "a95c4ee05a4e6e1155a025c53d534fe8feb812a5e9b215ce4b243a59ec858c58",
+  "scope": "MediaRegression_ed3fe7dd28f4",
+  "need": {
+    "id": "checkpointPadModel",
+    "requirementId": "req-checkpoints",
+    "role": "Interactive checkpoint pad platform with glowing ring indicator",
+    "kind": "Model",
+    "query": "checkpoint pad platform",
+    "constraints": "Small compact footprint (~8x8 studs or less), includes distinct visual base and indicator ring or beacon",
+    "intent": {
+      "experienceRole": "Provides clear physical staging and visual recognition for the three sequential course milestones.",
+      "interaction": "Player touches pad when on the valid next step; pad triggers activation lights and particle/sound response.",
+      "reusableFeatures": [
+        "Base mesh",
+        "Beacon light",
+        "Material textures",
+        "Embedded particles"
+      ],
+      "relatedRequirementIds": [
+        "req-checkpoints",
+        "req-checkpoint-activation"
+      ]
+    },
+    "required": true,
+    "position": [
+      0,
+      10,
+      30
+    ],
+    "maxSize": 10
+  },
+  "review": {
+    "packetHash": "e3fd5a8cc6270e57e051750a5e74ab715df603bbd9f8a5833d8f2f54680e5cd6",
+    "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+    "disposition": "integration_candidate",
+    "reason": "The checkpoint model provides clean, functional ordered progression validation, animated neon/light visual feedback, and safe sound playback hooks suitable for Sky Steps.",
+    "serializedMedia": [
+      {
+        "index": 4,
+        "property": "Texture",
+        "value": "rbxassetid://398136610",
+        "purpose": "Visual surface decal for checkpoint pad indicator",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [
+      {
+        "sha256": "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09",
+        "behavior": "Validates touched character humanoid and player, checks strictly sequential checkpoint order via attributes, sets CurrentCheckpoint and LastCheckpointPosition attributes on the player, animates material to Neon and expands PointLight via TweenService, and plays an optional Sound child.",
+        "reuse": "adapt",
+        "dependencies": [
+          {
+            "kind": "service",
+            "value": "Players",
+            "sourceQuote": "local Players = game:GetService(\"Players\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "service",
+            "value": "TweenService",
+            "sourceQuote": "local TweenService = game:GetService(\"TweenService\")",
+            "verification": "unverified"
+          },
+          {
+            "kind": "instance_reference",
+            "value": "script.Parent",
+            "sourceQuote": "local pad = script.Parent",
+            "verification": "unverified"
+          }
+        ],
+        "unresolved": []
+      }
+    ],
+    "requirements": [
+      {
+        "requirementId": "req-checkpoints",
+        "status": "static_evidence_present",
+        "reason": "The script enforces sequential progression by requiring player's CurrentCheckpoint attribute to equal (order - 1) before incrementing and recording the respawn position.",
+        "sourceHashes": [
+          "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09"
+        ],
+        "nodeIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "requirementId": "req-checkpoint-activation",
+        "status": "static_evidence_present",
+        "reason": "On valid activation, pad material changes to Neon, color shifts to cyan, a PointLight is tweened in brightness/range, and any child Sound is played.",
+        "sourceHashes": [
+          "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09"
+        ],
+        "nodeIndices": [
+          2,
+          3
+        ]
+      }
+    ],
+    "permissionImpacts": [
+      {
+        "capability": "DataStore",
+        "impact": "none_observed",
+        "reason": "Checkpoint logic stores player state ephemerally via player attributes without invoking DataStoreService.",
+        "sourceHashes": [
+          "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09"
+        ]
+      },
+      {
+        "capability": "Network",
+        "impact": "none_observed",
+        "reason": "No external HTTP requests or network operations are called.",
+        "sourceHashes": [
+          "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09"
+        ]
+      },
+      {
+        "capability": "ScriptGlobals",
+        "impact": "none_observed",
+        "reason": "No global variables or shared tables (_G/shared) are referenced.",
+        "sourceHashes": [
+          "6c8ac5265aab57d6d2c8779299c3025ba95be5cbdd9090ce546f8fd036425d09"
+        ]
+      }
+    ],
+    "integrationNotes": [
+      "Clone this checkpoint pad instance for Checkpoints 1, 2, and 3, setting CheckpointOrder attribute to 1, 2, and 3 respectively.",
+      "Attach a chime Sound instance inside each pad to provide audio feedback upon activation.",
+      "Ensure fall hazard recovery script reads the player's LastCheckpointPosition attribute for respawn coordinates."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 70,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "dc283555c78194b607a0db193184b12742e3b5b7658c8bcfca4303d517b1a204",
+  "metadata": {
+    "needId": "checkpointPadModel",
+    "candidateId": "398137408",
+    "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+    "packetHash": "e3fd5a8cc6270e57e051750a5e74ab715df603bbd9f8a5833d8f2f54680e5cd6",
+    "archiveHash": "075770b6e843129af00d67e144ff8dad724de0a5d951899562042058c075344d",
+    "conversionHash": "68112a747dbbf95233272205847f584d8dce60489829f584f4a05d7b285f0d25",
+    "destinationPath": "Workspace/MediaRegression_ed3fe7dd28f4/Assets/checkpointPadModel",
+    "rootName": "Imported",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

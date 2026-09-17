@@ -1,0 +1,50 @@
+{
+  "artifactHash": "5190a564e55264c10ac8d1a4da30ef3a076cdf88c77d6a149c8479a3b6603eb9",
+  "evidenceLevel": "authored_manifest",
+  "scripts": 7,
+  "sceneEntries": 197,
+  "classes": {
+    "Folder": 4,
+    "RemoteEvent": 2,
+    "Part": 86,
+    "SpawnLocation": 1,
+    "WedgePart": 96,
+    "SurfaceGui": 2,
+    "TextLabel": 2,
+    "PointLight": 4
+  },
+  "primitiveGeometry": 183,
+  "meshParts": 0,
+  "unspecifiedPrimitiveMaterials": 0,
+  "declaredAnimationInstances": 0,
+  "declaredSoundInstances": 0,
+  "declaredParticleEmitters": 0,
+  "declaredScreenGuis": 0,
+  "declaredAssetRecords": 0,
+  "declaredAssetIds": {
+    "animation": [],
+    "audio": [],
+    "mesh": [],
+    "image": []
+  },
+  "sourceMentions": {
+    "animationApi": [],
+    "proceduralMotion": [
+      "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Feedback.module.luau"
+    ],
+    "audioApi": [],
+    "particleApi": [
+      "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Feedback.module.luau"
+    ],
+    "runtimeGui": [
+      "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/HUD.module.luau",
+      "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Controller.client.luau"
+    ]
+  },
+  "limits": [
+    "Runtime-created objects and inherited avatar content are not counted in the authored manifest.",
+    "Source mentions can occur in comments or unused code and do not prove execution or semantic action animation.",
+    "Primitive ratios, part counts, asset IDs and material choices do not determine visual quality.",
+    "Marketplace search history, asset permissions, playback, content depth and frame time require separate evidence."
+  ]
+}

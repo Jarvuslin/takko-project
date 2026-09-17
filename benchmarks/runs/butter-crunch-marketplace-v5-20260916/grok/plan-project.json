@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "id": "ad3e2e8e-b32a-48b1-9815-14ab4cf81286",
+  "name": "Build a super simple Roblox Butter Crunch game: one butter objec",
+  "request": "Build a super simple Roblox Butter Crunch game: one butter object on a small clean stage, one repeatable click/tap crunch interaction with visible animation and synchronized crunch sound, and one readable counter. Counter starts at zero, increases exactly once per completed crunch, and reads 10 after ten separated crunches. Overlapping input must not double-count. Recover/reset the object after each action. Support desktop and mobile controls. No shops, upgrades, economy, saving, monetization or unrelated gameplay. Design and write the actual game yourself.\n\nThe user's sourcing rule is mandatory:\n1. ALL AUDIO MUST COME FROM CREATOR STORE / MARKETPLACE. Declare at least one Audio assetNeed for the required crunch sound with required: true, linked to a required audio requirement. This cannot be optional. No synthesized/generated audio, built-in/stock Roblox audio fallbacks, guessed IDs, placeholders or silent substitution. If the worker cannot retrieve and verify a suitable sound through Takko, fail honestly.\n2. EVERYTHING ELSE IS MARKETPLACE FIRST WHERE APPLICABLE. Declare executable Model/MeshPart/Image assetNeeds to search for relevant butter/food/utensil visuals; mentioning a search only in prose is insufficient. The worker must perform search, candidate inspection, selection, scoped import/placement and verification itself. For visuals only, an assetNeed may be optional so a recorded unsuccessful search/inspection can lead to a clearly disclosed procedural alternative. Do not skip the search. Simple floor, UI layout, counters and interaction logic may be authored directly. Code-driven animation of the object is allowed.\n3. Use actual returned candidates and receipts. Required audio needs actual listening evidence plus playback; visual assets need actual visual verification. Reject bad candidates and retry within Takko's limits. No external assistant will search/select/import assets, write game code, rewrite your plan or rescue failures. Do not promise success before these steps execute. Use reasonable defaults and return no clarification questions for incidental design choices.",
+  "revision": 1,
+  "scope": "Forge_ad3e2e8eb32a",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "failed",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 109644,
+      "chargedMicros": 15021,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5538,
+      "outputTokens": 2898,
+      "status": "ok",
+      "at": "2026-09-16T03:03:44.559Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 116046,
+      "chargedMicros": 13288,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7677,
+      "outputTokens": 2008,
+      "status": "ok",
+      "at": "2026-09-16T03:03:54.796Z"
+    }
+  ],
+  "budgetMicros": 1400000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T03:03:22.968Z",
+      "message": "Asset tools bound to explicitly selected Studio af74e97f-57b3-40c6-a281-83e1040ff755"
+    },
+    {
+      "at": "2026-09-16T03:03:22.984Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T03:03:44.566Z",
+      "message": "Validation feedback: : Unrecognized key: \"$schema\""
+    },
+    {
+      "at": "2026-09-16T03:03:44.567Z",
+      "message": "planner: Butter Crunch - Gemini evaluator / google/gemini-3.7-flash — correcting output"
+    },
+    {
+      "at": "2026-09-16T03:03:54.800Z",
+      "message": "Validation feedback: requirements.0.description: Invalid input: expected string, received undefined; requirements.1.description: Invalid input: expected string, received undefined; requirements.2.description: Invalid input: expected string, received undefined; requirements.3.description: Invalid input: expected string, received undefined; requirements.4.description: Invalid input: expected string, received undefined; requirements.5.description: Invalid input: expected string, received undefined"
+    }
+  ],
+  "jobId": null,
+  "error": "Could not complete planner. requirements.0.description: Invalid input: expected string, received undefined; requirements.1.description: Invalid input: expected string, received undefined; requirements.2.description: Invalid input: expected string, received undefine…",
+  "createdAt": "2026-09-16T03:03:22.960Z",
+  "studioEvidence": null,
+  "assetStudioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "failure": {
+    "code": "GENERATION_OUTPUT_REJECTED",
+    "phase": "planner",
+    "attempts": 2,
+    "details": "requirements.0.description: Invalid input: expected string, received undefined; requirements.1.description: Invalid input: expected string, received undefined; requirements.2.description: Invalid input: expected string, received undefined; requirements.3.description: Invalid input: expected string, received undefined; requirements.4.description: Invalid input: expected string, received undefined; requirements.5.description: Invalid input: expected string, received undefined",
+    "at": "2026-09-16T03:03:54.801Z"
+  },
+  "visualEvidence": null
+}

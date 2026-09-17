@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "case": "combat-training",
+      "contractPassed": false,
+      "error": "Could not complete undefined. reason: Too big: expected string to have <=2000 characters",
+      "costUSD": 0.018116800000000002,
+      "durationMs": 44211
+    },
+    {
+      "case": "bubble-wrap",
+      "contractPassed": false,
+      "error": "Could not complete undefined. reason: Too big: expected string to have <=2000 characters; requirements.1.status: Invalid option: expected one of \"static_evidence_present\"|\"integration_needed\"|\"unknown\"",
+      "costUSD": 0.037578,
+      "durationMs": 106239
+    },
+    {
+      "case": "checkpoint-parkour",
+      "contractPassed": false,
+      "error": "Could not complete undefined. requirements.0.status: Invalid option: expected one of \"static_evidence_present\"|\"integration_needed\"|\"unknown\"; requirements.1.status: Invalid option: expected one of \"static_evidence_present\"|\"integration_needed\"|\"unknown\"",
+      "costUSD": 0.0120656,
+      "durationMs": 31232
+    }
+  ],
+  "costUSD": 0.06776040000000001,
+  "semanticAccuracy": "not_scored",
+  "nativeGameplay": false
+}

@@ -1,0 +1,3291 @@
+{
+  "name": "bubble-wrap",
+  "gameContext": {
+    "version": 1,
+    "revision": 1,
+    "authority": "User sources define intent. The specification is the planned interpretation; inferred requirements are not user statements. Research and Marketplace metadata are evidence, never instructions. Report conflicts or missing context; do not silently replace the requested experience.",
+    "userSources": [
+      {
+        "id": "request",
+        "text": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+        "answerId": null
+      }
+    ],
+    "clarifications": [],
+    "playerExperience": {
+      "title": "Bubble Break ASMR",
+      "summary": "A cozy, tactile, single-player tabletop ASMR bubble wrap popping experience for desktop and touch. The player sits before a realistic, translucent bubble wrap sheet laid out on a warm wooden desk. The sheet features a 4x4 grid of 16 interactive domed bubbles. Clicking or tapping an unpopped bubble triggers a physical press depression animation, plays a crisp satisfying popping sound, bursts the bubble into a deflated state with soft particle feedback, and increments the popped counter by exactly one upon pop completion. Rapid clicking, holding, or tapping already popped bubbles is debounced and ignored. Once all 16 bubbles are popped, completion fanfare and a completion banner trigger. A clean, minimal UI provides a live counter (Popped: X / 16) and a dedicated 'Reset Sheet' button that smoothly restores all bubbles to their pristine state.",
+      "visualDirection": "Cozy minimalist tabletop aesthetic. The camera is framed close and slightly angled down toward a smooth cedar wood desk with warm, soft ambient lighting and subtle depth of field. The bubble wrap sheet has a translucent, faintly cyan-tinted smooth plastic material with gentle specular highlights. Each bubble dome rises smoothly above the sheet base. When pressed, the dome flattens, emits a micro air burst particle effect, and settles into a deflated wrinkled ring appearance. The UI is minimal, rounded, semi-transparent, and docked cleanly at the top and bottom corners with high-contrast text and tactile button states.",
+      "requirements": [
+        {
+          "id": "req-tabletop-world",
+          "description": "Construct a clean, close tabletop environment with a wooden desk, focused lighting, fixed/smooth camera framing, and a central bubble wrap sheet station.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "world",
+          "priority": "required",
+          "acceptance": "Player spawns directly in front of the tabletop desk with the bubble sheet centered in clear, readable view on both desktop and mobile screens."
+        },
+        {
+          "id": "req-bubble-sheet",
+          "description": "Provide a reusable bubble wrap sheet containing at least 12 interactive individual bubbles (e.g. a 4x4 grid of 16 bubbles) on the tabletop.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "At least 12 distinct bubble instances are present and independently addressable on the sheet."
+        },
+        {
+          "id": "req-bubble-press",
+          "description": "Allow clicking (desktop) or tapping (touch) an unpopped bubble to depress the dome, trigger a pop animation, and deflate the bubble.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "Clicking/tapping an unpopped bubble smoothly animates downward, bursts, and remains in a deflated state."
+        },
+        {
+          "id": "req-audio-pop",
+          "description": "Play a synchronized, satisfying pop sound effect whenever a bubble is burst.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "audio",
+          "priority": "required",
+          "acceptance": "Pop audio plays audibly at the bubble position synchronously with the burst animation."
+        },
+        {
+          "id": "req-exact-counter",
+          "description": "Maintain per-bubble state so that pressing an unpopped bubble increments the popped counter by exactly one once the pop completes. Holding, spamming, or pressing already popped bubbles must never increment the counter.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "Rapidly clicking or tapping an unpopped or popped bubble results in strictly one count increment per bubble; total count never exceeds total bubble count."
+        },
+        {
+          "id": "req-completion-feedback",
+          "description": "Provide clear visual and celebratory feedback when all bubbles on the sheet are popped.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "presentation",
+          "priority": "required",
+          "acceptance": "When all sheet bubbles are popped, a completion banner/chime appears congratulating the player."
+        },
+        {
+          "id": "req-sheet-reset",
+          "description": "Provide a deliberate reset button in the UI that restores all bubbles on the sheet to their fresh unpopped state and resets the popped counter to zero.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "Clicking 'Reset Sheet' re-inflates all 16 bubbles, enables them for popping again, and resets the counter to 0."
+        },
+        {
+          "id": "req-minimal-ui",
+          "description": "Display a minimal, responsive HUD showing the current popped count (e.g. 'Popped: 0 / 16') and the 'Reset Sheet' button, functional on desktop and touch.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "ui",
+          "priority": "required",
+          "acceptance": "HUD is visible, unobtrusive, updates instantly with bubble pops, and buttons are comfortably tap-friendly on touch devices."
+        }
+      ],
+      "assetStrategy": "Search Marketplace first for a reusable bubble wrap or pop-it model and crisp bubble popping audio effects. If the model requires custom tactile response, compose procedural styled sheet parts with TweenService visual squash/deflate dynamics, while integrating verified pop audio assets from Marketplace.",
+      "referenceDecisions": [
+        {
+          "mechanicId": "bubble-pop-interaction",
+          "action": "include",
+          "requirementIds": [
+            "req-bubble-press",
+            "req-audio-pop",
+            "req-exact-counter"
+          ],
+          "reason": "Core requested ASMR mechanic with visible depression, synchronized pop sound, and strict single-increment state."
+        },
+        {
+          "mechanicId": "sheet-reset-cycle",
+          "action": "include",
+          "requirementIds": [
+            "req-sheet-reset",
+            "req-completion-feedback"
+          ],
+          "reason": "Provides the deliberate sheet completion and reset replay loop requested by the user."
+        }
+      ]
+    },
+    "referenceResearch": {
+      "status": "unavailable"
+    },
+    "assetTarget": {
+      "need": {
+        "id": "SheetModel",
+        "requirementId": "req-bubble-sheet",
+        "role": "Tabletop bubble wrap sheet prop model",
+        "kind": "Model",
+        "query": "bubble wrap",
+        "constraints": "Rectangular tabletop sheet model with distinct bubble domes or reusable modular layout",
+        "intent": {
+          "experienceRole": "Provides the primary interactive surface holding the bubble domes on the desk.",
+          "interaction": "Hosts click/tap targets for each bubble dome.",
+          "reusableFeatures": [
+            "Base mesh",
+            "Dome geometry",
+            "Plastic material definitions"
+          ],
+          "relatedRequirementIds": [
+            "req-bubble-sheet",
+            "req-bubble-press"
+          ]
+        },
+        "required": false,
+        "position": [
+          0,
+          3,
+          0
+        ],
+        "maxSize": 8
+      },
+      "intentStatus": "explicit",
+      "requirements": [
+        {
+          "id": "req-bubble-sheet",
+          "description": "Provide a reusable bubble wrap sheet containing at least 12 interactive individual bubbles (e.g. a 4x4 grid of 16 bubbles) on the tabletop.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "At least 12 distinct bubble instances are present and independently addressable on the sheet."
+        },
+        {
+          "id": "req-bubble-press",
+          "description": "Allow clicking (desktop) or tapping (touch) an unpopped bubble to depress the dome, trigger a pop animation, and deflate the bubble.",
+          "sourceId": "request",
+          "sourceQuote": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+          "origin": "user",
+          "category": "mechanic",
+          "priority": "required",
+          "acceptance": "Clicking/tapping an unpopped bubble smoothly animates downward, bursts, and remains in a deflated state."
+        }
+      ],
+      "missingRequirementIds": [],
+      "evidenceBoundary": "Intent describes the requested experience, not verified candidate behavior. Search metadata can justify inspection; native evidence is required for acceptance. Identify missing integration without discarding reusable content."
+    }
+  },
+  "request": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+  "context": {
+    "need": {
+      "id": "SheetModel",
+      "requirementId": "req-bubble-sheet",
+      "role": "Tabletop bubble wrap sheet prop model",
+      "kind": "Model",
+      "query": "bubble wrap",
+      "constraints": "Rectangular tabletop sheet model with distinct bubble domes or reusable modular layout",
+      "intent": {
+        "experienceRole": "Provides the primary interactive surface holding the bubble domes on the desk.",
+        "interaction": "Hosts click/tap targets for each bubble dome.",
+        "reusableFeatures": [
+          "Base mesh",
+          "Dome geometry",
+          "Plastic material definitions"
+        ],
+        "relatedRequirementIds": [
+          "req-bubble-sheet",
+          "req-bubble-press"
+        ]
+      },
+      "required": false,
+      "position": [
+        0,
+        3,
+        0
+      ],
+      "maxSize": 8
+    },
+    "requirementIds": [
+      "req-bubble-sheet",
+      "req-bubble-press"
+    ],
+    "evidence": {
+      "packetHash": "5b128cc98ccde0060f89662d68e2db52e82668040d7163c9340ca5557872ff36",
+      "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+      "candidateId": "120019574381006",
+      "token": "b04b7146-c706-4f11-a1d3-6950d9bb4ed4",
+      "originalHash": "9b95d314dacc7984fa60bbc74ef9584172881ad635b3daad389272e3bf72385e",
+      "derivativeHash": "9f51509ac1ed774daf2c0552adb628e9fbb69055862527482af7bb647366e0d9",
+      "nodes": [
+        {
+          "index": 1,
+          "parentIndex": 0,
+          "name": "Imported",
+          "className": "Model"
+        },
+        {
+          "index": 2,
+          "parentIndex": 1,
+          "name": "working bubble wrap",
+          "className": "Model"
+        },
+        {
+          "index": 3,
+          "parentIndex": 2,
+          "name": "RegenButton",
+          "className": "Part"
+        },
+        {
+          "index": 4,
+          "parentIndex": 3,
+          "name": "RegenButton",
+          "className": "Script"
+        },
+        {
+          "index": 5,
+          "parentIndex": 4,
+          "name": "CanNPCsActivate",
+          "className": "BoolValue"
+        },
+        {
+          "index": 6,
+          "parentIndex": 4,
+          "name": "Cooldown",
+          "className": "NumberValue"
+        },
+        {
+          "index": 7,
+          "parentIndex": 4,
+          "name": "RemovesPreviousModel",
+          "className": "BoolValue"
+        },
+        {
+          "index": 8,
+          "parentIndex": 4,
+          "name": "OffColor",
+          "className": "BrickColorValue"
+        },
+        {
+          "index": 9,
+          "parentIndex": 2,
+          "name": "bubble wrap",
+          "className": "Model"
+        },
+        {
+          "index": 10,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 11,
+          "parentIndex": 10,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 12,
+          "parentIndex": 10,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 13,
+          "parentIndex": 10,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 14,
+          "parentIndex": 10,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 15,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 16,
+          "parentIndex": 15,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 17,
+          "parentIndex": 15,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 18,
+          "parentIndex": 15,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 19,
+          "parentIndex": 15,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 20,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 21,
+          "parentIndex": 20,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 22,
+          "parentIndex": 20,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 23,
+          "parentIndex": 20,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 24,
+          "parentIndex": 20,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 25,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 26,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 27,
+          "parentIndex": 26,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 28,
+          "parentIndex": 26,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 29,
+          "parentIndex": 26,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 30,
+          "parentIndex": 26,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 31,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 32,
+          "parentIndex": 31,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 33,
+          "parentIndex": 31,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 34,
+          "parentIndex": 31,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 35,
+          "parentIndex": 31,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 36,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 37,
+          "parentIndex": 36,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 38,
+          "parentIndex": 36,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 39,
+          "parentIndex": 36,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 40,
+          "parentIndex": 36,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 41,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 42,
+          "parentIndex": 41,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 43,
+          "parentIndex": 41,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 44,
+          "parentIndex": 41,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 45,
+          "parentIndex": 41,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 46,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 47,
+          "parentIndex": 46,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 48,
+          "parentIndex": 46,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 49,
+          "parentIndex": 46,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 50,
+          "parentIndex": 46,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 51,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 52,
+          "parentIndex": 51,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 53,
+          "parentIndex": 51,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 54,
+          "parentIndex": 51,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 55,
+          "parentIndex": 51,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 56,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 57,
+          "parentIndex": 56,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 58,
+          "parentIndex": 56,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 59,
+          "parentIndex": 56,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 60,
+          "parentIndex": 56,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 61,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 62,
+          "parentIndex": 61,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 63,
+          "parentIndex": 61,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 64,
+          "parentIndex": 61,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 65,
+          "parentIndex": 61,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 66,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 67,
+          "parentIndex": 66,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 68,
+          "parentIndex": 66,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 69,
+          "parentIndex": 66,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 70,
+          "parentIndex": 66,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 71,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 72,
+          "parentIndex": 71,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 73,
+          "parentIndex": 71,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 74,
+          "parentIndex": 71,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 75,
+          "parentIndex": 71,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 76,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 77,
+          "parentIndex": 76,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 78,
+          "parentIndex": 76,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 79,
+          "parentIndex": 76,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 80,
+          "parentIndex": 76,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 81,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 82,
+          "parentIndex": 81,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 83,
+          "parentIndex": 81,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 84,
+          "parentIndex": 81,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 85,
+          "parentIndex": 81,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 86,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 87,
+          "parentIndex": 86,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 88,
+          "parentIndex": 86,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 89,
+          "parentIndex": 86,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 90,
+          "parentIndex": 86,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 91,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 92,
+          "parentIndex": 91,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 93,
+          "parentIndex": 91,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 94,
+          "parentIndex": 91,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 95,
+          "parentIndex": 91,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 96,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 97,
+          "parentIndex": 96,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 98,
+          "parentIndex": 96,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 99,
+          "parentIndex": 96,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 100,
+          "parentIndex": 96,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 101,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 102,
+          "parentIndex": 101,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 103,
+          "parentIndex": 101,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 104,
+          "parentIndex": 101,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 105,
+          "parentIndex": 101,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 106,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 107,
+          "parentIndex": 106,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 108,
+          "parentIndex": 106,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 109,
+          "parentIndex": 106,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 110,
+          "parentIndex": 106,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 111,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 112,
+          "parentIndex": 111,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 113,
+          "parentIndex": 111,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 114,
+          "parentIndex": 111,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 115,
+          "parentIndex": 111,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 116,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 117,
+          "parentIndex": 116,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 118,
+          "parentIndex": 116,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 119,
+          "parentIndex": 116,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 120,
+          "parentIndex": 116,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 121,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 122,
+          "parentIndex": 121,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 123,
+          "parentIndex": 121,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 124,
+          "parentIndex": 121,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 125,
+          "parentIndex": 121,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 126,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 127,
+          "parentIndex": 126,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 128,
+          "parentIndex": 126,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 129,
+          "parentIndex": 126,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 130,
+          "parentIndex": 126,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 131,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 132,
+          "parentIndex": 131,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 133,
+          "parentIndex": 131,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 134,
+          "parentIndex": 131,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 135,
+          "parentIndex": 131,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 136,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 137,
+          "parentIndex": 136,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 138,
+          "parentIndex": 136,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 139,
+          "parentIndex": 136,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 140,
+          "parentIndex": 136,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 141,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 142,
+          "parentIndex": 141,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 143,
+          "parentIndex": 141,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 144,
+          "parentIndex": 141,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 145,
+          "parentIndex": 141,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 146,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 147,
+          "parentIndex": 146,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 148,
+          "parentIndex": 146,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 149,
+          "parentIndex": 146,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 150,
+          "parentIndex": 146,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 151,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 152,
+          "parentIndex": 151,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 153,
+          "parentIndex": 151,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 154,
+          "parentIndex": 151,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 155,
+          "parentIndex": 151,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 156,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 157,
+          "parentIndex": 156,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 158,
+          "parentIndex": 156,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 159,
+          "parentIndex": 156,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 160,
+          "parentIndex": 156,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 161,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 162,
+          "parentIndex": 161,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 163,
+          "parentIndex": 161,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 164,
+          "parentIndex": 161,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 165,
+          "parentIndex": 161,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 166,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 167,
+          "parentIndex": 166,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 168,
+          "parentIndex": 166,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 169,
+          "parentIndex": 166,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 170,
+          "parentIndex": 166,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 171,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 172,
+          "parentIndex": 171,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 173,
+          "parentIndex": 171,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 174,
+          "parentIndex": 171,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 175,
+          "parentIndex": 171,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 176,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 177,
+          "parentIndex": 176,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 178,
+          "parentIndex": 176,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 179,
+          "parentIndex": 176,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 180,
+          "parentIndex": 176,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 181,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 182,
+          "parentIndex": 181,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 183,
+          "parentIndex": 181,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 184,
+          "parentIndex": 181,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 185,
+          "parentIndex": 181,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 186,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 187,
+          "parentIndex": 186,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 188,
+          "parentIndex": 186,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 189,
+          "parentIndex": 186,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 190,
+          "parentIndex": 186,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 191,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 192,
+          "parentIndex": 191,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 193,
+          "parentIndex": 191,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 194,
+          "parentIndex": 191,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 195,
+          "parentIndex": 191,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 196,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 197,
+          "parentIndex": 196,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 198,
+          "parentIndex": 196,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 199,
+          "parentIndex": 196,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 200,
+          "parentIndex": 196,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 201,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 202,
+          "parentIndex": 201,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 203,
+          "parentIndex": 201,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 204,
+          "parentIndex": 201,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 205,
+          "parentIndex": 201,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 206,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 207,
+          "parentIndex": 206,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 208,
+          "parentIndex": 206,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 209,
+          "parentIndex": 206,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 210,
+          "parentIndex": 206,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 211,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 212,
+          "parentIndex": 211,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 213,
+          "parentIndex": 211,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 214,
+          "parentIndex": 211,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 215,
+          "parentIndex": 211,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 216,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 217,
+          "parentIndex": 216,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 218,
+          "parentIndex": 216,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 219,
+          "parentIndex": 216,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 220,
+          "parentIndex": 216,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 221,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 222,
+          "parentIndex": 221,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 223,
+          "parentIndex": 221,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 224,
+          "parentIndex": 221,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 225,
+          "parentIndex": 221,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 226,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 227,
+          "parentIndex": 226,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 228,
+          "parentIndex": 226,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 229,
+          "parentIndex": 226,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 230,
+          "parentIndex": 226,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 231,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 232,
+          "parentIndex": 231,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 233,
+          "parentIndex": 231,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 234,
+          "parentIndex": 231,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 235,
+          "parentIndex": 231,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 236,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 237,
+          "parentIndex": 236,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 238,
+          "parentIndex": 236,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 239,
+          "parentIndex": 236,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 240,
+          "parentIndex": 236,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 241,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 242,
+          "parentIndex": 241,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 243,
+          "parentIndex": 241,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 244,
+          "parentIndex": 241,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 245,
+          "parentIndex": 241,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 246,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 247,
+          "parentIndex": 246,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 248,
+          "parentIndex": 246,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 249,
+          "parentIndex": 246,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 250,
+          "parentIndex": 246,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 251,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 252,
+          "parentIndex": 251,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 253,
+          "parentIndex": 251,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 254,
+          "parentIndex": 251,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 255,
+          "parentIndex": 251,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 256,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 257,
+          "parentIndex": 256,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 258,
+          "parentIndex": 256,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 259,
+          "parentIndex": 256,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 260,
+          "parentIndex": 256,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 261,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 262,
+          "parentIndex": 261,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 263,
+          "parentIndex": 261,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 264,
+          "parentIndex": 261,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 265,
+          "parentIndex": 261,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 266,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 267,
+          "parentIndex": 266,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 268,
+          "parentIndex": 266,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 269,
+          "parentIndex": 266,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 270,
+          "parentIndex": 266,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 271,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 272,
+          "parentIndex": 271,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 273,
+          "parentIndex": 271,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 274,
+          "parentIndex": 271,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 275,
+          "parentIndex": 271,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 276,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 277,
+          "parentIndex": 276,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 278,
+          "parentIndex": 276,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 279,
+          "parentIndex": 276,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 280,
+          "parentIndex": 276,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 281,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 282,
+          "parentIndex": 281,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 283,
+          "parentIndex": 281,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 284,
+          "parentIndex": 281,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 285,
+          "parentIndex": 281,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 286,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 287,
+          "parentIndex": 286,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 288,
+          "parentIndex": 286,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 289,
+          "parentIndex": 286,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 290,
+          "parentIndex": 286,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 291,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 292,
+          "parentIndex": 291,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 293,
+          "parentIndex": 291,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 294,
+          "parentIndex": 291,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 295,
+          "parentIndex": 291,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 296,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 297,
+          "parentIndex": 296,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 298,
+          "parentIndex": 296,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 299,
+          "parentIndex": 296,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 300,
+          "parentIndex": 296,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 301,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 302,
+          "parentIndex": 301,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 303,
+          "parentIndex": 301,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 304,
+          "parentIndex": 301,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 305,
+          "parentIndex": 301,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 306,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 307,
+          "parentIndex": 306,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 308,
+          "parentIndex": 306,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 309,
+          "parentIndex": 306,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 310,
+          "parentIndex": 306,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 311,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 312,
+          "parentIndex": 311,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 313,
+          "parentIndex": 311,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 314,
+          "parentIndex": 311,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 315,
+          "parentIndex": 311,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 316,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 317,
+          "parentIndex": 316,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 318,
+          "parentIndex": 316,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 319,
+          "parentIndex": 316,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 320,
+          "parentIndex": 316,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 321,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 322,
+          "parentIndex": 321,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 323,
+          "parentIndex": 321,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 324,
+          "parentIndex": 321,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 325,
+          "parentIndex": 321,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 326,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 327,
+          "parentIndex": 326,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 328,
+          "parentIndex": 326,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 329,
+          "parentIndex": 326,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 330,
+          "parentIndex": 326,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 331,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 332,
+          "parentIndex": 331,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 333,
+          "parentIndex": 331,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 334,
+          "parentIndex": 331,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 335,
+          "parentIndex": 331,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 336,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 337,
+          "parentIndex": 336,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 338,
+          "parentIndex": 336,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 339,
+          "parentIndex": 336,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 340,
+          "parentIndex": 336,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 341,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 342,
+          "parentIndex": 341,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 343,
+          "parentIndex": 341,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 344,
+          "parentIndex": 341,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 345,
+          "parentIndex": 341,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 346,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 347,
+          "parentIndex": 346,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 348,
+          "parentIndex": 346,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 349,
+          "parentIndex": 346,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 350,
+          "parentIndex": 346,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 351,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 352,
+          "parentIndex": 351,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 353,
+          "parentIndex": 351,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 354,
+          "parentIndex": 351,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 355,
+          "parentIndex": 351,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 356,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 357,
+          "parentIndex": 356,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 358,
+          "parentIndex": 356,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 359,
+          "parentIndex": 356,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 360,
+          "parentIndex": 356,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 361,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 362,
+          "parentIndex": 361,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 363,
+          "parentIndex": 361,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 364,
+          "parentIndex": 361,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 365,
+          "parentIndex": 361,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 366,
+          "parentIndex": 9,
+          "name": "metal",
+          "className": "Part"
+        },
+        {
+          "index": 367,
+          "parentIndex": 366,
+          "name": "Mesh",
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 368,
+          "parentIndex": 366,
+          "name": "Click",
+          "className": "Sound"
+        },
+        {
+          "index": 369,
+          "parentIndex": 366,
+          "name": "ClickDetector",
+          "className": "ClickDetector"
+        },
+        {
+          "index": 370,
+          "parentIndex": 366,
+          "name": "Script",
+          "className": "Script"
+        },
+        {
+          "index": 371,
+          "parentIndex": 2,
+          "name": "ThumbnailCamera",
+          "className": "Camera"
+        }
+      ],
+      "sourceBodies": [
+        {
+          "sha256": "5046b3b142bc98074044c90acb61db51c25d9b0ac6e85bb7791935bd62e12119",
+          "source": "local Players = game:GetService(\"Players\")\nlocal TweenService = game:GetService(\"TweenService\")\n\nlocal regenPart = script.Parent\nlocal bubbleWrapModel = regenPart.Parent\nlocal bubblesFolder = bubbleWrapModel:FindFirstChild(\"bubble wrap\")\n\nlocal totalBubbles = 0\nif bubblesFolder then\n\tfor _, child in ipairs(bubblesFolder:GetChildren()) do\n\t\tif child:IsA(\"BasePart\") and child:FindFirstChildOfClass(\"ClickDetector\") then\n\t\t\ttotalBubbles = totalBubbles + 1\n\t\tend\n\tend\nend\n\nbubbleWrapModel:SetAttribute(\"TotalBubbles\", totalBubbles)\nbubbleWrapModel:SetAttribute(\"PoppedCount\", 0)\nbubbleWrapModel:SetAttribute(\"ResetTrigger\", 0)\n\nlocal function triggerReset()\n\tbubbleWrapModel:SetAttribute(\"PoppedCount\", 0)\n\tlocal currentTrigger = bubbleWrapModel:GetAttribute(\"ResetTrigger\") or 0\n\tbubbleWrapModel:SetAttribute(\"ResetTrigger\", currentTrigger + 1)\nend\n\nlocal resetRemote = bubbleWrapModel:FindFirstChild(\"ResetRequest\")\nif not resetRemote then\n\tresetRemote = Instance.new(\"RemoteEvent\")\n\tresetRemote.Name = \"ResetRequest\"\n\tresetRemote.Parent = bubbleWrapModel\nend\n\nresetRemote.OnServerEvent:Connect(function(player)\n\ttriggerReset()\nend)\n\nlocal function onTouched(hit)\n\tlocal character = hit and hit.Parent\n\tlocal player = character and Players:GetPlayerFromCharacter(character)\n\tif player then\n\t\ttriggerReset()\n\tend\nend\nregenPart.Touched:Connect(onTouched)\n\nlocal function createHUD(player)\n\tlocal playerGui = player:FindFirstChildOfClass(\"PlayerGui\")\n\tif not playerGui or playerGui:FindFirstChild(\"BubbleHUD\") then\n\t\treturn\n\tend\n\n\tlocal screenGui = Instance.new(\"ScreenGui\")\n\tscreenGui.Name = \"BubbleHUD\"\n\tscreenGui.ResetOnSpawn = false\n\tscreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling\n\n\tlocal counterFrame = Instance.new(\"Frame\")\n\tcounterFrame.Name = \"CounterFrame\"\n\tcounterFrame.Size = UDim2.new(0, 220, 0, 50)\n\tcounterFrame.Position = UDim2.new(0.5, -110, 0.05, 0)\n\tcounterFrame.BackgroundColor3 = Color3.fromRGB(30, 35, 45)\n\tcounterFrame.BackgroundTransparency = 0.25\n\tcounterFrame.BorderSizePixel = 0\n\tcounterFrame.Parent = screenGui\n\n\tlocal counterCorner = Instance.new(\"UICorner\")\n\tcounterCorner.CornerRadius = UDim.new(0, 12)\n\tcounterCorner.Parent = counterFrame\n\n\tlocal counterLabel = Instance.new(\"TextLabel\")\n\tcounterLabel.Name = \"CounterLabel\"\n\tcounterLabel.Size = UDim2.new(1, 0, 1, 0)\n\tcounterLabel.BackgroundTransparency = 1\n\tcounterLabel.Font = Enum.Font.GothamBold\n\tcounterLabel.TextSize = 20\n\tcounterLabel.TextColor3 = Color3.fromRGB(240, 245, 255)\n\tcounterLabel.Text = \"Popped: 0 / \" .. tostring(totalBubbles)\n\tcounterLabel.Parent = counterFrame\n\n\tlocal resetButton = Instance.new(\"TextButton\")\n\tresetButton.Name = \"ResetButton\"\n\tresetButton.Size = UDim2.new(0, 160, 0, 44)\n\tresetButton.Position = UDim2.new(0.5, -80, 0.9, -50)\n\tresetButton.BackgroundColor3 = Color3.fromRGB(65, 135, 220)\n\tresetButton.BorderSizePixel = 0\n\tresetButton.Font = Enum.Font.GothamBold\n\tresetButton.TextSize = 16\n\tresetButton.TextColor3 = Color3.fromRGB(255, 255, 255)\n\tresetButton.Text = \"Reset Sheet\"\n\tresetButton.Parent = screenGui\n\n\tlocal buttonCorner = Instance.new(\"UICorner\")\n\tbuttonCorner.CornerRadius = UDim.new(0, 10)\n\tbuttonCorner.Parent = resetButton\n\n\tlocal completionBanner = Instance.new(\"TextLabel\")\n\tcompletionBanner.Name = \"CompletionBanner\"\n\tcompletionBanner.Size = UDim2.new(0, 320, 0, 60)\n\tcompletionBanner.Position = UDim2.new(0.5, -160, 0.4, -30)\n\tcompletionBanner.BackgroundColor3 = Color3.fromRGB(40, 180, 110)\n\tcompletionBanner.BackgroundTransparency = 0.15\n\tcompletionBanner.BorderSizePixel = 0\n\tcompletionBanner.Font = Enum.Font.GothamBold\n\tcompletionBanner.TextSize = 22\n\tcompletionBanner.TextColor3 = Color3.fromRGB(255, 255, 255)\n\tcompletionBanner.Text = \"✨ Sheet Complete! ✨\"\n\tcompletionBanner.Visible = false\n\tcompletionBanner.Parent = screenGui\n\n\tlocal bannerCorner = Instance.new(\"UICorner\")\n\tbannerCorner.CornerRadius = UDim.new(0, 14)\n\tbannerCorner.Parent = completionBanner\n\n\tlocal clientScript = Instance.new(\"LocalScript\")\n\tclientScript.Name = \"HUDController\"\n\tclientScript.Source = [[\n\t\tlocal screenGui = script.Parent\n\t\tlocal counterLabel = screenGui:WaitForChild(\"CounterFrame\"):WaitForChild(\"CounterLabel\")\n\t\tlocal resetButton = screenGui:WaitForChild(\"ResetButton\")\n\t\tlocal completionBanner = screenGui:WaitForChild(\"CompletionBanner\")\n\t\tlocal bubbleWrapModel = workspace:FindFirstChild(\"working bubble wrap\", true)\n\n\t\tif not bubbleWrapModel then return end\n\t\tlocal resetRemote = bubbleWrapModel:WaitForChild(\"ResetRequest\")\n\n\t\tlocal function updateDisplay()\n\t\t\tlocal popped = bubbleWrapModel:GetAttribute(\"PoppedCount\") or 0\n\t\t\tlocal total = bubbleWrapModel:GetAttribute(\"TotalBubbles\") or 0\n\t\t\tcounterLabel.Text = \"Popped: \" .. tostring(popped) .. \" / \" .. tostring(total)\n\t\t\tif total > 0 and popped >= total then\n\t\t\t\tcompletionBanner.Visible = true\n\t\t\telse\n\t\t\t\tcompletionBanner.Visible = false\n\t\t\tend\n\t\tend\n\n\t\tbubbleWrapModel:GetAttributeChangedSignal(\"PoppedCount\"):Connect(updateDisplay)\n\t\tbubbleWrapModel:GetAttributeChangedSignal(\"TotalBubbles\"):Connect(updateDisplay)\n\t\tresetButton.MouseButton1Click:Connect(function()\n\t\t\tresetRemote:FireServer()\n\t\tend)\n\t\tupdateDisplay()\n\t]]\n\tclientScript.Parent = screenGui\n\tscreenGui.Parent = playerGui\nend\n\nPlayers.PlayerAdded:Connect(createHUD)\nfor _, player in ipairs(Players:GetPlayers()) do\n\tcreateHUD(player)\nend\n",
+          "bindings": [
+            {
+              "index": 4,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            }
+          ]
+        },
+        {
+          "sha256": "8d81807285b3b123f2240a75540156051326289bdd940d08dfeacd340ad011b7",
+          "source": "local TweenService = game:GetService(\"TweenService\")\n\nlocal part = script.Parent\nlocal clickDetector = part:FindFirstChildOfClass(\"ClickDetector\")\nlocal sound = part:FindFirstChildOfClass(\"Sound\")\nlocal mesh = part:FindFirstChildOfClass(\"SpecialMesh\")\nlocal bubbleWrapModel = part:FindFirstAncestor(\"working bubble wrap\") or part.Parent.Parent\n\nlocal initialCFrame = part.CFrame\nlocal initialSize = part.Size\nlocal initialTransparency = part.Transparency\nlocal initialColor = part.Color\nlocal initialMeshScale = mesh and mesh.Scale or Vector3.new(1, 1, 1)\n\nlocal popped = false\nlocal isPopping = false\n\nlocal function popBubble(player)\n\tif popped or isPopping then\n\t\treturn\n\tend\n\tisPopping = true\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 0\n\tend\n\n\tif sound then\n\t\tsound.PlaybackSpeed = 0.95 + math.random() * 0.2\n\t\tsound:Play()\n\tend\n\n\tif mesh then\n\t\tlocal depressTween = TweenService:Create(mesh, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\t\tScale = Vector3.new(initialMeshScale.X * 1.15, initialMeshScale.Y * 0.2, initialMeshScale.Z * 1.15)\n\t\t})\n\t\tdepressTween:Play()\n\tend\n\n\tlocal partTween = TweenService:Create(part, TweenInfo.new(0.06, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {\n\t\tTransparency = math.clamp(initialTransparency + 0.35, 0, 0.85),\n\t\tColor = Color3.fromRGB(180, 210, 225)\n\t})\n\tpartTween:Play()\n\tpartTween.Completed:Wait()\n\n\tpopped = true\n\tisPopping = false\n\n\tif bubbleWrapModel then\n\t\tlocal currentCount = bubbleWrapModel:GetAttribute(\"PoppedCount\") or 0\n\t\tbubbleWrapModel:SetAttribute(\"PoppedCount\", currentCount + 1)\n\tend\nend\n\nlocal function resetBubble()\n\tpopped = false\n\tisPopping = false\n\n\tif mesh then\n\t\tmesh.Scale = initialMeshScale\n\tend\n\tpart.CFrame = initialCFrame\n\tpart.Size = initialSize\n\tpart.Transparency = initialTransparency\n\tpart.Color = initialColor\n\n\tif clickDetector then\n\t\tclickDetector.MaxActivationDistance = 32\n\tend\nend\n\nif clickDetector then\n\tclickDetector.MouseClick:Connect(popBubble)\nend\n\nif bubbleWrapModel then\n\tbubbleWrapModel:GetAttributeChangedSignal(\"ResetTrigger\"):Connect(resetBubble)\nend\n",
+          "bindings": [
+            {
+              "index": 14,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 19,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 24,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 30,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 35,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 40,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 45,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 50,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 55,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 60,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 65,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 70,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 75,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 80,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 85,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 90,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 95,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 100,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 105,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 110,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 115,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 120,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 125,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 130,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 135,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 140,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 145,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 150,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 155,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 160,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 165,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 170,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 175,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 180,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 185,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 190,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 195,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 200,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 205,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 210,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 215,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 220,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 225,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 230,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 235,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 240,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 245,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 250,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 255,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 260,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 265,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 270,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 275,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 280,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 285,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 290,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 295,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 300,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 305,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 310,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 315,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 320,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 325,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 330,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 335,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 340,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 345,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 350,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 355,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 360,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 365,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            },
+            {
+              "index": 370,
+              "className": "Script",
+              "disabled": false,
+              "runContext": "Enum.RunContext.Legacy"
+            }
+          ]
+        }
+      ],
+      "configurationValues": [
+        {
+          "index": 5,
+          "property": "Value",
+          "value": true
+        },
+        {
+          "index": 6,
+          "property": "Value",
+          "value": 1
+        },
+        {
+          "index": 7,
+          "property": "Value",
+          "value": true
+        }
+      ],
+      "contentReferences": [
+        {
+          "index": 12,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 17,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 22,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 28,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 33,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 38,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 43,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 48,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 53,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 58,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 63,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 68,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 73,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 78,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 83,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 88,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 93,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 98,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 103,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 108,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 113,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 118,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 123,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 128,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 133,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 138,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 143,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 148,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 153,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 158,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 163,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 168,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 173,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 178,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 183,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 188,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 193,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 198,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 203,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 208,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 213,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 218,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 223,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 228,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 233,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 238,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 243,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 248,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 253,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 258,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 263,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 268,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 273,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 278,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 283,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 288,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 293,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 298,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 303,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 308,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 313,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 318,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 323,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 328,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 333,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 338,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 343,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 348,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 353,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 358,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 363,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        },
+        {
+          "index": 368,
+          "property": "SoundId",
+          "value": "rbxassetid://421058925"
+        }
+      ],
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ],
+      "boundary": "Worker-authored adaptation applied to an unparented copy and recaptured. Review the actual surviving sources and bindings; a proposed feature is not proof it exists. Original evidence retained; native restoration passed but no imported code executed. Media, behavior, runtime integration and external dependencies remain unverified."
+    }
+  }
+}

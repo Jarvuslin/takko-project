@@ -1,0 +1,27 @@
+{
+  "kind": "evaluator-side delivery of unchanged worker artifact",
+  "autonomousBridgeDelivery": false,
+  "projectId": "98c63e12-b73c-4553-bde0-939b88985746",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "frozenProjectSha256": "ae697fdc55f39d5d8520f7d6cec56a33a06a09ac5326827b5a136cce5c177a4a",
+  "exportSha256": "a29d9047416e72b445cbc34a35701dad1af06d794d110eb641759684d7d5ef4f",
+  "scripts": [
+    {
+      "path": "ServerScriptService/Forge_98c63e12b73c/CrunchServer.server.luau",
+      "kind": "Script",
+      "sha256": "eefde442e943161ce9ab97642603422124b0248bf70144e20e1f357e1fa9cdce"
+    },
+    {
+      "path": "StarterPlayer/StarterPlayerScripts/Forge_98c63e12b73c/CrunchClient.client.luau",
+      "kind": "LocalScript",
+      "sha256": "a7e62127bbc9caba1a678b48b25b420230fe65e830bb9890697c8b888495bd13"
+    }
+  ],
+  "rootGameEdits": false,
+  "startedAt": "2026-09-16T03:19:29.3992332Z",
+  "preflight": {
+    "studio": "Place1",
+    "allSixTargetScopesAbsent": true,
+    "mode": "Edit"
+  }
+}

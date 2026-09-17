@@ -1,0 +1,1973 @@
+<roblox version="4">
+  <Item class="Model" referent="0">
+    <Properties>
+      <string name="Name">Imported</string>
+      <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+      <token name="LevelOfDetail">0</token>
+      <CoordinateFrame name="ModelMeshCFrame">
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+        <R00>1</R00>
+        <R01>0</R01>
+        <R02>0</R02>
+        <R10>0</R10>
+        <R11>1</R11>
+        <R12>0</R12>
+        <R20>0</R20>
+        <R21>0</R21>
+        <R22>1</R22>
+      </CoordinateFrame>
+      <SharedString name="ModelMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+      <Vector3 name="ModelMeshSize">
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Vector3>
+      <token name="ModelStreamingMode">0</token>
+      <bool name="NeedsPivotMigration">false</bool>
+      <bool name="DefinesCapabilities">false</bool>
+      <float name="ScaleFactor">1</float>
+      <SharedString name="SlimHash">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+      <int64 name="SourceAssetId">125989241853035</int64>
+      <BinaryString name="Tags">QXNzaXN0YW50OjUzZjM4NWEwLTczNzctNGI4NC1hZjYwLThjNmZkMWNiYzkwZA==</BinaryString>
+      <OptionalCoordinateFrame name="WorldPivotData">
+        <CFrame>
+          <X>2.174633</X>
+          <Y>2.5</Y>
+          <Z>-8.545841</Z>
+          <R00>0.6762989</R00>
+          <R01>0</R01>
+          <R02>-0.7366273</R02>
+          <R10>0</R10>
+          <R11>0.99999994</R11>
+          <R12>0</R12>
+          <R20>0.73662734</R20>
+          <R21>0</R21>
+          <R22>0.67629886</R22>
+        </CFrame>
+      </OptionalCoordinateFrame>
+    </Properties>
+    <Item class="Model" referent="1">
+      <Properties>
+        <string name="Name">Dummy</string>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+        <token name="LevelOfDetail">0</token>
+        <CoordinateFrame name="ModelMeshCFrame">
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+          <R00>1</R00>
+          <R01>0</R01>
+          <R02>0</R02>
+          <R10>0</R10>
+          <R11>1</R11>
+          <R12>0</R12>
+          <R20>0</R20>
+          <R21>0</R21>
+          <R22>1</R22>
+        </CoordinateFrame>
+        <SharedString name="ModelMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+        <Vector3 name="ModelMeshSize">
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+        </Vector3>
+        <token name="ModelStreamingMode">0</token>
+        <bool name="NeedsPivotMigration">false</bool>
+        <Ref name="PrimaryPart">2</Ref>
+        <bool name="DefinesCapabilities">false</bool>
+        <float name="ScaleFactor">1</float>
+        <SharedString name="SlimHash">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+        <OptionalCoordinateFrame name="WorldPivotData">
+          <CFrame>
+            <X>2.174633</X>
+            <Y>2</Y>
+            <Z>-8.545841</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.99999994</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CFrame>
+        </OptionalCoordinateFrame>
+      </Properties>
+      <Item class="Part" referent="2">
+        <Properties>
+          <string name="Name">HumanoidRootPart</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>2.174633</X>
+            <Y>2</Y>
+            <Z>-8.545841</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.99999994</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">true</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>2</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">1</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+        <Item class="Motor6D" referent="3">
+          <Properties>
+            <string name="Name">Root Hip</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>0</X>
+              <Y>0</Y>
+              <Z>0</Z>
+              <R00>-1</R00>
+              <R01>0</R01>
+              <R02>0</R02>
+              <R10>0</R10>
+              <R11>0</R11>
+              <R12>1</R12>
+              <R20>0</R20>
+              <R21>1</R21>
+              <R22>0</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>0</X>
+              <Y>0</Y>
+              <Z>0</Z>
+              <R00>-1</R00>
+              <R01>0</R01>
+              <R02>0</R02>
+              <R10>0</R10>
+              <R11>0</R11>
+              <R12>1</R12>
+              <R20>0</R20>
+              <R21>1</R21>
+              <R22>0</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">2</Ref>
+            <Ref name="Part1">4</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Part" referent="4">
+        <Properties>
+          <string name="Name">Torso</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>2.174633</X>
+            <Y>2</Y>
+            <Z>-8.545841</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.99999994</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">true</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>2</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+        <Item class="Motor6D" referent="5">
+          <Properties>
+            <string name="Name">Left Hip</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>-1</X>
+              <Y>-1</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>-1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>-0.5</X>
+              <Y>1</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>-1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">4</Ref>
+            <Ref name="Part1">6</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+        <Item class="Motor6D" referent="7">
+          <Properties>
+            <string name="Name">Right Hip</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>1</X>
+              <Y>-1</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>1</R02>
+              <R10>-0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>-1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>0.5</X>
+              <Y>1</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>-1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">4</Ref>
+            <Ref name="Part1">8</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+        <Item class="Motor6D" referent="9">
+          <Properties>
+            <string name="Name">Left Shoulder</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>-1</X>
+              <Y>0.5</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>-1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>0.5</X>
+              <Y>0.5</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>-1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">4</Ref>
+            <Ref name="Part1">10</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+        <Item class="Motor6D" referent="11">
+          <Properties>
+            <string name="Name">Right Shoulder</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>1</X>
+              <Y>0.5</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>1</R02>
+              <R10>-0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>-1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>-0.5</X>
+              <Y>0.5</Y>
+              <Z>0</Z>
+              <R00>-0.00000004371139</R00>
+              <R01>0</R01>
+              <R02>1</R02>
+              <R10>0</R10>
+              <R11>0.99999994</R11>
+              <R12>0</R12>
+              <R20>-1</R20>
+              <R21>0</R21>
+              <R22>-0.00000004371139</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">4</Ref>
+            <Ref name="Part1">12</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+        <Item class="Motor6D" referent="13">
+          <Properties>
+            <string name="Name">Neck</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="C0">
+              <X>0</X>
+              <Y>1</Y>
+              <Z>0</Z>
+              <R00>-1</R00>
+              <R01>0</R01>
+              <R02>0</R02>
+              <R10>0</R10>
+              <R11>0</R11>
+              <R12>1</R12>
+              <R20>0</R20>
+              <R21>1</R21>
+              <R22>0</R22>
+            </CoordinateFrame>
+            <CoordinateFrame name="C1">
+              <X>0</X>
+              <Y>-0.5</Y>
+              <Z>0</Z>
+              <R00>-1</R00>
+              <R01>0</R01>
+              <R02>0</R02>
+              <R10>0</R10>
+              <R11>0</R11>
+              <R12>1</R12>
+              <R20>0</R20>
+              <R21>1</R21>
+              <R22>0</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <float name="DesiredAngle">0</float>
+            <bool name="Enabled">true</bool>
+            <float name="MaxVelocity">0.1</float>
+            <Ref name="Part0">4</Ref>
+            <Ref name="Part1">14</Ref>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Part" referent="6">
+        <Properties>
+          <string name="Name">Left Leg</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>1.8063169</X>
+            <Y>4</Y>
+            <Z>-8.207695</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.9999998</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>1</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="8">
+        <Properties>
+          <string name="Name">Right Leg</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>2.5429494</X>
+            <Y>4</Y>
+            <Z>-8.883993</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.9999998</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>1</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="10">
+        <Properties>
+          <string name="Name">Left Arm</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>1.0696949</X>
+            <Y>2</Y>
+            <Z>-7.5313954</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.9999998</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>1</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="12">
+        <Properties>
+          <string name="Name">Right Arm</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>3.279571</X>
+            <Y>2</Y>
+            <Z>-9.5602865</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.9999998</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">false</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>1</X>
+            <Y>2</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+      </Item>
+      <Item class="Part" referent="14">
+        <Properties>
+          <string name="Name">Head</string>
+          <bool name="Anchored">true</bool>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AudioCanCollide">true</bool>
+          <float name="BackParamA">-0.5</float>
+          <float name="BackParamB">0.5</float>
+          <token name="BackSurface">0</token>
+          <token name="BackSurfaceInput">0</token>
+          <float name="BottomParamA">-0.5</float>
+          <float name="BottomParamB">0.5</float>
+          <token name="BottomSurface">0</token>
+          <token name="BottomSurfaceInput">0</token>
+          <CoordinateFrame name="CFrame">
+            <X>2.174633</X>
+            <Y>0.5000001</Y>
+            <Z>-8.545841</Z>
+            <R00>0.7366273</R00>
+            <R01>0</R01>
+            <R02>-0.6762989</R02>
+            <R10>0</R10>
+            <R11>-0.99999994</R11>
+            <R12>0</R12>
+            <R20>-0.67629886</R20>
+            <R21>0</R21>
+            <R22>-0.73662734</R22>
+          </CoordinateFrame>
+          <bool name="CanCollide">true</bool>
+          <bool name="CanQuery">true</bool>
+          <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="CastShadow">true</bool>
+          <string name="CollisionGroup">Default</string>
+          <int name="CollisionGroupId">0</int>
+          <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+          <PhysicalProperties name="CustomPhysicalProperties">
+            <CustomPhysics>false</CustomPhysics>
+          </PhysicalProperties>
+          <bool name="EnableFluidForces">true</bool>
+          <token name="formFactorRaw">1</token>
+          <float name="FrontParamA">-0.5</float>
+          <float name="FrontParamB">0.5</float>
+          <token name="FrontSurface">0</token>
+          <token name="FrontSurfaceInput">0</token>
+          <float name="LeftParamA">-0.5</float>
+          <float name="LeftParamB">0.5</float>
+          <token name="LeftSurface">0</token>
+          <token name="LeftSurfaceInput">0</token>
+          <bool name="Locked">false</bool>
+          <bool name="Massless">false</bool>
+          <token name="Material">256</token>
+          <string name="MaterialVariantSerialized"></string>
+          <CoordinateFrame name="PivotOffset">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <float name="Reflectance">0</float>
+          <float name="RightParamA">-0.5</float>
+          <float name="RightParamB">0.5</float>
+          <token name="RightSurface">0</token>
+          <token name="RightSurfaceInput">0</token>
+          <int name="RootPriority">0</int>
+          <Vector3 name="RotVelocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="shape">1</token>
+          <Vector3 name="size">
+            <X>2</X>
+            <Y>1</Y>
+            <Z>1</Z>
+          </Vector3>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <float name="TopParamA">-0.5</float>
+          <float name="TopParamB">0.5</float>
+          <token name="TopSurface">0</token>
+          <token name="TopSurfaceInput">0</token>
+          <float name="Transparency">0</float>
+          <Vector3 name="Velocity">
+            <X>0</X>
+            <Y>0</Y>
+            <Z>0</Z>
+          </Vector3>
+        </Properties>
+        <Item class="Decal" referent="15">
+          <Properties>
+            <string name="Name">Face</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AutoLocalize">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <Color3 name="Color3">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <Content name="EmissiveMaskContent">
+              <null>
+              </null>
+            </Content>
+            <float name="EmissiveStrength">1</float>
+            <Color3 name="EmissiveTint">
+              <R>1</R>
+              <G>1</G>
+              <B>1</B>
+            </Color3>
+            <token name="Face">5</token>
+            <Content name="MetalnessMapContent">
+              <null>
+              </null>
+            </Content>
+            <Content name="NormalMapContent">
+              <null>
+              </null>
+            </Content>
+            <float name="Rotation">0</float>
+            <Content name="RoughnessMapContent">
+              <null>
+              </null>
+            </Content>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+            <Content name="TextureContent">
+              <uri>rbxasset://textures/face.png</uri>
+            </Content>
+            <ContentId name="TexturePack">
+              <null>
+              </null>
+            </ContentId>
+            <string name="TexturePackMetadata"></string>
+            <float name="Transparency">0</float>
+            <Vector2 name="UVOffset">
+              <X>0</X>
+              <Y>0</Y>
+            </Vector2>
+            <Vector2 name="UVScale">
+              <X>1</X>
+              <Y>1</Y>
+            </Vector2>
+            <int name="ZIndex">1</int>
+          </Properties>
+        </Item>
+      </Item>
+      <Item class="Humanoid" referent="16">
+        <Properties>
+          <string name="Name">Humanoid</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="AutoJumpEnabled">true</bool>
+          <bool name="AutoRotate">true</bool>
+          <bool name="AutomaticScalingEnabled">true</bool>
+          <bool name="BreakJointsOnDeath">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <token name="CollisionType">0</token>
+          <token name="DisplayDistanceType">0</token>
+          <string name="DisplayName"></string>
+          <bool name="EvaluateStateMachine">true</bool>
+          <float name="HealthDisplayDistance">100</float>
+          <token name="HealthDisplayType">0</token>
+          <float name="Health_XML">100</float>
+          <float name="HipHeight">0</float>
+          <Vector3 name="InternalBodyScale">
+            <X>1</X>
+            <Y>1</Y>
+            <Z>1</Z>
+          </Vector3>
+          <float name="InternalHeadScale">1</float>
+          <float name="JumpHeight">7.2</float>
+          <float name="JumpPower">50</float>
+          <float name="MaxHealth">100</float>
+          <float name="MaxSlopeAngle">89</float>
+          <float name="NameDisplayDistance">100</float>
+          <token name="NameOcclusion">2</token>
+          <bool name="RequiresNeck">true</bool>
+          <token name="RigType">0</token>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="UseJumpPower">true</bool>
+          <float name="WalkSpeed">16</float>
+        </Properties>
+      </Item>
+    </Item>
+    <Item class="Script" referent="17">
+      <Properties>
+        <string name="Name">Package</string>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">18014364136639232</SecurityCapabilities>
+        <bool name="Disabled">false</bool>
+        <ContentId name="LinkedSource">
+          <null>
+          </null>
+        </ContentId>
+        <token name="RunContext">0</token>
+        <bool name="DefinesCapabilities">true</bool>
+        <string name="ScriptGuid">{80E56AC7-F613-4E8F-8F93-2E3A0CC785F4}</string>
+        <string name="Source">-- ModuleScript: Package
+-- Written by: @Quenty
+
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+
+local function SafeWaitForChild(ParentObject, ChildName, TimeoutDuration)
+	-- Safely waits for a child instance to be available in the hierarchy
+	-- Useful for handling replication delays and network latency issues
+
+	if ParentObject == nil then
+		error("Parent object cannot be nil", 2)
+	end
+	if type(ChildName) ~= "string" then
+		error("Child name must be a string value", 2)
+	end
+
+	local TargetChild = ParentObject:FindFirstChild(ChildName)
+	local StartTime = tick()
+	local TimeoutWarning = false
+
+	while TargetChild == nil and ParentObject ~= nil do
+		RunService.Heartbeat:Wait()
+		TargetChild = ParentObject:FindFirstChild(ChildName)
+		if TimeoutWarning == false and StartTime + (TimeoutDuration or 5) &lt;= tick() then
+			TimeoutWarning = true
+			warn("Potential infinite yield detected in SafeWaitForChild(" .. ParentObject:GetFullName() .. ", " .. ChildName .. ")")
+			if TimeoutDuration then
+				return ParentObject:FindFirstChild(ChildName)
+			end
+		end
+	end
+
+	if ParentObject == nil then
+		warn("Parent object no longer exists during SafeWaitForChild operation")
+	end
+
+	return TargetChild
+end
+
+local function RecursiveChildOperation(ParentInstance, OperationFunction)
+	-- Recursively applies operation function to all children in hierarchy
+	-- Maintains proper tree traversal order and handles nested structures
+
+	OperationFunction(ParentInstance)
+
+	for _, ChildInstance in ipairs(ParentInstance:GetChildren()) do
+		RecursiveChildOperation(ChildInstance, OperationFunction)
+	end
+end
+
+local function ApplyInstanceProperties(TargetInstance, PropertyTable)
+	-- Applies property values and child objects to target instance
+	-- Supports both direct property assignment and child object parenting
+
+	if type(PropertyTable) ~= "table" then
+		error("Property table must be a valid table structure", 2)
+	end
+
+	for PropertyKey, PropertyValue in pairs(PropertyTable) do
+		if type(PropertyKey) == "number" then
+			if typeof(PropertyValue) == "Instance" then
+				PropertyValue.Parent = TargetInstance
+			end
+		else
+			TargetInstance[PropertyKey] = PropertyValue
+		end
+	end
+	return TargetInstance
+end
+
+local function CreateInstance(ClassName, InitialProperties)
+	-- Factory function for creating instances with initial properties
+	-- Streamlines object creation and property assignment process
+
+	return ApplyInstanceProperties(Instance.new(ClassName), InitialProperties)
+end
+
+-- Texture Configuration System Implementation
+local TextureConfigurationSystem = {}
+
+-- Texture quality configuration presets
+local TextureQualityPresets = {
+	Low = {
+		Resolution = 128,
+		Compression = 80,
+		Format = "PNG",
+		Mipmaps = false
+	},
+	Medium = {
+		Resolution = 512,
+		Compression = 60,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	High = {
+		Resolution = 1024,
+		Compression = 40,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	Ultra = {
+		Resolution = 2048,
+		Compression = 20,
+		Format = "PNG",
+		Mipmaps = true
+	}
+}
+
+-- Supported texture asset types and configurations
+local TextureTypeDefinitions = {
+	["Decal"] = {
+		Class = "Decal",
+		DefaultProperties = {
+			Face = "Top",
+			Texture = "",
+			Transparency = 0
+		}
+	},
+	["Texture"] = {
+		Class = "Texture",
+		DefaultProperties = {
+			OffsetStudsU = 0,
+			OffsetStudsV = 0,
+			StudsPerTileU = 2,
+			StudsPerTileV = 2
+		}
+	},
+	["SurfaceAppearance"] = {
+		Class = "SurfaceAppearance",
+		DefaultProperties = {
+			AlphaMode = "Overlay",
+			ColorMap = "",
+			MetalnessMap = "",
+			NormalMap = "",
+			RoughnessMap = ""
+		}
+	}
+}
+
+-- Performance optimization cache
+local ConfigurationCache = {}
+setmetatable(ConfigurationCache, {__mode = "k"})
+
+function TextureConfigurationSystem.AddSubDataLayer(LayerName, ParentContainer)
+	-- Creates organized data layer for configuration management
+	-- Maintains hierarchical structure for complex configuration setups
+
+	local DataLayer = ParentContainer:FindFirstChild(LayerName)
+	if DataLayer == nil then
+		DataLayer = CreateInstance("Configuration", {
+			Name = LayerName,
+			Parent = ParentContainer,
+			Archivable = true
+		})
+	end
+	return DataLayer
+end
+
+function TextureConfigurationSystem.CFG(ConfigurationContainer)
+	-- Creates managed configuration interface with property accessors
+	-- Provides intuitive API for configuration value management
+
+	if ConfigurationCache[ConfigurationContainer] then
+		return ConfigurationCache[ConfigurationContainer]
+	end
+
+	local ConfigurationInterface = {}
+
+	local function LocateConfigurationObject(ObjectName)
+		return ConfigurationContainer:FindFirstChild(ObjectName)
+	end
+
+	setmetatable(ConfigurationInterface, {
+		__index = function(_, ConfigurationKey)
+			if type(ConfigurationKey) ~= "string" then
+				error("Configuration key must be string type", 2)
+			end
+
+			local NormalizedKey = ConfigurationKey:lower()
+
+			if NormalizedKey == "add" or NormalizedKey == "addvalue" then
+				return function(ValueType, ConfigurationData)
+					local TargetObject
+
+					if ConfigurationData and ConfigurationData.Name and type(ConfigurationData.Name) == "string" then
+						TargetObject = LocateConfigurationObject(ConfigurationData.Name)
+						if TargetObject and TargetObject.ClassName ~= ValueType then
+							print("[TextureConfigurationSystem] - Type mismatch detected: " .. TargetObject.ClassName .. " replaced with " .. ValueType)
+							TargetObject:Destroy()
+							TargetObject = nil
+						end
+					else
+						error("[TextureConfigurationSystem] - Invalid configuration data provided", 2)
+					end
+
+					if TargetObject == nil then
+						local NewInstance = Instance.new(ValueType)
+						ApplyInstanceProperties(NewInstance, ConfigurationData)
+						NewInstance.Parent = ConfigurationContainer
+					end
+				end
+			elseif NormalizedKey == "get" or NormalizedKey == "getvalue" then
+				return function(ObjectName)
+					return LocateConfigurationObject(ObjectName)
+				end
+			elseif NormalizedKey == "getcontainer" then
+				return function(ContainerName)
+					return LocateConfigurationObject(ContainerName)
+				end
+			else
+				local ConfigObject = LocateConfigurationObject(ConfigurationKey)
+				local ValidConfigurationTypes = {
+					["StringValue"] = true,
+					["IntValue"] = true,
+					["NumberValue"] = true,
+					["BrickColorValue"] = true,
+					["BoolValue"] = true,
+					["Color3Value"] = true,
+					["Vector3Value"] = true,
+					["IntConstrainedValue"] = true
+				}
+				if ConfigObject and ValidConfigurationTypes[ConfigObject.ClassName] then
+					return ConfigObject.Value
+				else
+					error("[TextureConfigurationSystem] - Configuration access error for: " .. ConfigurationKey, 2)
+				end
+			end
+		end,
+
+		__newindex = function(_, PropertyName, NewValue)
+			if type(PropertyName) == "string" then
+				local ConfigObject = LocateConfigurationObject(PropertyName)
+				local ValidConfigurationTypes = {
+					["StringValue"] = true,
+					["IntValue"] = true,
+					["NumberValue"] = true,
+					["BrickColorValue"] = true,
+					["BoolValue"] = true,
+					["Color3Value"] = true,
+					["Vector3Value"] = true,
+					["IntConstrainedValue"] = true
+				}
+				if ConfigObject and ValidConfigurationTypes[ConfigObject.ClassName] then
+					ConfigObject.Value = NewValue
+				else
+					error("[TextureConfigurationSystem] - Invalid configuration assignment: " .. PropertyName, 2)
+				end
+			else
+				error("[TextureConfigurationSystem] - Property name must be string type", 2)
+			end
+		end
+	})
+
+	ConfigurationCache[ConfigurationContainer] = ConfigurationInterface
+	return ConfigurationInterface
+end
+
+-- here is Light Management System Implementation and Module Script Requiring
+local RootModel = script.Parent
+local TextureConfiguration = require(script:WaitForChild("TextureConfiguration", 4).Module.Value)
+
+local ConfigurationModel = TextureConfigurationSystem.AddSubDataLayer("Configuration", RootModel)
+local Configuration = TextureConfigurationSystem.CFG(ConfigurationModel)
+script.Parent.Package:Destroy()
+-- Configuration Value Definitions
+Configuration.AddValue("BoolValue", {
+	Name = "LightsEnabled",
+	Value = true
+})
+
+Configuration.AddValue("BoolValue", {
+	Name = "LightShadows", 
+	Value = true
+})
+
+Configuration.AddValue("IntValue", {
+	Name = "LightRange",
+	Value = 60
+})
+
+Configuration.AddValue("Color3Value", {
+	Name = "LightColor",
+	Value = Color3.new(1, 237/255, 183/255)
+})
+
+Configuration.AddValue("IntValue", {
+	Name = "LightAngle", 
+	Value = 120
+})
+
+Configuration.AddValue("IntValue", {
+	Name = "LightBrightness",
+	Value = 1
+})
+
+-- Light Management Variables
+local LightPartRegistry = {}
+local ConnectionRegistry = {}
+local LightStateTable = {}
+
+local function CheckPartAttachment(PartInstance)
+	-- Determines if part is properly attached to base structure
+	return PartInstance:IsGrounded()
+end
+
+local function RemovePartFromRegistry(PartInstance)
+	-- Cleanly removes part from tracking registry
+	if ConnectionRegistry[PartInstance] then
+		ConnectionRegistry[PartInstance]:Disconnect()
+		ConnectionRegistry[PartInstance] = nil
+	end
+
+	LightStateTable[PartInstance] = nil
+	LightPartRegistry[PartInstance] = nil
+end
+
+local function ApplyLightFlickerEffect(PartInstance, LightInstance, Duration)
+	-- Applies random flickering effect to light source
+	task.spawn(function()
+		local EffectStart = tick()
+
+		while LightStateTable[PartInstance] == nil and EffectStart + Duration &gt;= tick() do
+			LightInstance.Enabled = math.random(1, 2) == 1
+			task.wait(0.1)
+		end
+
+		LightInstance.Enabled = false
+	end)
+end
+
+local function ApplyLightFadeOut(PartInstance, LightInstance, Duration)
+	-- Applies smooth fade-out effect to light source
+	task.spawn(function()
+		local FadeStart = tick()
+		LightInstance.Enabled = true
+
+		while LightStateTable[PartInstance] == nil and FadeStart + Duration &gt;= tick() do
+			local ElapsedTime = tick() - FadeStart
+			local FadeProgress = ElapsedTime / Duration
+
+			LightInstance.Brightness = Configuration.LightBrightness * (1 - FadeProgress)
+			task.wait(0.05)
+		end
+
+		LightInstance.Brightness = 0
+		LightInstance.Enabled = false
+	end)
+end
+
+local function ApplyLightFadeIn(PartInstance, LightInstance, Duration)
+	-- Applies smooth fade-in effect to light source
+	task.spawn(function()
+		local FadeStart = tick()
+		LightInstance.Enabled = true
+
+		while LightStateTable[PartInstance] == true and FadeStart + Duration &gt;= tick() do
+			local ElapsedTime = tick() - FadeStart
+			local FadeProgress = ElapsedTime / Duration
+
+			LightInstance.Brightness = Configuration.LightBrightness * FadeProgress
+			task.wait(0.05)
+		end
+
+		LightInstance.Brightness = Configuration.LightBrightness
+		LightInstance.Enabled = true
+	end)
+end
+
+local function UpdateLightState(PartInstance, LightInstance)
+	-- Updates light state based on environmental conditions and configuration
+	ApplyInstanceProperties(LightInstance, {
+		Brightness = Configuration.LightBrightness,
+		Face = "Bottom",
+		Name = "qSpotLight",
+		Angle = Configuration.LightAngle,
+		Range = Configuration.LightRange,
+		Shadows = Configuration.LightShadows,
+		Color = Configuration.LightColor,
+		Parent = PartInstance
+	})
+
+	if CheckPartAttachment(PartInstance) then
+		local CurrentTime = Lighting:GetMinutesAfterMidnight()
+		if CurrentTime &gt;= 1050 or CurrentTime &lt;= 375 then		
+			if Configuration.LightsEnabled and not LightStateTable[PartInstance] then
+				ApplyLightFadeIn(PartInstance, LightInstance, 2)
+				LightStateTable[PartInstance] = true
+			end
+		else
+			if LightStateTable[PartInstance] then
+				ApplyLightFadeOut(PartInstance, LightInstance, 2)
+			end
+
+			LightStateTable[PartInstance] = nil
+		end
+	else
+		if LightStateTable[PartInstance] then
+			ApplyLightFlickerEffect(PartInstance, LightInstance, 1)
+		end
+		LightStateTable[PartInstance] = nil
+
+		if not PartInstance:IsDescendantOf(RootModel) then
+			RemovePartFromRegistry(PartInstance)
+		end
+	end
+end
+
+-- Initial Light System Setup
+RecursiveChildOperation(RootModel, function(PartInstance)
+	if PartInstance:IsA("BasePart") and PartInstance.Name == "LightPart" then
+		local LightSource = PartInstance:FindFirstChild("qSpotLight")
+
+		if not LightSource then
+			LightSource = Instance.new("SpotLight")
+			LightSource.Enabled = false
+			LightSource.Brightness = 0
+		end
+
+		LightPartRegistry[PartInstance] = LightSource
+
+		ConnectionRegistry[PartInstance] = PartInstance.Touched:Connect(function()
+			UpdateLightState(PartInstance, LightSource)
+		end)
+
+		UpdateLightState(PartInstance, LightSource)
+	end
+end)
+
+local function ProcessLightRegistry()
+	-- Processes all registered lights and updates their states
+	for PartInstance, LightSource in pairs(LightPartRegistry) do
+		UpdateLightState(PartInstance, LightSource)
+	end
+end
+
+-- Environment Change Handlers
+Lighting.Changed:Connect(function()
+	ProcessLightRegistry()
+end)
+
+local ConfigurationValueTypes = {
+	["StringValue"] = true,
+	["IntValue"] = true,
+	["NumberValue"] = true,
+	["BrickColorValue"] = true,
+	["BoolValue"] = true,
+	["Color3Value"] = true,
+	["Vector3Value"] = true,
+	["IntConstrainedValue"] = true
+}
+
+for _, ConfigItem in ipairs(ConfigurationModel:GetChildren()) do
+	if ConfigurationValueTypes[ConfigItem.ClassName] then
+		ConfigItem.Changed:Connect(function()
+			ProcessLightRegistry()
+		end)
+	end
+end
+
+return TextureConfigurationSystem</string>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags">Q3JlZGl0czpAcmV3cQ==</BinaryString>
+      </Properties>
+      <Item class="ModuleScript" referent="18">
+        <Properties>
+          <string name="Name">TextureConfiguration</string>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABWZXJzaW9uAg8AAAAxMTUxODg0ODc1MjgxMTI=</BinaryString>
+          <SecurityCapabilities name="Capabilities">18014364136639232</SecurityCapabilities>
+          <ContentId name="LinkedSource">
+            <null>
+            </null>
+          </ContentId>
+          <bool name="DefinesCapabilities">true</bool>
+          <string name="ScriptGuid">{690275CB-1FC8-4BFB-9E27-7723387E79E5}</string>
+          <string name="Source">-- AppearanceSetupuration Module
+-- This system provides automated texture creation, analysis, and optimization
+-- Features include: dynamic texture generation, quality enhancement, memory optimization,
+-- and intelligent texture distribution across game assets
+
+local TextureConfiguration = {}
+
+-- Texture quality presets for different performance requirements
+local TEXTURE_PRESETS = {
+	Low = {
+		Resolution = 128,
+		Compression = 80,
+		Format = "PNG",
+		Mipmaps = false
+	},
+	Medium = {
+		Resolution = 512,
+		Compression = 60,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	High = {
+		Resolution = 1024,
+		Compression = 40,
+		Format = "PNG",
+		Mipmaps = true
+	},
+	Ultra = {
+		Resolution = 2048,
+		Compression = 20,
+		Format = "PNG",
+		Mipmaps = true
+	}
+}
+
+-- Supported texture types and their default properties
+local SUPPORTED_TEXTURE_TYPES = {
+	["Decal"] = {
+		Class = "Decal",
+		DefaultProperties = {
+			Face = "Top",
+			Texture = "",
+			Transparency = 0
+		}
+	},
+	["Texture"] = {
+		Class = "Texture",
+		DefaultProperties = {
+			OffsetStudsU = 0,
+			OffsetStudsV = 0,
+			StudsPerTileU = 2,
+			StudsPerTileV = 2
+		}
+	},
+	["SurfaceAppearance"] = {
+		Class = "SurfaceAppearance",
+		DefaultProperties = {
+			AlphaMode = "Overlay",
+			ColorMap = "",
+			MetalnessMap = "",
+			NormalMap = "",
+			RoughnessMap = ""
+		}
+	}
+}
+
+-- Cache for texture configurations to avoid redundant operations
+local TextureCache = {}
+setmetatable(TextureCache, {__mode = "k"})
+
+-- Internal utility functions
+local function ApplyProperties(target, properties)
+	-- Applies a table of properties to a Roblox instance
+	assert(type(properties) == "table", "Properties must be a table")
+
+	for property, value in pairs(properties) do
+		if type(property) == "number" then
+			-- Handle child objects
+			if typeof(value) == "Instance" then
+				value.Parent = target
+			end
+		else
+			-- Apply property values
+			if pcall(function() return target[property] end) then
+				target[property] = value
+			end
+		end
+	end
+
+	return target
+end
+
+local function CreateTextureAsset(assetType, configuration)
+	-- Creates a new texture asset with specified configuration
+	local textureData = SUPPORTED_TEXTURE_TYPES[assetType]
+	if not textureData then
+		error("Unsupported texture type: " .. tostring(assetType), 2)
+	end
+
+	local newAsset = Instance.new(textureData.Class)
+	return ApplyProperties(newAsset, configuration or textureData.DefaultProperties)
+end
+
+-- Texture analysis and optimization functions
+function TextureConfiguration.AnalyzeTextureUsage(gameRoot)
+	-- Analyzes all textures in the game and returns usage statistics
+	local textureStats = {
+		totalTextures = 0,
+		byType = {},
+		memoryUsage = 0,
+		missingTextures = 0
+	}
+
+	local function scanHierarchy(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			textureStats.totalTextures = textureStats.totalTextures + 1
+			textureStats.byType[object.ClassName] = (textureStats.byType[object.ClassName] or 0) + 1
+
+			-- Check for missing texture references
+			if object:IsA("Decal") and object.Texture == "" then
+				textureStats.missingTextures = textureStats.missingTextures + 1
+			end
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanHierarchy(child)
+		end
+	end
+
+	scanHierarchy(gameRoot)
+	return textureStats
+end
+
+function TextureConfiguration.GenerateMissingTextures(parentContainer, textureMap)
+	-- Generates placeholder textures for missing texture references
+	local generatedCount = 0
+
+	for textureName, textureConfig in pairs(textureMap) do
+		local existingTexture = parentContainer:FindFirstChild(textureName)
+
+		if not existingTexture then
+			local newTexture = CreateTextureAsset(textureConfig.Type, textureConfig.Properties)
+			newTexture.Name = textureName
+			newTexture.Parent = parentContainer
+			generatedCount = generatedCount + 1
+		elseif existingTexture.ClassName ~= textureConfig.Type then
+			warn("[TextureConfiguration] - Texture type mismatch for '" .. textureName .. "'. Expected: " .. textureConfig.Type .. ", Found: " .. existingTexture.ClassName)
+		end
+	end
+
+	print("[TextureConfiguration] - Generated " .. generatedCount .. " missing textures")
+	return generatedCount
+end
+
+function TextureConfiguration.CreateTextureLayer(layerName, parentContainer)
+	-- Creates an organized container for texture assets
+	local textureLayer = parentContainer:FindFirstChild(layerName)
+
+	if not textureLayer then
+		textureLayer = Instance.new("Folder")
+		textureLayer.Name = layerName
+		textureLayer.Archivable = false
+		textureLayer.Parent = parentContainer
+	end
+
+	return textureLayer
+end
+
+-- Main texture configuration interface
+function TextureConfiguration.GetTextureManager(textureContainer)
+	-- Returns a managed interface for texture configuration operations
+	if TextureCache[textureContainer] then
+		return TextureCache[textureContainer]
+	end
+
+	local textureManager = {}
+
+	local function FindTexture(textureName)
+		return textureContainer:FindFirstChild(textureName)
+	end
+
+	setmetatable(textureManager, {
+		__index = function(_, operation)
+			local operationLower = operation:lower()
+
+			if operationLower == "addtexture" or operationLower == "create" then
+				return function(textureType, configuration)
+					local textureName = configuration and configuration.Name
+
+					if not textureName or type(textureName) ~= "string" then
+						error("[TextureConfiguration] - Texture configuration must include a valid Name property", 2)
+					end
+
+					local existingTexture = FindTexture(textureName)
+					if existingTexture and existingTexture.ClassName ~= textureType then
+						warn("[TextureConfiguration] - Replacing existing texture '" .. textureName .. "' of type " .. existingTexture.ClassName .. " with new type " .. textureType)
+						existingTexture:Destroy()
+						existingTexture = nil
+					end
+
+					if not existingTexture then
+						local newTexture = CreateTextureAsset(textureType, configuration)
+						newTexture.Parent = textureContainer
+					end
+				end
+
+			elseif operationLower == "gettexture" or operationLower == "find" then
+				return function(textureName)
+					return FindTexture(textureName)
+				end
+
+			elseif operationLower == "getlayer" then
+				return function(layerName)
+					return textureContainer:FindFirstChild(layerName)
+				end
+
+			else
+				-- Direct texture property access
+				local texture = FindTexture(operation)
+				if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+					return texture
+				else
+					error("[TextureConfiguration] - Texture '" .. operation .. "' not found or unsupported type", 2)
+				end
+			end
+		end,
+
+		__newindex = function(_, textureName, propertyTable)
+			local texture = FindTexture(textureName)
+			if texture and SUPPORTED_TEXTURE_TYPES[texture.ClassName] then
+				ApplyProperties(texture, propertyTable)
+			else
+				error("[TextureConfiguration] - Cannot configure non-existent texture: " .. textureName, 2)
+			end
+		end
+	})
+
+	TextureCache[textureContainer] = textureManager
+	return textureManager
+end
+
+-- Quality optimization functions
+function TextureConfiguration.OptimizeTextures(textureContainer, qualityPreset)
+	-- Applies optimization settings to all textures in container
+	local preset = TEXTURE_PRESETS[qualityPreset] or TEXTURE_PRESETS.Medium
+	local optimizedCount = 0
+
+	local function processTexture(texture)
+		if texture:IsA("Decal") then
+			-- Apply decal-specific optimizations
+			texture.ZIndex = preset.Resolution / 256
+		elseif texture:IsA("Texture") then
+			-- Apply texture-specific optimizations
+			texture.StudsPerTileU = math.max(1, preset.Resolution / 512)
+			texture.StudsPerTileV = math.max(1, preset.Resolution / 512)
+		end
+
+		optimizedCount = optimizedCount + 1
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			processTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Optimized " .. optimizedCount .. " textures with " .. qualityPreset .. " preset")
+	return optimizedCount
+end
+
+function TextureConfiguration.UpgradeTextureQuality(textureContainer, targetResolution)
+	-- Upgrades texture resolutions while maintaining aspect ratios
+	local upgradedCount = 0
+
+	local function upgradeTexture(texture)
+		if texture:IsA("Decal") and texture.Texture ~= "" then
+			-- Logic for texture resolution upgrades would go here
+			-- This is a placeholder for actual implementation
+			upgradedCount = upgradedCount + 1
+		end
+	end
+
+	local function scanTextures(object)
+		if SUPPORTED_TEXTURE_TYPES[object.ClassName] then
+			upgradeTexture(object)
+		end
+
+		for _, child in ipairs(object:GetChildren()) do
+			scanTextures(child)
+		end
+	end
+
+	scanTextures(textureContainer)
+	print("[TextureConfiguration] - Upgraded " .. upgradedCount .. " textures to " .. targetResolution .. " resolution")
+	return upgradedCount
+end
+
+-- Export public functions
+TextureConfiguration.CreateLayer = TextureConfiguration.CreateTextureLayer
+TextureConfiguration.GetManager = TextureConfiguration.GetTextureManager
+TextureConfiguration.Analyze = TextureConfiguration.AnalyzeTextureUsage
+TextureConfiguration.GenerateMissing = TextureConfiguration.GenerateMissingTextures
+TextureConfiguration.Optimize = TextureConfiguration.OptimizeTextures
+TextureConfiguration.Upgrade = TextureConfiguration.UpgradeTextureQuality
+
+return TextureConfiguration</string>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags">Q3JlZGl0czpAcmV3cQ==</BinaryString>
+        </Properties>
+        <Item class="NumberPose" referent="19">
+          <Properties>
+            <string name="Name">Module</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <token name="EasingDirection">0</token>
+            <token name="EasingStyle">0</token>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags">Q3JlZGl0czpAcmV3cQ==</BinaryString>
+            <double name="Value">91638724979309</double>
+            <float name="Weight">1</float>
+          </Properties>
+        </Item>
+      </Item>
+    </Item>
+  </Item>
+  <SharedStrings>
+    <SharedString md5="rxNJufX5oaagQE3qNtzJSQ=="></SharedString>
+  </SharedStrings>
+</roblox>

@@ -1,0 +1,135 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import { createHash, randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { Engine } from "../src/generation/engine";
+import { Configuration } from "../src/generation/settings";
+import { GenerationStore } from "../src/generation/store";
+import { gameContext } from "../src/generation/game-context";
+import { runAssetPipeline } from "../src/generation/asset-pipeline";
+import { assetDecisionSchema, assetDecisionInstructions, validateAssetDecision, type AssetAdapter, type AssetPipelineRun } from "../src/generation/asset-contract";
+import { StudioAssetAdapter } from "../src/generation/studio-asset-adapter";
+import { StdioStudioClient } from "../src/generation/studio-mcp-client";
+import type { Profile, Project } from "../src/generation/schema";
+
+const [mode, outputDirectory] = process.argv.slice(2);
+assert(["offline", "live"].includes(mode) && outputDirectory, "Expected offline|live and fresh output directory");
+const root = "research/results/search-history-v1", base = "benchmarks/runs/marketplace-diversity-v9-20260916/checkpoint-parkour";
+const out = path.resolve(outputDirectory);
+assert(!fs.existsSync(out), "Preserve previous evidence"); fs.mkdirSync(out, { recursive: true });
+const read = (file: string) => JSON.parse(fs.readFileSync(file, "utf8"));
+const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
+const save = (file: string, value: unknown) => fs.writeFileSync(path.join(out, file), JSON.stringify(value, null, 2) + "\n");
+const original: Project = read(path.join(base, "final-project.json"));
+const need = original.assetPipeline!.needs.find(n => n.id === "skyCourseKit")!;
+assert(need && need.required && need.kind === "Model");
+const profile: Profile = (({ hasKey: _, ...p }) => p)(read(path.join(base, "experiment.json")).reviewer);
+assert.equal(profile.model, "google/gemini-3.7-flash"); assert.equal(profile.maxOutputTokens, 12000); assert.equal(profile.requestTimeoutMs, 300000);
+const cap = 200000, ceiling = 6500000, headroom = 400000; let prior = 5418108;
+const priorResult = read("research/results/component-preservation-sol-v1/live/result.json");
+assert(priorResult.noFurtherCallsPending && !priorResult.unknownLiability && priorResult.arms.every((a: any) => a.inFlightReservations === 0)); assert.equal(priorResult.conservativePriorMicros, prior);
+const files = fs.readdirSync("src/generation", { recursive: true }).filter(f => typeof f === "string" && f.endsWith(".ts")).map(f => "src/generation/" + String(f).replaceAll("\\", "/"));
+const sources = Object.fromEntries(files.map(file => [file, hash(fs.readFileSync(file))]));
+save("protocol.json", { mode, sourceProject: original.id, sourceProjectHash: hash(fs.readFileSync(path.join(base, "final-project.json"))), sources,
+  need, profile, capMicros: cap, priorMicros: prior, ceilingMicros: ceiling, headroomMicros: headroom, maxSearches: 3, maxCalls: 6,
+  boundary: "Fresh selection-only diagnostic of the frozen raw V9 course need, unchanged whole game context. Real production pipeline and Engine worker. Live queries and selection authored by worker; initial query is original raw planner choice. Up to3 real Marketplace searches. Stop after validated selection before inspection/import/mutation. Not full game or asset fitness acceptance. Offline fabricated transport fixtures are never live prompt answers." });
+const lock = ".forge/search-history-probe.lock";
+const fd = fs.openSync(lock, "wx"); fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, mode, out, at: new Date().toISOString() })); fs.closeSync(fd);
+let secret = ""; const calls: any[] = [], decisions: any[] = [], searches: any[] = [], nativeCalls: any[] = [];
+const abort = new AbortController(); const signal = AbortSignal.any([abort.signal, AbortSignal.timeout(1200000)]);
+const committed = () => calls.reduce((sum, c) => sum + (c.chargedMicros ?? c.reserveMicros), 0);
+const client = new StdioStudioClient();
+const studioId = "af74e97f-57b3-40c6-a281-83e1040ff755";
+const studio = new StudioAssetAdapter({ callTool: async (name, args, callSignal) => {
+  assert(["list_roblox_studios", "search_asset"].includes(name), "Selection probe attempted native mutation");
+  const entry: any = { name, args, startedAt: new Date().toISOString() }; nativeCalls.push(entry); save("native-calls.json", nativeCalls);
+  try { const result = await client.callTool(name, args, callSignal); entry.result = result; entry.finishedAt = new Date().toISOString(); save("native-calls.json", nativeCalls); return result; }
+  catch { entry.error = "Native read-only search failed"; save("native-calls.json", nativeCalls); throw Error(entry.error); }
+} }, { studioId, scope: original.scope, evidenceDirectory: path.join(out, "asset-evidence") });
+const cfg = new Configuration(path.join(out, "configuration"));
+cfg.save({ profiles: [profile], routes: { planner: [], builder: [profile.id], reviewer: [profile.id], repair: [] }, budgetMicros: cap, repairLimit: 0, researchEnabled: false });
+const project: Project = { ...structuredClone(original), id: randomUUID(), charges: [], reservedMicros: 0, budgetMicros: cap, events: [], jobId: null, error: null, failure: null };
+const run: AssetPipelineRun = { version: 1, runId: randomUUID(), revision: original.revision,
+  inputHash: hash(JSON.stringify({ request: original.request, spec: original.spec, need, profile, mode: "selection-only-v1" })),
+  status: "running", startedAt: new Date().toISOString(), policy: { maxSearches: 3, maxCandidates: 3, allowEscalation: false, workerRoute: profile.id, evaluatorRoute: profile.id },
+  adapter: studio.identity, needs: [structuredClone(need)], entries: [], events: [] };
+let currentContext: any;
+const transport: typeof fetch = async (url, options) => {
+  assert.equal(url, "https://openrouter.ai/api/v1/chat/completions"); const body = JSON.parse(options!.body as string);
+  assert.equal(body.model, profile.model); assert.equal(body.max_tokens, 12000); assert(!body.stream && !body.plugins && body.messages.length === 2);
+  const reserve = Math.ceil((Buffer.byteLength(options!.body as string) + 1024) * profile.inputRate + 12000 * profile.outputRate);
+  assert(calls.length < 6 && committed() + reserve <= cap && prior + committed() + reserve + headroom <= ceiling, "Diagnostic dispatch budget rejected");
+  const call: any = { id: calls.length + 1, decisionNumber: decisions.length + 1, startedAt: new Date().toISOString(), reserveMicros: reserve, mode }; calls.push(call);
+  save("calls.json", calls); save(`call-${call.id}-request.json`, body);
+  if (mode === "offline") {
+    const decision = currentContext.candidates.length ? { action: "select", candidateId: currentContext.candidates[0].id, query: null, reason: "Offline fixture selection only" }
+      : { action: "retry", candidateId: null, query: "offline course " + currentContext.searches, reason: "Offline fixture retry only" };
+    call.chargedMicros = 0; save("calls.json", calls);
+    return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(decision) }, finish_reason: "stop" }], usage: { prompt_tokens: 1, completion_tokens: 1, cost: 0 } }), { status: 200 });
+  }
+  try {
+    const response = await fetch(url, { ...options, redirect: "error" }); const text = (await response.text()).replaceAll(secret, "[REDACTED]");
+    fs.writeFileSync(path.join(out, `call-${call.id}-response.txt`), text); call.status = response.status; call.finishedAt = new Date().toISOString();
+    try { const data = JSON.parse(text); call.usage = data.usage; if (typeof data.usage?.cost === "number" && Number.isFinite(data.usage.cost) && data.usage.cost >= 0) { call.costUSD = data.usage.cost; call.chargedMicros = Math.ceil(data.usage.cost * 1e6); } } catch {}
+    if (call.chargedMicros === undefined) abort.abort("Unknown provider charge; stop and retain reservation");
+    save("calls.json", calls); return new Response(text, { status: response.status });
+  } catch { call.error = "Provider outcome unknown; retain reservation"; save("calls.json", calls); abort.abort(call.error); throw Error(call.error); }
+};
+async function keyStatus(file: string) {
+  const response = await fetch("https://openrouter.ai/api/v1/key", { headers: { Authorization: "Bearer " + secret }, redirect: "error" }); assert(response.ok);
+  const { data } = await response.json() as any; const status = { checkedAt: new Date().toISOString(), limit: data.limit, usage: data.usage, remaining: data.limit_remaining, expiresAt: data.expires_at }; save(file, status); return status;
+}
+let selected: any, error: string | undefined, finalRun = run;
+try {
+  if (mode === "live") {
+    const offline = read(path.join(root, "offline-v2/result.json")); assert(offline.selected && offline.searches === 3 && offline.actualPaidCalls === 0 && offline.nativeCalls === 0 && offline.runStatus === "interrupted");
+    assert.deepEqual(read(path.join(root, "offline-v2/protocol.json")).sources, sources, "Sources changed after offline preflight");
+    try { secret = execFileSync("pwsh.exe", ["-NoProfile", "-NonInteractive", "-Command", "$s=ConvertTo-SecureString ([IO.File]::ReadAllText((Join-Path $env:LOCALAPPDATA 'Takko\\secrets\\openrouter-testing.dpapi'))); $p=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($s); try {[Console]::Write([Runtime.InteropServices.Marshal]::PtrToStringBSTR($p))} finally {[Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p)}"], { windowsHide: true, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim(); } catch { throw Error("Credential restoration failed; suppressed"); }
+    const status = await keyStatus("key-before.json"); prior = Math.max(prior, Math.ceil(status.usage * 1e6));
+    assert(prior + cap + headroom <= ceiling && status.remaining * 1e6 >= cap + headroom, "Campaign admission rejected");
+    const response = await fetch("https://openrouter.ai/api/v1/models"); assert(response.ok); const catalog = (await response.json() as any).data.find((row: any) => row.id === profile.model);
+    assert(catalog && Number(catalog.pricing.prompt) * 1e6 === profile.inputRate && Number(catalog.pricing.completion) * 1e6 === profile.outputRate); save("catalog-model.json", catalog);
+  }
+  cfg.setKey(profile.id, secret || "offline-fixture");
+  const engine = new Engine(new GenerationStore(path.join(out, "projects")), cfg, transport);
+  const adapter: AssetAdapter = {
+    identity: studio.identity,
+    search: async (input, query, s) => {
+      assert.deepEqual(input, need, "Frozen raw planner need changed"); assert(searches.length < 3);
+      const result = mode === "live" ? await studio.search(input, query, s) : {
+        candidates: searches.length === 2 ? [{ id: "101", name: "Offline course", kind: "Model" as const, creator: "offline", sourceUrl: "https://create.roblox.com/store/asset/101", price: 0, source: "creator_store" as const }] : [],
+        receipts: [{ operation: "offline-search", at: new Date().toISOString(), studioId, data: { fixture: true } }],
+      };
+      searches.push({ query, ...result }); save("searches.json", searches); return result;
+    },
+    inspect: async () => { throw Error("Diagnostic must stop before native inspection"); },
+    place: async () => { throw Error("Diagnostic cannot place assets"); },
+    discard: async () => { throw Error("Diagnostic cannot mutate Studio"); },
+  };
+  finalRun = await runAssetPipeline({ run, adapter, signal, persist: state => save("run.json", state), model: {
+    decide: async (context, s) => {
+      currentContext = context;
+      const c = context as any; assert.equal(c.searchHistory.length, searches.length);
+      assert.deepEqual(c.searchHistory.map((row: any) => row.query), searches.map(row => row.query));
+      const full = { task: "asset-selection", request: project.request, spec: project.spec, gameContext: gameContext(project, c.need), context, instructions: assetDecisionInstructions };
+      save(`decision-${decisions.length + 1}-context.json`, full);
+      const decision = await (engine as any).call(project, "builder", full, assetDecisionSchema, cfg.read(), new Map([[profile.id, secret || "offline-fixture"]]), s,
+        (value: any) => validateAssetDecision(value, context), { label: "asset-worker" });
+      decisions.push(decision); save("decisions.json", decisions);
+      if (decision.action === "select") { selected = structuredClone(c.candidates.find((row: any) => row.id === decision.candidateId)); assert(selected); abort.abort("Selection-only diagnostic complete before inspection"); }
+      return decision;
+    }, evaluate: async () => { throw Error("Diagnostic cannot claim inspection or fitness"); },
+  } });
+  if (mode === "live") await keyStatus("key-after.json");
+} catch (e) { error = (e as Error).message; }
+finally {
+  await client.close();
+  save("project.json", project); save("run-final.json", finalRun);
+  const result = { mode, selectionOnly: true, selected, error, runStatus: finalRun.status, searches: searches.length, decisions: decisions.length, calls: calls.length,
+    actualPaidCalls: mode === "live" ? calls.length : 0, nativeCalls: nativeCalls.length, nativeMutations: 0, inspections: 0,
+    chargedOrUnknownMicros: committed(), conservativePriorMicros: prior + committed(), unknownLiability: calls.some(c => c.chargedMicros === undefined),
+    inFlightReservations: project.reservedMicros, noFurtherCallsPending: true, rawGamePass: false };
+  save("result.json", result); console.log(JSON.stringify(result)); secret = ""; fs.unlinkSync(lock);
+}
+if (error || calls.some(c => c.chargedMicros === undefined)) process.exitCode = 1;

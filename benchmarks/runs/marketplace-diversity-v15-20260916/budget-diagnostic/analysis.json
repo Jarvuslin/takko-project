@@ -1,0 +1,712 @@
+{
+  "sourceProject": "9a9e4e8b-3eae-4ca1-a3cb-3efef74e7f79",
+  "sourcePinsVerified": 76,
+  "sourceFileHashes": {
+    "final-project.json": "55a41e7309fab52f96e2b0cd270d34107a0c6af4fe89256e5fcb6b9fd5031e37",
+    "model-events.jsonl": "0c74d3a5bd1c2c647efc69ef366e22e504b82fbed78d516149fce5d4cf923cce",
+    "experiment.json": "a1d68b1307066465ab33cf1b76f0970923046de2a8eb81b33f79faa870854a16"
+  },
+  "cutoff": {
+    "at": "2026-09-16T20:53:18.932Z",
+    "index": 23,
+    "prefixSha256": "8bab737cac4fd9bd714d3028eea0f42f340e0926dfdb7f6733e49ec2facfd3e6"
+  },
+  "profile": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true
+  },
+  "spentMicros": 376988,
+  "projectBudgetMicros": 950000,
+  "remainingMicros": 573012,
+  "initial": {
+    "systemBytes": 8605,
+    "userBytes": 129859,
+    "inputAllowance": 139488,
+    "reserveMicros": 398976,
+    "wireBytes": 149319
+  },
+  "post": {
+    "systemBytes": 8605,
+    "userBytes": 217247,
+    "inputAllowance": 226876,
+    "reserveMicros": 573752,
+    "wireBytes": 246544
+  },
+  "refusedExcessMicros": 740,
+  "minSingleCallAdmissionBudgetMicros": 950740,
+  "outputAllowanceMicros": 120000,
+  "inputAllowanceMicros": 453752,
+  "initialObserved": {
+    "inputTokens": 32864,
+    "outputTokens": 5346,
+    "chargedMicros": 135619,
+    "inputByteAllowanceRatio": 4.244401168451802
+  },
+  "topLevelValueBytes": {
+    "task": 25,
+    "request": 1258,
+    "gameContext": 44292,
+    "context": 162421,
+    "instructions": 9189
+  },
+  "gameContextValueBytes": {
+    "version": 1,
+    "revision": 1,
+    "authority": 280,
+    "userSources": 1300,
+    "clarifications": 2,
+    "playerExperience": 27745,
+    "referenceResearch": 24,
+    "assetTarget": 14813
+  },
+  "stageValueBytes": {
+    "version": 1,
+    "runId": 38,
+    "inputHash": 66,
+    "revision": 1,
+    "eventSequence": 2,
+    "namespace": 20,
+    "namespaceStatus": 12,
+    "allowedRoots": 235,
+    "rootPolicy": 177,
+    "current": 826,
+    "needs": 4053,
+    "integrationTasks": 2882
+  },
+  "currentContextValueBytes": {
+    "need": 2155,
+    "evidence": 49940,
+    "requirementIds": 144,
+    "stage": 8478,
+    "adaptation": 51,
+    "preservation": 101575
+  },
+  "evidenceValueBytes": {
+    "packetHash": 66,
+    "inputHash": 66,
+    "candidateId": 17,
+    "token": 38,
+    "originalHash": 66,
+    "derivativeHash": 66,
+    "nodes": 25883,
+    "sourceBodies": 16627,
+    "securityProfiles": 1372,
+    "configurationValues": 2,
+    "contentReferences": 4877,
+    "removedCapabilities": 39,
+    "boundary": 611,
+    "runtimeOnlyInstances": 0
+  },
+  "preservationValueBytes": {
+    "version": 1,
+    "before": 65863,
+    "appliedPlan": 8564,
+    "mapping": 26706,
+    "boundary": 381
+  },
+  "beforeEvidenceValueBytes": {
+    "packetHash": 66,
+    "inputHash": 66,
+    "candidateId": 17,
+    "token": 38,
+    "originalHash": 66,
+    "derivativeHash": 66,
+    "nodes": 26499,
+    "sourceBodies": 32069,
+    "securityProfiles": 832,
+    "configurationValues": 185,
+    "contentReferences": 4880,
+    "removedCapabilities": 39,
+    "boundary": 830
+  },
+  "sharedSources": [],
+  "repeatedStrings": [
+    {
+      "sha256": "6053568d812bf6cd570c38fc53d0c6ae4bbba9cbe7c21803b76606ee04f19f05",
+      "jsonBytes": 1258,
+      "copies": 19,
+      "redundantStringBytes": 22644,
+      "paths": [
+        "root.request",
+        "root.gameContext.userSources.0.text",
+        "root.gameContext.playerExperience.requirements.0.sourceQuote",
+        "root.gameContext.playerExperience.requirements.1.sourceQuote",
+        "root.gameContext.playerExperience.requirements.2.sourceQuote",
+        "root.gameContext.playerExperience.requirements.3.sourceQuote",
+        "root.gameContext.playerExperience.requirements.5.sourceQuote",
+        "root.gameContext.playerExperience.requirements.6.sourceQuote",
+        "root.gameContext.playerExperience.requirements.7.sourceQuote",
+        "root.gameContext.playerExperience.requirements.8.sourceQuote",
+        "root.gameContext.playerExperience.requirements.9.sourceQuote",
+        "root.gameContext.playerExperience.requirements.10.sourceQuote",
+        "root.gameContext.playerExperience.requirements.12.sourceQuote",
+        "root.gameContext.assetTarget.requirements.0.sourceQuote",
+        "root.gameContext.assetTarget.requirements.1.sourceQuote",
+        "root.gameContext.assetTarget.requirements.2.sourceQuote",
+        "root.gameContext.assetTarget.requirements.3.sourceQuote",
+        "root.gameContext.assetTarget.requirements.5.sourceQuote",
+        "root.gameContext.assetTarget.requirements.6.sourceQuote"
+      ]
+    },
+    {
+      "sha256": "bbb38916f65f864e52fad7c6a58b193ef5c103ff0079724946ebd3d365099531",
+      "jsonBytes": 66,
+      "copies": 74,
+      "redundantStringBytes": 4818,
+      "paths": [
+        "root.context.evidence.sourceBodies.0.sha256",
+        "root.context.preservation.appliedPlan.replaceSources.0.sourceSha256",
+        "root.context.preservation.mapping.sourceBindings.1.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.5.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.6.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.7.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.8.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.9.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.10.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.11.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.12.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.13.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.14.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.15.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.16.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.17.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.18.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.19.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.20.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.21.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.22.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.23.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.24.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.25.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.26.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.27.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.28.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.29.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.30.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.31.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.32.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.33.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.34.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.35.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.36.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.37.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.38.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.39.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.40.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.41.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.42.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.43.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.44.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.45.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.46.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.47.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.48.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.49.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.50.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.51.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.52.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.53.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.54.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.55.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.56.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.57.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.58.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.59.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.60.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.61.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.62.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.63.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.64.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.65.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.66.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.67.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.68.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.69.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.70.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.71.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.72.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.73.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.74.currentSha256",
+        "root.context.preservation.mapping.sourceBindings.75.currentSha256"
+      ]
+    },
+    {
+      "sha256": "7004b7e2eba95e054d21410f46c8d5d4e6fcdc21233b3b0a4d9be0430bae1ab0",
+      "jsonBytes": 66,
+      "copies": 74,
+      "redundantStringBytes": 4818,
+      "paths": [
+        "root.context.preservation.before.sourceBodies.1.sha256",
+        "root.context.preservation.appliedPlan.replaceSources.0.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.1.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.5.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.6.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.7.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.8.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.9.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.10.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.11.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.12.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.13.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.14.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.15.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.16.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.17.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.18.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.19.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.20.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.21.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.22.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.23.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.24.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.25.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.26.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.27.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.28.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.29.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.30.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.31.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.32.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.33.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.34.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.35.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.36.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.37.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.38.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.39.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.40.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.41.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.42.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.43.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.44.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.45.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.46.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.47.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.48.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.49.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.50.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.51.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.52.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.53.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.54.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.55.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.56.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.57.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.58.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.59.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.60.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.61.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.62.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.63.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.64.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.65.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.66.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.67.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.68.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.69.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.70.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.71.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.72.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.73.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.74.beforeSha256",
+        "root.context.preservation.mapping.sourceBindings.75.beforeSha256"
+      ]
+    },
+    {
+      "sha256": "e20203806493d5676ee2cd11989750067ba22295cc1eb3e42eff44a213b05b0e",
+      "jsonBytes": 622,
+      "copies": 3,
+      "redundantStringBytes": 1244,
+      "paths": [
+        "root.gameContext.assetTarget.need.constraints",
+        "root.context.need.constraints",
+        "root.context.stage.needs.0.need.constraints"
+      ]
+    },
+    {
+      "sha256": "8fa3ac3f244dd7874a9da6bfce07002152ae68a1eb2c868c7f7bd90b747ad120",
+      "jsonBytes": 279,
+      "copies": 3,
+      "redundantStringBytes": 558,
+      "paths": [
+        "root.gameContext.assetTarget.need.role",
+        "root.context.need.role",
+        "root.context.stage.needs.0.need.role"
+      ]
+    },
+    {
+      "sha256": "29d873b2d450671650682322d73b7bbf1f4c68c909818d816d873d701857739c",
+      "jsonBytes": 225,
+      "copies": 3,
+      "redundantStringBytes": 450,
+      "paths": [
+        "root.gameContext.assetTarget.need.intent.interaction",
+        "root.context.need.intent.interaction",
+        "root.context.stage.needs.0.need.intent.interaction"
+      ]
+    },
+    {
+      "sha256": "2402628753e6ce04e05f252422b445f312b79b821dbdea2596bde27b4f0cc9e0",
+      "jsonBytes": 211,
+      "copies": 3,
+      "redundantStringBytes": 422,
+      "paths": [
+        "root.gameContext.assetTarget.need.intent.experienceRole",
+        "root.context.need.intent.experienceRole",
+        "root.context.stage.needs.0.need.intent.experienceRole"
+      ]
+    },
+    {
+      "sha256": "b199d98b0682f4253bc3d3e17795dc8ddac437e531e6393a77ec86ce32ecd288",
+      "jsonBytes": 382,
+      "copies": 2,
+      "redundantStringBytes": 382,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.0.acceptance",
+        "root.gameContext.assetTarget.requirements.0.acceptance"
+      ]
+    },
+    {
+      "sha256": "cfb227388acf80d05cd497ec9e3da9c386c93b3b29faf5509cb3b19b0457788e",
+      "jsonBytes": 279,
+      "copies": 2,
+      "redundantStringBytes": 279,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.7.acceptance",
+        "root.gameContext.assetTarget.requirements.6.acceptance"
+      ]
+    },
+    {
+      "sha256": "6e5d7e28469c9677e760fcaf70b0823b0e1a6fe0e6d0877ae602bc3922572690",
+      "jsonBytes": 274,
+      "copies": 2,
+      "redundantStringBytes": 274,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.4.acceptance",
+        "root.gameContext.assetTarget.requirements.4.acceptance"
+      ]
+    },
+    {
+      "sha256": "2f4d0f2a4696d191902e1fc6cefc5d60d72d268adfaa1ce68e40073ecf506dab",
+      "jsonBytes": 268,
+      "copies": 2,
+      "redundantStringBytes": 268,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.2.acceptance",
+        "root.gameContext.assetTarget.requirements.2.acceptance"
+      ]
+    },
+    {
+      "sha256": "fc5206ee52b50568cf3e52c1877b5f22367efc79cbf039193429e2686ec91db4",
+      "jsonBytes": 257,
+      "copies": 2,
+      "redundantStringBytes": 257,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.0.description",
+        "root.gameContext.assetTarget.requirements.0.description"
+      ]
+    },
+    {
+      "sha256": "d374b16167a70dd5813443bab1124ba189e712ebd9d031550de7020cc07de5b3",
+      "jsonBytes": 254,
+      "copies": 2,
+      "redundantStringBytes": 254,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.3.acceptance",
+        "root.gameContext.assetTarget.requirements.3.acceptance"
+      ]
+    },
+    {
+      "sha256": "2f5cd7556d9df0e36ac71842a0c625c0dc19a3f090271d45be091b4006d1d7de",
+      "jsonBytes": 236,
+      "copies": 2,
+      "redundantStringBytes": 236,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.11.acceptance",
+        "root.gameContext.assetTarget.requirements.7.acceptance"
+      ]
+    },
+    {
+      "sha256": "2d1de6f04c4e2d92f62a48c8fb2330efdd7d1f3d23d5d0ad9131e294e073210c",
+      "jsonBytes": 228,
+      "copies": 2,
+      "redundantStringBytes": 228,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.5.acceptance",
+        "root.gameContext.assetTarget.requirements.5.acceptance"
+      ]
+    },
+    {
+      "sha256": "548c43f65462e64280b5f5ddbbb3b3d58bbb6690c16acf2f6e68104ee5958f99",
+      "jsonBytes": 216,
+      "copies": 2,
+      "redundantStringBytes": 216,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.4.description",
+        "root.gameContext.assetTarget.requirements.4.description"
+      ]
+    },
+    {
+      "sha256": "ac1bff82c3daa293ef60a3c7286a55ff3a288a3ed7bf9ccbd87ffdbadd2188b6",
+      "jsonBytes": 200,
+      "copies": 2,
+      "redundantStringBytes": 200,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.1.acceptance",
+        "root.gameContext.assetTarget.requirements.1.acceptance"
+      ]
+    },
+    {
+      "sha256": "86c891c199e2e1d473e4c948347998ce736f402eced950444c0dd4d7278a48ed",
+      "jsonBytes": 200,
+      "copies": 2,
+      "redundantStringBytes": 200,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.11.description",
+        "root.gameContext.assetTarget.requirements.7.description"
+      ]
+    },
+    {
+      "sha256": "966dad60c2100285abd81b3a96fb434b29b05b34dd30c4770cadab878d5f2dec",
+      "jsonBytes": 66,
+      "copies": 4,
+      "redundantStringBytes": 198,
+      "paths": [
+        "root.context.evidence.inputHash",
+        "root.context.stage.inputHash",
+        "root.context.preservation.before.inputHash",
+        "root.context.preservation.appliedPlan.inputHash"
+      ]
+    },
+    {
+      "sha256": "56c66ad7485c21ba69f9ba0f85bd9fb6784f5d5f9912a99d7b95a77747162929",
+      "jsonBytes": 191,
+      "copies": 2,
+      "redundantStringBytes": 191,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.3.description",
+        "root.gameContext.assetTarget.requirements.3.description"
+      ]
+    },
+    {
+      "sha256": "3daa50965f9e47de5d69b012c0d8863188dad55e6aa5e7120f46dc77935406b0",
+      "jsonBytes": 183,
+      "copies": 2,
+      "redundantStringBytes": 183,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.1.description",
+        "root.gameContext.assetTarget.requirements.1.description"
+      ]
+    },
+    {
+      "sha256": "cb49ba21aab87ea60189efc021ea5032783a720aaba628a01c4d97611bc6a84e",
+      "jsonBytes": 178,
+      "copies": 2,
+      "redundantStringBytes": 178,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.2.description",
+        "root.gameContext.assetTarget.requirements.2.description"
+      ]
+    },
+    {
+      "sha256": "35d8b1cf55dee88963c055dc7697f2dd956cf00a26bd6a5a3969518e90830871",
+      "jsonBytes": 165,
+      "copies": 2,
+      "redundantStringBytes": 165,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.7.description",
+        "root.gameContext.assetTarget.requirements.6.description"
+      ]
+    },
+    {
+      "sha256": "e55897d23ccc6c4d706c8d439bd2064326f912f2a523b2aee9973b7c1605a004",
+      "jsonBytes": 66,
+      "copies": 3,
+      "redundantStringBytes": 132,
+      "paths": [
+        "root.gameContext.assetTarget.need.intent.reusableFeatures.3",
+        "root.context.need.intent.reusableFeatures.3",
+        "root.context.stage.needs.0.need.intent.reusableFeatures.3"
+      ]
+    },
+    {
+      "sha256": "088bc44394105b6758c8417dca7009a1ea15ecb447575e5d618ddae659acc230",
+      "jsonBytes": 66,
+      "copies": 3,
+      "redundantStringBytes": 132,
+      "paths": [
+        "root.context.evidence.sourceBodies.1.sha256",
+        "root.context.preservation.appliedPlan.addSources.0.sourceSha256",
+        "root.context.preservation.mapping.sourceBindings.76.currentSha256"
+      ]
+    },
+    {
+      "sha256": "034e1521a9a1667f8cdf654cff972fdaa5be83e5dbe01c5e92486edfc0c3b7e9",
+      "jsonBytes": 63,
+      "copies": 3,
+      "redundantStringBytes": 126,
+      "paths": [
+        "root.gameContext.assetTarget.need.intent.reusableFeatures.6",
+        "root.context.need.intent.reusableFeatures.6",
+        "root.context.stage.needs.0.need.intent.reusableFeatures.6"
+      ]
+    },
+    {
+      "sha256": "e3186fc5c5038e714852306adbf2e3e8709cd47330809a661a8876575a18a904",
+      "jsonBytes": 109,
+      "copies": 2,
+      "redundantStringBytes": 109,
+      "paths": [
+        "root.gameContext.playerExperience.requirements.5.description",
+        "root.gameContext.assetTarget.requirements.5.description"
+      ]
+    },
+    {
+      "sha256": "62d771c38f8d89aad6da0c0348e1cebe4447fb73fa2df0e86248d393d7364e71",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.evidence.originalHash",
+        "root.context.preservation.before.originalHash"
+      ]
+    },
+    {
+      "sha256": "e81c69614f499f685e399c6198141cf42f144a0c391e96a6c37b96adb7f6ef21",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.preservation.before.packetHash",
+        "root.context.preservation.appliedPlan.packetHash"
+      ]
+    },
+    {
+      "sha256": "850f50d293f648d94e2949f9a5d6d584aca4ba22609a1fe69b8a899045b9af25",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.preservation.before.sourceBodies.0.sha256",
+        "root.context.preservation.mapping.sourceBindings.0.beforeSha256"
+      ]
+    },
+    {
+      "sha256": "7bad9aa77d2acb3fe8e28ad59d8ed7cc7467044ea53b0e4d81b03dcb1a635159",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.preservation.before.sourceBodies.2.sha256",
+        "root.context.preservation.mapping.sourceBindings.2.beforeSha256"
+      ]
+    },
+    {
+      "sha256": "f5ea5e705c0970bd2760304fa9f074785d9712fdd11a74948eb150526b28886e",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.preservation.before.sourceBodies.3.sha256",
+        "root.context.preservation.mapping.sourceBindings.3.beforeSha256"
+      ]
+    },
+    {
+      "sha256": "a925e563ff6487ea514e01caa3bb4228a42cb229365254f587270dab9b0cf257",
+      "jsonBytes": 66,
+      "copies": 2,
+      "redundantStringBytes": 66,
+      "paths": [
+        "root.context.preservation.before.sourceBodies.4.sha256",
+        "root.context.preservation.mapping.sourceBindings.4.beforeSha256"
+      ]
+    }
+  ],
+  "hypotheticalRemovedByteCounts": {
+    "beforeEvidence": 65873,
+    "assetTarget": 14828
+  },
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 189408,
+      "chargedMicros": 59844,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6784,
+      "outputTokens": 4728,
+      "cachedInputTokens": 1911,
+      "status": "ok",
+      "at": "2026-09-16T20:50:18.440Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 118325,
+      "chargedMicros": 14679,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 18576,
+      "outputTokens": 199,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T20:50:21.898Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 119712,
+      "chargedMicros": 16482,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 19060,
+      "outputTokens": 583,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T20:50:27.295Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 398976,
+      "chargedMicros": 135619,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 32864,
+      "outputTokens": 5346,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T20:51:43.282Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 408466,
+      "chargedMicros": 150364,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 33210,
+      "outputTokens": 6734,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T20:53:18.042Z"
+    }
+  ],
+  "nativeOperations": 0,
+  "networkCalls": 0,
+  "limitations": "No historical outbound wire saved; deterministic reconstruction verified current source pins, plan invariants, immutable root/current chain, and matching initial recorded Engine byte reservation. No token count exists for refused request. Counterfactual field removal is byte measurement only, not proposed evidence deletion or verified model-quality improvement."
+}

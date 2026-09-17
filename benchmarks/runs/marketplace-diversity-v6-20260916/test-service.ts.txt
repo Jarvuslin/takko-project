@@ -1,0 +1,5 @@
+import path from "node:path";
+import { createApp } from "../src/server/app";
+const directory = path.resolve(".forge/diversity-v6-runtime");
+const app = createApp(directory, { env: {} });
+app.listen(4335, "127.0.0.1", () => console.log(JSON.stringify({ port: 4335, directory, pid: process.pid })));

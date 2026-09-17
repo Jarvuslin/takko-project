@@ -1,0 +1,602 @@
+{
+  "at": "2026-09-16T18:53:50.991Z",
+  "prior": 6325943,
+  "states": [
+    {
+      "port": 4324,
+      "projects": [
+        {
+          "id": "fd665994-b18b-47cd-9cfd-aec90b2993b3",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "7680d1f6-d631-4265-9e89-3f7942fef6cd",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "950ab3b0-d8ac-4895-b40a-32ab1e1cdb7d",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "1ce5239e-6fd2-4b34-bf74-8d6af2ef8c84",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "98c63e12-b73c-4553-bde0-939b88985746",
+          "stage": "ready_to_test",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "ad3e2e8e-b32a-48b1-9815-14ab4cf81286",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "4fbdea98-2e3f-4223-a387-d1bec0b5ffe7",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "31eb07b7-1094-49f8-81ee-3aa5a5a2914c",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "c4a094d1-b55d-4878-a064-eb23ed2fb1ff",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "66340e18-f617-490f-95a4-9dd9aa79f934",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "93d16edb-774b-4b51-b6c9-71e917bf0eab",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "ba59314d-9788-4242-95b5-2351e0a5d7c2",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "8bcbebbd-8d25-4c34-b539-04ecb5d92d7b",
+          "stage": "draft",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "7550326e-b964-4bd7-a3bb-532a659a77fb",
+          "stage": "draft",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "6910370f-c548-4641-8bfe-3001b0921d86",
+          "stage": "failed",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "f9218794-5c1a-4af9-95ee-f4642bf884b3",
+          "stage": "review",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "0fa57407-671f-4b68-97b1-741c95a270b3",
+          "stage": "review",
+          "jobId": null,
+          "reservedMicros": 0
+        },
+        {
+          "id": "4edb15f9-801d-43e7-902e-181fff632a53",
+          "stage": "review",
+          "jobId": null,
+          "reservedMicros": 0
+        }
+      ]
+    },
+    {
+      "port": 4335,
+      "projects": []
+    }
+  ],
+  "settings": {
+    "profiles": [
+      {
+        "id": "d5e9222e-cc9c-465e-9255-a66d0e0c7fe6",
+        "name": "OpenRouter",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-3.8-flash",
+        "inputRate": 0.75,
+        "outputRate": 3.75,
+        "maxOutputTokens": 24000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "ccdd0cd9-53f0-4860-9117-f157fc8b91ab",
+        "name": "Qwen Coder · economy test",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "qwen/qwen3-coder-next",
+        "inputRate": 0.12,
+        "outputRate": 0.8,
+        "maxOutputTokens": 12000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "fd94a387-02be-4970-8591-7b05bf556a38",
+        "name": "Gemini Flash Lite · economy test",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-2.5-flash-lite",
+        "inputRate": 0.1,
+        "outputRate": 0.4,
+        "maxOutputTokens": 12000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "2fbeecf3-d4ed-4a3b-87a2-e0694a4654d1",
+        "name": "GPT 4.1 mini · economy test",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "openai/gpt-4.1-mini",
+        "inputRate": 0.4,
+        "outputRate": 1.6,
+        "maxOutputTokens": 12000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+        "name": "GPT-5.6 Sol · lead",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "openai/gpt-5.6-sol",
+        "inputRate": 2,
+        "outputRate": 10,
+        "maxOutputTokens": 12000,
+        "requestTimeoutMs": 300000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "48acadb3-68eb-4721-80cf-9cbca2aabc19",
+        "name": "Butter Crunch - MiniMax M3",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "minimax/minimax-m3",
+        "inputRate": 0.3,
+        "outputRate": 1.2,
+        "maxOutputTokens": 24000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "3feda1ba-ad30-45de-9d47-b33785414efc",
+        "name": "Butter Crunch - MiMo Pro",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "xiaomi/mimo-v2.5-pro",
+        "inputRate": 0.435,
+        "outputRate": 0.87,
+        "maxOutputTokens": 24000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+        "name": "Butter Crunch - Grok Build",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "x-ai/grok-build-0.1",
+        "inputRate": 1,
+        "outputRate": 2,
+        "maxOutputTokens": 24000,
+        "jsonMode": true,
+        "hasKey": true
+      },
+      {
+        "id": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+        "name": "Butter Crunch - Gemini evaluator",
+        "provider": "openrouter",
+        "baseUrl": "https://openrouter.ai/api/v1",
+        "model": "google/gemini-3.7-flash",
+        "inputRate": 0.75,
+        "outputRate": 3.75,
+        "maxOutputTokens": 12000,
+        "requestTimeoutMs": 300000,
+        "jsonMode": true,
+        "hasKey": true
+      }
+    ],
+    "routes": {
+      "research": [
+        "4b87bbd1-4a28-45b3-bc5f-645de6716336"
+      ],
+      "planner": [
+        "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+        "2fbeecf3-d4ed-4a3b-87a2-e0694a4654d1"
+      ],
+      "builder": [
+        "2fbeecf3-d4ed-4a3b-87a2-e0694a4654d1"
+      ],
+      "reviewer": [
+        "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+        "d5e9222e-cc9c-465e-9255-a66d0e0c7fe6"
+      ],
+      "repair": [
+        "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+        "d5e9222e-cc9c-465e-9255-a66d0e0c7fe6"
+      ]
+    },
+    "budgetMicros": 1000000,
+    "repairLimit": 1,
+    "researchEnabled": true
+  },
+  "selectedModels": [
+    {
+      "id": "openai/gpt-5.6-sol",
+      "canonical_slug": "openai/gpt-5.6-sol-20260709",
+      "hugging_face_id": null,
+      "name": "OpenAI: GPT-5.6 Sol",
+      "created": 1783590850,
+      "description": "GPT-5.6 Sol is the flagship model in OpenAI's GPT-5.6 series. It is suited for complex reasoning, coding, and agentic workflows, and is particularly strong at command-line and multi-step coding tasks...",
+      "context_length": 1050000,
+      "architecture": {
+        "modality": "text+image+file->text",
+        "input_modalities": [
+          "file",
+          "image",
+          "text"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "GPT",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0.000002",
+        "completion": "0.00001",
+        "web_search": "0.01",
+        "input_cache_read": "0.0000002",
+        "input_cache_write": "0.0000025",
+        "overrides": [
+          {
+            "min_prompt_tokens": 272000,
+            "prompt": "0.000004",
+            "completion": "0.000015",
+            "input_cache_read": "0.0000004",
+            "input_cache_write": "0.000005"
+          }
+        ]
+      },
+      "top_provider": {
+        "context_length": 1050000,
+        "max_completion_tokens": 128000,
+        "is_moderated": true
+      },
+      "per_request_limits": null,
+      "supported_parameters": [
+        "include_reasoning",
+        "max_completion_tokens",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "seed",
+        "structured_outputs",
+        "tool_choice",
+        "tools"
+      ],
+      "default_parameters": {
+        "temperature": null,
+        "top_p": null,
+        "top_k": null,
+        "frequency_penalty": null,
+        "presence_penalty": null,
+        "repetition_penalty": null
+      },
+      "supported_voices": null,
+      "knowledge_cutoff": "2026-02-16",
+      "expiration_date": null,
+      "links": {
+        "details": "/api/v1/models/openai/gpt-5.6-sol-20260709/endpoints"
+      },
+      "benchmarks": {
+        "design_arena": [],
+        "artificial_analysis": {
+          "intelligence_index": 47.1,
+          "coding_index": 77.4,
+          "agentic_index": 50.5
+        }
+      },
+      "reasoning": {
+        "mandatory": false,
+        "default_enabled": true,
+        "supported_efforts": [
+          "max",
+          "xhigh",
+          "high",
+          "medium",
+          "low",
+          "none"
+        ],
+        "default_effort": "medium"
+      }
+    },
+    {
+      "id": "google/gemini-3.7-flash",
+      "canonical_slug": "google/gemini-3.7-flash-20260813",
+      "hugging_face_id": null,
+      "name": "Google: Gemini 3.7 Flash",
+      "created": 1786640581,
+      "description": "Gemini 3.7 Flash is a multimodal model from Google for fast agentic workflows, coding, and complex multi-step reasoning. It is designed for tasks that require responsive performance and reliable multi-step...",
+      "context_length": 1048576,
+      "architecture": {
+        "modality": "text+image+file+audio+video->text",
+        "input_modalities": [
+          "text",
+          "image",
+          "video",
+          "file",
+          "audio"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "tokenizer": "Gemini",
+        "instruct_type": null
+      },
+      "pricing": {
+        "prompt": "0.00000075",
+        "completion": "0.00000375",
+        "image": "0.00000075",
+        "audio": "0.00000075",
+        "input_audio_cache": "0.000000075",
+        "web_search": "0.014",
+        "internal_reasoning": "0.00000375",
+        "input_cache_read": "0.000000075",
+        "input_cache_write": "0.0000000416666666666667"
+      },
+      "top_provider": {
+        "context_length": 1048576,
+        "max_completion_tokens": 65536,
+        "is_moderated": false
+      },
+      "per_request_limits": null,
+      "supported_parameters": [
+        "include_reasoning",
+        "max_tokens",
+        "reasoning",
+        "reasoning_effort",
+        "response_format",
+        "seed",
+        "stop",
+        "structured_outputs",
+        "temperature",
+        "tool_choice",
+        "tools",
+        "top_p"
+      ],
+      "default_parameters": {},
+      "supported_voices": null,
+      "knowledge_cutoff": null,
+      "expiration_date": null,
+      "links": {
+        "details": "/api/v1/models/google/gemini-3.7-flash-20260813/endpoints"
+      },
+      "benchmarks": {
+        "design_arena": [
+          {
+            "arena": "agents",
+            "category": "agenticgamedev",
+            "elo": 1235,
+            "win_rate": 52.1,
+            "rank": 5
+          },
+          {
+            "arena": "agents",
+            "category": "androidnative",
+            "elo": 1256,
+            "win_rate": 53.6,
+            "rank": 6
+          },
+          {
+            "arena": "agents",
+            "category": "fullstack",
+            "elo": 1225,
+            "win_rate": 45.8,
+            "rank": 14
+          },
+          {
+            "arena": "agents",
+            "category": "mobileapps",
+            "elo": 1264,
+            "win_rate": 54.1,
+            "rank": 5
+          },
+          {
+            "arena": "agents",
+            "category": "webapps",
+            "elo": 1234,
+            "win_rate": 47.4,
+            "rank": 14
+          },
+          {
+            "arena": "models",
+            "category": "3d",
+            "elo": 1339,
+            "win_rate": 56.3,
+            "rank": 9
+          },
+          {
+            "arena": "models",
+            "category": "asciiart",
+            "elo": 1264,
+            "win_rate": 51,
+            "rank": 15
+          },
+          {
+            "arena": "models",
+            "category": "codecategories",
+            "elo": 1323,
+            "win_rate": 56.2,
+            "rank": 8
+          },
+          {
+            "arena": "models",
+            "category": "dataviz",
+            "elo": 1330,
+            "win_rate": 57.1,
+            "rank": 7
+          },
+          {
+            "arena": "models",
+            "category": "gamedev",
+            "elo": 1352,
+            "win_rate": 56.2,
+            "rank": 7
+          },
+          {
+            "arena": "models",
+            "category": "uicomponent",
+            "elo": 1316,
+            "win_rate": 51.7,
+            "rank": 12
+          },
+          {
+            "arena": "models",
+            "category": "website",
+            "elo": 1315,
+            "win_rate": 56.3,
+            "rank": 7
+          }
+        ],
+        "artificial_analysis": {
+          "intelligence_index": 39.4,
+          "coding_index": 76.1,
+          "agentic_index": 36.4
+        }
+      },
+      "reasoning": {
+        "mandatory": true,
+        "default_enabled": true,
+        "supported_efforts": [
+          "high",
+          "medium",
+          "low"
+        ],
+        "default_effort": "medium"
+      }
+    }
+  ],
+  "pluginHash": "ad009c907a7e7764b225ebdb23eacd070716473d6bc1e58121acb11244a3b1c5",
+  "studios": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+      }
+    ],
+    "isError": false
+  },
+  "state": {
+    "content": [
+      {
+        "type": "text",
+        "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+      }
+    ],
+    "isError": false
+  },
+  "controllerHash": "a56d7de126513fcd4d6f902b5c62c2c3cfd529ac4966946e7e3a428606102201",
+  "benchmarkHash": "d2a67c17fff89f7b1687cb1da03996917279e9202ece26906b448800284e1ea6",
+  "generationSources": {
+    "src/benchmark/asset-execution.ts": "e5c8c5e7c6f89720af7a95ebe4a67adfc08e755a75926da57e4f3c41257908c5",
+    "src/benchmark/asset-provenance.ts": "c1b1b9e52c6a30b29b3d787678c70c478264f9bfb509dbdb8d591f54a7f6f30e",
+    "src/benchmark/cases.ts": "c4e084f3607a7c96f506e59a230b9e22c52580f60c84fa043936c48f58fb98d5",
+    "src/benchmark/evidence-files.ts": "5e5a6cee54082d901cd11834e7886c30cccddc9988aece78a4f3b152ce2e599f",
+    "src/benchmark/inventory.ts": "68b3f51f78bcbf3cddda3127b54c8939fed3fabf56012494cf95eabf3c2b6428",
+    "src/benchmark/pairwise.ts": "da2e81010fc93448824ae43cf34bd6fa818a4a8ee590227ad6b4bb64aef434b1",
+    "src/benchmark/quality.ts": "58daedf79f1c4f4e005e7f54f03be47f658787348c80e9b2b2df25db0f106660",
+    "src/benchmark/verified-submission.ts": "0cfa7d40141babc93150b638a6c15a4d3697a67361ab8011c31b10c54ae95812",
+    "src/core/budget.ts": "88306bbf2c3ff84911f5624e59503eef4f89f4308741d07b0a3a4180b61cfbe6",
+    "src/core/project.ts": "e02af619d2e0f88fb40d7edea58b1ab33df7692f2bf7792d52d6a899220782e8",
+    "src/core/provider.ts": "9895ef58fffb41c9339739fc5e4f43761bc9ac6d002f27e7b6c4b16ba18ebff0",
+    "src/core/recipe.ts": "db6635da29770ba6b0b6eb3c14567d7d3409d68b561d117a8e9f47c735ad2d04",
+    "src/generation/asset-contract.ts": "c3b48651a369c5c333c356c45f6323f4f0b4399da05d05cf3800e5fbbff71641",
+    "src/generation/asset-pipeline.ts": "1719d16eb386f83c0293af81070c2ce39b69c8dff597535f99d6417aa24b9c98",
+    "src/generation/asset-provenance.ts": "7bc00fb5eb01bdb66a52c7381477e6227b08c2354ea50ed7e7f9fd9de8065c8f",
+    "src/generation/audio-capture.ts": "5b98723827c174fc68a15063fe6fe636baf8455f57b04c52de33278343e43247",
+    "src/generation/audio-evidence.ts": "85c621b71e01e9befe4640451f36da0a0afb9d22741070e7f1d50b992893a4f5",
+    "src/generation/bridge.ts": "107f102458684cb568db7e8d060c59b6d85f065b31467616553febfd11673910",
+    "src/generation/capabilities.ts": "c75032a67947a0602308fc7008dceeb09522c57849fbf4a551e325ef16f31a08",
+    "src/generation/component-adaptation.ts": "c2466addb66b203ac2141c6419c05ecbb0641cbb59009d44ffcac0ad636fa188",
+    "src/generation/component-archive.ts": "27b1fb8432abd0c6ed2316462beac233e52042cf508f816be9e19a9cc743aeeb",
+    "src/generation/component-derivative.ts": "f3ce63a0e31960898843d4af85c246b19c5910dcf5921808722fce96d2e48b25",
+    "src/generation/component-integration.ts": "15534cc447f2914fcd7e62209d99b7e50eafd6335b5fbee931500e2d88354d30",
+    "src/generation/component-media.ts": "ad8aec79a364a5a18052b7a2144cf134284a115b5098f60f7c62b1a48f1bbf49",
+    "src/generation/component-preservation.ts": "441d1ba2bda5a0d659e2fbc20b74008ed99f6120bd728d46fe33615b2c660c41",
+    "src/generation/component-review.ts": "cb7ae2eff4654950040ce9c36d897d511ce342fbacc9bb4f1e5e334fa5919669",
+    "src/generation/component-xml-conversion.ts": "86054c4d7fb369eee84e70a01321d4fe7bc1e10fd727fa2817cd3597498c93b5",
+    "src/generation/component-xml.ts": "b34dc703021ff4153eabc83a95f26b2b66f16616278f4d4165be3d827e739b45",
+    "src/generation/context-layout.ts": "626ca14c0d9734a46df6a9459ee25ba399abd8e63b73d8e1ec75e4576c4440fd",
+    "src/generation/design-guidance.ts": "20df333e26f5df5005be6cc34aea96a843d52c1cafde6552c0968891fb25aaf2",
+    "src/generation/diagnostics.ts": "2659338f808f7489c8fe48efbd71c0790805ad962066e496cc145719df600d70",
+    "src/generation/engine.ts": "fd6e437a2cf88d565d6ad480e169590a24ded4bc0901f535bd020fa3dc9f32d4",
+    "src/generation/export.ts": "5ff460da41816815dae1dee0ecf4fee4375ca3c46097c7704d400318654371a2",
+    "src/generation/game-context.ts": "dae1f8994d35ee2d484de08b44e9ed5796584ff2c5b2f774a9491d445f041d93",
+    "src/generation/marketplace-policy.ts": "e4ab5cc0cec89ffbebdbae48e2ff681e6f90497a1e78ad6459edfc1586a1d545",
+    "src/generation/normalize-scene.ts": "da361723bb42d9269b5d0c525d772026a467fa870271d1e1c5c2ecafbe43dfe6",
+    "src/generation/providers.ts": "163186eee77638442e1008b5219ab3ab5db06f1c80ba35fc21ccc40eecea4916",
+    "src/generation/repair.ts": "f130bc89a516178bc40220fc53391de40e2d1c2c51a246914aff48081134de11",
+    "src/generation/requirements.ts": "12068837d0017fc633b8ae3f3b92696e78b7c6e27958de94694dc8ba25bac3e9",
+    "src/generation/research.ts": "a2aff9026cb0924fcd5e51806f4e4395858140fd6fc87246d8f6fbdd12e7492f",
+    "src/generation/reviews.ts": "d71cf1338e72544f51e23b5956ad2a341e95e6d6d5f0b540d3d8c80e94f28cce",
+    "src/generation/roblox-context.ts": "398ca6ff48e49f803aff675b11d918a00e43505e26cd0c0d2e65e413b179c894",
+    "src/generation/runtime-source-check.ts": "f19d65e7665fcbff85e0cbe6e17fa741116de07578c829cc9147d7533c9d4b93",
+    "src/generation/schema.ts": "6084cd5c7454eec1a4682a99a55a27de1b913d94f81a4ed9d20020902103fd98",
+    "src/generation/settings.ts": "9e90dd406b10ef90a3991645e14fdee26694f25e0f4278655451a585eeac5d61",
+    "src/generation/store.ts": "1c80742a479e47c989cbc83aff8cba0d9a8357ce8004005bc3cdf8755b25b86d",
+    "src/generation/studio-asset-adapter.ts": "c583d1ec6d64e7f163bde63ceea695ae9f38decc6a5fd12765dedd268dd65add",
+    "src/generation/studio-audio-runtime.ts": "60b2cd7a79c0fb552bcc36b2440cf8bc31f9a688388f8df86087efbb6180f202",
+    "src/generation/studio-mcp-client.ts": "95cdc35c6d1974cac4f56bd97423d015f48034cc701d9c04688c7569275e2db7",
+    "src/generation/studio-state.ts": "8deb7ea2ea17edb4316d5bc932f11997d5379c400d99ca2f9f6e0e957fc29c2c",
+    "src/generation/validation.ts": "d32549a39603051e679ff9cc1619093ed9871d0d808d223656e3d012ef1e55f4",
+    "src/generation/visual.ts": "0158753631db98078cf4b4bba3cd2971a2953c8c6f6250d2f9e8be0a09371839",
+    "src/server/app.ts": "6356eb5ce4db974063d9df162147beb23b9a0485bdddca49008078cba5e5a00c",
+    "src/server/start.ts": "45afc515f230a03906f0bcd26bb2a9ec197f5a5c3c774eda153ad1626c5b4e23",
+    "src/server/store.ts": "c5d6e6d8a79bd4fb4ae038bca201edb63a0a284757ec28b29291982a67509e74",
+    "src/web/App.tsx": "70db9a9e4f4c8f354c346f8ce4af6fa081d4e04ed53f3ec5db17e3d5f732793e",
+    "src/web/AssetExecution.tsx": "acc7596901b6fe3a2ade085c984b4d88afdf1b1a2cced48d400fd1c397422220",
+    "src/web/main.tsx": "9199bfba8182fe6921f500d9a9eb35618abb637bd2b6fa2829539a0dc5af554c",
+    "src/web/MechanicsMap.tsx": "ae70ba8123b2a035ae0a4aa3ed1a27a24fb74c423678eb0ba050e7c9f041ed26",
+    "src/web/ModelPicker.tsx": "c50ab03b6767f99cb475039d2c7243c476ce14939f7cef26771054510679c823",
+    "src/web/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5"
+  }
+}

@@ -1,0 +1,13 @@
+# V11 bubble-wrap result
+
+The raw run found a relevant Marketplace interaction but failed source-review validation before adaptation or game generation. This was not a budget stop. No worker answer, query, asset choice, component code or game was manually repaired.
+
+Sol planned the full requested loop and deferred script ownership until discovery. Gemini independently retried with `bubble wrap` and selected returned asset `120019574381006`, Working Bubble Wrap Pop Relax ASMR. Native quarantine capture succeeded. See [independent assessment](PLAN-ASSESSMENT.md) for the worker's sixteen-bubble refinement versus the user's minimum of twelve.
+
+Two Sol review answers proposed `needs_more_evidence`. The first added AssetRead and Audio outside the three removed capabilities. The correction fixed that list but still classified a local ModuleScript reference as `module_asset`, whose contract requires an external numeric asset ID. The validator's “ID not present” message obscured the nonnumeric-value issue; first-error-only feedback surfaced it only after the correction attempt. Neither answer was accepted. A further source-reading concern is that a captured configuration value is subsequently overwritten from external data, so its initial numeric value cannot establish the eventual external module target.
+
+Five calls cost **$0.35488885** officially, **354,892 rounded microdollars**, below the $1.30 cap. All five have provider-known charges; no new unknown liability. Conservative carried total is **6,680,835 microdollars**, including older unknown liabilities. Historical Engine reservations are **17,447,951 microdollars**, separate from spending. Official key remaining: **$3.959521714** at 19:02:08 UTC.
+
+Verification passed: 17 evidence files, five hashed archives, current-run returned selection, frozen request, no plaintext key, terminal job/null reservation and restored routes. Cleanup restored all three original Place1 scripts; an independent native read found Edit mode, Disabled=false on all three and zero V11/isolation leftovers. The owned test backend4335/PID43396 was stopped after authoritative idle verification; original4324/PID36672 remains untouched and idle with eighteen projects. An initial PowerShell status formatting attempt mishandled the returned array; `terminal-api.json` contains the corrected per-project Node API verification.
+
+No retained component, adaptation, audio audition/listening, export or native gameplay acceptance was produced. Combat, parkour and ASMR whole-game goals remain unfinished. The next change targets generic dependency-category guidance and bounded multi-error correction feedback; this failed run remains immutable.

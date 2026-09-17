@@ -1,0 +1,406 @@
+Function 0 (??):
+   15: 		pcall(function() track:Stop(0.1) end)
+GETUPVAL R0 0
+LOADK R2 K0 [0.10000000000000001]
+NAMECALL R0 R0 K1 ['Stop']
+CALLFB R0 2 0 [0]
+RETURN R0 0
+
+Function 1 (disconnectCharacter):
+   14: 	for _, track in pairs(tracks) do
+GETIMPORT R0 1 [pairs]
+GETUPVAL R1 0
+CALLFB R0 1 3 [0]
+FORGPREP_NEXT R0 L1
+REMARK allocation: closure with 1 upvalues
+   15: 		pcall(function() track:Stop(0.1) end)
+L0: NEWCLOSURE R6 P0
+CAPTURE VAL R4
+FASTPCALL pcall L1
+GETIMPORT R5 3 [pcall]
+CALL R5 1 0
+   14: 	for _, track in pairs(tracks) do
+L1: FORGLOOP R0 L0 2
+   17: 	table.clear(tracks)
+GETIMPORT R0 6 [table.clear]
+GETUPVAL R1 0
+CALLFB R0 1 0 [1]
+   18: end
+RETURN R0 0
+
+Function 2 (??):
+   26: 		return animator:LoadAnimation(animation)
+GETUPVAL R0 0
+GETUPVAL R2 1
+NAMECALL R0 R0 K0 ['LoadAnimation']
+CALL R0 2 -1
+RETURN R0 -1
+
+Function 3 (loadTrack):
+   21: 	local animation = animations:FindFirstChild(name)
+GETUPVAL R2 0
+MOVE R4 R1
+NAMECALL R2 R2 K0 ['FindFirstChild']
+CALLFB R2 2 1 [0]
+   22: 	if not animation or not animation:IsA("Animation") or animation.AnimationId == "" then
+JUMPIFNOT R2 L0
+LOADK R5 K1 ['Animation']
+NAMECALL R3 R2 K2 ['IsA']
+CALLFB R3 2 1 [1]
+JUMPIFNOT R3 L0
+GETTABLEKS R3 R2 K3 ['AnimationId']
+JUMPXEQKS R3 K4 L1 NOT ['']
+   23: 		return nil
+L0: LOADNIL R3
+RETURN R3 1
+REMARK allocation: closure with 2 upvalues
+   25: 	local ok, track = pcall(function()
+L1: NEWCLOSURE R4 P0
+CAPTURE VAL R0
+CAPTURE VAL R2
+FASTPCALL pcall L2
+GETIMPORT R3 6 [pcall]
+CALL R3 1 2
+   28: 	if ok then
+L2: JUMPIFNOT R3 L3
+   29: 		track.Priority = Enum.AnimationPriority.Action
+GETIMPORT R5 10 [Enum.AnimationPriority.Action]
+SETTABLEKS R5 R4 K11 ['Priority']
+   30: 		track.Looped = false
+LOADB R5 0
+SETTABLEKS R5 R4 K12 ['Looped']
+   31: 		return track
+RETURN R4 1
+   33: 	return nil
+L3: LOADNIL R5
+RETURN R5 1
+
+Function 4 (bindCharacter):
+   37: 	disconnectCharacter()
+GETUPVAL R1 0
+CALLFB R1 0 0 [0]
+   38: 	local humanoid = character:WaitForChild("Humanoid", 10)
+LOADK R3 K0 ['Humanoid']
+LOADN R4 10
+NAMECALL R1 R0 K1 ['WaitForChild']
+CALLFB R1 3 1 [1]
+   39: 	if not humanoid then return end
+JUMPIF R1 L0
+RETURN R0 0
+   40: 	local animator = humanoid:FindFirstChildWhichIsA("Animator") or humanoid:WaitForChild("Animator", 5)
+L0: LOADK R4 K2 ['Animator']
+NAMECALL R2 R1 K3 ['FindFirstChildWhichIsA']
+CALLFB R2 2 1 [2]
+JUMPIF R2 L1
+LOADK R4 K2 ['Animator']
+LOADN R5 5
+NAMECALL R2 R1 K1 ['WaitForChild']
+CALLFB R2 3 1 [3]
+   41: 	if not animator then return end
+L1: JUMPIF R2 L2
+RETURN R0 0
+   42: 	tracks[1] = loadTrack(animator, "LeftPunch")
+L2: GETUPVAL R3 1
+GETUPVAL R4 2
+MOVE R5 R2
+LOADK R6 K4 ['LeftPunch']
+CALLFB R4 2 1 [4]
+SETTABLEN R4 R3 1
+   43: 	tracks[2] = loadTrack(animator, "RightPunch")
+GETUPVAL R3 1
+GETUPVAL R4 2
+MOVE R5 R2
+LOADK R6 K5 ['RightPunch']
+CALLFB R4 2 1 [5]
+SETTABLEN R4 R3 2
+   44: end
+RETURN R0 0
+
+Function 5 (attackAction):
+   51: 	if inputState ~= Enum.UserInputState.Begin then
+GETIMPORT R2 3 [Enum.UserInputState.Begin]
+JUMPIFEQ R1 R2 L0
+   52: 		return Enum.ContextActionResult.Pass
+GETIMPORT R2 6 [Enum.ContextActionResult.Pass]
+RETURN R2 1
+   54: 	local now = time()
+L0: GETIMPORT R2 8 [time]
+CALLFB R2 0 1 [0]
+   55: 	if now - lastPress < 0.05 then
+GETUPVAL R4 0
+SUB R3 R2 R4
+LOADK R4 K9 [0.050000000000000003]
+JUMPIFNOTLT R3 R4 L1
+   56: 		return Enum.ContextActionResult.Sink
+GETIMPORT R3 11 [Enum.ContextActionResult.Sink]
+RETURN R3 1
+   58: 	lastPress = now
+L1: SETUPVAL R2 0
+   59: 	remote:FireServer("Attack")
+GETUPVAL R3 1
+LOADK R5 K12 ['Attack']
+NAMECALL R3 R3 K13 ['FireServer']
+CALLFB R3 2 0 [1]
+   60: 	return Enum.ContextActionResult.Sink
+GETIMPORT R3 11 [Enum.ContextActionResult.Sink]
+RETURN R3 1
+
+Function 6 (resetAction):
+   64: 	if inputState == Enum.UserInputState.Begin then
+GETIMPORT R2 3 [Enum.UserInputState.Begin]
+JUMPIFNOTEQ R1 R2 L0
+   65: 		remote:FireServer("Reset")
+GETUPVAL R2 0
+LOADK R4 K4 ['Reset']
+NAMECALL R2 R2 K5 ['FireServer']
+CALLFB R2 2 0 [0]
+   67: 	return Enum.ContextActionResult.Sink
+L0: GETIMPORT R2 8 [Enum.ContextActionResult.Sink]
+RETURN R2 1
+
+Function 7 (??):
+REMARK builtin typeof/1
+   79: 	if typeof(result) ~= "table" or typeof(result.phase) ~= "string" then return end
+FASTCALL1 44 R0 L0
+MOVE R2 R0
+GETIMPORT R1 1 [typeof]
+CALL R1 1 1
+L0: JUMPXEQKS R1 K2 L2 NOT ['table']
+REMARK builtin typeof/1
+GETTABLEKS R2 R0 K3 ['phase']
+FASTCALL1 44 R2 L1
+GETIMPORT R1 1 [typeof]
+CALL R1 1 1
+L1: JUMPXEQKS R1 K4 L3 ['string']
+L2: RETURN R0 0
+   80: 	serial += 1
+L3: GETUPVAL R1 0
+ADDK R1 R1 K5 [1]
+SETUPVAL R1 0
+   81: 	combat:SetAttribute("ClientResultSerial", serial)
+GETUPVAL R1 1
+LOADK R3 K6 ['ClientResultSerial']
+GETUPVAL R4 0
+NAMECALL R1 R1 K7 ['SetAttribute']
+CALLFB R1 3 0 [0]
+   82: 	combat:SetAttribute("ClientPhase", result.phase)
+GETUPVAL R1 1
+LOADK R3 K8 ['ClientPhase']
+GETTABLEKS R4 R0 K3 ['phase']
+NAMECALL R1 R1 K7 ['SetAttribute']
+CALLFB R1 3 0 [1]
+   83: 	combat:SetAttribute("ClientReason", result.reason or "")
+GETUPVAL R1 1
+LOADK R3 K9 ['ClientReason']
+GETTABLEKS R5 R0 K11 ['reason']
+ORK R4 R5 K10 ['']
+NAMECALL R1 R1 K7 ['SetAttribute']
+CALLFB R1 3 0 [2]
+   84: 	combat:SetAttribute("ClientComboStep", result.step or 0)
+GETUPVAL R1 1
+LOADK R3 K12 ['ClientComboStep']
+GETTABLEKS R5 R0 K14 ['step']
+ORK R4 R5 K13 [0]
+NAMECALL R1 R1 K7 ['SetAttribute']
+CALLFB R1 3 0 [3]
+   85: 	if result.phase == "Windup" then
+GETTABLEKS R1 R0 K3 ['phase']
+JUMPXEQKS R1 K15 L5 NOT ['Windup']
+   86: 		local track = tracks[result.step]
+GETUPVAL R2 2
+GETTABLEKS R3 R0 K14 ['step']
+GETTABLE R1 R2 R3
+   87: 		if track then
+JUMPIFNOT R1 L4
+   88: 			track:Play(0.08, 1, 1)
+LOADK R4 K16 [0.080000000000000002]
+LOADN R5 1
+LOADN R6 1
+NAMECALL R2 R1 K17 ['Play']
+CALLFB R2 4 0 [4]
+RETURN R0 0
+   90: 			combat:SetAttribute("MissingAnimationStep", result.step)
+L4: GETUPVAL R2 1
+LOADK R4 K18 ['MissingAnimationStep']
+GETTABLEKS R5 R0 K14 ['step']
+NAMECALL R2 R2 K7 ['SetAttribute']
+CALLFB R2 3 0 [5]
+   93: end))
+L5: RETURN R0 0
+
+Function 8 (??):
+   96: 	ContextActionService:UnbindAction("StrikeLabAttack")
+GETUPVAL R0 0
+LOADK R2 K0 ['StrikeLabAttack']
+NAMECALL R0 R0 K1 ['UnbindAction']
+CALLFB R0 2 0 [0]
+   97: 	ContextActionService:UnbindAction("StrikeLabReset")
+GETUPVAL R0 0
+LOADK R2 K2 ['StrikeLabReset']
+NAMECALL R0 R0 K1 ['UnbindAction']
+CALLFB R0 2 0 [1]
+   98: 	disconnectCharacter()
+GETUPVAL R0 1
+CALLFB R0 0 0 [2]
+   99: 	for _, connection in ipairs(connections) do
+GETIMPORT R0 4 [ipairs]
+GETUPVAL R1 2
+CALLFB R0 1 3 [3]
+FORGPREP_INEXT R0 L1
+  100: 		connection:Disconnect()
+L0: NAMECALL R5 R4 K5 ['Disconnect']
+CALLFB R5 1 0 [4]
+   99: 	for _, connection in ipairs(connections) do
+L1: FORGLOOP R0 L0 2 [inext]
+  102: end)
+RETURN R0 0
+
+Function 9 (??):
+    1: local Players = game:GetService("Players")
+GETIMPORT R0 1 [game]
+LOADK R2 K2 ['Players']
+NAMECALL R0 R0 K3 ['GetService']
+CALL R0 2 1
+    2: local ContextActionService = game:GetService("ContextActionService")
+GETIMPORT R1 1 [game]
+LOADK R3 K4 ['ContextActionService']
+NAMECALL R1 R1 K3 ['GetService']
+CALL R1 2 1
+    4: local player = Players.LocalPlayer
+GETTABLEKS R2 R0 K5 ['LocalPlayer']
+    5: local combat = script.Parent:WaitForChild("CombatSystem")
+GETIMPORT R3 8 [script.Parent]
+LOADK R5 K9 ['CombatSystem']
+NAMECALL R3 R3 K10 ['WaitForChild']
+CALL R3 2 1
+    6: local remote = combat:WaitForChild("Punching")
+LOADK R6 K11 ['Punching']
+NAMECALL R4 R3 K10 ['WaitForChild']
+CALL R4 2 1
+    7: local animations = combat:WaitForChild("CombatAnimations")
+LOADK R7 K12 ['CombatAnimations']
+NAMECALL R5 R3 K10 ['WaitForChild']
+CALL R5 2 1
+REMARK allocation: table hash 0
+    9: local tracks = {}
+NEWTABLE R6 0 2
+REMARK allocation: table hash 0
+   10: local connections = {}
+NEWTABLE R7 0 0
+   11: local lastPress = 0
+LOADN R8 0
+   13: local function disconnectCharacter()
+DUPCLOSURE R9 K13 ['disconnectCharacter']
+CAPTURE VAL R6
+   20: local function loadTrack(animator, name)
+DUPCLOSURE R10 K14 ['loadTrack']
+CAPTURE VAL R5
+   36: local function bindCharacter(character)
+DUPCLOSURE R11 K15 ['bindCharacter']
+CAPTURE VAL R9
+CAPTURE VAL R6
+CAPTURE VAL R10
+   46: if player.Character then task.spawn(bindCharacter, player.Character) end
+GETTABLEKS R12 R2 K16 ['Character']
+JUMPIFNOT R12 L0
+GETIMPORT R12 19 [task.spawn]
+MOVE R13 R11
+GETTABLEKS R14 R2 K16 ['Character']
+CALL R12 2 0
+REMARK builtin table.insert/2+
+   47: table.insert(connections, player.CharacterAdded:Connect(bindCharacter))
+L0: MOVE R13 R7
+GETTABLEKS R14 R2 K20 ['CharacterAdded']
+MOVE R16 R11
+NAMECALL R14 R14 K21 ['Connect']
+CALL R14 2 -1
+FASTCALL 52 L1
+GETIMPORT R12 24 [table.insert]
+CALL R12 -1 0
+REMARK builtin table.insert/2+
+   48: table.insert(connections, player.CharacterRemoving:Connect(disconnectCharacter))
+L1: MOVE R13 R7
+GETTABLEKS R14 R2 K25 ['CharacterRemoving']
+MOVE R16 R9
+NAMECALL R14 R14 K21 ['Connect']
+CALL R14 2 -1
+FASTCALL 52 L2
+GETIMPORT R12 24 [table.insert]
+CALL R12 -1 0
+REMARK allocation: closure with 2 upvalues
+   50: local function attackAction(_, inputState)
+L2: NEWCLOSURE R12 P3
+CAPTURE REF R8
+CAPTURE VAL R4
+   63: local function resetAction(_, inputState)
+DUPCLOSURE R13 K26 ['resetAction']
+CAPTURE VAL R4
+   70: ContextActionService:BindAction("StrikeLabAttack", attackAction, true, Enum.KeyCode.E, Enum.UserInputType.MouseButton1)
+LOADK R16 K27 ['StrikeLabAttack']
+MOVE R17 R12
+LOADB R18 1
+GETIMPORT R19 31 [Enum.KeyCode.E]
+GETIMPORT R20 34 [Enum.UserInputType.MouseButton1]
+NAMECALL R14 R1 K35 ['BindAction']
+CALL R14 6 0
+   71: ContextActionService:SetTitle("StrikeLabAttack", "ATTACK")
+LOADK R16 K27 ['StrikeLabAttack']
+LOADK R17 K36 ['ATTACK']
+NAMECALL R14 R1 K37 ['SetTitle']
+CALL R14 3 0
+   72: ContextActionService:SetPosition("StrikeLabAttack", UDim2.fromScale(0.84, 0.72))
+LOADK R16 K27 ['StrikeLabAttack']
+GETIMPORT R17 40 [UDim2.fromScale]
+LOADK R18 K41 [0.83999999999999997]
+LOADK R19 K42 [0.71999999999999997]
+CALL R17 2 -1
+NAMECALL R14 R1 K43 ['SetPosition']
+CALL R14 -1 0
+   73: ContextActionService:BindAction("StrikeLabReset", resetAction, true, Enum.KeyCode.R)
+LOADK R16 K44 ['StrikeLabReset']
+MOVE R17 R13
+LOADB R18 1
+GETIMPORT R19 46 [Enum.KeyCode.R]
+NAMECALL R14 R1 K35 ['BindAction']
+CALL R14 5 0
+   74: ContextActionService:SetTitle("StrikeLabReset", "RESET")
+LOADK R16 K44 ['StrikeLabReset']
+LOADK R17 K47 ['RESET']
+NAMECALL R14 R1 K37 ['SetTitle']
+CALL R14 3 0
+   75: ContextActionService:SetPosition("StrikeLabReset", UDim2.fromScale(0.68, 0.82))
+LOADK R16 K44 ['StrikeLabReset']
+GETIMPORT R17 40 [UDim2.fromScale]
+LOADK R18 K48 [0.68000000000000005]
+LOADK R19 K49 [0.81999999999999995]
+CALL R17 2 -1
+NAMECALL R14 R1 K43 ['SetPosition']
+CALL R14 -1 0
+   77: local serial = 0
+LOADN R14 0
+REMARK builtin table.insert/2+
+   78: table.insert(connections, remote.OnClientEvent:Connect(function(result)
+MOVE R16 R7
+GETTABLEKS R17 R4 K50 ['OnClientEvent']
+REMARK allocation: closure with 3 upvalues
+NEWCLOSURE R19 P5
+CAPTURE REF R14
+CAPTURE VAL R3
+CAPTURE VAL R6
+NAMECALL R17 R17 K21 ['Connect']
+CALL R17 2 -1
+FASTCALL 52 L3
+GETIMPORT R15 24 [table.insert]
+CALL R15 -1 0
+   95: script.Destroying:Connect(function()
+L3: GETIMPORT R15 52 [script.Destroying]
+DUPCLOSURE R17 K53 []
+CAPTURE VAL R1
+CAPTURE VAL R9
+CAPTURE VAL R7
+NAMECALL R15 R15 K21 ['Connect']
+CALL R15 2 0
+  103: 
+CLOSEUPVALS R8
+RETURN R0 0
+

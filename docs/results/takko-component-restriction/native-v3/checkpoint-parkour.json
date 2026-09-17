@@ -1,0 +1,154 @@
+{
+  "case": "checkpoint-parkour",
+  "sourceProject": "fd665994-b18b-47cd-9cfd-aec90b2993b3",
+  "candidate": {
+    "id": "398137408",
+    "name": "CheckPoint Pad ",
+    "kind": "Model",
+    "creator": "HunterTheCoder",
+    "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+    "price": 0,
+    "source": "creator_store",
+    "description": "For my obby"
+  },
+  "scope": "RestrictionRegression_9fecd8ae3387",
+  "original": {
+    "token": "65bca528-48f0-400a-a433-6bf33734ad85",
+    "candidateId": "398137408",
+    "status": "captured",
+    "sha256": "a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718",
+    "bytes": 5599,
+    "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\checkpoint-parkour\\a5abd815725b422a513ea36a065864597cf7565e997b18556227ba9a73f74718.rbxm",
+    "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\restricted-component-native-v3\\checkpoint-parkour\\1b9caa8f397a56fe93b3a5e1ee3e33e265cdeb2aec109ff0778856f69c55c999.component.json",
+    "instanceCount": 4,
+    "scriptCount": 1,
+    "sourceBytes": 885,
+    "roundTrip": {
+      "passed": false,
+      "stage": "deserialize",
+      "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+    },
+    "persisted": true,
+    "securityReview": "not_performed",
+    "runtimeVerification": "not_performed",
+    "exportConversion": "not_performed"
+  },
+  "probe": {
+    "ok": true,
+    "running": false,
+    "changes": [
+      {
+        "removed": [
+          "ScriptGlobals",
+          "DataStore",
+          "Network"
+        ],
+        "sandboxedAfter": true,
+        "index": 3,
+        "className": "Script",
+        "sandboxedBefore": true
+      }
+    ],
+    "policy": "remove_only_capabilities_unavailable_to_current_thread",
+    "result": {
+      "bytes": 5599,
+      "archiveSha256": "785b43cd4bcd7b148ed5f7786c4032da785a3654e495f3a0389939fd8c6cca2a",
+      "roundTrip": {
+        "checkedAttributes": 0,
+        "checkedReferences": 0,
+        "checkedProperties": 70,
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ],
+        "passed": true,
+        "unobservableProperties": [
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ]
+      },
+      "sourceBytes": 885,
+      "runtimeVerification": "not_performed",
+      "executed": false,
+      "sandboxingUnchanged": true,
+      "status": "captured",
+      "sourceUnchanged": true,
+      "instanceCount": 4,
+      "sourceHashes": [
+        {
+          "index": 3,
+          "sha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+        }
+      ]
+    }
+  },
+  "cleanup": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T05:41:12.542Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "discard",
+        "sessionId": "d8588e51-6aa0-4188-8358-d92d5aaa36e1",
+        "token": "65bca528-48f0-400a-a433-6bf33734ad85",
+        "scope": "RestrictionRegression_9fecd8ae3387",
+        "stagingPath": "ServerStorage/RestrictionRegression_9fecd8ae3387/AssetStaging/attempt_bb6faafe9d531540f548a3e4",
+        "previewPath": "Workspace/RestrictionRegression_9fecd8ae3387/AssetPreviews/attempt_bb6faafe9d531540f548a3e4",
+        "finalPath": "Workspace/RestrictionRegression_9fecd8ae3387/Assets/checkpointPadModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T05:41:12.542Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T05:41:12.553Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T05:41:12.578Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "paidCalls": 0,
+  "benchmark": false,
+  "importedCodeExecuted": false
+}

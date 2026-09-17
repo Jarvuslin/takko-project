@@ -1,0 +1,97 @@
+{
+  "version": 8,
+  "benchmark": "marketplace-diversity-v2/combat-training",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 49812,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 593102,
+    "shouldCancel": false
+  },
+  "model": "x-ai/grok-build-0.1",
+  "projectId": "950ab3b0-d8ac-4895-b40a-32ab1e1cdb7d",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: Asset reuse capability blocked: Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 1,
+    "details": "Asset reuse capability blocked: Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement",
+    "at": "2026-09-16T04:54:35.239Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 4739984,
+  "priorChargedMicros": 543290,
+  "reservedMicros": 347870,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 5087854,
+  "chargedMicros": 49812,
+  "combinedChargedMicros": 593102,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 113585,
+      "chargedMicros": 17097,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6456,
+      "outputTokens": 3268,
+      "status": "ok",
+      "at": "2026-09-16T04:54:09.579Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 122171,
+      "chargedMicros": 18682,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9399,
+      "outputTokens": 3102,
+      "status": "ok",
+      "at": "2026-09-16T04:54:23.735Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "856ba6bc-0222-48a1-be47-9ffa2a098590",
+      "model": "x-ai/grok-build-0.1",
+      "reservedMicros": 112114,
+      "chargedMicros": 14033,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 12467,
+      "outputTokens": 834,
+      "status": "ok",
+      "at": "2026-09-16T04:54:34.075Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "TrainingDummyModel",
+      "status": "failed",
+      "attempts": 1,
+      "reason": "Asset reuse capability blocked: Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+    },
+    {
+      "needId": "HitSoundEffect",
+      "status": "pending",
+      "attempts": 0
+    },
+    {
+      "needId": "MissSoundEffect",
+      "status": "pending",
+      "attempts": 0
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

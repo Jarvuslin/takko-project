@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "id": "4e8a15cf-9c75-4303-99a7-5f6845b0c739",
+  "name": "Create a small, playable Bubble Break ASMR game for one player o",
+  "request": "Create a small, playable Bubble Break ASMR game for one player on desktop and touch. The player presses individual bubbles on a reusable bubble-wrap sheet. A press visibly depresses and pops that bubble with synchronized satisfying pop audio, then adds exactly one to the popped counter after the pop completes. Holding, spamming, or pressing a popped bubble must not count twice. Let the player finish a sheet of at least twelve bubbles, see completion feedback, and deliberately reset to a fresh sheet. Use a close, readable tabletop presentation and minimal counter/reset UI. Search Marketplace first for a complete reusable interaction, including any existing geometry, animation, sounds and behavior; inspect what it already provides and integrate only missing features. Search separately for missing media if needed. Audio must come from Marketplace and actually play. Record unavailable importer capabilities rather than pretending a suitable scripted component does not exist. Choose reasonable details yourself; no saving, multiplayer, purchases or large map. Success needs observed press/pop/recovery timing, per-bubble state, exact counting, sheet completion/reset and usable desktop/touch input. Do not claim success from code inspection alone.",
+  "revision": 1,
+  "scope": "Forge_4e8a15cf9c75",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "draft",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "reviewer",
+      "profileId": "5938799f-f0cb-4d57-8c00-9ccdcae109f3",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 117570,
+      "chargedMicros": 39417,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 26960,
+      "outputTokens": 5119,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T07:40:23.154Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "5938799f-f0cb-4d57-8c00-9ccdcae109f3",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 122754,
+      "chargedMicros": 34347,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 30120,
+      "outputTokens": 3135,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T07:40:38.668Z"
+    }
+  ],
+  "budgetMicros": 250000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T07:39:49.509Z",
+      "message": "reviewer: Component review diagnostic / google/gemini-3.7-flash"
+    },
+    {
+      "at": "2026-09-16T07:40:23.160Z",
+      "message": "Validation feedback: : Unrecognized key: \"$schema\""
+    },
+    {
+      "at": "2026-09-16T07:40:23.162Z",
+      "message": "reviewer: Component review diagnostic / google/gemini-3.7-flash — correcting output"
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T07:39:49.504Z",
+  "studioEvidence": null
+}

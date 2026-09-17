@@ -1,0 +1,102 @@
+{
+  "packetHash": "8aed3c90a341ba2e3e76f0d4eba0ba5b6960a19e5b7196f08e0c489db6a6a091",
+  "inputHash": "e47a6f03ea34f58d232ab4656020ecd6ca1159f3b8fb6d3127afb25949f8881e",
+  "disposition": "integration_candidate",
+  "reason": "Compact checkpoint platform geometry with decal texture and baseline touch logic suitable for adaptation into the ordered progression system.",
+  "serializedMedia": [
+    {
+      "index": 4,
+      "property": "Texture",
+      "value": "rbxassetid://398136610",
+      "purpose": "Visual decal graphic displayed across the top surface of the checkpoint platform.",
+      "verification": "unverified"
+    }
+  ],
+  "sources": [
+    {
+      "sha256": "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96",
+      "behavior": "Listens to Touched on the parent part, detects player humanoids, stores the current spawn in ServerStorage, and binds CharacterAdded to position Torso at the checkpoint.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "instance_reference",
+          "value": "script.Parent",
+          "sourceQuote": "local spawn = script.Parent",
+          "verification": "unverified"
+        },
+        {
+          "kind": "service",
+          "value": "Players",
+          "sourceQuote": "local player = game.Players:GetPlayerFromCharacter(hit.Parent)",
+          "verification": "unverified"
+        },
+        {
+          "kind": "service",
+          "value": "ServerStorage",
+          "sourceQuote": "local checkpointData = game.ServerStorage:FindFirstChild(\"CheckpointData\")",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-checkpoints",
+      "status": "integration_needed",
+      "reason": "The script handles basic touch-based checkpoint assignment, but lacks sequential order validation (1 -> 2 -> 3) and allows skipping directly to any touched pad.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ],
+      "nodeIndices": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "requirementId": "req-checkpoint-activation",
+      "status": "integration_needed",
+      "reason": "Pad visual mesh and decal exist, but visual activation tweening, glowing indicator changes, and chime audio playback must be integrated.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ],
+      "nodeIndices": [
+        2,
+        4
+      ]
+    }
+  ],
+  "permissionImpacts": [
+    {
+      "capability": "DataStore",
+      "impact": "none_observed",
+      "reason": "The source only references in-memory ServerStorage instances and does not invoke DataStore APIs.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    },
+    {
+      "capability": "Network",
+      "impact": "none_observed",
+      "reason": "No HttpService or external web requests are utilized.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    },
+    {
+      "capability": "ScriptGlobals",
+      "impact": "none_observed",
+      "reason": "No global _G or shared tables are accessed.",
+      "sourceHashes": [
+        "ab2a05ba291a683ddda70b06a26f6fd5a1b80a1a8b2f77ea3ebaccf487764b96"
+      ]
+    }
+  ],
+  "integrationNotes": [
+    "Refactor checkpoint script logic into a centralized server manager enforcing strictly sequential progression (CP1 -> CP2 -> CP3).",
+    "Replace R6 'Torso' dependency with HumanoidRootPart positioning for cross-rig R15/R6 compatibility.",
+    "Attach PointLight/SpotLight and Sound instances to trigger visual activation effects and audio cues upon valid checkpoint touch."
+  ],
+  "runtimeVerification": "not_performed"
+}

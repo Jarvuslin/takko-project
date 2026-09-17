@@ -1,0 +1,36 @@
+[
+  {
+    "arm": "treatment",
+    "id": 1,
+    "startedAt": "2026-09-16T17:45:24.141Z",
+    "reserveMicros": 314422,
+    "mode": "live",
+    "status": 200,
+    "finishedAt": "2026-09-16T17:46:42.056Z",
+    "usage": {
+      "prompt_tokens": 20546,
+      "completion_tokens": 4066,
+      "total_tokens": 24612,
+      "cost": 0.0920235,
+      "is_byok": false,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 20543,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost_details": {
+        "upstream_inference_cost": 0.0920235,
+        "upstream_inference_prompt_cost": 0.0513635,
+        "upstream_inference_completions_cost": 0.04066
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1721,
+        "image_tokens": 0,
+        "audio_tokens": 0
+      }
+    },
+    "costUSD": 0.0920235,
+    "chargedMicros": 92024
+  }
+]

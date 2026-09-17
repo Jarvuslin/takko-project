@@ -1,0 +1,948 @@
+{
+  "kind": "frozen-selection-native-archive-regression",
+  "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+  "results": [
+    {
+      "case": "combat-training",
+      "sourceProject": "950ab3b0-d8ac-4895-b40a-32ab1e1cdb7d",
+      "scope": "ArchiveRegression_13d83a97df8c",
+      "candidate": {
+        "id": "125989241853035",
+        "name": "Dummy Training Practice Humanoid Test RP",
+        "kind": "Model",
+        "creator": "XxAidenLionxX72",
+        "sourceUrl": "https://create.roblox.com/store/asset/125989241853035",
+        "price": 0,
+        "source": "creator_store",
+        "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): Dummy, Training, Practice, Humanoid, Test, RP, Roleplay, Simulator, Game, NPC, AI, Character, Mannequin, Target, Avatar, Rig, Mesh, Player, Victim, Ragdoll, Scripted, Animation, Tools, Weapons, Sword, Gun, Melee, Combat, Battle, Arena, Fighting, Physics, Realistic, Customizable, Poseable, Dummy, Exercise, Target, Practice, Simulated, Interactive, Dummy, Practice, Dummy, Test, Humanoid, Roleplay, Dummy, Practice, AI, Training, Character, Target, Humanoid, Test, RP, Practice, Dummy, Humanoid, Training, Target, Practice, Simulator, Roleplay, Game"
+      },
+      "component": {
+        "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+        "candidateId": "125989241853035",
+        "status": "captured",
+        "sha256": "c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d",
+        "bytes": 18467,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\857823b7a5230accadd78d3c7e350107eba61bcf48675ea15f893f880ed030da.component.json",
+        "instanceCount": 20,
+        "scriptCount": 2,
+        "sourceBytes": 22505,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "inspectionReceipts": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:22.751Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "prepare",
+            "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "scope": "ArchiveRegression_13d83a97df8c",
+            "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+            "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+            "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:22.753Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:22.766Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:22.797Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:22.800Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:22.810Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "insert_asset",
+          "at": "2026-09-16T05:29:22.866Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"insertGuid\":\"311e4d22-3802-4403-930b-1f7b677ff775\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.ArchiveRegression_13d83a97df8c.AssetStaging.attempt_4235e34b016d6e2b121d4dc3.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"125989241853035\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:311e4d22-3802-4403-930b-1f7b677ff775\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:22.867Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "inspect",
+            "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "scope": "ArchiveRegression_13d83a97df8c",
+            "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+            "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+            "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:22.867Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:22.879Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:22.916Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"reasons\":[\"Unsupported or executable class: Motor6D\",\"Decal lacks supported image content identity\",\"Unsupported or executable class: Humanoid\",\"Unsupported or executable class: Script\",\"Unsupported or executable class: ModuleScript\",\"Unsupported or executable class: NumberPose\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":105256,\"chunkSize\":32768,\"sha256\":\"c62e80051fd190665d8d20301c9da141bc679d0fdc9ccaa215d5d7f6a3b936a1\",\"jsonBytes\":78942},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":2,\"contentLoaded\":false,\"instanceCount\":20},\"size\":1}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "component_transfer",
+          "at": "2026-09-16T05:29:23.037Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "candidateId": "125989241853035",
+            "encodedBytes": 105256,
+            "jsonBytes": 78942,
+            "sha256": "c62e80051fd190665d8d20301c9da141bc679d0fdc9ccaa215d5d7f6a3b936a1",
+            "chunkSize": 32768,
+            "chunksRead": 4,
+            "verified": true,
+            "readOnly": true
+          }
+        },
+        {
+          "operation": "component_archive",
+          "at": "2026-09-16T05:29:23.039Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "candidateId": "125989241853035",
+            "status": "captured",
+            "sha256": "c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d",
+            "bytes": 18467,
+            "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\c59031888272163feb18754c94773488becb3aa6bce84a464a34531da049296d.rbxm",
+            "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\857823b7a5230accadd78d3c7e350107eba61bcf48675ea15f893f880ed030da.component.json",
+            "instanceCount": 20,
+            "scriptCount": 2,
+            "sourceBytes": 22505,
+            "roundTrip": {
+              "passed": false,
+              "stage": "deserialize",
+              "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+            },
+            "persisted": true,
+            "securityReview": "not_performed",
+            "runtimeVerification": "not_performed",
+            "exportConversion": "not_performed"
+          }
+        },
+        {
+          "operation": "inert_asset_audit",
+          "at": "2026-09-16T05:29:23.041Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "candidateId": "125989241853035",
+            "sha256": "85432e0b5690f292c5433c8a0800e7528758456d1d6aec733eb11b496cb45965",
+            "bytes": 30991,
+            "auditFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\combat-training\\85432e0b5690f292c5433c8a0800e7528758456d1d6aec733eb11b496cb45965.audit.json",
+            "persistence": "full_original_sources_in_sidecar",
+            "sourceBytesReturned": 22505
+          }
+        }
+      ],
+      "capabilityBlock": {
+        "kind": "interactive_asset_requires_review",
+        "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+      },
+      "safe": false,
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.042Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "fd625a06-494d-42d7-933b-eff79261b1a0",
+            "token": "77cd4b75-f23f-4d2d-8334-82e106c11b40",
+            "scope": "ArchiveRegression_13d83a97df8c",
+            "stagingPath": "ServerStorage/ArchiveRegression_13d83a97df8c/AssetStaging/attempt_4235e34b016d6e2b121d4dc3",
+            "previewPath": "Workspace/ArchiveRegression_13d83a97df8c/AssetPreviews/attempt_4235e34b016d6e2b121d4dc3",
+            "finalPath": "Workspace/ArchiveRegression_13d83a97df8c/Assets/TrainingDummyModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.042Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.053Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.079Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    },
+    {
+      "case": "bubble-wrap",
+      "sourceProject": "7680d1f6-d631-4265-9e89-3f7942fef6cd",
+      "scope": "ArchiveRegression_656e6b5819c8",
+      "candidate": {
+        "id": "120019574381006",
+        "name": "Working Bubble Wrap Pop Relax ASMR",
+        "kind": "Model",
+        "creator": "Frosb2611",
+        "sourceUrl": "https://create.roblox.com/store/asset/120019574381006",
+        "price": 0,
+        "source": "creator_store",
+        "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): functional, interactive, pop, popping, popping simulator, stress relief, sensory, toy, playtime, fun, game, entertainment, playful, tactile, simulation, digital, virtual, unwrapping, packaging, novelty, casual, amusing, engaging, satisfying, immersive, creative, experience, escape, relaxation, therapy, anti-stress, fidg"
+      },
+      "component": {
+        "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+        "candidateId": "120019574381006",
+        "status": "captured",
+        "sha256": "71f52beb9c625dca2d2f8874f7ce953014446fd70dc9b768cb9a1c6b10f98746",
+        "bytes": 23460,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\bubble-wrap\\71f52beb9c625dca2d2f8874f7ce953014446fd70dc9b768cb9a1c6b10f98746.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\bubble-wrap\\7952a53ddd3ed9f91922c195646d2f3413c292999594a369fd31859c380dafdc.component.json",
+        "instanceCount": 375,
+        "scriptCount": 76,
+        "sourceBytes": 33947,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "inspectionReceipts": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.173Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "prepare",
+            "sessionId": "0a237059-a231-40cf-8bf9-dead68b6551f",
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "scope": "ArchiveRegression_656e6b5819c8",
+            "stagingPath": "ServerStorage/ArchiveRegression_656e6b5819c8/AssetStaging/attempt_c5cab54645c6d4f0de8c40a7",
+            "previewPath": "Workspace/ArchiveRegression_656e6b5819c8/AssetPreviews/attempt_c5cab54645c6d4f0de8c40a7",
+            "finalPath": "Workspace/ArchiveRegression_656e6b5819c8/Assets/SheetModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.173Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.184Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.216Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.217Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.228Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "insert_asset",
+          "at": "2026-09-16T05:29:23.297Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"insertGuid\":\"6c83aa1d-fa82-4d1f-95ef-f682ff9d7291\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.ArchiveRegression_656e6b5819c8.AssetStaging.attempt_c5cab54645c6d4f0de8c40a7.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"120019574381006\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:6c83aa1d-fa82-4d1f-95ef-f682ff9d7291\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.297Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "inspect",
+            "sessionId": "0a237059-a231-40cf-8bf9-dead68b6551f",
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "scope": "ArchiveRegression_656e6b5819c8",
+            "stagingPath": "ServerStorage/ArchiveRegression_656e6b5819c8/AssetStaging/attempt_c5cab54645c6d4f0de8c40a7",
+            "previewPath": "Workspace/ArchiveRegression_656e6b5819c8/AssetPreviews/attempt_c5cab54645c6d4f0de8c40a7",
+            "finalPath": "Workspace/ArchiveRegression_656e6b5819c8/Assets/SheetModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.298Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.310Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.347Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"reasons\":[\"Asset exceeds 300 instances\",\"Unsupported or executable class: Script\",\"Unsupported or executable class: BoolValue\",\"Unsupported or executable class: NumberValue\",\"Unsupported or executable class: BrickColorValue\",\"Unsupported or executable class: SpecialMesh\",\"Unsupported or executable class: ClickDetector\",\"Unsupported or executable class: ModuleScript\",\"Unsupported or executable class: NumberPose\",\"Unsupported or executable class: Camera\",\"Embedded executable behavior requires a reviewed complete-asset import path\",\"Embedded media requires per-dependency playback and listening verification before complete-asset reuse\"],\"componentTransfer\":{\"encodedBytes\":208780,\"chunkSize\":32768,\"sha256\":\"a893b18719d83e8e6ae763cdb5a8ad56b7ac7b3dc6dd671529d1bb0087c7d6b1\",\"jsonBytes\":156583},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":76,\"contentLoaded\":false,\"instanceCount\":375},\"size\":1}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "component_transfer",
+          "at": "2026-09-16T05:29:23.551Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "candidateId": "120019574381006",
+            "encodedBytes": 208780,
+            "jsonBytes": 156583,
+            "sha256": "a893b18719d83e8e6ae763cdb5a8ad56b7ac7b3dc6dd671529d1bb0087c7d6b1",
+            "chunkSize": 32768,
+            "chunksRead": 7,
+            "verified": true,
+            "readOnly": true
+          }
+        },
+        {
+          "operation": "component_archive",
+          "at": "2026-09-16T05:29:23.554Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "candidateId": "120019574381006",
+            "status": "captured",
+            "sha256": "71f52beb9c625dca2d2f8874f7ce953014446fd70dc9b768cb9a1c6b10f98746",
+            "bytes": 23460,
+            "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\bubble-wrap\\71f52beb9c625dca2d2f8874f7ce953014446fd70dc9b768cb9a1c6b10f98746.rbxm",
+            "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\bubble-wrap\\7952a53ddd3ed9f91922c195646d2f3413c292999594a369fd31859c380dafdc.component.json",
+            "instanceCount": 375,
+            "scriptCount": 76,
+            "sourceBytes": 33947,
+            "roundTrip": {
+              "passed": false,
+              "stage": "deserialize",
+              "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+            },
+            "persisted": true,
+            "securityReview": "not_performed",
+            "runtimeVerification": "not_performed",
+            "exportConversion": "not_performed"
+          }
+        },
+        {
+          "operation": "inert_asset_audit",
+          "at": "2026-09-16T05:29:23.556Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "candidateId": "120019574381006",
+            "sha256": "8a35be08ddecb492f24ee1f1b9ec984a4c35f485ec203ac4a8a9d1536ae35c75",
+            "bytes": 75068,
+            "auditFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\bubble-wrap\\8a35be08ddecb492f24ee1f1b9ec984a4c35f485ec203ac4a8a9d1536ae35c75.audit.json",
+            "persistence": "full_original_sources_in_sidecar",
+            "sourceBytesReturned": 20143
+          }
+        }
+      ],
+      "capabilityBlock": {
+        "kind": "interactive_asset_requires_review",
+        "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+      },
+      "safe": false,
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.557Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "0a237059-a231-40cf-8bf9-dead68b6551f",
+            "token": "db550623-eb5a-43fb-a510-d51eba95ff3e",
+            "scope": "ArchiveRegression_656e6b5819c8",
+            "stagingPath": "ServerStorage/ArchiveRegression_656e6b5819c8/AssetStaging/attempt_c5cab54645c6d4f0de8c40a7",
+            "previewPath": "Workspace/ArchiveRegression_656e6b5819c8/AssetPreviews/attempt_c5cab54645c6d4f0de8c40a7",
+            "finalPath": "Workspace/ArchiveRegression_656e6b5819c8/Assets/SheetModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.558Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.572Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.603Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    },
+    {
+      "case": "checkpoint-parkour",
+      "sourceProject": "fd665994-b18b-47cd-9cfd-aec90b2993b3",
+      "scope": "ArchiveRegression_1513746a2b54",
+      "candidate": {
+        "id": "398137408",
+        "name": "CheckPoint Pad ",
+        "kind": "Model",
+        "creator": "HunterTheCoder",
+        "sourceUrl": "https://create.roblox.com/store/asset/398137408",
+        "price": 0,
+        "source": "creator_store",
+        "description": "For my obby"
+      },
+      "component": {
+        "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+        "candidateId": "398137408",
+        "status": "captured",
+        "sha256": "c602135a0c65addca00637fcd2514ca9a0c85951cd0cd9e819460fb7feca2b6b",
+        "bytes": 5599,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\checkpoint-parkour\\c602135a0c65addca00637fcd2514ca9a0c85951cd0cd9e819460fb7feca2b6b.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\checkpoint-parkour\\05b80aa03e8e42700635bf21482e93a1737a4c2cfb810f6cb8b4f7b50732cc6f.component.json",
+        "instanceCount": 4,
+        "scriptCount": 1,
+        "sourceBytes": 885,
+        "roundTrip": {
+          "passed": false,
+          "stage": "deserialize",
+          "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      },
+      "inspectionReceipts": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.700Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "prepare",
+            "sessionId": "f44112d5-41ec-49aa-a0cd-f6a6c089ee75",
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "scope": "ArchiveRegression_1513746a2b54",
+            "stagingPath": "ServerStorage/ArchiveRegression_1513746a2b54/AssetStaging/attempt_d09481287c9afa96045e62c5",
+            "previewPath": "Workspace/ArchiveRegression_1513746a2b54/AssetPreviews/attempt_d09481287c9afa96045e62c5",
+            "finalPath": "Workspace/ArchiveRegression_1513746a2b54/Assets/checkpointPadModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.700Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.709Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.736Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.737Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.747Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "insert_asset",
+          "at": "2026-09-16T05:29:23.810Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"insertGuid\":\"ad996c57-aac2-4268-a188-13e5df7d8e17\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.ArchiveRegression_1513746a2b54.AssetStaging.attempt_d09481287c9afa96045e62c5.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"398137408\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:ad996c57-aac2-4268-a188-13e5df7d8e17\"}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.810Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "inspect",
+            "sessionId": "f44112d5-41ec-49aa-a0cd-f6a6c089ee75",
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "scope": "ArchiveRegression_1513746a2b54",
+            "stagingPath": "ServerStorage/ArchiveRegression_1513746a2b54/AssetStaging/attempt_d09481287c9afa96045e62c5",
+            "previewPath": "Workspace/ArchiveRegression_1513746a2b54/AssetPreviews/attempt_d09481287c9afa96045e62c5",
+            "finalPath": "Workspace/ArchiveRegression_1513746a2b54/Assets/checkpointPadModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.810Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.823Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.854Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"reasons\":[\"Unsupported or executable class: Script\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":14868,\"chunkSize\":32768,\"sha256\":\"fd40c41dcf08c70237e6b453619a85333f1f50ae163daffb6be42136735976ae\",\"jsonBytes\":11150},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":1,\"contentLoaded\":false,\"instanceCount\":4},\"size\":1}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "component_transfer",
+          "at": "2026-09-16T05:29:23.879Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "candidateId": "398137408",
+            "encodedBytes": 14868,
+            "jsonBytes": 11150,
+            "sha256": "fd40c41dcf08c70237e6b453619a85333f1f50ae163daffb6be42136735976ae",
+            "chunkSize": 32768,
+            "chunksRead": 1,
+            "verified": true,
+            "readOnly": true
+          }
+        },
+        {
+          "operation": "component_archive",
+          "at": "2026-09-16T05:29:23.881Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "candidateId": "398137408",
+            "status": "captured",
+            "sha256": "c602135a0c65addca00637fcd2514ca9a0c85951cd0cd9e819460fb7feca2b6b",
+            "bytes": 5599,
+            "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\checkpoint-parkour\\c602135a0c65addca00637fcd2514ca9a0c85951cd0cd9e819460fb7feca2b6b.rbxm",
+            "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\checkpoint-parkour\\05b80aa03e8e42700635bf21482e93a1737a4c2cfb810f6cb8b4f7b50732cc6f.component.json",
+            "instanceCount": 4,
+            "scriptCount": 1,
+            "sourceBytes": 885,
+            "roundTrip": {
+              "passed": false,
+              "stage": "deserialize",
+              "reason": "The current thread cannot extend 'Capabilities' (lacking capability ScriptGlobals)"
+            },
+            "persisted": true,
+            "securityReview": "not_performed",
+            "runtimeVerification": "not_performed",
+            "exportConversion": "not_performed"
+          }
+        },
+        {
+          "operation": "inert_asset_audit",
+          "at": "2026-09-16T05:29:23.881Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "candidateId": "398137408",
+            "sha256": "ea5e1d14d26175a0bd463ef670c2059c8745664e6aa59e87d47e62459804cb93",
+            "bytes": 3334,
+            "auditFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\marketplace-archive-native-v6\\checkpoint-parkour\\ea5e1d14d26175a0bd463ef670c2059c8745664e6aa59e87d47e62459804cb93.audit.json",
+            "persistence": "full_original_sources_in_sidecar",
+            "sourceBytesReturned": 885
+          }
+        }
+      ],
+      "capabilityBlock": {
+        "kind": "interactive_asset_requires_review",
+        "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+      },
+      "safe": false,
+      "cleanup": [
+        {
+          "operation": "ownership_intent",
+          "at": "2026-09-16T05:29:23.882Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "operation": "discard",
+            "sessionId": "f44112d5-41ec-49aa-a0cd-f6a6c089ee75",
+            "token": "d2bd0613-746a-423b-8c9e-a1249c99f167",
+            "scope": "ArchiveRegression_1513746a2b54",
+            "stagingPath": "ServerStorage/ArchiveRegression_1513746a2b54/AssetStaging/attempt_d09481287c9afa96045e62c5",
+            "previewPath": "Workspace/ArchiveRegression_1513746a2b54/AssetPreviews/attempt_d09481287c9afa96045e62c5",
+            "finalPath": "Workspace/ArchiveRegression_1513746a2b54/Assets/checkpointPadModel"
+          }
+        },
+        {
+          "operation": "list_roblox_studios",
+          "at": "2026-09-16T05:29:23.883Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "get_studio_state",
+          "at": "2026-09-16T05:29:23.897Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+              }
+            ],
+            "isError": false
+          }
+        },
+        {
+          "operation": "execute_luau",
+          "at": "2026-09-16T05:29:23.923Z",
+          "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+          "data": {
+            "content": [
+              {
+                "type": "text",
+                "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+              }
+            ],
+            "isError": false
+          }
+        }
+      ],
+      "paidCalls": 0,
+      "benchmark": false,
+      "importedCodeExecuted": false
+    }
+  ]
+}

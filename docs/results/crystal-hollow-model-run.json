@@ -1,0 +1,372 @@
+{
+  "at": "2026-09-15T05:34:18.603Z",
+  "prompt": "Create Crystal Hollow, a compact stylized luminous crystal quarry. The exported place must already look composed in Studio Edit mode: authored slate terrain terraces, connected pale paths and gentle ramps, six cyan/violet crystal clusters, a rock arch landmark, a warm amber sell station, a clearly distinct upgrade station, and a central crystal beacon. Use 35–45 explicit scene entries for the world, arranged inside a 96-by-96-stud floor; avoid a vast empty baseplate, three isolated blocks, or scenery created only after Play.\n\nPlace a safe spawn overlooking the quarry loop. The first crystal is within 12 studs of spawn; sell and upgrade stations are visible from spawn and each within 24 studs. Use readable in-world labels and contrasting path edges, a consistent restrained palette, and distinct silhouettes instead of uploaded artwork. No required jump, climb, or invisible trigger should block the first harvest and sale.\n\nUse exactly seven Luau files with one shared Contract, a World scene resolver, server Economy and Game scripts, and client HUD, Feedback and Controller scripts. Keep the declared module interfaces, RemoteEvent names, player attributes and world names identical across tasks. Each task owns only its assigned files and scene objects; dependencies are read-only.\n\nHarvest luminous crystals by pressing E or the Harvest button near a node. There are six shared nodes with six crystals each; a successful action takes the minimum of harvest yield, free bag space and node stock. Start with yield one and capacity eight. Empty nodes visibly dim, cannot award crystals, and refill after six seconds. Harvest interval is at least 0.65 seconds per player; stock cannot become negative when two players harvest together.\n\nAt the amber sell station, Q or Sell converts all carried crystals to five coins each and empties the bag. Selling an empty bag changes nothing. The first full bag earns 40 coins, enough to choose a useful first upgrade; the first minute should include harvesting, selling and seeing an upgrade improve the next trip.\n\nAt the upgrade station offer two independent two-level tracks: pick power raises crystals per harvest from 1 to 2 to 3 and costs 40 then 100 coins; bag capacity rises from 8 to 14 to 20 and costs 30 then 80 coins. Purchases deduct server-owned coins once and reject insufficient funds or a maxed track. Show each current level, next benefit, price and affordability before buying. Power improves harvest pace; capacity reduces sell trips.\n\nGive each player a short personal goal: sell 40 total crystals and buy at least one level in both tracks to restore their Crystal Hollow beacon. Show progress from the start, celebrate completion once with a local beacon glow and clear success message, and leave the ordinary loop playable afterward. Do not turn goal completion into shared global progress or award free coins for reopening the UI.\n\nThe server owns Carry, Coins, PowerLevel, CapacityLevel, Capacity, TotalSold and GoalComplete. Accept only the four declared action names and an optional known node ID; never trust client amounts, prices, distance or rewards. Validate a living character, proximity, action cooldown, harvest interval, capacity, stock and affordability before changing state. Each player has independent economy and upgrade state; node stock alone is shared.\n\nInitialize existing and newly joined players, retain their session economy and upgrades across character respawns, reconnect input and UI safely, and clean per-player bookkeeping when they leave. Do not duplicate world geometry, HUDs, listeners or rewards after respawn. No cross-join persistence, monetization, uploaded meshes, image IDs, animation IDs, audio, external HTTP or numeric require calls are part of this slice.\n\nBuild a legible responsive HUD with the Crystal Hollow title, bag count/capacity, coins, both upgrade tracks, a goal progress line and one concise contextual hint. Use clear hierarchy, generous contrast and readable system-supported Roblox fonts, with controls fitting a 375-by-667 viewport and desktop. The HUD component must render real supplied state snapshots immediately, update displayed prices and progress, and replace only its own previous GUI when mounted again.\n\nWire one live HUD to replicated player attributes at join, after actions and after respawn. Support E/Harvest, Q/Sell, 1/Buy power and 2/Buy bag through the same validated action path, with touch buttons for every action and disabled-looking out-of-range or unavailable actions. Explain bag-full, empty-node, too-far, insufficient-coins and max-level results. Add a brief local harvest sparkle, a sell coin-count emphasis and an upgrade pulse using procedural parts or UI tweens; effects must clean up and must not grant rewards.",
+  "scope": "Forge_GenerationPilot",
+  "specification": {
+    "title": "Crystal Hollow",
+    "visualDirection": "A small intentionally composed quarry, readable from spawn in Edit mode: layered dark slate, pale stone paths, clustered cyan/violet faceted crystals, warm amber station accents, an arch silhouette and a central beacon. Three-piece crystal clusters and overlapping rock forms give depth without high part counts. Use authored Part/WedgePart geometry, selective Neon and at most three local PointLights; do not alter global Lighting or Terrain services. No external asset IDs.",
+    "summary": "This is an authored evaluation specification. Target a satisfying first minute: harvest cyan crystals, sell for coins, choose a power or bag upgrade, and visibly improve the next trip. A personal beacon goal provides closure after both first upgrades and 40 lifetime crystals sold. All static scenery must be visible before Play.\n\nFIXED INTERFACES AND OWNERSHIP:\n1. Contract.module.luau at ReplicatedStorage/Forge_GenerationPilot returns a plain constants table: CAPACITIES={8,14,20}, POWER_YIELDS={1,2,3}, POWER_COSTS={40,100}, CAPACITY_COSTS={30,80}, SELL_VALUE=5, INTERACT_DISTANCE=10, ACTION_COOLDOWN=0.2, HARVEST_COOLDOWN=0.65, NODE_CAPACITY=6, NODE_RESPAWN=6, GOAL_SOLD=40. Levels are 0,1,2; index capacities/yields with level+1 and the next purchase price with currentLevel+1. The contract task alone declares RemoteEvents ReplicatedStorage/Forge_GenerationPilot/Action and ReplicatedStorage/Forge_GenerationPilot/Feedback. Module runtime name is Contract, not Contract.module.\n2. The world task alone authors the static Workspace scene, including the namespace Folder and Workspace/Forge_GenerationPilot/World. All 35–45 world scene entries belong beneath that namespace. Primary harvest BaseParts have EXACT paths Workspace/Forge_GenerationPilot/World/Nodes/Node01 through Node06; decorative cluster shards can be their anchored child parts. Other required objects: Workspace/Forge_GenerationPilot/World/Ground (safe collidable floor), Workspace/Forge_GenerationPilot/World/Spawn (SpawnLocation), Workspace/Forge_GenerationPilot/World/SellStation (BasePart), Workspace/Forge_GenerationPilot/World/UpgradeStation (BasePart), Workspace/Forge_GenerationPilot/World/Beacon (BasePart), and a three-piece Arch landmark. Place Spawn near (0,2,18), Node01 near (-6,2,10), SellStation near (-16,1,10), UpgradeStation near (14,1,10), Beacon near (0,5,-18), and the other nodes along a short loop. Keep signage above interaction surfaces. Include paths, two shallow terraces, ramps, six three-piece clusters and station/beacon/arch detail within the scene-entry budget; do not inflate the budget with invisible trigger parts. Main geometry MUST be in artifact.scene and exported before Play; no runtime-only construction or unrelated-place modification.\n3. ServerScriptService/Forge_GenerationPilot/World.module.luau exports resolve(root), where root is Workspace/Forge_GenerationPilot. It validates and returns {nodes: {[nodeId]: BasePart}, sell: BasePart, upgrades: BasePart, beacon: BasePart, spawn: SpawnLocation}, locating the authored objects above. Missing authored geometry is an explicit error, not permission to create a substitute world. This resolver has no player, economy or remote connections.\n4. ServerScriptService/Forge_GenerationPilot/Economy.module.luau exports newState() and apply(state, action, nodeRemaining?). State keys are Carry=0, Coins=0, PowerLevel=0, CapacityLevel=0, Capacity=8, TotalSold=0, GoalComplete=false. apply mutates this server-local table only for valid economic transitions and returns {ok:boolean, amount:number, message:string}; amount is actual crystals removed on harvest or actual coins gained on sale, otherwise zero. It uses the fixed Contract constants, computes Capacity after a bag upgrade and permanently sets GoalComplete once TotalSold>=40 and both levels>=1. Reject unsupported actions, a full bag, zero stock, empty sale, insufficient funds and maxed upgrades without partial state changes. No geometry/player/event side effects in Economy.\n5. ServerScriptService/Forge_GenerationPilot/Game.server.luau is the sole server bootstrap. It requires the existing Contract, World and Economy, resolves the authored world, initializes the six node attributes Remaining=6 and Available=true, owns per-player state/cooldowns, validates and processes Action, mirrors the seven state fields to Player attributes, and owns node depletion/refill. Action:FireServer(action, nodeId?) accepts only 'harvest','sell','upgradePower','upgradeCapacity'; only harvest accepts one of 'Node01'..'Node06', all other actions require nil nodeId, and reject extra arguments. Use distance to the selected node, SellStation or UpgradeStation as appropriate. Do not reset economy on CharacterAdded. Feedback:FireClient(player, {kind='harvest'|'sell'|'upgrade'|'goal'|'error', message=string, position=Vector3?}) carries only server-confirmed results. Only successful harvest feedback includes the node position. Emit goal feedback once when GoalComplete flips false->true; current attributes remain sufficient for a respawned client to restore completed-goal presentation.\n6. StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/HUD.module.luau exports mount(playerGui), returning {render=function(stats,context), toast=function(message), destroy=function()}. Call these functions with dot syntax. The returned closures own a ScreenGui named CrystalHollowHUD with ResetOnSpawn=false and replace only an older CrystalHollowHUD. Named descendants: CarryLabel, CoinsLabel, GoalLabel (TextLabels), HarvestButton, SellButton, PowerButton, CapacityButton (TextButtons). stats uses the seven exact player-attribute names. context={nodeId:string?,nodeRemaining:number?,nearSell:boolean,nearUpgrades:boolean}. render sets actual counts, levels, next prices, contextual hint and button availability. Expose those four button instances as handles.harvestButton, handles.sellButton, handles.powerButton, handles.capacityButton on the same returned object for Controller to bind; HUD must not fire remotes or own player state.\n7. StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Feedback.module.luau exports play(payload, hud) and destroy(); play calls hud.toast(payload.message) and owns only short-lived cosmetic effects/tweens. Goal glow is local to the observing player, beneath the scoped World or own GUI; never change shared economy or globally restore the beacon. Controller owns the fact that goal celebration is once per local session. Restore steady completed-goal presentation after respawn without replaying rewards or celebration. No audio/image/mesh dependencies.\n8. StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Controller.client.luau is the sole client bootstrap. It reads Contract, authored World nodes and player attributes, mounts HUD, wires the named button handles and E/Q/1/2 once, ignores keyboard input already consumed by Roblox/text entry, derives nearest valid node and station proximity, listens to the seven attributes, and refreshes on CharacterAdded. It sends only the action and optional node ID; server validation remains authoritative even if a control looks disabled. It handles Feedback through the existing Feedback module and cleans connections/effects on teardown. No alternate remotes or duplicated modules.\nTask order is contract -> world -> gameplay, with hud after contract and presentation after gameplay+hud. Emit only the current task's owned files/scene; do not fill future files with placeholders. Tests must verify the exported scene's authored world paths and composed geometry in Edit mode, then separately test economy, multiplayer validation, live controls, respawn and visual feedback in Play mode. A code or manifest assertion is not a claim of an observed gameplay/visual pass.",
+    "questions": [],
+    "requirements": [
+      {
+        "id": "world",
+        "category": "world",
+        "description": "A cohesive editable crystal quarry, not a runtime-only sketch",
+        "acceptance": "Before Play, artifact.scene and the opened exported place contain the named World geometry, six three-piece crystal clusters, connected paths/ramps/terraces, two stations, beacon and arch within 35–45 world entries. A view from Spawn shows a composed quarry rather than only isolated interaction blocks. World.resolve fails on missing authored landmarks instead of inventing replacements.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Create Crystal Hollow, a compact stylized luminous crystal quarry. The exported place must already look composed in Studio Edit mode: authored slate terrain terraces, connected pale paths and gentle ramps, six cyan/violet crystal clusters, a rock arch landmark, a warm amber sell station, a clearly distinct upgrade station, and a central crystal beacon. Use 35–45 explicit scene entries for the world, arranged inside a 96-by-96-stud floor; avoid a vast empty baseplate, three isolated blocks, or scenery created only after Play."
+      },
+      {
+        "id": "onboarding",
+        "category": "presentation",
+        "description": "An immediately legible route from spawn to harvest, sale and upgrades",
+        "acceptance": "In the authored scene, Node01 is within 12 studs of Spawn and both labeled stations within 24 studs; paths connect them without required jumping. A new player can identify the cyan harvest cluster, amber sell station and distinct upgrade station. Confirm legibility and walkability in Studio rather than inferring them solely from coordinates.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Place a safe spawn overlooking the quarry loop. The first crystal is within 12 studs of spawn; sell and upgrade stations are visible from spawn and each within 24 studs. Use readable in-world labels and contrasting path edges, a consistent restrained palette, and distinct silhouettes instead of uploaded artwork. No required jump, climb, or invisible trigger should block the first harvest and sale."
+      },
+      {
+        "id": "contract",
+        "category": "network",
+        "description": "One stable set of constants, remotes and task-owned interfaces",
+        "acceptance": "Contract exposes the exact constants; Action and Feedback RemoteEvents are declared once. The seven files have unique owners and runtime module names agree with the fixed interfaces. No task overwrites dependency files or substitutes alternate event/attribute names.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Use exactly seven Luau files with one shared Contract, a World scene resolver, server Economy and Game scripts, and client HUD, Feedback and Controller scripts. Keep the declared module interfaces, RemoteEvent names, player attributes and world names identical across tasks. Each task owns only its assigned files and scene objects; dependencies are read-only."
+      },
+      {
+        "id": "harvest",
+        "category": "mechanic",
+        "description": "Capacity-limited shared crystal harvesting and visible node recovery",
+        "acceptance": "At Node01, harvest moves one crystal from Remaining to Carry initially; full bags, empty nodes, distant or rapid requests add nothing. With one remaining crystal and two players, at most one crystal is awarded. Depletion dims the authored node and six seconds later restores stock and appearance. Upgraded yield never exceeds free bag space or node stock.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Harvest luminous crystals by pressing E or the Harvest button near a node. There are six shared nodes with six crystals each; a successful action takes the minimum of harvest yield, free bag space and node stock. Start with yield one and capacity eight. Empty nodes visibly dim, cannot award crystals, and refill after six seconds. Harvest interval is at least 0.65 seconds per player; stock cannot become negative when two players harvest together."
+      },
+      {
+        "id": "economy",
+        "category": "mechanic",
+        "description": "A rewarding harvest-to-sale loop",
+        "acceptance": "Selling Carry=8 at SellStation yields Coins=40, Carry=0 and TotalSold=8; repeated empty sale adds zero. After walking the authored route, a player can harvest, sell and afford a first upgrade during the first minute; confirm actual timing in Play mode.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "At the amber sell station, Q or Sell converts all carried crystals to five coins each and empties the bag. Selling an empty bag changes nothing. The first full bag earns 40 coins, enough to choose a useful first upgrade; the first minute should include harvesting, selling and seeing an upgrade improve the next trip."
+      },
+      {
+        "id": "upgrades",
+        "category": "mechanic",
+        "description": "Two independently useful and correctly priced upgrade tracks",
+        "acceptance": "From Coins=200, buying power level1 costs40 and raises yield to2; buying bag level1 costs30 and raises capacity to14, leaving130 coins. Second costs are100 and80, limits are level2, and insufficient/maxed purchases leave all state unchanged. Test that each upgrade changes subsequent harvesting or carrying behavior.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "At the upgrade station offer two independent two-level tracks: pick power raises crystals per harvest from 1 to 2 to 3 and costs 40 then 100 coins; bag capacity rises from 8 to 14 to 20 and costs 30 then 80 coins. Purchases deduct server-owned coins once and reject insufficient funds or a maxed track. Show each current level, next benefit, price and affordability before buying. Power improves harvest pace; capacity reduces sell trips."
+      },
+      {
+        "id": "progression",
+        "category": "mechanic",
+        "description": "A short personal beacon-restoration goal",
+        "acceptance": "TotalSold>=40 alone or upgrades alone do not complete the goal. Meeting both level1 upgrades and TotalSold>=40 sets that player's GoalComplete once, emits one goal event and retains ordinary play. A second player's goal remains independent; respawn or remount does not grant rewards.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Give each player a short personal goal: sell 40 total crystals and buy at least one level in both tracks to restore their Crystal Hollow beacon. Show progress from the start, celebrate completion once with a local beacon glow and clear success message, and leave the ordinary loop playable afterward. Do not turn goal completion into shared global progress or award free coins for reopening the UI."
+      },
+      {
+        "id": "authority",
+        "category": "network",
+        "description": "Server validation and independent player economies",
+        "acceptance": "Malformed actions/IDs, extra count/price arguments, nonexistent/dead characters, out-of-range actions and throttled requests cannot alter state. Two players have independent Carry/Coins/levels while shared node stock remains nonnegative. The client only requests actions; all amounts and prices come from server state/Contract.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "The server owns Carry, Coins, PowerLevel, CapacityLevel, Capacity, TotalSold and GoalComplete. Accept only the four declared action names and an optional known node ID; never trust client amounts, prices, distance or rewards. Validate a living character, proximity, action cooldown, harvest interval, capacity, stock and affordability before changing state. Each player has independent economy and upgrade state; node stock alone is shared."
+      },
+      {
+        "id": "lifecycle",
+        "category": "lifecycle",
+        "description": "Respawn-safe session state without duplicate systems or external dependencies",
+        "acceptance": "Existing and new players initialize correctly; character respawn retains all seven state fields and a later join starts a fresh session. Player removal clears bookkeeping. All authored static geometry remains unique and in the namespace; no uploaded asset IDs, external fetches, numeric requires or persistence/monetization systems appear.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Initialize existing and newly joined players, retain their session economy and upgrades across character respawns, reconnect input and UI safely, and clean per-player bookkeeping when they leave. Do not duplicate world geometry, HUDs, listeners or rewards after respawn. No cross-join persistence, monetization, uploaded meshes, image IDs, animation IDs, audio, external HTTP or numeric require calls are part of this slice."
+      },
+      {
+        "id": "hud",
+        "category": "ui",
+        "description": "A reusable readable HUD reflecting supplied state snapshots",
+        "acceptance": "Calling mount twice leaves one CrystalHollowHUD. render with successive state snapshots updates carry/capacity, coins, both next upgrade prices/benefits and goal progress correctly; all four named button handles exist. At 375x667 and desktop, text and actionable controls remain inside the viewport without overlap; visual legibility requires actual screenshot inspection.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Build a legible responsive HUD with the Crystal Hollow title, bag count/capacity, coins, both upgrade tracks, a goal progress line and one concise contextual hint. Use clear hierarchy, generous contrast and readable system-supported Roblox fonts, with controls fitting a 375-by-667 viewport and desktop. The HUD component must render real supplied state snapshots immediately, update displayed prices and progress, and replace only its own previous GUI when mounted again."
+      },
+      {
+        "id": "controls",
+        "category": "ui",
+        "description": "Responsive live controls, contextual explanations and bounded visual feedback",
+        "acceptance": "E/Q/1/2 and corresponding touch buttons reach the same server action path. One HUD immediately reflects real attributes at join and after harvest/sell/upgrades/respawn. Full bag, depleted node, distance and purchase failures have understandable messages. Accepted actions produce visible local feedback; effects and listeners clean up, and beacon celebration happens once without modifying rewards.",
+        "priority": "required",
+        "origin": "user",
+        "sourceId": "request",
+        "sourceQuote": "Wire one live HUD to replicated player attributes at join, after actions and after respawn. Support E/Harvest, Q/Sell, 1/Buy power and 2/Buy bag through the same validated action path, with touch buttons for every action and disabled-looking out-of-range or unavailable actions. Explain bag-full, empty-node, too-far, insufficient-coins and max-level results. Add a brief local harvest sparkle, a sell coin-count emphasis and an upgrade pulse using procedural parts or UI tweens; effects must clean up and must not grant rewards."
+      }
+    ],
+    "tasks": [
+      {
+        "id": "contract",
+        "title": "Define exact shared constants and two remotes",
+        "requirements": [
+          "contract"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_GenerationPilot/Contract.module.luau"
+        ]
+      },
+      {
+        "id": "world",
+        "title": "Author the editable quarry scene and strict world resolver",
+        "requirements": [
+          "world",
+          "onboarding"
+        ],
+        "dependsOn": [
+          "contract"
+        ],
+        "files": [
+          "ServerScriptService/Forge_GenerationPilot/World.module.luau"
+        ]
+      },
+      {
+        "id": "gameplay",
+        "title": "Implement authoritative economy, node stock and personal progression",
+        "requirements": [
+          "harvest",
+          "economy",
+          "upgrades",
+          "progression",
+          "authority",
+          "lifecycle"
+        ],
+        "dependsOn": [
+          "contract",
+          "world"
+        ],
+        "files": [
+          "ServerScriptService/Forge_GenerationPilot/Economy.module.luau",
+          "ServerScriptService/Forge_GenerationPilot/Game.server.luau"
+        ]
+      },
+      {
+        "id": "hud",
+        "title": "Build the responsive state-driven HUD component",
+        "requirements": [
+          "hud"
+        ],
+        "dependsOn": [
+          "contract"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/HUD.module.luau"
+        ]
+      },
+      {
+        "id": "presentation",
+        "title": "Connect live input, state, messages and procedural feedback",
+        "requirements": [
+          "controls"
+        ],
+        "dependsOn": [
+          "gameplay",
+          "hud"
+        ],
+        "files": [
+          "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Feedback.module.luau",
+          "StarterPlayer/StarterPlayerScripts/Forge_GenerationPilot/Controller.client.luau"
+        ]
+      }
+    ]
+  },
+  "models": [
+    "openai/gpt-5.6-luna"
+  ],
+  "reviewerModel": "openai/gpt-5.6-luna",
+  "maxOutputTokens": 12000,
+  "repairLimit": 1,
+  "aggregateCapMicros": 610924,
+  "reservedMicros": 537587,
+  "chargedMicros": 91663,
+  "results": [
+    {
+      "model": "openai/gpt-5.6-luna",
+      "reviewerModel": "openai/gpt-5.6-luna",
+      "projectId": "630bccd2-04e0-4ac3-8827-6a56934bf2a8",
+      "trialDirectory": "trial-1",
+      "stage": "failed",
+      "error": "Generation still has 2 unresolved checks. Inspect the diagnostics or adjust the brief.",
+      "budgetSkipped": false,
+      "failure": null,
+      "durationMs": 308719,
+      "trialCapMicros": 610924,
+      "reservedMicros": 537587,
+      "chargedMicros": 91663,
+      "attempts": [
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 913,
+          "estimated": false
+        },
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 10754,
+          "estimated": false
+        },
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 8644,
+          "estimated": false
+        },
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 9059,
+          "estimated": false
+        },
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 9473,
+          "estimated": false
+        },
+        {
+          "phase": "builder",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 11522,
+          "estimated": false
+        },
+        {
+          "phase": "reviewer",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 12683,
+          "estimated": false
+        },
+        {
+          "phase": "repair",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 18356,
+          "estimated": false
+        },
+        {
+          "phase": "reviewer",
+          "model": "openai/gpt-5.6-luna",
+          "status": "ok",
+          "chargedMicros": 10259,
+          "estimated": false
+        }
+      ],
+      "completedBuildTasks": [
+        "contract",
+        "world",
+        "gameplay",
+        "hud",
+        "presentation"
+      ],
+      "files": 7,
+      "sceneNodes": 51,
+      "staticFailures": [
+        {
+          "id": "coverage:world",
+          "status": "failed",
+          "detail": "Missing implemented coverage with at least one existing script OR scene node path for requirement world. Report those paths in coverage.files."
+        },
+        {
+          "id": "review:world",
+          "status": "failed",
+          "detail": "The authored World exceeds the protected 35–45 descendant budget. Counting the supplied scene hierarchy gives at least 47 descendants under World, before any additional generated instances, so worldBudgetAndLandmarks will fail and the approved compact-scene constraint is not met."
+        }
+      ],
+      "nativeVerification": "not_run"
+    }
+  ],
+  "reservations": [
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 44687,
+      "at": "2026-09-15T05:29:09.901Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 45481,
+      "at": "2026-09-15T05:29:15.563Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 54634,
+      "at": "2026-09-15T05:29:59.547Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 60178,
+      "at": "2026-09-15T05:30:28.066Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 54358,
+      "at": "2026-09-15T05:30:49.196Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 64342,
+      "at": "2026-09-15T05:31:19.435Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 67204,
+      "at": "2026-09-15T05:31:57.015Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 75112,
+      "at": "2026-09-15T05:32:51.489Z"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "trial": 0,
+      "reservedMicros": 71591,
+      "at": "2026-09-15T05:33:46.343Z"
+    }
+  ],
+  "limits": [
+    "One sample per candidate with a fixed approved specification; this does not evaluate planning.",
+    "Builder and repair use the candidate; reviewer uses one fixed model for every trial, with no fallback.",
+    "Reservations use UTF-8 request bytes and worst listed price overrides, are committed before dispatch, and never refunded. Provider billing is external; these are conservative estimates, not a provider-enforced cap.",
+    "Ready_to_test means static validation only. Native gameplay, multiplayer and visual-quality verification remain pending."
+  ]
+}

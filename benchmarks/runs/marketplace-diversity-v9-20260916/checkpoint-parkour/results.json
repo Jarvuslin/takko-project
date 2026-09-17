@@ -1,0 +1,494 @@
+{
+  "version": 15,
+  "mode": "build",
+  "planner": {
+    "id": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+    "name": "GPT-5.6 Sol · lead",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-5.6-sol",
+    "inputRate": 2,
+    "outputRate": 10,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "reviewer": {
+    "id": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+    "name": "Butter Crunch - Gemini evaluator",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "google/gemini-3.7-flash",
+    "inputRate": 0.75,
+    "outputRate": 3.75,
+    "maxOutputTokens": 12000,
+    "requestTimeoutMs": 300000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "plannerModel": "openai/gpt-5.6-sol",
+  "reviewerModel": "google/gemini-3.7-flash",
+  "planAccepted": true,
+  "benchmark": "marketplace-diversity-v8/checkpoint-parkour",
+  "budgetPolicy": "settled-plus-active",
+  "monetaryLedger": {
+    "settledAndUnknownMicros": 527647,
+    "inFlightReservationsMicros": 0,
+    "committedMicros": 5153698,
+    "shouldCancel": false
+  },
+  "model": "google/gemini-3.7-flash",
+  "projectId": "c405e7e9-b70b-45cf-9550-ab00948f98d1",
+  "stage": "failed",
+  "error": "Error: Build ended at failed: One or more required asset needs failed",
+  "failure": {
+    "code": "ASSET_PIPELINE_FAILED",
+    "phase": "builder",
+    "attempts": 3,
+    "details": "One or more required asset needs failed",
+    "at": "2026-09-16T17:08:03.851Z"
+  },
+  "cancellationReason": null,
+  "routesRestored": true,
+  "noFurtherCallsPending": true,
+  "priorReservationsMicros": 11034019,
+  "priorChargedMicros": 4626051,
+  "reservedMicros": 2336544,
+  "inFlightReservationsMicros": 0,
+  "combinedReservationsMicros": 13370563,
+  "chargedMicros": 527647,
+  "combinedChargedMicros": 5153698,
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 188540,
+      "chargedMicros": 78619,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6648,
+      "outputTokens": 6200,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:00:50.363Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "4b87bbd1-4a28-45b3-bc5f-645de6716336",
+      "model": "openai/gpt-5.6-sol",
+      "reservedMicros": 229164,
+      "chargedMicros": 70728,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10412,
+      "outputTokens": 4883,
+      "cachedInputTokens": 1796,
+      "status": "ok",
+      "at": "2026-09-16T17:01:43.161Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 124968,
+      "chargedMicros": 17252,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 19832,
+      "outputTokens": 634,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:01:49.385Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 118947,
+      "chargedMicros": 45275,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 26461,
+      "outputTokens": 6781,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:02:45.468Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 126369,
+      "chargedMicros": 38314,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 30570,
+      "outputTokens": 4103,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:03:14.660Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 119188,
+      "chargedMicros": 31311,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 25907,
+      "outputTokens": 3168,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:03:45.564Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 96344,
+      "chargedMicros": 25761,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 13517,
+      "outputTokens": 4166,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:04:25.062Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 102350,
+      "chargedMicros": 24214,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 16670,
+      "outputTokens": 3123,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:04:45.130Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 123687,
+      "chargedMicros": 16280,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 19546,
+      "outputTokens": 432,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:04:51.950Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 101803,
+      "chargedMicros": 26651,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 16894,
+      "outputTokens": 3728,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:05:26.180Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 107191,
+      "chargedMicros": 25113,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 19679,
+      "outputTokens": 2761,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:05:42.168Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 102603,
+      "chargedMicros": 29108,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 17400,
+      "outputTokens": 4282,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:06:12.227Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 98159,
+      "chargedMicros": 25828,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 15017,
+      "outputTokens": 3884,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:06:44.981Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 121017,
+      "chargedMicros": 14546,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 17999,
+      "outputTokens": 279,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:06:51.911Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 121011,
+      "chargedMicros": 14473,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 17997,
+      "outputTokens": 260,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:07:00.670Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 120814,
+      "chargedMicros": 14346,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 18118,
+      "outputTokens": 202,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:07:04.824Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 167177,
+      "chargedMicros": 14940,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 18005,
+      "outputTokens": 383,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:07:40.277Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "42ca7817-cfdc-4445-a80d-6a458d8e8024",
+      "model": "google/gemini-3.7-flash",
+      "reservedMicros": 167212,
+      "chargedMicros": 14888,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 17985,
+      "outputTokens": 373,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-16T17:08:03.673Z"
+    }
+  ],
+  "requiresReconciliation": false,
+  "assetEntries": [
+    {
+      "needId": "checkpointSystem",
+      "status": "passed",
+      "attempts": 1,
+      "component": {
+        "recordHash": "9fb063dcf7a5de08d51940162948f55a019d77d927fc13f8de6cdd2b13996621",
+        "needId": "checkpointSystem",
+        "candidateId": "136434663585151",
+        "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+        "packetHash": "23fb06bd5cf66561a43cda28805ee052525d88ce7c108299caa482654ef7d706",
+        "archiveHash": "c6c555d08b38fd5cee2cbd1045bd7f4d39de88ed80946378125d4fcda358eac8",
+        "conversionHash": "fc7d30ef82f07a5e9eae9841afc1fa46433ad500ebe4a7ede51e3e91bc75094a",
+        "destinationPath": "Workspace/Forge_c405e7e9b70b/Assets/checkpointSystem",
+        "rootName": "Imported",
+        "runtimeVerification": "not_performed",
+        "placement": "worker_integration_required"
+      },
+      "componentContextHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+      "bundle": {
+        "files": [],
+        "scene": [],
+        "coverage": [],
+        "assets": [
+          {
+            "id": "checkpointSystem",
+            "requirementId": "marketplaceFirst",
+            "kind": "model",
+            "assetId": "136434663585151",
+            "sourceUrl": "https://create.roblox.com/store/asset/136434663585151",
+            "status": "retrieved",
+            "description": "Reusable checkpoint system or obby checkpoint component that may supply beacon geometry, touch behavior, activation animation, progression interfaces, and embedded confirmation media for the three ordered checkpoints."
+          }
+        ]
+      },
+      "selected": {
+        "id": "136434663585151",
+        "name": "CheckPoint + sound Obby Working Checkpoint System",
+        "kind": "Model",
+        "creator": "XxBrooklyn_DragonxX4",
+        "sourceUrl": "https://create.roblox.com/store/asset/136434663585151",
+        "price": 0,
+        "source": "creator_store"
+      },
+      "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified."
+    },
+    {
+      "needId": "movingPlatformSystem",
+      "status": "passed",
+      "attempts": 1,
+      "component": {
+        "recordHash": "be784bbb4a0d0da4cbbf12800952db5855ad93761dd602197b88e26ed8650b01",
+        "needId": "movingPlatformSystem",
+        "candidateId": "18628600401",
+        "inputHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+        "packetHash": "907e1f06cba0434b54bd0e33e12753ad3e0a9059c50c5044bff0f6c16f3931dd",
+        "archiveHash": "8dfb7f48d60a73491933837a16e655549998fddabbdaafaba153499ff923a53a",
+        "conversionHash": "997ab51b35098fc341f4075414d90a24d4500e564e29619bf1d4646e0ee93aa9",
+        "destinationPath": "Workspace/Forge_c405e7e9b70b/Assets/movingPlatformSystem",
+        "rootName": "Imported",
+        "runtimeVerification": "not_performed",
+        "placement": "worker_integration_required"
+      },
+      "componentContextHash": "c96461c9534d0ff2fea5ec18268f5760b215aebfe353e9a916f8c6bb20cf1f9c",
+      "bundle": {
+        "files": [],
+        "scene": [],
+        "coverage": [],
+        "assets": [
+          {
+            "id": "movingPlatformSystem",
+            "requirementId": "movingCrossing",
+            "kind": "model",
+            "assetId": "18628600401",
+            "sourceUrl": "https://create.roblox.com/store/asset/18628600401",
+            "status": "retrieved",
+            "description": "Reusable moving-platform gameplay component capable of predictable repeated motion and reliable character transport across a required gap."
+          }
+        ]
+      },
+      "selected": {
+        "id": "18628600401",
+        "name": "CUSTOMIZABLE MOVING PLATFORM SYSTEM",
+        "description": "An easy to use customizable moving platform system!\n\nHow To Use: https://devforum.roblox.com/t/customizable-moving-platform-system-easy-to-use/3084274?u=ethererelsie\n\nThis is my first free model that I hope is useful to many other developers!!",
+        "kind": "Model",
+        "creator": "EtheringAround",
+        "sourceUrl": "https://create.roblox.com/store/asset/18628600401",
+        "price": 0,
+        "source": "creator_store"
+      },
+      "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified."
+    },
+    {
+      "needId": "skyCourseKit",
+      "status": "failed",
+      "attempts": 0,
+      "reason": "Search budget for the sky course kit asset need is exhausted with no candidates offered. The core course architecture, floating islands, and step route will be composed under Workspace/Forge_c405e7e9b70b to house the retained checkpoint and moving-platform components."
+    },
+    {
+      "needId": "checkpointConfirmationAudio",
+      "status": "passed",
+      "attempts": 1,
+      "bundle": {
+        "files": [],
+        "scene": [
+          {
+            "path": "Workspace/Forge_c405e7e9b70b",
+            "className": "Folder",
+            "properties": {}
+          },
+          {
+            "path": "Workspace/Forge_c405e7e9b70b/Assets",
+            "className": "Folder",
+            "properties": {}
+          },
+          {
+            "path": "Workspace/Forge_c405e7e9b70b/Assets/checkpointConfirmationAudio",
+            "className": "Sound",
+            "properties": {
+              "RollOffMode": {
+                "type": "Enum",
+                "enum": "RollOffMode",
+                "value": 0
+              },
+              "Looped": false,
+              "PlaybackSpeed": 1,
+              "PlayOnRemove": false,
+              "RollOffMaxDistance": 10000,
+              "Volume": 0.6499999761581421,
+              "SoundId": "rbxassetid://6817150445",
+              "Playing": false,
+              "Archivable": true,
+              "RollOffMinDistance": 10
+            }
+          }
+        ],
+        "coverage": [],
+        "assets": [
+          {
+            "id": "checkpointConfirmationAudio",
+            "requirementId": "verifiedAudio",
+            "kind": "audio",
+            "assetId": "6817150445",
+            "sourceUrl": "https://create.roblox.com/store/asset/136434663585151",
+            "status": "retrieved",
+            "description": "Marketplace confirmation sound for each accepted checkpoint activation, sourced from a retained component when suitable or searched separately when the inspected components do not contain usable audio."
+          }
+        ]
+      },
+      "selected": {
+        "id": "6817150445",
+        "name": "Embedded audio 6817150445 from CheckPoint + sound Obby Working Checkpoint System",
+        "description": "Unverified embedded audio from Marketplace component 136434663585151; not independently searched or listened to. Reviewed purpose: Checkpoint activation confirmation sound cue",
+        "kind": "Audio",
+        "creator": "Audio creator unverified; included by XxBrooklyn_DragonxX4",
+        "sourceUrl": "https://create.roblox.com/store/asset/136434663585151",
+        "price": null,
+        "source": "creator_store_component",
+        "componentOrigin": {
+          "needId": "checkpointSystem",
+          "candidateId": "136434663585151",
+          "recordHash": "9fb063dcf7a5de08d51940162948f55a019d77d927fc13f8de6cdd2b13996621",
+          "packetHash": "23fb06bd5cf66561a43cda28805ee052525d88ce7c108299caa482654ef7d706",
+          "archiveHash": "c6c555d08b38fd5cee2cbd1045bd7f4d39de88ed80946378125d4fcda358eac8",
+          "bindingIndices": [
+            13
+          ]
+        }
+      },
+      "reason": "Temporary inspection and placement verified by both evaluator observations, then owned imports released; exported bundle retained. Final whole-game verification remains pending."
+    }
+  ],
+  "artifactProduced": false,
+  "finishedGame": false,
+  "qualityScore": null,
+  "nativeGameplayVerification": "not run by this harness",
+  "manualRescue": false
+}

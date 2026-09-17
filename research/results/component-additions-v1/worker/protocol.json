@@ -1,0 +1,35 @@
+{
+  "type": "component-adaptation-diagnostic-replay",
+  "nativeStudioOperations": 0,
+  "importedCodeExecution": false,
+  "model": "google/gemini-3.7-flash",
+  "perCaseUSD": 0.25,
+  "batchUSD": 0.75,
+  "maxOutputTokens": 12288,
+  "intervention": "No supplied decisions or replacement code. Frozen prior worker selections and game context, retained native archives, production instructions/schema and automatic validation feedback only.",
+  "boundary": "Schema/source-quote/media-coverage validation is not semantic accuracy, dependency verification or gameplay proof.",
+  "sources": [
+    {
+      "file": "src/generation/engine.ts",
+      "sha256": "87b5eae0fa21195f9f7f634db1beaef90e88645a2bd53fd13b0149af2e7234c5"
+    },
+    {
+      "file": "src/generation/component-review.ts",
+      "sha256": "af7173c9d35659e99d925c169d5fead672ab58c10055c17627c6a110967c30f5"
+    },
+    {
+      "file": "src/generation/component-adaptation.ts",
+      "sha256": "b3606bb408b6846d6b17f298f95e563b9e5c434a020750670e2203114d794575"
+    },
+    {
+      "file": "scripts/test-component-reviewers.ts",
+      "sha256": "ca46ca26903cf38302f589add83ccf08693209bf5da7ca67c1c67f35ebc143c0"
+    }
+  ],
+  "inputs": [
+    {
+      "case": "bubble-wrap",
+      "sha256": "77d11cfc794433600f02cdbd03429948b4a3569e829716061875222ffdd97a42"
+    }
+  ]
+}

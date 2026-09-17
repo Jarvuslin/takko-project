@@ -1,0 +1,273 @@
+{
+  "packetHash": "ea8649e58770745f0563e64d2b67bb64d41f8f79a57b22f3cc574e47a62d5ab9",
+  "inputHash": "ac095ad5ac6b7234408fca376a08fd1c5c9cf1d349ea71a0d61c00dd94dec4e7",
+  "disposition": "needs_more_evidence",
+  "reason": "The bubble wrap model provides 72 physical bubble instances and pop sound assets, but embeds an obfuscated backdoor loader script hierarchy that requires removal before integration.",
+  "serializedMedia": [
+    {
+      "indices": [
+        12,
+        21,
+        26,
+        32,
+        37,
+        42,
+        47,
+        52,
+        57,
+        62,
+        67,
+        72,
+        77,
+        82,
+        87,
+        92,
+        97,
+        102,
+        107,
+        112,
+        117,
+        122,
+        127,
+        132,
+        137,
+        142,
+        147,
+        152,
+        157,
+        162,
+        167,
+        172,
+        177,
+        182,
+        187,
+        192,
+        197,
+        202,
+        207,
+        212,
+        217,
+        222,
+        227,
+        232,
+        237,
+        242,
+        247,
+        252,
+        257,
+        262,
+        267,
+        272,
+        277,
+        282,
+        287,
+        292,
+        297,
+        302,
+        307,
+        312,
+        317,
+        322,
+        327,
+        332,
+        337,
+        342,
+        347,
+        352,
+        357,
+        362,
+        367,
+        372
+      ],
+      "property": "SoundId",
+      "value": "rbxassetid://421058925",
+      "purpose": "Audio pop sound reference attached to each individual bubble part.",
+      "verification": "unverified"
+    }
+  ],
+  "sources": [
+    {
+      "sha256": "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+      "behavior": "Regeneration script that clones a backup copy of the model when the RegenButton is touched by a humanoid.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "Players",
+          "sourceQuote": "local Plr = game.Players:playerFromCharacter(Part.Parent)",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "CanNPCsActivate",
+          "sourceQuote": "local CanNPCsActivate = script.CanNPCsActivate.Value",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "Cooldown",
+          "sourceQuote": "local Cooldown = script.Cooldown.Value",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "RemovesPreviousModel",
+          "sourceQuote": "local RemovesPreviousModel = script.RemovesPreviousModel.Value",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "OffColor",
+          "sourceQuote": "local OffColor = script.OffColor.Value",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "sha256": "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb",
+      "behavior": "ClickDetector handler on bubble parts that zeroes activation distance, triggers the pop sound, and sets part transparency to 1.",
+      "reuse": "adapt",
+      "dependencies": [
+        {
+          "kind": "instance_reference",
+          "value": "ClickDetector",
+          "sourceQuote": "script.Parent.ClickDetector.MaxActivationDistance = 0",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "Click",
+          "sourceQuote": "script.Parent.Click:Play()",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "sha256": "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677",
+      "behavior": "Obfuscated script disguised as lighting controller that invokes MarketplaceService via helper modules to perform dynamic external require.",
+      "reuse": "unsuitable",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "Lighting",
+          "sourceQuote": "local Lighting = game:GetService(\"Lighting\")",
+          "verification": "unverified"
+        },
+        {
+          "kind": "instance_reference",
+          "value": "Type",
+          "sourceQuote": "local TypeLibrary = require(script:WaitForChild('Type'))",
+          "verification": "unverified"
+        },
+        {
+          "kind": "dynamic_or_unresolved",
+          "value": "EasyConfiguration.Pose.Value",
+          "sourceQuote": "local EasyConfiguration = require(script:WaitForChild(\"EasyConfiguration\",5).Pose.Value)",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": [
+        "Dynamic numeric module ID resolved at runtime from Pose.Value and external MarketplaceService calls."
+      ]
+    },
+    {
+      "sha256": "4051dc6c09016a3672e9eccdf1293d4d27c1260c5675ec4fc15b864bf3d1ae0e",
+      "behavior": "Helper module providing table configuration wrappers and indexing overrides.",
+      "reuse": "unsuitable",
+      "dependencies": [
+        {
+          "kind": "instance_reference",
+          "value": "Type",
+          "sourceQuote": "local Type = print(script.Parent:WaitForChild(\"Type\"))",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    },
+    {
+      "sha256": "772345d6803455068d11cc71ff99235e9e107e6e2857306455ad37aa3255db70",
+      "behavior": "Utility module containing type assertion helpers alongside obfuscated functions accessing MarketplaceService.",
+      "reuse": "unsuitable",
+      "dependencies": [
+        {
+          "kind": "service",
+          "value": "MarketplaceService",
+          "sourceQuote": "return root.MarketplaceService,root.MarketplaceService.GetProductInfo",
+          "verification": "unverified"
+        }
+      ],
+      "unresolved": []
+    }
+  ],
+  "requirements": [
+    {
+      "requirementId": "req-bubble-sheet",
+      "status": "static_evidence_present",
+      "reason": "Model structure contains 72 physical bubble parts arranged into a bubble wrap sheet.",
+      "sourceHashes": [],
+      "nodeIndices": [
+        2,
+        9,
+        10,
+        19,
+        24,
+        30,
+        35,
+        40
+      ]
+    },
+    {
+      "requirementId": "req-bubble-press",
+      "status": "integration_needed",
+      "reason": "Per-part script hides parts on click and plays sound, but lacks smooth depression animation, touch handling, and exact counter state tracking.",
+      "sourceHashes": [
+        "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      ],
+      "nodeIndices": [
+        14,
+        23,
+        28,
+        34,
+        39,
+        44
+      ]
+    }
+  ],
+  "permissionImpacts": [
+    {
+      "capability": "DataStore",
+      "impact": "none_observed",
+      "reason": "No DataStore APIs or persistence calls are referenced in any script.",
+      "sourceHashes": [
+        "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+        "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      ]
+    },
+    {
+      "capability": "Network",
+      "impact": "required_by_source",
+      "reason": "TypeConfig and Type module scripts attempt MarketplaceService.GetProductInfo network queries for external asset loading.",
+      "sourceHashes": [
+        "699c263e96b93eecebada761cf45f154301f4a76b5f54babfe2be78de8677677",
+        "772345d6803455068d11cc71ff99235e9e107e6e2857306455ad37aa3255db70"
+      ]
+    },
+    {
+      "capability": "ScriptGlobals",
+      "impact": "none_observed",
+      "reason": "No shared or _G globals are accessed or modified.",
+      "sourceHashes": [
+        "ab1a438b1ebec470939f9497d9dcb8feaf96cc76f24c513667176ee4611ab4a3",
+        "3ea385adf6211446124ee4a0f5c8b88fc905b0487854d555d5729602647e80cb"
+      ]
+    }
+  ],
+  "integrationNotes": [
+    "Purge TypeConfig (node 15) and its children EasyConfiguration (node 16) and Type (node 18) to eliminate malicious backdoor require code.",
+    "Preserve the 72 bubble parts and associated pop Sound instances (SoundId rbxassetid://421058925).",
+    "Replace individual per-part legacy scripts with a cohesive client/server interaction script providing TweenService pop animations and single-increment counter validation."
+  ],
+  "runtimeVerification": "not_performed"
+}

@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-14T05:55:21.013Z",
+  "id": "ed0ef911-5a33-4cbd-a9f2-0ff37392b996",
+  "revision": 4,
+  "stage": "needs_input",
+  "error": "The generated build references an image or other asset that is not available. Supply a real Roblox asset ID or approve an alternative in the brief, then replan.",
+  "failure": {
+    "code": "INPUT_REQUIRED",
+    "phase": "builder",
+    "attempts": 0,
+    "details": "Built-in asset does not exist in the installed Studio content catalog: rbxasset://sounds/click.wav. Supply a real asset or report it as needed.\nBuilt-in asset does not exist in the installed Studio content catalog: rbxasset://textures/ui/Cookie.png. Supply a real asset or report it as needed.",
+    "at": "2026-09-14T05:53:23.617Z"
+  },
+  "checks": [
+    {
+      "id": "unknown-builtin:rbxasset://sounds/click.wav",
+      "status": "failed",
+      "detail": "Built-in asset does not exist in the installed Studio content catalog: rbxasset://sounds/click.wav. Supply a real asset or report it as needed."
+    },
+    {
+      "id": "unknown-builtin:rbxasset://textures/ui/Cookie.png",
+      "status": "failed",
+      "detail": "Built-in asset does not exist in the installed Studio content catalog: rbxasset://textures/ui/Cookie.png. Supply a real asset or report it as needed."
+    }
+  ],
+  "completedTasks": [
+    "task1_create_cookie_part",
+    "task2_server_click_handling",
+    "task3_client_gui",
+    "task4_client_click_and_animation",
+    "task5_client_server_communication"
+  ],
+  "spentMicros": 38546,
+  "budgetMicros": 1000000,
+  "nativeRuntimeVerification": "Not run: automated fixture launch rejected by approval review; no Studio MCP sessions available."
+}

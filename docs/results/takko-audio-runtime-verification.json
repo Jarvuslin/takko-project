@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-09-16T02:51:42.6211997Z",
+  "offline": {
+    "command": "npm run check",
+    "browserTests": 36,
+    "unitApiTests": 600,
+    "initialCheckFailure": "Helper executable locked by concurrent native diagnostic; rerun passed",
+    "exitCode": 0,
+    "log": ".forge/asset-audio-check-final.log",
+    "desktopTests": 10
+  },
+  "native": {
+    "passed": true,
+    "paidCalls": 0,
+    "benchmarkEligible": false,
+    "report": "docs/results/takko-audio-runtime-native-v1/result.json"
+  },
+  "loadedRuntime": {
+    "reloaded": true,
+    "pid": 22236,
+    "port": 4324,
+    "configuredProfiles": 4,
+    "keyObjectsPreserved": true,
+    "moduleUrl": "file:///D:/RobloxProjects/Roblox%20Gen/.forge/hot/asset-audio.mjs?reload=1789526941462",
+    "at": "2026-09-16T02:49:01.759Z"
+  },
+  "sourceHashesAfterNative": {
+    "src/generation/engine.ts": "f79fe3d9feebea5a1351dcda97e4c50005f1c916cb60eb13765ba77bce629fa0",
+    "src/generation/requirements.ts": "ab03f8d3c1d99e611b17e2c7f91da218b1f4eba4ee18f360f8e98732318d40dc",
+    "src/generation/asset-contract.ts": "0e2d6a410fab4dcdc71857e8f9325fdce25fcda0e33b002f90e8fe99a47ada99",
+    "src/generation/asset-pipeline.ts": "a3c896a9a0449dd0c2aec05ff6f25deb3586063cbce636fd05c896e5db40b198",
+    "src/generation/studio-asset-adapter.ts": "cdb86ce84c76e966115eaf13522ba75dd12221ed7f18c43807e0fb9379663975",
+    "src/generation/studio-audio-runtime.ts": "965c70daf02317efa42bb594aecc10cbf1ceea2688d56d5436d3541c3386cffb",
+    "src/generation/studio-state.ts": "8deb7ea2ea17edb4316d5bc932f11997d5379c400d99ca2f9f6e0e957fc29c2c",
+    "src/generation/audio-capture.ts": "5b98723827c174fc68a15063fe6fe636baf8455f57b04c52de33278343e43247",
+    "src/generation/audio-evidence.ts": "95e1daadf93af9db32b70f51baecda2b1f01dcef9af9f34a7bc0271d7d48e7fe"
+  }
+}

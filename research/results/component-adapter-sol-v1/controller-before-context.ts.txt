@@ -1,0 +1,108 @@
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+import { createHash, randomUUID } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { Engine } from "../src/generation/engine";
+import { Configuration } from "../src/generation/settings";
+import { GenerationStore } from "../src/generation/store";
+import { gameContext } from "../src/generation/game-context";
+import { componentAdaptationDecisionSchema, componentAdaptationInstructions, validateComponentAdaptation, expectedAdaptedInventory } from "../src/generation/component-adaptation";
+import { loadComponentReviewEvidence, validateComponentReview } from "../src/generation/component-review";
+import type { Profile, Project } from "../src/generation/schema";
+
+const [mode, output] = process.argv.slice(2);
+assert(["offline", "live"].includes(mode) && output);
+const root = "research/results/component-adapter-sol-v1";
+const base = "benchmarks/runs/marketplace-diversity-v10-20260916/combat-training";
+const out = path.resolve(output);
+assert(!fs.existsSync(out), "Fresh output required; preserve evidence");
+const read = (f: string) => JSON.parse(fs.readFileSync(f, "utf8"));
+const hash = (x: string | Buffer) => createHash("sha256").update(x).digest("hex");
+const original: Project = read(base + "/final-project.json");
+const events = original.assetPipeline!.events;
+const event = (step: string) => events.find(e => e.needId === "combatTrainingComponent" && e.step === step)!.data as any;
+const initial = event("component_review_call");
+const review = event("component_review_result");
+const fixture = event("component_adaptation_decision_result");
+const need = original.assetPipeline!.needs.find(n => n.id === "combatTrainingComponent")!;
+fs.mkdirSync(out, { recursive: true });
+const save = (file: string, value: unknown) => fs.writeFileSync(path.join(out, file), JSON.stringify(value, null, 2) + "\n");
+fs.cpSync(base + "/asset-evidence", out + "/asset-evidence", { recursive: true });
+const evidence = loadComponentReviewEvidence(out + "/asset-evidence", initial.packetHash, initial.inputHash);
+validateComponentReview(review, evidence, initial.requirementIds);
+validateComponentAdaptation(fixture.plan, evidence);
+const instructions = "Choose action adapt with plan only when this captured component contains useful behavior or content for the actual game. Otherwise choose action reject with reason so Marketplace search can continue. Source review describes the unchanged component; its rejection does not prohibit proposing removal of unrelated code while preserving useful content. One adaptation attempt is available for this candidate. No runtime success is assumed. " + componentAdaptationInstructions;
+const engineSource = fs.readFileSync("src/generation/engine.ts", "utf8");
+assert(engineSource.includes(instructions.slice(0, instructions.indexOf("Adapt the supplied"))), "Adaptation instructions changed");
+const context = { task: "component-adaptation", request: original.request, gameContext: gameContext(original, need), context: { need, evidence, requirementIds: initial.requirementIds, review }, instructions };
+save("input.json", context);
+const profile: Profile = (({ hasKey: _, ...p }) => p)(read(base + "/experiment.json").planner);
+assert.equal(profile.model, "openai/gpt-5.6-sol");
+assert.equal(profile.maxOutputTokens, 12000); assert.equal(profile.requestTimeoutMs, 300000);
+const sourceFiles = fs.readdirSync("src/generation", { recursive: true }).filter(f => String(f).endsWith(".ts")).map(f => "src/generation/" + String(f).replaceAll("\\", "/"));
+const sources = Object.fromEntries(sourceFiles.map(f => [f, hash(fs.readFileSync(f))]));
+const cap = 800000, ceiling = 7500000, headroom = 400000;
+let prior = 5899407, secret = "", decision: any, error: string | undefined;
+const calls: any[] = [];
+const committed = () => calls.reduce((sum, c) => sum + (c.chargedMicros ?? c.reserveMicros), 0);
+const abort = new AbortController();
+const protocol = { mode, sourceProject: original.id, projectSha256: hash(fs.readFileSync(base + "/final-project.json")), inputSha256: hash(JSON.stringify(context)), sources, profile, capMicros: cap, campaignCeilingMicros: ceiling, headroomMicros: headroom, priorMicros: prior, maxCalls: 2, nativeOperations: 0, boundary: "Reconstructed production initial adaptation input from V10 original evidence and original initial source review, unchanged instructions/schema/game context. Model changed to Sol. No later review, diagnosis, adaptation answer or root-authored game code enters live input. Raw historical Gemini is comparison, not a fresh control. Offline response fixture is never sent as a live answer. No source/game/native success inferred from contract acceptance." };
+save("protocol.json", protocol);
+const lock = ".forge/component-adapter-sol.lock";
+assert(!fs.existsSync(".forge/marketplace-diversity.lock"));
+const fd = fs.openSync(lock, "wx"); fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, mode, out })); fs.closeSync(fd);
+let project: Project | undefined;
+async function keyStatus(file: string) {
+  const r = await fetch("https://openrouter.ai/api/v1/key", { headers: { Authorization: "Bearer " + secret }, redirect: "error" }); assert(r.ok);
+  const { data } = await r.json() as any;
+  const status = { checkedAt: new Date().toISOString(), limit: data.limit, usage: data.usage, remaining: data.limit_remaining, expiresAt: data.expires_at };
+  save(file, status); return status;
+}
+try {
+  if (mode === "live") {
+    const offline = read(root + "/offline/result.json"); assert(offline.contractPassed && offline.calls === 1 && offline.actualPaidCalls === 0);
+    assert.deepEqual(sources, read(root + "/offline/protocol.json").sources);
+    assert.deepEqual(JSON.parse(JSON.stringify(context)), read(root + "/offline/input.json"));
+    const summaries = await (await fetch("http://127.0.0.1:4324/api/projects")).json() as any[];
+    const projects = await Promise.all(summaries.map(async p => (await fetch("http://127.0.0.1:4324/api/projects/" + p.id)).json() as any));
+    assert(projects.every(p => !p.jobId && !p.reservedMicros), "Application busy");
+    save("app-idle.json", projects.map(p => ({ id: p.id, stage: p.stage, jobId: p.jobId, reservedMicros: p.reservedMicros })));
+    try { secret = execFileSync("pwsh.exe", ["-NoProfile", "-NonInteractive", "-Command", "$s=ConvertTo-SecureString ([IO.File]::ReadAllText((Join-Path $env:LOCALAPPDATA 'Takko\\secrets\\openrouter-testing.dpapi'))); $p=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($s); try {[Console]::Write([Runtime.InteropServices.Marshal]::PtrToStringBSTR($p))} finally {[Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p)}"], { windowsHide: true, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim(); } catch { throw Error("Credential restoration failed; suppressed"); }
+    const before = await keyStatus("key-before.json"); prior = Math.max(prior, Math.ceil(before.usage * 1e6));
+    assert(prior + cap + headroom <= ceiling && before.remaining * 1e6 >= cap + headroom);
+    const catalog = await (await fetch("https://openrouter.ai/api/v1/models", { redirect: "error" })).json() as any;
+    const model = catalog.data.find((m: any) => m.id === profile.model);
+    assert(model && Number(model.pricing.prompt) * 1e6 === profile.inputRate && Number(model.pricing.completion) * 1e6 === profile.outputRate); save("catalog-model.json", model);
+  }
+  const cfg = new Configuration(out + "/configuration");
+  cfg.save({ profiles: [profile], routes: { planner: [], builder: [profile.id], reviewer: [], repair: [] }, budgetMicros: cap, repairLimit: 0, researchEnabled: false });
+  cfg.setKey(profile.id, secret || "offline-fixture");
+  const transport: typeof fetch = async (url, options) => {
+    assert.equal(url, "https://openrouter.ai/api/v1/chat/completions");
+    const body = JSON.parse(options!.body as string);
+    assert.equal(body.model, profile.model); assert.equal(body.max_tokens, 12000); assert.equal(body.messages.length, 2); assert(!body.plugins && !body.stream);
+    if (!calls.length) { assert.deepEqual(JSON.parse(body.messages[1].content), JSON.parse(JSON.stringify(context))); if (mode === "live") assert.deepEqual(body, read(root + "/offline/call-1-request.json")); }
+    const reserve = Math.ceil((Buffer.byteLength(options!.body as string) + 1024) * profile.inputRate + 12000 * profile.outputRate);
+    assert(calls.length < 2 && committed() + reserve <= cap && prior + committed() + reserve + headroom <= ceiling);
+    const call: any = { id: calls.length + 1, startedAt: new Date().toISOString(), reserveMicros: reserve, mode }; calls.push(call); save("calls.json", calls); save(`call-${call.id}-request.json`, body);
+    if (mode === "offline") { call.chargedMicros = 0; save("calls.json", calls); return new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify(fixture) }, finish_reason: "stop" }], usage: { prompt_tokens: 1, completion_tokens: 1, cost: 0 } }), { status: 200 }); }
+    try {
+      const r = await fetch(url, { ...options, redirect: "error" }); const raw = (await r.text()).replaceAll(secret, "[REDACTED]");
+      fs.writeFileSync(path.join(out, `call-${call.id}-response.txt`), raw); call.status = r.status; call.finishedAt = new Date().toISOString();
+      try { const value = JSON.parse(raw); call.usage = value.usage; if (Number.isFinite(value.usage?.cost) && value.usage.cost >= 0) { call.costUSD = value.usage.cost; call.chargedMicros = Math.ceil(value.usage.cost * 1e6); } } catch {}
+      if (call.chargedMicros === undefined) abort.abort("Unknown charge; preserve reservation and stop"); save("calls.json", calls);
+      return new Response(raw, { status: r.status, headers: { "Content-Type": "application/json" } });
+    } catch { call.error = "Provider request failed; full reservation retained"; save("calls.json", calls); abort.abort("Unknown outcome"); throw Error(call.error); }
+  };
+  const store = new GenerationStore(out + "/projects"); const engine = new Engine(store, cfg, transport);
+  project = { ...structuredClone(original), id: randomUUID(), charges: [], reservedMicros: 0, budgetMicros: cap, events: [], jobId: null, error: null, failure: null };
+  try { decision = await (engine as any).call(project, "builder", context, componentAdaptationDecisionSchema, cfg.read(), new Map([[profile.id, secret || "offline-fixture"]]), AbortSignal.any([abort.signal, AbortSignal.timeout(650000)]), (v: any) => { if (v.action === "adapt") validateComponentAdaptation(v.plan, evidence); }, { label: "component-adapter" }); save("decision.json", decision); if (decision.action === "adapt") save("expected-inventory.json", expectedAdaptedInventory(evidence as any, decision.plan)); }
+  catch(e) { error = (e as Error).message; }
+  save("project.json", project);
+  if (mode === "offline") { assert(decision); assert.equal(calls.length, 1); }
+  if (mode === "live") await keyStatus("key-after.json");
+} finally {
+  const result = { mode, contractPassed: !!decision, action: decision?.action, error, calls: calls.length, actualPaidCalls: mode === "live" ? calls.length : 0, chargedOrUnknownMicros: committed(), conservativePriorMicros: prior + committed(), unknownLiability: calls.some(c => c.chargedMicros === undefined), inFlightReservations: project?.reservedMicros ?? 0, noFurtherCallsPending: true, nativeOperations: 0, rawGamePass: false };
+  save("result.json", result); console.log(JSON.stringify(result)); secret = ""; fs.unlinkSync(lock);
+}

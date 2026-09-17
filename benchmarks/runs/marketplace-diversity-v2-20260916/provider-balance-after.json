@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-09-16T05:00:05.125Z",
+  "uniqueKeys": 1,
+  "activeJobs": 0,
+  "results": [
+    {
+      "models": [
+        "minimax/minimax-m3",
+        "xiaomi/mimo-v2.5-pro",
+        "x-ai/grok-build-0.1",
+        "google/gemini-3.7-flash"
+      ],
+      "limits": {
+        "httpStatus": 200,
+        "limit": 10,
+        "limit_remaining": 7.846457114,
+        "limit_reset": null,
+        "usage": 2.153542886,
+        "usage_daily": 0.668324676,
+        "usage_weekly": 2.037864466,
+        "usage_monthly": 2.153542886,
+        "is_free_tier": false,
+        "expires_at": "2026-09-20T22:29:00.003Z"
+      },
+      "credits": {
+        "httpStatus": 200,
+        "total_credits": 10,
+        "total_usage": 2.162672636
+      }
+    }
+  ]
+}

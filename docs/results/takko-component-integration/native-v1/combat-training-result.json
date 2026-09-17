@@ -1,0 +1,581 @@
+{
+  "case": "combat-training",
+  "candidate": {
+    "id": "125989241853035",
+    "name": "Dummy Training Practice Humanoid Test RP",
+    "kind": "Model",
+    "creator": "XxAidenLionxX72",
+    "sourceUrl": "https://create.roblox.com/store/asset/125989241853035",
+    "price": 0,
+    "source": "creator_store",
+    "description": "💫✨ Please Like, Favorite, and Leave a Comment if You Enjoyed Our Model! ✨💫\n\n\nThis asset was fully made in Roblox Studio. Thank you for the support <33!\n\n\nTags (Ignore): Dummy, Training, Practice, Humanoid, Test, RP, Roleplay, Simulator, Game, NPC, AI, Character, Mannequin, Target, Avatar, Rig, Mesh, Player, Victim, Ragdoll, Scripted, Animation, Tools, Weapons, Sword, Gun, Melee, Combat, Battle, Arena, Fighting, Physics, Realistic, Customizable, Poseable, Dummy, Exercise, Target, Practice, Simulated, Interactive, Dummy, Practice, Dummy, Test, Humanoid, Roleplay, Dummy, Practice, AI, Training, Character, Target, Humanoid, Test, RP, Practice, Dummy, Humanoid, Training, Target, Practice, Simulator, Roleplay, Game"
+  },
+  "scope": "AdapterRegression_1841822cbe29",
+  "result": {
+    "evidence": {
+      "packetHash": "2b2594554c1b7fb782afb78ea4a1b3b5b8aad3301c788c1d124882539789cb83",
+      "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+      "candidateId": "125989241853035",
+      "token": "3073ed36-ac1c-4933-9f93-2cfc9a402bd7",
+      "originalHash": "986825ddd24cbf028a3f6d1794b83008107b2ce388c6f49388713191032f4cc1",
+      "derivativeHash": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+      "nodes": [
+        {
+          "index": 1,
+          "parentIndex": 0,
+          "name": "Imported",
+          "className": "Model"
+        },
+        {
+          "index": 2,
+          "parentIndex": 1,
+          "name": "Dummy",
+          "className": "Model"
+        },
+        {
+          "index": 3,
+          "parentIndex": 2,
+          "name": "HumanoidRootPart",
+          "className": "Part"
+        },
+        {
+          "index": 4,
+          "parentIndex": 3,
+          "name": "Root Hip",
+          "className": "Motor6D"
+        },
+        {
+          "index": 5,
+          "parentIndex": 2,
+          "name": "Torso",
+          "className": "Part"
+        },
+        {
+          "index": 6,
+          "parentIndex": 5,
+          "name": "Left Hip",
+          "className": "Motor6D"
+        },
+        {
+          "index": 7,
+          "parentIndex": 5,
+          "name": "Right Hip",
+          "className": "Motor6D"
+        },
+        {
+          "index": 8,
+          "parentIndex": 5,
+          "name": "Left Shoulder",
+          "className": "Motor6D"
+        },
+        {
+          "index": 9,
+          "parentIndex": 5,
+          "name": "Right Shoulder",
+          "className": "Motor6D"
+        },
+        {
+          "index": 10,
+          "parentIndex": 5,
+          "name": "Neck",
+          "className": "Motor6D"
+        },
+        {
+          "index": 11,
+          "parentIndex": 2,
+          "name": "Left Leg",
+          "className": "Part"
+        },
+        {
+          "index": 12,
+          "parentIndex": 2,
+          "name": "Right Leg",
+          "className": "Part"
+        },
+        {
+          "index": 13,
+          "parentIndex": 2,
+          "name": "Left Arm",
+          "className": "Part"
+        },
+        {
+          "index": 14,
+          "parentIndex": 2,
+          "name": "Right Arm",
+          "className": "Part"
+        },
+        {
+          "index": 15,
+          "parentIndex": 2,
+          "name": "Head",
+          "className": "Part"
+        },
+        {
+          "index": 16,
+          "parentIndex": 15,
+          "name": "Face",
+          "className": "Decal"
+        },
+        {
+          "index": 17,
+          "parentIndex": 2,
+          "name": "Humanoid",
+          "className": "Humanoid"
+        }
+      ],
+      "sourceBodies": [],
+      "securityProfiles": [],
+      "configurationValues": [],
+      "contentReferences": [
+        {
+          "index": 16,
+          "property": "Texture",
+          "value": "rbxasset://textures/face.png"
+        }
+      ],
+      "removedCapabilities": [
+        "DataStore",
+        "Network",
+        "ScriptGlobals"
+      ],
+      "boundary": "Worker-authored adaptation applied to an unparented copy and recaptured. Review the actual surviving sources and bindings; a proposed feature is not proof it exists. Original evidence retained; native restoration passed but no imported code executed. Media, behavior, runtime integration and external dependencies remain unverified."
+    },
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T09:08:21.404Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "component_adapt",
+          "sessionId": "56f6b544-1a66-4de4-b5cd-92ed8bb1a5e2",
+          "token": "3073ed36-ac1c-4933-9f93-2cfc9a402bd7",
+          "scope": "AdapterRegression_1841822cbe29",
+          "stagingPath": "ServerStorage/AdapterRegression_1841822cbe29/AssetStaging/attempt_67c6603e1631bbd114048f1b",
+          "previewPath": "Workspace/AdapterRegression_1841822cbe29/AssetPreviews/attempt_67c6603e1631bbd114048f1b",
+          "finalPath": "Workspace/AdapterRegression_1841822cbe29/Assets/TrainingDummyModel"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T09:08:21.405Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T09:08:21.418Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T09:08:21.468Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"ok\":true,\"componentTransfer\":{\"encodedBytes\":15720,\"chunkSize\":32768,\"sha256\":\"453b4a3aa336686018226f71fd8698de5c19f71e5ee07b1036caf36b8c717084\",\"jsonBytes\":11789},\"operation\":\"component_adapt\",\"reasons\":[],\"marker\":\"takko_asset_v1\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "adapted_component_transfer",
+        "at": "2026-09-16T09:08:21.498Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "encodedBytes": 15720,
+          "jsonBytes": 11789,
+          "sha256": "453b4a3aa336686018226f71fd8698de5c19f71e5ee07b1036caf36b8c717084",
+          "chunkSize": 32768,
+          "chunksRead": 1,
+          "verified": true,
+          "readOnly": true
+        }
+      },
+      {
+        "operation": "adapted_component_archive",
+        "at": "2026-09-16T09:08:21.517Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "version": 1,
+          "kind": "takko-component-adaptation",
+          "original": {
+            "archiveHash": "5ea34d724d21dd71ffa3026f090762b9c81b0f3a3a6fe593ed905dc05b97a482",
+            "manifestHash": "6b00554247ca1ee9941512edf86dee771756076a168f4e2ea25afd6cab31e260"
+          },
+          "plan": {
+            "packetHash": "70ca3770e0b524764effed07262f746d194ad3d3790d5554860a813a588acfb7",
+            "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+            "reason": "Preserve the complete R6 humanoid training dummy rig with HumanoidRootPart, Torso, Head, limbs, Humanoid, and standard Motor6D joint tree. Remove the Package script and child Module NumberPose which contain an unresolved external numeric asset require and irrelevant lighting manipulation logic. Register remaining integration needs for combat combo state machine, server validation, UI, audio, and arena setup.",
+            "removeSubtrees": [
+              {
+                "index": 18,
+                "reason": "Remove the Package script and its child TextureConfiguration module containing unresolved numeric require ID 91638724979309 and unrelated day/night lighting code."
+              }
+            ],
+            "replaceSources": [],
+            "preservedBehavior": [
+              "Preserve the Dummy model (node 2) hierarchy including HumanoidRootPart, Torso, Head, Left Arm, Right Arm, Left Leg, and Right Leg.",
+              "Preserve all standard R6 Motor6D joints ('Root Hip', 'Neck', 'Left Shoulder', 'Right Shoulder', 'Left Hip', 'Right Hip') enabling animation and flinch playback.",
+              "Preserve the Humanoid instance (node 17) for health tracking, state changes, and combat hit reactions.",
+              "Preserve the Head Face Decal (node 16) for standard dummy facial presentation."
+            ],
+            "remainingIntegration": [
+              "Construct the Strike Lab arena geometry with marked sparring mat, boundaries, overhead key lighting, and player spawn facing the dummy.",
+              "Author a 3-hit light-attack combo state machine (Jab -> Cross -> Heavy Finisher) with distinct windup (anticipation), contact (active window), and recovery timing phases.",
+              "Implement server-authoritative hit validation checking attacker-to-dummy range, attack cooldowns, and enforcing strictly one hit registration per swing.",
+              "Implement client presentation with procedural joint/track attack animations, contact spark VFX, miss whoosh effects, and synchronized hit/miss audio.",
+              "Implement responsive HUD displaying real-time dummy health, combo hit counter, reset combo timer, and touch controls for mobile alongside desktop keyboard/mouse inputs.",
+              "Implement dummy defeat state transition upon reaching 0 HP (flinch/knockdown reaction) with auto-reset and explicit manual reset button controls."
+            ],
+            "nativeTestPlan": [
+              "Spawn into the arena on desktop and verify dummy stands upright with intact Motor6D joint hierarchy and full health bar.",
+              "Execute Hit 1 (Jab) within valid range: observe windup animation, contact spark VFX, impact sound, dummy health deduction, and combo counter incrementing to 1.",
+              "Continue combo with Hit 2 (Cross) and Hit 3 (Finisher) within timing windows: verify combo counter progresses to 2 and 3 with escalating hit feedback.",
+              "Test recovery-spam: press attack rapidly during recovery phase and confirm no additional swings, damage, or counter increments occur before recovery completes.",
+              "Test button-hold: hold the attack input continuously and confirm exactly one swing executes without continuous auto-attacking.",
+              "Test miss feedback: attack while positioned outside attack range; confirm whoosh swing audio and trail play, no damage is dealt, and combo counter does not increment.",
+              "Deplete dummy health to 0: verify dummy triggers defeat reaction, displays defeat banner, and resets health/stance upon pressing the reset control.",
+              "Test mobile touch controls using device emulation: verify on-screen attack and reset buttons function identically to desktop inputs."
+            ],
+            "runtimeVerification": "not_performed"
+          },
+          "planHash": "234a12b3981eee491ba38fcecd5d00e49e5e57209e7f75d49ee5a18e9575427c",
+          "adapted": {
+            "archiveHash": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+            "manifestHash": "de9419eca21cc20b5218600c8d2262630c19aedc56b32614dbd4104b7bfa2b11"
+          },
+          "indexMap": [
+            {
+              "before": 1,
+              "after": 1
+            },
+            {
+              "before": 2,
+              "after": 2
+            },
+            {
+              "before": 3,
+              "after": 3
+            },
+            {
+              "before": 4,
+              "after": 4
+            },
+            {
+              "before": 5,
+              "after": 5
+            },
+            {
+              "before": 6,
+              "after": 6
+            },
+            {
+              "before": 7,
+              "after": 7
+            },
+            {
+              "before": 8,
+              "after": 8
+            },
+            {
+              "before": 9,
+              "after": 9
+            },
+            {
+              "before": 10,
+              "after": 10
+            },
+            {
+              "before": 11,
+              "after": 11
+            },
+            {
+              "before": 12,
+              "after": 12
+            },
+            {
+              "before": 13,
+              "after": 13
+            },
+            {
+              "before": 14,
+              "after": 14
+            },
+            {
+              "before": 15,
+              "after": 15
+            },
+            {
+              "before": 16,
+              "after": 16
+            },
+            {
+              "before": 17,
+              "after": 17
+            }
+          ],
+          "sourceReview": "required",
+          "runtimeVerification": "not_performed",
+          "exported": false,
+          "executed": false,
+          "sha256": "2b2594554c1b7fb782afb78ea4a1b3b5b8aad3301c788c1d124882539789cb83",
+          "file": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-integration-native-v1\\combat-training\\2b2594554c1b7fb782afb78ea4a1b3b5b8aad3301c788c1d124882539789cb83.adaptation.json",
+          "archive": {
+            "status": "captured",
+            "sha256": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+            "bytes": 7414,
+            "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-integration-native-v1\\combat-training\\623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf.rbxm",
+            "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\component-integration-native-v1\\combat-training\\de9419eca21cc20b5218600c8d2262630c19aedc56b32614dbd4104b7bfa2b11.component.json",
+            "instanceCount": 17,
+            "scriptCount": 0,
+            "sourceBytes": 0,
+            "roundTrip": {
+              "passed": true,
+              "checkedProperties": 435,
+              "checkedAttributes": 0,
+              "checkedReferences": 13,
+              "unobservableProperties": [
+                "Humanoid.Health_XML",
+                "Humanoid.InternalBodyScale",
+                "Humanoid.InternalHeadScale",
+                "Model.ModelMeshCFrame",
+                "Model.ModelMeshData",
+                "Model.ModelMeshSize",
+                "Model.NeedsPivotMigration",
+                "Model.ScaleFactor",
+                "Model.WorldPivotData",
+                "Part.Color3uint8",
+                "Part.MaterialVariantSerialized",
+                "Part.formFactorRaw"
+              ],
+              "ignoredIdentityProperties": [
+                "UniqueId",
+                "HistoryId"
+              ]
+            },
+            "persisted": true,
+            "securityReview": "not_performed",
+            "runtimeVerification": "not_performed",
+            "exportConversion": "not_performed"
+          }
+        }
+      }
+    ]
+  },
+  "integration": {
+    "component": {
+      "recordHash": "b6b517db22603a670db9c0ba0819a44dde7bff7e15583eb21d5abecfbe2a6756",
+      "needId": "TrainingDummyModel",
+      "candidateId": "125989241853035",
+      "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+      "packetHash": "2b2594554c1b7fb782afb78ea4a1b3b5b8aad3301c788c1d124882539789cb83",
+      "archiveHash": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+      "conversionHash": "6b337c282afc853086bae3681eb5d318374b928fb97eec289876da000bdd0f7e",
+      "destinationPath": "Workspace/AdapterRegression_1841822cbe29/Assets/TrainingDummyModel",
+      "rootName": "Imported",
+      "runtimeVerification": "not_performed",
+      "placement": "worker_integration_required"
+    },
+    "receipts": [
+      {
+        "operation": "ownership_intent",
+        "at": "2026-09-16T09:08:21.697Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "operation": "component_export",
+          "sessionId": "56f6b544-1a66-4de4-b5cd-92ed8bb1a5e2",
+          "token": "3073ed36-ac1c-4933-9f93-2cfc9a402bd7",
+          "scope": "AdapterRegression_1841822cbe29",
+          "stagingPath": "ServerStorage/AdapterRegression_1841822cbe29/AssetStaging/attempt_67c6603e1631bbd114048f1b",
+          "previewPath": "Workspace/AdapterRegression_1841822cbe29/AssetPreviews/attempt_67c6603e1631bbd114048f1b",
+          "finalPath": "Workspace/AdapterRegression_1841822cbe29/Assets/TrainingDummyModel"
+        }
+      },
+      {
+        "operation": "list_roblox_studios",
+        "at": "2026-09-16T09:08:21.698Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "get_studio_state",
+        "at": "2026-09-16T09:08:21.710Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "execute_luau",
+        "at": "2026-09-16T09:08:21.755Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"reasons\":[],\"comparison\":{\"checkedAttributes\":0,\"checkedReferences\":13,\"checkedProperties\":435,\"ignoredIdentityProperties\":[\"UniqueId\",\"HistoryId\"],\"passed\":true,\"unobservableProperties\":[\"Humanoid.Health_XML\",\"Humanoid.InternalBodyScale\",\"Humanoid.InternalHeadScale\",\"Model.ModelMeshCFrame\",\"Model.ModelMeshData\",\"Model.ModelMeshSize\",\"Model.NeedsPivotMigration\",\"Model.ScaleFactor\",\"Model.WorldPivotData\",\"Part.Color3uint8\",\"Part.MaterialVariantSerialized\",\"Part.formFactorRaw\"]},\"marker\":\"takko_asset_v1\",\"ok\":true,\"operation\":\"component_export\"}"
+            }
+          ],
+          "isError": false
+        }
+      },
+      {
+        "operation": "component_integration_prepared",
+        "at": "2026-09-16T09:08:21.792Z",
+        "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+        "data": {
+          "component": {
+            "recordHash": "b6b517db22603a670db9c0ba0819a44dde7bff7e15583eb21d5abecfbe2a6756",
+            "needId": "TrainingDummyModel",
+            "candidateId": "125989241853035",
+            "inputHash": "7fae8d0d85fbbf00088cb9767c2e533cde4086657c2cde8bb12868e6a2613d31",
+            "packetHash": "2b2594554c1b7fb782afb78ea4a1b3b5b8aad3301c788c1d124882539789cb83",
+            "archiveHash": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+            "conversionHash": "6b337c282afc853086bae3681eb5d318374b928fb97eec289876da000bdd0f7e",
+            "destinationPath": "Workspace/AdapterRegression_1841822cbe29/Assets/TrainingDummyModel",
+            "rootName": "Imported",
+            "runtimeVerification": "not_performed",
+            "placement": "worker_integration_required"
+          },
+          "comparison": {
+            "checkedAttributes": 0,
+            "checkedReferences": 13,
+            "checkedProperties": 435,
+            "ignoredIdentityProperties": [
+              "UniqueId",
+              "HistoryId"
+            ],
+            "passed": true,
+            "unobservableProperties": [
+              "Humanoid.Health_XML",
+              "Humanoid.InternalBodyScale",
+              "Humanoid.InternalHeadScale",
+              "Model.ModelMeshCFrame",
+              "Model.ModelMeshData",
+              "Model.ModelMeshSize",
+              "Model.NeedsPivotMigration",
+              "Model.ScaleFactor",
+              "Model.WorldPivotData",
+              "Part.Color3uint8",
+              "Part.MaterialVariantSerialized",
+              "Part.formFactorRaw"
+            ]
+          },
+          "runtimeVerification": "not_performed",
+          "placement": "worker_integration_required"
+        }
+      }
+    ],
+    "bundle": {
+      "files": [],
+      "scene": [],
+      "coverage": [],
+      "assets": [
+        {
+          "id": "TrainingDummyModel",
+          "requirementId": "req-dummy-rig",
+          "kind": "model",
+          "assetId": "125989241853035",
+          "sourceUrl": "https://create.roblox.com/store/asset/125989241853035",
+          "status": "retrieved",
+          "description": "Humanoid training dummy with customizable target markers and health display"
+        }
+      ]
+    }
+  },
+  "cleanup": [
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-16T09:08:21.794Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "operation": "discard",
+        "sessionId": "56f6b544-1a66-4de4-b5cd-92ed8bb1a5e2",
+        "token": "3073ed36-ac1c-4933-9f93-2cfc9a402bd7",
+        "scope": "AdapterRegression_1841822cbe29",
+        "stagingPath": "ServerStorage/AdapterRegression_1841822cbe29/AssetStaging/attempt_67c6603e1631bbd114048f1b",
+        "previewPath": "Workspace/AdapterRegression_1841822cbe29/AssetPreviews/attempt_67c6603e1631bbd114048f1b",
+        "finalPath": "Workspace/AdapterRegression_1841822cbe29/Assets/TrainingDummyModel"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-16T09:08:21.796Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"af74e97f-57b3-40c6-a281-83e1040ff755\",\"name\":\"Place1\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-16T09:08:21.804Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-16T09:08:21.832Z",
+      "studioId": "af74e97f-57b3-40c6-a281-83e1040ff755",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"removed\":1,\"operation\":\"discard\",\"reasons\":[],\"marker\":\"takko_asset_v1\",\"ok\":true}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "paidCalls": 0,
+  "rawGameBenchmark": false,
+  "importedCodeExecuted": false
+}

@@ -1,0 +1,32 @@
+{
+  "profiles": [
+    {
+      "id": "c93cc111-bdda-4557-b1bf-0f5101ec19f7",
+      "name": "Component review diagnostic",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "openai/gpt-4.1-mini",
+      "inputRate": 0.4,
+      "outputRate": 1.6,
+      "maxOutputTokens": 12288,
+      "jsonMode": true
+    }
+  ],
+  "routes": {
+    "planner": [
+      "c93cc111-bdda-4557-b1bf-0f5101ec19f7"
+    ],
+    "builder": [
+      "c93cc111-bdda-4557-b1bf-0f5101ec19f7"
+    ],
+    "reviewer": [
+      "c93cc111-bdda-4557-b1bf-0f5101ec19f7"
+    ],
+    "repair": [
+      "c93cc111-bdda-4557-b1bf-0f5101ec19f7"
+    ]
+  },
+  "budgetMicros": 150000,
+  "repairLimit": 0,
+  "researchEnabled": false
+}

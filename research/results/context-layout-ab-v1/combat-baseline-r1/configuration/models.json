@@ -1,0 +1,32 @@
+{
+  "profiles": [
+    {
+      "id": "46a801e1-9fd7-4c3d-ba5e-537a694583b6",
+      "name": "Matched pilot",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "openai/gpt-4.1-mini",
+      "inputRate": 0.39999999999999997,
+      "outputRate": 1.5999999999999999,
+      "maxOutputTokens": 8192,
+      "jsonMode": true
+    }
+  ],
+  "routes": {
+    "planner": [
+      "46a801e1-9fd7-4c3d-ba5e-537a694583b6"
+    ],
+    "builder": [
+      "46a801e1-9fd7-4c3d-ba5e-537a694583b6"
+    ],
+    "reviewer": [
+      "46a801e1-9fd7-4c3d-ba5e-537a694583b6"
+    ],
+    "repair": [
+      "46a801e1-9fd7-4c3d-ba5e-537a694583b6"
+    ]
+  },
+  "budgetMicros": 150000,
+  "repairLimit": 1,
+  "researchEnabled": false
+}

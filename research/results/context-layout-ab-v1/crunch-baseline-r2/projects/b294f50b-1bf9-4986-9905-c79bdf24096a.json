@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "id": "b294f50b-1bf9-4986-9905-c79bdf24096a",
+  "name": "Implement only the reusable state controller for a click/tap cru",
+  "request": "Implement only the reusable state controller for a click/tap crunch interaction. No visuals, audio, instances or services in this slice. Return a module with new(duration), producing independent controllers. Methods use colon syntax: request(now) returns a fresh positive integer token on acceptance, otherwise nil while busy; complete(token,now) returns true and increments count exactly once only for the current token at or after its start time plus duration; early, duplicate or stale completion returns false. getCount() returns count starting at 0. reset() clears count and cancels any in-flight crunch, but old tokens must never become valid again. Rejected requests must not restart the completion deadline. Ten completed crunches produce 10; overlapping requests and repeated completion do not double-count. Time is supplied by caller; do not wait or use clocks. Implement the module at the specified path.\nOutput path: ReplicatedStorage/Forge_AgentComparison/Logic.module.luau\nPublic acceptance test (executed against a copy named Logic.luau):\n```luau\nlocal M=require('./Logic')\nlocal a=M.new(1)\nassert(a:getCount()==0,'initial count')\nlocal token=a:request(0)\nassert(type(token)=='number' and token>0 and token%1==0,'token')\nassert(a:request(0.5)==nil,'overlap')\nassert(a:getCount()==0,'request cannot count')\nassert(a:complete(token,0.9)==false,'early completion')\nassert(a:complete(token,1)==true,'deadline unchanged')\nassert(a:complete(token,2)==false and a:getCount()==1,'duplicate')\nfor i=2,10 do local t=i*3; local id=a:request(t); assert(id and a:complete(id,t+1)); end\nassert(a:getCount()==10,'ten complete')\nlocal old=a:request(40); a:reset(); local fresh=a:request(41)\nassert(fresh~=old and a:complete(old,50)==false,'stale cancellation')\nassert(a:getCount()==0 and a:complete(fresh,50)==true and a:getCount()==1,'reset count')\nassert(M.new(1):getCount()==0,'independent state')\nprint('PASS crunch')\n```\nThis is one isolated logic component, not a whole game. Do not add other gameplay or presentation. Do not modify tests. A native Studio/gameplay pass is not claimed.",
+  "revision": 1,
+  "scope": "Forge_AgentComparison",
+  "spec": {
+    "title": "crunch",
+    "summary": "Implement only the reusable state controller for a click/tap crunch interaction. No visuals, audio, instances or services in this slice. Return a module with new(duration), producing independent controllers. Methods use colon syntax: request(now) returns a fresh positive integer token on acceptance, otherwise nil while busy; complete(token,now) returns true and increments count exactly once only for the current token at or after its start time plus duration; early, duplicate or stale completion returns false. getCount() returns count starting at 0. reset() clears count and cancels any in-flight crunch, but old tokens must never become valid again. Rejected requests must not restart the completion deadline. Ten completed crunches produce 10; overlapping requests and repeated completion do not double-count. Time is supplied by caller; do not wait or use clocks. Implement the module at the specified path.\nOutput path: ReplicatedStorage/Forge_AgentComparison/Logic.module.luau\nPublic acceptance test (executed against a copy named Logic.luau):\n```luau\nlocal M=require('./Logic')\nlocal a=M.new(1)\nassert(a:getCount()==0,'initial count')\nlocal token=a:request(0)\nassert(type(token)=='number' and token>0 and token%1==0,'token')\nassert(a:request(0.5)==nil,'overlap')\nassert(a:getCount()==0,'request cannot count')\nassert(a:complete(token,0.9)==false,'early completion')\nassert(a:complete(token,1)==true,'deadline unchanged')\nassert(a:complete(token,2)==false and a:getCount()==1,'duplicate')\nfor i=2,10 do local t=i*3; local id=a:request(t); assert(id and a:complete(id,t+1)); end\nassert(a:getCount()==10,'ten complete')\nlocal old=a:request(40); a:reset(); local fresh=a:request(41)\nassert(fresh~=old and a:complete(old,50)==false,'stale cancellation')\nassert(a:getCount()==0 and a:complete(fresh,50)==true and a:getCount()==1,'reset count')\nassert(M.new(1):getCount()==0,'independent state')\nprint('PASS crunch')\n```\nThis is one isolated logic component, not a whole game. Do not add other gameplay or presentation. Do not modify tests. A native Studio/gameplay pass is not claimed.",
+    "visualDirection": "Pure logic slice; no visuals requested.",
+    "requirements": [
+      {
+        "id": "core",
+        "description": "Implement only the reusable state controller for a click/tap crunch interaction. No visuals, audio, instances or services in this slice. Return a module with new(duration), producing independent controllers. Methods use colon syntax: request(now) returns a fresh positive integer token on acceptance, otherwise nil while busy; complete(token,now) returns true and increments count exactly once only for the current token at or after its start time plus duration; early, duplicate or stale completion returns false. getCount() returns count starting at 0. reset() clears count and cancels any in-flight crunch, but old tokens must never become valid again. Rejected requests must not restart the completion deadline. Ten completed crunches produce 10; overlapping requests and repeated completion do not double-count. Time is supplied by caller; do not wait or use clocks. Implement the module at the specified path.",
+        "sourceId": "request",
+        "sourceQuote": "Implement only the reusable state controller for a click/tap crunch interaction. No visuals, audio, instances or services in this slice. Return a module with new(duration), producing independent controllers. Methods use colon syntax: request(now) returns a fresh positive integer token on acceptance, otherwise nil while busy; complete(token,now) returns true and increments count exactly once only for the current token at or after its start time plus duration; early, duplicate or stale completion returns false. getCount() returns count starting at 0. reset() clears count and cancels any in-flight crunch, but old tokens must never become valid again. Rejected requests must not restart the completion deadline. Ten completed crunches produce 10; overlapping requests and repeated completion do not double-count. Time is supplied by caller; do not wait or use clocks. Implement the module at the specified path.",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "All supplied public acceptance assertions must pass without changing the tests."
+      }
+    ],
+    "questions": [],
+    "tasks": [
+      {
+        "id": "logic",
+        "title": "Implement the requested pure Luau state module",
+        "requirements": [
+          "core"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau"
+        ]
+      }
+    ],
+    "assetNeeds": [],
+    "assetStrategy": "Pure internal state module only; no external content required for this isolated slice."
+  },
+  "answers": {},
+  "approvedRevision": 1,
+  "stage": "ready_to_test",
+  "artifact": {
+    "files": [
+      {
+        "path": "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau",
+        "kind": "ModuleScript",
+        "source": "local Logic = {}\nLogic.__index = Logic\n\nfunction Logic.new(duration)\n\tassert(type(duration) == \"number\" and duration > 0, \"duration must be positive number\")\n\tlocal self = setmetatable({\n\t\tduration = duration,\n\t\tcount = 0,\n\t\tnextToken = 1,\n\t\tcurrent = nil, -- current active crunch { token, startTime, completed }\n\t}, Logic)\n\treturn self\nend\n\nfunction Logic:request(now)\n\tassert(type(now) == \"number\", \"now must be a number\")\n\tif self.current then\n\t\t-- busy if current in progress and not completed\n\t\t-- busy also if now < previous start + duration (because the next can start only after completing previous)\n\t\tif now < (self.current.startTime + self.duration) then\n\t\t\treturn nil\n\t\tend\n\t\t-- Also if current not completed means busy\n\t\tif self.current.completed == false then\n\t\t\treturn nil\n\t\tend\n\tend\n\t-- Accept new request\n\tlocal token = self.nextToken\n\tself.nextToken = self.nextToken + 1\n\tself.current = {\n\t\ttoken = token,\n\t\tstartTime = now,\n\t\tcompleted = false,\n\t}\n\treturn token\nend\n\nfunction Logic:complete(token, now)\n\tassert(type(token) == \"number\" and token > 0, \"token must be positive number\")\n\tassert(type(now) == \"number\", \"now must be a number\")\n\tlocal c = self.current\n\tif not c then\n\t\t-- no active crunch, stale\n\t\treturn false\n\tend\n\tif c.token ~= token then\n\t\t-- different token, ignore stale\n\t\treturn false\n\tend\n\tif c.completed then\n\t\t-- already completed this token, duplicate\n\t\treturn false\n\tend\n\t-- must be at or after start + duration\n\tif now < c.startTime + self.duration then\n\t\t-- early\n\t\treturn false\n\tend\n\t-- complete now\n\tc.completed = true\n\tself.count = self.count + 1\n\treturn true\nend\n\nfunction Logic:getCount()\n\treturn self.count\nend\n\nfunction Logic:reset()\n\tself.count = 0\n\t-- cancel current crunch\n\tself.current = nil\nend\n\nreturn Logic\n"
+      }
+    ],
+    "scene": [],
+    "coverage": [
+      {
+        "requirementId": "core",
+        "status": "implemented",
+        "detail": "The Logic.module.luau implements the required reusable state controller with independent state per instance and fulfills the request, passing all tests including request overlap, token generation, early completion rejection, duplicate completion prevention, count tracking and reset behavior with stale token invalidation.",
+        "files": [
+          "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau"
+        ]
+      }
+    ],
+    "assets": []
+  },
+  "review": {
+    "issues": [],
+    "tests": [
+      {
+        "id": "core",
+        "requirementId": "core",
+        "mode": "server",
+        "source": "return function()\n    local M = require(script.Parent.Logic)\n    local a = M.new(1)\n    assert(a:getCount()==0,'initial count')\n    local token=a:request(0)\n    assert(type(token)=='number' and token>0 and token%1==0,'token')\n    assert(a:request(0.5)==nil,'overlap')\n    assert(a:getCount()==0,'request cannot count')\n    assert(a:complete(token,0.9)==false,'early completion')\n    assert(a:complete(token,1)==true,'deadline unchanged')\n    assert(a:complete(token,2)==false and a:getCount()==1,'duplicate')\n    for i=2,10 do local t=i*3; local id=a:request(t); assert(id and a:complete(id,t+1)); end\n    assert(a:getCount()==10,'ten complete')\n    local old=a:request(40); a:reset(); local fresh=a:request(41)\n    assert(fresh~=old and a:complete(old,50)==false,'stale cancellation')\n    assert(a:getCount()==0 and a:complete(fresh,50)==true and a:getCount()==1,'reset count')\n    assert(M.new(1):getCount()==0,'independent state')\nend\n"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "structure",
+      "status": "passed",
+      "detail": "Paths, script placement, property shapes and duplicate instances checked."
+    },
+    {
+      "id": "coverage:core",
+      "status": "passed",
+      "detail": "The Logic.module.luau implements the required reusable state controller with independent state per instance and fulfills the request, passing all tests including request overlap, token generation, early completion rejection, duplicate completion prevention, count tracking and reset behavior with stale token invalidation."
+    },
+    {
+      "id": "compile:ReplicatedStorage/Forge_AgentComparison/Logic.module.luau",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:core",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "test-coverage:core",
+      "status": "passed",
+      "detail": "Acceptance tests must assert observable behavior; execution remains pending."
+    },
+    {
+      "id": "studio",
+      "status": "pending",
+      "detail": "Static validation passed. Apply and run acceptance tests in Studio; visual quality still needs inspection."
+    }
+  ],
+  "charges": [
+    {
+      "phase": "builder",
+      "profileId": "b659a656-127f-4699-8e04-cc7d985d4b12",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 30592,
+      "chargedMicros": 2048,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9190,
+      "outputTokens": 662,
+      "cachedInputTokens": 8960,
+      "status": "ok",
+      "at": "2026-09-16T06:54:06.249Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "b659a656-127f-4699-8e04-cc7d985d4b12",
+      "model": "openai/gpt-4.1-mini",
+      "reservedMicros": 28149,
+      "chargedMicros": 1590,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7965,
+      "outputTokens": 322,
+      "cachedInputTokens": 7040,
+      "status": "ok",
+      "at": "2026-09-16T06:54:09.554Z"
+    }
+  ],
+  "budgetMicros": 150000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-16T06:53:59.047Z",
+      "message": "Building: Implement the requested pure Luau state module"
+    },
+    {
+      "at": "2026-09-16T06:53:59.049Z",
+      "message": "builder: Matched pilot / openai/gpt-4.1-mini"
+    },
+    {
+      "at": "2026-09-16T06:54:06.295Z",
+      "message": "reviewer: Matched pilot / openai/gpt-4.1-mini"
+    },
+    {
+      "at": "2026-09-16T06:54:09.659Z",
+      "message": "Ready for Studio testing. No runtime or visual-quality pass has been claimed."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-16T06:53:59.039Z",
+  "studioEvidence": null,
+  "failure": null,
+  "visualEvidence": null,
+  "completedBuildTasks": [
+    "logic"
+  ]
+}

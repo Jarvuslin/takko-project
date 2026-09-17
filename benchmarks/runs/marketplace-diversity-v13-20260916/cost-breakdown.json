@@ -1,0 +1,15 @@
+{
+  "source": "provider-reported per-call amounts rounded upward to microdollars",
+  "totalMicros": 719024,
+  "phases": {
+    "planner": 83896,
+    "builder": 103796,
+    "reviewer": 531332
+  },
+  "reviewFraction": 0.7389628162620441,
+  "notes": [
+    "Builder includes asset selection and two adaptation calls.",
+    "Reviewer includes initial source review, first post-adaptation review, second post-adaptation review and one format correction.",
+    "This is a failed component-acquisition run, not an average cost per generated game."
+  ]
+}
