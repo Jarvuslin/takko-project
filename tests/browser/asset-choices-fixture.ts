@@ -26,12 +26,18 @@ export async function assetChoiceFixture(page: Page, origin = "") {
       url.pathname === `/api/projects/${p.id}` ||
       url.pathname.startsWith(`/api/projects/${p.id}/`),
     async (r) => {
-      const action = new URL(r.request().url()).pathname.split("/")[4];
+      const action =
+        new URL(r.request().url()).pathname.split("/").slice(4).join("/") ||
+        undefined;
       if (action === "studio-operations") return r.fulfill({ json: [] });
       if (r.request().method() !== "GET") {
         calls.push(action ?? "PATCH");
         const b = r.request().postDataJSON();
-        if (action === "asset-options") {
+        if (action === "asset-picks" && p.assetDiscovery) {
+          p.assetDiscovery.revision = p.revision;
+          return r.fulfill({ json: p });
+        }
+        if (action === "asset-picks" || action === "asset-picks/search") {
           const option = (g: any, index: number, i: number) => ({
             assetId: String(1000 + index * 1000 + i),
             name: `${g.label} option ${i}`,
@@ -39,6 +45,7 @@ export async function assetChoiceFixture(page: Page, origin = "") {
             creatorName: "Offline fixture",
             updated: "v1",
             votes: { up: 92, down: 8 },
+            isFree: true,
           });
           if (b.groupId && p.assetDiscovery) {
             const index = p.assetDiscovery.groups.findIndex(
@@ -72,10 +79,24 @@ export async function assetChoiceFixture(page: Page, origin = "") {
             };
         }
         if (action === "approve-brief") p.briefApprovedRevision = p.revision;
-        if (action === "asset-preview") {
+        if (action === "asset-picks/choose") {
           const g = p.assetDiscovery!.groups.find((g) => g.id === b.groupId)!;
           const a = g.options.find((a) => a.assetId === b.assetId)!;
-          if (g.preview === "animation")
+          p.assetDiscovery!.choices ??= {};
+          p.assetDiscovery!.choices[g.id] = {
+            assetId: a.assetId,
+            kept: !!b.keep,
+          };
+          a.inspection = {
+            nodeCount: 1,
+            contentHash: "fixture",
+            scannerVersion: 1,
+            inspectedAt: new Date().toISOString(),
+            status: "no_issues_found",
+            scriptCount: 0,
+            findings: [],
+          };
+          if (g.preview === "animation" && !a.previewData?.pack)
             a.previewData = {
               pack: {
                 assetId: a.assetId,
@@ -103,7 +124,7 @@ export async function assetChoiceFixture(page: Page, origin = "") {
                 })),
               },
             };
-          else
+          else if (g.preview !== "animation" && !a.previewData?.model)
             a.previewData = {
               model: {
                 parts: [
@@ -120,6 +141,19 @@ export async function assetChoiceFixture(page: Page, origin = "") {
                 effects: 0,
               },
             };
+        }
+        if (action === "asset-picks/clip")
+          p.assetDiscovery!.choices![b.groupId].clipKey = b.clipKey;
+        if (action === "asset-picks/search") {
+          const g = p.assetDiscovery!.groups.find((g) => g.id === b.groupId)!;
+          return r.fulfill({
+            json: {
+              project: p,
+              assets: b.cursor ? g.options.slice(-30) : g.options,
+              nextCursor: g.nextCursor,
+              filteredCount: 0,
+            },
+          });
         }
         if (action === "approve-assets") {
           p.revision++;

@@ -1547,158 +1547,6 @@
     animation: none;
   }
 }
-
-.asset-choices-summary {
-  padding: var(--space-4) 0;
-  border-block: var(--size-9) solid var(--border, var(--surface-warm-high));
-  margin-block: var(--space-4);
-}
-.minimal .asset-choices-summary h2 {
-  margin: var(--space-2) 0;
-  font-size: var(--space-4);
-}
-dialog:has(.asset-choices-workspace) {
-  width: min(var(--size-111), calc(var(--size-36) - var(--space-8)));
-  max-width: var(--size-111);
-}
-.asset-choices-workspace {
-  min-width: 0;
-}
-.asset-choice-search input {
-  flex: 1;
-  min-width: var(--size-17);
-}
-.asset-choice-group {
-  border-top: var(--size-9) solid var(--border, var(--surface-warm-high));
-  padding: var(--size-11) 0;
-}
-.asset-option-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--size-76), 1fr));
-  gap: var(--space-3);
-  margin: var(--space-4) 0;
-}
-.asset-option {
-  padding: var(--text-md);
-  border: var(--size-9) solid var(--border, var(--surface-warm-high));
-  border-radius: var(--space-3);
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--radius-control);
-  overflow-wrap: anywhere;
-}
-.asset-option.selected {
-  border-color: var(--color-112);
-  background: var(--panel);
-}
-.asset-option small {
-  color: var(--color-113);
-}
-.asset-choice-thumbnail {
-  width: var(--ratio-1);
-  max-height: var(--size-17);
-  object-fit: contain;
-  background: var(--sidebar);
-  border-radius: var(--space-2);
-}
-.asset-pick {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-}
-.minimal .focused-dialog label.asset-pick {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  text-align: left;
-  align-items: center;
-  gap: var(--radius-control);
-  margin: var(--size-41) 0;
-}
-.focused-dialog .asset-pick input[type="radio"] {
-  flex: 0 0 var(--space-4);
-  width: var(--space-4);
-  height: var(--space-4);
-  min-height: var(--space-4);
-  margin: 0;
-  padding: 0;
-}
-
-.asset-choices-workspace {
-  padding: 0 var(--space-4) var(--space-4);
-}
-.asset-pick input {
-  width: auto;
-  min-height: auto;
-  accent-color: var(--color-112);
-}
-
-.asset-approval {
-  padding-block: var(--space-4);
-  border-top: var(--size-9) solid var(--border, var(--surface-warm-high));
-}
-@media (max-width: 700px) {
-  .asset-option-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.asset-group-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--size-41);
-  margin-block: var(--space-4);
-}
-.asset-group-tabs button[aria-pressed="true"] {
-  background: var(--surface-raised);
-  border-color: var(--muted);
-}
-.asset-result-actions,
-.asset-page-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--radius-control);
-  justify-content: space-between;
-}
-.asset-result-actions {
-  margin-top: auto;
-}
-.asset-result-actions button {
-  flex: 1;
-}
-.asset-option > strong {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.asset-choice-image {
-  height: var(--size-114);
-  display: grid;
-  place-items: center;
-  background: var(--surface-input);
-  border-radius: var(--space-2);
-}
-.asset-choice-image .asset-choice-thumbnail {
-  height: var(--size-114);
-  width: var(--ratio-1);
-  object-fit: contain;
-}
-.focused-dialog:has(.asset-preview-dialog) {
-  width: min(var(--size-115), calc(var(--size-36) - var(--space-8)));
-}
-.asset-preview-dialog {
-  display: grid;
-  gap: var(--text-md);
-}
-.asset-preview-dialog .takko-viewport {
-  min-height: var(--size-116);
-}
-.asset-preview-dialog p {
-  margin: 0;
-}
 .asset-votes {
   display: block;
   color: var(--muted);
@@ -7543,20 +7391,6 @@ html[data-focus-modality="keyboard"] .decision-option:has(input:focus-visible) {
   margin-top: var(--size-6);
   line-height: var(--leading-3);
 }
-.minimal .asset-choice-thumbnail {
-  height: var(--size-206);
-  max-height: var(--size-206);
-  aspect-ratio: 1.25;
-  background: var(--panel);
-}
-.minimal .asset-option {
-  border-color: var(--line);
-  gap: var(--space-3);
-  padding: var(--space-4);
-}
-.minimal .asset-option.selected {
-  border-color: var(--ink);
-}
 @media (max-width: 950px) {
   .minimal .marketplace-panel .market-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -7672,11 +7506,328 @@ html[data-focus-modality="keyboard"]
   border-radius: var(--radius-control);
 }
 
-.chat-heading .chat-budget { padding:0; margin-left:auto; font-size:var(--text-xs); }
-.chat-heading .chat-budget .spend { padding:var(--space-2); white-space:nowrap; }
-.app.minimal.workspace-native .chat-heading { flex-wrap:wrap; background:var(--panel); }
+.chat-heading .chat-budget {
+  padding: 0;
+  margin-left: auto;
+  font-size: var(--text-xs);
+}
+.chat-heading .chat-budget .spend {
+  padding: var(--space-2);
+  white-space: nowrap;
+}
+.app.minimal.workspace-native .chat-heading {
+  flex-wrap: wrap;
+  background: var(--panel);
+}
 
-.chat-heading > button:last-of-type { order:2; }
-.chat-heading > .stage { order:3; margin-left:auto; }
-.chat-heading > button:first-of-type { order:4; }
-.chat-heading .chat-budget { order:1; }
+.chat-heading > button:last-of-type {
+  order: 2;
+}
+.chat-heading > .stage {
+  order: 3;
+  margin-left: auto;
+}
+.chat-heading > button:first-of-type {
+  order: 4;
+}
+.chat-heading .chat-budget {
+  order: 1;
+}
+
+/* Chat asset selection and Marketplace picking share the mockup's components. */
+.need-card {
+  background: var(--raised);
+  border: var(--size-9) solid var(--line);
+  border-radius: var(--radius-surface);
+  overflow: hidden;
+  margin-block: var(--space-4);
+  position: relative;
+}
+.need-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--radius-control);
+  padding: var(--space-3) var(--text-md);
+}
+.need-head h2 {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+.need-count {
+  font: 500 var(--text-xs)/1 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.need-progress {
+  height: var(--pick-progress);
+  background: var(--line);
+}
+.need-progress span {
+  display: block;
+  height: 100%;
+  background: var(--ok);
+}
+.need-row {
+  padding: var(--space-3) var(--text-md);
+  display: grid;
+  gap: var(--pick-content-gap);
+  border-top: var(--size-9) solid var(--line);
+}
+.need-row-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--radius-control);
+}
+.need-row-top strong {
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+.need-row-top > div {
+  min-width: 0;
+}
+.need-purpose {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+  font-size: var(--text-detail);
+  margin: 0;
+  line-height: 1.45;
+}
+.pick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-41);
+  font: 500 var(--text-xs)/1 var(--font-ui);
+  padding: var(--size-20) var(--space-2);
+  border-radius: var(--radius-control);
+  white-space: nowrap;
+  align-self: flex-start;
+}
+.pick-empty {
+  background: var(--line);
+  color: var(--muted);
+}
+.pick-ready {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.pick-warning {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+.pick-problem {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+.pick-finding,
+.pick-checking {
+  background: var(--busy-bg);
+  color: var(--busy);
+}
+.chosen-asset {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-control);
+  background: var(--pick-tint);
+  border-radius: var(--radius-control);
+  padding: var(--space-2);
+  min-width: 0;
+}
+.chosen-asset img {
+  width: var(--pick-thumb);
+  height: var(--pick-thumb);
+  object-fit: cover;
+  border-radius: var(--space-2);
+  flex: none;
+}
+.chosen-asset strong {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.chosen-asset small {
+  display: block;
+  font: 400 var(--text-2xs)/1.3 var(--font-mono);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.pick-note {
+  font-size: var(--text-detail);
+  line-height: 1.45;
+  border-radius: var(--space-2);
+  padding: var(--space-2) var(--radius-control);
+  margin: 0;
+}
+.need-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.minimal .need-actions button {
+  border: var(--size-9) solid var(--line-strong);
+  background: var(--panel);
+  border-radius: var(--radius-control);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  min-height: var(--pick-button-min);
+}
+.need-foot {
+  padding: var(--space-3) var(--text-md);
+  border-top: var(--size-9) solid var(--line);
+  display: grid;
+  gap: var(--space-2);
+}
+.need-foot .primary {
+  width: 100%;
+}
+.need-foot p {
+  font-size: var(--text-detail);
+  color: var(--muted);
+  text-align: center;
+  margin: 0;
+}
+.pick-estimate {
+  font-size: var(--text-detail);
+  color: var(--muted);
+}
+.pick-estimate button {
+  margin-right: var(--space-2);
+}
+.marketplace-picking.marketplace-panel {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  z-index: var(--pick-panel-z);
+  padding: 0;
+  background: var(--sidebar);
+  border: 0;
+  border-radius: 0;
+  overflow: auto;
+}
+.picking-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--raised);
+  border-bottom: var(--size-9) solid var(--line);
+}
+.picking-banner strong {
+  font-size: var(--text-base);
+}
+.picking-banner small {
+  display: block;
+  color: var(--muted);
+  font-size: var(--text-detail);
+}
+.marketplace-picking form {
+  padding: var(--space-3) var(--space-4);
+}
+.picking-meta {
+  font-size: var(--text-detail);
+  color: var(--muted);
+  padding-inline: var(--space-4);
+}
+.minimal .marketplace-picking .market-grid {
+  padding: var(--radius-control) var(--space-4) var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--pick-card-min), 1fr));
+  gap: var(--space-3);
+}
+.minimal .marketplace-picking .market-card {
+  background: var(--raised);
+  border: var(--size-9) solid var(--line);
+  border-radius: var(--radius-surface);
+  padding: var(--space-2);
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+.marketplace-picking .market-thumbnail {
+  aspect-ratio: 1;
+  border-radius: var(--space-2);
+  background: var(--surface-raised);
+}
+.minimal .marketplace-picking .pick-use {
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--space-2);
+  padding: var(--space-2);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.minimal .marketplace-picking .pick-use:disabled {
+  background: var(--line);
+  color: var(--muted);
+}
+.clip-sheet {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--z-panel);
+  background: var(--panel);
+  border: var(--size-9) solid var(--line-strong);
+  border-radius: var(--radius-surface) var(--radius-surface) 0 0;
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  max-height: var(--pick-sheet-max);
+  overflow: auto;
+}
+.clip-sheet h4 {
+  margin: 0;
+  font-size: var(--text-base);
+}
+.clip-sheet p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.clip-options {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, var(--clip-min)), 1fr)
+  );
+}
+.clip-options button {
+  display: flex;
+  align-items: center;
+  gap: var(--radius-control);
+  background: var(--raised);
+  border: var(--size-9) solid var(--line);
+  border-radius: var(--radius-control);
+  padding: var(--radius-control);
+  text-align: left;
+}
+.clip-options button[aria-pressed="true"] {
+  border-color: var(--accent);
+}
+.clip-options small {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  .marketplace-picking.marketplace-panel {
+    position: fixed;
+    inset: var(--space-2);
+    height: auto;
+    z-index: var(--z-dialog);
+    border: var(--size-9) solid var(--line-strong);
+    border-radius: var(--radius-surface);
+  }
+  .need-row-top {
+    flex-wrap: wrap;
+  }
+}

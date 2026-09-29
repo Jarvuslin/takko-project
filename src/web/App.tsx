@@ -10,7 +10,8 @@ import {
   type ClarificationQuestion,
 } from "./Clarifications";
 import { GameConcept, FirstPlaytest } from "./GameConcept";
-import { AssetChoices } from "./AssetChoices";
+import { AssetCard, assetRequest } from "./AssetCard";
+import { assetSearches } from "../marketplace/discovery";
 import { sameAnswers } from "./brief-draft";
 import { Proposal } from "./Proposal";
 import {
@@ -186,6 +187,7 @@ export function App() {
   const [showHistory, setShowHistory] = useState(false);
   const [conceptsEnabled, setConceptsEnabled] = useState(false);
   const [proposalsEnabled, setProposalsEnabled] = useState(false);
+  const [pickingGroup, setPickingGroup] = useState<string>();
   const [assetChoicesEnabled, setAssetChoicesEnabled] = useState(false);
   const [connectionGate, setConnectionGate] = useState(true);
   const followupRef = useRef<HTMLTextAreaElement>(null);
@@ -389,6 +391,7 @@ export function App() {
       setTab("Brief");
       setFollowup(sessionStorage.getItem("takko-draft-" + id) ?? "");
       setShowHistory(false);
+      setPickingGroup(undefined);
     });
   }
   async function action(name: string) {
@@ -406,6 +409,10 @@ export function App() {
     });
   }
   const running = busy || !!project?.jobId;
+  const hasAssetCard =
+    assetChoicesEnabled &&
+    !!project &&
+    !!(project.assetDiscovery?.groups.length || assetSearches(project).length);
   const assetDraft = useAssetAttachments(
     project?.id ?? "new",
     project?.assetAttachments,
@@ -486,14 +493,51 @@ export function App() {
       );
     });
   }
+  async function approvePickedProject() {
+    if (!project) return;
+    if (project.proposal) {
+      receiveAssetProject(
+        await api<Project>(`/projects/${project.id}/approve-proposal`, "POST", {
+          revision: project.revision,
+          hash: project.proposal.hash,
+          ...(generationLimit !== undefined
+            ? { generationBudgetMicros: generationLimit }
+            : {}),
+        }),
+      );
+    } else {
+      let p = await assetRequest<Project>(project.id, "approve-brief", {
+        revision: project.revision,
+      });
+      const choices = Object.fromEntries(
+        Object.entries(p.assetDiscovery?.choices ?? {}).map(([id, c]) => [
+          id,
+          {
+            assetId: c.assetId,
+            clipKey: c.clipKey,
+            skip: c.skip,
+            kept: c.kept,
+            acknowledgeInspectionLimitations:
+              c.acknowledgeInspectionLimitations,
+          },
+        ]),
+      );
+      p = await assetRequest<Project>(p.id, "approve-assets", {
+        revision: p.revision,
+        discoveryId: p.assetDiscovery!.id,
+        choices,
+      });
+      receiveAssetProject(p);
+      await planWithAssets(p);
+    }
+  }
   function receiveAssetProject(next: Project) {
     setProject((current) =>
       current?.id === next.id && current.revision <= next.revision
         ? next
         : current,
     );
-    if (next.assetDiscovery?.approved)
-      assetDraft.setAttachments(next.assetAttachments ?? []);
+    assetDraft.setAttachments(next.assetAttachments ?? []);
   }
   async function planWithAssets(p: Project) {
     await work(async () => {
@@ -538,7 +582,7 @@ export function App() {
           : !project
             ? "landing"
             : "editor workspace-native") +
-        (marketOpen && !settingsPage ? " market-open" : "")
+        (marketOpen && !pickingGroup && !settingsPage ? " market-open" : "")
       }
     >
       <aside className="sidebar">
@@ -1091,7 +1135,6 @@ export function App() {
                         el.scrollHeight - el.scrollTop - el.clientHeight < 70;
                     }}
                   >
-
                     {
                       <Conversation
                         key={project.id}
@@ -1172,6 +1215,7 @@ export function App() {
                           {project.proposal && (
                             <Proposal
                               project={project}
+                              assetsInChat={hasAssetCard}
                               disabled={running}
                               discard={() => action("discard-proposal-edit")}
                               saveAnswers={async (chosen) => {
@@ -1381,35 +1425,25 @@ export function App() {
                                 ))}
                             </>
                           )}
-                          {assetChoicesEnabled &&
+                          {hasAssetCard &&
                             (!project.artifact || project.assetDiscovery) && (
-                              <AssetChoices
-                                key={project.id + ":" + project.revision}
+                              <AssetCard
+                                key={project.id}
                                 project={project}
-                                offline={offlineMode}
-                                searchBlockedReason={
-                                  running
-                                    ? "Wait for generation to finish before searching."
-                                    : assetDraft.inspecting
-                                      ? "Wait for the current asset inspection to finish."
+                                disabled={running || assetDraft.inspecting}
+                                buildBlocked={
+                                  conceptDirty
+                                    ? "Save your brief changes before building."
+                                    : project.clarificationQuestions?.length
+                                      ? "Answer the project questions before building."
                                       : undefined
                                 }
-                                blockedReason={
-                                  running
-                                    ? "Wait for generation to finish before finding assets."
-                                    : assetDraft.inspecting
-                                      ? "Wait for the current asset inspection to finish."
-                                      : conceptDirty
-                                        ? "You have unsaved brief changes. Update or approve the brief in the conversation, then find assets."
-                                        : undefined
-                                }
-                                disabled={
-                                  running ||
-                                  conceptDirty ||
-                                  assetDraft.inspecting
-                                }
                                 update={receiveAssetProject}
-                                plan={planWithAssets}
+                                choose={(id) => {
+                                  setPickingGroup(id);
+                                  setMarketOpen(true);
+                                }}
+                                approve={approvePickedProject}
                                 connect={openStudioSetup}
                               />
                             )}
@@ -2352,9 +2386,18 @@ export function App() {
       </main>
       {marketOpen && !settingsPage && (
         <Marketplace
+          key={project?.id + ":" + (pickingGroup ?? "browse")}
+          picking={
+            pickingGroup && project
+              ? { project, groupId: pickingGroup, update: receiveAssetProject }
+              : undefined
+          }
           draft={assetDraft}
           disabled={running}
-          close={() => setMarketOpen(false)}
+          close={() => {
+            setMarketOpen(false);
+            setPickingGroup(undefined);
+          }}
         />
       )}
       {budgetDialog && (

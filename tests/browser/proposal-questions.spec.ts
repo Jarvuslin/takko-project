@@ -43,12 +43,8 @@ test("unanswered proposal questions pause automatic Marketplace work even with a
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect.poll(() => connectionChecks).toBeGreaterThan(0);
   await page.keyboard.press("Escape");
-  await page
-    .getByRole("button", { name: "Preview & choose assets", exact: true })
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Find assets", exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole("region",{name:"Assets for this game",exact:true})).toBeVisible();
+  await expect(page.getByRole("button",{name:"Approve & build",exact:true})).toBeDisabled();
   expect(searches).toBe(0);
 });
 

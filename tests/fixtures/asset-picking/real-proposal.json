@@ -1,0 +1,141 @@
+{
+  "request": "A fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit.",
+  "proposal": {
+    "title": "Dummy Strike: Punch Counter Trainer",
+    "world": {
+      "kind": "baseplate_template"
+    },
+    "assetNeeds": [
+      {
+        "id": "targetDummy",
+        "requirementId": "req-target-dummy",
+        "role": "Stationary humanoid-shaped target dummy that the player punches to trigger hit detection, feedback, and the counter increment.",
+        "kind": "Model",
+        "deliveryRole": "visible_prop",
+        "query": "punching training dummy",
+        "constraints": "Humanoid-proportioned practice dummy (mannequin/sandbag style), roughly 5-6 studs tall, must be anchorable so it stays completely stationary (no falling over, no ragdoll, no damage/health system needed). Avoid dummies bundled with unrelated combat scripts that would conflict with a simple hit-counter integration; prefer a clean static or lightly-rigged mesh. Neutral color palette fitting a training-gym theme, no offensive imagery.",
+        "intent": {
+          "experienceRole": "Serves as the single fixed target the entire punching loop revolves around; its presence and hit region are what the player aims at to generate feedback and score.",
+          "interaction": "Noninteractive on its own (does not move or attack back); it passively receives punches. On a successful hit it should visually acknowledge the impact (e.g., slight wobble/flash) while remaining anchored in place for repeated punching.",
+          "reusableFeatures": [
+            "Any built-in hit-detection zones, touch parts, or attachment points already defined on the dummy",
+            "Any embedded hit-reaction animation, sound emitter, or particle effect that could be reused instead of authoring new feedback",
+            "Rig structure (if rigged) to confirm it will not interfere with the player's own punch animation or physics"
+          ],
+          "relatedRequirementIds": [
+            "req-target-dummy",
+            "req-punch-anim",
+            "req-hit-sound",
+            "req-hit-counter"
+          ]
+        },
+        "required": true,
+        "position": [
+          6,
+          0,
+          0
+        ],
+        "maxSize": 8
+      },
+      {
+        "id": "punchAnimation",
+        "requirementId": "req-punch-anim",
+        "role": "Punching animation played on the player's character when they perform the punch action.",
+        "kind": "Animation",
+        "deliveryRole": "source_data",
+        "query": "punch attack animation",
+        "constraints": "Must be compatible with the standard R15 avatar rig used by default Roblox characters. A single short punch swing (roughly 0.4-0.8 seconds), not a multi-hit combo sequence, since only one punch action was requested. Should look like a clear forward jab/cross motion readable from third person.",
+        "intent": {
+          "experienceRole": "Provides the core visible action feedback for the player's punch input, making the attack feel intentional and readable before the hit/counter feedback occurs.",
+          "interaction": "Triggered directly by the player's punch input (click/tap); plays once per punch and gates the per-punch cooldown before the hit can be evaluated and the counter incremented.",
+          "reusableFeatures": [
+            "Any accompanying sound cues or effect markers embedded in the animation package that could substitute for a separate hit sound",
+            "Animation priority/looping settings to ensure it correctly interrupts idle/walk animations on trigger"
+          ],
+          "relatedRequirementIds": [
+            "req-punch-anim",
+            "req-target-dummy",
+            "req-hit-sound",
+            "req-hit-counter"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "maxSize": 1
+      },
+      {
+        "id": "hitSound",
+        "requirementId": "req-hit-sound",
+        "role": "Punch/hit impact sound effect played when the player successfully hits the target dummy.",
+        "kind": "Audio",
+        "deliveryRole": "source_data",
+        "query": "punch hit sound",
+        "constraints": "Short, punchy impact sound (roughly 0.2-0.6 seconds), suitable for a fighting/training context, not music or ambient loop. Must be clearly audible as a single discrete hit cue, not looping.",
+        "intent": {
+          "experienceRole": "Delivers the primary audible confirmation that a punch connected, reinforcing the hit alongside the visual dummy reaction and counter increment.",
+          "interaction": "Played once at the moment a hit is detected (punch animation overlaps dummy hit region); purely feedback, not player-controlled directly.",
+          "reusableFeatures": [
+            "Any hit sounds already embedded in the target dummy model or punch animation package that could be reused instead of sourcing a separate clip"
+          ],
+          "relatedRequirementIds": [
+            "req-hit-sound",
+            "req-target-dummy",
+            "req-punch-anim",
+            "req-hit-counter"
+          ]
+        },
+        "required": true,
+        "position": [
+          6,
+          1,
+          0
+        ],
+        "maxSize": 1
+      }
+    ],
+    "mechanics": {
+      "text": "The player spawns near a single stationary target dummy planted on the baseplate. Clicking (PC) or tapping (mobile/console equivalent) while facing the dummy and within punch range triggers the player's punching animation on their character. When the animation's active punch frame overlaps the dummy's hit region, a hit registers: the game plays a punch/hit sound anchored to the dummy, briefly flashes or nudges the dummy for visual feedback, and increments a persistent-for-session on-screen hit counter displayed in a HUD label. The dummy does not take damage, fall over, or despawn; it remains anchored in place so the player can repeat punches indefinitely. A short per-punch cooldown (matching the animation length, roughly 0.5-0.8s) prevents multiple hits from a single swing and paces repeated attacks. The counter starts at 0 on join and increases by 1 per successfully landed punch; there is no upper limit, timer, or end condition, making this a practice/scoring loop rather than a win/lose fight.",
+      "assumptions": [
+        "Only one target dummy is required; the request describes a single stationary target, not multiple opponents.",
+        "The dummy has no health, damage numbers, or knockback; 'stationary target dummy' implies a passive punching target, not a defeatable enemy.",
+        "Hit counter resets to 0 each time the player joins/respawns; no cross-session leaderboard or data persistence was requested.",
+        "A short punch cooldown equal to the animation duration prevents double-counting a single swing as multiple hits.",
+        "Input is a simple click/tap-to-punch action; no combo system, blocking, or multiple attack types were requested.",
+        "The counter UI is a simple always-visible on-screen label (e.g., top of screen); no additional menus or resets are requested."
+      ],
+      "unresolved": [
+        "Should this limit apply, or should the mechanic support more? Only one target dummy is required; the request describes a single stationary target, not multiple opponents.",
+        "Should this limit apply, or should the mechanic support more? The dummy has no health, damage numbers, or knockback; 'stationary target dummy' implies a passive punching target, not a defeatable enemy.",
+        "Should this limit apply, or should the mechanic support more? Hit counter resets to 0 each time the player joins/respawns; no cross-session leaderboard or data persistence was requested.",
+        "Should this limit apply, or should the mechanic support more? Input is a simple click/tap-to-punch action; no combo system, blocking, or multiple attack types were requested.",
+        "Should this limit apply, or should the mechanic support more? The counter UI is a simple always-visible on-screen label (e.g., top of screen); no additional menus or resets are requested."
+      ]
+    },
+    "theme": {
+      "text": "A casual arcade training-gym theme: a lone punching dummy standing on open ground evokes a boxing/martial-arts practice yard rather than a narrative fight. The presentation favors clarity and immediate feedback (visible dummy reaction, audible hit sound, incrementing counter) over story or environment lore, matching the simple 'test your punches' loop the request describes.",
+      "assumptions": [
+        "No specific fighting-game IP, character, or narrative setting was requested, so a generic neutral training theme is used.",
+        "The dummy's visual style is a generic humanoid-shaped training dummy (sandbag/mannequin style) rather than a stylized character."
+      ],
+      "unresolved": []
+    },
+    "environment": {
+      "text": "Build directly on the existing baseplate (top at y=0) with no added floor, walls, or ceiling. The player spawns near the world origin in open space. A single target dummy is placed a short, comfortable punching distance away (a few studs in front of spawn) so it's immediately visible and reachable within the first seconds of play. The on-screen hit counter is a persistent HUD label (e.g., top-center or top-right of the screen) visible at all times during play. No additional landmarks, routes, or elevated structures are needed since the entire loop happens at one fixed interaction point.",
+      "assumptions": [
+        "Spawn stays at/near the baseplate origin at ground level; no elevation or enclosure is added since none was requested.",
+        "The dummy is placed close enough to spawn (roughly 5-10 studs away) that the player can see and reach it within the first few seconds without additional navigation."
+      ],
+      "unresolved": []
+    },
+    "revision": 1,
+    "hash": "69b6b2add182182484912baad0471a60faaf69fed4f59fab7a4b7ab967e07a95",
+    "changed": [
+      "assets"
+    ]
+  },
+  "answers": {}
+}

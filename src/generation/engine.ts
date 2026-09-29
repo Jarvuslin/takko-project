@@ -1308,7 +1308,10 @@ export class Engine {
     p.conceptAcceptedRevision = undefined;
     p.approvedRevision = null;
     p.staleImplementation = !!p.spec;
-    if (p.assetDiscovery && p.proposal) p.assetDiscovery.revision = p.revision;
+    if (p.assetDiscovery) {
+      p.assetDiscovery.revision = p.revision;
+      if (!p.proposal) p.assetDiscovery.approved = false;
+    }
     p.stage = "draft";
     p.error = null;
     p.failure = null;
@@ -2360,6 +2363,7 @@ export class Engine {
     id: string,
     revision: number,
     groupId?: string,
+    metadataOnly = false,
   ): Promise<Project> {
     const p = this.store.get(id),
       settings = this.config.read();
@@ -2420,6 +2424,7 @@ export class Engine {
                 controller.signal,
               ),
             (assessment) => assessments.push(assessment),
+            metadataOnly,
           );
           group.relevance = {
             candidateId: selected?.candidateId ?? null,

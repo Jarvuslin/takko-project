@@ -26,7 +26,7 @@ export function marketplaceRoutes(
     const b = z
       .object({
         studioId: z.uuid(),
-        query: z.string().trim().min(1).max(200),
+        query: z.string().min(1).max(200).refine(q=>!!q.trim()),
         kind: marketplaceKindSchema,
         cursor: z.string().min(1).max(4096).optional(),
       })

@@ -163,7 +163,7 @@ export class StudioMarketplace implements MarketplaceProvider {
           scope: "creator_store",
           priceFilter: "free",
           maxResults: 20,
-          query: kind === "Animation" ? query + " animation" : query,
+          query,
           assetType: searchKind,
         }),
       );

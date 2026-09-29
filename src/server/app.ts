@@ -29,6 +29,7 @@ import { AssetLibrary, type MarketplaceProvider } from "../marketplace/library";
 import { StudioMarketplace } from "../marketplace/studio";
 import { marketplaceRoutes } from "../marketplace/routes";
 import { discoveryRoutes } from "../marketplace/discovery-routes";
+import { pickingRoutes } from "../marketplace/picking-routes";
 import { attachmentInputSchema } from "../marketplace/types";
 import { RequestError, ConflictError } from "../errors";
 import { architectureSchema } from "../generation/architecture";
@@ -161,6 +162,7 @@ export function createApp(
       concepts: true,
       proposals: true,
       assetChoices: true,
+      assetPicking: true,
       studioConnectionGate: true,
       configured: config.read().profiles.length > 0,
       studios: bridge.list(),
@@ -488,6 +490,7 @@ export function createApp(
     res.json(store.get(req.params.id)),
   );
   const discovery = discoveryRoutes(app, store, engine, assetLibrary);
+  pickingRoutes(app, store, engine, assetLibrary);
   app.get("/api/projects/:id/conversation", (req, res) => {
     const p = store.get(req.params.id);
     const turns = p.conversation ?? [];

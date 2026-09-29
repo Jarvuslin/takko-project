@@ -79,22 +79,14 @@ export async function browseFlow(
   screenshot?: string,
   legacy = false,
 ) {
-  await page.route("**/api/status", (r) =>
-    r.fulfill({
-      json: {
-        studios: [],
-        concepts: true,
-        assetChoices: true,
-        studioConnectionGate: false,
-      },
-    }),
-  );
   const f = await assetChoiceFixture(page, origin);
   await page
-    .getByRole("button", { name: "Preview & choose assets", exact: true })
+    .locator(".need-card")
+    .getByRole("button", { name: "Choose asset", exact: true })
+    .first()
     .click();
-  const browser = page.getByRole("dialog", {
-    name: "Choose assets",
+  const browser = page.getByRole("complementary", {
+    name: "Marketplace",
     exact: true,
   });
   await expect(browser.getByRole("article")).toHaveCount(30);
@@ -106,108 +98,50 @@ export async function browseFlow(
     .getByRole("button", { name: "Load more results", exact: true })
     .click();
   await expect(browser.getByRole("article")).toHaveCount(60);
-  await browser.getByRole("article").nth(42).scrollIntoViewIfNeeded();
-  const body = browser.locator(":scope > .dialog-body");
-  const position = await body.evaluate((e) => e.scrollTop);
-  const calls = f.calls.length;
-  await browser
+  const use = browser
     .getByRole("article")
     .nth(42)
-    .getByRole("button", { name: "Preview", exact: true })
-    .press("Tab");
-  const select = browser
-    .getByRole("article")
-    .nth(42)
-    .getByRole("button", { name: "Select", exact: true });
-  await expect(select).toBeFocused();
-  expect(await select.evaluate((e) => getComputedStyle(e).outlineStyle)).toBe(
+    .getByRole("button", { name: "Use this", exact: true });
+  await use.scrollIntoViewIfNeeded();
+  await use.focus();
+  await page.keyboard.press("Tab");
+  await page.keyboard.press("Shift+Tab");
+  await expect(use).toBeFocused();
+  expect(await use.evaluate((e) => getComputedStyle(e).outlineStyle)).toBe(
     "solid",
   );
-  await browser
-    .getByRole("article")
-    .nth(42)
-    .getByRole("button", { name: "Preview", exact: true })
-    .click();
-  let preview = page.getByRole("dialog", {
-    name: "Practice dummy option 43",
-    exact: true,
-  });
-  await expect(preview.locator("canvas")).toHaveCount(1);
-  await expect
-    .poll(async () =>
-      Number(await preview.locator("canvas").getAttribute("data-triangles")),
-    )
-    .toBeGreaterThan(0);
-  await preview
-    .getByRole("button", { name: "Back to results", exact: true })
-    .click();
-  await expect(page.locator("canvas")).toHaveCount(0);
-  expect(await body.evaluate((e) => e.scrollTop)).toBe(position);
-  expect(f.calls.slice(calls)).toEqual(["asset-preview"]);
-  await browser
-    .getByRole("article")
-    .nth(43)
-    .getByRole("button", { name: "Preview", exact: true })
-    .click();
-  preview = page.getByRole("dialog", {
-    name: "Practice dummy option 44",
-    exact: true,
-  });
-  await expect(preview.locator("canvas")).toHaveCount(1);
-  await preview
-    .getByRole("button", { name: "Reload preview", exact: true })
-    .scrollIntoViewIfNeeded();
-  await expect(
-    preview.getByRole("button", { name: "Reload preview", exact: true }),
-  ).toBeInViewport();
-  await expect(
-    preview.getByRole("button", { name: "Choose this asset", exact: true }),
-  ).toBeInViewport();
   if (screenshot) await page.screenshot({ path: screenshot });
   expect(
     (
       await new AxeBuilder({ page })
         .setLegacyMode(legacy)
-        .include(".asset-preview-dialog")
+        .include(".marketplace-picking")
         .analyze()
     ).violations,
   ).toEqual([]);
-  await preview
-    .getByRole("button", { name: "Choose this asset", exact: true })
-    .click();
+  await use.click();
+  await expect(browser).toHaveCount(0);
   await expect(
-    browser
-      .getByRole("article")
-      .nth(43)
-      .getByRole("button", { name: "Selected ✓", exact: true }),
-  ).toBeVisible();
+    page.getByRole("region", { name: "Practice dummy", exact: true }),
+  ).toContainText("Practice dummy option 43");
+  expect(f.project().assetDiscovery?.choices?.dummy.assetId).toBe("1043");
   expect(f.project().assetDiscovery?.approved).not.toBe(true);
-  await expect(browser.getByRole("article")).toHaveCount(60);
-  await expect(browser.getByLabel("Search for Practice dummy")).toHaveValue(
-    "training dummy",
-  );
-  await browser
-    .getByRole("article")
-    .nth(43)
-    .getByRole("button", { name: "Preview", exact: true })
-    .click();
-  await preview
-    .getByRole("button", { name: "Remove selection", exact: true })
-    .click();
+  await page.reload();
   await expect(
-    preview.getByRole("button", { name: "Choose this asset", exact: true }),
-  ).toBeEnabled();
-  await page.keyboard.press("Escape");
-  await expect(preview).toBeHidden();
-  await expect(browser).toBeVisible();
-  await expect(page.locator("canvas")).toHaveCount(0);
-  await browser.getByLabel("Search for Practice dummy").fill("wooden dummy");
+    page.getByRole("region", { name: "Practice dummy", exact: true }),
+  ).toContainText("Practice dummy option 43");
+  await page
+    .getByRole("region", { name: "Practice dummy", exact: true })
+    .getByRole("button", { name: "Change", exact: true })
+    .click();
   await browser
-    .getByRole("button", { name: "Search again", exact: true })
+    .getByLabel("Search Marketplace", { exact: true })
+    .fill("wooden dummy");
+  await browser
+    .getByRole("button", { name: "Search assets", exact: true })
     .click();
   await expect(browser.getByRole("article")).toHaveCount(30);
   expect(f.project().assetDiscovery?.groups[0].query).toBe("wooden dummy");
   expect(f.errors).toEqual([]);
   await page.keyboard.press("Escape");
 }
-

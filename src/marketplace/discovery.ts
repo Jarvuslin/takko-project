@@ -8,10 +8,12 @@ export type AssetSearch = {
   assetNeedId?: string;
   label: string;
   query: string;
+  needQuery?: string;
   kind: MarketplaceKind;
   preview: "animation" | "model" | "audio" | "image";
 };
 export type AssetOption = AssetMetadata & {
+  inspection?: import("./types").Inspection;
   previewData?: {
     pack?: AnimationPack;
     model?: ModelPreview;
@@ -58,6 +60,10 @@ export type AssetDiscovery = {
       clipKey?: string;
       skip?: boolean;
       acknowledgeInspectionLimitations?: boolean;
+      kept?: boolean;
+      operation?: "finding" | "checking";
+      error?: string;
+      reason?: string;
     }
   >;
   pinned?: string[];
@@ -69,22 +75,24 @@ export function assetSearches(
     Partial<Pick<Project, "spec" | "proposal">>,
 ): AssetSearch[] {
   const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds;
-  if (needs?.length)
-    return needs.map((need) => ({
-      id: need.id,
-      assetNeedId: need.id,
-      label: need.role,
-      query: need.query,
-      kind: need.kind === "Animation" ? "Model" : need.kind,
-      preview:
-        need.kind === "Animation"
-          ? "animation"
-          : need.kind === "Audio"
-            ? "audio"
-            : need.kind === "Image"
-              ? "image"
-              : "model",
-    }));
+  if (needs)
+    return needs
+      .filter((need) => need.required)
+      .map((need) => ({
+        id: need.id,
+        assetNeedId: need.id,
+        label: need.role,
+        query: need.query,
+        kind: need.kind === "Animation" ? "Model" : need.kind,
+        preview:
+          need.kind === "Animation"
+            ? "animation"
+            : need.kind === "Audio"
+              ? "audio"
+              : need.kind === "Image"
+                ? "image"
+                : "model",
+      }));
   const text = [
     p.request,
     ...(p.briefChanges ?? []).map((c) => c.text),

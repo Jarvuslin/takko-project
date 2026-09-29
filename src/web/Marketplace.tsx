@@ -1,3 +1,7 @@
+import { createPortal } from "react-dom";
+import type { Project } from "../generation/schema";
+import { assetLabel } from "../marketplace/pick-status";
+import { assetRequest, ClipSheet } from "./AssetCard";
 import {
   MarketplaceConnection,
   useMarketplaceConnection,
@@ -246,14 +250,22 @@ export function AssetAttachments({
 }
 
 export function Marketplace({
+  picking,
   draft,
   close,
   disabled,
 }: {
+  picking?: { project: Project; groupId: string; update: (p: Project) => void };
   draft: AssetDraft;
   close: () => void;
   disabled: boolean;
 }) {
+  const group = picking?.project.assetDiscovery?.groups.find(
+    (g) => g.id === picking.groupId,
+  );
+  const [clipSheet, setClipSheet] = useState(false);
+  const [using, setUsing] = useState(false);
+  const [filteredCount, setFilteredCount] = useState(0);
   const [assets, setAssets] = useState<LibraryAsset[]>([]);
   const connection = useMarketplaceConnection(draft.studioId);
   useEffect(() => {
@@ -263,8 +275,8 @@ export function Marketplace({
     )
       draft.chooseStudio(connection.studioId);
   }, [connection.studioId, connection.state]);
-  const [query, setQuery] = useState(""),
-    [kind, setKind] = useState<MarketplaceKind>("Model");
+  const [query, setQuery] = useState(group?.query ?? ""),
+    [kind, setKind] = useState<MarketplaceKind>(group?.kind ?? "Model");
   const [tab, setTab] = useState("search"),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
@@ -307,13 +319,30 @@ export function Marketplace({
     try {
       if (
         nextTab === "search" &&
-        (!searchQuery.trim() || !connection.connected)
+        (!searchQuery.trim() || (!picking && !connection.connected))
       ) {
         setAssets([]);
         return;
       }
-      const result =
-        nextTab === "search"
+      const result: {
+        assets: LibraryAsset[];
+        nextCursor?: string;
+        project?: Project;
+        filteredCount?: number;
+      } = picking
+        ? await assetRequest<{
+            project: Project;
+            assets: LibraryAsset[];
+            nextCursor?: string;
+            filteredCount: number;
+          }>(picking.project.id, "asset-picks/search", {
+            revision: picking.project.revision,
+            groupId: picking.groupId,
+            studioId: connection.studioId,
+            query: searchQuery,
+            ...(cursor ? { cursor } : {}),
+          })
+        : nextTab === "search"
           ? await request<{ assets: LibraryAsset[]; nextCursor?: string }>(
               "search",
               "POST",
@@ -328,6 +357,10 @@ export function Marketplace({
               "library?filter=" + nextTab,
             );
       if (sequence.current === current) {
+        if (picking && result.project) {
+          picking.update(result.project);
+          setFilteredCount(result.filteredCount ?? 0);
+        }
         setAssets((old) =>
           cursor
             ? [
@@ -351,6 +384,9 @@ export function Marketplace({
       if (sequence.current === current) setBusy(false);
     }
   }
+  useEffect(() => {
+    if (picking) void load("search");
+  }, []);
   async function preference(asset: LibraryAsset, field: "liked" | "saved") {
     try {
       const updated = await request<LibraryAsset>(
@@ -367,31 +403,37 @@ export function Marketplace({
       setError((e as Error).message);
     }
   }
-  return (
-    <SettingsDialog
-      title="Marketplace"
-      description="Discover free Roblox assets for your next idea."
-      close={close}
-      closeLabel="Close Marketplace"
-      modal={false}
-      scrollBody
+  const content = (
+    <aside
+      ref={panel}
+      className={"marketplace-panel" + (picking ? " marketplace-picking" : "")}
+      aria-label="Marketplace"
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          e.stopPropagation();
+          close();
+        }
+      }}
     >
-      <aside
-        ref={panel}
-        className="marketplace-panel"
-        aria-label="Marketplace"
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            e.stopPropagation();
-            close();
-          }
-        }}
-      >
+      {picking && group && (
+        <div className="picking-banner">
+          <div>
+            <strong>Choosing: {assetLabel(group)}</strong>
+            <small>
+              For {picking.project.name} · {group.label}
+            </small>
+          </div>
+          <button onClick={close}>Back to chat</button>
+        </div>
+      )}
+      {!picking && (
         <MarketplaceConnection
           connection={connection}
           label="Marketplace Studio"
           busy={busy}
         />
+      )}
+      {!picking && (
         <div className="market-tabs" aria-label="Asset collections">
           {[
             ["search", "Search"],
@@ -409,151 +451,205 @@ export function Marketplace({
             </button>
           ))}
         </div>
-        {tab === "search" && (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              void load("search");
-            }}
-          >
-            <label className="sr-only" htmlFor="asset-search">
-              Search Marketplace
-            </label>
-            <input
-              id="asset-search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search models, animations, sound effects…"
-              maxLength={200}
-            />
-            <div className="market-search-controls control-row">
-              <select
-                aria-label="Asset type"
-                value={kind}
-                onChange={(e) => setKind(e.target.value as MarketplaceKind)}
-              >
-                {["Model", "Animation", "MeshPart", "Audio", "Image"].map(
-                  (k) => (
-                    <option key={k}>{k}</option>
-                  ),
-                )}
-              </select>
-              <button disabled={busy || !connection.connected || !query.trim()}>
-                Search assets
-              </button>
-            </div>
-          </form>
-        )}
-        {tab === "search" && (
-          <div className="market-categories" aria-label="Asset categories">
-            {(
-              [
-                ["Models", "Model", "training dummy", "cube"],
-                ["Animations", "Animation", "combat", "play"],
-                ["Sound effects", "Audio", "punch impact", "bolt"],
-                ["Visual effects", "Model", "impact VFX", "grid"],
-                ["Environments", "Model", "training arena", "models"],
-              ] as const
-            ).map(([label, type, term, icon]) => (
-              <button
-                key={label}
-                disabled={!connection.connected || busy}
-                onClick={() => {
-                  setKind(type);
-                  setQuery(term);
-                  void load("search", term, type);
-                }}
-              >
-                <Icon name={icon} size={20} />
-                <span>{label}</span>
-              </button>
-            ))}
+      )}
+      {tab === "search" && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void load("search");
+          }}
+        >
+          <label className="sr-only" htmlFor="asset-search">
+            Search Marketplace
+          </label>
+          <input
+            id="asset-search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search models, animations, sound effects…"
+            maxLength={200}
+          />
+          <div className="market-search-controls control-row">
+            <select
+              aria-label="Asset type"
+              disabled={!!picking}
+              value={kind}
+              onChange={(e) => setKind(e.target.value as MarketplaceKind)}
+            >
+              {["Model", "Animation", "MeshPart", "Audio", "Image"].map((k) => (
+                <option key={k}>{k}</option>
+              ))}
+            </select>
+            <button
+              disabled={
+                busy || (!picking && !connection.connected) || !query.trim()
+              }
+            >
+              Search assets
+            </button>
           </div>
-        )}
-        {error && <p role="alert">{error}</p>}
-        {busy && (
-          <p role="status" className="asset-loading">
-            <span className="spinner" aria-hidden="true" />
-            Loading assets…
-          </p>
-        )}
-        {!!assets.length && (
-          <div className="market-results-heading">
-            <h3>
-              {tab === "search"
-                ? "Search results"
-                : tab === "all"
-                  ? "Your library"
-                  : tab === "liked"
-                    ? "Liked assets"
-                    : "Saved assets"}
-            </h3>
-            <span>
-              {assets.length} {assets.length === 1 ? "asset" : "assets"}
-              {tab === "search" ? " · Free" : ""}
-            </span>
-          </div>
-        )}
-        {!busy && !assets.length && (
-          <p className="market-empty">
-            {tab === "search"
-              ? "Search free Roblox assets to get started."
-              : "No assets in this collection yet."}
-          </p>
-        )}
-        <div className="market-grid">
-          {assets.map((asset) => (
-            <article
-              className="market-card"
-              key={asset.assetId}
-              draggable={!disabled && !draft.inspecting}
-              onDragStart={(e) => {
-                e.dataTransfer.setData(
-                  "application/x-takko-asset",
-                  asset.assetId,
-                );
-                e.dataTransfer.setData(
-                  "text/plain",
-                  "https://create.roblox.com/store/asset/" + asset.assetId,
-                );
-                e.dataTransfer.effectAllowed = "copy";
+        </form>
+      )}
+      {tab === "search" && !picking && (
+        <div className="market-categories" aria-label="Asset categories">
+          {(
+            [
+              ["Models", "Model", "training dummy", "cube"],
+              ["Animations", "Animation", "combat", "play"],
+              ["Sound effects", "Audio", "punch impact", "bolt"],
+              ["Visual effects", "Model", "impact VFX", "grid"],
+              ["Environments", "Model", "training arena", "models"],
+            ] as const
+          ).map(([label, type, term, icon]) => (
+            <button
+              key={label}
+              disabled={!connection.connected || busy}
+              onClick={() => {
+                setKind(type);
+                setQuery(term);
+                void load("search", term, type);
               }}
             >
-              <div className="market-thumbnail">
-                {images[asset.assetId] ? (
-                  <img
-                    src={images[asset.assetId]}
-                    alt={asset.name}
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <Icon name="cube" size={36} />
-                )}
-              </div>
-              <a
-                href={"https://create.roblox.com/store/asset/" + asset.assetId}
-                target="_blank"
-                rel="noreferrer"
+              <Icon name={icon} size={20} />
+              <span>{label}</span>
+            </button>
+          ))}
+        </div>
+      )}
+      {error && <p role="alert">{error}</p>}
+      {busy && (
+        <p role="status" className="asset-loading">
+          <span className="spinner" aria-hidden="true" />
+          Loading assets…
+        </p>
+      )}
+      {picking && (
+        <p className="picking-meta">
+          {assets.length} results in Creator Store order · paid or wrong-type
+          items hidden: {filteredCount}
+        </p>
+      )}
+      {!!assets.length && !picking && (
+        <div className="market-results-heading">
+          <h3>
+            {tab === "search"
+              ? "Search results"
+              : tab === "all"
+                ? "Your library"
+                : tab === "liked"
+                  ? "Liked assets"
+                  : "Saved assets"}
+          </h3>
+          <span>
+            {assets.length} {assets.length === 1 ? "asset" : "assets"}
+            {tab === "search" ? " · Free" : ""}
+          </span>
+        </div>
+      )}
+      {!busy && !assets.length && (
+        <p className="market-empty">
+          {tab === "search"
+            ? "Search free Roblox assets to get started."
+            : "No assets in this collection yet."}
+        </p>
+      )}
+      <div className="market-grid">
+        {assets.map((asset) => (
+          <article
+            className="market-card"
+            key={asset.assetId}
+            draggable={!picking && !disabled && !draft.inspecting}
+            onDragStart={(e) => {
+              e.dataTransfer.setData(
+                "application/x-takko-asset",
+                asset.assetId,
+              );
+              e.dataTransfer.setData(
+                "text/plain",
+                "https://create.roblox.com/store/asset/" + asset.assetId,
+              );
+              e.dataTransfer.effectAllowed = "copy";
+            }}
+          >
+            <div className="market-thumbnail">
+              {images[asset.assetId] ? (
+                <img
+                  src={images[asset.assetId]}
+                  alt={asset.name}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <Icon name="cube" size={36} />
+              )}
+            </div>
+            <a
+              href={"https://create.roblox.com/store/asset/" + asset.assetId}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {asset.name}
+            </a>
+            <small>
+              {asset.creatorName} · {asset.kind}
+            </small>
+            <AssetVotes votes={asset.votes} />
+            <small>#{asset.assetId}</small>
+            <span className="inspection-label">
+              {!asset.inspection
+                ? "Not inspected"
+                : asset.inspection.status === "no_issues_found"
+                  ? "Inspected snapshot"
+                  : asset.inspection.status === "limited"
+                    ? "Inspection coverage incomplete"
+                    : asset.inspection.status === "blocked"
+                      ? "Blocked by inspection"
+                      : "Needs review"}
+            </span>
+            {picking ? (
+              <button
+                className="pick-use"
+                disabled={
+                  disabled ||
+                  using ||
+                  picking.project.excludedAssetIds?.includes(asset.assetId)
+                }
+                onClick={async () => {
+                  setUsing(true);
+                  setError("");
+                  try {
+                    const next = await assetRequest<Project>(
+                      picking.project.id,
+                      "asset-picks/choose",
+                      {
+                        revision: picking.project.revision,
+                        groupId: picking.groupId,
+                        assetId: asset.assetId,
+                        studioId: connection.studioId,
+                      },
+                    );
+                    picking.update(next);
+                    const option = next.assetDiscovery?.groups
+                      .find((g) => g.id === picking.groupId)
+                      ?.options.find((o) => o.assetId === asset.assetId);
+                    if (
+                      group?.preview === "animation" &&
+                      option?.previewData?.pack
+                    )
+                      setClipSheet(true);
+                    else close();
+                  } catch (e) {
+                    setError((e as Error).message);
+                  } finally {
+                    setUsing(false);
+                  }
+                }}
               >
-                {asset.name}
-              </a>
-              <small>
-                {asset.creatorName} · {asset.kind}
-              </small>
-              <AssetVotes votes={asset.votes} />
-              <small>#{asset.assetId}</small>
-              <span className="inspection-label">
-                {!asset.inspection
-                  ? "Not inspected"
-                  : asset.inspection.status === "no_issues_found"
-                    ? "Inspected snapshot"
-                    : asset.inspection.status === "limited"
-                      ? "Inspection coverage incomplete"
-                      : asset.inspection.status === "blocked"
-                        ? "Blocked by inspection"
-                        : "Needs review"}
-              </span>
+                {picking.project.excludedAssetIds?.includes(asset.assetId)
+                  ? "Excluded by you"
+                  : "Use this"}
+              </button>
+            ) : (
               <div className="market-card-actions">
                 <button
                   type="button"
@@ -580,30 +676,65 @@ export function Marketplace({
                   <Icon name="plus" size={16} /> Add
                 </button>
               </div>
-            </article>
-          ))}
-        </div>
-        {tab === "search" && nextCursor && (
-          <button
-            disabled={busy}
-            onClick={() =>
-              load(
-                "search",
-                searched.current.query,
-                searched.current.kind,
-                nextCursor,
-              )
-            }
-          >
-            Load more results
-          </button>
-        )}
+            )}
+          </article>
+        ))}
+      </div>
+      {tab === "search" && nextCursor && (
+        <button
+          disabled={busy}
+          onClick={() =>
+            load(
+              "search",
+              searched.current.query,
+              searched.current.kind,
+              nextCursor,
+            )
+          }
+        >
+          Load more results
+        </button>
+      )}
+      {using && (
+        <p role="status" className="pick-note pick-checking">
+          Checking
+        </p>
+      )}
+      {picking && clipSheet && (
+        <ClipSheet
+          project={picking.project}
+          groupId={picking.groupId}
+          update={picking.update}
+          close={() => {
+            setClipSheet(false);
+            close();
+          }}
+        />
+      )}
+      {!picking && (
         <p className="market-notice">
           Add an asset to inspect it and attach it to your brief. Models with
           animation clips open a preview in your conversation. Static inspection
           does not verify gameplay or media permissions.
         </p>
-      </aside>
+      )}
+    </aside>
+  );
+  return picking ? (
+    createPortal(
+      content,
+      document.querySelector(".architecture-workspace") ?? document.body,
+    )
+  ) : (
+    <SettingsDialog
+      title="Marketplace"
+      description="Discover free Roblox assets for your next idea."
+      close={close}
+      closeLabel="Close Marketplace"
+      modal={false}
+      scrollBody
+    >
+      {content}
     </SettingsDialog>
   );
 }

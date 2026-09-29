@@ -19,6 +19,7 @@ import { modelPreviewSchema } from "./preview";
 import { refreshProposal } from "../generation/proposal";
 import { assetNeedForGroup } from "./asset-binding";
 import { searchWithCoreNoun } from "./search-with-core-noun";
+import { pickStatus } from "./pick-status";
 
 // Search may expose only an update timestamp. Inspection can add a stronger
 // version identity without changing the content that was listed.
@@ -580,6 +581,7 @@ export function discoveryRoutes(
             clipKey: z.string().max(1024).optional(),
             skip: z.boolean().optional(),
             acknowledgeInspectionLimitations: z.boolean().optional(),
+            kept: z.boolean().optional(),
           })
           .strict(),
       ),
@@ -681,6 +683,12 @@ export function discoveryRoutes(
         // Commit richer metadata only with the entire validated selection.
         option.versionId = inspected.versionId;
         option.updated = inspected.updated;
+        option.inspection = inspected.inspection;
+        option.isFree = inspected.isFree ?? option.isFree ?? true;
+        const reviewed = { ...p, assetDiscovery: { ...discovery, choices: b.choices } };
+        const readiness = pickStatus(reviewed, group);
+        if (!readiness.canBuild)
+          throw new RequestError(`${group.label}: ${readiness.reason ?? readiness.label}`);
         const usage = `${group.label}${entry ? `: clip ${entry.name} (${entry.animationId ? "rbxassetid://" + entry.animationId : "embedded key " + entry.key}), ${entry.clip!.rig}` : ""}`;
         const previous = selected.get(option.assetId);
         selected.set(option.assetId, {

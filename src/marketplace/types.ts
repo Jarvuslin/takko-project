@@ -20,6 +20,8 @@ export const metadataSchema = z
     kind: marketplaceKindSchema,
     creatorName: z.string().max(200),
     updated: z.string().max(100),
+    isFree: z.boolean().optional(),
+    scriptCount: z.number().int().nonnegative().optional(),
     versionId: assetIdSchema.optional(),
     votes: z
       .object({

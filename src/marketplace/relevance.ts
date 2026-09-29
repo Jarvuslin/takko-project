@@ -132,6 +132,7 @@ export async function assessEvidenceOptions(
     state?: "relevant" | "irrelevant" | "uncertain";
     error?: string;
   }) => void,
+  metadataOnly = false,
 ) {
   const linkedNeed = assetNeedForGroup(project, group);
   const passed: {
@@ -147,7 +148,7 @@ export async function assessEvidenceOptions(
   for (const option of group.options) {
     const pack = option.previewData?.pack;
     const entries =
-      group.preview === "animation"
+      group.preview === "animation" && (!metadataOnly || pack?.entries.length)
         ? (pack?.entries.filter((e) => animationTier(e) !== "unusable") ?? [])
         : [undefined];
     for (const entry of entries) {

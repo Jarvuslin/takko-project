@@ -11,24 +11,31 @@ export type SearchPage = {
   assets: AssetMetadata[];
   nextCursor?: string;
   total?: number;
+  filteredCount?: number;
 };
 const types = { Model: 10, Animation: 10, MeshPart: 40, Audio: 3, Image: 13 };
 const pageSchema = z.object({
-  data: z.array(z.object({ id: z.number().int().positive().safe() })).max(100),
-  nextPageCursor: z.string().max(4096).nullish(),
-  totalResults: z.number().int().nonnegative().optional(),
-});
-const detailsSchema = z.object({
-  data: z
+  creatorStoreAssets: z
     .array(
       z.object({
         asset: z.object({
           id: z.number().int().positive().safe(),
           name: z.string(),
-          typeId: z.number(),
-          updatedUtc: z.string().optional(),
+          assetTypeId: z.number(),
+          updateTime: z.string().optional(),
+          scriptCount: z.number().int().nonnegative().optional(),
         }),
         creator: z.object({ name: z.string() }),
+        creatorStoreProduct: z
+          .object({
+            purchasePrice: z.object({
+              quantity: z.object({
+                significand: z.number(),
+                exponent: z.number(),
+              }),
+            }),
+          })
+          .optional(),
         voting: z
           .object({
             showVotes: z.boolean(),
@@ -36,10 +43,11 @@ const detailsSchema = z.object({
             downVotes: z.number().int().nonnegative(),
           })
           .optional(),
-        fiatProduct: z.object({ isFree: z.boolean() }).optional(),
       }),
     )
     .max(100),
+  nextPageToken: z.string().max(4096).nullish(),
+  totalResults: z.number().int().nonnegative().optional(),
 });
 
 /** Public Roblox Toolbox search and batched details. Never reads browser cookies. */
@@ -69,76 +77,83 @@ export class CreatorStore {
     }
     return structuredClone(await work);
   }
-  private async json(url: URL) {
-    const response = await this.transport(url, {
-      signal: AbortSignal.timeout(15000),
-      redirect: "error",
-    });
-    if (!response.ok)
-      throw new UpstreamError(
-        `Creator Store returned HTTP ${response.status}. Try this search again.`,
-      );
-    return response.json();
-  }
+  private csrf = "";
   private async load(
     query: string,
     kind: MarketplaceKind,
     cursor?: string,
   ): Promise<SearchPage> {
-    const url = new URL(
-      "https://apis.roblox.com/toolbox-service/v1/marketplace/" + types[kind],
-    );
-    url.searchParams.set(
-      "keyword",
-      kind === "Animation" ? query + " animation" : query,
-    );
-    url.searchParams.set("num", "30");
-    url.searchParams.set("maxPrice", "0");
-    if (cursor) url.searchParams.set("cursor", cursor);
+    const url = "https://apis.roblox.com/toolbox-service/v2/assets:search";
+    const body = JSON.stringify({
+      searchCategoryType: kind === "Animation" ? "Model" : kind,
+      query,
+      maxPageSize: 50,
+      searchView: "Core",
+      ...(cursor ? { pageToken: cursor } : {}),
+    });
+    const send = () =>
+      this.transport(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(this.csrf ? { "x-csrf-token": this.csrf } : {}),
+        },
+        body,
+        signal: AbortSignal.timeout(15000),
+        redirect: "error",
+      });
     try {
-      const page = pageSchema.parse(await this.json(url));
-      const ids = [
-        ...new Set(page.data.map((r) => assetIdSchema.parse(String(r.id)))),
-      ];
-      const detailsUrl = new URL(
-        "https://apis.roblox.com/toolbox-service/v1/items/details",
-      );
-      detailsUrl.searchParams.set("assetIds", ids.join(","));
-      const rows = ids.length
-        ? detailsSchema.parse(await this.json(detailsUrl)).data
-        : [];
-      const byId = new Map(rows.map((r) => [String(r.asset.id), r]));
-      const assets = ids.flatMap((id) => {
-        const r = byId.get(id);
-        // The source's free flag and actual type are required, even if search filters drift.
+      let response = await send();
+      // Roblox's anonymous CSRF handshake is the only automatic repeat.
+      if (response.status === 403 && response.headers.get("x-csrf-token")) {
+        this.csrf = response.headers.get("x-csrf-token")!;
+        response = await send();
+      }
+      if (!response.ok)
+        throw new UpstreamError(
+          `Creator Store returned HTTP ${response.status}. Try this search again.`,
+        );
+      const page = pageSchema.parse(await response.json());
+      const seen = new Set<string>();
+      let filteredCount = 0;
+      const assets = page.creatorStoreAssets.flatMap((row) => {
+        const id = assetIdSchema.parse(String(row.asset.id));
         if (
-          !r ||
-          r.fiatProduct?.isFree !== true ||
-          r.asset.typeId !== types[kind]
-        )
+          row.creatorStoreProduct?.purchasePrice.quantity.significand !== 0 ||
+          row.asset.assetTypeId !== types[kind] ||
+          seen.has(id)
+        ) {
+          filteredCount++;
           return [];
+        }
+        seen.add(id);
         return [
           metadataSchema.parse({
             assetId: id,
-            name: r.asset.name.slice(0, 200),
+            name: row.asset.name.slice(0, 200),
             kind: kind === "Animation" ? "Model" : kind,
-            creatorName: r.creator.name.slice(0, 200),
-            updated: r.asset.updatedUtc ?? "",
-            ...(r.voting?.showVotes
-              ? { votes: { up: r.voting.upVotes, down: r.voting.downVotes } }
+            creatorName: row.creator.name.slice(0, 200),
+            updated: row.asset.updateTime ?? "",
+            isFree: true,
+            scriptCount: row.asset.scriptCount,
+            ...(row.voting?.showVotes
+              ? {
+                  votes: { up: row.voting.upVotes, down: row.voting.downVotes },
+                }
               : {}),
           }),
         ];
       });
       return {
         assets,
-        ...(page.nextPageCursor && page.nextPageCursor !== cursor
-          ? { nextCursor: page.nextPageCursor }
-          : {}),
+        filteredCount,
         total: page.totalResults,
+        ...(page.nextPageToken && page.nextPageToken !== cursor
+          ? { nextCursor: page.nextPageToken }
+          : {}),
       };
-    } catch (e) {
-      if (e instanceof UpstreamError) throw e;
+    } catch (error) {
+      if (error instanceof UpstreamError) throw error;
       throw new UpstreamError(
         "Creator Store search is unavailable. Try this search again.",
       );

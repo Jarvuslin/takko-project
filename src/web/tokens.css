@@ -14,6 +14,18 @@
   src: url("./fonts/geist-mono-latin.woff2") format("woff2");
 }
 :root {
+  --text-base:15px;
+  --text-detail:12.5px;
+  --pick-thumb:40px;
+  --pick-card-min:168px;
+  --clip-min:210px;
+  --pick-sheet-max:60vh;
+  --pick-tint:#0000002e;
+  --pick-progress:3px;
+  --pick-button-min:34px;
+  --pick-content-gap:9px;
+  --pick-panel-z:10;
+
   --radius-composer: 22px;
   --font-display: "Geist", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --font-body: var(--font-display);

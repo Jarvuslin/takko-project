@@ -221,6 +221,7 @@ it("offers the preserved raw-only mapped pack for Studio asset choices", async (
       [chosen.id]: {
         assetId: chosen.options[0].assetId,
         clipKey: pack.entries[0].key,
+        kept: true,
       },
     },
   });
@@ -354,7 +355,7 @@ it("replaces one approved recommendation, preserving other choices and pinning t
     const option=group.options.find((o:any)=>o.previewData?.pack?.entries.length);
     selected[group.id]={assetId:option.assetId,clipKey:option.previewData.pack.entries[0].key};
   }
-  const accepted=await f.command("approve-assets",{discoveryId:searched.assetDiscovery.id,choices:selected});
+  const accepted=await f.command("approve-assets",{discoveryId:searched.assetDiscovery.id,choices:Object.fromEntries(Object.entries(selected).map(([id,c]:[string,any])=>[id,{...c,kept:true}]))});
   expect(accepted.status).toBe(200);
   const p=accepted.data;
   p.proposal.approval = {
@@ -647,7 +648,7 @@ describe("brief asset review", () => {
     const p = await f.preview("combat");
     const choices = {
       ...f.choices(),
-      combat: { assetId: "101", clipKey: "punch" },
+      combat: { assetId: "101", clipKey: "punch", kept: true },
       walk: { skip: true },
     };
     const result = await f.command("approve-assets", {
@@ -726,7 +727,7 @@ describe("brief asset review", () => {
       "Make a racing game instead",
       {},
     );
-    expect(next.assetDiscovery).toEqual(p.assetDiscovery);
+    expect(next.assetDiscovery).toEqual({...p.assetDiscovery,revision:next.revision,approved:false});
     expect(next.briefApprovedRevision).toBeUndefined();
     expect((await f.command("approve-brief")).status).toBe(409);
   });
@@ -825,7 +826,7 @@ describe("brief asset review", () => {
     });
     const r = await f.command("approve-assets", {
       discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch" } },
+      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
     });
     expect(r.status).toBe(409);
     expect(f.app.locals.engine.store.get(p.id).revision).toBe(1);
@@ -858,7 +859,7 @@ describe("brief asset review", () => {
     f.app.locals.engine.store.save(p);
     const r = await f.command("approve-assets", {
       discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch" } },
+      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
     });
     expect(r.status).toBe(200);
     expect(suppliedAssetReferences(r.data)).toContain("333");
@@ -882,7 +883,7 @@ describe("brief asset review", () => {
     const p = await f.preview("combat");
     const r = await f.command("approve-assets", {
       discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch" } },
+      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
     });
     const native = {
       search: vi.fn(),
@@ -929,7 +930,7 @@ describe("brief asset review", () => {
     const p = await f.preview("combat");
     const r = await f.command("approve-assets", {
       discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch" } },
+      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
     });
     const native = { identity: "fixture", search: vi.fn(), inspect: vi.fn() };
     const adapter = approvedAssetAdapter(native as any, r.data);
@@ -1069,6 +1070,7 @@ it("retains a previewed coverage-limited selection only with acknowledgement", a
       [p.assetDiscovery.groups[0].id]: {
         assetId: "101",
         acknowledgeInspectionLimitations: true,
+        kept: true,
       },
     },
   });

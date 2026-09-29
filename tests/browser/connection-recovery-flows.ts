@@ -23,31 +23,24 @@ export async function connectionRecoveryFlow(
   origin = "",
   screenshot?: string,
 ) {
-  await page.route("**/api/status", (r) =>
-    r.fulfill({
-      json: {
-        concepts: true,
-        assetChoices: true,
-        studioConnectionGate: false,
-        studios: [],
-      },
-    }),
-  );
   const f = await assetChoiceFixture(page, origin);
-  await expect.poll(() => f.calls.includes("asset-options")).toBe(true);
-  f.project().assetDiscovery = undefined;
+  await expect
+    .poll(() => f.project().assetDiscovery?.groups.length ?? 0)
+    .toBeGreaterThan(0);
   let searches = 0,
-    checks = 0;
-  let release: (() => void) | undefined;
-  let mode = "ready";
-  await page.route("**/api/projects/*/asset-options", async (r) => {
+    checks = 0,
+    release: (() => void) | undefined,
+    mode = "ready";
+  await page.route("**/api/marketplace/search", async (r) => {
     searches++;
-    if (searches === 1)
-      return r.fulfill({
-        status: 503,
-        json: { error: "Search temporarily unavailable" },
-      });
-    return r.fallback();
+    return searches === 1
+      ? r.fulfill({
+          status: 503,
+          json: { error: "Search temporarily unavailable" },
+        })
+      : r.fulfill({
+          json: { assets: f.project().assetDiscovery!.groups[0].options },
+        });
   });
   await page.route("**/api/marketplace/studios", async (r) => {
     checks++;
@@ -64,21 +57,21 @@ export async function connectionRecoveryFlow(
       json: { studios: [{ id: studioId, name: "Training yard" }] },
     });
   });
-  await page.reload();
-  await page
-    .getByRole("button", { name: "Preview & choose assets", exact: true })
-    .click();
-  const dialog = page.getByRole("dialog", {
-    name: "Choose assets",
-    exact: true,
-  });
+  await page.getByRole("button", { name: "Marketplace", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Marketplace", exact: true });
   await expect(dialog).toContainText("Studio connected");
-  await expect(dialog).toContainText("Search temporarily unavailable");
   const refresh = dialog.getByRole("button", {
     name: "Refresh connection",
     exact: true,
   });
-  await aligned(dialog.getByLabel("Asset search Studio"), refresh);
+  await aligned(dialog.getByLabel("Marketplace Studio"), refresh);
+  await dialog
+    .getByLabel("Search Marketplace", { exact: true })
+    .fill("target dummy");
+  await dialog
+    .getByRole("button", { name: "Search assets", exact: true })
+    .click();
+  await expect(dialog).toContainText("Search temporarily unavailable");
   mode = "hold";
   await refresh.click();
   await expect(
@@ -90,22 +83,25 @@ export async function connectionRecoveryFlow(
   expect(searches).toBe(1);
   mode = "ready";
   release!();
+  await expect(dialog).toContainText("Studio connected");
+  await dialog
+    .getByRole("button", { name: "Search assets", exact: true })
+    .click();
   await expect(dialog.getByRole("article")).toHaveCount(30);
   expect(searches).toBe(2);
   await aligned(
-    dialog.getByLabel("Search for Practice dummy"),
-    dialog.getByRole("button", { name: "Search again", exact: true }),
+    dialog.getByLabel("Search Marketplace", { exact: true }),
+    dialog.getByRole("button", { name: "Search assets", exact: true }),
   );
   if (screenshot) await page.screenshot({ path: screenshot });
   mode = "error";
   await refresh.click();
   await expect(dialog).toContainText("Connection check failed");
-  await expect(dialog.getByLabel("Asset search Studio")).toHaveValue("");
-  await expect(dialog).not.toContainText("Studio connected");
+  await expect(dialog.getByLabel("Marketplace Studio")).toHaveValue("");
   mode = "ready";
   await refresh.click();
   await expect(dialog).toContainText("Studio connected");
-  expect(searches).toBe(2); // Existing choices/results are not reset by refresh.
+  expect(searches).toBe(2);
   expect(f.errors).toEqual([]);
   return { checks, searches };
 }

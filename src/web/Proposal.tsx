@@ -3,12 +3,14 @@ import { QuestionModal } from "./QuestionModal";
 import type { Project } from "../generation/schema";
 export function Proposal({
   project,
+  assetsInChat = false,
   disabled,
   approve,
   discard,
   saveAnswers,
 }: {
   project: Project;
+  assetsInChat?: boolean;
   disabled: boolean;
   approve: () => Promise<void>;
   discard: () => void;
@@ -83,40 +85,44 @@ export function Proposal({
         </section>
       ))}
       <h3>Marketplace assets</h3>
-      {project.assetDiscovery?.groups.map((g) => {
-        const choice = project.assetDiscovery?.choices?.[g.id];
-        const asset = g.options.find((a) => a.assetId === choice?.assetId);
-        return (
-          <p key={g.id}>
-            <strong>{g.label}:</strong>{" "}
-            {asset
-              ? `${asset.name} #${asset.assetId}${choice?.clipKey ? ` · clip ${choice.clipKey}` : ""}`
-              : g.preview === "animation"
-                ? "Unselected · preview and choose a clip below"
-                : "Unselected · choose an asset below"}
-            {project.assetDiscovery?.pinned?.includes(g.id)
-              ? " · your pinned choice"
-              : ""}
+      {!assetsInChat && (
+        <>
+          {project.assetDiscovery?.groups.map((g) => {
+            const choice = project.assetDiscovery?.choices?.[g.id];
+            const asset = g.options.find((a) => a.assetId === choice?.assetId);
+            return (
+              <p key={g.id}>
+                <strong>{g.label}:</strong>{" "}
+                {asset
+                  ? `${asset.name} #${asset.assetId}${choice?.clipKey ? ` · clip ${choice.clipKey}` : ""}`
+                  : g.preview === "animation"
+                    ? "Unselected · preview and choose a clip below"
+                    : "Unselected · choose an asset below"}
+                {project.assetDiscovery?.pinned?.includes(g.id)
+                  ? " · your pinned choice"
+                  : ""}
+              </p>
+            );
+          }) ?? (
+            <p>
+              Connect Marketplace to retrieve recommendations. Your game
+              proposal stays editable.
+            </p>
+          )}
+          {project.assetAttachments
+            ?.filter((a) => a.inspectionLimitations?.length)
+            .map((a) => (
+              <p role="status" key={a.assetId}>
+                Acknowledged inspection coverage limitation for {a.name}:{" "}
+                {a.inspectionLimitations!.join(" ")}
+              </p>
+            ))}
+          <p className="muted">
+            Recommendations use inspected content. Playback, permissions and
+            gameplay still need Studio testing. Preview or replace assets below.
           </p>
-        );
-      }) ?? (
-        <p>
-          Connect Marketplace to retrieve recommendations. Your game proposal
-          stays editable.
-        </p>
+        </>
       )}
-      {project.assetAttachments
-        ?.filter((a) => a.inspectionLimitations?.length)
-        .map((a) => (
-          <p role="status" key={a.assetId}>
-            Acknowledged inspection coverage limitation for {a.name}:{" "}
-            {a.inspectionLimitations!.join(" ")}
-          </p>
-        ))}
-      <p className="muted">
-        Recommendations use inspected content. Playback, permissions and
-        gameplay still need Studio testing. Preview or replace assets below.
-      </p>
       {proposal.summary && <p>{proposal.summary}</p>}
       {project.pendingProposalEdit && (
         <div role="status">
@@ -132,7 +138,7 @@ export function Proposal({
           proposal yet.
         </p>
       )}
-      {missingAssets.length > 0 && (
+      {!assetsInChat && missingAssets.length > 0 && (
         <p role="status">
           Before building, choose an asset or Find later for:{" "}
           {missingAssets.map((group) => group.label).join(", ")}. Open Preview
@@ -150,31 +156,33 @@ export function Proposal({
           Work is still running. Approval is unavailable until it finishes.
         </p>
       )}
-      <button
-        className="primary"
-        disabled={disabled || approving || !!project.pendingProposalEdit}
-        onClick={async () => {
-          if (questions.length) {
-            setOpen(true);
-            return;
-          }
-          setApproving(true);
-          setApprovalError("");
-          try {
-            await approve();
-          } catch (error) {
-            setApprovalError((error as Error).message);
-          } finally {
-            setApproving(false);
-          }
-        }}
-      >
-        {questions.length
-          ? `Answer ${questions.length} questions first`
-          : approving
-            ? "Checking build approval…"
-            : "Approve & build"}
-      </button>
+      {!assetsInChat && (
+        <button
+          className="primary"
+          disabled={disabled || approving || !!project.pendingProposalEdit}
+          onClick={async () => {
+            if (questions.length) {
+              setOpen(true);
+              return;
+            }
+            setApproving(true);
+            setApprovalError("");
+            try {
+              await approve();
+            } catch (error) {
+              setApprovalError((error as Error).message);
+            } finally {
+              setApproving(false);
+            }
+          }}
+        >
+          {questions.length
+            ? `Answer ${questions.length} questions first`
+            : approving
+              ? "Checking build approval…"
+              : "Approve & build"}
+        </button>
+      )}
     </section>
   );
 }
