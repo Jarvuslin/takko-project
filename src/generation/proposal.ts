@@ -152,14 +152,6 @@ export function applyProposalPatch(
   if (patch.assetNeeds) {
     if (!allowed.includes("mechanics"))
       throw new ConflictError("Asset slot changes require a mechanics edit.");
-    for (const old of q.assetNeeds ?? [])
-      if (
-        old.kind !== "Animation" &&
-        !patch.assetNeeds.some((n) => JSON.stringify(n) === JSON.stringify(old))
-      )
-        throw new ConflictError(
-          "A sequence edit must preserve unaffected asset needs.",
-        );
     next.assetNeeds = patch.assetNeeds;
   }
   for (const change of patch.changes) next[change.id] = change.value;
@@ -186,6 +178,10 @@ export function applyProposalPatch(
     };
   }
   p.proposal = next;
+  if (patch.assetNeeds) {
+    const removed = (q.assetNeeds ?? []).filter(old => old.selectedAssetId && !patch.assetNeeds!.some(n => n.selectedAssetId === old.selectedAssetId)).map(n => n.selectedAssetId!);
+    p.assetAttachments = p.assetAttachments?.filter(a => !removed.includes(a.assetId));
+  }
   p.assetDiscovery = nextDiscovery;
   p.revision++;
   p.proposal.summary = patch.summary;

@@ -21,7 +21,7 @@ import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
 import { pickStatus } from "./pick-status";
 import { modelPreviewSchema } from "./preview";
-import { normalizeNeeds } from "./normalize-needs";
+import { matchMessageAssets, normalizeNeeds } from "./normalize-needs";
 
 /** Free browsing and durable picks. Only a current, explicit quote dispatches inference. */
 export function pickingRoutes(
@@ -83,6 +83,7 @@ export function pickingRoutes(
     }
   }
   function initialize(p: Project) {
+    if (!p.assetDiscovery) matchMessageAssets(p);
     if (!p.assetDiscovery)
       p.assetDiscovery = {
         id: randomUUID(),
@@ -262,11 +263,10 @@ export function pickingRoutes(
           const o = g.options.find((o) => o.assetId === c?.assetId);
           if (
             b.studioId &&
-            c?.reason?.startsWith("Chosen by you in chat") &&
+            c?.assetId &&
             !c.error &&
-            g.preview === "animation" &&
             o &&
-            !o.previewData?.pack
+            (!c.sourceReview || g.preview === "animation" && !o.previewData?.pack)
           ) {
             p = await verify(p, g, o, b.studioId);
           }
@@ -404,6 +404,11 @@ export function pickingRoutes(
         throw new RequestError(
           "Static inspection did not return a result. Choose this asset again to retry.",
         );
+      const snapshot = library.sourceSnapshot(option.assetId);
+      if (snapshot && inspected.inspection?.status !== "blocked") {
+        store.save(p);
+        await engine.reviewAttachedSources(p, g.id, snapshot, inspected.inspection!.contentHash);
+      }
       if (g.preview === "animation") {
         if (!library.provider.animations)
           throw new RequestError(
@@ -494,6 +499,8 @@ export function pickingRoutes(
             "Choose an asset from the current Marketplace results.",
           );
         const previous = d.choices?.[g.id];
+        const need = (p.spec?.assetNeeds ?? p.proposal?.assetNeeds)?.find(n => n.id === g.id);
+        if (need) need.selectedAssetId = b.assetId;
         (d.choices ??= {})[g.id] = {
           assetId: b.assetId,
           operation: "checking",
@@ -509,6 +516,17 @@ export function pickingRoutes(
         return verify(p, g, option, b.studioId, b.keep);
       }),
     );
+  });
+  app.post("/api/projects/:id/asset-picks/remove", (req, res) => {
+    const b = base.extend({ groupId: z.string().max(80) }).strict().parse(req.body);
+    const p = current(req.params.id, b.revision), g = group(p, b.groupId);
+    const assetId = p.assetDiscovery!.choices?.[g.id]?.assetId;
+    delete p.assetDiscovery!.choices?.[g.id];
+    for (const n of [...(p.proposal?.assetNeeds ?? []), ...(p.spec?.assetNeeds ?? [])]) if (n.id === g.id || n.selectedAssetId === assetId) delete n.selectedAssetId;
+    p.assetAttachments = p.assetAttachments?.filter(a => a.assetId !== assetId);
+    p.assetDiscovery!.approved = false;
+    refreshProposal(p, ["assets"]);
+    res.json(store.save(p));
   });
   app.post("/api/projects/:id/asset-picks/clip", (req, res) => {
     const b = base

@@ -86,7 +86,10 @@ export class AssetLibrary {
         typeof record.asset.saved !== "boolean"
       )
         throw Error("Invalid asset cache record.");
-      if (record.snapshot) snapshotSchema.parse(record.snapshot);
+      if (record.snapshot) {
+        snapshotSchema.parse(record.snapshot);
+        if (record.asset.inspection?.scannerVersion !== SCANNER_VERSION) record.asset.inspection = inspectSnapshot(record.snapshot);
+      }
       return record;
     } catch (cause) {
       if ((cause as NodeJS.ErrnoException).code === "ENOENT") return;
@@ -102,6 +105,10 @@ export class AssetLibrary {
   get(id: string) {
     const record = this.read(id);
     return record && structuredClone(record.asset);
+  }
+  sourceSnapshot(id: string) {
+    const snapshot = this.read(id)?.snapshot;
+    return snapshot && structuredClone(snapshot);
   }
   list(filter: "all" | "liked" | "saved" = "all") {
     return fs
@@ -220,7 +227,7 @@ export class AssetLibrary {
         inspection.contentHash !== ref.contentHash ||
         inspection.scannerVersion !== SCANNER_VERSION ||
         snapshotHash(record.snapshot) !== ref.contentHash ||
-        (inspection.status !== "no_issues_found" &&
+        (!["no_issues_found", "review_required"].includes(inspection.status) &&
           !(
             inspection.status === "limited" &&
             ref.acknowledgeInspectionLimitations
@@ -232,7 +239,7 @@ export class AssetLibrary {
       // Recompute the verdict rather than trusting an editable local JSON status field.
       const verdict = inspectSnapshot(record.snapshot);
       if (
-        verdict.status !== "no_issues_found" &&
+        !["no_issues_found", "review_required"].includes(verdict.status) &&
         !(verdict.status === "limited" && ref.acknowledgeInspectionLimitations)
       )
         throw new RequestError("Asset needs review.");

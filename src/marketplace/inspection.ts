@@ -6,7 +6,7 @@ import {
   type Inspection,
 } from "./types";
 
-export const SCANNER_VERSION = 2;
+export const SCANNER_VERSION = 3;
 export const snapshotHash = (snapshot: AssetSnapshot) =>
   createHash("sha256")
     .update(JSON.stringify(snapshotSchema.parse(snapshot)))
@@ -22,7 +22,7 @@ const rules: [string, RegExp, Finding["severity"], string][] = [
   [
     "remote-code",
     /\b(?:HttpGet|HttpPost|GetAsync|PostAsync|RequestAsync|LoadAsset|LoadAssetAsync|LoadAssetVersion|GetObjects)\s*\(/i,
-    "review",
+    "blocked",
     "Network access or additional asset loading needs review.",
   ],
   [
@@ -31,12 +31,8 @@ const rules: [string, RegExp, Finding["severity"], string][] = [
     "review",
     "Encoded or obfuscated code needs review.",
   ],
-  [
-    "computed-access",
-    /\[\s*["'][A-Za-z_]+["']\s*\]|\[\s*[^\]\r\n]{0,100}\.\./,
-    "review",
-    "Computed API access may hide executable behavior.",
-  ],
+  ["commerce-teleport", /\b(?:Prompt\w*Purchase|Teleport\w*)\s*\(/i, "blocked", "Purchase prompts or teleports are not permitted in this imported component."],
+  ["hidden-execution", /\[\s*["'](?:require|loadstring|HttpGet|GetAsync|PostAsync|RequestAsync)["']\s*\]/i, "blocked", "Indirect executable or network API access."],
   [
     "source-write",
     /\.Source\s*=|UpdateSourceAsync|ScriptEditorService/,
@@ -89,7 +85,7 @@ export function inspectSnapshot(input: AssetSnapshot): Inspection {
       if (!/^script(?:\.[A-Za-z_]\w*)+$/.test(target)) {
         findings.push({
           rule: "unresolved-module",
-          severity: /^\d+$/.test(target) ? "blocked" : "review",
+          severity: "blocked",
           script: script.name,
           message:
             "External or unresolved module dependency; its code was not inspected.",

@@ -6,6 +6,9 @@ import { questionInstructions, structuredQuestionSchema } from "./questions";
 import { assessEvidenceOptions } from "../marketplace/relevance";
 import { appendTurn } from "./conversation";
 import { validateRetainedAnimations } from "./retained-animation";
+import { matchMessageAssets, normalizeNeeds } from "../marketplace/normalize-needs";
+import { physicalSourceLines } from "./component-review";
+import type { AssetSnapshot } from "../marketplace/types";
 import { approvedReferenceInstructions } from "./approved-reference-policy";
 import {
   approvedClipContext,
@@ -1100,6 +1103,18 @@ export class Engine {
       change.architecture === undefined
         ? undefined
         : architectureSchema.parse(change.architecture);
+    if (text && /\bchoose for me\b/i.test(text) && p.assetDiscovery) {
+      this.idle(p, revision);
+      const groups = p.assetDiscovery.groups;
+      const named = groups.filter(g => text.toLowerCase().includes(g.query.toLowerCase()) || text.toLowerCase().includes(g.id.toLowerCase()));
+      const missing = groups.filter(g => !p.assetDiscovery!.choices?.[g.id]?.assetId);
+      const target = named.length === 1 ? named[0] : missing.length === 1 ? missing[0] : groups.length === 1 ? groups[0] : undefined;
+      appendTurn(p, "user", text, { id: key });
+      if (target) p.assetChoiceRequest = { id: key, groupId: target.id };
+      appendTurn(p, "snapshot", target ? `I'll find a relevant ${target.query}. Review the cost below before choosing.` : `Which asset should I choose? ${groups.map(g => g.query).join(", ")}.`);
+      (p.submissions ??= []).push({ id: key, hash });
+      return this.store.save(p);
+    }
     if (p.proposal && text) {
       if (p.pendingProposalEdit?.id === key && p.jobId) {
         if (p.pendingProposalEdit.submissionHash !== hash)
@@ -1113,9 +1128,14 @@ export class Engine {
         attachments &&
         !isDeepStrictEqual(attachments, p.assetAttachments ?? [])
       )
-        throw new ConflictError(
-          "Save asset replacements in the proposal asset controls before sending this edit. Your request remains a draft.",
-        );
+      {
+        p.assetAttachments = attachments;
+        for (const n of p.proposal.assetNeeds ?? []) if (n.selectedAssetId && !attachments.some(a => a.assetId === n.selectedAssetId)) delete n.selectedAssetId;
+        const questions = matchMessageAssets(p);
+        normalizeNeeds(p);
+        refreshProposal(p, ["assets"]);
+        for (const question of questions) appendTurn(p, "snapshot", question);
+      }
       p.pendingProposalEdit = {
         id: key,
         text,
@@ -2479,6 +2499,32 @@ export class Engine {
     await promise;
     return this.store.get(id);
   }
+  async reviewAttachedSources(p: Project, groupId: string, snapshot: AssetSnapshot, contentHash: string) {
+    if (!snapshot.complete || snapshot.issues.length) throw new ConflictError("Complete script capture is needed for automatic validation. Reinspect this asset in Studio.");
+    const group = p.assetDiscovery!.groups.find(g => g.id === groupId)!;
+    const choice = p.assetDiscovery!.choices![groupId];
+    if (choice.sourceReview?.contentHash === contentHash) return;
+    const settings = this.config.read();
+    if (snapshot.scripts.length && !settings.routes.decisions?.length) throw new ConflictError("Configure the decisions route to check the attached scripts automatically.");
+    const start = p.charges.length;
+    const scripts: { name: string; action: "keep" | "disable" | "danger" }[] = [];
+    for (let offset = 0; offset < snapshot.scripts.length; offset += 16) {
+      const batch = snapshot.scripts.slice(offset, offset + 16);
+      const result = await this.nonCodingDecision(p, "attached-source-review", {
+        state: { request: p.request, role: group.label, query: group.query, contentHash, complete: snapshot.complete, issues: snapshot.issues, nodes: snapshot.nodes,
+          // Same physical source presentation as componentReviewModelEvidence. Never replace sources with script counts.
+          sources: snapshot.scripts.map(s => ({ name: s.name, numberedSource: physicalSourceLines(s.source).map((line, i) => `${i + 1}: ${line}`).join("") })) },
+        questions: Object.fromEntries(batch.map((s, i) => [`script_${i}`, { type: "choice" as const, instructions: `Review actual source of ${s.name} in the full dependency context. Classify only for this asset's role. Ordinary respawn/damage/animation logic is allowed. Computed indexing alone is not danger.`, criteria: { keep: "Useful ordinary behavior for the stated role.", disable: "Unneeded for this role. Disable in the delivered copy.", danger: "Actual external/computed require, dynamic execution, environment tricks, HTTP, remote admin/backdoor, forced purchases or teleports." } }]))
+      }, settings, new Map(settings.profiles.map(m => [m.id, this.config.key(m.id)])), new AbortController().signal);
+      for (const [i, s] of batch.entries()) {
+        const answer = result?.answers[`script_${i}`];
+        if (answer?.type !== "choice" || !["keep", "disable", "danger"].includes(answer.choice)) throw Error("The script review did not return a decision for every source.");
+        scripts.push({ name: s.name, action: answer.choice as "keep" | "disable" | "danger" });
+      }
+    }
+    choice.sourceReview = { contentHash, scripts, costMicros: p.charges.slice(start).reduce((n,c) => n + c.chargedMicros, 0) };
+    this.store.save(p);
+  }
   private async nonCodingDecision(
     p: Project,
     task: string,
@@ -2817,6 +2863,8 @@ export class Engine {
           request: p.request,
           existingProject: existingProjectContext(p),
           gameContext: gameContext(p, undefined, true),
+          conversation: p.conversation,
+          assetChangeInstructions: "Messages can attach assets, replace a need (use a straw dummy instead), reject the last pick (not that one), or change its description (cartoon punch). Update only the affected need's kind/query/constraints, preserve other needs, clear selectedAssetId when the pick no longer fits. Ask which need when ambiguous. Never ask again for an attached or answered item.",
           selectedAssetInstructions: "User-selected attachments are already chosen. Bind each to its intended assetNeed with selectedAssetId copied exactly from gameContext.selectedAssets, preserving the user's usage. Do not replace or re-search them. Static inspection is not gameplay verification.",
           platform: nextPlatform,
           platformInstructions: platformInstructions({platform:nextPlatform}),
@@ -2934,6 +2982,15 @@ export class Engine {
         refreshProposal(p);
       }
       clearAnsweredQuestions(p);
+      const assetQuestions = pending ? [] : matchMessageAssets(p);
+      normalizeNeeds(p);
+      for (const question of assetQuestions) appendTurn(p, "snapshot", question);
+      const detected = p.proposal!.assetNeeds?.filter(n => n.selectedAssetId) ?? [];
+      if (!pending && p.proposal!.assetNeeds?.length) appendTurn(p, "snapshot", `I found ${detected.length} of the ${p.proposal!.assetNeeds.length} assets this game needs in your message.`);
+      if (pending) for (const need of detected) {
+        const asset = p.assetAttachments?.find(a => a.assetId === need.selectedAssetId);
+        if (asset) appendTurn(p, "snapshot", `Using ${asset.name} for ${need.query}. Checking it now.`);
+      }
       questionProposalScope(p.proposal!, p);
       if (nextWorld) p.world = nextWorld;
       if (nextPlatform) p.platform = nextPlatform;

@@ -21,6 +21,31 @@ const options = {
 const parser = new XMLParser(options);
 const builder = new XMLBuilder(options);
 const hash = (text: string) => createHash("sha256").update(text).digest("hex");
+/** Delivery overlay only. Never edits the retained original or executes rejected sources. */
+export function disableReviewedScripts(component: NativeComponentXml, sources: string[]): NativeComponentXml {
+  if (!sources.length) return component;
+  if (hash(component.xml) !== component.sha256) throw Error("Component XML identity mismatch");
+  const doc = parser.parse(component.xml);
+  const visit = (elements: Element[]) => {
+    for (const e of elements) if (e.Item) {
+      const props = content(e, "Item").find(x => x.Properties)?.Properties ?? [];
+      const source = props.find((x: Element) => x.ProtectedString && x[":@"]?.["@_name"] === "Source");
+      if (source && sources.includes(itemName(e))) {
+        // Empty ModuleScripts too: they have no Disabled property and can be required.
+        source.ProtectedString = [{ "#text": "-- Disabled by the asset role review in the delivered copy." }];
+        if (e[":@"]?.["@_class"] !== "ModuleScript") {
+          const disabled = props.find((x: Element) => x.bool && x[":@"]?.["@_name"] === "Disabled");
+          if (disabled) disabled.bool = [{ "#text": "true" }];
+          else props.push({ bool: [{ "#text": "true" }], ":@": { "@_name": "Disabled" } });
+        }
+      }
+      visit(content(e, "Item"));
+    } else if (e.roblox) visit(e.roblox);
+  };
+  visit(doc);
+  const xml = builder.build(doc);
+  return { ...component, xml, sha256: hash(xml) };
+}
 const meaningful = (elements: Element[]) =>
   elements.filter(
     (e) =>

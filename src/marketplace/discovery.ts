@@ -64,6 +64,7 @@ export type AssetDiscovery = {
       operation?: "finding" | "checking";
       error?: string;
       reason?: string;
+      sourceReview?: { contentHash: string; costMicros: number; scripts: { name: string; action: "keep" | "disable" | "danger" }[] };
     }
   >;
   pinned?: string[];

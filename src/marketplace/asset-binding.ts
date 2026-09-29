@@ -29,7 +29,7 @@ function words(text: string): Set<string> {
       ) ?? [],
   );
 }
-function similarity(a: string, b: string) {
+export function similarity(a: string, b: string) {
   const left = words(a),
     right = words(b);
   const common = [...left].filter((w) => right.has(w)).length;

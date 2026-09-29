@@ -334,6 +334,7 @@ export type Charge = {
   at: string;
 };
 export type Project = {
+  assetChoiceRequest?: { id: string; groupId: string };
   clarificationQuestions?: import("./questions").StructuredQuestion[];
   /** Absent on legacy projects. Never infer a template while loading/exporting. */
   world?: import("./world-policy").WorldDecision;

@@ -67,7 +67,7 @@ it("prefills explicitly bound composer attachments using actual inspection outpu
   expect(f.state.inspections).toEqual([result.asset.assetId]);
 });
 
-it("row drops reuse Marketplace listings and retain normal wrong-type and script warning gates", async () => {
+it("row drops review ordinary scripts automatically and retain wrong-type gates", async () => {
   const f = await fixture();
   await fetch(`${f.origin}/api/marketplace/search`, {
     method: "POST",
@@ -83,7 +83,7 @@ it("row drops reuse Marketplace listings and retain normal wrong-type and script
   expect(p.assetDiscovery.choices.targetDummy.assetId).toBe(
     f.dummies[1].assetId,
   );
-  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("warning");
+  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("ready");
   const wrong = (await f.choose(f.dummies[1].assetId, "hitSound")).data;
   expect(
     pickStatus(
@@ -92,7 +92,7 @@ it("row drops reuse Marketplace listings and retain normal wrong-type and script
     ).state,
   ).toBe("problem");
   expect(f.state.searches).toEqual(["target dummy"]);
-  expect(f.state.calls).toBe(0);
+  expect(f.state.calls).toBe(1);
 });
 it("prefills an attached animation pack, captures once without search, and requires a real clip choice", async () => {
   const f = await fixture();
@@ -258,18 +258,16 @@ it("keeps exclusions visible but refuses selection and records a disconnected St
     /Studio isn't connected/,
   );
 });
-it("requires an explicit Keep it for scripts and incomplete inspection", async () => {
+it("does not let Keep it bypass incomplete source capture", async () => {
   const f = await fixture();
   await f.search();
   f.state.scripts = 1;
   f.state.limited = true;
   let p = (await f.choose()).data;
-  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("warning");
+  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("problem");
   p = (await f.choose(f.dummies[1].assetId, "targetDummy", true)).data;
-  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("ready");
-  expect(
-    p.assetDiscovery.choices.targetDummy.acknowledgeInspectionLimitations,
-  ).toBe(true);
+  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("problem");
+  expect(p.assetDiscovery.choices.targetDummy.error).toContain("Complete script capture");
 });
 it("captures only the chosen animation and persists an actual producer clip key", async () => {
   const f = await fixture();

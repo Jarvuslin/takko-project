@@ -103,7 +103,7 @@ export function useAssetAttachments(
         );
         return;
       }
-      if (!i || i.status !== "no_issues_found") {
+      if (!i || i.status === "blocked") {
         setMessage(
           "Asset needs review and was not attached. Findings are shown below." +
             previewError,
@@ -682,7 +682,7 @@ export function Marketplace({
                   disabled={disabled || draft.inspecting}
                   onClick={() => draft.add(asset.assetId)}
                 >
-                  <Icon name="plus" size={16} /> Add
+                  <Icon name="plus" size={16} /> Add to chat
                 </button>
               </div>
             )}

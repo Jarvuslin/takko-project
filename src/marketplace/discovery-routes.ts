@@ -597,6 +597,10 @@ export function discoveryRoutes(
       if (!p.proposal && p.briefApprovedRevision !== p.revision)
         throw new ConflictError("Approve the current brief first.");
       const discovery = structuredClone(p.assetDiscovery!);
+      for (const [id, choice] of Object.entries(b.choices)) {
+        const saved = p.assetDiscovery?.choices?.[id];
+        if (saved?.assetId === choice.assetId && saved?.sourceReview) Object.assign(choice, { sourceReview: saved.sourceReview });
+      }
       if (discovery.approved && !p.proposal)
         throw new ConflictError("These choices are already approved.");
       if (
@@ -663,7 +667,8 @@ export function discoveryRoutes(
           );
         if (
           inspected.inspection?.status !== "no_issues_found" &&
-          inspected.inspection?.status !== "limited"
+          inspected.inspection?.status !== "limited" &&
+          inspected.inspection?.status !== "review_required"
         )
           throw new RequestError(
             `${option.name} needs a source review. Choose another option or Find later.`,

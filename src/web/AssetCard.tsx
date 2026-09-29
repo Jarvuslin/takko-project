@@ -79,6 +79,16 @@ export function AssetCard({
   const live = useRef(project.id);
   live.current = project.id;
   const lock = useRef(false);
+  const requested = useRef("");
+  useEffect(() => {
+    const request = project.assetChoiceRequest;
+    if (!request || requested.current === request.id || disabled || connection.state === "checking") return;
+    requested.current = request.id;
+    void run(request.groupId, async () => {
+      const q = await assetRequest<{ project: Project; token: string; estimatedMicros: number }>(project.id, "asset-picks/estimate", { revision: project.revision, groupId: request.groupId, studioId: connection.studioId });
+      update(q.project); setQuote({ ...q, groupId: request.groupId });
+    });
+  }, [project.assetChoiceRequest?.id, disabled, connection.state]);
   const init = useRef("");
   useEffect(() => {
     if (
@@ -141,6 +151,7 @@ export function AssetCard({
           {groups.length - missing.length} of {groups.length} ready
         </span>
       </div>
+      <p>I found {groups.filter(g => project.assetAttachments?.some(a => a.assetId === project.assetDiscovery?.choices?.[g.id]?.assetId)).length} of the {groups.length} assets this game needs in your message.</p>
       <div
         className="need-progress"
         role="progressbar"
@@ -242,7 +253,7 @@ export function AssetCard({
                 )}
                 <div>
                   <strong className="bounded-name" title={o.name}>
-                    {o.name}
+                    Detected from your message: {o.name}
                   </strong>
                   <small>
                     {o.creatorName} · #{o.assetId}
@@ -261,6 +272,8 @@ export function AssetCard({
             )}
             {o && <ChosenGeometry key={o.assetId} option={o} />}
             <div className="need-actions">
+              {!o && <p>Attach one from the Marketplace and press Enter, or say 'choose for me'</p>}
+              {o && <button aria-label={`Remove ${o.name}`} disabled={disabled || !!busy} onClick={() => run(g.id, async () => update(await assetRequest<Project>(project.id, "asset-picks/remove", { revision: project.revision, groupId: g.id })))}>×</button>}
               {s.state === "warning" && o && (
                 <button
                   disabled={disabled || !!busy}

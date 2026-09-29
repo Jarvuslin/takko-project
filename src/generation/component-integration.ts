@@ -10,7 +10,7 @@ import {
 } from "./component-review";
 import { loadComponentAdaptationChain } from "./component-adaptation";
 import { loadComponentXml } from "./component-xml-conversion";
-import { nameComponentRoot, anchorComponentParts } from "./component-xml";
+import { nameComponentRoot, anchorComponentParts, disableReviewedScripts } from "./component-xml";
 import { componentPhysics } from "./component-physics";
 import { assertNoRuntimeSourceWrites } from "./runtime-source-check";
 import type { AssetNeed } from "./asset-contract";
@@ -230,8 +230,10 @@ export function projectComponents(project: Project, directory: string, bundle: B
       throw Error("Component need or scope changed");
     const physics = componentPhysics(loaded.xml.xml);
     const decision = bundle?.retainedPhysics?.find(d=>d.needId===entry.needId);
+    const sourceReview = Object.values(project.assetDiscovery?.choices ?? {}).find(c => c.assetId === ref.candidateId)?.sourceReview;
+    const disabled = sourceReview?.scripts.filter(s => s.action === "disable").map(s => s.name.split(/[/.]/).at(-1)!) ?? [];
     return { reference: ref, ...loaded, physics,
-      xml: decision?.mode === "anchor_all" ? anchorComponentParts(loaded.xml) : loaded.xml };
+      xml: disableReviewedScripts(decision?.mode === "anchor_all" ? anchorComponentParts(loaded.xml) : loaded.xml, disabled) };
   });
 }
 export function componentBuilderContext(project: Project, directory: string) {

@@ -196,7 +196,7 @@ export type ComponentReviewDecision = z.infer<
 
 // Each physical line retains its original terminator. A final newline does not
 // invent an additional empty line, and an empty source has no physical lines.
-function physicalSourceLines(source: string): string[] {
+export function physicalSourceLines(source: string): string[] {
   const lines = source.match(/[^\r\n]*(?:\r\n|\r|\n|$)/g) ?? [];
   if (lines.at(-1) === "") lines.pop();
   return lines;

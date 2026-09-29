@@ -62,7 +62,7 @@ export function pickStatus(
       "This pick must be free and the right type. Choose another asset.",
     );
   const inspection = option.inspection;
-  if (inspection && !["no_issues_found", "limited"].includes(inspection.status))
+  if (inspection && (inspection.status === "blocked" || inspection.findings.some(f => f.severity === "blocked")))
     return status(
       "problem",
       `${inspection.findings.map((f) => f.message).join(" ") || "Static inspection failed."} Choose another asset.`,
@@ -86,23 +86,20 @@ export function pickStatus(
   const mismatch =
     words.length > 0 &&
     !words.some((w) => option.name.toLowerCase().includes(w.replace(/s$/, "")));
+  if (choice.sourceReview?.scripts.some(s => s.action === "danger")) return status("problem", "Source review found dangerous behavior. Choose another asset.");
+  if (inspection?.scriptCount && choice.sourceReview?.contentHash !== inspection.contentHash) return status("checking", "Checking actual script sources automatically. Validation uses the decisions route and counts against your cap.");
   const warnings = [
     rejected
       ? "The relevance check judged this pick unrelated to the need."
       : mismatch
         ? "The name doesn't match this need. Check the contents before keeping it."
         : "",
-    inspection?.scriptCount
-      ? `${inspection.scriptCount} scripts inside. Review them before keeping this pick.`
-      : "",
     ...(inspection?.limitations ?? option.inspectionLimitations ?? []),
   ].filter(Boolean);
   const clip = option.previewData?.pack?.entries.find(
     (e) => e.key === choice.clipKey && e.clip,
   );
   // Warnings remain visible on old choices, including the saved irrelevant dummy.
-  if (warnings.length && !choice.kept)
-    return status("warning", warnings.join(" "));
   if (!inspection || option.isFree !== true)
     return status(
       "problem",
@@ -113,9 +110,10 @@ export function pickStatus(
       "problem",
       "Choose a playable clip from this animation pack.",
     );
+  if (warnings.length && !choice.kept) return status("warning", warnings.join(" ") + " Choose a closer match if needed.", true);
   return status(
     "ready",
-    choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason,
+    choice.sourceReview ? `${choice.sourceReview.scripts.filter(s => s.action === "keep").length} scripts kept for this role. ${choice.sourceReview.scripts.filter(s => s.action === "disable").map(s => `${s.name}: disabled in delivered copy`).join(" ")} Validation $${(choice.sourceReview.costMicros / 1e6).toFixed(4)}.` : choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason,
   );
 }
 

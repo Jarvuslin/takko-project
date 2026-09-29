@@ -1,6 +1,20 @@
 import type { Project } from "../generation/schema";
 import { assetSearches, type AssetDiscovery, type AssetOption } from "./discovery";
-import { assetNeedForGroup } from "./asset-binding";
+import { assetNeedForGroup, similarity } from "./asset-binding";
+
+export function matchMessageAssets(p: Project) {
+  const needs = p.proposal?.assetNeeds ?? p.spec?.assetNeeds ?? [];
+  const ambiguous: string[] = [];
+  for (const a of p.assetAttachments ?? []) {
+    if (needs.some(n => n.selectedAssetId === a.assetId) || p.excludedAssetIds?.includes(a.assetId)) continue;
+    const ranked = needs.filter(n => !n.selectedAssetId && (n.kind === a.kind || a.kind === "Model" && ["Animation", "Audio"].includes(n.kind)))
+      .map(n => ({ n, score: Math.max(similarity(a.name + " " + a.usage, n.query), similarity(a.name + " " + a.usage, n.role)) }))
+      .filter(x => x.score > 0).sort((a,b) => b.score - a.score);
+    if (ranked.length && (ranked.length === 1 || ranked[0].score > ranked[1].score)) ranked[0].n.selectedAssetId = a.assetId;
+    else if (ranked.length) ambiguous.push(`Which need should ${a.name} fill? ${ranked.map(x => x.n.query).join(" or ")}`);
+  }
+  return ambiguous;
+}
 
 /** Canonical rows are keyed by needs, never by searches or attachment IDs. */
 export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption | undefined) {
@@ -36,7 +50,8 @@ export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption 
     if (choice) choices[row.id] = choice;
     if (selected || chosen && prior.pinned?.includes(chosen.id)) pinned.push(row.id);
     const option = options.find(o => o.assetId === choice?.assetId);
-    return { ...sources.find(g => g.id === row.id), ...row, ...(option ? { kind: option.kind } : {}), options };
+    const existing = sources.find(g => g.id === row.id);
+    return { ...row, ...existing, ...(option ? { kind: option.kind } : {}), options };
   });
   const next = { ...prior, groups, choices, pinned };
   if (JSON.stringify(next) === JSON.stringify(prior)) return false;
