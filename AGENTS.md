@@ -2,7 +2,15 @@
 
 This is **Takko**, a local multi-model Roblox game generation app, previously named Forge. It grew out of the Lemonade.gg research dossier in `research/`, which remains the evidence base. The private remote is `Jarvuslin/takko-project`.
 
-Read `README.md` for what the product does. Read the **top** of `research/notes/continuation.md` before starting anything: it is the running log, newest first, and it holds current server PIDs and ports, the API key balance, what is paused and what must not be touched.
+Read `README.md` for what the product does. Read `research/notes/continuation.md` before starting anything. It is a short current-state file with live server PIDs and ports, the budget, what is paused and what must not be touched. History up to 2026-09-29 is in `research/notes/archive/`. Open it only for a specific past detail.
+
+## How to work here
+
+- **One agent per working copy.** Do not run two agents in this folder at once. For parallel work, give each agent its own git worktree and branch.
+- **Commit when a task is done.** Commit your finished work with a clear message so it can be reviewed and rolled back. Do not push unless the user asks.
+- **Focused tests while working, one full check at the end.** Run the test files you touched as you go. Run `npm run check` once before you report. Rerun it only if source changed after it passed.
+- **No evidence ceremony.** `npm run check` writes its outputs to `test-artifacts/` (gitignored) and no longer touches `docs/results/`. Git history is the backup. Do not hash, back up, archive or restore the evidence tree before or after running tests.
+- **Keep the task small.** Do the one thing asked. If you find something else that needs fixing, write it under "Next up" in `continuation.md` instead of fixing it now.
 
 ## Naming
 
@@ -20,7 +28,7 @@ Ports in use across sessions: 4318 default dev, 4319 isolated browser-test produ
 
 ## Paid model calls
 
-No paid inference without explicit authorization for that specific run. When authorized, record actual cost per call, conservative reservations and the remaining key balance with a UTC timestamp, in the run's `RESULTS.md` and in the new `continuation.md` section. Reconcile every call. Do not silently expand a budget to make a run fit. Do not auto-retry a failed trial. Do not resume a paused generation goal on your own.
+No paid inference without explicit authorization for that specific run. When authorized, record actual cost per call, conservative reservations and the remaining key balance with a UTC timestamp, in the run's `RESULTS.md`, and update the budget lines in `continuation.md`. Reconcile every call. Do not silently expand a budget to make a run fit. Do not auto-retry a failed trial. Do not resume a paused generation goal on your own.
 
 ## Tests
 
@@ -66,9 +74,10 @@ Vitest workers have crashed on Windows before. A crashed worker followed by a cl
 
 When you finish substantial work:
 
-1. Write the detailed report under `docs/`, following the shape of the existing files. What was implemented, what was verified, what the verification does **not** establish, exact test counts, cost.
-2. Append a new dated section at the **top** of `research/notes/continuation.md`, including current PIDs and ports, key balance, what is paused and what the next session must not touch.
+1. Write a short report under `docs/`: what changed, how it was verified, what the verification does **not** establish, exact test counts, cost.
+2. **Rewrite** `research/notes/continuation.md` so it describes the current state: live PIDs and ports, budget, what is paused, next up, recent decisions. Replace outdated lines, do not append a new section. Keep it under about 5 KB.
 3. Update the `Latest:` line at the top of `research/README.md` if the work was research.
+4. Commit.
 
 ## Tone
 

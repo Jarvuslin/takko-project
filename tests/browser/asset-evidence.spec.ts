@@ -128,6 +128,6 @@ test("captured mesh bounds are visibly labelled and distinct from exact geometry
   );
   expect(f.errors).toEqual([]);
   await page.screenshot({
-    path: `docs/results/asset-evidence-selection-20260926/model-${test.info().project.name}.png`,
+    path: `test-artifacts/asset-evidence-selection-20260926/model-${test.info().project.name}.png`,
   });
 });

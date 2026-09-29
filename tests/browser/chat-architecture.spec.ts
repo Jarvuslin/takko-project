@@ -124,7 +124,7 @@ test("reviewed node connections persist and do not dispatch generation", async (
     "Award ten energy after server validation",
   );
   await dialog.screenshot({
-    path: `docs/results/chat-architecture-${info.project.name}.png`,
+    path: `test-artifacts/chat-architecture-${info.project.name}.png`,
   });
   await page.keyboard.press("Escape");
   expect(generations).toBe(0);
@@ -253,7 +253,7 @@ test("actual imported keyframes move the inline rig and survive refresh", async 
     page.getByText(/Studio playback has not been verified/),
   ).toBeVisible();
   await viewer.screenshot({
-    path: `docs/results/chat-animation-${info.project.name}.png`,
+    path: `test-artifacts/chat-animation-${info.project.name}.png`,
   });
   await page.reload();
   await page.locator(".animation-player").scrollIntoViewIfNeeded();

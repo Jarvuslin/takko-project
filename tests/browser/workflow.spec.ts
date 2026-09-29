@@ -129,7 +129,7 @@ test("welcomes multiple game ideas without generating a preset or claiming a con
     page.getByRole("link", { name: "Download Takko.rbxmx" }),
   ).toHaveAttribute("href", "/api/studio/plugin");
   await page.screenshot({
-    path: `docs/results/forge-v2-studio-${testInfo.project.name}.png`,
+    path: `test-artifacts/forge-v2-studio-${testInfo.project.name}.png`,
     fullPage: true,
   });
 });
@@ -212,7 +212,7 @@ test("welcome and model settings pass accessibility checks and fit the viewport"
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/results/forge-v2-welcome-${testInfo.project.name}.png`,
+    path: `test-artifacts/forge-v2-welcome-${testInfo.project.name}.png`,
     fullPage: true,
   });
   await page
@@ -276,7 +276,7 @@ test("builds an approved non-combat project through a real HTTP provider adapter
       page.getByText("From your clarification", { exact: false }),
     ).toBeVisible();
     await page.screenshot({
-      path: `docs/results/forge-v2-brief-${testInfo.project.name}.png`,
+      path: `test-artifacts/forge-v2-brief-${testInfo.project.name}.png`,
       fullPage: true,
     });
     await page.getByRole("button", { name: "Approve specification" }).click();

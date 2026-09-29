@@ -15,4 +15,4 @@ Load these skills when the work calls for them, before acting rather than after:
 
 Do **not** load `roblox-dbd-director` or `roblox-dbd-agent-briefs` here. Those belong to a different project, the asymmetric horror game at `D:\RobloxProjects\Roblox DBD`.
 
-`docs/agent-context/state.md` is a dated snapshot and goes stale. The top of `research/notes/continuation.md` is always the authority on live PIDs, ports, budget and what is paused.
+`docs/agent-context/state.md` is a dated snapshot and goes stale. `research/notes/continuation.md` is always the authority on live PIDs, ports, budget and what is paused.

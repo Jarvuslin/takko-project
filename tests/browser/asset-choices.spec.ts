@@ -107,7 +107,7 @@ test("brief searches automatically, previews geometry and clips, then approves w
     .getByRole("button", { name: "Choose this asset", exact: true })
     .click();
   await page.screenshot({
-    path: `docs/results/surgical-ux/options-${info.project.name}.png`,
+    path: `test-artifacts/surgical-ux/options-${info.project.name}.png`,
   });
   for (const label of [
     "Sprint animation",

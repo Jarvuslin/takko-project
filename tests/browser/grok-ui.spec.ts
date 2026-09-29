@@ -141,7 +141,7 @@ test("monochrome layout keeps composer actions reachable at narrow widths", asyn
     ).toBe(true);
   }
   await page.screenshot({
-    path: `docs/results/grok-ui-home-${testInfo.project.name}.png`,
+    path: `test-artifacts/grok-ui-home-${testInfo.project.name}.png`,
     fullPage: true,
   });
 });

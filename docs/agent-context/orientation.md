@@ -53,7 +53,7 @@ Alongside that there is a **Marketplace** flow: search the free Creator Store, l
 
 **`docs/`** - around 60 verification reports, one per piece of work. Follow their format when you write a new one.
 
-**`research/`** - 28 numbered reports, `notes/continuation.md` (the running log, newest first), `evidence/` (third-party originals, gitignored), `results/`.
+**`research/`** - 28 numbered reports, `notes/continuation.md` (short current state, history in `notes/archive/`), `evidence/` (third-party originals, gitignored), `results/`.
 
 **`benchmarks/runs/`** - dated benchmark runs, each with its own `RESULTS.md`.
 

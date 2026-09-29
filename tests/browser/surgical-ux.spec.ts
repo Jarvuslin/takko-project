@@ -12,7 +12,7 @@ test("Question opens, preserves Back choices and custom answers, and leaves a co
   await questionFlow(
     page,
     "",
-    `docs/results/surgical-ux/question-${info.project.name}.png`,
+    `test-artifacts/surgical-ux/question-${info.project.name}.png`,
   );
 });
 test("paged browsing preserves scroll, chooses from preview and releases its renderer in a short window", async ({
@@ -25,7 +25,7 @@ test("paged browsing preserves scroll, chooses from preview and releases its ren
   await browseFlow(
     page,
     "",
-    `docs/results/surgical-ux/short-preview-${info.project.name}.png`,
+    `test-artifacts/surgical-ux/short-preview-${info.project.name}.png`,
   );
 });
 test("long structured questions scroll while their actions remain reachable", async ({

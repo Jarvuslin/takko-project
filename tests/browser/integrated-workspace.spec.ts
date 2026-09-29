@@ -76,7 +76,7 @@ test("canvas and conversation stay visible and remote changes never overwrite lo
     "Make attacks feel faster",
   );
   await page.screenshot({
-    path: `docs/results/integrated-workspace/workspace-${info.project.name}.png`,
+    path: `test-artifacts/integrated-workspace/workspace-${info.project.name}.png`,
   });
 });
 test("canvas pan, zoom, dragging and auto layout preserve game connection contracts", async ({

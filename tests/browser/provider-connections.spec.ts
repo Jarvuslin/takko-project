@@ -98,7 +98,7 @@ test("catalog stays locked for rejected keys, then two models reuse one validate
     explorer.getByRole("searchbox", { name: "Search provider models" }),
   ).toBeVisible();
   await page.screenshot({
-    path: `docs/results/provider-models/library-${info.project.name}.png`,
+    path: `test-artifacts/provider-models/library-${info.project.name}.png`,
     fullPage: true,
   });
 });

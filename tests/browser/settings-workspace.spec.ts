@@ -352,7 +352,7 @@ test("Models and Presets pages and dialogs pass accessibility and keep actions v
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/results/model-library-${route}-${info.project.name}.png`,
+      path: `test-artifacts/model-library-${route}-${info.project.name}.png`,
       fullPage: true,
     });
     await page
@@ -380,7 +380,7 @@ test("Models and Presets pages and dialogs pass accessibility and keep actions v
       page.viewportSize()!.height,
     );
     await page.screenshot({
-      path: `docs/results/model-library-${route}-dialog-${info.project.name}.png`,
+      path: `test-artifacts/model-library-${route}-dialog-${info.project.name}.png`,
     });
     await page.keyboard.press("Escape");
   }

@@ -8,7 +8,7 @@ test("connection refresh shows progress, retries failed discovery, clears stale 
   await connectionRecoveryFlow(
     page,
     "",
-    `docs/results/connection-recovery/chooser-${info.project.name}.png`,
+    `test-artifacts/connection-recovery/chooser-${info.project.name}.png`,
   );
 });
 

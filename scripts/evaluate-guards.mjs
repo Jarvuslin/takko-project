@@ -62,9 +62,9 @@ for (const entry of cases) {
     matched: passed === entry.expectPass,
   });
 }
-fs.mkdirSync("docs/results", { recursive: true });
+fs.mkdirSync("test-artifacts", { recursive: true });
 fs.writeFileSync(
-  "docs/results/guard-evaluation.json",
+  "test-artifacts/guard-evaluation.json",
   JSON.stringify(
     {
       ranAt: new Date().toISOString(),

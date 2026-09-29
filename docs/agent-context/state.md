@@ -1,13 +1,10 @@
 # Takko state snapshot
 
-**Captured 2026-09-19. This goes stale fast. Always re-read the top of `research/notes/continuation.md` before acting on anything here.**
+**Captured 2026-09-19. This goes stale fast. Always re-read `research/notes/continuation.md` before acting on anything here.**
 
 ## Git
 
-- One commit on record: `7ab9332` "Initial Takko project with Studio integration, tests, and research".
-- Current branch: `codex/marketplace-asset-library`.
-- **The entire marketplace feature is uncommitted.** Untracked: `src/marketplace/`, `src/web/Marketplace.tsx`, `tests/marketplace.test.ts`, `tests/browser/marketplace.spec.ts`, `docs/marketplace-asset-library.md`, `docs/marketplace-transfer-fix.md`, four files under `docs/results/`.
-- Modified and uncommitted: `README.md`, `research/README.md`, `research/notes/continuation.md`, `src/generation/engine.ts`, `src/generation/game-context.ts`, `src/generation/schema.ts`, `src/server/app.ts`, `src/web/App.tsx`, `src/web/styles.css`.
+- Updated 2026-09-29: all work through that date is committed on branch `codex/marketplace-asset-library` (snapshot `eb046db` plus the workflow cleanup commit after it). Agents commit their own finished work from now on.
 - Nothing has been pushed since the initial commit. Be careful with any destructive git operation.
 
 ## Last recorded work, 2026-09-17
@@ -61,7 +58,7 @@ From `research/results/model-screen-20260916/` and surrounding runs. Single samp
 
 ## Where to read more
 
-- `research/notes/continuation.md` top section, always first
+- `research/notes/continuation.md`, always first
 - `docs/marketplace-transfer-fix.md` latest fix
 - `docs/marketplace-asset-library.md` the marketplace feature
 - `docs/production-readiness.md` the honest assessment of what is not production ready

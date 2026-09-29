@@ -58,12 +58,12 @@ test("system typography requires no external fonts and fits the minimal responsi
     ).toBe(true);
   }
   await page.screenshot({
-    path: `docs/results/forge-minimal-type-dashboard-${testInfo.project.name}.png`,
+    path: `test-artifacts/forge-minimal-type-dashboard-${testInfo.project.name}.png`,
     fullPage: true,
   });
   if (testInfo.project.name === "desktop")
     await page.screenshot({
-      path: "docs/results/takko-desktop.png",
+      path: "test-artifacts/takko-desktop.png",
       fullPage: true,
     });
 });
@@ -116,7 +116,7 @@ test("workspace typography keeps prose readable and controls usable", async ({
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/results/forge-minimal-type-workspace-${testInfo.project.name}.png`,
+    path: `test-artifacts/forge-minimal-type-workspace-${testInfo.project.name}.png`,
     fullPage: true,
   });
 });

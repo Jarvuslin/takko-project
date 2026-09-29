@@ -179,7 +179,7 @@ test("Marketplace supports saved assets, inspected drag/drop and chat attachment
   await panel.getByRole("button", { name: "Animations", exact: true }).click();
   await expect(panel.getByLabel("Asset type")).toHaveValue("Animation");
   await page.screenshot({
-    path: `docs/results/asset-choices/marketplace-${testInfo.project.name}.png`,
+    path: `test-artifacts/asset-choices/marketplace-${testInfo.project.name}.png`,
   });
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await card.getByLabel("Like Working Butter", { exact: true }).click();

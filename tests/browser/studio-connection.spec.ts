@@ -58,7 +58,7 @@ test("disconnected projects show setup, offline hides architecture, reconnect op
   ).toBeVisible();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await page.screenshot({
-    path: `docs/results/asset-choices/connection-${info.project.name}.png`,
+    path: `test-artifacts/asset-choices/connection-${info.project.name}.png`,
     fullPage: true,
   });
   await page

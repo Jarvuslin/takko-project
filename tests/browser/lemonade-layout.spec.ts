@@ -176,7 +176,7 @@ test("minimal prompt and saved preset preserve real role preferences", async ({
       "Build a shop UI with item previews",
     );
     await page.screenshot({
-      path: `docs/results/forge-minimal-dashboard-${testInfo.project.name}.png`,
+      path: `test-artifacts/forge-minimal-dashboard-${testInfo.project.name}.png`,
       fullPage: true,
     });
   } finally {
@@ -267,7 +267,7 @@ test("minimal task list, source, history and follow-up use the current project",
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/results/forge-minimal-workspace-${testInfo.project.name}.png`,
+    path: `test-artifacts/forge-minimal-workspace-${testInfo.project.name}.png`,
     fullPage: true,
   });
 });

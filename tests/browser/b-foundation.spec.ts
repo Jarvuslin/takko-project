@@ -138,7 +138,7 @@ test("selected B workspace docks editing below the visible graph and preserves c
     .getByRole("button", { name: "Edit Combat rules", exact: true })
     .click();
   await page.screenshot({
-    path: `docs/results/b-foundation/dock-${info.project.name}.png`,
+    path: `test-artifacts/b-foundation/dock-${info.project.name}.png`,
   });
 });
 

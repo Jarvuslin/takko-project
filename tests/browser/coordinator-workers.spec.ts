@@ -73,6 +73,6 @@ test("coordinator activity exposes saved and interrupted worker results without 
     await activity.evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/results/coordinator-workers/activity-${info.project.name}.png`,
+    path: `test-artifacts/coordinator-workers/activity-${info.project.name}.png`,
   });
 });

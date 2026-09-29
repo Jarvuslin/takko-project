@@ -52,9 +52,9 @@ try {
   const unknown = await fetch(base + "/api/not-real");
   if (unknown.status !== 404)
     throw Error("Unknown API route did not return 404");
-  fs.mkdirSync("docs/results", { recursive: true });
+  fs.mkdirSync("test-artifacts", { recursive: true });
   fs.writeFileSync(
-    "docs/results/production-smoke.json",
+    "test-artifacts/production-smoke.json",
     JSON.stringify(
       {
         ranAt: new Date().toISOString(),

@@ -118,7 +118,7 @@ test("real saved proposal questions support review, Other, closing, keyboard and
     1,
   );
   await page.screenshot({
-    path: `docs/results/question-modal-20260928/modal-${info.project.name}.png`,
+    path: `test-artifacts/question-modal-20260928/modal-${info.project.name}.png`,
     fullPage: true,
   });
   await page.keyboard.press("Escape");

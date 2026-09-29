@@ -32,3 +32,6 @@ docs/results/**/trace.zip
 docs/results/**/npm-cache/
 docs/results/**/localappdata/
 *.rbxlx.lock
+
+# Output written by npm run check (screenshots, guard and smoke results).
+test-artifacts/

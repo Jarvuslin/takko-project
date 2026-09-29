@@ -189,7 +189,7 @@ test("persistent proposal exposes one build approval and preserves untouched sec
   await expect(proposal).toContainText("Proposal approved");
   expect(f.counts()).toEqual({ sent: 1, approvals: 1 });
   await page.screenshot({
-    path: `docs/results/conversation-planning/proposal-${test.info().project.name}.png`,
+    path: `test-artifacts/conversation-planning/proposal-${test.info().project.name}.png`,
     fullPage: true,
   });
   await page.reload();

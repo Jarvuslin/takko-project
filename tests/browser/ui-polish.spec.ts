@@ -35,7 +35,7 @@ test("focused decisions retain choices, support multiple and skip, and save a co
     dialog.getByRole("checkbox", { name: "Hit effects", exact: true }),
   ).toBeChecked();
   await dialog.screenshot({
-    path: `docs/results/ui-polish/questions-${info.project.name}.png`,
+    path: `test-artifacts/ui-polish/questions-${info.project.name}.png`,
   });
   expect(
     (await new AxeBuilder({ page }).include(".clarification-flow").analyze())
@@ -58,7 +58,7 @@ test("focused decisions retain choices, support multiple and skip, and save a co
   );
   expect(f.calls).toEqual(["PATCH", "concept"]);
   await page.screenshot({
-    path: `docs/results/ui-polish/receipt-${info.project.name}.png`,
+    path: `test-artifacts/ui-polish/receipt-${info.project.name}.png`,
   });
   await page
     .locator(".saved-clarifications")
@@ -167,7 +167,7 @@ test("panel pointer and keyboard resize respect bounds and survive reload", asyn
   await expect(
     page.getByRole("textbox", { name: "Message", exact: true }),
   ).toBeVisible();
-  await page.screenshot({ path: "docs/results/ui-polish/minimum-desktop.png" });
+  await page.screenshot({ path: "test-artifacts/ui-polish/minimum-desktop.png" });
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(separator).toHaveAttribute("aria-valuenow", "640");
   await separator.dblclick();
@@ -225,6 +225,6 @@ test("inspector, source, Studio, plan and composer stay usable", async ({
     ),
   ).toBe(true);
   await page.screenshot({
-    path: `docs/results/ui-polish/workspace-${info.project.name}.png`,
+    path: `test-artifacts/ui-polish/workspace-${info.project.name}.png`,
   });
 });

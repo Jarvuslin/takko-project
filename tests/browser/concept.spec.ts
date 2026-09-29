@@ -85,7 +85,7 @@ test("concept choices, explicit delegation, reload and planning handoff", async 
   ).toHaveAttribute("aria-pressed", "true");
   expect(calls.map((c) => c.action)).toEqual(["concept"]);
   await card.screenshot({
-    path: `docs/results/concept-choices-${info.project.name}.png`,
+    path: `test-artifacts/concept-choices-${info.project.name}.png`,
   });
   expect(
     (await new AxeBuilder({ page }).include(".game-concept").analyze())
