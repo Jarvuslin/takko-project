@@ -1,5 +1,7 @@
 # Working in this repository
 
+The Takko app is desktop-only. Do not build or test mobile layouts.
+
 This is **Takko**, a local multi-model Roblox game generation app, previously named Forge. It grew out of the Lemonade.gg research dossier in `research/`, which remains the evidence base. The private remote is `Jarvuslin/takko-project`.
 
 Read `README.md` for what the product does. Read `research/notes/continuation.md` before starting anything. It is a short current-state file with live server PIDs and ports, the budget, what is paused and what must not be touched. History up to 2026-09-29 is in `research/notes/archive/`. Open it only for a specific past detail.

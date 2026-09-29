@@ -34,8 +34,6 @@ test("project selection survives refresh and detail controls support keyboard ac
   await expect(page.getByLabel("Project request")).toHaveValue(
     "A small puzzle game",
   );
-  if (testInfo.project.name === "mobile")
-    await expect(page.getByLabel("Open project")).toBeVisible();
   const build = page.getByRole("button", {
     name: "Build details",
     exact: true,

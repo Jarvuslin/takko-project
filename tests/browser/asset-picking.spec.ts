@@ -214,3 +214,79 @@ for (const relevant of [true, false])
       relevant,
     );
   });
+
+test("long real asset names stay bounded and result actions align", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await row(page)
+    .getByRole("button", { name: "Choose asset", exact: true })
+    .click();
+  await page
+    .getByLabel("Search Marketplace", { exact: true })
+    .fill("target dummy");
+  await page
+    .getByRole("button", { name: "Search assets", exact: true })
+    .click();
+  await expect(page.locator(".market-card")).toHaveCount(f.dummies.length);
+  const longest = f.dummies.reduce((a, b) =>
+    a.name.length > b.name.length ? a : b,
+  );
+  const result = page.locator(".market-card").filter({
+    has: page.getByRole("link", { name: longest.name, exact: true }),
+  });
+  const title = result.locator("a");
+  await expect(title).toHaveAttribute("title", longest.name);
+  await expect(title).toHaveCSS("-webkit-line-clamp", "2");
+  const positions = await page.locator(".market-card").evaluateAll((cards) =>
+    cards.map((card) => {
+      const box = card.getBoundingClientRect();
+      const action = card.querySelector(".pick-use")!.getBoundingClientRect();
+      const name = card.querySelector("a")!.getBoundingClientRect();
+      return {
+        top: box.top,
+        bottom: box.bottom,
+        actionBottom: action.bottom,
+        right: box.right,
+        actionRight: action.right,
+        nameRight: name.right,
+      };
+    }),
+  );
+  for (const p of positions) {
+    expect(p.bottom - p.actionBottom).toBeLessThanOrEqual(10);
+    expect(p.actionRight).toBeLessThanOrEqual(p.right);
+    expect(p.nameRight).toBeLessThanOrEqual(p.right);
+    for (const peer of positions.filter(
+      (other) => Math.abs(other.top - p.top) < 1,
+    ))
+      expect(Math.abs(peer.actionBottom - p.actionBottom)).toBeLessThanOrEqual(
+        1,
+      );
+  }
+  await page.screenshot({
+    path: "test-artifacts/takko-refresh/long-name-picking-desktop.png",
+  });
+  await result.getByRole("button", { name: "Use this", exact: true }).click();
+  const picked = row(page).locator(".chosen-asset strong");
+  await expect(picked).toHaveText(longest.name);
+  await expect(picked).toHaveAttribute("title", longest.name);
+  await expect(picked).toHaveCSS("white-space", "nowrap");
+  await expect(picked).toHaveCSS("text-overflow", "ellipsis");
+  await page
+    .getByRole("separator", { name: "Resize Takko panel" })
+    .press("Home");
+  const contained = await row(page).evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    return [...element.querySelectorAll("button, .chosen-asset strong")].every(
+      (control) => control.getBoundingClientRect().right <= bounds.right + 1,
+    );
+  });
+  expect(contained).toBe(true);
+  const attachment = page.locator(".asset-attachment strong");
+  await expect(attachment).toHaveAttribute("title", longest.name);
+  await expect(attachment).toHaveCSS("text-overflow", "ellipsis");
+  await page.screenshot({
+    path: "test-artifacts/takko-refresh/long-name-desktop.png",
+  });
+});

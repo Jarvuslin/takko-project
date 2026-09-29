@@ -81,39 +81,34 @@ test("recent cards open saved projects and project search only filters navigatio
   const recent = page.getByRole("region", { name: "Recent projects" });
   await expect(recent.getByRole("button")).toHaveCount(2);
   await expect(recent).not.toContainText("Neon Drift");
-  if (testInfo.project.name === "desktop") {
-    const search = page.getByRole("searchbox", { name: "Search projects" });
-    await search.fill("satellite");
-    await expect(
-      page.getByRole("navigation", { name: "Projects" }).getByRole("button"),
-    ).toHaveCount(1);
-    await search.fill("no-such-project");
-    await expect(page.getByText("No matching projects.")).toBeVisible();
-    await expect(recent.getByRole("button")).toHaveCount(2);
-  }
+
+  const search = page.getByRole("searchbox", { name: "Search projects" });
+  await search.fill("satellite");
+  await expect(
+    page.getByRole("navigation", { name: "Projects" }).getByRole("button"),
+  ).toHaveCount(1);
+  await search.fill("no-such-project");
+  await expect(page.getByText("No matching projects.")).toBeVisible();
+  await expect(recent.getByRole("button")).toHaveCount(2);
+
   await recent.getByRole("button", { name: /Satellite Gardens/ }).click();
   await expect(page.getByLabel("Project request")).toHaveValue(a.request);
   await expect(page).toHaveURL(new RegExp(a.id));
-  if (testInfo.project.name === "mobile") {
-    await page.getByRole("button", { name: "Studio details", exact: true }).click();
-  } else {
-    await page
-      .getByRole("button", { name: "Connect to Studio", exact: true })
-      .click();
-  }
+
+  await page
+    .getByRole("button", { name: "Connect to Studio", exact: true })
+    .click();
   await expect(
     page.getByRole("dialog", { name: "Studio details" }),
   ).toBeVisible();
 });
 
-test("monochrome layout keeps composer actions reachable at narrow widths", async ({
+test("monochrome layout keeps composer actions reachable at desktop window sizes", async ({
   page,
 }, testInfo) => {
   await page.route("**/api/projects", (route) => route.fulfill({ json: [] }));
   await page.goto("/");
-  for (const width of testInfo.project.name === "desktop"
-    ? [768, 1024, 1440]
-    : [320, 375, 390]) {
+  for (const width of [768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await expect(
       page.getByRole("button", { name: "Create project", exact: true }),
@@ -144,4 +139,49 @@ test("monochrome layout keeps composer actions reachable at narrow widths", asyn
     path: `test-artifacts/grok-ui-home-${testInfo.project.name}.png`,
     fullPage: true,
   });
+});
+
+test("project names keep their full hover text within navigation tracks", async ({
+  page,
+}) => {
+  const created = await (
+    await page.request.post("/api/projects", {
+      data: {
+        request:
+          "Build a cooperative exploration game in a very large floating garden with friends",
+      },
+    })
+  ).json();
+  await page.goto("/");
+  const recent = page
+    .getByRole("region", { name: "Recent projects" })
+    .getByRole("button", { name: new RegExp(created.name) });
+  const title = recent.locator("strong");
+  await expect(title).toHaveAttribute("title", created.name);
+  await expect(title).toHaveCSS("white-space", "nowrap");
+  await expect(title).toHaveCSS("text-overflow", "ellipsis");
+  await recent.click();
+  const crumb = page.locator(".topbar .bounded-name");
+  await expect(crumb).toHaveAttribute("title", created.name);
+  await expect(crumb).toHaveCSS("text-overflow", "ellipsis");
+  await page.getByTitle("Projects", { exact: true }).click();
+  const nav = page
+    .getByRole("navigation", { name: "Projects", exact: true })
+    .getByRole("button", { name: created.name, exact: true });
+  await expect(nav.locator(".bounded-name")).toHaveAttribute(
+    "title",
+    created.name,
+  );
+  await page.setViewportSize({ width: 860, height: 900 });
+  expect(
+    await page
+      .locator(".topbar")
+      .evaluate((header) =>
+        [...header.querySelectorAll("button, .bounded-name")].every(
+          (child) =>
+            child.getBoundingClientRect().right <=
+            header.getBoundingClientRect().right + 1,
+        ),
+      ),
+  ).toBe(true);
 });

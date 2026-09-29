@@ -698,7 +698,9 @@ export function App() {
                       aria-current={p.id === project?.id ? "page" : undefined}
                     >
                       <span className="project-dot" />
-                      <span>{p.name}</span>
+                      <span className="bounded-name" title={p.name}>
+                        {p.name}
+                      </span>
                     </button>
                   ))
               ) : (
@@ -742,11 +744,20 @@ export function App() {
           <div>
             <span className="muted">Workspace</span>
             <span className="slash">/</span>
-            {settingsPage
-              ? settingsPage === "models"
-                ? "Models"
-                : "Presets"
-              : (project?.name ?? "New project")}
+            {settingsPage ? (
+              settingsPage === "models" ? (
+                "Models"
+              ) : (
+                "Presets"
+              )
+            ) : (
+              <span
+                className="bounded-name"
+                title={project?.name ?? "New project"}
+              >
+                {project?.name ?? "New project"}
+              </span>
+            )}
           </div>
           <div className="topbar-actions">
             {project ? (
@@ -806,30 +817,6 @@ export function App() {
           />
         ) : (
           <>
-            <label className="mobile-project-picker">
-              Your projects
-              <select
-                aria-label="Open project"
-                value={project?.id ?? ""}
-                onChange={(e) => {
-                  if (e.target.value) select(e.target.value);
-                  else {
-                    if (!navigateSettings(null)) return;
-                    setGenerationLimit(undefined);
-                    setProject(null);
-                    setRequest("");
-                    history.replaceState(null, "", "/");
-                  }
-                }}
-              >
-                <option value="">New project</option>
-                {projects.map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </label>
             {(error || pollError) && (
               <div role="alert" className="error-banner">
                 {error || pollError}
@@ -1017,7 +1004,9 @@ export function App() {
                             }
                             alt=""
                           />
-                          <strong>{p.name}</strong>
+                          <strong className="bounded-name" title={p.name}>
+                            {p.name}
+                          </strong>
                           <small>{p.stage.replaceAll("_", " ")}</small>
                         </button>
                       ))}

@@ -16,11 +16,5 @@ export default defineConfig({
       NODE_ENV: "production",
     },
   },
-  projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"] } },
-    {
-      name: "mobile",
-      use: { ...devices["iPhone 13"], defaultBrowserType: "chromium" },
-    },
-  ],
+  projects: [{ name: "desktop", use: { ...devices["Desktop Chrome"] } }],
 });

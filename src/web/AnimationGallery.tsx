@@ -12,12 +12,13 @@ export function AnimationGallery({ pack }: { pack: SavedAnimationPack }) {
       <label>
         Animation · {pack.entries.length} in this asset
         <select
+          title={entry?.name ?? pack.name}
           aria-label={`Animation from ${pack.name}`}
           value={entry?.key}
           onChange={(e) => setSelected(e.target.value)}
         >
           {pack.entries.map((e, i) => (
-            <option key={e.key} value={e.key}>
+            <option key={e.key} value={e.key} title={e.name}>
               {i + 1}. {e.name}
               {e.clip ? ` · ${e.clip.rig}` : " · unavailable"}
             </option>

@@ -93,11 +93,19 @@ export function Proposal({
             return (
               <p key={g.id}>
                 <strong>{g.label}:</strong>{" "}
-                {asset
-                  ? `${asset.name} #${asset.assetId}${choice?.clipKey ? ` · clip ${choice.clipKey}` : ""}`
-                  : g.preview === "animation"
-                    ? "Unselected · preview and choose a clip below"
-                    : "Unselected · choose an asset below"}
+                {asset ? (
+                  <>
+                    <span className="bounded-name" title={asset.name}>
+                      {asset.name}
+                    </span>{" "}
+                    #{asset.assetId}
+                    {choice?.clipKey ? ` · clip ${choice.clipKey}` : ""}
+                  </>
+                ) : g.preview === "animation" ? (
+                  "Unselected · preview and choose a clip below"
+                ) : (
+                  "Unselected · choose an asset below"
+                )}
                 {project.assetDiscovery?.pinned?.includes(g.id)
                   ? " · your pinned choice"
                   : ""}
@@ -113,8 +121,11 @@ export function Proposal({
             ?.filter((a) => a.inspectionLimitations?.length)
             .map((a) => (
               <p role="status" key={a.assetId}>
-                Acknowledged inspection coverage limitation for {a.name}:{" "}
-                {a.inspectionLimitations!.join(" ")}
+                Acknowledged inspection coverage limitation for{" "}
+                <span className="bounded-name" title={a.name}>
+                  {a.name}
+                </span>
+                : {a.inspectionLimitations!.join(" ")}
               </p>
             ))}
           <p className="muted">

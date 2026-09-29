@@ -189,9 +189,9 @@ test("Marketplace supports saved assets, inspected drag/drop and chat attachment
   await card.getByLabel("Save Working Butter", { exact: true }).click();
   await panel.getByRole("button", { name: "Saved", exact: true }).click();
   await expect(card).toHaveCount(1);
-  if (testInfo.project.name === "desktop") {
-    await card.dragTo(page.getByLabel("Game idea"));
-  } else await card.getByRole("button", { name: "Add", exact: true }).click();
+
+  await card.dragTo(page.getByLabel("Game idea"));
+
   await expect(
     page
       .getByRole("group", { name: "Attached assets", exact: true })

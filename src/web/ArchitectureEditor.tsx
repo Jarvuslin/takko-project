@@ -174,7 +174,12 @@ export function ArchitectureEditor({
           {docked && (
             <span className="canvas-eyebrow">Your game, connected</span>
           )}
-          <strong>{docked ? "Game architecture" : project.name}</strong>
+          <strong
+            className="bounded-name"
+            title={docked ? "Game architecture" : project.name}
+          >
+            {docked ? "Game architecture" : project.name}
+          </strong>
           <small>
             {project.stage.replaceAll("_", " ")} ·{" "}
             {project.architecture

@@ -1695,99 +1695,6 @@
     line-height: 1.8;
   }
 }
-@media (max-width: 700px) {
-  .design-lab {
-    min-height: 740px;
-  }
-  .design-lab .dl-labbar {
-    padding: 0 8px;
-    gap: 4px;
-  }
-  .design-lab .dl-lab-title {
-    display: none;
-  }
-  .design-lab .dl-switch button {
-    padding: 5px 8px;
-  }
-  .design-lab .dl-switch button span {
-    font-size: 11px;
-  }
-  .design-lab .dl-state-button {
-    font-size: 0;
-  }
-  .design-lab .dl-shell {
-    grid-template-columns: 1fr;
-  }
-  .design-lab .dl-sidebar {
-    display: none;
-  }
-  .design-lab .dl-projectbar {
-    padding: 0 12px;
-    height: 46px;
-  }
-  .design-lab .dl-projectbar .dl-draft {
-    display: none;
-  }
-  .design-lab .dl-workspace,
-  .design-lab.dl-B .dl-workspace {
-    grid-template-columns: 1fr;
-    grid-template-rows: 280px minmax(0, 1fr);
-    padding: 0;
-  }
-  .design-lab .dl-resize {
-    display: none;
-  }
-  .design-lab .dl-canvas-intro,
-  .design-lab.dl-B .dl-canvas-intro,
-  .design-lab.dl-C .dl-canvas-intro {
-    padding: 10px 14px;
-    flex-wrap: nowrap;
-  }
-  .design-lab .dl-canvas-intro h1,
-  .design-lab.dl-B .dl-canvas-intro h1 {
-    font-size: 16px;
-    margin: 0;
-  }
-  .design-lab .dl-canvas-intro :is(.dl-eyebrow, p) {
-    display: none;
-  }
-  .design-lab .dl-graph-wrap {
-    min-height: 0;
-    margin: 0 8px;
-  }
-  .design-lab .canvas-heading {
-    display: none;
-  }
-  .design-lab .architecture-toolbar {
-    padding: 4px;
-  }
-  .design-lab .dl-context,
-  .design-lab .dl-canvas-footer,
-  .design-lab .dl-graph-legend {
-    display: none;
-  }
-  .design-lab .dl-agent,
-  .design-lab.dl-B .dl-agent {
-    border-radius: 0;
-    padding: 0 16px;
-    border-top: 1px solid #333;
-  }
-  .design-lab .dl-agent-heading {
-    min-height: 42px;
-  }
-  .design-lab .canvas-controls {
-    bottom: 6px;
-    left: 6px;
-  }
-  .design-lab .canvas-inspector {
-    top: 0;
-    bottom: 0;
-  }
-  .design-lab.dl-C .canvas-inspector {
-    height: 100%;
-    bottom: 0;
-  }
-}
 
 /* Visual review pass: preserve room for preview controls and legible graph labels. */
 .design-lab .dl-dayline,
@@ -1874,11 +1781,6 @@
 .design-lab .dl-system-strip > button {
   margin-left: auto;
 }
-@media (max-width: 700px) {
-  .design-lab .dl-system-strip {
-    display: none;
-  }
-}
 .design-lab .viewport-controls input[type="range"] {
   min-height: 0;
   padding: 0;
@@ -1924,15 +1826,6 @@
   top: 84px;
   bottom: auto;
 }
-@media (max-width: 700px) {
-  .design-lab.dl-C .canvas-inspector {
-    position: absolute;
-    left: 4px;
-    right: 4px;
-    bottom: 0;
-    height: 100%;
-  }
-}
 .design-lab .dl-check {
   flex-direction: row;
 }
@@ -1965,13 +1858,6 @@
   min-height: 24px;
   font-size: 11px;
   padding: 3px 6px;
-}
-@media (max-width: 700px) {
-  .design-lab.dl-C .canvas-inspector {
-    grid-template-columns: 1fr;
-    grid-template-rows: 26px 150px 150px auto;
-    overflow: auto;
-  }
 }
 /* Keep secondary labels readable at the graph's fitted scale. */
 .design-lab .architecture-node-title small {

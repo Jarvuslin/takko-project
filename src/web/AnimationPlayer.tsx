@@ -27,7 +27,9 @@ export function AnimationPlayer({
   return (
     <div className="animation-player" ref={host}>
       <div className="turn-byline">
-        <strong>{animation.clip.name}</strong>
+        <strong className="bounded-name" title={animation.clip.name}>
+          {animation.clip.name}
+        </strong>
         <div className="rig-badges" aria-label="Compatible rig">
           <span aria-current="true" title="Clip rig">
             {animation.clip.rig}

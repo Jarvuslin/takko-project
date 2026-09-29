@@ -19,7 +19,7 @@ test("paged browsing preserves scroll, chooses from preview and releases its ren
   page,
 }, info) => {
   await page.setViewportSize({
-    width: info.project.name === "mobile" ? 390 : 1000,
+    width: 1000,
     height: 520,
   });
   await browseFlow(

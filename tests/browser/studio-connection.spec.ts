@@ -70,16 +70,16 @@ test("disconnected projects show setup, offline hides architecture, reconnect op
   await expect(
     page.getByRole("region", { name: "Game architecture" }),
   ).toHaveCount(0);
-  if (info.project.name === "desktop") {
-    await page.locator("summary[aria-label='Projects']").click();
-    await page
-      .getByRole("navigation", { name: "Projects", exact: true })
-      .getByRole("button", { name: p.name, exact: true })
-      .click();
-    await expect(
-      page.getByRole("heading", { name: "Connect your creative space" }),
-    ).toBeVisible();
-  }
+
+  await page.locator("summary[aria-label='Projects']").click();
+  await page
+    .getByRole("navigation", { name: "Projects", exact: true })
+    .getByRole("button", { name: p.name, exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Connect your creative space" }),
+  ).toBeVisible();
+
   await page.reload();
   await expect(
     page.getByRole("heading", { name: "Connect your creative space" }),

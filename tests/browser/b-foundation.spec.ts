@@ -3,8 +3,7 @@ import { test, expect } from "./workspace-fixture";
 test("selected B workspace docks editing below the visible graph and preserves contracts", async ({
   page,
 }, info) => {
-  if (info.project.name === "desktop")
-    await page.setViewportSize({ width: 1440, height: 900 });
+  await page.setViewportSize({ width: 1440, height: 900 });
   const project = await (
     await page.request.post("/api/projects", {
       data: { request: "Arena architecture dock regression" },
@@ -93,30 +92,30 @@ test("selected B workspace docks editing below the visible graph and preserves c
       return true;
     })
     .toBe(true);
-  if (info.project.name === "desktop") {
-    expect((await surface.boundingBox())!.height).toBeLessThan(closedHeight);
-    const chat = (await page
-      .getByRole("region", { name: "Project conversation" })
-      .boundingBox())!;
-    expect((await surface.boundingBox())!.width).toBeGreaterThan(
-      chat.width * 1.8,
-    );
-    const cards = await page.locator(".architecture-node").all();
-    for (const label of await page.locator(".architecture-wires text").all()) {
-      const l = (await label.boundingBox())!;
-      const wires = (await page.locator(".architecture-wires").boundingBox())!;
-      expect(l.y + l.height).toBeLessThanOrEqual(wires.y + wires.height);
-      for (const card of cards) {
-        const c = (await card.boundingBox())!;
-        expect(
-          l.x + l.width <= c.x ||
-            l.x >= c.x + c.width ||
-            l.y + l.height <= c.y ||
-            l.y >= c.y + c.height,
-        ).toBe(true);
-      }
+
+  expect((await surface.boundingBox())!.height).toBeLessThan(closedHeight);
+  const chat = (await page
+    .getByRole("region", { name: "Project conversation" })
+    .boundingBox())!;
+  expect((await surface.boundingBox())!.width).toBeGreaterThan(
+    chat.width * 1.8,
+  );
+  const cards = await page.locator(".architecture-node").all();
+  for (const label of await page.locator(".architecture-wires text").all()) {
+    const l = (await label.boundingBox())!;
+    const wires = (await page.locator(".architecture-wires").boundingBox())!;
+    expect(l.y + l.height).toBeLessThanOrEqual(wires.y + wires.height);
+    for (const card of cards) {
+      const c = (await card.boundingBox())!;
+      expect(
+        l.x + l.width <= c.x ||
+          l.x >= c.x + c.width ||
+          l.y + l.height <= c.y ||
+          l.y >= c.y + c.height,
+      ).toBe(true);
     }
   }
+
   await page.getByLabel("System name", { exact: true }).fill("Combat rules");
   await page.getByRole("button", { name: "Close inspector" }).click();
   await page
@@ -151,23 +150,19 @@ test("B icon navigation retains project selection and real model settings", asyn
     })
   ).json();
   await page.goto("/?project=" + p.id);
-  if (info.project.name === "desktop") {
-    await expect(page.locator(".workspace-native")).toBeVisible();
-    await page.getByTitle("Projects", { exact: true }).click();
-    await page.getByRole("searchbox", { name: "Search projects" }).fill(p.name);
-    await page
-      .getByRole("navigation", { name: "Projects", exact: true })
-      .getByRole("button", { name: p.name, exact: true })
-      .click();
-    await expect(page.locator(".project-library")).not.toHaveAttribute(
-      "open",
-      "",
-    );
-  } else {
-    await expect(
-      page.getByLabel("Open project", { exact: true }),
-    ).toBeVisible();
-  }
+
+  await expect(page.locator(".workspace-native")).toBeVisible();
+  await page.getByTitle("Projects", { exact: true }).click();
+  await page.getByRole("searchbox", { name: "Search projects" }).fill(p.name);
+  await page
+    .getByRole("navigation", { name: "Projects", exact: true })
+    .getByRole("button", { name: p.name, exact: true })
+    .click();
+  await expect(page.locator(".project-library")).not.toHaveAttribute(
+    "open",
+    "",
+  );
+
   await page
     .getByRole("navigation", { name: "Workspace", exact: true })
     .getByRole("button", { name: "Models", exact: true })

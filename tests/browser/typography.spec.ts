@@ -28,7 +28,7 @@ async function fontsReady(page: Page): Promise<void> {
   await expect(page.locator("body")).toHaveCSS("font-family", /Geist/);
 }
 
-test("bundled typography requires no external fonts and fits the minimal responsive layout", async ({
+test("bundled typography requires no external fonts and fits the desktop layout", async ({
   page,
 }, testInfo) => {
   const externalFonts: string[] = [];
@@ -51,8 +51,7 @@ test("bundled typography requires no external fonts and fits the minimal respons
     /Geist/,
   );
 
-  const widths =
-    testInfo.project.name === "desktop" ? [768, 1024, 1440] : [375, 390];
+  const widths = [768, 1024, 1440];
   for (const width of widths) {
     await page.setViewportSize({ width, height: 900 });
     await expectTextFits(page.locator(".welcome h1"));
@@ -67,11 +66,10 @@ test("bundled typography requires no external fonts and fits the minimal respons
     path: `test-artifacts/forge-minimal-type-dashboard-${testInfo.project.name}.png`,
     fullPage: true,
   });
-  if (testInfo.project.name === "desktop")
-    await page.screenshot({
-      path: "test-artifacts/takko-desktop.png",
-      fullPage: true,
-    });
+  await page.screenshot({
+    path: "test-artifacts/takko-desktop.png",
+    fullPage: true,
+  });
 });
 
 test("workspace typography keeps prose readable and controls usable", async ({

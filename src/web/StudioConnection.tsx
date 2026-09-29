@@ -85,7 +85,9 @@ export function StudioConnectionScreen({
       aria-busy={checking}
     >
       <div className="studio-welcome-intro">
-        <span className="eyebrow">YOUR PROJECT · {name}</span>
+        <span className="eyebrow bounded-name" title={name}>
+          YOUR PROJECT · {name}
+        </span>
         <div className="studio-welcome-icon">
           <Icon name="cube" size={32} />
         </div>

@@ -170,7 +170,6 @@ test("older running servers retain direct planning without offering an unavailab
 
 test("a completed concept appears without waiting for another library scan", async ({
   page,
-  isMobile,
 }) => {
   const p = await (
     await page.request.post("/api/projects", {
@@ -205,13 +204,7 @@ test("a completed concept appears without waiting for another library scan", asy
   await expect(
     page.getByRole("button", { name: "Approve brief" }),
   ).toBeEnabled();
-  if (isMobile)
-    await expect(
-      page
-        .getByRole("combobox", { name: "Open project" })
-        .locator("option:checked"),
-    ).toHaveText("Tiny pet rescue");
-  else {
+  {
     await page.getByTitle("Projects", { exact: true }).click();
     await expect(
       page

@@ -30,12 +30,10 @@ test("canvas and conversation stay visible and remote changes never overwrite lo
   ).toHaveCount(0);
   const m = await map.boundingBox(),
     c = await chat.boundingBox();
-  if (info.project.name === "desktop") {
-    expect(m!.width).toBeGreaterThan(c!.width);
-    expect(m!.x + m!.width).toBeLessThanOrEqual(c!.x + 1);
-  } else {
-    expect(m!.y + m!.height).toBeLessThanOrEqual(c!.y + 1);
-  }
+
+  expect(m!.width).toBeGreaterThan(c!.width);
+  expect(m!.x + m!.width).toBeLessThanOrEqual(c!.x + 1);
+
   graph = { nodes: [node("Combat"), { ...node("Energy"), x: 270 }], edges: [] };
   await expect(
     map.getByRole("button", { name: "Edit Energy", exact: true }),
@@ -110,26 +108,26 @@ test("canvas pan, zoom, dragging and auto layout preserve game connection contra
   const before = await content.getAttribute("style");
   await map.getByRole("button", { name: "Zoom in canvas" }).click();
   await expect(content).not.toHaveAttribute("style", before!);
-  if (info.project.name === "desktop") {
-    const box = (await surface.boundingBox())!;
-    await page.mouse.move(box.x + 30, box.y + box.height - 80);
-    await page.mouse.down();
-    await page.mouse.move(box.x + 80, box.y + box.height - 60);
-    await page.mouse.up();
-    const system = map.getByRole("button", {
-      name: "Edit Combat",
-      exact: true,
-    });
-    const b = (await system.boundingBox())!;
-    await page.mouse.move(b.x + 25, b.y + 20);
-    await page.mouse.down();
-    await page.mouse.move(b.x + 65, b.y + 60, { steps: 5 });
-    await page.mouse.up();
-    await map.getByRole("button", { name: "Close inspector" }).click();
-    await expect(
-      map.getByRole("button", { name: "Review changes" }),
-    ).toBeVisible();
-  }
+
+  const box = (await surface.boundingBox())!;
+  await page.mouse.move(box.x + 30, box.y + box.height - 80);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 80, box.y + box.height - 60);
+  await page.mouse.up();
+  const system = map.getByRole("button", {
+    name: "Edit Combat",
+    exact: true,
+  });
+  const b = (await system.boundingBox())!;
+  await page.mouse.move(b.x + 25, b.y + 20);
+  await page.mouse.down();
+  await page.mouse.move(b.x + 65, b.y + 60, { steps: 5 });
+  await page.mouse.up();
+  await map.getByRole("button", { name: "Close inspector" }).click();
+  await expect(
+    map.getByRole("button", { name: "Review changes" }),
+  ).toBeVisible();
+
   await map.getByRole("button", { name: "Auto layout" }).click();
   await map.getByRole("button", { name: "Review changes" }).click();
   await expect(map).toContainText("Only node positions changed");

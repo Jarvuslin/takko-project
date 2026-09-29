@@ -193,7 +193,9 @@ export function AssetCard({
                   <Icon name="cube" size={24} />
                 )}
                 <div>
-                  <strong>{o.name}</strong>
+                  <strong className="bounded-name" title={o.name}>
+                    {o.name}
+                  </strong>
                   <small>
                     {o.creatorName} · #{o.assetId}
                     {c?.clipKey ? ` · ${c.clipKey}` : ""}
@@ -389,7 +391,10 @@ export function ClipSheet({
       }}
     >
       <h4>
-        {o.name} has {o.previewData.pack.entries.length} clips
+        <span className="bounded-name" title={o.name}>
+          {o.name}
+        </span>{" "}
+        has {o.previewData.pack.entries.length} clips
       </h4>
       <p>
         Pick the one that plays when the player{" "}
@@ -408,7 +413,9 @@ export function ClipSheet({
           >
             <Icon name="play" size={16} />
             <span>
-              {e.name}
+              <span className="bounded-name" title={e.name}>
+                {e.name}
+              </span>
               <small>
                 {e.clip
                   ? `${e.clip.duration.toFixed(2)} s · ${e.clip.rig}`

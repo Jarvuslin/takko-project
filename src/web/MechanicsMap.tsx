@@ -90,7 +90,9 @@ export function MechanicsMap({
     <section className="map-panel" aria-label="Mechanics map">
       <div className="map-toolbar">
         <div className="map-project">
-          <strong>{project.name}</strong>
+          <strong className="bounded-name" title={project.name}>
+            {project.name}
+          </strong>
           <span>
             ♧ {nodes.length} tasks · {edges.length} links
           </span>
@@ -176,7 +178,9 @@ export function MechanicsMap({
           </svg>
           <div className="map-root">
             <span className="hexagon">✦</span>
-            <strong>{project.name}</strong>
+            <strong className="bounded-name" title={project.name}>
+              {project.name}
+            </strong>
           </div>
           {nodes.map((node, index) => (
             <button

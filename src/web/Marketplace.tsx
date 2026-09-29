@@ -189,7 +189,9 @@ export function AssetAttachments({
       {draft.attachments.map((asset) => (
         <div className="asset-attachment" key={asset.assetId}>
           <div>
-            <strong>{asset.name}</strong>
+            <strong className="bounded-name" title={asset.name}>
+              {asset.name}
+            </strong>
             <small>#{asset.assetId} · inspected</small>
           </div>
           <button
@@ -229,7 +231,9 @@ export function AssetAttachments({
       )}
       {!!draft.report?.inspection?.findings.length && (
         <details className="asset-findings" open>
-          <summary>Inspection findings · {draft.report.name}</summary>
+          <summary className="bounded-name" title={draft.report.name}>
+            Inspection findings · {draft.report.name}
+          </summary>
           <ul>
             {draft.report.inspection.findings.map((f, i) => (
               <li key={i}>
@@ -419,7 +423,10 @@ export function Marketplace({
         <div className="picking-banner">
           <div>
             <strong>Choosing: {assetLabel(group)}</strong>
-            <small>
+            <small
+              className="bounded-name"
+              title={`For ${picking.project.name} · ${group.label}`}
+            >
               For {picking.project.name} · {group.label}
             </small>
           </div>
@@ -584,6 +591,8 @@ export function Marketplace({
               )}
             </div>
             <a
+              className="bounded-name bounded-name-two"
+              title={asset.name}
               href={"https://create.roblox.com/store/asset/" + asset.assetId}
               target="_blank"
               rel="noreferrer"

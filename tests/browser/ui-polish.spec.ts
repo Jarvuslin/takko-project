@@ -135,10 +135,6 @@ test("one simple decision stays inline and custom answers remain available", asy
 test("panel pointer and keyboard resize respect bounds and survive reload", async ({
   page,
 }, info) => {
-  test.skip(
-    info.project.name === "mobile",
-    "The phone uses stacked panels instead of a horizontal divider.",
-  );
   await page.setViewportSize({ width: 1440, height: 900 });
   const f = await polishFixture(page, "build");
   await page.goto("/?project=" + f.id);
@@ -167,7 +163,9 @@ test("panel pointer and keyboard resize respect bounds and survive reload", asyn
   await expect(
     page.getByRole("textbox", { name: "Message", exact: true }),
   ).toBeVisible();
-  await page.screenshot({ path: "test-artifacts/ui-polish/minimum-desktop.png" });
+  await page.screenshot({
+    path: "test-artifacts/ui-polish/minimum-desktop.png",
+  });
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(separator).toHaveAttribute("aria-valuenow", "640");
   await separator.dblclick();
