@@ -348,7 +348,14 @@ export function pickingRoutes(
       delete c.operation;
     }
     current(p.id, p.revision);
-    return save(p);
+    try {
+      return save(p);
+    } catch (error) {
+      c.error = `Your pick was saved, but its attachment check failed: ${(error as Error).message} Choose this asset again to retry.`;
+      delete c.kept;
+      refreshProposal(p, ["assets"]);
+      return store.save(p);
+    }
   }
   app.post("/api/projects/:id/asset-picks/choose", async (req, res) => {
     const b = base
@@ -382,7 +389,9 @@ export function pickingRoutes(
         };
         d.approved = false;
         d.pinned = [...new Set([...(d.pinned ?? []), g.id])];
-        save(p); // Persist intent before any network or Studio operation.
+        // Save the click independently of every verification/attachment step.
+        refreshProposal(p, ["assets"]);
+        store.save(p);
         return verify(p, g, option, b.studioId, b.keep);
       }),
     );
