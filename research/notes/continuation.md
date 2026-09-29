@@ -5,11 +5,11 @@ Updated 2026-09-29. Live handoff. History through 2026-09-29 is in `archive/cont
 ## Live now
 
 - **4340, PID 26772** still runs `.forge/asset-search-host.mjs` with `.forge/world-policy-live-20260928`. Project **c8550a5b-5b9f-4b79-8a25-b7ee0827618c**, revision 5, draft, no job. Never rerun the old scope-answer recovery helper.
-- The Takko reskin, inline asset picking, lost-choice fix and PC default are committed in four parts plus final-review fixes. Full `npm run check` passed: 1,753 unit, 191 browser plus one existing skip, 14 desktop, 6 Luau, 15 plugin mocks, 6 guards, build/CSS/production smoke. See `docs/takko-refresh.md`. New picking routes are **not live**. Root `dist` contains the Part 1 styling build. Tested final frontend: `D:\RobloxProjects\Takko-refresh-check\dist`.
+- The reskin, inline picks, lost-choice recovery, PC default and desktop-only/name-bounding follow-up are committed. Full `npm run check` passed on source 61cb13f: 1,753 unit, 98 desktop browser, 14 desktop, 6 Luau, 15 plugin mocks, 6 guards, build/CSS/production smoke. No skips. See `docs/takko-refresh.md`. New picking routes are **not live**. Root `dist` still has Part 1 styling. Final frontend checkout: `D:\RobloxProjects\Takko-refresh-check`.
 - Restart requires the user's permission. Prepared `.forge/takko-refresh-host.ts` / `.mjs` keeps the existing store, encrypted vault, exclusions, $8 cap and build restrictions. It permits relevance inference only through an explicit validated Choose for me request. Regenerate the bundle after source changes. Copy the tested frontend and restart only after permission, capture state immediately before and compare immediately after.
 - Current saved dummy: 108353927891814. Sound: 133175949071305. Animation unchosen. Five saved answers and single-punch scope remain. Pack 12061946559 stays excluded. The user chooses replacements and presses Approve & build themselves.
 - A read-only live check found targetDummy's current query `fighting animation` no longer included its saved Spider-Man listing. New initialization recovers the real cached listing, preserving the choice and showing amber. Offline clone screenshot confirms dummy amber, sound Ready and animation Not chosen. This is not live acceptance.
-- The full-check server stopped. Only 4340 was listening among the usual app ports after verification. Recheck before using any port. No Studio session was opened or modified.
+- All test services stopped. After the full check, only 4340 was listening among the usual app ports. Recheck before use. No Studio session was opened or modified.
 
 ## Money
 
@@ -29,7 +29,8 @@ Updated 2026-09-29. Live handoff. History through 2026-09-29 is in `archive/cont
 
 ## Recent decisions
 
-- One `tokens.css` plus `styles.css`, bundled Geist/Geist Mono and OFL. Old override sheets removed. Screenshot gallery: `test-artifacts/takko-refresh/comparison.html`.
+- Takko is desktop-only. Mobile Playwright project, phone CSS and mobile test branches removed. Generated-game platform behavior is unchanged. Result names clamp to two lines with bottom-aligned buttons, chosen/project names to one line, all with full hover names. User mockup changes included.
+- Bundled Geist/Geist Mono, `tokens.css` and `styles.css`. Desktop gallery: `test-artifacts/takko-refresh/comparison.html`.
 - Asset card and existing Marketplace picking mode replace the old dialog. Search is anonymous Creator Store v2 POST, exact query, 50/page, website order. Search never inspects. Selected assets alone get inspection/capture. Picks and clips save immediately and survive revisions. Warnings require Keep it. All required rows gate building.
 - New projects persist PC keyboard/mouse by default. Explicit other platforms are respected, ambiguous requests get a free question. Existing projects retain controls. Planner validation and builder correction reject unrequested touch/gamepad support.
 - Lost-choice evidence establishes old local-only selection, revision-keyed sessionStorage and discarded listing context. It cannot identify the user's exact replacement click. Tests consume actual preserved project, cache and Creator Store outputs.

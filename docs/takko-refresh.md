@@ -56,9 +56,9 @@ The third run passed 1,753 unit tests and non-browser stages. It was interrupted
 
 The fourth full run passed all non-browser stages and finished with 189 browser passes, two failures and one existing skip. Both failures were the same legacy server-revision case: an older brief approval still needs to allow free asset browsing. That condition was corrected and all 34 focused picking, platform, revision and keyboard-flow cases passed. The final full run uses that committed correction.
 
-## Final result
+## Previous full result
 
-`npm run check` passed in full, exit 0, against source commit `30e0eab`. No source changed afterward. Log: `test-artifacts/takko-refresh/check-passed.log`.
+`npm run check` passed in full, exit 0, against source commit `30e0eab`. This was the completed source before the desktop-only follow-up. Log: `test-artifacts/takko-refresh/check-passed.log`.
 
 | Stage | Result |
 |---|---|
@@ -73,3 +73,31 @@ The fourth full run passed all non-browser stages and finished with 189 browser 
 | Browser | 191 passed, 1 existing mobile skip |
 
 No native Studio verification was performed. No Studio session or test service was left running. Only the original app on 4340, PID 26772, remains. Restart and live acceptance still await the user's permission and picks. Cost: $0. Nothing was pushed.
+
+## Desktop-only follow-up
+
+Takko now has only the desktop Playwright project. Phone layouts, stacked phone workspace rules, the mobile project selector and mobile-only test branches were deleted. Desktop window resizing, narrow desktop chat panels and reduced-motion preferences remain supported. AGENTS.md states the desktop-only requirement. Generated-game platform selection and the PC keyboard/mouse default are unchanged.
+
+The user’s updated asset-picking mockup is included. Marketplace titles reserve two lines with ellipsis, and result actions stay at the bottom of their cards. Chosen assets, attachments, project navigation, breadcrumbs and preview headings use one line with ellipsis and full hover names. Animation pack and clip labels are also bounded. The mockup’s phone stacking rule was removed.
+
+New browser regressions consume the actual Creator Store mapping of preserved listings and projects produced through the API. They check full title attributes, two-line clamping, aligned result actions, selected-name and attachment truncation, and control containment in a 320px desktop chat panel. The project check also resizes the desktop window to 860px. Screenshots are desktop only. The current gallery includes the revised mockup and the new bounded-name views.
+
+Focused browser runs: 35 passed. A subsequent run had 21 passes and one containment failure after a cleanup accidentally dropped min-width: 0. The width constraint was restored and both name regressions passed. The failed trace remains under test-artifacts/takko-refresh/focused-traces. Test enumeration now contains 98 desktop cases across 28 files.
+
+Full `npm run check` passed, exit 0, against source `61cb13f` in `D:\RobloxProjects\Takko-refresh-check`. No implementation changed after this run. Log: `test-artifacts/takko-refresh/desktop-only-check.log`.
+
+| Stage | Result |
+|---|---|
+| TypeScript and Vite | Passed |
+| Vitest | 1,753 passed in 130 files |
+| Luau | 6 offline scenarios passed and generated scripts compiled |
+| Plugin | 15 mock scenarios passed, plugin and 8 injected sources compiled |
+| Guards | 6 matched expected outcomes |
+| CSS | 0 errors, 267 warnings |
+| Desktop | 14 passed |
+| Production smoke | HTML, bundle, API and unknown route passed |
+| Browser | 98 passed in 28 files, desktop only, no skips |
+
+All test services stopped. Port 4340 still belongs to PID 26772. Root dist and the running app were not replaced. Restart remains subject to the user’s permission.
+
+These are offline UI and contract checks, not native Studio verification or proof that a generated game works. No live app restart, paid inference, provider balance query or Studio session occurred. Cost: $0.
