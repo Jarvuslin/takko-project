@@ -11,6 +11,160 @@ async function fixture() {
 afterEach(async () => {
   for (const f of fixtures.splice(0)) await f.close();
 });
+it("prefills explicitly bound composer attachments using actual inspection output without searches or repeat snapshots", async () => {
+  const f = await fixture();
+  const result = await fetch(`${f.origin}/api/marketplace/inspect`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      studioId: pickerStudio,
+      reference: f.dummies[1].assetId,
+    }),
+  }).then((r) => r.json());
+  const created = await fetch(`${f.origin}/api/projects`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      request: f.project().request,
+      assetAttachments: [
+        {
+          assetId: result.asset.assetId,
+          contentHash: result.asset.inspection.contentHash,
+          usage: "targetDummy",
+        },
+      ],
+    }),
+  }).then((r) => r.json());
+  const planned = await fetch(
+    `${f.origin}/api/projects/${created.id}/proposal`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ revision: created.revision }),
+    },
+  );
+  expect(planned.status).toBe(202);
+  const completed = await f.app.locals.engine.wait(created.id);
+  expect(completed.error).toBeNull();
+  const initialize = () =>
+    fetch(`${f.origin}/api/projects/${created.id}/asset-picks`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ revision: completed.revision }),
+    }).then((r) => r.json());
+  const p = await initialize();
+  const g = p.assetDiscovery.groups.find((g: any) => g.id === "targetDummy");
+  expect(pickStatus(p, g).state).toBe("ready");
+  expect(g.options[0].inspection).toEqual(result.asset.inspection);
+  expect(p.assetDiscovery.choices.targetDummy.assetId).toBe(
+    result.asset.assetId,
+  );
+  expect(f.state.plannerContexts[0].gameContext.selectedAssets.assets).toEqual(
+    created.assetAttachments,
+  );
+  await initialize();
+  expect(f.state.searches).toEqual([]);
+  expect(f.state.inspections).toEqual([result.asset.assetId]);
+});
+
+it("row drops reuse Marketplace listings and retain normal wrong-type and script warning gates", async () => {
+  const f = await fixture();
+  await fetch(`${f.origin}/api/marketplace/search`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      studioId: pickerStudio,
+      query: "target dummy",
+      kind: "Model",
+    }),
+  });
+  f.state.scripts = 1;
+  const p = (await f.choose()).data;
+  expect(p.assetDiscovery.choices.targetDummy.assetId).toBe(
+    f.dummies[1].assetId,
+  );
+  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("warning");
+  const wrong = (await f.choose(f.dummies[1].assetId, "hitSound")).data;
+  expect(
+    pickStatus(
+      wrong,
+      wrong.assetDiscovery.groups.find((g: any) => g.id === "hitSound"),
+    ).state,
+  ).toBe("problem");
+  expect(f.state.searches).toEqual(["target dummy"]);
+  expect(f.state.calls).toBe(0);
+});
+it("prefills an attached animation pack, captures once without search, and requires a real clip choice", async () => {
+  const f = await fixture();
+  const inspected = await fetch(`${f.origin}/api/marketplace/inspect`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      studioId: pickerStudio,
+      reference: f.animation.assetId,
+    }),
+  }).then((r) => r.json());
+  const created = await fetch(`${f.origin}/api/projects`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      request: f.project().request,
+      assetAttachments: [
+        {
+          assetId: inspected.asset.assetId,
+          contentHash: inspected.asset.inspection.contentHash,
+          usage: "punchAnimation",
+        },
+      ],
+    }),
+  }).then((r) => r.json());
+  await fetch(`${f.origin}/api/projects/${created.id}/proposal`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ revision: created.revision }),
+  });
+  const completed = await f.app.locals.engine.wait(created.id);
+  expect(completed.error).toBeNull();
+  const initialize = () =>
+    fetch(`${f.origin}/api/projects/${created.id}/asset-picks`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        revision: completed.revision,
+        studioId: pickerStudio,
+      }),
+    }).then((r) => r.json());
+  const p = await initialize();
+  const g = p.assetDiscovery.groups.find((g: any) => g.id === "punchAnimation");
+  expect(p.assetDiscovery.choices.punchAnimation.assetId).toBe(
+    f.animation.assetId,
+  );
+  expect(g.options[0].previewData.pack.entries.some((e: any) => e.clip)).toBe(
+    true,
+  );
+  expect(pickStatus(p, g)).toMatchObject({
+    canBuild: false,
+    reason: "Choose a playable clip from this animation pack.",
+  });
+  await initialize();
+  expect(f.state.captures).toEqual([f.animation.assetId]);
+  expect(f.state.inspections).toEqual([f.animation.assetId]);
+  expect(f.state.searches).toEqual([]);
+});
+
+it("turns an interrupted saved check into a retryable problem on initialization", async () => {
+  const f = await fixture();
+  await f.search();
+  const p = (await f.choose()).data;
+  p.assetDiscovery.choices.targetDummy.operation = "checking";
+  f.app.locals.engine.store.save(p);
+  const restored = (await f.command("asset-picks")).data;
+  expect(pickStatus(restored, restored.assetDiscovery.groups[0])).toMatchObject({
+    state: "problem", canBuild: false,
+  });
+  expect(restored.assetDiscovery.choices.targetDummy.error).toContain("interrupted");
+});
+
 it("approves the already reviewed references in one action and refuses incomplete choices", async () => {
   const f = await fixture();
   let p = f.project();

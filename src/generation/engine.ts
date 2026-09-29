@@ -2816,6 +2816,8 @@ export class Engine {
           kind,
           request: p.request,
           existingProject: existingProjectContext(p),
+          gameContext: gameContext(p, undefined, true),
+          selectedAssetInstructions: "User-selected attachments are already chosen. Bind each to its intended assetNeed with selectedAssetId copied exactly from gameContext.selectedAssets, preserving the user's usage. Do not replace or re-search them. Static inspection is not gameplay verification.",
           platform: nextPlatform,
           platformInstructions: platformInstructions({platform:nextPlatform}),
           userSources: requirementSources(p),
@@ -2848,6 +2850,10 @@ export class Engine {
               }
             : p;
           proposedWorld(candidate, value.world);
+          for (const need of value.assetNeeds ?? []) {
+            if (need.selectedAssetId && !candidate.assetAttachments?.some((a) => a.assetId === need.selectedAssetId))
+              throw Error("selectedAssetId must identify an actual user-selected attachment.");
+          }
           const platformIssues=platformPlanningIssues({...candidate,platform:nextPlatform},pending?value.changes:value);
           if(platformIssues.length)throw Error(platformIssues.join("\n"));
           const issues = sequenceAssetIssues(

@@ -9,6 +9,7 @@ import {
   studioPublishingLimitation,
 } from "../marketplace/animations";
 import { useMarketplaceConnection } from "./MarketplaceConnection";
+import { parseAssetReference } from "../marketplace/types";
 
 export async function assetRequest<T>(
   projectId: string,
@@ -80,12 +81,18 @@ export function AssetCard({
   const lock = useRef(false);
   const init = useRef("");
   useEffect(() => {
-    if (disabled || init.current === `${project.id}:${project.revision}`)
+    if (
+      disabled ||
+      connection.state === "checking" ||
+      init.current ===
+        `${project.id}:${project.revision}:${connection.studioId}`
+    )
       return;
-    init.current = `${project.id}:${project.revision}`;
+    init.current = `${project.id}:${project.revision}:${connection.studioId}`;
     const id = project.id;
     void assetRequest<Project>(id, "asset-picks", {
       revision: project.revision,
+      studioId: connection.studioId,
     })
       .then((p) => {
         if (live.current === id) update(p);
@@ -93,7 +100,13 @@ export function AssetCard({
       .catch((e) => {
         if (live.current === id) setError(e.message);
       });
-  }, [project.id, project.revision, disabled]);
+  }, [
+    project.id,
+    project.revision,
+    disabled,
+    connection.state,
+    connection.studioId,
+  ]);
   const groups = project.assetDiscovery?.groups ?? [];
   const images = useAssetThumbnails(
     groups.flatMap((g) => {
@@ -153,7 +166,42 @@ export function AssetCard({
               ? "checking"
               : s.state;
         return (
-          <section className="need-row" key={g.id} aria-label={assetLabel(g)}>
+          <section
+            className="need-row"
+            key={g.id}
+            aria-label={assetLabel(g)}
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              if (disabled || busy) return;
+              const reference =
+                e.dataTransfer.getData("application/x-takko-asset") ||
+                e.dataTransfer
+                  .getData("text/uri-list")
+                  .split(/\r?\n/)
+                  .find((s) => s && !s.startsWith("#")) ||
+                e.dataTransfer.getData("text/plain");
+              if (!reference) return;
+              void run(g.id, async () => {
+                const next = await assetRequest<Project>(
+                  project.id,
+                  "asset-picks/choose",
+                  {
+                    revision: project.revision,
+                    groupId: g.id,
+                    assetId: parseAssetReference(reference),
+                    studioId: connection.studioId,
+                  },
+                );
+                update(next);
+                if (g.preview === "animation") setAutoSheet(g.id);
+              });
+            }}
+          >
             <div className="need-row-top">
               <div>
                 <strong>{assetLabel(g)}</strong>

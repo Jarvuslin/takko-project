@@ -46,6 +46,7 @@ export const assetNeedSchema = z
     id: z.string().regex(/^[A-Za-z][A-Za-z0-9_-]{0,63}$/),
     requirementId: z.string().min(1).max(64),
     role: z.string().min(1).max(1000),
+    selectedAssetId: z.string().regex(/^\d+$/).optional().describe("When this need uses a user-selected attachment, copy its exact assetId from gameContext.selectedAssets. Never invent an ID or search for a replacement."),
     kind: z.enum(["Model", "MeshPart", "Audio", "Animation", "Image"]),
     deliveryRole: z.enum(["visible_prop", "source_data"]).optional().describe("Use source_data for packs/libraries retained only as animation, audio or other source data. They are delivered to ReplicatedStorage, not rendered in Workspace."),
     sequence: z.object({id:z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/),step:z.number().int().min(1).max(16),total:z.number().int().min(2).max(16)}).strict().optional().describe("For a chosen animated action sequence, one separate Animation need per step with the same sequence id and total. Each step gets its own user-selected clip."),

@@ -36,6 +36,95 @@ const card = (page: Page) =>
 const row = (page: Page, name = "Target dummy") =>
   card(page).getByRole("region", { name, exact: true });
 
+test("a Marketplace card dropped onto a need assigns and verifies that exact listing without a row search", async ({
+  page,
+}) => {
+  await page
+    .getByRole("button", { name: "Browse Marketplace assets", exact: true })
+    .click();
+  const panel = page.getByRole("complementary", {
+    name: "Marketplace",
+    exact: true,
+  });
+  await panel
+    .getByLabel("Search Marketplace", { exact: true })
+    .fill("target dummy");
+  await panel
+    .getByRole("button", { name: "Search assets", exact: true })
+    .click();
+  const listing = panel.locator(".market-card").nth(1);
+  await expect(listing).toContainText(f.dummies[1].name);
+  const searches = [...f.state.searches];
+  await listing.dragTo(row(page));
+  await expect(row(page)).toContainText(f.dummies[1].name);
+  await expect(row(page)).toContainText("Ready");
+  await page
+    .getByRole("button", { name: "Close Marketplace", exact: true })
+    .click();
+  await page.reload();
+  await expect(row(page)).toContainText(f.dummies[1].name);
+  expect(f.state.searches).toEqual(searches);
+  expect(f.state.inspections).toEqual([f.dummies[1].assetId]);
+  expect(f.state.calls).toBe(0);
+});
+
+test("composer drop reaches the proposal planner and fills the chosen need from the inspection cache", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByText(
+      "Studio is not connected. Animation clips need the Takko plugin.",
+      { exact: false },
+    ),
+  ).toBeVisible();
+  await page.getByLabel("Game idea").fill(f.project().request);
+  await page
+    .getByRole("button", { name: "Browse Marketplace assets", exact: true })
+    .click();
+  const panel = page.getByRole("complementary", {
+    name: "Marketplace",
+    exact: true,
+  });
+  await panel
+    .getByLabel("Search Marketplace", { exact: true })
+    .fill("target dummy");
+  await panel
+    .getByRole("button", { name: "Search assets", exact: true })
+    .click();
+  const listing = panel.locator(".market-card").nth(1);
+  await expect(listing).toContainText(f.dummies[1].name);
+  await listing.dragTo(page.getByLabel("Game idea"));
+  await expect(
+    page.getByLabel(`Use for ${f.dummies[1].name}`, { exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Close Marketplace", exact: true })
+    .click();
+  await page
+    .getByLabel(`Use for ${f.dummies[1].name}`, { exact: true })
+    .fill("targetDummy");
+  const searches = [...f.state.searches];
+  await page
+    .getByRole("button", { name: "Create project", exact: true })
+    .click();
+  await expect(row(page)).toContainText(f.dummies[1].name);
+  await expect(row(page)).toContainText("Ready");
+  expect(f.state.plannerContexts).toHaveLength(1);
+  expect(
+    f.state.plannerContexts[0].gameContext.selectedAssets.assets[0],
+  ).toMatchObject({
+    assetId: f.dummies[1].assetId,
+    usage: "targetDummy",
+  });
+  expect(f.state.searches).toEqual(searches);
+  expect(f.state.inspections).toEqual([f.dummies[1].assetId]);
+  await page.reload();
+  await expect(row(page)).toContainText(f.dummies[1].name);
+  await expect(row(page)).toContainText("Ready");
+  expect(f.state.searches).toEqual(searches);
+});
+
 test("card and Marketplace persist each real listing and clip through reload and revision changes", async ({
   page,
 }, info) => {

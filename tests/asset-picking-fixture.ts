@@ -61,6 +61,7 @@ export async function pickerFixture() {
     inspections: [] as string[],
     captures: [] as string[],
     calls: 0,
+    plannerContexts: [] as any[],
   };
   const provider = {
     studios: async () =>
@@ -104,14 +105,50 @@ export async function pickerFixture() {
   const transport: typeof fetch = async (_url, init) => {
     state.calls++;
     const request = JSON.parse(String(init?.body));
+    if (request.messages) {
+      const context = JSON.parse(request.messages[1].content);
+      state.plannerContexts.push(context);
+      const { revision, hash, changed, ...raw } = recordedBrief.proposal;
+      // The preserved proposal predates PC defaults. This offline planner response
+      // uses the same content with its legacy touch controls translated to mouse.
+      const draft = proposalDraftSchema.parse(
+        JSON.parse(
+          JSON.stringify(raw)
+            .replaceAll(
+              "Clicking (PC) or tapping (mobile/console equivalent)",
+              "Clicking",
+            )
+            .replaceAll("click/tap", "click"),
+        ),
+      );
+      draft.assetNeeds = draft.assetNeeds?.map((n) => ({
+        ...n,
+        selectedAssetId: context.gameContext?.selectedAssets?.assets.find(
+          (a: any) => a.usage === n.id,
+        )?.assetId,
+      }));
+      return Response.json({
+        choices: [{ message: { content: JSON.stringify(draft) } }],
+        usage: { prompt_tokens: 100, completion_tokens: 100, cost: 0 },
+      });
+    }
     return Response.json({
       model: JEV_MODEL,
       answers: Object.fromEntries(
         Object.keys(request.questions).map((key) => [
           key,
           {
-            type: "choice",
-            choice: state.relevant ? "yes" : "no",
+            ...(request.questions[key].type === "score"
+              ? { type: "score", score: 0 }
+              : {
+                  type: "choice",
+                  choice:
+                    "yes" in request.questions[key].criteria
+                      ? state.relevant
+                        ? "yes"
+                        : "no"
+                      : Object.keys(request.questions[key].criteria)[0],
+                }),
             confidence: 0.95,
           },
         ]),
@@ -146,6 +183,7 @@ export async function pickerFixture() {
     repairLimit: 0,
   });
   engine.config.connect(decision, "offline-fixture-key");
+  engine.config.setKey(coding.id, "offline-fixture-key");
   const p: Project = engine.create(recordedBrief.request);
   delete p.platform; // This fixture reproduces the existing pre-platform project.
   const { revision, hash, changed, ...draft } = recordedBrief.proposal;

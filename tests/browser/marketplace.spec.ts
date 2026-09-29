@@ -275,7 +275,7 @@ test("blocked first drops display findings and never become chat attachments", a
   await page
     .getByLabel("Game idea")
     .dispatchEvent("drop", { dataTransfer: data });
-  await expect(page.getByRole("status")).toContainText("was not attached");
+  await expect(page.getByRole("group", { name: "Attached assets", exact: true }).getByRole("status")).toContainText("was not attached");
   await expect(
     page.getByText("Dynamic code execution or environment manipulation."),
   ).toBeVisible();

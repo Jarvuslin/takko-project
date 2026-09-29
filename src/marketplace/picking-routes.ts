@@ -92,6 +92,72 @@ export function pickingRoutes(
       };
     const d = p.assetDiscovery;
     d.revision = p.revision;
+    // Reuse inspected composer attachments. Binding is explicit planner output,
+    // never a name/type guess. Unbound attachments remain visible in their own row.
+    for (const a of p.assetAttachments ?? []) {
+      if (p.excludedAssetIds?.includes(a.assetId)) continue;
+      const needs = (p.spec?.assetNeeds ?? p.proposal?.assetNeeds ?? []).filter(
+        (n) => n.selectedAssetId === a.assetId,
+      );
+      let targets = d.groups.filter((g) =>
+        needs.some((n) => n.id === (g.assetNeedId ?? g.id)),
+      );
+      if (
+        !targets.length &&
+        !Object.values(d.choices ?? {}).some((c) => c.assetId === a.assetId)
+      ) {
+        const id = `attached_${a.assetId}`;
+        let row = d.groups.find((g) => g.id === id);
+        if (!row) {
+          row = {
+            id,
+            label: a.usage || a.name,
+            query: a.name,
+            kind: a.kind,
+            preview:
+              a.kind === "Animation"
+                ? "animation"
+                : a.kind === "Audio"
+                  ? "audio"
+                  : a.kind === "Image"
+                    ? "image"
+                    : "model",
+            options: [],
+          };
+          d.groups.push(row);
+        }
+        targets = [row];
+      }
+      for (const g of targets) {
+        if (d.choices?.[g.id]) continue;
+        const cached = library.get(a.assetId);
+        if (!cached) continue;
+        const { liked: _liked, saved: _saved, ...option } = cached;
+        if (
+          g.preview === "animation" &&
+          ["Animation", "Model"].includes(option.kind)
+        )
+          g.kind = option.kind;
+        if (!g.options.some((o) => o.assetId === a.assetId))
+          g.options.push(option);
+        (d.choices ??= {})[g.id] = {
+          assetId: a.assetId,
+          reason: "Chosen by you in chat. Static inspection only.",
+        };
+        try {
+          library.attachments([
+            { assetId: a.assetId, contentHash: a.contentHash, usage: a.usage },
+          ]);
+        } catch {
+          d.choices[g.id].error =
+            "This attachment needs current verification. Choose it again to check it.";
+        }
+        d.pinned = [...new Set([...(d.pinned ?? []), g.id])];
+        p.assetChoiceAttachmentIds = [
+          ...new Set([...(p.assetChoiceAttachmentIds ?? []), a.assetId]),
+        ];
+      }
+    }
     for (const g of d.groups) {
       const c = d.choices?.[g.id];
       if (c?.operation && !engine.assetOperations.has(p.id)) {
@@ -177,13 +243,35 @@ export function pickingRoutes(
     refreshProposal(p, ["assets"]);
     return store.save(p);
   }
-  app.post("/api/projects/:id/asset-picks", (req, res) => {
-    const b = base.strict().parse(req.body);
-    const p = current(req.params.id, b.revision);
+  app.post("/api/projects/:id/asset-picks", async (req, res) => {
+    const b = base
+      .extend({ studioId: z.string().max(100).optional() })
+      .strict()
+      .parse(req.body);
+    let p = current(req.params.id, b.revision);
     if (engine.assetOperations.has(p.id))
       throw new ConflictError("Wait for asset work to finish.");
     initialize(p);
-    res.json(store.save(p));
+    res.json(
+      await exclusive(req.params.id, async () => {
+        for (const g of p.assetDiscovery!.groups) {
+          const c = p.assetDiscovery!.choices?.[g.id];
+          const o = g.options.find((o) => o.assetId === c?.assetId);
+          if (
+            b.studioId &&
+            c?.reason?.startsWith("Chosen by you in chat") &&
+            !c.error &&
+            g.preview === "animation" &&
+            o &&
+            !o.previewData?.pack
+          ) {
+            p = await verify(p, g, o, b.studioId);
+          }
+        }
+        refreshProposal(p, ["assets"]);
+        return store.save(p);
+      }),
+    );
   });
   async function search(
     p: Project,
@@ -295,6 +383,11 @@ export function pickingRoutes(
         );
       const inspected = (await library.inspect(studioId, option.assetId)).asset;
       if (
+        g.preview === "animation" &&
+        ["Animation", "Model"].includes(inspected.kind)
+      )
+        g.kind = inspected.kind;
+      if (
         inspected.kind !== g.kind ||
         inspected.isFree === false ||
         option.isFree === false
@@ -384,7 +477,15 @@ export function pickingRoutes(
           d = p.assetDiscovery!;
         if (p.excludedAssetIds?.includes(b.assetId))
           throw new ConflictError("Excluded by you. Choose another asset.");
-        const option = g.options.find((o) => o.assetId === b.assetId);
+        let option = g.options.find((o) => o.assetId === b.assetId);
+        if (!option) {
+          const cached = library.get(b.assetId);
+          if (cached) {
+            const { liked: _liked, saved: _saved, ...listing } = cached;
+            option = listing;
+            g.options.push(option);
+          }
+        }
         if (!option)
           throw new RequestError(
             "Choose an asset from the current Marketplace results.",
