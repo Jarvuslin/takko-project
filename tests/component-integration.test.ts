@@ -13,6 +13,31 @@ import { newProject } from "../src/generation/store";
 import { validateBundle } from "../src/generation/validation";
 import { exportBundle } from "../src/generation/export";
 const dirs: string[] = [];
+it("exports a meaningful need-bound root name without rewriting the retained archive or script sources", () => {
+  const { directory, p, f } = setup();
+  const original = loadComponentIntegration(directory, f.component);
+  const reference = persistComponentIntegration(directory, {
+    preparedHash: f.evidence.packetHash,
+    evidence: f.evidence,
+    review: f.review,
+    need: f.need,
+    scope: p.scope,
+    conversionHash: f.component.conversionHash,
+    comparison: f.comparison,
+    instanceName: f.need.id,
+  } as any);
+  expect(reference.rootName).toBe(f.need.id);
+  const renamed = loadComponentIntegration(directory, reference);
+  expect(renamed.xml.xml).toContain(
+    `<string name="Name">${f.need.id}</string>`,
+  );
+  expect(renamed.evidence.sourceBodies).toEqual(original.evidence.sourceBodies);
+  expect(renamed.evidence.nodes).toEqual(original.evidence.nodes);
+  expect(loadComponentIntegration(directory, f.component).xml).toEqual(
+    original.xml,
+  );
+  expect(reference.recordHash).not.toBe(f.component.recordHash);
+});
 afterEach(() => {
   for (const dir of dirs.splice(0)) {
     const real = fs.realpathSync(dir);

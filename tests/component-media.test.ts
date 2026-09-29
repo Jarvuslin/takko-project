@@ -205,7 +205,15 @@ async function prepared(
     f.review,
     signal(),
   );
-  return { ...f, adapter, client, inspection, integration };
+  return {
+    ...f,
+    legacyComponent: f.component,
+    component: integration.component,
+    adapter,
+    client,
+    inspection,
+    integration,
+  };
 }
 
 describe("captured component media candidates (offline evidence)", () => {
@@ -322,6 +330,12 @@ describe("adapter-owned embedded audio discovery (mock native transport)", () =>
     ).rejects.toThrow(/prepared and cleaned/);
     await f.adapter.discard(f.inspection, signal());
     const before = f.client.calls.length;
+    // Follow the reference actually produced by the public integration API.
+    // A separately constructed legacy record is not this adapter's output.
+    expect(f.component).toEqual(f.integration.component);
+    await expect(
+      f.adapter.discoverComponentAudio(audioNeed, f.legacyComponent, signal()),
+    ).rejects.toThrow(/prepared and cleaned/);
     const discovered = await f.adapter.discoverComponentAudio(
       audioNeed,
       f.integration.component,

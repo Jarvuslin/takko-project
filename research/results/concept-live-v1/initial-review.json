@@ -1,0 +1,12 @@
+{
+  "reviewer": "assistant, not independent human labeling",
+  "gate": "pass_with_quality_concerns",
+  "observations": [
+    "The unresolved rescue-versus-battle choice is asked explicitly, without programming terminology.",
+    "The progression question largely repeats the emotional rescue versus competitive battle distinction.",
+    "Suggested persistence and pets improving or worsening between sessions were not requested.",
+    "The assumption that a session focuses on one representative interaction rather than the full game loop risks scope reduction despite the instruction to preserve the full requested game.",
+    "No full specification or artifact was created before clarification."
+  ],
+  "answerSelection": "Only two questions were returned. The offered rescue option is preserved verbatim at the start of the first answer, followed by a custom constraint. The second answer uses the exact Choose for me string. This combines the suggested and custom answer paths in one field rather than using three separate fields."
+}

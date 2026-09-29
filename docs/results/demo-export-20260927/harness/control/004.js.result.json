@@ -1,0 +1,576 @@
+{
+  "ok": true,
+  "value": {
+    "text": "New project\nMarketplace\nModels\nPresets\nProjects\nDownload plugin\nWorkspace/A fighting game where the player punches a stationary target dum\nStudio connected\nModels\nYOUR GAME, CONNECTED\nGame architecture\ndraft · Game architecture\nBuild\nSource\nStudio\n0 systems · 0 connections\nConnections\nAdd system\nStart with your first game system\n\nDescribe your game to Takko, or add a system using the toolbar.\n\nAsk Takko\nCombat · Inventory · Quests\n−\n100%\n+\nFit\nAuto layout\nA fighting game where the player punches a stationary target dum\nTakko\ndraft\nLatest ↓\nHistory\n$0.0783 / $8.0000\nYou\nr1 · 01:11\n\nA fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit.\n\nTakko\nr1 · 01:11\n\ndraft\n\ndraft · Activity · $0.0574\nHelpful\nNeeds work\nTakko\nr1 · 01:12\n\ndraft\n\ndraft · Activity · $0.0104\nHelpful\nNeeds work\nTakko\nr1 · 01:13\n\ndraft\n\ndraft · Activity · $0.0104\nHelpful\nNeeds work\nPreview an animation clip\nPunch the Target Dummy\n\nSaved proposal · revision 1\n\nMechanics\n\nThe player controls a standard humanoid character in a small enclosed space facing a single stationary target dummy. Pressing a punch input (left mouse click / tap / a dedicated key, defaulting to a standard attack binding) plays a short punch animation on the player's character. If, during or immediately at the resolution of the punch animation, the player's fist/hitbox overlaps the dummy's collidable body (checked via a short-range Touched/region check in front of the player), the hit registers: the punch-impact sound plays, and an on-screen counter labeled something like 'Hits: N' increments by one. The dummy itself never takes damage, falls over, or fights back — it is a permanent, invulnerable target so the loop can repeat indefinitely. A short cooldown equal to roughly the punch animation's duration prevents a single button press from registering multiple hits or from spamming faster than the animation can visually support. The counter is a simple screen UI element (e.g., top-center or top-left of the HUD) that starts at 0 on join and persists only for the current session (no cross-session saving). There is no lose condition, no health bar for the player, and no explicit win condition — the goal is open-ended practice, and the counter itself is the score/progress feedback.\n\nAssumptions: Single-player experience; no need to support multiple simultaneous punchers on one dummy for this version. Player uses the default Roblox R15 rig with standard walk/run controls unchanged; punching is an added action layered on top. Punch is bound to a simple, discoverable input (left click or a single key) rather than a combo system. The dummy is invulnerable and stationary for the entire experience — no health, knockback, or destruction. Hit counter resets to 0 each time the player joins/respawns and is not saved between sessions. A brief cooldown matching the punch animation length is acceptable to prevent counter spam from rapid input.\n\nTheme\n\nA minimal boxing/combat-training theme: the setting reads as a no-frills gym or dojo corner built for one purpose — hitting the dummy. Visual language favors plain, functional materials (matted floor, plain walls, maybe a boxing ring rope motif or gym-mat texture) rather than an elaborate narrative world. The dummy is styled as a classic boxing/training mannequin (e.g., a heavy-bag-style or humanoid punching dummy), reinforcing the 'combat practice' framing without implying a story, enemies, or stakes beyond personal practice.\n\nAssumptions: Tone is casual/sporty training-gym rather than violent or narrative-driven combat. No additional NPCs, story, or progression narrative are implied beyond the practice loop. Color palette and materials default to simple, clean gym aesthetics (neutral floor, light walls) unless the player specifies otherwise.\n\nEnvironment & layout\n\nA small, enclosed rectangular room (roughly 20x20 studs) with a flat floor and simple walls to keep the player focused and to prevent wandering off. The player spawns near one side of the room facing into the open space. The target dummy is anchored a short, comfortable punching distance in front of the spawn point (a few studs away, well within normal punch reach) so the player can immediately begin hitting it without navigating. The on-screen hit counter is a persistent HUD element (not a 3D world object) rendered in a corner of the screen for constant visibility during play. Lighting is simple and even (default baseplate-style lighting) so the punch animation and dummy remain clearly visible; no complex weather, day-night cycle, or additional set pieces are included, keeping the whole environment focused purely on the punch-the-dummy loop.\n\nAssumptions: A single small room is sufficient; no need for multiple rooms, obstacles, or additional dummies in this version. Default/simple lighting and materials are acceptable since the focus is gameplay feedback, not visual spectacle. The dummy's placement a few studs from spawn is close enough to punch immediately without requiring pathfinding or extended movement.\n\nMarketplace assets\n\nPractice dummy: Training Dummy #1245720733\n\nFighting animation: Unresolved · find during implementation\n\nSound effects: Punch impact #101355487033225\n\nRecommendations use inspected content. Playback, permissions and gameplay still need Studio testing. Preview or replace assets below.\n\nApprove & build\nASSETS FOR YOUR BRIEF\nFind your game’s look and movement\n\n3 asset groups · preview a few options and choose what fits.\n\nPreview & choose assets\n\nYour build plan appears after planning.\n\nMessage\nPresets\nBudget\nEnter to send · Shift + Enter for a new line",
+    "clips": [
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/1",
+        "clipName": "TW idle"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/2",
+        "clipName": "TWLeftPunch"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/3",
+        "clipName": "TWRightPunch"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/4",
+        "clipName": "TWLeftUpperCut"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/5",
+        "clipName": "TWRightKick"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/6",
+        "clipName": "TWLeftStab"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/7",
+        "clipName": "Barrage"
+      },
+      {
+        "asset": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "key": "1/15/8",
+        "clipName": "TWHeavyPunch"
+      },
+      {
+        "asset": "2801965424",
+        "name": "Punch Animation",
+        "key": "1/18/2",
+        "clipName": "Right Punch"
+      },
+      {
+        "asset": "2801965424",
+        "name": "Punch Animation",
+        "key": "1/18/3",
+        "clipName": "Left Punch"
+      },
+      {
+        "asset": "2801965424",
+        "name": "Punch Animation",
+        "key": "1/18/4",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "10445897943",
+        "name": "Star Platinum Heavy Punch Open Animation Editor",
+        "key": "1/18/1",
+        "clipName": "Imported Animation Clip"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/1/1",
+        "clipName": "ClimbAnim",
+        "animationId": "180436334"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/2/1",
+        "clipName": "FallAnim",
+        "animationId": "180436148"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/3/1",
+        "clipName": "Animation1",
+        "animationId": "180435571"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/3/2",
+        "clipName": "Animation2",
+        "animationId": "180435792"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/4/1",
+        "clipName": "JumpAnim",
+        "animationId": "125750702"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/5/1",
+        "clipName": "RunAnim",
+        "animationId": "180426354"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/6/1",
+        "clipName": "SitAnim",
+        "animationId": "178130996"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/7/1",
+        "clipName": "ToolNoneAnim",
+        "animationId": "182393478"
+      },
+      {
+        "asset": "6125989440",
+        "name": "attacking npc with custom animation and punch",
+        "key": "1/20/8/1",
+        "clipName": "WalkAnim",
+        "animationId": "180426354"
+      },
+      {
+        "asset": "12061946559",
+        "name": "R15 Punching Animations",
+        "key": "1/1/18/1",
+        "clipName": "punching animation"
+      },
+      {
+        "asset": "12061946559",
+        "name": "R15 Punching Animations",
+        "key": "1/2/18/1",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "12061946559",
+        "name": "R15 Punching Animations",
+        "key": "1/2/18/2",
+        "clipName": "Punching animation"
+      },
+      {
+        "asset": "6180231127",
+        "name": "Punch Animations For video",
+        "key": "1/9/1",
+        "clipName": "Untitled Animation Clip"
+      },
+      {
+        "asset": "6180231127",
+        "name": "Punch Animations For video",
+        "key": "2/9/9",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "6180231127",
+        "name": "Punch Animations For video",
+        "key": "3/9/2",
+        "clipName": "punch 1"
+      },
+      {
+        "asset": "6180231127",
+        "name": "Punch Animations For video",
+        "key": "3/9/3",
+        "clipName": "punch 2"
+      },
+      {
+        "asset": "6180231127",
+        "name": "Punch Animations For video",
+        "key": "3/9/5",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "80460719695191",
+        "name": "R6 Punch Animations Fighting Combo Moveset",
+        "key": "1/12/1",
+        "clipName": "Idle"
+      },
+      {
+        "asset": "80460719695191",
+        "name": "R6 Punch Animations Fighting Combo Moveset",
+        "key": "1/12/2",
+        "clipName": "Swing"
+      },
+      {
+        "asset": "80460719695191",
+        "name": "R6 Punch Animations Fighting Combo Moveset",
+        "key": "1/12/3",
+        "clipName": "Swing 2"
+      },
+      {
+        "asset": "80460719695191",
+        "name": "R6 Punch Animations Fighting Combo Moveset",
+        "key": "1/12/4",
+        "clipName": "Swing 3"
+      },
+      {
+        "asset": "80460719695191",
+        "name": "R6 Punch Animations Fighting Combo Moveset",
+        "key": "1/12/5",
+        "clipName": "Equip"
+      },
+      {
+        "asset": "2857718572",
+        "name": "Punch Tool & Animations",
+        "key": "1/2/18/3",
+        "clipName": "Right Kick"
+      },
+      {
+        "asset": "2857718572",
+        "name": "Punch Tool & Animations",
+        "key": "1/2/18/4",
+        "clipName": "Right Punch"
+      },
+      {
+        "asset": "2857718572",
+        "name": "Punch Tool & Animations",
+        "key": "1/2/18/5",
+        "clipName": "Left Punch"
+      },
+      {
+        "asset": "2857718572",
+        "name": "Punch Tool & Animations",
+        "key": "1/2/18/6",
+        "clipName": "Combat Idle"
+      },
+      {
+        "asset": "2857718572",
+        "name": "Punch Tool & Animations",
+        "key": "1/2/18/7",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/1",
+        "clipName": "Automatic Save"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/2",
+        "clipName": "Special"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/3",
+        "clipName": "punch1"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/4",
+        "clipName": "punch2"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/5",
+        "clipName": "punch3"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/6",
+        "clipName": "punch4"
+      },
+      {
+        "asset": "8606219519",
+        "name": "Combat animations (punch animations)",
+        "key": "1/9/7",
+        "clipName": "punch5"
+      }
+    ],
+    "assessments": {
+      "candidateId": null,
+      "state": "uncertain",
+      "assessments": [
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/1",
+          "confidence": 0.97,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/2",
+          "confidence": 0.97,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/3",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/4",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/5",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/6",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/7",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "14056318312",
+          "clipKey": "1/15/8",
+          "confidence": 0.98,
+          "relevant": false
+        },
+        {
+          "candidateId": "2801965424",
+          "clipKey": "1/18/2",
+          "confidence": 0.55,
+          "relevant": false
+        },
+        {
+          "candidateId": "2801965424",
+          "clipKey": "1/18/3",
+          "confidence": 0.69,
+          "relevant": false
+        },
+        {
+          "candidateId": "2801965424",
+          "clipKey": "1/18/4",
+          "confidence": 0.73,
+          "relevant": false
+        },
+        {
+          "candidateId": "10445897943",
+          "clipKey": "1/18/1",
+          "confidence": 0.63,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/1/1",
+          "confidence": 0.98,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/2/1",
+          "confidence": 0.92,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/3/1",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/3/2",
+          "confidence": 0.93,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/4/1",
+          "confidence": 0.91,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/5/1",
+          "confidence": 0.92,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/6/1",
+          "confidence": 0.99,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/7/1",
+          "confidence": 0.98,
+          "relevant": false
+        },
+        {
+          "candidateId": "6125989440",
+          "clipKey": "1/20/8/1",
+          "confidence": 0.93,
+          "relevant": false
+        },
+        {
+          "candidateId": "12061946559",
+          "clipKey": "1/1/18/1",
+          "confidence": 0.7,
+          "relevant": false
+        },
+        {
+          "candidateId": "12061946559",
+          "clipKey": "1/2/18/1",
+          "confidence": 0.48,
+          "relevant": false
+        },
+        {
+          "candidateId": "12061946559",
+          "clipKey": "1/2/18/2",
+          "confidence": 0.71,
+          "relevant": false
+        },
+        {
+          "candidateId": "6180231127",
+          "clipKey": "1/9/1",
+          "confidence": 0.99,
+          "relevant": false
+        },
+        {
+          "candidateId": "6180231127",
+          "clipKey": "2/9/9",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "6180231127",
+          "clipKey": "3/9/2",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "6180231127",
+          "clipKey": "3/9/3",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "6180231127",
+          "clipKey": "3/9/5",
+          "confidence": 0.91,
+          "relevant": false
+        },
+        {
+          "candidateId": "80460719695191",
+          "clipKey": "1/12/1",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "80460719695191",
+          "clipKey": "1/12/2",
+          "confidence": 0.92,
+          "relevant": false
+        },
+        {
+          "candidateId": "80460719695191",
+          "clipKey": "1/12/3",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "80460719695191",
+          "clipKey": "1/12/4",
+          "confidence": 0.96,
+          "relevant": false
+        },
+        {
+          "candidateId": "80460719695191",
+          "clipKey": "1/12/5",
+          "confidence": 0.94,
+          "relevant": false
+        },
+        {
+          "candidateId": "2857718572",
+          "clipKey": "1/2/18/3",
+          "confidence": 0.07,
+          "relevant": false
+        },
+        {
+          "candidateId": "2857718572",
+          "clipKey": "1/2/18/4",
+          "confidence": 0.01,
+          "relevant": false
+        },
+        {
+          "candidateId": "2857718572",
+          "clipKey": "1/2/18/5",
+          "confidence": 0.48,
+          "relevant": false
+        },
+        {
+          "candidateId": "2857718572",
+          "clipKey": "1/2/18/6",
+          "confidence": 0.92,
+          "relevant": false
+        },
+        {
+          "candidateId": "2857718572",
+          "clipKey": "1/2/18/7",
+          "confidence": 0.06,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/1",
+          "confidence": 0.97,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/2",
+          "confidence": 0.93,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/3",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/4",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/5",
+          "confidence": 0.94,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/6",
+          "confidence": 0.95,
+          "relevant": false
+        },
+        {
+          "candidateId": "8606219519",
+          "clipKey": "1/9/7",
+          "confidence": 0.95,
+          "relevant": false
+        }
+      ],
+      "at": "2026-09-27T05:13:19.946Z"
+    }
+  }
+}

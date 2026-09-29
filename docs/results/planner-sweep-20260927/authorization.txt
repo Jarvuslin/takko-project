@@ -1,0 +1,178 @@
+Eight real planner outputs already on disk. That's a free corpus.
+
+STOP the one-bug-per-run treadmill. This turn is a systematic sweep, not a point fix.
+
+Thirteen runs, zero generated files, $7.37 spent. Each run discovers ONE new constraint
+at ~$0.5 and a full turn of latency. The planner must satisfy ~30 semantic rules plus
+the whole zod schema in one 21k-character document. We have sampled four of them.
+
+Goal this turn: find as many as possible OFFLINE and FREE, fix them together, then run.
+
+===============================================================================
+PART A. FIX THE TWO CONFIRMED BUGS
+✻ Churned for 1m 5s · done 3:39 AM
+
+❯ instead of fixing just this one problem i want you to prompt astra to fix this and also diagnose and test for every other potential problem(figure a way) so we dont keep getting 1 new problem surfaced every run and waste token and instead just try to catch as many as possible so that we can finally build without any issues
+
+This is the right call, and it's what I should have pushed for two runs ago. Here's the prompt.
+
+  Ran 1 shell command
+
+Eight real planner outputs already on disk. That's a free corpus.
+
+STOP the one-bug-per-run treadmill. This turn is a systematic sweep, not a point fix.
+
+Thirteen runs, zero generated files, $7.37 spent. Each run discovers ONE new constraint
+at ~$0.5 and a full turn of latency. The planner must satisfy ~30 semantic rules plus
+the whole zod schema in one 21k-character document. We have sampled four of them.
+
+Goal this turn: find as many as possible OFFLINE and FREE, fix them together, then run.
+
+===============================================================================
+PART A. FIX THE TWO CONFIRMED BUGS
+===============================================================================
+
+A1. ENUM COLLISION. Two enums in the same schema:
+
+    category          mechanic | world | ui | animation | audio | network |
+                      lifecycle | presentation
+    proposalSections  mechanics | theme | environment | assets
+
+Note "mechanic" vs "mechanics". Every enum failure across runs 12 and 13 put a CATEGORY
+value into proposalSections: "animation" and "ui" (run 12 a1), "ui" (run 13 a2), "ui"
+(run 13 a4). Four for four. For a HUD task, "ui" is semantically right AND legal in a
+sibling field.
+
+This is the only constraint that REPEATED. Everything else was a one-off. Fix it so the
+values cannot be confused. Renaming category's values is risky since they are consumed
+elsewhere, so prefer disambiguating proposalSections, its field name, or the contract
+text that describes it. Do not add genre-specific values.
+
+A2. CROSS-PHASE CONTRADICTION. marketplace-policy.ts:38 rejects Model queries over four
+terms. The proposal produced "stationary punching bag training dummy humanoid model",
+seven terms, the USER APPROVED IT, and planning then rejected it. Enforce the rule where
+the query is authored, not only downstream. Run 13 also noted this diagnostic "still did
+not name the offending need" — fix that too.
+
+===============================================================================
+PART B. FREE REPLAY OF EVERY PRESERVED PLANNER OUTPUT
+===============================================================================
+
+Eight real model outputs already exist:
+
+    docs/results/demo-export-20260927/planner-output-{0,1,2}.json
+    docs/results/run13-live-20260927/planner-output-{0,1,2,4}.json + output-3.txt
+    docs/results/run13-live-20260927/planner-attempts.json
+
+Build a repeatable harness that runs EVERY one through the complete validation stack
+(zod schema, validateSpec, validateReferenceDecisions, validateMarketplaceDiscovery,
+architecture, proposalPlanFor, buildAssetNeeds) and records EVERY violation, not just
+the first.
+
+Report a matrix: output x violated constraint. Then re-run it after Part A and show
+which violations disappear. If run 13 attempts 2 and 4 now pass, say so explicitly —
+that is direct free evidence the fix works.
+
+Keep this harness. It must be re-runnable on future preserved outputs.
+
+===============================================================================
+PART C. AUDIT EVERY CONSTRAINT SITE
+===============================================================================
+
+Inventory all constraint sites the planner output must satisfy. Known counts:
+validation.ts 19 throws, architecture.ts 5, marketplace-policy.ts 4, plan-validation.ts
+4, plus the zod schema's enums, patterns and bounds.
+
+For EACH site record three properties:
+
+  1. DOES THE MESSAGE NAME THE OFFENDING ELEMENT?
+     "Connect two different systems" named no edge. The query diagnostic named no need.
+     A model cannot fix what it cannot locate. Every violation message must identify
+     the specific task, requirement, edge, need or path that failed.
+
+  2. IS IT REACHABLE INSIDE A CORRECTION CALLBACK?
+     Anything outside the correction loop is terminal and unrecoverable. We fixed that
+     class once for proposal binding. Confirm no others remain outside.
+
+  3. IS IT ENFORCED WHERE THE FIELD IS AUTHORED, OR ONLY DOWNSTREAM?
+     See Part D.
+
+Output the inventory as a durable file, like the earlier GATES.md, with locations and
+the three properties per site.
+
+===============================================================================
+PART D. CROSS-PHASE CONTRADICTION SWEEP
+===============================================================================
+
+This is the highest-value part. The SAME meta-bug has now occurred four times: the
+product accepts something, then a later stage refuses it.
+
+  1. preview approved an animation, acquisition rejected it (no AnimationId)
+  2. discovery offered raw packs, policy then excluded them (publishing)
+  3. preview walks 10,000 instances, inspection capped at 3,000
+  4. proposal authored a 7-term query, planning enforces 4 terms
+
+Sweep for the rest systematically. For every constraint enforced on a field, find where
+that field is FIRST authored or accepted, and check whether the same constraint applies
+there. Any place where stage N accepts what stage N+1 refuses is a bug of this class.
+
+Report every instance found. Fix the ones that are cheap and unambiguous. For any that
+are not, record them explicitly so they stop being discovered one paid run at a time.
+
+===============================================================================
+PART E. OPTIONAL PAID SAMPLING, ONLY IF B AND C ARE INCONCLUSIVE
+===============================================================================
+
+If the free work cannot establish whether planning will now succeed, you may sample the
+planner to measure the violation distribution. CAP $2, SEPARATE from the run budget.
+
+Generate N planning responses against the same saved pre-build project, validate each,
+and report which constraints are violated and how often. This buys the failure
+distribution for ~$2 instead of discovering it serially at ~$0.5 per run plus a turn.
+
+Do NOT do this if Part B already shows the preserved outputs passing. Do not exceed $2.
+Report actual cost.
+
+===============================================================================
+PART F. THEN RUN
+===============================================================================
+
+Only after A-D are green and the full check passes.
+
+ONE paid run, cap $8. Refresh and record the balance; it was $14.394626352 at
+2026-09-27T07:27:19.447Z. Keep OpenCode mode. Do NOT switch to coordinator — the
+evidence says you are blocked by two fixable bugs, not by architecture, and switching
+would not fix the enum anyway.
+
+Same unchanged positive-only brief. Jev selects automatically, manual fallback only if
+nothing passes. Delivery is GET /api/projects/:id/export into the evidence directory.
+NOT bridge apply. Do not modify place 122588481889475.
+
+SUCCESS BAR: files generated, they compile, a .rbxlx exists, cost recorded per phase.
+Quality is NOT the bar.
+
+ACCEPTABLE, do not stop: raw-only animation with a visible publishing limitation, an
+incomplete-inspection limitation, an asset failing acquisition with the build continuing
+and the gap reported, a crude or partly broken game.
+
+STOP only for: a genuinely new gate not found by the sweep, the $8 cap, or an actual
+safety finding. If a new gate DOES appear despite the sweep, that is important
+information — record why the sweep missed it.
+
+===============================================================================
+RULES
+===============================================================================
+
+Failing tests first from preserved real output, per the AGENTS.md fixture rule. Do NOT
+weaken any validator to make outputs pass — the rules are mostly correct, the problems
+are confusable vocabulary, unlocatable messages and cross-phase disagreement.
+
+Fix your own mistakes and continue. Only stop for a PRODUCT problem or a spending
+problem, never for a typo in your own new test.
+
+Do not do: model swap, coordinator switch, relevance gate redesign, confidence
+threshold, streaming, place binding, EditableMesh, vision scoring, bridge component
+delivery, the duplicate relevance pass. Record, do not fix.
+
+Full npm run check with REAL counts. All three replays at $0. Report under docs/, dated
+section at the top of continuation.md. If the generated code is bad, say so and keep it.

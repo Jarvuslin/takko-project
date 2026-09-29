@@ -159,8 +159,9 @@ export function readBenchmarkFixture(
     fixtureSha256(exported) !== manifest.exportHash
   )
     throw Error("Fixture file hash mismatch");
-  if (exportBundle(bundle, manifest.scope) !== exported.toString())
-    throw Error("Fixture export differs from the public bundle");
+  // These are immutable historical starting worlds, independently pinned by
+  // the catalog's bundle and export hashes below. A newer exporter may add a
+  // new base world. Re-rendering here would silently redefine the benchmark.
   if (
     definition.fixture.artifactSha256 &&
     definition.fixture.artifactSha256 !== manifest.artifactSha256

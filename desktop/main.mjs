@@ -1,11 +1,22 @@
-import { app, BrowserWindow, Menu, dialog, utilityProcess } from "electron";
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  dialog,
+  nativeTheme,
+  utilityProcess,
+  shell,
+} from "electron";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ServiceSupervisor } from "./supervisor.mjs";
+import { serviceEnvironment } from "./service-environment.mjs";
 import { desktopIdentity, desktopDataDirectory } from "./identity.mjs";
 import {
   isServiceUrl,
+  isRobloxBrowserLink,
+  isRobloxThumbnailRequest,
   rendererPreferences,
   contentSecurityPolicy,
 } from "./policy.mjs";
@@ -13,7 +24,10 @@ import {
 const resources = path.dirname(fileURLToPath(import.meta.url));
 // This application has its own identity; it never attaches to a running web server.
 app.setName(desktopIdentity.name);
-const dataDirectory = desktopDataDirectory(app.getPath("appData"));
+const dataDirectory = desktopDataDirectory(
+  app.getPath("appData"),
+  app.commandLine.getSwitchValue("user-data-dir"),
+);
 app.setPath("userData", dataDirectory);
 if (!app.requestSingleInstanceLock()) app.quit();
 else {
@@ -23,20 +37,7 @@ else {
   let starting = false;
   const failureUrl = pathToFileURL(path.join(resources, "status.html")).href;
   const supervisor = new ServiceSupervisor((nonce) => {
-    const env = Object.fromEntries(
-      [
-        "SystemRoot",
-        "SYSTEMROOT",
-        "WINDIR",
-        "PATH",
-        "TEMP",
-        "TMP",
-        "HOME",
-        "USERPROFILE",
-      ]
-        .filter((key) => process.env[key])
-        .map((key) => [key, process.env[key]]),
-    );
+    const env = serviceEnvironment(process.env);
     return utilityProcess.fork(path.join(resources, "service.cjs"), [], {
       cwd: dataDirectory,
       env: {
@@ -75,7 +76,7 @@ else {
       dialog.showErrorBox(
         "Takko local service",
         reason +
-          "\nUse Service → Retry service to restart. Session-only provider keys must be entered again after a restart.",
+          "\nUse Service → Retry service to restart. Provider keys saved with Windows encryption are restored automatically.",
       );
     }
   });
@@ -96,6 +97,7 @@ else {
     .whenReady()
     .then(async () => {
       fs.mkdirSync(dataDirectory, { recursive: true });
+      nativeTheme.themeSource = "dark";
       window = new BrowserWindow({
         width: 1440,
         height: 960,
@@ -103,18 +105,35 @@ else {
         minHeight: 640,
         show: false,
         title: "Takko",
-        backgroundColor: "#141414",
+        backgroundColor: "#111111",
         webPreferences: rendererPreferences,
       });
       window.webContents.session.setPermissionRequestHandler(
         (_contents, _permission, callback) => callback(false),
       );
       window.webContents.session.setPermissionCheckHandler(() => false);
-      window.webContents.setWindowOpenHandler(() => ({ action: "deny" }));
+      const openRobloxLink = (url) => {
+        if (isRobloxBrowserLink(url))
+          void shell
+            .openExternal(url)
+            .catch(() =>
+              dialog.showErrorBox(
+                "Could not open Roblox",
+                "Open the Creator Store or Roblox documentation in your browser and try again.",
+              ),
+            );
+      };
+      window.webContents.setWindowOpenHandler(({ url }) => {
+        openRobloxLink(url);
+        return { action: "deny" };
+      });
       const allowed = (url) =>
         url === failureUrl || (origin && isServiceUrl(url, origin));
       window.webContents.on("will-navigate", (event, url) => {
-        if (!allowed(url)) event.preventDefault();
+        if (!allowed(url)) {
+          event.preventDefault();
+          openRobloxLink(url);
+        }
       });
       window.webContents.on("will-redirect", (event, url) => {
         if (!allowed(url)) event.preventDefault();
@@ -131,7 +150,12 @@ else {
             details.resourceType === "image" &&
             (details.url.startsWith("data:") ||
               (origin && details.url.startsWith(`blob:${origin}/`)));
-          callback({ cancel: !allowed(details.url) && !localImage });
+          callback({
+            cancel:
+              !allowed(details.url) &&
+              !localImage &&
+              !isRobloxThumbnailRequest(details.url, details.resourceType),
+          });
         },
       );
       window.webContents.session.webRequest.onHeadersReceived(
@@ -192,8 +216,18 @@ else {
           },
         ]),
       );
+      // loadURL resolves before the first frame is painted, so showing on it alone
+      // races ahead of ready-to-show. Wait for the paint, with a timeout covering a
+      // renderer that never fires it.
+      const painted = new Promise((resolve) =>
+        window.once("ready-to-show", resolve),
+      );
       await window.loadURL(failureUrl);
-      window.show();
+      await Promise.race([
+        painted,
+        new Promise((resolve) => setTimeout(resolve, 4000)),
+      ]);
+      if (!window.isDestroyed() && !window.isVisible()) window.show();
       await start();
     })
     .catch((error) => {

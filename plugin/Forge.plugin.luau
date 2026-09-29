@@ -102,6 +102,11 @@ local function apply(op)
  end
  local roots = {Workspace=workspace, ReplicatedStorage=game:GetService("ReplicatedStorage"), ServerScriptService=game:GetService("ServerScriptService"), ServerStorage=game:GetService("ServerStorage"), StarterGui=game:GetService("StarterGui"), ["StarterPlayer/StarterPlayerScripts"]=game:GetService("StarterPlayer").StarterPlayerScripts}
  local staged, old, nodes = {}, {}, {}
+ local foundation = {}
+ local lightingBefore = {}
+ local lighting = game:GetService("Lighting")
+ -- Existing places retain their own baseplate and lighting. Bootstrap only a missing foundation.
+ local createFoundation = op.baseWorld and not workspace:FindFirstChild("Baseplate") and not applied[op.scope] and not workspace:FindFirstChild(op.scope)
  for prefix, parent in roots do
   local existing = parent:FindFirstChild(op.scope)
   if existing then assert(not dirty[prefix.."/"..op.scope] and baselines[prefix.."/"..op.scope] == signature(existing), "Owned objects changed or plugin restarted. Preserve your edits and use a new Takko project.") end
@@ -136,6 +141,23 @@ local function apply(op)
   obj.Name=name;obj.Parent=parent;nodes[p]=obj;return obj
  end
  local ok, err = pcall(function()
+  if createFoundation then
+   assert(op.baseWorld.version==1, "Unsupported base world contract")
+   for _,item in op.baseWorld.nodes do
+    if item.path=="Lighting" then
+     for name,v in item.properties do lightingBefore[name]=lighting[name] end
+    else
+     local parentPath,name=item.path:match("^(.*)/([^/]+)$")
+     assert(parentPath=="Workspace" or parentPath=="Lighting", "Invalid base world path")
+     local parent=parentPath=="Workspace" and workspace or lighting
+     if not parent:FindFirstChild(name) then
+      local obj=Instance.new(item.className);obj.Name=name
+      table.insert(foundation,{object=obj,parent=parent})
+      for key,v in item.properties do obj[key]=value(v,{}) end
+     end
+    end
+   end
+  end
   local scene = table.clone(op.bundle.scene)
   table.sort(scene, function(a,b) return #a.path:split("/") < #b.path:split("/") end)
   for _, item in scene do ensure(item.path,item.className,item.properties) end
@@ -148,21 +170,28 @@ local function apply(op)
    end
   end
  end)
- if not ok then for _,root in staged do root:Destroy() end;error(err) end
+ if not ok then for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error(err) end
  -- Source and mesh staging can yield. Recheck ownership immediately before replacing roots.
  for prefix,parent in roots do
   local existing=parent:FindFirstChild(op.scope)
   if existing~=old[prefix] or existing and (dirty[prefix.."/"..op.scope] or baselines[prefix.."/"..op.scope]~=signature(existing)) then
    for _,root in staged do root:Destroy() end
+   for _,f in foundation do f.object:Destroy() end
    error("Owned objects changed during staging. Preserve your edits and retry with a new Takko project.")
   end
  end
  local recording=History:TryBeginRecording("ForgeApply", "Apply Takko generation")
- if not recording then for _,root in staged do root:Destroy() end;error("Could not begin Studio undo recording") end
+ if not recording then for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error("Could not begin Studio undo recording") end
  local swapped, swapError=pcall(function()
   for prefix,parent in roots do if old[prefix] then old[prefix].Parent=nil end;staged[prefix].Parent=parent end
+  for _,f in foundation do assert(not f.parent:FindFirstChild(f.object.Name), "Base world changed during staging");f.object.Parent=f.parent end
+  if createFoundation then
+   for _,item in op.baseWorld.nodes do if item.path=="Lighting" then for name,v in item.properties do lighting[name]=value(v,{}) end end end
+  end
  end)
  if not swapped then
+  for _,f in foundation do f.object:Destroy() end
+  for name,v in lightingBefore do lighting[name]=v end
   for prefix,parent in roots do staged[prefix]:Destroy();if old[prefix] then old[prefix].Parent=parent end end
   History:FinishRecording(recording,Enum.FinishRecordingOperation.Cancel)
   error(swapError)

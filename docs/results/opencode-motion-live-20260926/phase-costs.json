@@ -1,0 +1,547 @@
+{
+  "phases": {
+    "Automatic asset relevance": {
+      "calls": 30,
+      "chargedMicros": 9908,
+      "reservedMicros": 80640,
+      "inputTokens": 235610,
+      "outputTokens": 3495
+    },
+    "Jev proposal interpretation": {
+      "calls": 1,
+      "chargedMicros": 48,
+      "reservedMicros": 2688,
+      "inputTokens": 1134,
+      "outputTokens": 300
+    },
+    "Initial proposal": {
+      "calls": 1,
+      "chargedMicros": 22056,
+      "reservedMicros": 336964,
+      "inputTokens": 1443,
+      "outputTokens": 1917
+    },
+    "Proposal edit": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "Implementation planning": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "Asset acquisition": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "OpenCode coding": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "Independent review": {
+      "calls": 0,
+      "chargedMicros": 0
+    }
+  },
+  "calls": [
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 358,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8517,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:38.242Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 515,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 12253,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:38.678Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 344,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8183,
+      "outputTokens": 131,
+      "status": "ok",
+      "at": "2026-09-26T19:52:39.166Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 430,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10227,
+      "outputTokens": 291,
+      "status": "ok",
+      "at": "2026-09-26T19:52:39.668Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 142,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3364,
+      "outputTokens": 422,
+      "status": "ok",
+      "at": "2026-09-26T19:52:40.186Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 241,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5738,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:40.765Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 241,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5730,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:41.227Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 246,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5847,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:41.755Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 244,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5791,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:42.210Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 244,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5800,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:42.669Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 244,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5809,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:43.212Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 446,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10613,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:43.723Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 333,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7910,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:44.221Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 459,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10917,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:44.730Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 431,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10248,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:45.240Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 375,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8922,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:45.869Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 301,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7163,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:46.381Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 273,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6488,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:46.862Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 259,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6159,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:47.374Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 361,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8574,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:47.918Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 377,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8973,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:48.471Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 436,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10373,
+      "outputTokens": 131,
+      "status": "ok",
+      "at": "2026-09-26T19:52:48.993Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 429,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10201,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:49.484Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 256,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6094,
+      "outputTokens": 35,
+      "status": "ok",
+      "at": "2026-09-26T19:52:49.964Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 400,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9508,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:50.444Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 389,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9256,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:50.935Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 330,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 7838,
+      "outputTokens": 67,
+      "status": "ok",
+      "at": "2026-09-26T19:52:51.392Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 471,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 11199,
+      "outputTokens": 99,
+      "status": "ok",
+      "at": "2026-09-26T19:52:51.905Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 176,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 4187,
+      "outputTokens": 521,
+      "status": "ok",
+      "at": "2026-09-26T19:52:52.541Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 157,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 3728,
+      "outputTokens": 455,
+      "status": "ok",
+      "at": "2026-09-26T19:52:52.989Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5cfb9c91-ef23-4196-ae48-830efcd5734e",
+      "model": "typesafe/jev-1.13",
+      "reservedMicros": 2688,
+      "chargedMicros": 48,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 1134,
+      "outputTokens": 300,
+      "status": "ok",
+      "at": "2026-09-26T19:53:35.122Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+      "model": "anthropic/claude-sonnet-5",
+      "reservedMicros": 336964,
+      "chargedMicros": 22056,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 1443,
+      "outputTokens": 1917,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-26T19:54:03.329Z"
+    }
+  ],
+  "groupSummary": [
+    {
+      "group": "dummy",
+      "assessed": 30,
+      "passed": 3,
+      "min": 0.02,
+      "max": 0.89,
+      "pick": {
+        "group": "dummy",
+        "candidateId": "1245720733",
+        "name": "Training Dummy",
+        "votePrior": 0.8500173312059693,
+        "answer": "yes",
+        "confidence": 0.84,
+        "probabilities": {
+          "yes": 0.92,
+          "no": 0.08
+        },
+        "passed": true,
+        "selected": true,
+        "requestIndex": 1
+      },
+      "oversized": 0
+    },
+    {
+      "group": "combat",
+      "assessed": 46,
+      "passed": 33,
+      "min": 0.05,
+      "max": 0.98,
+      "pick": {
+        "group": "combat",
+        "candidateId": "14056318312",
+        "name": "The World m1, heavy punch, barrage, animations",
+        "clipKey": "1/15/2",
+        "clipName": "TWLeftPunch",
+        "votePrior": 0.7985030550748896,
+        "answer": "yes",
+        "confidence": 0.96,
+        "probabilities": {
+          "no": 0.02,
+          "yes": 0.98
+        },
+        "passed": true,
+        "selected": true,
+        "requestIndex": 7
+      },
+      "oversized": 0
+    },
+    {
+      "group": "sound",
+      "assessed": 30,
+      "passed": 13,
+      "min": 0.58,
+      "max": 0.89,
+      "pick": {
+        "group": "sound",
+        "candidateId": "101355487033225",
+        "name": "Punch impact",
+        "votePrior": 0,
+        "answer": "yes",
+        "confidence": 0.89,
+        "probabilities": {
+          "yes": 0.94,
+          "no": 0.06
+        },
+        "passed": true,
+        "selected": true,
+        "requestIndex": 29
+      },
+      "oversized": 0
+    }
+  ],
+  "opencode": {
+    "sessions": 0,
+    "exchanges": 0,
+    "exchangeLimit": 48,
+    "wallMs": 0,
+    "deadlineMs": 900000,
+    "limitsBinding": false
+  },
+  "generatedFiles": 0,
+  "generatedCompiles": 0
+}

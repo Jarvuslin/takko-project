@@ -1,3 +1,4 @@
+import { ConflictError, NotFoundError } from "../errors";
 import {
   createHash,
   randomBytes,
@@ -10,6 +11,7 @@ import path from "node:path";
 import { GenerationStore } from "./store";
 import { bundleHash } from "./validation";
 import { retrievedBundles } from "./asset-provenance";
+import { recordedTemplate } from "./world-policy";
 const check = z
   .object({
     id: z.string().max(160),
@@ -232,7 +234,7 @@ export class Bridge {
           (op.state === "dispatched" || op.state === "unknown"),
       )
     ) {
-      throw Error(
+      throw new ConflictError(
         "Project has a dispatched or unresolved Studio operation; wait for its receipt before editing",
       );
     }
@@ -266,6 +268,25 @@ export class Bridge {
         };
       });
   }
+  projectOperations(projectId: string) {
+    this.store.get(projectId);
+    this.refresh();
+    return [...this.operations.values()]
+      .filter((op) => op.projectId === projectId)
+      .map((op) => ({
+        id: op.id,
+        studioId: op.studioId,
+        revision: op.revision,
+        artifactHash: op.artifactHash,
+        kind: op.kind,
+        state: op.state,
+        createdAt: op.createdAt,
+        reason: op.reason,
+        ok: op.result?.ok ?? null,
+        checks: op.result?.checks ?? [],
+        logs: op.result?.logs ?? [],
+      }));
+  }
   connect(name: string, metadata: unknown = {}) {
     const id = randomUUID();
     this.sessions.set(id, {
@@ -280,7 +301,8 @@ export class Bridge {
   status(studioId: string, operationId: string) {
     this.refresh();
     let op = this.operations.get(operationId);
-    if (!op || op.studioId !== studioId) throw Error("Operation not found");
+    if (!op || op.studioId !== studioId)
+      throw new NotFoundError("Operation not found");
     if (
       (op.state === "queued" || op.state === "dispatched") &&
       !this.currentProject(op)
@@ -299,7 +321,9 @@ export class Bridge {
     const op = this.status(studioId, operationId);
     if (op.state === "cancelled") return op;
     if (op.state !== "queued")
-      throw Error("Only an undispatched queued operation can be cancelled");
+      throw new ConflictError(
+        "Only an undispatched queued operation can be cancelled",
+      );
     this.saveOperation({
       ...op,
       state: "cancelled",
@@ -309,7 +333,7 @@ export class Bridge {
   }
   poll(id: string) {
     const session = this.sessions.get(id);
-    if (!session) throw Error("Studio session not found");
+    if (!session) throw new NotFoundError("Studio session not found");
     session.lastSeen = this.now();
     this.refresh();
     const op = [...this.operations.values()].find(
@@ -337,6 +361,7 @@ export class Bridge {
       ...dispatched,
       scope: p.scope,
       bundle: p.artifact,
+      baseWorld: recordedTemplate(p),
       importedMeshIds: [
         ...new Set(
           retrievedBundles(p).flatMap((b) =>
@@ -352,16 +377,16 @@ export class Bridge {
   }
   enqueue(projectId: string, studioId: string, kind: "apply" | "test") {
     const session = this.list().find((s) => s.id === studioId);
-    if (!session) throw Error("Studio is not connected");
+    if (!session) throw new ConflictError("Studio is not connected");
     if (session.protocolVersion !== 2)
-      throw Error(
+      throw new ConflictError(
         "Studio plugin protocol is incompatible; update the Forge plugin and reconnect",
       );
     if (!session.capabilities.includes(kind))
-      throw Error(`Studio session does not support ${kind}`);
+      throw new ConflictError(`Studio session does not support ${kind}`);
     const p = this.store.get(projectId);
     if (p.assetPipeline?.entries.some((e) => e.component))
-      throw Error(
+      throw new ConflictError(
         "This Studio bridge does not yet deliver native components. Use the complete place export; component content must not be silently omitted.",
       );
     if (
@@ -371,15 +396,19 @@ export class Bridge {
       p.approvedRevision !== p.revision ||
       p.checks.some((c) => c.status === "failed")
     )
-      throw Error("Build and resolve static checks before applying to Studio");
+      throw new ConflictError(
+        "Build and resolve static checks before applying to Studio",
+      );
     if (
       [...this.operations.values()].some(
         (o) => o.studioId === studioId && active.has(o.state),
       )
     )
-      throw Error("Studio already has an active or unresolved operation");
+      throw new ConflictError(
+        "Studio already has an active or unresolved operation",
+      );
     if (kind === "test" && !p.review?.tests.length)
-      throw Error("Studio testing requires acceptance tests");
+      throw new ConflictError("Studio testing requires acceptance tests");
     const op: Operation = {
       expectedTestIds: (p.review?.tests ?? []).map((t) => t.id),
       testsHash: this.testsHash(p.review?.tests ?? []),
@@ -400,14 +429,15 @@ export class Bridge {
   result(studioId: string, input: unknown) {
     const result = resultSchema.parse(input),
       op = this.operations.get(result.operationId);
-    if (!op || op.studioId !== studioId) throw Error("Operation not found");
+    if (!op || op.studioId !== studioId)
+      throw new NotFoundError("Operation not found");
     if (
       op.revision !== result.revision ||
       op.artifactHash !== result.artifactHash
     )
-      throw Error("Studio result revision conflict");
+      throw new ConflictError("Studio result revision conflict");
     if (!op.dispatchId || op.dispatchId !== result.dispatchId)
-      throw Error("Studio dispatch identity conflict");
+      throw new ConflictError("Studio dispatch identity conflict");
     if (op.kind === "test")
       result.ok =
         result.ok &&
@@ -418,11 +448,11 @@ export class Bridge {
         });
     if ((op.state === "done" || op.state === "cancelled") && op.result) {
       if (JSON.stringify(op.result) !== JSON.stringify(result))
-        throw Error("Conflicting duplicate Studio result");
+        throw new ConflictError("Conflicting duplicate Studio result");
       return { duplicate: true };
     }
     if (op.state !== "dispatched" && op.state !== "unknown")
-      throw Error("Operation was not dispatched");
+      throw new ConflictError("Operation was not dispatched");
     if (result.executionStatus === "not_started") {
       this.saveOperation({
         ...op,

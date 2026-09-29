@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-failure-continuation.test.ts (4 tests | 1 failed) 1502ms
+   × the preserved rejected approved asset completes coding with blocked coverage and retains other assets 1213ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-failure-continuation.test.ts > the preserved rejected approved asset completes coding with blocked coverage and retains other assets
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/asset-failure-continuation.test.ts:137:7
+    135|         (e) => e.reason?.includes("Audible fit remains unverified") &&…
+    136|       ),
+    137|     ).toBe(true);
+       |       ^
+    138|     expect(
+    139|       r.project.assetPipeline!.events.some(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  14:32:51
+   Duration  2.49s (tests 63%, transform 25%, import 11%)
+

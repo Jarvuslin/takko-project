@@ -1,10 +1,12 @@
 import type { Project } from "./schema";
 import { marketplaceFirstInstructions } from "./marketplace-policy";
+import { recordedTemplate, worldInstructions } from "./world-policy";
 
 type DesignPhase = "planner" | "builder" | "reviewer" | "repair";
-type DesignProject = Pick<Project, "spec">;
+type DesignProject = Pick<Project, "spec" | "world">;
 
 const scopePolicy = [
+  "Ask about consequential choices before narrowing mechanics. A limit or exclusion not grounded in the user's request or answers belongs in a clarification question, not an applied assumption. Keep technical and cosmetic defaults incidental. For any chosen sequence of distinct animated actions, declare one Animation assetNeed per step, bound to that step, and let the user choose each clip. Never replace a multi-step choice with a single clip.",
   "Read gameContext first: preserve the requested player experience, exact clarification answers with their question context, reference mechanics and explicit exclusions throughout planning, building, review and repair. Do not reduce a genre-specific interaction to the appearance of its main prop. When evidence conflicts, report the specific conflict; inferred design is not a user instruction.",
   "Use the actual request and clarification answers to determine scope. A narrowly scoped technical test stays narrow. A request for a polished game needs authored presentation and a complete playable loop, even if its rules are simple.",
   "Do not add upgrades, quests, combat, persistence, monetization, sound, or another mechanic merely to make a game larger. Include progression or meaningful choices when requested or necessary to the proposed core loop; explain inferred choices and omissions before approval.",
@@ -12,7 +14,7 @@ const scopePolicy = [
 ];
 const planning = [
   "Describe a concrete first-minute player journey in summary: what is visible from spawn, where the player goes, what action they learn, what immediate response they see, and what goal gives them a reason to continue. Tie this to the requested genre and scope.",
-  "Plan the playable space before decomposing scripts. Specify a coherent theme, meaningful landmarks, routes and interaction areas, scale and travel relationships, safe spawn and boundaries. Each area should support an action, decision or clear navigation purpose. Do not use a featureless floor with isolated buttons as the default interpretation of an authored game.",
+  "Plan the playable space against the recorded world and existing scene. The baseplate_template ground is at y=0. For none/custom/legacy worlds use their actual scene instead. Specify requested landmarks, routes and interaction areas with coherent scale. Make spawn safe without inventing an enclosure. Each area should support an approved action or clear navigation purpose. Walls, ceilings and elevated floors require user-backed spatial requirements.",
   "Make visualDirection actionable: shape language, material/color hierarchy, focal points, environmental composition, readable HUD hierarchy, and visible action/reward feedback. Procedural assets can have designed silhouettes and multiple coordinated parts; random decoration or larger object counts do not establish quality.",
   "If collection/upgrades/progression are in scope, describe the motivation and state transitions: what the player earns, what a choice changes, how its effect is visible, and the next attainable goal. Avoid upgrades that only change a label or unspent score with no role in the approved loop. Keep a small technical demonstration small when that is what the user requested.",
   "Turn the chosen spatial design and presentation into concrete world/presentation/ui requirements with observable acceptance criteria. Assign implementation owners and dependencies, including scene-only tasks where useful. A broad 'looks good' sentence or a global visualDirection alone is not an implementation task.",
@@ -20,6 +22,7 @@ const planning = [
   "Plan feasible feedback by first discovering reusable Marketplace behavior systems and complete interactive components, including embedded animation and media. A main-object geometry search is not complete behavior discovery. Author only missing integration or an explicitly permitted and evidenced fallback; importer/format limitations are capability gaps, never fallback approval. Never invent an asset ID or add audio to a request that excludes it.",
 ];
 const building = [
+  "For HUD work, create an Enabled ScreenGui in PlayerGui at runtime, keep the label and every ancestor Visible, account for ScreenInsets and top-bar safe areas, and use responsive bounds. Validate incoming counter/state values before formatting. Reading label.Text proves state only. Actual screen captures before and after an action at small, desktop and ultrawide viewports are required to establish visibility.",
   "Use applicableRequirements as this task's approved design targets and the full spec as shared context. Implement only the current task's outputContract. Do not implement another task's files or silently expand the approved game's mechanics.",
   "For owned world/presentation work, realize the specified composition and navigation, not just nominal object existence. Place and size landmarks, routes, boundaries and focal objects deliberately; keep walkable paths and interaction ranges consistent with the shared scene contract. Preserve other tasks' scene nodes.",
   "For owned interaction/UI work, make the approved action, reward and progression visible through actual runtime state, responsive feedback and readable hierarchy. Use the shared state/configuration contract, not duplicated guessed values. Preserve correct initialization and respawn behavior.",
@@ -59,6 +62,9 @@ export function generationDesignGuidance(
   return {
     version: 2,
     phase,
+    baseWorld: recordedTemplate(project),
+    world: project.world ?? null,
+    worldInstructions,
     scopePolicy: [...scopePolicy],
     applicableRequirements: applicable.map((requirement) => ({
       id: requirement.id,

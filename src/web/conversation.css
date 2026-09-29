@@ -1,0 +1,956 @@
+.conversation-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 12px 0 28px;
+}
+.conversation-turn {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.conversation-turn > p {
+  white-space: pre-wrap;
+  line-height: 1.65;
+}
+.conversation-turn.user-turn {
+  align-self: flex-end;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px 20px 5px 20px;
+  padding: 15px 20px;
+  max-width: 85%;
+}
+.turn-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  color: var(--ink);
+}
+.turn-byline small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.run-activity {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: var(--panel);
+}
+.run-activity p {
+  color: var(--muted);
+  font-size: 12px;
+}
+.run-activity time {
+  font-variant-numeric: tabular-nums;
+}
+.turn-feedback {
+  display: flex;
+  gap: 8px;
+  padding-top: 8px;
+}
+.turn-feedback button {
+  font-size: 11px;
+  padding: 5px 9px;
+  background: transparent;
+}
+.turn-feedback button[aria-pressed="true"] {
+  border-color: var(--ink);
+}
+.conversation-turn img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+.conversation-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.conversation-suggestions button {
+  text-align: left;
+  background: transparent;
+  font-weight: 400;
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+}
+.conversation-suggestions span {
+  margin-left: 16px;
+}
+.minimal .chat-composer {
+  position: sticky;
+  bottom: 12px;
+  z-index: 3;
+  box-shadow: 0 -10px 30px var(--canvas);
+}
+.minimal .chat-heading {
+  flex-wrap: wrap;
+}
+.focused-dialog:has(.architecture-editor) {
+  width: min(1080px, 96vw);
+  max-width: 1080px;
+}
+.architecture-toolbar,
+.architecture-ports,
+.architecture-connections li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.architecture-scroll {
+  overflow: auto;
+  max-height: 50vh;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin: 16px 0;
+}
+.architecture-canvas {
+  position: relative;
+  background-image: radial-gradient(#ffffff19 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.architecture-wires {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #b9b9b9;
+  pointer-events: none;
+}
+.architecture-wires path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.architecture-wires text {
+  fill: var(--ink);
+  font-size: 11px;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--canvas);
+  stroke-width: 5px;
+}
+.architecture-node {
+  position: absolute;
+  width: 190px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px #0003;
+}
+.architecture-node.selected {
+  border-color: var(--ink);
+}
+.architecture-node-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+.architecture-node-title small {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.architecture-node-title strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.architecture-ports button {
+  border: 0;
+  background: transparent;
+  font-size: 11px;
+  padding: 5px 8px;
+}
+.architecture-empty {
+  padding: 65px 35px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.architecture-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.architecture-editor fieldset {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+.architecture-editor label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.architecture-editor input,
+.architecture-editor select,
+.architecture-editor textarea {
+  width: 100%;
+}
+.architecture-connections {
+  padding: 0;
+  list-style: none;
+}
+.architecture-connections li {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+.architecture-connections p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+.architecture-review {
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.brief-editor {
+  margin: 10px 0 20px;
+}
+.inline-studio-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+@media (max-width: 640px) {
+  .architecture-fields {
+    grid-template-columns: 1fr;
+  }
+  .conversation-turn.user-turn {
+    max-width: 95%;
+  }
+  .minimal .chat-composer {
+    bottom: 0;
+  }
+  .minimal .chat-heading > strong {
+    width: 100%;
+  }
+}
+.animation-player {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 16px;
+  background: var(--panel);
+}
+.animation-player svg {
+  width: 100%;
+  max-height: 360px;
+  touch-action: none;
+  cursor: grab;
+  background: #151515;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+.animation-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 12px 0;
+}
+.animation-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.animation-controls input[type="checkbox"] {
+  width: auto;
+}
+.animation-controls input[type="range"] {
+  width: 120px;
+}
+.animation-import {
+  margin-bottom: 20px;
+  color: var(--muted);
+}
+.minimal.editor main {
+  height: 100dvh;
+  overflow: hidden;
+}
+.minimal.editor .workspace {
+  min-height: 0;
+  overflow: hidden;
+}
+.minimal.editor .chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 12px;
+}
+.minimal .chat-heading {
+  flex-shrink: 0;
+}
+.chat-thread-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding-right: 8px;
+  scrollbar-width: thin;
+}
+.minimal .chat-composer {
+  position: relative;
+  flex-shrink: 0;
+  bottom: auto;
+  margin-top: 14px;
+}
+.minimal .chat-composer textarea {
+  min-height: 50px;
+  height: 58px;
+}
+.project-detail-drawer {
+  min-width: 0;
+}
+.focused-dialog.project-detail-drawer,
+.focused-dialog:has(.project-detail-drawer) {
+  width: min(950px, 96vw);
+}
+@media (max-width: 640px) {
+  .minimal .chat-composer {
+    margin-top: 8px;
+  }
+  .minimal .chat-heading {
+    min-height: 60px;
+    padding-block: 10px;
+  }
+  .minimal .chat-composer textarea {
+    height: 48px;
+    min-height: 48px;
+  }
+}
+.app.minimal.editor main,
+.app.minimal.editor:not(.sidebar-expanded) main {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  .app.minimal.editor {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .app.minimal.editor .sidebar {
+    flex-shrink: 0;
+  }
+  .app.minimal.editor main,
+  .app.minimal.editor:not(.sidebar-expanded) main {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+}
+/* The canvas and agent share one bounded workspace. Existing Takko tokens remain authoritative. */
+.app.minimal.editor .integrated-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 36%);
+  max-width: none;
+  width: 100%;
+  height: calc(100dvh - 64px);
+  margin: 0;
+}
+.minimal.editor .integrated-workspace .chat-panel {
+  border-left: 1px solid var(--line);
+  padding: 0 18px 12px;
+  min-width: 0;
+}
+.integrated-workspace .chat-heading {
+  gap: 8px;
+  min-height: 62px;
+  font-size: 12px;
+}
+.integrated-workspace .chat-heading button {
+  padding: 6px 9px;
+  font-size: 11px;
+}
+.chat-budget {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 4px 0 12px;
+}
+.architecture-workspace {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.canvas-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  min-height: 62px;
+}
+.canvas-heading strong {
+  font-size: 14px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 24vw;
+}
+.canvas-heading small {
+  color: var(--muted);
+  font-size: 11px;
+  display: block;
+  margin-top: 4px;
+}
+.canvas-detail-actions {
+  display: flex;
+  gap: 5px;
+}
+.canvas-detail-actions button,
+.architecture-toolbar button,
+.canvas-controls button {
+  font-size: 11px;
+  padding: 6px 9px;
+}
+.architecture-toolbar {
+  padding: 12px 20px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--muted);
+}
+.architecture-toolbar > span {
+  margin-right: auto;
+}
+.architecture-workspace .map-surface {
+  position: relative;
+  flex: 1;
+  min-height: 80px;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+  background-image: radial-gradient(#ffffff16 1px, transparent 1px);
+  background-size: 22px 22px;
+  cursor: grab;
+}
+.map-surface .architecture-canvas {
+  transform-origin: 0 0;
+  background: none;
+}
+.map-surface .architecture-node {
+  cursor: default;
+}
+.map-surface.map-updated .architecture-node,
+.architecture-node.node-working {
+  animation: node-update 1.8s ease;
+}
+.architecture-node.node-working {
+  border-style: dashed;
+}
+@keyframes node-update {
+  0%,
+  40% {
+    box-shadow: 0 0 0 3px #ffffff35;
+  }
+  100% {
+    box-shadow: 0 8px 18px #0003;
+  }
+}
+.canvas-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 5px;
+  z-index: 1;
+  font-size: 11px;
+}
+.canvas-inspector {
+  position: absolute;
+  z-index: 2;
+  top: 110px;
+  right: 12px;
+  bottom: 70px;
+  width: min(320px, calc(100% - 24px));
+  overflow: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 12px 35px #0005;
+  scrollbar-width: thin;
+}
+.inspector-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.canvas-inspector fieldset {
+  padding: 10px;
+  font-size: 12px;
+}
+.canvas-inspector .architecture-fields {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.canvas-inspector textarea {
+  min-height: 70px;
+}
+.canvas-inspector p {
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.canvas-inspector button {
+  font-size: 11px;
+}
+.canvas-save {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 3;
+  max-width: calc(100% - 32px);
+}
+.canvas-save .dialog-actions {
+  padding: 0;
+  border: 0;
+}
+.canvas-save .dialog-actions button:disabled {
+  display: none;
+}
+.canvas-save .architecture-review,
+.canvas-save > p {
+  max-width: 420px;
+  max-height: 210px;
+  overflow: auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.integrated-workspace .brief-layout {
+  display: block;
+}
+.integrated-workspace .chat-composer {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 0;
+}
+.integrated-workspace .composer-footer {
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.integrated-workspace .conversation-turn.user-turn {
+  max-width: 95%;
+  padding: 12px 14px;
+}
+.integrated-workspace .inline-studio-actions {
+  font-size: 11px;
+  gap: 6px;
+}
+.integrated-workspace .inline-studio-actions button {
+  font-size: 11px;
+  padding: 6px 8px;
+}
+.viewport-surface {
+  position: relative;
+  height: 260px;
+  width: 100%;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #141414;
+}
+.viewport-surface canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+.viewport-badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.viewport-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.viewport-controls button,
+.viewport-controls select {
+  padding: 6px 10px;
+  font-size: 12px;
+  min-width: 36px;
+  min-height: 36px;
+}
+.viewport-controls input[type="range"] {
+  flex: 1;
+  width: 65px;
+  min-width: 45px;
+}
+.viewport-help {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 8px 0;
+}
+.viewport-help summary {
+  cursor: pointer;
+}
+.viewport-help button {
+  font-size: 11px;
+  padding: 5px;
+  margin: 4px;
+}
+.takko-viewport:fullscreen {
+  padding: 20px;
+  background: var(--canvas);
+}
+.takko-viewport:fullscreen .viewport-surface {
+  height: calc(100vh - 140px);
+}
+.rig-badges {
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+}
+.rig-badges span {
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+.rig-badges [aria-current="true"] {
+  border-color: var(--line);
+  color: var(--ink);
+}
+.result-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 12px;
+}
+.result-card summary {
+  cursor: pointer;
+}
+.result-card small {
+  color: var(--muted);
+  display: block;
+  margin: 6px 0;
+}
+.result-card p {
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) and (min-width: 701px) {
+  .canvas-detail-actions button {
+    font-size: 11px;
+    padding: 5px;
+  }
+  .canvas-heading {
+    flex-wrap: wrap;
+  }
+  .architecture-toolbar {
+    padding: 10px;
+    gap: 6px;
+  }
+  .canvas-heading strong {
+    max-width: 30vw;
+  }
+}
+@media (max-width: 700px) {
+  .app.minimal.editor .integrated-workspace {
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(180px, 32%) minmax(0, 1fr);
+  }
+  .app.minimal.editor .topbar {
+    display: none;
+  }
+  .app.minimal.editor .integrated-workspace .chat-panel {
+    padding: 0 12px 8px;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .canvas-heading {
+    padding: 7px 12px;
+    min-height: 42px;
+  }
+  .canvas-heading strong {
+    max-width: 42vw;
+    font-size: 12px;
+  }
+  .canvas-heading small {
+    font-size: 11px;
+  }
+  .canvas-detail-actions button {
+    font-size: 11px;
+    padding: 5px 7px;
+  }
+  .architecture-toolbar {
+    padding: 5px 12px;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .architecture-toolbar button {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+  .canvas-controls {
+    bottom: 7px;
+    left: 8px;
+    padding: 3px;
+    gap: 3px;
+  }
+  .canvas-controls button {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  .canvas-save {
+    bottom: 7px;
+    right: 8px;
+  }
+  .canvas-save button {
+    font-size: 11px;
+    padding: 6px;
+  }
+  .canvas-save .architecture-review {
+    max-height: 110px;
+    font-size: 11px;
+  }
+  .canvas-inspector {
+    top: 4px;
+    bottom: 40px;
+    right: 4px;
+    padding: 10px;
+  }
+  .minimal .integrated-workspace .chat-heading {
+    min-height: 40px;
+    padding-block: 6px;
+  }
+  .minimal .integrated-workspace .chat-heading > strong {
+    width: auto;
+  }
+  .integrated-workspace .chat-heading .stage {
+    margin-right: auto;
+  }
+  .viewport-surface {
+    height: 230px;
+  }
+  .animation-player {
+    padding: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-surface.map-updated .architecture-node,
+  .architecture-node.node-working {
+    animation: none;
+  }
+}
+@media (max-width: 700px) {
+  .app.minimal.editor main,
+  .app.minimal.editor:not(.sidebar-expanded) main {
+    display: flex;
+    flex-direction: column;
+  }
+  .app.minimal.editor .integrated-workspace {
+    height: auto;
+    flex: 1;
+    min-height: 0;
+    grid-template-rows: minmax(160px, 32%) minmax(0, 1fr);
+  }
+  .app.minimal.editor .mobile-project-picker {
+    flex-shrink: 0;
+    padding: 5px 12px;
+  }
+  .minimal .integrated-workspace .chat-heading > strong {
+    flex-basis: auto;
+  }
+  .integrated-workspace .chat-composer .composer-hint {
+    font-size: 11px;
+    line-height: 1.3;
+    margin-top: 5px;
+  }
+  .integrated-workspace .chat-composer .attach-button span {
+    display: none;
+  }
+  .integrated-workspace .chat-composer .composer-footer {
+    flex-wrap: nowrap;
+  }
+  .integrated-workspace .chat-composer .composer-footer button {
+    padding: 6px;
+    font-size: 11px;
+  }
+  .integrated-workspace .chat-composer textarea {
+    height: 36px;
+    min-height: 36px;
+  }
+}
+
+.viewport-placeholder {
+  height: 360px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .viewport-surface {
+    height: 160px;
+  }
+  .viewport-placeholder {
+    height: 290px;
+  }
+}
+.minimal .takko-viewport .viewport-controls :is(button, select) {
+  width: auto;
+  min-width: 36px;
+  min-height: 36px;
+  height: 36px;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 20px;
+  flex: 0 0 auto;
+}
+.minimal .animation-player .viewport-controls input[type="range"] {
+  width: 40px;
+  min-width: 30px;
+  flex: 1;
+  height: 20px;
+  padding: 0;
+}
+.minimal.editor .integrated-workspace .chat-panel {
+  container-type: inline-size;
+}
+@container (max-width:440px) {
+  .minimal .integrated-workspace .chat-composer .attach-button span {
+    display: none;
+  }
+  .minimal .integrated-workspace .chat-composer .composer-footer {
+    flex-wrap: nowrap;
+  }
+  .minimal .integrated-workspace .chat-composer .composer-footer button {
+    padding: 7px;
+    font-size: 11px;
+  }
+  .minimal .integrated-workspace .chat-composer .composer-hint {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+}
+/* A transformed map must not acquire browser scroll offsets when a node receives focus. */
+.architecture-workspace,
+.architecture-workspace .map-surface {
+  overflow: clip;
+}
+@media (max-width: 700px) {
+  .app.minimal.editor .sidebar {
+    padding: 8px 12px;
+    gap: 8px;
+    min-height: 50px;
+  }
+  .app.minimal.editor .sidebar .brand {
+    font-size: 20px;
+  }
+  .app.minimal.editor .sidebar .new-project {
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  .app.minimal.editor .sidebar .settings-sidebar-nav {
+    margin: 0;
+    padding: 0;
+  }
+  .app.minimal.editor .sidebar .settings-sidebar-nav button {
+    min-height: 30px;
+    padding: 5px;
+    font-size: 12px;
+  }
+  .app.minimal.editor .mobile-project-picker {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .app.minimal.editor .mobile-project-picker select {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    min-height: 32px;
+    height: 32px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .app.minimal.editor .integrated-workspace {
+    grid-template-rows: minmax(180px, 35%) minmax(0, 1fr);
+  }
+  .app.minimal.editor .canvas-heading button {
+    height: 28px;
+    min-height: 32px;
+    padding: 4px 7px;
+  }
+  .app.minimal.editor .architecture-toolbar button,
+  .app.minimal.editor .canvas-controls button {
+    height: 26px;
+    min-height: 32px;
+    padding: 3px 6px;
+  }
+  .app.minimal.editor .canvas-inspector .inspector-heading button {
+    height: 28px;
+    min-height: 32px;
+  }
+}
+.animation-gallery {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.animation-gallery > label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted, #999);
+}
+.animation-gallery select {
+  width: 100%;
+  min-width: 0;
+  text-overflow: ellipsis;
+}

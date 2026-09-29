@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/opencode-gateway.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/opencode-gateway.test.ts [ tests/opencode-gateway.test.ts ]
+Error: Cannot find module '../src/generation/opencode-gateway' imported from D:/RobloxProjects/Roblox Gen/tests/opencode-gateway.test.ts
+ ❯ tests/opencode-gateway.test.ts:7:1
+      5| import { GenerationStore, newProject } from "../src/generation/store";
+      6| import { profile } from "./generation-fixtures";
+      7| import { OpenCodeGateway } from "../src/generation/opencode-gateway";
+       | ^
+      8|
+      9| const folders: string[] = [];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  13:19:52
+   Duration  2.09s (worker 99%, environment 1%)
+

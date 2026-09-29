@@ -1,0 +1,76 @@
+
+> takko-studio@0.2.0 check
+> npm run build && npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run lint:css && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+[plugin rolldown:vite-resolve] Module "node:crypto" has been externalized for browser compatibility, imported by "D:/RobloxProjects/Roblox Gen/src/generation/scope-questions.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 177 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.52 kB │ gzip:   0.32 kB
+dist/assets/DesignLab-Gs8meDSA.css          33.24 kB │ gzip:   6.60 kB
+dist/assets/index-DTbUv3UD.css             125.70 kB │ gzip:  24.00 kB
+dist/assets/AnimationPlayer-BzGm3Eyt.js      1.11 kB │ gzip:   0.62 kB
+dist/assets/AnimationGallery-TPlKojQ6.js     1.30 kB │ gzip:   0.72 kB
+dist/assets/AssetModelPreview-CFfU-rqJ.js    9.89 kB │ gzip:   3.60 kB
+dist/assets/DesignLab-TEQGp_9i.js           45.46 kB │ gzip:  11.46 kB
+dist/assets/TakkoViewport-C0VPf349.js      569.36 kB │ gzip: 142.48 kB
+dist/assets/index-sshSuQF3.js              726.10 kB │ gzip: 168.64 kB
+
+✓ built in 1.00s
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/world-policy.test.ts (7 tests | 1 failed) 43ms
+   × preserves existing context and lighting for follow-ups of Punch the Dummy: Combat Trainer 19ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world-policy.test.ts > preserves existing context and lighting for follow-ups of Punch the Dummy: Combat Trainer
+AssertionError: expected [ { …(3) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "detail": "Workspace/Forge_8a81efe9b8ed/World/Ceiling and 4 nearby wall-shaped parts enclose the play space without a user request. Remove the invented enclosure.",
++     "id": "world:enclosure:Workspace/Forge_8a81efe9b8ed/World/Ceiling",
++     "status": "failed",
++   },
++ ]
+
+ ❯ tests/world-policy.test.ts:26:77
+     24|     expect(existingProjectContext(p).existingFiles).toEqual(old.artifa…
+     25|     expect(checkWorldScene(old.artifact!,p).filter(c=>c.id.startsWith(…
+     26|     expect(checkWorldScene(old.artifact!,p).filter(c=>c.status==="fail…
+       |                                                                             ^
+     27|     const node=old.artifact!.scene.find(n=>n.className==="SpawnLocatio…
+     28|     if(node) expect(checkWorldScene({...old.artifact!,scene:[...old.ar…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 120 passed (121)
+      Tests  1 failed | 1677 passed (1678)
+   Start at  13:15:51
+   Duration  151.04s (tests 83%, import 15%, transform 2%)
+
+    Isolate  121 workers spawned · ~204ms startup each (spawn + environment, per file)
+             at least ~12.14s faster with isolate: false — reuses workers across files instead of one per file
+

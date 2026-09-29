@@ -1,0 +1,146 @@
+.studio-welcome {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  max-width: 1100px;
+  margin: 52px auto;
+  padding: 24px 36px;
+}
+.studio-welcome-intro {
+  align-self: center;
+}
+.studio-welcome-icon {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 30px 0 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--connection-accent);
+  background: var(--panel);
+}
+.studio-welcome h1 {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -1.2px;
+  margin: 0 0 18px;
+}
+.studio-welcome p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+.studio-welcome .eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1.7px;
+}
+.studio-connection-state {
+  padding: 15px 0;
+  font-size: 13px;
+}
+.studio-connection-state::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  margin-right: 9px;
+}
+.studio-welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 20px;
+}
+.studio-welcome small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.studio-welcome-guide {
+  background: var(--panel);
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.studio-welcome-guide h2 {
+  font-size: 20px;
+  margin: 10px 0 26px;
+}
+.studio-welcome-guide ol {
+  padding-left: 23px;
+}
+.studio-welcome-guide li {
+  padding-left: 8px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.studio-welcome-guide li::marker {
+  color: var(--connection-accent);
+  font-weight: 600;
+}
+.studio-welcome-guide li p {
+  margin: 7px 0 0;
+}
+.studio-welcome-guide a {
+  color: var(--ink);
+  text-underline-offset: 4px;
+  font-size: 12px;
+}
+.studio-plugin-guide {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 20px;
+  font-size: 12px;
+}
+.studio-plugin-guide summary {
+  cursor: pointer;
+  line-height: 1.5;
+}
+.studio-plugin-guide ol {
+  margin-top: 16px;
+}
+.studio-offline-space {
+  display: grid;
+  place-content: center;
+  padding: 36px;
+  color: var(--muted);
+}
+.studio-offline-space h2 {
+  color: var(--ink);
+  font-size: 26px;
+}
+.studio-offline-space p {
+  max-width: 350px;
+  line-height: 1.7;
+}
+.studio-offline-space button {
+  justify-self: start;
+  margin-top: 14px;
+}
+@media (max-width: 900px) {
+  .studio-welcome {
+    gap: 24px;
+    padding: 20px;
+    margin: 20px auto;
+  }
+  .studio-welcome-guide {
+    padding: 22px;
+  }
+}
+@media (max-width: 680px) {
+  .studio-welcome {
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+  .studio-welcome-icon {
+    margin-top: 20px;
+  }
+  .studio-offline-space {
+    padding: 20px;
+  }
+}

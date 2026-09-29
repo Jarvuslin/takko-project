@@ -1,0 +1,17 @@
+src/marketplace/types.ts 115ms
+src/marketplace/inspection.ts 23ms
+src/marketplace/library.ts 46ms
+src/marketplace/studio.ts 76ms (unchanged)
+src/marketplace/discovery.ts 20ms
+src/marketplace/discovery-routes.ts 85ms
+src/marketplace/asset-binding.ts 22ms (unchanged)
+src/generation/proposal.ts 38ms
+src/generation/engine.ts 296ms
+src/generation/asset-gaps.ts 18ms
+src/web/AssetChoices.tsx 71ms
+src/web/AssetPreviewDialog.tsx 26ms
+src/web/Proposal.tsx 13ms
+src/web/Marketplace.tsx 58ms
+tests/demo-export-blockers.test.ts 10ms
+tests/marketplace.test.ts 65ms
+tests/asset-choices.test.ts 92ms

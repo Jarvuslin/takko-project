@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-22T05:25:56.187Z",
+  "executablePath": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-connection-recovery-20260922\\Takko-win32-x64\\Takko.exe",
+  "paidCalls": 0,
+  "detectedStudios": [],
+  "identity": {
+    "packaged": true,
+    "exe": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-connection-recovery-20260922\\Takko-win32-x64\\Takko.exe",
+    "profile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\connection-recovery-native\\native1",
+    "bounds": {
+      "x": 240,
+      "y": 36,
+      "width": 1440,
+      "height": 960
+    }
+  },
+  "origin": "http://127.0.0.1:64107",
+  "actualDisconnected": true,
+  "connectionFixture": true,
+  "liveMarketplace": {
+    "count": 30,
+    "connected": true,
+    "refreshed": true,
+    "aligned": true,
+    "thumbnailLoaded": true
+  },
+  "error": "Error: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 1\nReceived:    1.4615936279296875\n    at captureRawStack (D:\\RobloxProjects\\Roblox Gen\\node_modules\\playwright-core\\lib\\coreBundle.js:8588:17)\n    at callMatcherAsStep (D:\\RobloxProjects\\Roblox Gen\\node_modules\\playwright\\lib\\matchers\\expect.js:13310:57)\n    at Object.toBeLessThanOrEqual (D:\\RobloxProjects\\Roblox Gen\\node_modules\\playwright\\lib\\matchers\\expect.js:13302:23)\n    at aligned (D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\connection-recovery-flows.ts:9:57)\n    at async <anonymous> (D:\\RobloxProjects\\Roblox Gen\\scripts\\verify-connection-recovery-desktop.ts:148:3)",
+  "closed": true
+}

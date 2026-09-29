@@ -1,0 +1,442 @@
+diff --git "a/.forge\\ui-polish-before\\src\\web\\App.tsx" "b/src\\web\\App.tsx"
+index 58f099e..eb8cef9 100644
+--- "a/.forge\\ui-polish-before\\src\\web\\App.tsx"
++++ "b/src\\web\\App.tsx"
+@@ -1,11 +1,19 @@
+ import { useEffect, useState, useRef, useCallback } from "react";
+ import type { Project } from "../generation/schema";
+ import { AssetExecution } from "./AssetExecution";
++import { WorkspaceSplit } from "./WorkspaceSplit";
++import { BuildPlan } from "./BuildPlan";
++import {
++  Clarifications,
++  ClarificationDialog,
++  type ClarificationQuestion,
++} from "./Clarifications";
+ import { GameConcept, FirstPlaytest } from "./GameConcept";
+ import "./styles.css";
+ import "./grok-theme.css";
+ import "./conversation.css";
+ import "./workspace-native.css";
++import "./ui-polish.css";
+ import { StudioConversation } from "./StudioConversation";
+ import { Conversation } from "./Conversation";
+ import { ArchitectureEditor } from "./ArchitectureEditor";
+@@ -175,6 +183,9 @@ export function App() {
+   const [showHistory, setShowHistory] = useState(false);
+   const [conceptsEnabled, setConceptsEnabled] = useState(false);
+   const followupRef = useRef<HTMLTextAreaElement>(null);
++  const [editingAnswers, setEditingAnswers] = useState<
++    ClarificationQuestion[] | null
++  >(null);
+   const [project, setProject] = useState<Project | null>(null),
+     [projects, setProjects] = useState<
+       { id: string; name: string; stage: string }[]
+@@ -283,7 +294,22 @@ export function App() {
+       const p = await api<Project>("/projects/" + id);
+       setProject(p);
+       setRequest(p.request);
+-      setAnswers(p.answers);
++      let restored = p.answers;
++      try {
++        const draft = JSON.parse(
++          sessionStorage.getItem("takko-answers-" + id) ?? "null",
++        );
++        if (
++          draft?.revision === p.revision &&
++          draft.answers &&
++          Object.values(draft.answers).every((v) => typeof v === "string")
++        )
++          restored = draft.answers;
++      } catch {
++        /* Ignore a damaged local draft. */
++      }
++      setAnswers(restored);
++      setEditingAnswers(null);
+       setTab("Brief");
+       setFollowup(sessionStorage.getItem("takko-draft-" + id) ?? "");
+       setShowHistory(false);
+@@ -345,6 +371,19 @@ export function App() {
+     (request !== project.request ||
+       assetsChanged ||
+       JSON.stringify(answers) !== JSON.stringify(project.answers));
++  const changeAnswers = (next: Record<string, string>) => {
++    setAnswers(next);
++    if (project) {
++      try {
++        sessionStorage.setItem(
++          "takko-answers-" + project.id,
++          JSON.stringify({ revision: project.revision, answers: next }),
++        );
++      } catch {
++        /* The in-memory draft remains available. */
++      }
++    }
++  };
+   async function shapeIdea() {
+     if (!project) return;
+     await work(async () => {
+@@ -439,7 +478,7 @@ export function App() {
+               }
+               onClick={() => navigateSettings(page)}
+             >
+-              <Icon name={page === "models" ? "grid" : "sliders"} />
++              <Icon name={page === "models" ? "models" : "sliders"} />
+               <span>{page[0].toUpperCase() + page.slice(1)}</span>
+             </button>
+           ))}
+@@ -773,33 +812,46 @@ export function App() {
+                 </p>
+               </div>
+             ) : (
+-              <div className="workspace integrated-workspace">
+-                <ArchitectureEditor
+-                  key={project.id}
+-                  project={project}
+-                  docked
+-                  presentation={{ nodeHeight: 188, bottomInset: 20 }}
+-                  ask={(text) => {
+-                    setFollowup(text);
+-                    followupRef.current?.focus();
+-                  }}
+-                  details={setTab}
+-                  save={async (architecture, id) => {
+-                    const next = await api<Project>(
+-                      `/projects/${project.id}/architecture`,
+-                      "POST",
+-                      { revision: project.revision, id, architecture },
+-                    );
+-                    setProject(next);
+-                    setRequest(next.request);
+-                    setTab("Brief");
+-                  }}
+-                />
++              <WorkspaceSplit
++                canvas={
++                  <ArchitectureEditor
++                    key={project.id}
++                    project={project}
++                    docked
++                    presentation={{ nodeHeight: 188, bottomInset: 20 }}
++                    ask={(text) => {
++                      setFollowup(text);
++                      followupRef.current?.focus();
++                    }}
++                    details={setTab}
++                    save={async (architecture, id) => {
++                      const next = await api<Project>(
++                        `/projects/${project.id}/architecture`,
++                        "POST",
++                        { revision: project.revision, id, architecture },
++                      );
++                      setProject(next);
++                      setRequest(next.request);
++                      setTab("Brief");
++                    }}
++                  />
++                }
++              >
+                 <h1 className="sr-only">{project.name}</h1>
+                 <section
+                   className="chat-panel"
++                  id="takko-agent-panel"
+                   aria-label="Project conversation"
+                 >
++                  {editingAnswers && (
++                    <ClarificationDialog
++                      questions={editingAnswers}
++                      answers={answers}
++                      change={changeAnswers}
++                      close={() => setEditingAnswers(null)}
++                      disabled={running}
++                    />
++                  )}
+                   <div className="chat-heading">
+                     <TakkoMark />
+                     <strong>Takko</strong>
+@@ -811,7 +863,11 @@ export function App() {
+                       onClick={() =>
+                         threadScroll.current?.scrollTo({
+                           top: threadScroll.current.scrollHeight,
+-                          behavior: "smooth",
++                          behavior: matchMedia(
++                            "(prefers-reduced-motion: reduce)",
++                          ).matches
++                            ? "instant"
++                            : "smooth",
+                         })
+                       }
+                     >
+@@ -852,6 +908,7 @@ export function App() {
+                         closeHistory={() => setShowHistory(false)}
+                         update={setProject}
+                         openSource={() => setTab("Source")}
++                        editAnswers={setEditingAnswers}
+                         stageMessage={(text) => {
+                           setFollowup(text);
+                           followupRef.current?.focus();
+@@ -896,10 +953,7 @@ export function App() {
+                               )
+                             }
+                           />
+-                          <details
+-                            className="brief-editor"
+-                            open={!project.spec && !project.concept}
+-                          >
++                          <details className="brief-editor">
+                             <summary>Edit original brief</summary>
+                             <div className="section-head">
+                               <h2>Your request</h2>
+@@ -926,7 +980,19 @@ export function App() {
+                               onChange={(e) => setRequest(e.target.value)}
+                             />
+                           </details>
+-                          <div className="actions">
++                          <div
++                            className={
++                              "actions" +
++                              (project.concept &&
++                              request === project.request &&
++                              !(
++                                conceptDirty &&
++                                !project.concept.questions.length
++                              )
++                                ? " is-context-idle"
++                                : "")
++                            }
++                          >
+                             {conceptsEnabled &&
+                               (!project.spec || project.concept) && (
+                                 <button
+@@ -936,7 +1002,9 @@ export function App() {
+                                   onClick={shapeIdea}
+                                 >
+                                   {project.concept
+-                                    ? "Update concept from request"
++                                    ? request === project.request
++                                      ? "Update concept"
++                                      : "Update concept from request"
+                                     : "Shape my idea"}
+                                 </button>
+                               )}
+@@ -990,8 +1058,8 @@ export function App() {
+                             !project.spec &&
+                             !project.concept && (
+                               <p className="muted">
+-                                Shape your idea into a clear game concept before
+-                                planning. Uses your planner model and generation
++                                Shape your idea, then review the plan before
++                                building. Uses your planner and generation
+                                 budget.
+                               </p>
+                             )}
+@@ -1005,9 +1073,7 @@ export function App() {
+                               <GameConcept
+                                 concept={project.concept}
+                                 answers={answers}
+-                                onAnswer={(id, value) =>
+-                                  setAnswers({ ...answers, [id]: value })
+-                                }
++                                onAnswers={changeAnswers}
+                                 onRefine={shapeIdea}
+                                 onPlan={() => action("plan")}
+                                 disabled={running || !conceptsEnabled}
+@@ -1121,56 +1187,20 @@ export function App() {
+                               {project.spec.questions.length > 0 && (
+                                 <section className="questions">
+                                   <h2>A few details before we build</h2>
+-                                  {project.spec.questions.map((q) => (
+-                                    <div className="question-field" key={q.id}>
+-                                      <label htmlFor={"question-" + q.id}>
+-                                        {q.prompt}
+-                                      </label>
+-                                      <div className="answer-options">
+-                                        {q.options.map((o) => (
+-                                          <button
+-                                            type="button"
+-                                            key={o}
+-                                            className={
+-                                              answers[q.id] === o
+-                                                ? "chosen"
+-                                                : ""
+-                                            }
+-                                            onClick={() =>
+-                                              setAnswers({
+-                                                ...answers,
+-                                                [q.id]: o,
+-                                              })
+-                                            }
+-                                          >
+-                                            {o}
+-                                          </button>
+-                                        ))}
+-                                      </div>
+-                                      <input
+-                                        id={"question-" + q.id}
+-                                        value={answers[q.id] ?? ""}
+-                                        placeholder="Your answer, or ask Takko to choose"
+-                                        onChange={(e) =>
+-                                          setAnswers({
+-                                            ...answers,
+-                                            [q.id]: e.target.value,
+-                                          })
+-                                        }
+-                                      />
+-                                    </div>
+-                                  ))}
+-                                  <p className="muted">
+-                                    Use “Update & replan” to incorporate your
+-                                    answers. Include any animation or audio
+-                                    asset IDs you want to use.
+-                                  </p>
++                                  <Clarifications
++                                    key={project.id + ":" + project.revision}
++                                    questions={project.spec.questions}
++                                    answers={answers}
++                                    change={changeAnswers}
++                                    disabled={running}
++                                  />
+                                   <button
+                                     className="primary"
+                                     disabled={
+                                       running ||
+                                       project.spec.questions.some(
+-                                        (q) => !answers[q.id]?.trim(),
++                                        (q) =>
++                                          !q.optional && !answers[q.id]?.trim(),
+                                       )
+                                     }
+                                     onClick={() =>
+@@ -1218,13 +1248,6 @@ export function App() {
+                                   {project.spec.requirements.length}{" "}
+                                   requirements
+                                 </summary>
+-                                <div className="section-head">
+-                                  <h2>What the game needs</h2>
+-                                  <span>
+-                                    {project.spec.requirements.length}{" "}
+-                                    requirements
+-                                  </span>
+-                                </div>
+                                 <div className="requirements">
+                                   {project.spec.requirements.map((r) => (
+                                     <article key={r.id}>
+@@ -1285,59 +1308,13 @@ export function App() {
+                             </>
+                           )}
+                         </section>
+-                        <details className="plan-aside">
+-                          <summary>
+-                            Build plan · {project.spec?.tasks.length ?? 0} tasks
+-                          </summary>
+-                          <span className="eyebrow">BUILD PLAN</span>
+-                          {project.spec ? (
+-                            project.spec.tasks.map((t, i) => (
+-                              <article key={t.id}>
+-                                <span className="step-number">
+-                                  {String(i + 1).padStart(2, "0")}
+-                                </span>
+-                                <div>
+-                                  <h3>{t.title}</h3>
+-                                  <span className="task-status">
+-                                    {project.completedBuildTasks?.includes(t.id)
+-                                      ? "Completed"
+-                                      : "Planned"}
+-                                  </span>
+-                                  <p>
+-                                    {t.files.length} script
+-                                    {t.files.length === 1 ? "" : "s"} ·{" "}
+-                                    {t.requirements.length} requirements
+-                                  </p>
+-                                  {t.dependsOn.length > 0 && (
+-                                    <p>Depends on: {t.dependsOn.join(", ")}</p>
+-                                  )}
+-                                  {t.files.map((taskFile) => (
+-                                    <button
+-                                      type="button"
+-                                      className="task-source"
+-                                      key={taskFile}
+-                                      onClick={() => {
+-                                        setFile(taskFile);
+-                                        setTab("Source");
+-                                      }}
+-                                    >
+-                                      {taskFile}
+-                                    </button>
+-                                  ))}
+-                                </div>
+-                              </article>
+-                            ))
+-                          ) : (
+-                            <div className="plan-empty">
+-                              <span>◇</span>
+-                              <h3>Start with a clear plan.</h3>
+-                              <p>
+-                                Takko will identify the mechanics, world,
+-                                interface, assets and tests your idea needs.
+-                              </p>
+-                            </div>
+-                          )}
+-                        </details>
++                        <BuildPlan
++                          project={project}
++                          openSource={(file) => {
++                            setFile(file);
++                            setTab("Source");
++                          }}
++                        />
+                       </div>
+                     }
+                     {tab !== "Brief" && (
+@@ -1561,9 +1538,7 @@ export function App() {
+                                   <div className="viewport-icon">▧</div>
+                                   <h3>Inspect the real game in Studio</h3>
+                                   <p>
+-                                    The browser does not substitute an
+-                                    illustration for your generated world. Play
+-                                    it in Studio to review animation, sound,
++                                    Play in Studio to check animation, sound,
+                                     controls and visual quality.
+                                   </p>
+                                   {project.artifact && (
+@@ -1891,6 +1866,22 @@ export function App() {
+                       <textarea
+                         ref={followupRef}
+                         id="followup"
++                        rows={1}
++                        onKeyDown={(e) => {
++                          if (
++                            e.key === "Enter" &&
++                            !e.shiftKey &&
++                            !e.nativeEvent.isComposing
++                          ) {
++                            e.preventDefault();
++                            if (
++                              !running &&
++                              !assetDraft.inspecting &&
++                              request === project.request
++                            )
++                              e.currentTarget.form?.requestSubmit();
++                          }
++                        }}
+                         placeholder="What would you like to add or change?"
+                         value={followup}
+                         onChange={(e) => {
+@@ -1961,13 +1952,14 @@ export function App() {
+                         {request !== project.request
+                           ? "Save your edited brief using the plan button before sending a follow-up. "
+                           : ""}
+-                        Sends your change for planning. Review the updated brief
+-                        before building.
++                        {running
++                          ? "Takko is working. You can cancel above."
++                          : "Enter to send · Shift + Enter for a new line"}
+                       </small>
+                     </form>
+                   }
+                 </section>
+-              </div>
++              </WorkspaceSplit>
+             )}
+           </>
+         )}

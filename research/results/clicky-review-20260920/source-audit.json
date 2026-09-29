@@ -1,0 +1,61 @@
+{
+  "at": "2026-09-20T18:28:09.459Z",
+  "kind": "static_source_audit_not_runtime_test",
+  "repositories": [
+    {
+      "repo": "farzaa/clicky",
+      "commit": "a80fa80721a8aebe51a170a7780705024ebc6e46",
+      "files": 26,
+      "sha256Matches": 26,
+      "gitBlobMatches": 26
+    },
+    {
+      "repo": "emreyilmaz46/clicky_windows",
+      "commit": "74dbbbe50c3786b5337ebdf27f9c4c6509a9cd07",
+      "files": 21,
+      "sha256Matches": 21,
+      "gitBlobMatches": 21
+    }
+  ],
+  "localFiles": [
+    {
+      "path": "src/generation/engine.ts",
+      "sha256": "41a3b92b73bc3a3bf9395689da50aaa69fe0d43fa3f2ceb745e4b957ea40dd40"
+    },
+    {
+      "path": "src/generation/schema.ts",
+      "sha256": "9d6943388117a6dffb24b04c641743492096559783dcd531c413fd934dcdf190"
+    },
+    {
+      "path": "src/generation/requirements.ts",
+      "sha256": "12068837d0017fc633b8ae3f3b92696e78b7c6e27958de94694dc8ba25bac3e9"
+    },
+    {
+      "path": "src/generation/game-context.ts",
+      "sha256": "14c1b6dd4d308798f442add6b785e38c2204ff8390ba48dd81d1a3522b0e8769"
+    },
+    {
+      "path": "src/generation/context-layout.ts",
+      "sha256": "626ca14c0d9734a46df6a9459ee25ba399abd8e63b73d8e1ec75e4576c4440fd"
+    },
+    {
+      "path": "src/generation/validation.ts",
+      "sha256": "d32549a39603051e679ff9cc1619093ed9871d0d808d223656e3d012ef1e55f4"
+    },
+    {
+      "path": "src/web/App.tsx",
+      "sha256": "9e918dff321c3cf9a02ae19218e96b2b41231ced87e1f82cf17470682c03b879"
+    },
+    {
+      "path": "src/generation/bridge.ts",
+      "sha256": "8bb6445faf3381ca64e9de22f2e52a4fd9e89cbab4ce12513747432e9fa95bae"
+    },
+    {
+      "path": "plugin/Forge.plugin.luau",
+      "sha256": "2ac6bedc6f848e6efa42715496a43d637e9208dcd96971f689732f240f77e60d"
+    }
+  ],
+  "paidCalls": 0,
+  "costUsd": 0,
+  "studioOperations": 0
+}

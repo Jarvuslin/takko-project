@@ -29,6 +29,41 @@ import {
   validateComponentReview,
 } from "../src/generation/component-review";
 const directories: string[] = [];
+it("supplies an unexportable existing artifact as repair evidence instead of throwing outside correction", async () => {
+  const fixture = fakeTransport();
+  let observed = false;
+  const transport = (async (url, init) => {
+    const body = JSON.parse(String(init?.body));
+    if (body.messages[0].content.includes("PHASE: repair")) {
+      const context = JSON.parse(
+        body.messages[1].content.split(
+          "\nYour last response failed validation.",
+        )[0],
+      );
+      expect(context.instancePathChecks).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            id: "instance-path:export",
+            status: "failed",
+          }),
+        ]),
+      );
+      observed = true;
+    }
+    return fixture(url, init);
+  }) as typeof fetch;
+  const { engine, store } = setup(transport);
+  let p = await build(engine, "Build a farming game");
+  p.artifact!.scene[0].properties.InvalidReference = {
+    type: "Ref",
+    path: `Workspace/${p.scope}/Missing`,
+  };
+  store.save(p);
+  engine.start(p.id, p.revision, "repair");
+  p = await engine.wait(p.id);
+  expect(observed).toBe(true);
+  expect(p.stage).toBe("ready_to_test");
+});
 function setup(transport: typeof fetch = fakeTransport(), repairLimit = 1) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "forge-engine-"));
   directories.push(dir);
@@ -251,7 +286,7 @@ describe("request-driven generation", () => {
     ];
     store.save(p);
     p = engine.revise(p.id, p.revision, p.request, { timing: "Yes" });
-    expect(p.spec).toBeNull();
+    expect(p.spec?.questions[0].id).toBe("timing");
     expect(store.get(p.id).answerQuestions).toEqual({
       timing: "Count only after the animation finishes?",
     });
@@ -556,6 +591,68 @@ describe("request-driven generation", () => {
     expect(
       validateBundle(b, p).find((c) => c.id === "asset:wind")?.status,
     ).toBe("failed");
+  });
+  it("rejects an empty model container backed only by a user-approved ID", () => {
+    const { engine } = setup();
+    const p = engine.create("Use Marketplace dummy 1245720733");
+    const b = bundleSchema.parse({
+      scene: [
+        {
+          path: `Workspace/${p.scope}/Dummy`,
+          className: "Model",
+          properties: {},
+        },
+      ],
+      assets: [
+        {
+          id: "dummy",
+          requirementId: "core",
+          kind: "model",
+          assetId: "1245720733",
+          sourceUrl: null,
+          status: "provided",
+          description: "The importer will populate this empty container",
+        },
+      ],
+    });
+    expect(
+      validateBundle(b, p).find((c) => c.id === "asset:dummy")?.status,
+    ).toBe("failed");
+  });
+  it("routes approved model references to native acquisition before committing a worker bundle", async () => {
+    const fixture = fakeTransport();
+    const transport = (async (url, init) => {
+      const data = await (await fixture(url, init)).json();
+      const value = JSON.parse(data.choices[0].message.content);
+      if (value.files)
+        value.assets = [
+          {
+            id: "dummy",
+            requirementId: "core",
+            kind: "model",
+            assetId: "1245720733",
+            sourceUrl: null,
+            status: "provided",
+            description: "Approved dummy for practice",
+          },
+        ];
+      data.choices[0].message.content = JSON.stringify(value);
+      return Response.json(data);
+    }) as typeof fetch;
+    const { engine } = setup(transport);
+    const p = engine.create("Use dummy 1245720733 in a practice game");
+    engine.start(p.id, 1, "plan");
+    await engine.wait(p.id);
+    engine.approve(p.id, 1);
+    engine.start(p.id, 1, "build");
+    const result = await engine.wait(p.id);
+    expect(result.error).toContain("select a connected Studio");
+    expect(result.artifact?.files).toEqual([]);
+    expect(result.assetPipeline?.needs[0]).toMatchObject({
+      kind: "Model",
+      query: "1245720733",
+      required: true,
+    });
   });
   it("rejects generated audio and undeclared built-in audio embedded directly in scripts", () => {
     const { engine } = setup();
@@ -1054,8 +1151,13 @@ describe("request-driven generation", () => {
       "at",
       "model",
       "phase",
+      "requestTiming",
       "response",
     ]);
+    expect(trace.requestTiming).toEqual({
+      elapsedMs: expect.any(Number),
+      deadlineMs: 600000,
+    });
   });
   it("rejects a scene-only task that produces no objects", async () => {
     const fixture = fakeTransport();
@@ -1341,7 +1443,7 @@ describe("request-driven generation", () => {
     expect(farming.charges).toHaveLength(3);
     expect(farming.charges.reduce((s, c) => s + c.chargedMicros, 0)).toBe(1500);
   });
-  it("requires answers, replanning and current approval; edits invalidate the artifact", async () => {
+  it("requires answers, replanning and current approval; edits retain the artifact as stale", async () => {
     const { engine } = setup(fakeTransport({ question: true }));
     let p = engine.create("Build a farming game");
     engine.start(p.id, 1, "plan");
@@ -1356,10 +1458,12 @@ describe("request-driven generation", () => {
     expect(() => engine.start(p.id, 1, "build")).toThrow("Revision");
     engine.start(p.id, 2, "build");
     p = await engine.wait(p.id);
+    const original = p.artifact;
     p = engine.revise(p.id, 2, "Build a racing game", {});
-    expect(p.artifact).toBeNull();
+    expect(p.artifact).toEqual(original);
+    expect(p.staleImplementation).toBe(true);
     expect(p.approvedRevision).toBeNull();
-    expect(() => engine.start(p.id, 3, "build")).toThrow("Approve");
+    expect(() => engine.start(p.id, 3, "build")).toThrow("dependency map");
   });
   it("repairs syntax errors with diagnostics and retains the protected acceptance tests", async () => {
     let protectedSource = "";
@@ -1419,7 +1523,10 @@ describe("request-driven generation", () => {
         (c) => c.id.startsWith("compile:") && c.status === "failed",
       ),
     ).toBe(true);
-    expect(p.charges.filter((c) => c.phase === "repair")).toHaveLength(1);
+    // Invalid source now fails inside the repair response validator. Its bounded
+    // correction attempt is charged, and neither rejected patch can be committed.
+    expect(p.charges.filter((c) => c.phase === "repair")).toHaveLength(2);
+    expect(p.artifact!.files[0].source).toBe("local = broken");
   });
   it("blocks unknown assets, missing coverage and escaping paths", async () => {
     const { engine } = setup();

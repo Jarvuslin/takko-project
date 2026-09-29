@@ -1,0 +1,45 @@
+{
+  "at": "2026-09-25T18:12:34.184Z",
+  "files": [
+    {
+      "file": "src/generation/plan-validation.ts",
+      "sha256": "2388e6725780c9fee78e3536edee3781e499f1066fa57c76474d81d24e969da2"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "sha256": "be09d8f7c4a5a8b845bf74c4d94219d3da960bade1161c4af863b78709ef9685"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "sha256": "3dbf4537158572f93310518207ea7cdd4ec88e925b898f3214a8d2e0d3b590af"
+    },
+    {
+      "file": "src/generation/requirements.ts",
+      "sha256": "627b8778569c12d252c0f8062803a6756ca56c90276f70a0b92f74cabf20bdf6"
+    },
+    {
+      "file": "src/generation/coordinator.ts",
+      "sha256": "ec912702cbd78cf25fb529cd8780cc63e8253d967ce85f40e19abbbf263aceef"
+    },
+    {
+      "file": "tests/post-plan-replay.fixture.ts",
+      "sha256": "19f979b6242da73310706ee6a45c12d2c011a585e7b2e7d9d65147588717b678"
+    },
+    {
+      "file": "tests/post-plan-replay.test.ts",
+      "sha256": "a3efb8e7761c5bafee497ed04ec04e0a12e976a4e246252937ece9f379612505"
+    },
+    {
+      "file": "tests/conversation-planning.test.ts",
+      "sha256": "7f90650cef98ed619b2356b3bc6d5cd8b48cc5537ababdf50e4c925ab230f3ef"
+    },
+    {
+      "file": "scripts/replay-post-plan.ts",
+      "sha256": "4b541dd439afe94e79fa31dae33076c3b3db2f37661fbd6954b6b22c4ed69cf3"
+    },
+    {
+      "file": "scripts/audit-post-plan-gates.ts",
+      "sha256": "5636347dc44ddfb53e41ab8a244934a2e349617e5da05d4d6d4098356120ec80"
+    }
+  ]
+}

@@ -102,6 +102,23 @@ function pendingTransport(responseAfterMs?: number) {
 }
 
 describe("per-profile generation request deadline (offline mocked provider)", () => {
+  it("settles unknown billing before a timeout diagnostic write can fail", async () => {
+    deadlineClock();
+    const provider = pendingTransport();
+    const { engine, store } = setup(provider.transport, 1000);
+    vi.spyOn(store, "trace").mockImplementation(() => {
+      throw Error("diagnostic disk failure");
+    });
+    const project = engine.create("Build a repeatable interaction game");
+    engine.start(project.id, project.revision, "plan");
+    await provider.dispatched;
+    const reserved = store.get(project.id).reservedMicros;
+    await vi.advanceTimersByTimeAsync(1000);
+    const result = await engine.wait(project.id);
+    expect(result.reservedMicros).toBe(0);
+    expect(result.charges).toHaveLength(1);
+    expect(result.charges[0].chargedMicros).toBe(reserved);
+  });
   it.each([0, 999, 600001, 1000.5, NaN, Infinity, "120000", null])(
     "rejects invalid requestTimeoutMs %j",
     (value) => {
@@ -141,14 +158,15 @@ describe("per-profile generation request deadline (offline mocked provider)", ()
       await provider.dispatched;
       const activeReservation = store.get(project.id).reservedMicros;
       expect(activeReservation).toBeGreaterThan(0);
-      expect(clock).toHaveBeenCalledExactlyOnceWith(deadline ?? 120000);
-      await vi.advanceTimersByTimeAsync((deadline ?? 120000) - 1);
+      expect(clock).toHaveBeenCalledExactlyOnceWith(deadline ?? 600000);
+      await vi.advanceTimersByTimeAsync((deadline ?? 600000) - 1);
       expect(provider.signals[0].aborted).toBe(false);
       await vi.advanceTimersByTimeAsync(1);
       const result = await engine.wait(project.id);
       expect(provider.signals[0].reason.name).toBe("TimeoutError");
       expect(provider.transport).toHaveBeenCalledTimes(1);
       expect(result.stage).toBe("failed");
+      expect(result.error).toContain("reply deadline");
       expect(result.reservedMicros).toBe(0);
       expect(result.charges).toHaveLength(1);
       expect(result.charges[0]).toMatchObject({
@@ -186,14 +204,14 @@ describe("per-profile generation request deadline (offline mocked provider)", ()
     expect(result.charges[0].billingSource).toBe("reservation");
   });
 
-  it("accepts a response beyond the legacy deadline but within the configured deadline without fallback or an extra call", async () => {
+  it("accepts a long reasoning response under the default deadline without fallback or an extra call", async () => {
     const clock = deadlineClock(),
       provider = pendingTransport(125000);
-    const { engine, store, model } = setup(provider.transport, 300000, true);
+    const { engine, store, model } = setup(provider.transport, undefined, true);
     const project = engine.create("Build a repeatable interaction game");
     engine.start(project.id, project.revision, "plan");
     await provider.dispatched;
-    expect(clock).toHaveBeenCalledExactlyOnceWith(300000);
+    expect(clock).toHaveBeenCalledExactlyOnceWith(600000);
     await vi.advanceTimersByTimeAsync(120000);
     expect(provider.signals[0].aborted).toBe(false);
     expect(store.get(project.id).reservedMicros).toBeGreaterThan(0);

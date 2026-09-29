@@ -1,0 +1,120 @@
+{
+  "phases": {
+    "Jev interpretation": {
+      "calls": 2,
+      "chargedMicros": 96,
+      "reservationTotalMicros": 5376,
+      "inputTokens": 2268,
+      "outputTokens": 600
+    },
+    "Proposal": {
+      "calls": 1,
+      "chargedMicros": 36430,
+      "reservationTotalMicros": 341460,
+      "inputTokens": 2325,
+      "outputTokens": 3178
+    },
+    "Asset relevance": {
+      "calls": 66,
+      "chargedMicros": 20424,
+      "reservationTotalMicros": 177408,
+      "inputTokens": 485530,
+      "outputTokens": 7010
+    },
+    "Implementation planning": {
+      "calls": 4,
+      "chargedMicros": 755906,
+      "reservationTotalMicros": 1882334,
+      "inputTokens": 100493,
+      "outputTokens": 55492
+    },
+    "Asset acquisition": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "OpenCode coding": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "Review": {
+      "calls": 0,
+      "chargedMicros": 0
+    },
+    "Export": {
+      "calls": 0,
+      "chargedMicros": 0
+    }
+  },
+  "groups": [
+    {
+      "id": "dummy",
+      "assetNeedId": "dummyModel",
+      "automatic": null,
+      "assessed": 30,
+      "passed": 0,
+      "choice": {
+        "assetId": "1245720733"
+      },
+      "manual": true,
+      "chosenAssessment": {
+        "candidateId": "1245720733",
+        "confidence": 0.65,
+        "relevant": false
+      },
+      "proposedRequirement": "req-target-dummy"
+    },
+    {
+      "id": "combat",
+      "assetNeedId": "punchAnim",
+      "automatic": "2801965424",
+      "confidence": 0.96,
+      "assessed": 46,
+      "passed": 7,
+      "choice": {
+        "assetId": "2801965424",
+        "clipKey": "1/18/2"
+      },
+      "manual": false,
+      "chosenAssessment": {
+        "candidateId": "2801965424",
+        "clipKey": "1/18/2",
+        "confidence": 0.96,
+        "relevant": true
+      },
+      "clip": {
+        "name": "Right Punch",
+        "rig": "R15",
+        "duration": 0.699999988079071,
+        "tier": "studio_only"
+      },
+      "limitation": "Studio testing is available for this mapped raw animation. Publishing remains blocked until a permitted published animation ID is supplied. Takko does not publish animations. Temporary registration IDs are Studio-only.",
+      "proposedRequirement": "req-punch-animation"
+    },
+    {
+      "id": "sound",
+      "assetNeedId": "punchHitSound",
+      "automatic": null,
+      "assessed": 30,
+      "passed": 0,
+      "choice": {
+        "assetId": "101355487033225"
+      },
+      "manual": true,
+      "chosenAssessment": {
+        "candidateId": "101355487033225",
+        "confidence": 0.68,
+        "relevant": false
+      },
+      "proposedRequirement": "req-punch-hit-sound"
+    }
+  ],
+  "generatedFiles": 0,
+  "generatedCompiles": 0,
+  "openCodeSessions": 0,
+  "exchanges": 0,
+  "exchangeLimit": 48,
+  "deadlineMs": 900000,
+  "elapsedMs": 0,
+  "planCommitted": false,
+  "exportPath": null
+}

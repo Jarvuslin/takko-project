@@ -1,0 +1,5762 @@
+[
+  {
+    "at": "2026-09-27T18:45:49.286Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.72
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:49.744Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.5,
+          "no": 0.5
+        },
+        "confidence": 0.01
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:50.251Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.6,
+          "yes": 0.4
+        },
+        "confidence": 0.2
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.61
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.59
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.84
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:50.682Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.27,
+          "yes": 0.73
+        },
+        "confidence": 0.46
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.22,
+          "yes": 0.78
+        },
+        "confidence": 0.57
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.83
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.87,
+          "yes": 0.13
+        },
+        "confidence": 0.74
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.69
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.67
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.17,
+          "no": 0.83
+        },
+        "confidence": 0.65
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:51.090Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.59,
+          "yes": 0.41
+        },
+        "confidence": 0.19
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.6,
+          "yes": 0.4
+        },
+        "confidence": 0.19
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "yes": 0.39
+        },
+        "confidence": 0.22
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.6,
+          "yes": 0.4
+        },
+        "confidence": 0.2
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.69,
+          "yes": 0.31
+        },
+        "confidence": 0.38
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.64,
+          "yes": 0.36
+        },
+        "confidence": 0.29
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.63,
+          "yes": 0.37
+        },
+        "confidence": 0.27
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.51,
+          "yes": 0.49
+        },
+        "confidence": 0.03
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "yes": 0.39
+        },
+        "confidence": 0.22
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.65,
+          "yes": 0.35
+        },
+        "confidence": 0.29
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.66,
+          "yes": 0.34
+        },
+        "confidence": 0.31
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "yes": 0.39
+        },
+        "confidence": 0.22
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.62,
+          "yes": 0.38
+        },
+        "confidence": 0.24
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "yes": 0.39
+        },
+        "confidence": 0.22
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.62,
+          "yes": 0.38
+        },
+        "confidence": 0.24
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:51.512Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "yes": 0.03
+        },
+        "confidence": 0.94
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:51.885Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:52.324Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.81
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:52.702Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.12,
+          "no": 0.88
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:53.089Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.11,
+          "no": 0.89
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:53.487Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.9,
+          "yes": 0.1
+        },
+        "confidence": 0.8
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:53.859Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:54.336Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.05,
+          "no": 0.95
+        },
+        "confidence": 0.89
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.8,
+          "no": 0.2
+        },
+        "confidence": 0.59
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:54.751Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.82,
+          "no": 0.18
+        },
+        "confidence": 0.65
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.79,
+          "no": 0.21
+        },
+        "confidence": 0.58
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:55.164Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "yes": 0.03
+        },
+        "confidence": 0.95
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:55.592Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.66
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.87
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:56.039Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.25,
+          "no": 0.75
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.21,
+          "no": 0.79
+        },
+        "confidence": 0.58
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.01,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:56.430Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.81,
+          "yes": 0.19
+        },
+        "confidence": 0.63
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:56.890Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.69
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:57.281Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:57.899Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.78
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.98
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:58.329Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.56
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.72,
+          "yes": 0.28
+        },
+        "confidence": 0.45
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.71,
+          "yes": 0.29
+        },
+        "confidence": 0.42
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:58.761Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.73,
+          "yes": 0.27
+        },
+        "confidence": 0.46
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.81,
+          "yes": 0.19
+        },
+        "confidence": 0.61
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:59.304Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.66
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.81,
+          "yes": 0.19
+        },
+        "confidence": 0.63
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:45:59.670Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.74,
+          "no": 0.26
+        },
+        "confidence": 0.49
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:00.059Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.71,
+          "no": 0.29
+        },
+        "confidence": 0.43
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:00.477Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.87
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:00.897Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.55,
+          "yes": 0.45
+        },
+        "confidence": 0.1
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.89
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.71
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:01.310Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.69
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.88,
+          "yes": 0.12
+        },
+        "confidence": 0.75
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:01.776Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.75,
+          "yes": 0.25
+        },
+        "confidence": 0.5
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.57
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:02.155Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:02.612Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.75
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.75
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.72
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.73
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.65
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.79
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.75
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.25,
+          "yes": 0.75
+        },
+        "confidence": 0.5
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.29,
+          "yes": 0.71
+        },
+        "confidence": 0.42
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.77
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_15": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.81
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:03.000Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.82
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.67
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.22,
+          "yes": 0.78
+        },
+        "confidence": 0.57
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.65
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.42,
+          "yes": 0.58
+        },
+        "confidence": 0.17
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:04.293Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.75
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.82
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:04.788Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.53,
+          "no": 0.47
+        },
+        "confidence": 0.07
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:05.290Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.45,
+          "yes": 0.55
+        },
+        "confidence": 0.1
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.61
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.63
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.86
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:05.740Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.32,
+          "yes": 0.68
+        },
+        "confidence": 0.37
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.19,
+          "yes": 0.81
+        },
+        "confidence": 0.63
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.86
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.87,
+          "yes": 0.13
+        },
+        "confidence": 0.74
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.86,
+          "yes": 0.14
+        },
+        "confidence": 0.71
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.69
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:06.170Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.44,
+          "no": 0.56
+        },
+        "confidence": 0.12
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.42,
+          "no": 0.58
+        },
+        "confidence": 0.17
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.17
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.45,
+          "no": 0.55
+        },
+        "confidence": 0.1
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.33,
+          "no": 0.67
+        },
+        "confidence": 0.35
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.34,
+          "no": 0.66
+        },
+        "confidence": 0.31
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.3
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.46,
+          "no": 0.54
+        },
+        "confidence": 0.07
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.23
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.42,
+          "no": 0.58
+        },
+        "confidence": 0.16
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.17
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.2
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.42,
+          "no": 0.58
+        },
+        "confidence": 0.16
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.3
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.18
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:06.617Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.93
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:07.008Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.11,
+          "no": 0.89
+        },
+        "confidence": 0.79
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:07.408Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:07.814Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.07,
+          "no": 0.93
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:08.186Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.79
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:08.565Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.09,
+          "no": 0.91
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:08.968Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:09.409Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.87
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.23,
+          "yes": 0.77
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:09.849Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.65
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.22,
+          "yes": 0.78
+        },
+        "confidence": 0.57
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:10.251Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.82,
+          "no": 0.18
+        },
+        "confidence": 0.65
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.03,
+          "no": 0.97
+        },
+        "confidence": 0.94
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:10.739Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.52
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:11.171Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.55
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.99
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:11.580Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.92
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.81,
+          "yes": 0.19
+        },
+        "confidence": 0.62
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:11.981Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.9,
+          "no": 0.1
+        },
+        "confidence": 0.8
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:12.378Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:12.833Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.73
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.97
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:13.259Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.75,
+          "yes": 0.25
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.77,
+          "yes": 0.23
+        },
+        "confidence": 0.55
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.57
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:13.664Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.52
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.88
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:14.086Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.8,
+          "yes": 0.2
+        },
+        "confidence": 0.61
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.66
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.9,
+          "yes": 0.1
+        },
+        "confidence": 0.79
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:14.559Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.23,
+          "yes": 0.77
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:14.924Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.73,
+          "no": 0.27
+        },
+        "confidence": 0.46
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:15.350Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.86
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:15.788Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.44,
+          "no": 0.56
+        },
+        "confidence": 0.12
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.92
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.56
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:16.179Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.82,
+          "yes": 0.18
+        },
+        "confidence": 0.64
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.87,
+          "yes": 0.13
+        },
+        "confidence": 0.74
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:16.601Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.79,
+          "yes": 0.21
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:17.012Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.17,
+          "no": 0.83
+        },
+        "confidence": 0.65
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:17.427Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.72
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.71
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.22,
+          "yes": 0.78
+        },
+        "confidence": 0.55
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.71
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.21,
+          "yes": 0.79
+        },
+        "confidence": 0.58
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.24,
+          "yes": 0.76
+        },
+        "confidence": 0.52
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.3,
+          "yes": 0.7
+        },
+        "confidence": 0.41
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.78
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_15": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:17.795Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.82
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.63
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.61
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.6
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.59
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.43,
+          "yes": 0.57
+        },
+        "confidence": 0.14
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.65
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.65
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:20.871Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.78
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.78
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.87,
+          "no": 0.13
+        },
+        "confidence": 0.75
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:21.284Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.51,
+          "no": 0.49
+        },
+        "confidence": 0.02
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:21.747Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.51,
+          "yes": 0.49
+        },
+        "confidence": 0.03
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.69
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:22.318Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.71,
+          "no": 0.29
+        },
+        "confidence": 0.43
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.8,
+          "no": 0.2
+        },
+        "confidence": 0.61
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.07,
+          "no": 0.93
+        },
+        "confidence": 0.86
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.13,
+          "no": 0.87
+        },
+        "confidence": 0.73
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.13,
+          "no": 0.87
+        },
+        "confidence": 0.73
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.13,
+          "no": 0.87
+        },
+        "confidence": 0.74
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:22.722Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.44,
+          "no": 0.56
+        },
+        "confidence": 0.13
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.37,
+          "no": 0.63
+        },
+        "confidence": 0.26
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.37,
+          "no": 0.63
+        },
+        "confidence": 0.25
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.38,
+          "no": 0.62
+        },
+        "confidence": 0.24
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.3,
+          "no": 0.7
+        },
+        "confidence": 0.39
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.31,
+          "no": 0.69
+        },
+        "confidence": 0.38
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.33,
+          "no": 0.67
+        },
+        "confidence": 0.34
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.42,
+          "no": 0.58
+        },
+        "confidence": 0.16
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.29
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.3
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.3
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.29
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.61,
+          "yes": 0.39
+        },
+        "confidence": 0.21
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.33,
+          "no": 0.67
+        },
+        "confidence": 0.34
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.34,
+          "no": 0.66
+        },
+        "confidence": 0.31
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:23.139Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "yes": 0.03
+        },
+        "confidence": 0.93
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:23.501Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:23.921Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.88,
+          "yes": 0.12
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:24.292Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.13,
+          "no": 0.87
+        },
+        "confidence": 0.75
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:24.686Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.86
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:25.079Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.08,
+          "no": 0.92
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:25.471Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.84
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:25.896Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.06,
+          "no": 0.94
+        },
+        "confidence": 0.89
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.78,
+          "no": 0.22
+        },
+        "confidence": 0.55
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:26.329Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.6
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.76,
+          "no": 0.24
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:26.744Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.21,
+          "yes": 0.79
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.92
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:27.171Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.56
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.89
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.85
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:27.597Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.38,
+          "no": 0.62
+        },
+        "confidence": 0.23
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.27,
+          "no": 0.73
+        },
+        "confidence": 0.46
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.01,
+          "no": 0.99
+        },
+        "confidence": 0.98
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:27.969Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.89
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.52
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:28.477Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:28.875Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:29.294Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.97
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:29.758Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.23,
+          "no": 0.77
+        },
+        "confidence": 0.55
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.27,
+          "no": 0.73
+        },
+        "confidence": 0.47
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.25,
+          "no": 0.75
+        },
+        "confidence": 0.5
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:30.192Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.29,
+          "no": 0.71
+        },
+        "confidence": 0.43
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.06,
+          "no": 0.94
+        },
+        "confidence": 0.89
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.22,
+          "no": 0.78
+        },
+        "confidence": 0.55
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:30.610Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.71
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.93,
+          "yes": 0.07
+        },
+        "confidence": 0.86
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:31.013Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.22,
+          "yes": 0.78
+        },
+        "confidence": 0.55
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:31.394Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.32,
+          "yes": 0.68
+        },
+        "confidence": 0.35
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:31.865Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.77
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.06,
+          "no": 0.94
+        },
+        "confidence": 0.88
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:32.320Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.6,
+          "yes": 0.4
+        },
+        "confidence": 0.2
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.91
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.69
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:32.752Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.8,
+          "yes": 0.2
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.66
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:33.258Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.19,
+          "no": 0.81
+        },
+        "confidence": 0.63
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.18,
+          "no": 0.82
+        },
+        "confidence": 0.64
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:33.637Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.84,
+          "yes": 0.16
+        },
+        "confidence": 0.68
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:34.103Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.87,
+          "no": 0.13
+        },
+        "confidence": 0.75
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.87,
+          "no": 0.13
+        },
+        "confidence": 0.75
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.71
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.55
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.68
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.87,
+          "no": 0.13
+        },
+        "confidence": 0.74
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.79,
+          "no": 0.21
+        },
+        "confidence": 0.57
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.87,
+          "no": 0.13
+        },
+        "confidence": 0.75
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.54
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.73,
+          "no": 0.27
+        },
+        "confidence": 0.46
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.78
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.71
+      },
+      "relevant_15": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:34.527Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.09,
+          "yes": 0.91
+        },
+        "confidence": 0.83
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.6
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.23,
+          "yes": 0.77
+        },
+        "confidence": 0.55
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.67
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.19,
+          "yes": 0.81
+        },
+        "confidence": 0.62
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.4,
+          "yes": 0.6
+        },
+        "confidence": 0.2
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.71
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.65
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.19,
+          "yes": 0.81
+        },
+        "confidence": 0.63
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:35.679Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.1,
+          "yes": 0.9
+        },
+        "confidence": 0.79
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.1,
+          "yes": 0.9
+        },
+        "confidence": 0.79
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.71
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:36.266Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.51,
+          "no": 0.49
+        },
+        "confidence": 0.01
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:36.710Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.48,
+          "yes": 0.52
+        },
+        "confidence": 0.05
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.21,
+          "yes": 0.79
+        },
+        "confidence": 0.59
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.61
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:37.165Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.24,
+          "yes": 0.76
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.59
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.84
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.67
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.83,
+          "yes": 0.17
+        },
+        "confidence": 0.66
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.85,
+          "yes": 0.15
+        },
+        "confidence": 0.71
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:37.632Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.45,
+          "no": 0.55
+        },
+        "confidence": 0.09
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.43,
+          "no": 0.57
+        },
+        "confidence": 0.14
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.19
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.44,
+          "no": 0.56
+        },
+        "confidence": 0.11
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.33,
+          "no": 0.67
+        },
+        "confidence": 0.35
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.23
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.2
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.5,
+          "no": 0.5
+        },
+        "confidence": 0.01
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.23
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.46,
+          "no": 0.54
+        },
+        "confidence": 0.08
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.23
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.38,
+          "no": 0.62
+        },
+        "confidence": 0.25
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.18
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.22
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.43,
+          "no": 0.57
+        },
+        "confidence": 0.14
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:38.147Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.04,
+          "no": 0.96
+        },
+        "confidence": 0.93
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:38.625Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.86,
+          "yes": 0.14
+        },
+        "confidence": 0.72
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:39.071Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:39.473Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.84
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:39.848Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.83
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:40.260Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.77
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:40.686Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.83
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:41.108Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.05,
+          "no": 0.95
+        },
+        "confidence": 0.89
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.81,
+          "no": 0.19
+        },
+        "confidence": 0.62
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:41.521Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.81,
+          "no": 0.19
+        },
+        "confidence": 0.61
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.76,
+          "no": 0.24
+        },
+        "confidence": 0.51
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:41.915Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "yes": 0.03
+        },
+        "confidence": 0.94
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:42.335Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.8,
+          "yes": 0.2
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.89
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.91,
+          "yes": 0.09
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:42.799Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.3,
+          "no": 0.7
+        },
+        "confidence": 0.41
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.21,
+          "no": 0.79
+        },
+        "confidence": 0.57
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.01,
+          "no": 0.99
+        },
+        "confidence": 0.99
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:43.180Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.04,
+          "no": 0.96
+        },
+        "confidence": 0.91
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.22,
+          "no": 0.78
+        },
+        "confidence": 0.56
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:43.609Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.9,
+          "no": 0.1
+        },
+        "confidence": 0.8
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:44.012Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:44.387Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.75
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.97
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:44.820Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.71,
+          "yes": 0.29
+        },
+        "confidence": 0.42
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.77,
+          "yes": 0.23
+        },
+        "confidence": 0.54
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:45.264Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.34,
+          "no": 0.66
+        },
+        "confidence": 0.32
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.07,
+          "no": 0.93
+        },
+        "confidence": 0.87
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.33,
+          "no": 0.67
+        },
+        "confidence": 0.35
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:45.670Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.86,
+          "yes": 0.14
+        },
+        "confidence": 0.71
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.86,
+          "yes": 0.14
+        },
+        "confidence": 0.72
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.9,
+          "yes": 0.1
+        },
+        "confidence": 0.8
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:46.074Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:46.527Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.32,
+          "yes": 0.68
+        },
+        "confidence": 0.36
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:47.098Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.71
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.05,
+          "no": 0.95
+        },
+        "confidence": 0.89
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:47.565Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.57,
+          "yes": 0.43
+        },
+        "confidence": 0.13
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.96,
+          "yes": 0.04
+        },
+        "confidence": 0.93
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.87,
+          "yes": 0.13
+        },
+        "confidence": 0.75
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:47.970Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.2,
+          "no": 0.8
+        },
+        "confidence": 0.61
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.13,
+          "no": 0.87
+        },
+        "confidence": 0.75
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:48.406Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.79,
+          "yes": 0.21
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.81,
+          "yes": 0.19
+        },
+        "confidence": 0.63
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:48.797Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.89,
+          "yes": 0.11
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:49.221Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.88,
+          "no": 0.12
+        },
+        "confidence": 0.76
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.88,
+          "no": 0.12
+        },
+        "confidence": 0.75
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.86,
+          "no": 0.14
+        },
+        "confidence": 0.72
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.81,
+          "no": 0.19
+        },
+        "confidence": 0.62
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.68
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.86,
+          "no": 0.14
+        },
+        "confidence": 0.72
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.79,
+          "no": 0.21
+        },
+        "confidence": 0.59
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.88,
+          "no": 0.12
+        },
+        "confidence": 0.75
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.88,
+          "no": 0.12
+        },
+        "confidence": 0.76
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.53
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.74,
+          "no": 0.26
+        },
+        "confidence": 0.48
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.89,
+          "no": 0.11
+        },
+        "confidence": 0.79
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.69
+      },
+      "relevant_15": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.92,
+          "no": 0.08
+        },
+        "confidence": 0.84
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:49.629Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.08,
+          "yes": 0.92
+        },
+        "confidence": 0.83
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.65
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.59
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.4,
+          "yes": 0.6
+        },
+        "confidence": 0.21
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.67
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.71
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.19,
+          "yes": 0.81
+        },
+        "confidence": 0.62
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:50.975Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.1,
+          "yes": 0.9
+        },
+        "confidence": 0.8
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.1,
+          "yes": 0.9
+        },
+        "confidence": 0.8
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:51.486Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.51,
+          "yes": 0.49
+        },
+        "confidence": 0.02
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:51.946Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.5,
+          "no": 0.5
+        },
+        "confidence": 0.01
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.78,
+          "no": 0.22
+        },
+        "confidence": 0.57
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.79,
+          "no": 0.21
+        },
+        "confidence": 0.59
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.09,
+          "no": 0.91
+        },
+        "confidence": 0.82
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:52.524Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.72,
+          "no": 0.28
+        },
+        "confidence": 0.45
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.54
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.07,
+          "no": 0.93
+        },
+        "confidence": 0.85
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.14,
+          "no": 0.86
+        },
+        "confidence": 0.73
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.71
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:52.925Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.45,
+          "no": 0.55
+        },
+        "confidence": 0.1
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.19
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.2
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.43,
+          "no": 0.57
+        },
+        "confidence": 0.15
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.32,
+          "no": 0.68
+        },
+        "confidence": 0.36
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.35,
+          "no": 0.65
+        },
+        "confidence": 0.3
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.37,
+          "no": 0.63
+        },
+        "confidence": 0.25
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.47,
+          "no": 0.53
+        },
+        "confidence": 0.06
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.2
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.17
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.4,
+          "no": 0.6
+        },
+        "confidence": 0.19
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.42,
+          "no": 0.58
+        },
+        "confidence": 0.17
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.38,
+          "no": 0.62
+        },
+        "confidence": 0.24
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.37,
+          "no": 0.63
+        },
+        "confidence": 0.25
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.41,
+          "no": 0.59
+        },
+        "confidence": 0.18
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:53.470Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.03,
+          "no": 0.97
+        },
+        "confidence": 0.94
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:53.888Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.87,
+          "yes": 0.13
+        },
+        "confidence": 0.74
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:54.326Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.09,
+          "no": 0.91
+        },
+        "confidence": 0.81
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:54.722Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.11,
+          "no": 0.89
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:55.158Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.9,
+          "yes": 0.1
+        },
+        "confidence": 0.79
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:55.583Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.09,
+          "no": 0.91
+        },
+        "confidence": 0.81
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:56.037Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.92,
+          "yes": 0.08
+        },
+        "confidence": 0.84
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:56.459Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.94,
+          "yes": 0.06
+        },
+        "confidence": 0.89
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:56.896Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.18,
+          "yes": 0.82
+        },
+        "confidence": 0.64
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.24,
+          "yes": 0.76
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:57.349Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.68
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.97,
+          "yes": 0.03
+        },
+        "confidence": 0.94
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:57.753Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.25,
+          "no": 0.75
+        },
+        "confidence": 0.5
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.04,
+          "no": 0.96
+        },
+        "confidence": 0.91
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.07,
+          "no": 0.93
+        },
+        "confidence": 0.87
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:58.164Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.24,
+          "no": 0.76
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.82,
+          "yes": 0.18
+        },
+        "confidence": 0.63
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.99
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:58.590Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.78,
+          "yes": 0.22
+        },
+        "confidence": 0.56
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:58.990Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.88,
+          "no": 0.12
+        },
+        "confidence": 0.76
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:59.384Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.17,
+          "yes": 0.83
+        },
+        "confidence": 0.66
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:46:59.856Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.99,
+          "yes": 0.01
+        },
+        "confidence": 0.97
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:00.324Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.79,
+          "yes": 0.21
+        },
+        "confidence": 0.59
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.72,
+          "yes": 0.28
+        },
+        "confidence": 0.43
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.52
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:00.775Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.51
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.95,
+          "yes": 0.05
+        },
+        "confidence": 0.9
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "no": 0.76,
+          "yes": 0.24
+        },
+        "confidence": 0.51
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:01.239Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.7
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.12,
+          "no": 0.88
+        },
+        "confidence": 0.77
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.09,
+          "no": 0.91
+        },
+        "confidence": 0.83
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:01.620Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.24,
+          "yes": 0.76
+        },
+        "confidence": 0.53
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:02.140Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.32,
+          "yes": 0.68
+        },
+        "confidence": 0.35
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:02.704Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.86,
+          "no": 0.14
+        },
+        "confidence": 0.71
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.05,
+          "no": 0.95
+        },
+        "confidence": 0.89
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:03.134Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.39,
+          "no": 0.61
+        },
+        "confidence": 0.21
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.04,
+          "no": 0.96
+        },
+        "confidence": 0.92
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.12,
+          "no": 0.88
+        },
+        "confidence": 0.76
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:03.572Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.21,
+          "no": 0.79
+        },
+        "confidence": 0.58
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.15,
+          "no": 0.85
+        },
+        "confidence": 0.7
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:04.043Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.22,
+          "no": 0.78
+        },
+        "confidence": 0.57
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.2,
+          "no": 0.8
+        },
+        "confidence": 0.61
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:04.433Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "no",
+        "probabilities": {
+          "yes": 0.11,
+          "no": 0.89
+        },
+        "confidence": 0.78
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:04.869Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.75
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.79
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.72
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.2,
+          "yes": 0.8
+        },
+        "confidence": 0.6
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.73
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.16,
+          "yes": 0.84
+        },
+        "confidence": 0.67
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.15,
+          "yes": 0.85
+        },
+        "confidence": 0.69
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.21,
+          "yes": 0.79
+        },
+        "confidence": 0.58
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.13,
+          "yes": 0.87
+        },
+        "confidence": 0.74
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.12,
+          "yes": 0.88
+        },
+        "confidence": 0.76
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.24,
+          "yes": 0.76
+        },
+        "confidence": 0.52
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.28,
+          "yes": 0.72
+        },
+        "confidence": 0.44
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.11,
+          "yes": 0.89
+        },
+        "confidence": 0.77
+      },
+      "relevant_14": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.14,
+          "yes": 0.86
+        },
+        "confidence": 0.73
+      },
+      "relevant_15": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "no": 0.1,
+          "yes": 0.9
+        },
+        "confidence": 0.8
+      }
+    }
+  },
+  {
+    "at": "2026-09-27T18:47:05.265Z",
+    "model": "typesafe/jev-1.13-20260917",
+    "answers": {
+      "relevant_0": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.86,
+          "no": 0.14
+        },
+        "confidence": 0.71
+      },
+      "relevant_1": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.91,
+          "no": 0.09
+        },
+        "confidence": 0.82
+      },
+      "relevant_2": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.81,
+          "no": 0.19
+        },
+        "confidence": 0.62
+      },
+      "relevant_3": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.69
+      },
+      "relevant_4": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.82,
+          "no": 0.18
+        },
+        "confidence": 0.63
+      },
+      "relevant_5": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.77,
+          "no": 0.23
+        },
+        "confidence": 0.55
+      },
+      "relevant_6": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.7
+      },
+      "relevant_7": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.83,
+          "no": 0.17
+        },
+        "confidence": 0.66
+      },
+      "relevant_8": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.64,
+          "no": 0.36
+        },
+        "confidence": 0.28
+      },
+      "relevant_9": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.68
+      },
+      "relevant_10": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.85,
+          "no": 0.15
+        },
+        "confidence": 0.69
+      },
+      "relevant_11": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.86,
+          "no": 0.14
+        },
+        "confidence": 0.72
+      },
+      "relevant_12": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.67
+      },
+      "relevant_13": {
+        "type": "choice",
+        "choice": "yes",
+        "probabilities": {
+          "yes": 0.84,
+          "no": 0.16
+        },
+        "confidence": 0.67
+      }
+    }
+  }
+]

@@ -1,0 +1,108 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/demo-export-blockers.test.ts (4 tests | 4 failed) 63ms
+   × accepts the complete real 5334-instance pack under the transfer byte budget 18ms
+   × keeps the original run-11 coverage failure as a limitation, not a source finding 15ms
+   × still blocks a real source finding when coverage is incomplete 17ms
+   × uses planner-owned proposal asset needs before the implementation plan exists 10ms
+ ❯ tests/asset-choices.test.ts (32 tests | 1 failed) 2652ms
+   × finishes recommendations when discovery preceded the proposal without discarding captured options 67ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-choices.test.ts > finishes recommendations when discovery preceded the proposal without discarding captured options
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/asset-choices.test.ts:963:37
+    961|   f.app.locals.engine.store.save(proposalProject(searched));
+    962|   const p = await f.search();
+    963|   expect(p.assetDiscovery.approved).toBe(true);
+       |                                     ^
+    964|   expect(p.assetAttachments.length).toBeGreaterThan(0);
+    965|   expect(p.assetDiscovery.groups[0].options).toEqual(searched.assetDis…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/demo-export-blockers.test.ts > accepts the complete real 5334-instance pack under the transfer byte budget
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/demo-export-blockers.test.ts:10:256
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/demo-export-blockers.test.ts > keeps the original run-11 coverage failure as a limitation, not a source finding
+AssertionError: expected 'review_required' to be 'limited' // Object.is equality
+
+Expected: "limited"
+Received: "review_required"
+
+ ❯ tests/demo-export-blockers.test.ts:11:165
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/demo-export-blockers.test.ts > still blocks a real source finding when coverage is incomplete
+ZodError: [
+  {
+    "origin": "array",
+    "code": "too_big",
+    "maximum": 3000,
+    "inclusive": true,
+    "path": [
+      "nodes"
+    ],
+    "message": "Too big: expected array to have <=3000 items"
+  }
+]
+ ❯ inspectSnapshot src/marketplace/inspection.ts:50:35
+     48| /** Conservative static screening. It never runs imported code or clai…
+     49| export function inspectSnapshot(input: AssetSnapshot): Inspection {
+     50|   const snapshot = snapshotSchema.parse(input),
+       |                                   ^
+     51|     findings: Finding[] = [];
+     52|   if (!snapshot.complete || snapshot.issues.length)
+ ❯ tests/demo-export-blockers.test.ts:12:410
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/demo-export-blockers.test.ts > uses planner-owned proposal asset needs before the implementation plan exists
+ZodError: [
+  {
+    "code": "unrecognized_keys",
+    "keys": [
+      "revision",
+      "hash",
+      "changed",
+      "summary",
+      "approval",
+      "assetNeeds"
+    ],
+    "path": [],
+    "message": "Unrecognized keys: \"revision\", \"hash\", \"changed\", \"summary\", \"approval\", \"assetNeeds\""
+  }
+]
+ ❯ tests/demo-export-blockers.test.ts:13:312
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 31 passed (36)
+   Start at  00:51:19
+   Duration  4.70s (tests 57%, transform 25%, import 16%, worker 2%)
+

@@ -62,16 +62,26 @@ function run(body: string) {
   );
   const suffix = process.platform === "win32" ? ".exe" : "";
   execFileSync(
-    path.resolve("research/tools/luau/luau-compile" + suffix),
+    path.resolve(
+      process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+      "luau-compile" + suffix,
+    ),
     [file],
     { windowsHide: true, timeout: 10000, stdio: "pipe" },
   );
   expect(
-    execFileSync(path.resolve("research/tools/luau/luau" + suffix), [file], {
-      windowsHide: true,
-      timeout: 10000,
-      encoding: "utf8",
-    }),
+    execFileSync(
+      path.resolve(
+        process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+        "luau" + suffix,
+      ),
+      [file],
+      {
+        windowsHide: true,
+        timeout: 10000,
+        encoding: "utf8",
+      },
+    ),
   ).toContain("ISOLATION_VERIFIED");
 }
 const invoke = (code: string) => `(function()\n${code}\nend)()`;

@@ -1,0 +1,111 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/planner-recovery.test.ts (10 tests | 4 failed) 95ms
+   × names duplicated planner requirements 24ms
+   × names duplicated planner tasks 19ms
+   × names duplicated planner questions 18ms
+   × names the task where a dependency cycle closes 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/planner-recovery.test.ts > names duplicated planner requirements
+AssertionError: expected [Function] to throw error matching /Duplicate .*target_dummy/ but got 'Cannot read properties of undefined (…'
+
+- Expected:
+/Duplicate .*target_dummy/
+
++ Received:
+"Cannot read properties of undefined (reading 'trim')"
+
+ ❯ tests/planner-recovery.test.ts:69:60
+     67|       ];
+     68|     spec[key].push(structuredClone(spec[key][0]));
+     69|     expect(() => validateSpec(spec, read("before-build"))).toThrow(
+       |                                                            ^
+     70|       new RegExp(`Duplicate .*${spec[key][0].id}`),
+     71|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/planner-recovery.test.ts > names duplicated planner tasks
+AssertionError: expected [Function] to throw error matching /Duplicate .*t_discover_dummy/ but got 'Cannot read properties of undefined (…'
+
+- Expected:
+/Duplicate .*t_discover_dummy/
+
++ Received:
+"Cannot read properties of undefined (reading 'trim')"
+
+ ❯ tests/planner-recovery.test.ts:69:60
+     67|       ];
+     68|     spec[key].push(structuredClone(spec[key][0]));
+     69|     expect(() => validateSpec(spec, read("before-build"))).toThrow(
+       |                                                            ^
+     70|       new RegExp(`Duplicate .*${spec[key][0].id}`),
+     71|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/planner-recovery.test.ts > names duplicated planner questions
+AssertionError: expected [Function] to throw error matching /Duplicate .*which_layout/ but got 'Cannot read properties of undefined (…'
+
+- Expected:
+/Duplicate .*which_layout/
+
++ Received:
+"Cannot read properties of undefined (reading 'trim')"
+
+ ❯ tests/planner-recovery.test.ts:69:60
+     67|       ];
+     68|     spec[key].push(structuredClone(spec[key][0]));
+     69|     expect(() => validateSpec(spec, read("before-build"))).toThrow(
+       |                                                            ^
+     70|       new RegExp(`Duplicate .*${spec[key][0].id}`),
+     71|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/planner-recovery.test.ts > names the task where a dependency cycle closes
+AssertionError: expected [Function] to throw error including 'Task dependency cycle at t_discover_d…' but got 'Cannot read properties of undefined (…'
+
+Expected: "Task dependency cycle at t_discover_dummy"
+Received: "Cannot read properties of undefined (reading 'trim')"
+
+ ❯ tests/planner-recovery.test.ts:77:58
+     75|   const spec = structuredClone(original);
+     76|   spec.tasks[0].dependsOn = [spec.tasks[0].id];
+     77|   expect(() => validateSpec(spec, read("before-build"))).toThrow(
+       |                                                          ^
+     78|     `Task dependency cycle at ${spec.tasks[0].id}`,
+     79|   );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯
+Error: [vitest-pool]: Worker forks emitted error.
+ ❯ EventEmitter.onTaskError ../Roblox%20Gen/node_modules/vitest/dist/chunks/index.B89dZ0-N.js:11463:21
+ ❯ EventEmitter.emit node:events:509:28
+ ❯ ChildProcess.emitUnexpectedExit ../Roblox%20Gen/node_modules/vitest/dist/chunks/index.B89dZ0-N.js:10940:22
+ ❯ ChildProcess.emit node:events:509:28
+ ❯ Process.ChildProcess._handle.onexit node:internal/child_process:295:12
+
+Caused by: Error: Worker exited unexpectedly with exit code 3221226505 during started state while running test file D:/RobloxProjects/Roblox Gen/tests/chat-architecture.test.ts
+ ❯ ChildProcess.emitUnexpectedExit ../Roblox%20Gen/node_modules/vitest/dist/chunks/index.B89dZ0-N.js:10938:33
+ ❯ ChildProcess.emit node:events:509:28
+ ❯ Process.ChildProcess._handle.onexit node:internal/child_process:295:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 1 passed (3)
+      Tests  4 failed | 27 passed (42)
+     Errors  1 error
+   Start at  02:53:21
+   Duration  4.31s (import 63%, transform 22%, tests 15%)
+

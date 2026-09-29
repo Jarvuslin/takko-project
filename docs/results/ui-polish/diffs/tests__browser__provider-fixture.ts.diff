@@ -1,0 +1,53 @@
+diff --git "a/.forge\\ui-polish-before\\tests\\browser\\provider-fixture.ts" "b/tests\\browser\\provider-fixture.ts"
+index d0a6ed1..415c9f2 100644
+--- "a/.forge\\ui-polish-before\\tests\\browser\\provider-fixture.ts"
++++ "b/tests\\browser\\provider-fixture.ts"
+@@ -45,7 +45,9 @@ export async function mockProviderConnections(page: Page) {
+         hasKey: true,
+         validated: true,
+       });
+-    const response = await page.request.get("/api/models");
++    const response = await page.request.get(
++      new URL("/api/models", route.request().url()).href,
++    );
+     await route.fulfill({
+       json: {
+         ...(await response.json()),
+@@ -70,21 +72,26 @@ export async function mockProviderConnections(page: Page) {
+       connections: _connections,
+       credentialStorage: _storage,
+       ...current
+-    } = await (await page.request.get("/api/models")).json();
++    } = await (
++      await page.request.get(new URL("/api/models", route.request().url()).href)
++    ).json();
+     current.profiles = current.profiles.map(
+       ({ hasKey: _hasKey, ...p }: any) => p,
+     );
+-    const result = await page.request.put("/api/models", {
+-      data: {
+-        ...current,
+-        profiles: [
+-          ...current.profiles.filter(
+-            (p: { id: string }) => p.id !== profile.id,
+-          ),
+-          profile,
+-        ],
++    const result = await page.request.put(
++      new URL("/api/models", route.request().url()).href,
++      {
++        data: {
++          ...current,
++          profiles: [
++            ...current.profiles.filter(
++              (p: { id: string }) => p.id !== profile.id,
++            ),
++            profile,
++          ],
++        },
+       },
+-    });
++    );
+     await route.fulfill({
+       status: result.status(),
+       json: {

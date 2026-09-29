@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-20T23:25:47.669Z",
+  "durationSeconds": 141.606479,
+  "chapters": [
+    {
+      "name": "title",
+      "startSeconds": 0,
+      "durationSeconds": 19.318005
+    },
+    {
+      "name": "intro",
+      "startSeconds": 19.318005,
+      "durationSeconds": 40.64
+    },
+    {
+      "name": "initial",
+      "startSeconds": 59.958005,
+      "durationSeconds": 31.092472
+    },
+    {
+      "name": "result",
+      "startSeconds": 91.050477,
+      "durationSeconds": 20.982177
+    },
+    {
+      "name": "workflow",
+      "startSeconds": 112.03265400000001,
+      "durationSeconds": 29.533152
+    }
+  ],
+  "recordingSources": [
+    "intro.webm",
+    "../initial-live.webm"
+  ],
+  "narration": "Microsoft David Desktop, local System.Speech, rate 1",
+  "claim": "Failed first semantic gate. No later model stages or Studio test."
+}

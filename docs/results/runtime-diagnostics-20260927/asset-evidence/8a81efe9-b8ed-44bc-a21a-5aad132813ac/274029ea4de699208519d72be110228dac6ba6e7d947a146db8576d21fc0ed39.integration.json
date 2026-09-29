@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "ff0c32970604ad2c4ed5e26b0305a738fec41627ebc0809231ee6006e3036663",
+  "scope": "Forge_8a81efe9b8ed",
+  "need": {
+    "id": "punchAnim",
+    "requirementId": "punch_animation",
+    "role": "Plays on the player character when the attack input is pressed, giving the punch visual weight.",
+    "kind": "Model",
+    "query": "punch jab fighting animation",
+    "constraints": "R15-compatible single-arm jab or straight punch animation, non-looping, duration approximately 0.3-0.6 seconds, playable via AnimationController/Animator on the default player rig, timed to roughly align with hit registration.",
+    "intent": {
+      "experienceRole": "Provides the visual feedback of the player's attack action, making punches feel physical and readable so hits feel earned.",
+      "interaction": "Triggered the instant the player presses the attack input; plays once on the player's arm/torso during the punch swing, timed to align with hit detection on the dummy and the accompanying hit sound.",
+      "reusableFeatures": [
+        "Any existing attack/punch animations already rigged to the player character",
+        "Default Roblox R15 upper-body animation slots"
+      ],
+      "relatedRequirementIds": [
+        "punch_animation",
+        "target_dummy"
+      ]
+    },
+    "required": false,
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "maxSize": 12
+  },
+  "instanceName": "punchAnim",
+  "review": {
+    "packetHash": "ff0c32970604ad2c4ed5e26b0305a738fec41627ebc0809231ee6006e3036663",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c",
+    "disposition": "integration_candidate",
+    "reason": "The sole embedded source is a disabled, comment-only Script with no executable behavior, so it is safely preservable. The selected raw KeyframeSequence (clip 1/1/18/1, node 149) is present and matches the selectedClip mapping, usable per the capability contract for Studio-only playback via RegisterKeyframeSequence. Both linked requirements (punch_animation, target_dummy) remain integration_needed pending the separate PunchController/Validator wiring and the already-reviewed dummy component; no removed capabilities apply. Recommended for later controlled integration only.",
+    "serializedMedia": [
+      {
+        "indices": [
+          7,
+          286
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715537",
+        "purpose": "R15 LeftHand MeshPart geometry shared by both captured rig instances of the animation model.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          14,
+          293
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715541",
+        "purpose": "R15 LeftLowerArm MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          21,
+          300
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715550",
+        "purpose": "R15 LeftUpperArm MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          30,
+          309
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715557",
+        "purpose": "R15 RightHand MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          37,
+          316
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715562",
+        "purpose": "R15 RightLowerArm MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          44,
+          323
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715576",
+        "purpose": "R15 RightUpperArm MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          53,
+          332
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715593",
+        "purpose": "R15 UpperTorso MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          74,
+          353
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715602",
+        "purpose": "R15 LeftFoot MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          79,
+          358
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715610",
+        "purpose": "R15 LeftLowerLeg MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          86,
+          365
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715616",
+        "purpose": "R15 LeftUpperLeg MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          93,
+          372
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715627",
+        "purpose": "R15 RightFoot MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          98,
+          377
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715632",
+        "purpose": "R15 RightLowerLeg MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          105,
+          384
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715641",
+        "purpose": "R15 RightUpperLeg MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          112,
+          391
+        ],
+        "property": "MeshId",
+        "value": "http://www.roblox.com/asset/?id=1699715652",
+        "purpose": "R15 LowerTorso MeshPart geometry shared by both captured rig instances.",
+        "verification": "unverified"
+      },
+      {
+        "indices": [
+          144,
+          147,
+          422
+        ],
+        "property": "Texture",
+        "value": "rbxasset://textures/face.png",
+        "purpose": "Default Roblox face decal texture applied to the Head part on both captured rig instances.",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [
+      {
+        "sha256": "973dfd691c1d2540383ca199d48cecd1907760a6a58f8b312961009fb70766ed",
+        "behavior": "Disabled (RunContext.Legacy) Script containing only 5 comment lines referencing an unrelated Auevi Quest System tutorial and reminding the uploader to publish the animation themselves. No executable statements exist; the script performs no runtime action, makes no calls, and touches no services or assets.",
+        "reuse": "preserve",
+        "dependencies": [],
+        "unresolved": []
+      }
+    ],
+    "requirements": [
+      {
+        "requirementId": "punch_animation",
+        "status": "integration_needed",
+        "reason": "The captured model contains the exact selected raw KeyframeSequence 'punching animation' (node 149) with full pose keyframes, matching selectedClip 1/1/18/1, usable for Studio playback per the animationCapabilityContract (RegisterKeyframeSequence -> Animation.AnimationId -> Animator:LoadAnimation). No wiring to player input, Animator, or hit timing exists in this packet; that runtime path is owned by the pending PunchController client task.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          2,
+          129,
+          130,
+          148,
+          149,
+          150,
+          280
+        ]
+      },
+      {
+        "requirementId": "target_dummy",
+        "status": "integration_needed",
+        "reason": "This packet is the punch-animation asset and contains no dummy-related instances or logic; the Training Dummy component is a separately captured and reviewed asset (already retained per stage evidence). Cross-component binding of punch timing/range to the dummy's hitbox is pending integration in PunchValidator/PunchController and is not evidenced here.",
+        "sourceHashes": [],
+        "nodeIndices": []
+      }
+    ],
+    "permissionImpacts": [],
+    "integrationNotes": [
+      "Raw KeyframeSequence at node 149 ('punching animation', AnimSaves under 'punching animation 1') matches selectedClip key 1/1/18/1; Studio-local playback path is RegisterKeyframeSequence(sequence) -> assign returned temporary ID unchanged to Animation.AnimationId -> Animator:LoadAnimation, per contract. Publishing an AnimationId remains an unresolved, non-blocking limitation and must not be treated as a defect.",
+      "The sibling model 'punching animation 2' and its AnimSaves ('Automatic Save', 'Punching animation') are unrelated duplicate KeyframeSequences not matching the selected clip key; they are retained as part of the imported asset but should not be wired into the punch loop.",
+      "The disabled Note script is inert commentary only and requires no remediation; it can be left disabled or removed without affecting animation data.",
+      "Remaining integration owned elsewhere: PunchController (client input capture + LoadAnimation trigger), PunchValidator (server distance/cooldown check against the separately reviewed dummy hitbox), hit sound playback, and HUD counter — none of which are present in this packet."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 4810,
+    "checkedAttributes": 0,
+    "checkedReferences": 65,
+    "unobservableProperties": [
+      "AnimationRigData.Generic",
+      "AnimationRigData.label",
+      "AnimationRigData.postTransform",
+      "AnimationRigData.preTransform",
+      "AnimationRigData.transform",
+      "Humanoid.Health_XML",
+      "Humanoid.InternalBodyScale",
+      "Humanoid.InternalHeadScale",
+      "MeshPart.Color3uint8",
+      "MeshPart.MaterialVariantSerialized",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "d2e0436d354f2706c0332d8c22f0c7909a6a91d3af4142c0ccaf85e2dbf1f7bb",
+  "metadata": {
+    "needId": "punchAnim",
+    "candidateId": "12061946559",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c",
+    "packetHash": "ff0c32970604ad2c4ed5e26b0305a738fec41627ebc0809231ee6006e3036663",
+    "archiveHash": "499d233832c0d18ef467171cf86d05dc66c8dfe4b6fcd207ce42fcac9394ed18",
+    "conversionHash": "1f51327cc98563bcf278dbc14df13e4fca93767f33d61fe99757f9d67024b78c",
+    "destinationPath": "Workspace/Forge_8a81efe9b8ed/Assets/punchAnim",
+    "rootName": "punchAnim",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

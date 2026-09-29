@@ -313,7 +313,10 @@ it("compiles the actual native capture/adaptation functions", () => {
   const file = path.join(temp(), "adapt.luau");
   fs.writeFileSync(file, componentArchiveLuau + componentAdaptationLuau);
   execFileSync(
-    path.resolve(".forge/tools/luau/luau-compile.exe"),
+    path.resolve(
+      process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+      "luau-compile" + (process.platform === "win32" ? ".exe" : ""),
+    ),
     ["--null", file],
     { windowsHide: true },
   );

@@ -1,0 +1,46 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/post-plan-replay.test.ts (13 tests | 2 failed) 5845ms
+   × derives edit invalidation from provenance and shared requirement ownership 7ms
+   × enforces cumulative budget admission before replay inference or Studio effects 1383ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/post-plan-replay.test.ts > derives edit invalidation from provenance and shared requirement ownership
+AssertionError: expected [ 'sceneEnvironment', …(9) ] to not include 'soundAssetDiscovery'
+ ❯ tests/post-plan-replay.test.ts:116:32
+    114|   expect(affectedTasks(p)).toContain("sceneEnvironment");
+    115|   expect(affectedTasks(p)).toContain("dummyPlacement");
+    116|   expect(affectedTasks(p)).not.toContain("soundAssetDiscovery");
+       |                                ^
+    117| });
+    118| it("reports external Studio failure without treating it as a correctab…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > enforces cumulative budget admission before replay inference or Studio effects
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/post-plan-replay.test.ts:129:30
+    127| it("enforces cumulative budget admission before replay inference or St…
+    128|   const r=await replayPostPlan(replayRuns[0],{mutateProject:p=>{p.budg…
+    129|   try{expect(r.plannerCalls).toBe(0);expect(r.dispatched).toBe(false);…
+       |                              ^
+    130| });
+    131|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 11 passed (13)
+   Start at  13:58:39
+   Duration  7.03s (tests 85%, transform 10%, import 5%)
+

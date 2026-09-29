@@ -1,0 +1,157 @@
+Resume and finish. Three review checks are blocking export. Four narrow fixes, then
+export. No new features, no architecture work.
+
+===============================================================================
+CONTEXT
+===============================================================================
+
+Project 8a81efe9-b8ed-44bc-a21a-5aad132813ac. OpenCode succeeded, six tasks complete,
+five Luau files, 495 lines, all compile clean. The reviewer ran at medium reasoning and
+completed properly this time: 13,059 output tokens, 6,375 reasoning, finish reason stop,
+no truncation. Keep that setting.
+
+It left three failed checks, so GET /api/projects/:id/export returns 409:
+
+  review:hit_sound     requested sound entirely unimplemented
+  review:punch_loop    fails only because hit_sound is missing
+  review:target_dummy  retained dummy never positioned or anchored
+
+Two of the three share one root cause.
+
+===============================================================================
+FIX 1. A SEARCH HINT WAS PROMOTED INTO AN ACCEPTANCE GATE
+===============================================================================
+
+The user's request:
+  "...a punch/hit sound when the player hits the dummy..."
+
+The generated requirement hit_sound:
+  "A punch impact sound (lorenzosaudiostash Hit - Impact - Punch - Blunt,
+   assetId 126976659766267) plays immediately when a punch is server-confirmed
+   to connect with the dummy."
+
+NEITHER STATES A DURATION. The 0.2-0.5 second window exists in exactly one place:
+assetNeeds.constraints, which is a worker-authored SEARCH hint. Acquisition treated it
+as a hard acceptance gate and rejected the user's own approved asset for measuring
+~1.53 seconds.
+
+The reviewer identified this correctly and it is right.
+
+This is the recurring "invent a requirement, then fail against it" defect. Fix the
+general rule, not this asset:
+
+  - assetNeeds.constraints is a SEARCH hint. On its own it must never reject a
+    user-approved asset.
+  - Rejecting a user-approved reference requires a real capability or import
+    limitation, or an actual user statement. An inferred internal constraint is not
+    sufficient grounds.
+  - Where an inferred constraint genuinely conflicts with an approved asset, record it
+    as a visible limitation and CONTINUE, exactly as the Studio-only publishing
+    limitation already does. Do not silently drop a requested feature.
+
+Do NOT hard-code this asset, this duration, audio specifically, or this genre.
+
+===============================================================================
+FIX 2. IMPLEMENT THE SOUND
+===============================================================================
+
+Load and play the user-approved asset 126976659766267 on server-confirmed hit. Duration
+is not a blocker. If ~1.53s is genuinely long for an impact cue, bound playback with
+TimePosition or a playback range, but do NOT leave the requirement unimplemented.
+
+review:punch_loop resolves automatically once hit_sound exists. Its acceptance criterion
+is "when the swing connects the hit sound plays and the visible counter increments
+exactly once per successful swing."
+
+===============================================================================
+FIX 3. POSITION AND ANCHOR THE DUMMY
+===============================================================================
+
+The retained dummy at Workspace/Forge_8a81efe9b8ed/Assets/dummy was never positioned or
+anchored. Its own integrationNotes flagged this as remaining work and nothing did it.
+PunchValidator.server.luau measures distance against approximately (0,3,15), so hit
+detection would be measuring against the wrong location. The game would not work even
+if it exported.
+
+Set Anchored=true and position/orient the dummy so it stands upright where
+PunchValidator expects it.
+
+Also fix the bookkeeping error the reviewer found: the target_dummy coverage entry
+contains copy-pasted text from the hit_sound rejection reasoning, which is not a valid
+justification for that requirement.
+
+===============================================================================
+FIX 4. PLAY THE APPROVED CLIP, NOT THE FIRST ONE FOUND
+===============================================================================
+
+Static inspection found PunchController.client.luau searches for the FIRST
+KeyframeSequence below the retained folder. The preserved capture contains three
+sequences, indices 149, 426 and 531. The approved clip is index 149, named "punching
+animation". It may currently play the wrong animation.
+
+Traverse the exact supplied sequence path instead of taking the first match. The
+approved clip identity is already available in the retained component context.
+
+===============================================================================
+SCOPE, BUDGET, SEQUENCE
+===============================================================================
+
+Resume project 8a81efe9-b8ed-44bc-a21a-5aad132813ac. Reopen ONLY the tasks these fixes
+touch. Do not re-plan, re-select or re-acquire. Files untouched by these fixes should
+remain byte-identical.
+
+Cap $4. Balance was $8.970387708 account / $7.462866234 key at 2026-09-27T21:08:15.962Z.
+Refresh and record before dispatch. For reference the last resume cost $1.254175 for 25
+coding calls plus one reviewer call.
+
+Keep reviewer reasoningEffort at medium via the reviewer-only execution policy. Do not
+mutate acquisition-bound saved profiles.
+
+Failing tests first from preserved real output, per the AGENTS.md fixture rule. Full
+npm run check with REAL counts. Three replays at $0. If red, stop.
+
+===============================================================================
+EXPORT
+===============================================================================
+
+GET /api/projects/8a81efe9-b8ed-44bc-a21a-5aad132813ac/export
+
+Save the .rbxlx at the repository root where the user finds it immediately, plus an
+evidence copy. Report the exact absolute path.
+
+Do NOT rewrite the project stage, downgrade or delete a review finding, or bypass the
+exporter. Do not bridge apply. Do not modify place 122588481889475.
+
+If checks still fail, report them VERBATIM and stop. Do not dispatch a second repair
+without new authorization.
+
+===============================================================================
+THEN TELL THE USER HOW TO PLAY IT
+===============================================================================
+
+  - exact .rbxlx path, opened directly in Studio, press Play
+  - the scene is a room: ground, ceiling, four walls, spawn, four point-light fixtures,
+    plus the retained dummy
+  - approach the dummy and use left click, F, or controller R2
+  - state what you OBSERVED versus what you did not. Do not claim gameplay you did not
+    watch. If you did not run it in Studio, say so plainly.
+
+===============================================================================
+DO NOT DO
+===============================================================================
+
+Model swap. Planner, builder or decision route changes. Relevance gate or confidence
+threshold changes. Audio selection redesign (selection having no duration signal is a
+real gap, record it, do not fix it now). The duplicate relevance pass, 5 passes / 165
+calls. Place binding. Bridge component delivery. Streaming. EditableMesh. Anything
+beyond fixes 1 to 4.
+
+===============================================================================
+AFTER
+===============================================================================
+
+Report under docs/. Dated section at the top of research/notes/continuation.md with
+PIDs, ports, refreshed balance, per-phase costs, which tasks were reopened, the review
+result, export result and the exact .rbxlx path.
+
+If the review still reports the game is bad, say so and keep it.

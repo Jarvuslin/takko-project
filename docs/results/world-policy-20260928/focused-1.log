@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/world-scene-check.test.ts (2 tests | 1 failed) 17ms
+   × checks the other real request's geometry and permits its explicitly requested stage 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world-scene-check.test.ts > checks the other real request's geometry and permits its explicitly requested stage
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/world-scene-check.test.ts:21:78
+     19|   const checks = checkWorldScene(other.artifact!, other);
+     20|   expect(checks.find(c=>c.id==="world:ui-visibility")?.status).toBe("p…
+     21|   expect(checks.some(c => c.id.includes("lights") && c.status === "fai…
+       |                                                                              ^
+     22|   const withoutStageRequest = {...other, request: "Click an object and…
+     23|   expect(checkWorldScene(other.artifact!, withoutStageRequest).some(c …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 68 passed (69)
+   Start at  13:12:55
+   Duration  16.80s (tests 59%, import 33%, transform 7%)
+

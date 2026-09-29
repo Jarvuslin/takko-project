@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+const output=path.resolve('docs/results/runtime-diagnostics-20260927');
+const directory=path.resolve('.forge/runtime-diagnostics-profile-20260927');
+if(fs.existsSync(path.join(output,'mode-verified.json')))throw Error('Project already verified');
+const list=await(await fetch('http://127.0.0.1:4335/api/projects')).json();
+if(list.length)throw Error('Fresh profile is not empty');
+const request='A fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit.';
+const r=await fetch('http://127.0.0.1:4335/api/projects',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request})});
+if(!r.ok)throw Error('Free project creation HTTP '+r.status);
+const p=await r.json();
+const saved=JSON.parse(fs.readFileSync(path.join(directory,p.id+'.json'),'utf8'));
+if(saved.executionMode!=='opencode'||saved.charges.length!==0)throw Error('Execution mode / no-spend precondition failed');
+const verified={at:new Date().toISOString(),projectId:p.id,executionMode:saved.executionMode,chargeCount:saved.charges.length,budgetMicros:saved.budgetMicros,request};
+fs.writeFileSync(path.join(output,'mode-verified.json'),JSON.stringify(verified,null,2));
+fs.writeFileSync(path.join(output,'prompt.txt'),request);
+console.log(JSON.stringify(verified));

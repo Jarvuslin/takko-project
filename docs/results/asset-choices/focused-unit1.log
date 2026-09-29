@@ -1,0 +1,66 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-choices.test.ts (13 tests | 1 failed) 845ms
+   ❯ brief asset review (13)
+     × bounds preview data and never parents loaded assets into the place 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > bounds preview data and never parents loaded assets into the place
+AssertionError: expected '\nassert(not game:GetService("RunServ…' not to contain '.Parent='
+
+- Expected
++ Received
+
+- .Parent=
++
++ assert(not game:GetService("RunService"):IsRunning(),"Stop Play before previewing assets")
++ local roots={}
++ local ok,result=pcall(function()
++   roots=game:GetObjects("rbxassetid://123")
++   local out={parts={},omitted=0,effects=0}
++   local count=0
++   for _,root in roots do
++     assert(root.Parent==nil,"Preview asset must remain detached")
++     local items={root}
++     for _,item in root:GetDescendants() do table.insert(items,item) end
++     for _,item in items do
++       count+=1;assert(count<=10000,"Preview exceeds 10000 instances")
++       if item:IsA("BaseScript") then item.Enabled=false end
++       if item:IsA("Sound") then item.PlayOnRemove=false end
++       if item:IsA("ParticleEmitter") or item:IsA("Beam") or item:IsA("Trail") then out.effects+=1 end
++       if item:IsA("BasePart") and item.Transparency<1 then
++         if item:IsA("Part") and not item:FindFirstChildOfClass("SpecialMesh") and #out.parts<80 then
++           table.insert(out.parts,{name=string.sub(item.Name,1,160),shape=item.Shape.Name,size={item.Size.X,item.Size.Y,item.Size.Z},frame={item.CFrame:GetComponents()},color={item.Color.R,item.Color.G,item.Color.B},transparency=item.Transparency})
++         else out.omitted+=1 end
++       end
++     end
++   end
++   return out
++ end)
++ for _,root in roots do root:Destroy() end
++ assert(not game:GetService("RunService"):IsRunning(),"Studio mode changed during preview")
++ assert(ok,tostring(result))
++ return game:GetService("HttpService"):JSONEncode(result)
++
+
+ ❯ tests/asset-choices.test.ts:136:156
+    134|   });
+    135|   it("bounds preview data and never parents loaded assets into the pla…
+    136|     const source = modelPreviewLuau("123"); expect(source).toContain("…
+       |                                                                                                                                                            ^
+    137|     expect(() => modelPreviewLuau("123; bad()")).toThrow();
+    138|     expect(modelPreviewSchema.safeParse({ parts: [], omitted: 0, effec…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 64 passed (65)
+   Start at  17:38:23
+   Duration  5.31s (import 40%, tests 31%, transform 29%, worker 1%)
+
+    Isolate  3 workers spawned · ~254ms startup each (spawn + environment, per file)
+             at least ~507ms faster with isolate: false — reuses workers across files instead of one per file
+

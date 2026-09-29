@@ -1,0 +1,58 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-failure-continuation.test.ts (4 tests | 1 failed) 1887ms
+   × many failed dependencies still produce a schema-valid artifact with full reasons retained in the pipeline 18ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-failure-continuation.test.ts > many failed dependencies still produce a schema-valid artifact with full reasons retained in the pipeline
+AssertionError: expected [Function] to not throw an error but '[\n  {\n    "origin": "string",\n    …' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"[
+  {
+    \"origin\": \"string\",
+    \"code\": \"too_big\",
+    \"maximum\": 12000,
+    \"inclusive\": true,
+    \"path\": [
+      \"coverage\",
+      0,
+      \"detail\"
+    ],
+    \"message\": \"Too big: expected string to have <=12000 characters\"
+  },
+  {
+    \"origin\": \"string\",
+    \"code\": \"too_big\",
+    \"maximum\": 12000,
+    \"inclusive\": true,
+    \"path\": [
+      \"coverage\",
+      1,
+      \"detail\"
+    ],
+    \"message\": \"Too big: expected string to have <=12000 characters\"
+  }
+]"
+
+ ❯ tests/asset-failure-continuation.test.ts:17:48
+     15|   const before = structuredClone(p.assetPipeline);
+     16|   const bundle = retainAssetGaps(p, { files: [], scene: [], assets: []…
+     17|   expect(() => bundleSchema.parse(bundle)).not.toThrow();
+       |                                                ^
+     18|   expect(p.assetPipeline).toEqual(before);
+     19| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  21:52:15
+   Duration  2.94s (tests 67%, transform 22%, import 11%)
+

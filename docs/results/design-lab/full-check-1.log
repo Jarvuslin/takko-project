@@ -1,0 +1,383 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+
+ Test Files  84 passed (84)
+      Tests  1369 passed (1369)
+   Start at  01:18:19
+   Duration  66.62s (tests 81%, import 15%, transform 3%)
+
+    Isolate  84 workers spawned · ~166ms startup each (spawn + environment, per file)
+             at least ~6.82s faster with isolate: false — reuses workers across files instead of one per file
+
+
+> takko-studio@0.2.0 test:luau
+> node scripts/test-luau.mjs
+
+PASS accepted strike and exact cooldown boundary
+PASS replayed or out of order requests cannot attack twice
+PASS malformed action and sequence values are rejected
+PASS dead player cannot attack and respawn has fresh state
+PASS ability cooldowns are independent
+PASS damage requires range visibility and a living target
+6 combat scenarios passed (offline, not Studio)
+COMPILES ServerScriptService\Combat.server.luau
+COMPILES ServerScriptService\CombatCore.luau
+COMPILES ReplicatedStorage\Forge\Config.luau
+COMPILES StarterPlayer\StarterPlayerScripts\Combat.client.luau
+
+> takko-studio@0.2.0 test:plugin
+> node scripts/test-plugin.mjs
+
+PASS one-click local pairing, supplied tokens and local-only endpoint validation
+PASS apply creates actual manifest objects and source, preserving unrelated content
+PASS test harness inserts server/client code and removes temporary instances
+PASS empty tests are rejected and failed harness setup is cleaned up
+PASS source edits and mismatched artifacts block replacement and stale test reports
+PASS source edits during yielding staging prevent replacement
+PASS failed staging preserves the existing project
+PASS forward references resolve to staged instances; missing references preserve the applied rig
+PASS authorized imported MeshPart is created through AssetService Content without assigning read-only MeshId
+PASS absent authorization, forged mesh IDs and noncanonical IDs are rejected before native allocation
+PASS native mesh allocation failure preserves the existing owned root and does not report success
+PASS yielding mesh allocation rechecks ownership and preserves concurrent texture edits
+PASS delivered work survives heartbeats, double clicks execute once, receipts retry, and stale commands cannot run
+PASS reconnect serializes with polling, commits connection state only on success, and preserves failed reconnect state
+COMPILES plugin and 8 injected sources. Studio APIs were mocked; no live Studio pass claimed.
+
+> takko-studio@0.2.0 test:guards
+> node scripts/evaluate-guards.mjs
+
+[
+  {
+    "id": "baseline",
+    "passed": true,
+    "expectedPass": true,
+    "matched": true
+  },
+  {
+    "id": "missing-cooldown",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "replay-accepted",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "out-of-range-damage",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "damage-through-walls",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "dead-player-attacks",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  }
+]
+
+> takko-studio@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 146 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.52 kB │ gzip:   0.33 kB
+dist/assets/DesignLab-CneLf-Xk.css         31.24 kB │ gzip:   6.34 kB
+dist/assets/index-BOQzYHdN.css             78.00 kB │ gzip:  15.90 kB
+dist/assets/AnimationGallery-CfM_dEss.js    1.30 kB │ gzip:   0.72 kB
+dist/assets/DesignLab-Bxzlue9j.js          45.45 kB │ gzip:  11.46 kB
+dist/assets/index-Cp9ggalx.js             415.79 kB │ gzip: 124.12 kB
+dist/assets/AnimationPlayer-C2W7sb_G.js   564.84 kB │ gzip: 141.22 kB
+
+✓ built in 399ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+> takko-studio@0.2.0 test:desktop
+> tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs && node --test desktop/tests/*.test.mjs
+
+Desktop resources built in dist-desktop. No application was launched.
+✔ Takko keeps the existing desktop storage and lock location after rebranding (1.9337ms)
+✔ accepts only nonce-bound readiness from its own child (2.1318ms)
+✔ startup deadline fails and kills only owned worker (15.8422ms)
+✔ crash after readiness fails visibly without automatic restart (0.5174ms)
+✔ unresponsive shutdown escalates, repeated stop shares completion (30.5648ms)
+✔ lost IPC during heartbeat reports failure and cleans up the worker (15.7175ms)
+✔ lost shutdown IPC still terminates owned worker and settles stop (0.3991ms)
+✔ stop during startup rejects pending start and prevents late readiness (0.3513ms)
+✔ navigation rejects other origins, credentials and non-HTTP schemes (0.3495ms)
+✔ bundled service uses isolated data, private readiness, and graceful shutdown (437.3714ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 581.1533
+
+> takko-studio@0.2.0 test:production
+> node scripts/smoke-production.mjs
+
+Production smoke passed: HTML, bundle, API, unknown route
+
+> takko-studio@0.2.0 test:e2e
+> playwright test
+
+[WebServer] (node:32256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:2808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:36324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 108 tests using 1 worker
+
+(node:27832) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok   1 [desktop] › tests\browser\asset-execution.spec.ts:3:1 › asset execution requires explicit Studio selection and shows unavailable connection honestly (2.8s)
+  ok   2 [desktop] › tests\browser\concept.spec.ts:57:1 › concept choices, explicit delegation, reload and planning handoff (5.7s)
+  ok   3 [desktop] › tests\browser\concept.spec.ts:119:1 › custom answers are retained and edited requests cannot use a stale concept (2.6s)
+  ok   4 [desktop] › tests\browser\concept.spec.ts:152:1 › older running servers retain direct planning without offering an unavailable action (376ms)
+  ok   5 [desktop] › tests\browser\concept.spec.ts:169:1 › a completed concept appears without waiting for another library scan (2.5s)
+  ok   6 [desktop] › tests\browser\concept.spec.ts:222:1 › legacy and unresolved concepts remain inspectable without a planning action (2.4s)
+  ok   7 [desktop] › tests\browser\design-lab.spec.ts:3:1 › design lab switches real workspaces without reload, API calls or losing graph edits (2.0s)
+  ok   8 [desktop] › tests\browser\design-lab.spec.ts:55:1 › design lab renders actual imported 3D tracks and playback survives direction switching (1.3s)
+  x    9 [desktop] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible (30.5s)
+(node:31716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  10 [desktop] › tests\browser\design-lab.spec.ts:130:1 › design sandbox respects reduced motion and does not load on production routes (893ms)
+  ok  11 [desktop] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (960ms)
+  ok  12 [desktop] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (395ms)
+  ok  13 [desktop] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (918ms)
+  ok  14 [desktop] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (587ms)
+  ok  15 [desktop] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits (4.5s)
+  ok  16 [desktop] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts (1.9s)
+  ok  17 [desktop] › tests\browser\integrated-workspace.spec.ts:147:1 › R15 previews respect reduced motion and recover explicitly when graphics context is lost (2.4s)
+  ok  18 [desktop] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (1.5s)
+  ok  19 [desktop] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (362ms)
+  ok  20 [desktop] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (575ms)
+  ok  21 [desktop] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (1.8s)
+  ok  22 [desktop] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (2.1s)
+  ok  23 [desktop] › tests\browser\lemonade-layout.spec.ts:270:1 › sending a follow-up preserves the original request and updates the plan once (2.4s)
+  ok  24 [desktop] › tests\browser\marketplace-animation.spec.ts:4:1 › dropped animation pack opens all entries, switches real WebGL clips and survives reload (2.3s)
+  ok  25 [desktop] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (790ms)
+  ok  26 [desktop] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (2.4s)
+  ok  27 [desktop] › tests\browser\marketplace.spec.ts:220:1 › blocked first drops display findings and never become chat attachments (423ms)
+  ok  28 [desktop] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (6.2s)
+  ok  29 [desktop] › tests\browser\polling.spec.ts:37:1 › slow polls do not overlap and a transient failure clears after recovery (7.2s)
+  ok  30 [desktop] › tests\browser\polling.spec.ts:65:1 › a successful poll does not clear an action error (2.3s)
+  ok  31 [desktop] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (801ms)
+  ok  32 [desktop] › tests\browser\settings-workspace.spec.ts:76:1 › creates a named preset and activates it without generation (1.4s)
+  ok  33 [desktop] › tests\browser\settings-workspace.spec.ts:110:1 › draft and one-off limit survive opening Models (856ms)
+  ok  34 [desktop] › tests\browser\settings-workspace.spec.ts:149:1 › unsaved preset dismissal keeps saved values (608ms)
+  ok  35 [desktop] › tests\browser\settings-workspace.spec.ts:162:1 › provider catalog loads automatically and persists selected models (1.4s)
+  ok  36 [desktop] › tests\browser\settings-workspace.spec.ts:191:1 › provider change clears catalog and matching credentials are reused (630ms)
+  ok  37 [desktop] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models (1.4s)
+  ok  38 [desktop] › tests\browser\settings-workspace.spec.ts:273:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (3.6s)
+  ok  39 [desktop] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh (793ms)
+  ok  40 [desktop] › tests\browser\settings-workspace.spec.ts:334:1 › Presets is a separate sidebar page directly below Models (782ms)
+  ok  41 [desktop] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (8.8s)
+  ok  42 [desktop] › tests\browser\typography.spec.ts:19:1 › system typography requires no external fonts and fits the minimal responsive layout (631ms)
+  ok  43 [desktop] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (863ms)
+  ok  44 [desktop] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (459ms)
+  ok  45 [desktop] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and detail controls support keyboard activation (2.7s)
+  ok  46 [desktop] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates (887ms)
+  ok  47 [desktop] › tests\browser\workflow.spec.ts:102:1 › welcomes multiple game ideas without generating a preset or claiming a connection (1.6s)
+  ok  48 [desktop] › tests\browser\workflow.spec.ts:131:1 › configures provider keys without reflecting secrets or persisting them in browser storage (1.2s)
+  ok  49 [desktop] › tests\browser\workflow.spec.ts:175:1 › keeps the model editor open when saving fails (525ms)
+  ok  50 [desktop] › tests\browser\workflow.spec.ts:196:1 › welcome and model settings pass accessibility checks and fit the viewport (2.2s)
+  ok  51 [desktop] › tests\browser\workflow.spec.ts:219:1 › builds an approved non-combat project through a real HTTP provider adapter (8.8s)
+(node:34440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  52 [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.3s)
+  ok  53 [desktop] › tests\browser\chat-architecture.spec.ts:81:1 › chat retains message drafts and opens technical details without losing them (2.5s)
+  ok  54 [desktop] › tests\browser\chat-architecture.spec.ts:124:1 › actual imported keyframes move the inline rig and survive refresh (4.7s)
+(node:37408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  55 [mobile] › tests\browser\asset-execution.spec.ts:3:1 › asset execution requires explicit Studio selection and shows unavailable connection honestly (2.7s)
+  ok  56 [mobile] › tests\browser\concept.spec.ts:57:1 › concept choices, explicit delegation, reload and planning handoff (5.8s)
+  ok  57 [mobile] › tests\browser\concept.spec.ts:119:1 › custom answers are retained and edited requests cannot use a stale concept (2.6s)
+  ok  58 [mobile] › tests\browser\concept.spec.ts:152:1 › older running servers retain direct planning without offering an unavailable action (400ms)
+  ok  59 [mobile] › tests\browser\concept.spec.ts:169:1 › a completed concept appears without waiting for another library scan (2.4s)
+  ok  60 [mobile] › tests\browser\concept.spec.ts:222:1 › legacy and unresolved concepts remain inspectable without a planning action (2.3s)
+  ok  61 [mobile] › tests\browser\design-lab.spec.ts:3:1 › design lab switches real workspaces without reload, API calls or losing graph edits (2.1s)
+  ok  62 [mobile] › tests\browser\design-lab.spec.ts:55:1 › design lab renders actual imported 3D tracks and playback survives direction switching (1.3s)
+  x   63 [mobile] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible (30.1s)
+(node:10232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   64 [mobile] › tests\browser\design-lab.spec.ts:130:1 › design sandbox respects reduced motion and does not load on production routes (5.3s)
+(node:36548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  65 [mobile] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (666ms)
+  ok  66 [mobile] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (358ms)
+  ok  67 [mobile] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (614ms)
+  ok  68 [mobile] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (563ms)
+  ok  69 [mobile] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits (4.2s)
+  ok  70 [mobile] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts (1.5s)
+  ok  71 [mobile] › tests\browser\integrated-workspace.spec.ts:147:1 › R15 previews respect reduced motion and recover explicitly when graphics context is lost (1.7s)
+  ok  72 [mobile] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (1.1s)
+  ok  73 [mobile] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (341ms)
+  ok  74 [mobile] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (599ms)
+  ok  75 [mobile] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (1.7s)
+  ok  76 [mobile] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (2.4s)
+  ok  77 [mobile] › tests\browser\lemonade-layout.spec.ts:270:1 › sending a follow-up preserves the original request and updates the plan once (2.2s)
+  ok  78 [mobile] › tests\browser\marketplace-animation.spec.ts:4:1 › dropped animation pack opens all entries, switches real WebGL clips and survives reload (2.3s)
+  ok  79 [mobile] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (795ms)
+  ok  80 [mobile] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (2.5s)
+  ok  81 [mobile] › tests\browser\marketplace.spec.ts:220:1 › blocked first drops display findings and never become chat attachments (418ms)
+  ok  82 [mobile] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (6.2s)
+  ok  83 [mobile] › tests\browser\polling.spec.ts:37:1 › slow polls do not overlap and a transient failure clears after recovery (7.2s)
+  ok  84 [mobile] › tests\browser\polling.spec.ts:65:1 › a successful poll does not clear an action error (2.2s)
+  ok  85 [mobile] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (777ms)
+  ok  86 [mobile] › tests\browser\settings-workspace.spec.ts:76:1 › creates a named preset and activates it without generation (1.4s)
+  ok  87 [mobile] › tests\browser\settings-workspace.spec.ts:110:1 › draft and one-off limit survive opening Models (856ms)
+  ok  88 [mobile] › tests\browser\settings-workspace.spec.ts:149:1 › unsaved preset dismissal keeps saved values (531ms)
+  ok  89 [mobile] › tests\browser\settings-workspace.spec.ts:162:1 › provider catalog loads automatically and persists selected models (1.4s)
+  ok  90 [mobile] › tests\browser\settings-workspace.spec.ts:191:1 › provider change clears catalog and matching credentials are reused (565ms)
+  ok  91 [mobile] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models (2.0s)
+  ok  92 [mobile] › tests\browser\settings-workspace.spec.ts:273:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (4.0s)
+  ok  93 [mobile] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh (942ms)
+  ok  94 [mobile] › tests\browser\settings-workspace.spec.ts:334:1 › Presets is a separate sidebar page directly below Models (931ms)
+  ok  95 [mobile] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (8.7s)
+  ok  96 [mobile] › tests\browser\typography.spec.ts:19:1 › system typography requires no external fonts and fits the minimal responsive layout (902ms)
+  ok  97 [mobile] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (1.5s)
+  ok  98 [mobile] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (627ms)
+  ok  99 [mobile] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and detail controls support keyboard activation (2.8s)
+  ok 100 [mobile] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates (823ms)
+  ok 101 [mobile] › tests\browser\workflow.spec.ts:102:1 › welcomes multiple game ideas without generating a preset or claiming a connection (1.8s)
+  ok 102 [mobile] › tests\browser\workflow.spec.ts:131:1 › configures provider keys without reflecting secrets or persisting them in browser storage (1.2s)
+  ok 103 [mobile] › tests\browser\workflow.spec.ts:175:1 › keeps the model editor open when saving fails (507ms)
+  ok 104 [mobile] › tests\browser\workflow.spec.ts:196:1 › welcome and model settings pass accessibility checks and fit the viewport (2.5s)
+  ok 105 [mobile] › tests\browser\workflow.spec.ts:219:1 › builds an approved non-combat project through a real HTTP provider adapter (8.6s)
+(node:8668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 106 [mobile] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.7s)
+  ok 107 [mobile] › tests\browser\chat-architecture.spec.ts:81:1 › chat retains message drafts and opens technical details without losing them (2.7s)
+  ok 108 [mobile] › tests\browser\chat-architecture.spec.ts:124:1 › actual imported keyframes move the inline rig and survive refresh (5.1s)
+
+
+  1) [desktop] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Studio state', { exact: true })
+
+
+       98 |   await page
+       99 |     .getByLabel("Studio state", { exact: true })
+    > 100 |     .selectOption("Syncing");
+          |      ^
+      101 |   await page.getByRole("button", { name: "Close dialog" }).click();
+      102 |   await expect(
+      103 |     page.getByRole("button", { name: /Energy update needs attention/ }),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\design-lab.spec.ts:100:6
+
+    Error Context: test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Studio state', { exact: true })
+
+
+       98 |   await page
+       99 |     .getByRole("combobox", { name: "Studio state", exact: true })
+    > 100 |     .selectOption("Syncing");
+          |      ^
+      101 |   await page.getByRole("button", { name: "Close dialog" }).click();
+      102 |   await expect(
+      103 |     page.getByRole("button", { name: /Energy update needs attention/ }),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\design-lab.spec.ts:100:6
+
+    Error Context: test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\design-lab-sandbox-state-c-bce85-cal-and-keyboard-accessible-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests\browser\design-lab.spec.ts:130:1 › design sandbox respects reduced motion and does not load on production routes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Play animation', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Play animation', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Play animation', exact: true })
+
+
+      135 |   await expect(
+      136 |     page.getByRole("button", { name: "Play animation", exact: true }),
+    > 137 |   ).toBeVisible();
+          |     ^
+      138 |   await expect(page.locator(".dl-spinner").first()).toHaveCSS(
+      139 |     "animation-name",
+      140 |     "none",
+        at D:\RobloxProjects\Roblox Gen\tests\browser\design-lab.spec.ts:137:5
+
+    Error Context: test-results\design-lab-design-sandbox--deade-t-load-on-production-routes-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\design-lab-design-sandbox--deade-t-load-on-production-routes-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\design-lab-design-sandbox--deade-t-load-on-production-routes-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [desktop] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible 
+    [mobile] › tests\browser\design-lab.spec.ts:85:1 › sandbox state controls, review and composer remain local and keyboard accessible 
+    [mobile] › tests\browser\design-lab.spec.ts:130:1 › design sandbox respects reduced motion and does not load on production routes 
+  105 passed (5.2m)

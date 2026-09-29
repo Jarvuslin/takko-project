@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/post-plan-replay.test.ts (4 tests | 1 failed | 3 skipped) 453ms
+   × replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch 452ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/post-plan-replay.test.ts > replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch
+AssertionError: {"error":"Error: Provider connection failed","effects":["inspect:trainingDummyAsset","discard:1245720733","unexpected-call:builder:{\"instructions\":\"Return exactly one complete JSON decision with action, candidateId, query and reason. select: choose an exact offered candidateId and set query=null. Selection authorizes native import and inspection/audition; it is not asset acceptance. Read gameContext before selecting or changing a query. Its userSources, playerExperience and assetTarget explain the game's purpose, clarified interaction and acceptance criteria. Match the asset's role in that experience, not merely its shape or color. In reason, connect the candidate or revised search to the target interaction/media and identify what still needs inspection or adaptation. A short common-name query can discover a behavior-ri","adapter:close"],"events":[{"at":"2026-09-24T19:03:34.182Z","message":"planner: Anthropic: Claude Sonnet 5 / anthropic/claude-sonnet-5 — correcting output"},{"at":"2026-09-24T19:05:07.781Z","message":"Specification ready for review."},{"at":"2026-09-25T17:50:19.908Z","message":"planner: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:50:19.982Z","message":"Specification ready for review."},{"at":"2026-09-25T17:50:20.197Z","message":"builder: Fixture / anthropic/claude-sonnet-5"}]}: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:8:118
+      6|   const r=await replayPostPlan(run,{correction:run.includes("minimal")…
+      7|   try{
+      8|     expect(r.dispatched,JSON.stringify({error:r.project.error,effects:…
+       |                                                                                                                      ^
+      9|     expect(r.project.assetPipeline?.status).toBe("passed");
+     10|     expect(r.project.assetPipeline?.entries).toHaveLength(r.original.s…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 skipped (4)
+   Start at  13:50:18
+   Duration  1.56s (transform 44%, tests 32%, import 23%)
+

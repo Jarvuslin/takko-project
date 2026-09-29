@@ -1,0 +1,132 @@
+{
+  "at": "2026-09-24T16:47:36.327Z",
+  "sourceCommits": {
+    "opencode": "014614d35b397775e5d397a490fc72368c894ec2",
+    "bloxbot": "8a0c1b9d53916171e116c3d79cd943f858c9bdce"
+  },
+  "files": [
+    {
+      "repo": "opencode",
+      "file": "LICENSE",
+      "sha256": "b5c625d157735f04e1b2b7ceccee849130b554bdb23cd58db55a38a257efbbdd"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/llm.ts",
+      "sha256": "8207e099bb379f775d3228c69fc35e45a636758f2c05609471865a99df729fc9"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/llm/request.ts",
+      "sha256": "4d7924ffe1cc2ea55c7c894d2d0ec4935cdc48ec9627c258aaa47e319f3f68b5"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/processor.ts",
+      "sha256": "165d4aeae2c1b1cfb9b1cdafed49b653f3587f0c4b9028e1f88bcd1ccdccbfd5"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/prompt.ts",
+      "sha256": "53ba250a4d1e2a18527df1a35b37d375bb60907edadafb471866f325c5f68fe2"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/compaction.ts",
+      "sha256": "9621b03a10e42c224fd04e259ebb47271858888189b77d27f6ea67aa8a40e144"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/session/retry.ts",
+      "sha256": "2db7cd5c1bb8db560efc611e5d6705fd2c7e4136e57e9b9b2d27eb6a48de4dd7"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/auth/index.ts",
+      "sha256": "6b174df5b71cbed1ba1887f201f2357511c2563abbfb88919150e6e8fc930e43"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/provider/transform.ts",
+      "sha256": "6932382bcfe73b614955fb26486ba2f085b4ed67a1c756e6cc0cb587d7d3d457"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/snapshot/index.ts",
+      "sha256": "23a2f06702074f849c626e38decb636dcd0452f963b47c8765cacbf227041622"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/plugin/src/index.ts",
+      "sha256": "1b45d6348710d6ff7c4ef637c1de5af4ee3c7065be2b698efaa2f230dd91491e"
+    },
+    {
+      "repo": "opencode",
+      "file": "packages/opencode/src/server/routes/instance/httpapi/handlers/session.ts",
+      "sha256": "8ec77e3ee7b75b53e8367824f2acecbfee5e905689bfa265be49fe9b4156ec35"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "LICENSE",
+      "sha256": "f56cec200c55845e6066bd88ca323a90c243f4ae91f92f74bc4e220eab78becb"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "electron/opencodeConfig.ts",
+      "sha256": "f2a9636eb8e374992df8c241dd87a7bfbad81da6b3d810061c3d49afd9c6b014"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "electron/services/OpenCode.ts",
+      "sha256": "1f9d9658a2e2a95b704a5e2cf1b5d7ac4ad12cd8a38ea6ef1413d24a2bbbae93"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "electron/services/OpenCodeBinary.ts",
+      "sha256": "81d18e53e8f026347d6273dc073e1e3b8fe4d297806cd0098c8d0046c1b527a9"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "electron/services/GeneratedProgramRuntime.ts",
+      "sha256": "da214e99eb930999293634088a62a7a61865f8c54710bc22190356e759d3ecca"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "electron/services/StudioMcpBroker.ts",
+      "sha256": "3f3c13206191212340571ab660b643f704490132fa866bf2861daa8e8041819e"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "src/components/Explorer.tsx",
+      "sha256": "6f52c1589a835886a7601bf1b100cf60dbe025b89a2a5ae437264d3c3472d623"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "src/providers/StudioTargetProvider.tsx",
+      "sha256": "3c9b4399b3b28d850768e2f42880119117c53a88d7517d41731ce065ab49a2c0"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "src/hooks/mutations/useSendMessage.ts",
+      "sha256": "1b3cdc4bcc8209864363267882f186a1cc40d9ca6337bcab16309263d0e287c5"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "src/hooks/mutations/useGeneratePlaytestPlan.ts",
+      "sha256": "15924183b2335b20eb153cc79751b4cdd09c4f485ab6cf79c626ad8878a0da77"
+    },
+    {
+      "repo": "bloxbot",
+      "file": "src/components/PlaytestPanel.tsx",
+      "sha256": "9265311a29c2c01bfa65584f1bac255d091da6dda6a1166cb7680843be6f35fa"
+    }
+  ],
+  "preservedEvidence": {
+    "original": "research/results/agent-effectiveness-v1",
+    "copy": "research/results/opencode-reevaluation-20260924/agent-effectiveness-v1",
+    "matchedFiles": 92,
+    "verificationOutputWrittenOnlyInCopy": true
+  },
+  "newPaidCalls": 0,
+  "newPaidCostUSD": 0
+}

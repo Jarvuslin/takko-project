@@ -1,0 +1,36 @@
+[
+  {
+    "stage": "initial",
+    "at": "2026-09-20T19:45:24.463Z",
+    "reservedMicros": 14403,
+    "requestHash": "232c94f2975d1b8d3144dca3f34aadc36257f4558e4a603d7b4b8d9157bcc26f",
+    "status": "reconciled",
+    "httpStatus": 200,
+    "elapsedMs": 8113,
+    "receipt": {
+      "id": "gen-1789933524-DUWFA4Y2h7AfLoxzvokd",
+      "model": "anthropic/claude-haiku-4.5",
+      "provider": "Anthropic",
+      "costUsd": 0.003942,
+      "inputTokens": 817,
+      "outputTokens": 625
+    }
+  },
+  {
+    "stage": "clarify",
+    "at": "2026-09-20T19:46:39.021Z",
+    "reservedMicros": 15600,
+    "requestHash": "5655914d7118647bf75fc85b10c86898c0e3c3f8c1292d77a930c92c02a709ad",
+    "status": "reconciled",
+    "httpStatus": 200,
+    "elapsedMs": 8828,
+    "receipt": {
+      "id": "gen-1789933598-QgSuY1m5MIv89P8XCMWU",
+      "model": "anthropic/claude-haiku-4.5",
+      "provider": "Anthropic",
+      "costUsd": 0.004195,
+      "inputTokens": 1085,
+      "outputTokens": 622
+    }
+  }
+]

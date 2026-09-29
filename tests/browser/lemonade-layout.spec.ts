@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./workspace-fixture";
 import AxeBuilder from "@axe-core/playwright";
 import { profile, specification } from "../generation-fixtures";
 
@@ -6,27 +6,28 @@ test("research routing preference survives save and reopen", async ({
   page,
 }) => {
   const before = await (await page.request.get("/api/models")).json();
-  await page.goto("/");
+  await page.goto("/#routing");
   await page
-    .getByRole("button", { name: "Models", exact: false })
+    .getByRole("button", { name: "Edit My first preset", exact: true })
     .first()
     .click();
   const toggle = page.getByRole("checkbox", {
-    name: "Research game references before planning (OpenRouter web search)",
+    name: "Research before planning",
   });
   await toggle.check();
-  await expect(page.getByLabel("research primary")).toBeVisible();
-  await page.getByRole("button", { name: "Save model settings" }).click();
-  await expect(page.getByRole("dialog")).toBeHidden();
-  expect(
-    (await (await page.request.get("/api/models")).json()).researchEnabled,
-  ).toBe(true);
+  await page.getByRole("button", { name: "Save preset", exact: true }).click();
   await page
-    .getByRole("button", { name: "Models", exact: false })
+    .getByRole("button", { name: "Edit My first preset", exact: true })
+    .first()
+    .click();
+  await expect(page.getByLabel("research primary")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.reload();
+  await page
+    .getByRole("button", { name: "Edit My first preset", exact: true })
     .first()
     .click();
   await expect(toggle).toBeChecked();
-  await page.getByRole("button", { name: "Close models" }).click();
   await page.request.put("/api/models", {
     data: {
       ...before,
@@ -122,7 +123,7 @@ test("shows a concise generation failure with expandable diagnostics", async ({
   await expect(alert.locator("pre")).toContainText("CookieShape");
 });
 
-test("minimal prompt and compact model picker preserve real routing preferences", async ({
+test("minimal prompt and saved preset preserve real role preferences", async ({
   page,
 }, testInfo) => {
   const economy = {
@@ -156,23 +157,24 @@ test("minimal prompt and compact model picker preserve real routing preferences"
       .getByLabel("Game idea")
       .fill("Build a shop UI with item previews");
     await expect(page.getByLabel("Game idea")).toBeFocused();
-    const picker = page.getByRole("button", { name: "Choose model:" });
-    await picker.click();
-    await page.getByRole("button", { name: "Low cost", exact: true }).click();
-    await expect(
-      page.getByRole("button", { name: /Large model.*1M output/ }),
-    ).toHaveCount(0);
     await page
-      .getByRole("button", { name: /Economy model.*1M output/ })
+      .getByRole("button", { name: "Presets", exact: true })
+      .last()
       .click();
-    await expect(picker).toContainText("economy");
-    await expect(picker).toBeFocused();
+    await page
+      .getByRole("button", { name: "Edit My first preset", exact: true })
+      .click();
+    await page.getByLabel("builder primary").selectOption(economy.id);
+    await page
+      .getByRole("button", { name: "Save preset", exact: true })
+      .click();
     const saved = await (await page.request.get("/api/models")).json();
     expect(saved.routes).toEqual({ ...settings.routes, builder: [economy.id] });
     expect(saved.budgetMicros).toBe(250000);
-    await picker.click();
-    await page.keyboard.press("Escape");
-    await expect(picker).toHaveAttribute("aria-expanded", "false");
+    await page.goBack();
+    await expect(page.getByLabel("Game idea")).toHaveValue(
+      "Build a shop UI with item previews",
+    );
     await page.screenshot({
       path: `docs/results/forge-minimal-dashboard-${testInfo.project.name}.png`,
       fullPage: true,
@@ -220,28 +222,34 @@ test("minimal task list, source, history and follow-up use the current project",
   await expect(
     page.getByRole("button", { name: "Explore", exact: true }),
   ).toHaveCount(0);
-  await page.getByText("Build plan · 2 tasks", { exact: true }).click();
+  await page.locator(".compact-plan > summary").click();
   const plan = page.locator(".plan-aside");
   await expect(plan).toContainText("Harvest shop");
-  await expect(plan).toContainText("Depends on: coreTask");
+  await plan.locator("li summary").filter({ hasText: "Harvest shop" }).click();
+  await expect(plan).toContainText("After: Implement core loop");
   await expect(
-    plan.locator("article").filter({ hasText: "Implement core loop" }),
-  ).toContainText("Completed");
+    plan.locator("li").filter({ hasText: "Implement core loop" }).first(),
+  ).toContainText("Complete");
   await expect(
-    plan.locator("article").filter({ hasText: "Harvest shop" }),
+    plan.locator("li").filter({ hasText: "Harvest shop" }),
   ).toContainText("Planned");
+  await plan
+    .locator("li summary")
+    .filter({ hasText: "Implement core loop" })
+    .click();
   await plan
     .getByRole("button", { name: /ServerScriptService.*Game.server.luau/ })
     .click();
   await expect(
-    page.getByRole("tab", { name: "Source", exact: true }),
-  ).toHaveAttribute("aria-selected", "true");
+    page.getByRole("dialog", { name: "Source details" }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "History", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "Project activity" }),
+    page.getByRole("heading", { name: "Conversation history" }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "History", exact: true }).click();
-  await page.getByRole("tab", { name: "Brief", exact: true }).click();
+  await page.keyboard.press("Escape");
+  await page.getByLabel("Message", { exact: true }).focus();
   await page
     .getByLabel("Message", { exact: true })
     .fill("Add a shop with item previews");
@@ -291,12 +299,12 @@ test("sending a follow-up preserves the original request and updates the plan on
     .getByRole("button", { name: "Send message and update plan" })
     .click();
   await expect(page.getByLabel("Project request")).toHaveValue(
-    "A cooperative farming game\n\nFollow-up:\nAdd a crop selling shop",
+    "A cooperative farming game",
   );
   await expect(page.getByLabel("Message", { exact: true })).toBeEmpty();
   expect(plans).toBe(1);
   await page.reload();
-  await expect(page.getByLabel("Project request")).toHaveValue(
-    /Add a crop selling shop/,
+  await expect(page.getByLabel("Saved conversation")).toContainText(
+    "Add a crop selling shop",
   );
 });

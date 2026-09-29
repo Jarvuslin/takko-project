@@ -1,0 +1,764 @@
+
+> takko-studio@0.2.0 test
+> vitest run --run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/concept.test.ts (15 tests | 4 failed) 907ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: A relaxed search 67ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: Choose a sensible default for me. 49ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: A cooperative search where friends carry pets together 52ms
+   × accepts a clear concept with no questions and invalidates it on request revision 42ms
+ ❯ tests/asset-choices.test.ts (21 tests | 2 failed) 1416ms
+   ❯ brief asset review (20)
+     × invalidates approval and options on changed briefs 77ms
+     × discards results if the brief changes during search 56ms
+ ❯ tests/chat-architecture.test.ts (12 tests | 1 failed) 650ms
+   × archives the original artifact and invalidates approval when architecture changes 35ms
+ ❯ tests/generation-engine.test.ts (53 tests | 3 failed) 7383ms
+   ❯ request-driven generation (53)
+     × preserves clarification questions across revisions and supplies them to replanning without fabricating user evidence 24ms
+     × records unavailable asset execution as failure without manual rescue or a completed task 61ms
+     × requires answers, replanning and current approval; edits invalidate the artifact 236ms
+ ❯ tests/generation-asset-integration.test.ts (74 tests | 1 failed) 25863ms
+   × adapter failure blocks coding and records ASSET_PIPELINE_FAILED without an external rescue 76ms
+ ❯ tests/settings-workspace.test.ts (16 tests | 1 failed) 743ms
+   × planning and build share spend and a new brief starts a new bounded cycle 85ms
+ ❯ tests/generation-task-integrity.test.ts (7 tests | 2 failed) 551ms
+   × does not checkpoint invalid syntax or call downstream builders and reviewers 64ms
+   × continues rejecting foreign-task placeholders instead of silently filtering a model response 57ms
+ ❯ tests/research.test.ts (8 tests | 1 failed) 553ms
+   × retrieves cited evidence before planning, rejects lost mechanics and reuses current evidence 170ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > invalidates approval and options on changed briefs
+AssertionError: expected { …(4) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+{
+  "groups": [
+    {
+      "id": "dummy",
+      "kind": "Model",
+      "label": "Practice dummy",
+      "options": [
+        {
+          "assetId": "101",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "training dummy 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "102",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "training dummy 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "103",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "training dummy 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "104",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "training dummy 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "model",
+      "query": "training dummy",
+    },
+    {
+      "id": "combat",
+      "kind": "Model",
+      "label": "Fighting animation",
+      "options": [
+        {
+          "assetId": "101",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "combat animation pack 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "102",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "combat animation pack 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "103",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "combat animation pack 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "104",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "combat animation pack 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "animation",
+      "query": "combat animation pack",
+    },
+    {
+      "id": "sprint",
+      "kind": "Model",
+      "label": "Sprint animation",
+      "options": [
+        {
+          "assetId": "101",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "sprint animation 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "102",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "sprint animation 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "103",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "sprint animation 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "104",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "sprint animation 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "animation",
+      "query": "sprint animation",
+    },
+    {
+      "id": "walk",
+      "kind": "Model",
+      "label": "Walk animation",
+      "options": [
+        {
+          "assetId": "101",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "walk animation 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "102",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "walk animation 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "103",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "walk animation 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "104",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "walk animation 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "animation",
+      "query": "walk animation",
+    },
+    {
+      "id": "sound",
+      "kind": "Audio",
+      "label": "Sound effects",
+      "options": [
+        {
+          "assetId": "201",
+          "creatorName": "Fixture",
+          "kind": "Audio",
+          "name": "punch impact 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "202",
+          "creatorName": "Fixture",
+          "kind": "Audio",
+          "name": "punch impact 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "203",
+          "creatorName": "Fixture",
+          "kind": "Audio",
+          "name": "punch impact 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "204",
+          "creatorName": "Fixture",
+          "kind": "Audio",
+          "name": "punch impact 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "audio",
+      "query": "punch impact",
+    },
+    {
+      "id": "effects",
+      "kind": "Model",
+      "label": "Visual effects",
+      "options": [
+        {
+          "assetId": "101",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "hit vfx 1",
+          "updated": "v1",
+        },
+        {
+          "assetId": "102",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "hit vfx 2",
+          "updated": "v1",
+        },
+        {
+          "assetId": "103",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "hit vfx 3",
+          "updated": "v1",
+        },
+        {
+          "assetId": "104",
+          "creatorName": "Fixture",
+          "kind": "Model",
+          "name": "hit vfx 4",
+          "updated": "v1",
+        },
+      ],
+      "preview": "model",
+      "query": "hit vfx",
+    },
+  ],
+  "id": "98e23a05-4524-49aa-a226-a1c9fc32c868",
+  "revision": 1,
+  "studioId": "392fce6b-fea7-4de3-bb2e-49a95231c3f5",
+}
+
+ ❯ tests/asset-choices.test.ts:364:33
+    362|       {},
+    363|     );
+    364|     expect(next.assetDiscovery).toBeUndefined();
+       |                                 ^
+    365|     expect(next.briefApprovedRevision).toBeUndefined();
+    366|     expect((await f.command("approve-brief")).status).toBe(409);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > discards results if the brief changes during search
+AssertionError: expected 200 to be 409 // Object.is equality
+
+- Expected
++ Received
+
+- 409
++ 200
+
+ ❯ tests/asset-choices.test.ts:443:22
+    441|     });
+    442|     const r = await f.command("asset-options", { studioId });
+    443|     expect(r.status).toBe(409);
+       |                      ^
+    444|     expect(f.app.locals.engine.store.get(p.id).assetDiscovery).toBeUnd…
+    445|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/chat-architecture.test.ts > archives the original artifact and invalidates approval when architecture changes
+AssertionError: expected { files: [ { …(3) } ], …(3) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "assets": [],
+  "coverage": [
+    {
+      "detail": "Fixture state installed",
+      "files": [
+        "ServerScriptService/Forge_83b470573882/Game.server.luau",
+      ],
+      "requirementId": "core",
+      "status": "implemented",
+    },
+  ],
+  "files": [
+    {
+      "kind": "Script",
+      "path": "ServerScriptService/Forge_83b470573882/Game.server.luau",
+      "source": "local state = Instance.new(\"IntValue\")
+state.Name = \"Glide\"
+state.Value = 1
+state.Parent = script.Parent
+",
+    },
+  ],
+  "scene": [
+    {
+      "className": "Part",
+      "path": "Workspace/Forge_83b470573882/Ground",
+      "properties": {
+        "Anchored": true,
+        "Color": {
+          "type": "Color3",
+          "value": [
+            0.2,
+            0.4,
+            0.3,
+          ],
+        },
+        "Size": {
+          "type": "Vector3",
+          "value": [
+            40,
+            1,
+            40,
+          ],
+        },
+      },
+    },
+  ],
+}
+
+ ❯ tests/chat-architecture.test.ts:203:27
+    201|   expect(result.architecture).toEqual(graph);
+    202|   expect(result.approvedRevision).toBeNull();
+    203|   expect(result.artifact).toBeNull();
+       |                           ^
+    204|   const history = fs.readdirSync(path.join(db.directory, "history"));
+    205|   expect(history).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: A relaxed search
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: Choose a sensible default for me.
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: A cooperative search where friends carry pets together
+AssertionError: expected { title: 'Tiny pet rescue', …(10) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "assumptions": [
+    "Start with one small forest and expand from there.",
+  ],
+  "decisions": [
+    {
+      "choice": "Find pets and bring them to a shelter to open trails.",
+      "questionId": null,
+      "sourceIds": [
+        "request",
+      ],
+      "topic": "Game loop",
+    },
+  ],
+  "firstPlaytest": {
+    "checks": [
+      {
+        "expected": "The pet follows the player.",
+        "step": 1,
+      },
+      {
+        "expected": "The pet stays at the shelter and the trail opens.",
+        "step": 2,
+      },
+    ],
+    "expected": "The pet stays at the shelter and a new trail opens.",
+    "goal": "Rescue one pet and see the reward.",
+    "steps": [
+      "Walk up to a lost pet.",
+      "Bring it to the shelter.",
+    ],
+  },
+  "notices": [],
+  "playerExperience": "Find a lost pet, bring it home, and earn a new trail to explore.",
+  "questions": [
+    {
+      "id": "play_style",
+      "options": [
+        "A relaxed search",
+        "A race against the clock",
+      ],
+      "prompt": "How should rescuing pets feel?",
+    },
+  ],
+  "readiness": "needs_choices",
+  "revision": 1,
+  "title": "Tiny pet rescue",
+  "unresolvedIssues": [],
+  "visualDirection": "A friendly forest with clear paths and bright shelters.",
+}
+
+ ❯ tests/concept.test.ts:244:23
+    242|     expect(revision.status).toBe(200);
+    243|     p = await revision.json();
+    244|     expect(p.concept).toBeNull();
+       |                       ^
+    245|     expect(p.answerQuestions?.play_style).toBe(
+    246|       "How should rescuing pets feel?",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/concept.test.ts > accepts a clear concept with no questions and invalidates it on request revision
+AssertionError: expected { title: 'Tiny pet rescue', …(10) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "assumptions": [
+    "Start with one small forest and expand from there.",
+  ],
+  "decisions": [
+    {
+      "choice": "Find pets and bring them to a shelter to open trails.",
+      "questionId": null,
+      "sourceIds": [
+        "request",
+      ],
+      "topic": "Game loop",
+    },
+  ],
+  "firstPlaytest": {
+    "checks": [
+      {
+        "expected": "The pet follows the player.",
+        "step": 1,
+      },
+      {
+        "expected": "The pet stays at the shelter and the trail opens.",
+        "step": 2,
+      },
+    ],
+    "expected": "The pet stays at the shelter and a new trail opens.",
+    "goal": "Rescue one pet and see the reward.",
+    "steps": [
+      "Walk up to a lost pet.",
+      "Bring it to the shelter.",
+    ],
+  },
+  "notices": [],
+  "playerExperience": "Find a lost pet, bring it home, and earn a new trail to explore.",
+  "questions": [],
+  "readiness": "review",
+  "revision": 1,
+  "title": "Tiny pet rescue",
+  "unresolvedIssues": [],
+  "visualDirection": "A friendly forest with clear paths and bright shelters.",
+}
+
+ ❯ tests/concept.test.ts:284:21
+    282|   expect(p.concept?.questions).toHaveLength(0);
+    283|   p = engine.revise(p.id, 1, "Make a racing game instead", {});
+    284|   expect(p.concept).toBeNull();
+       |                     ^
+    285|   expect(p.approvedRevision).toBeNull();
+    286|   expect(() => engine.start(p.id, 1, "concept")).toThrow();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > adapter failure blocks coding and records ASSET_PIPELINE_FAILED without an external rescue
+AssertionError: expected undefined to deeply equal []
+
+- Expected:
+[]
+
++ Received:
+undefined
+
+ ❯ tests/generation-asset-integration.test.ts:1714:33
+    1712|   );
+    1713|   expect(s.effects).toEqual(["search", "close"]);
+    1714|   expect(p.completedBuildTasks).toEqual([]);
+       |                                 ^
+    1715|   expect(p.artifact?.files).toEqual([]);
+    1716|   expect(s.calls).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/generation-engine.test.ts > request-driven generation > preserves clarification questions across revisions and supplies them to replanning without fabricating user evidence
+AssertionError: expected { title: 'Windfall', …(5) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "questions": [
+    {
+      "id": "timing",
+      "options": [
+        "Yes",
+        "No",
+      ],
+      "prompt": "Count only after the animation finishes?",
+    },
+  ],
+  "requirements": [
+    {
+      "acceptance": "The core gameplay state is observable.",
+      "category": "mechanic",
+      "description": "Build a satisfying interaction game",
+      "id": "core",
+      "origin": "user",
+      "priority": "required",
+      "sourceQuote": "Build a satisfying interaction game",
+    },
+  ],
+  "summary": "Build a satisfying interaction game",
+  "tasks": [
+    {
+      "dependsOn": [],
+      "files": [
+        "ServerScriptService/Forge_0d8e11dc42a4/Game.server.luau",
+      ],
+      "id": "coreTask",
+      "requirements": [
+        "core",
+      ],
+      "title": "Implement core loop",
+    },
+  ],
+  "title": "Windfall",
+  "visualDirection": "Readable silhouettes and warm lighting",
+}
+
+ ❯ tests/generation-engine.test.ts:254:20
+    252|     store.save(p);
+    253|     p = engine.revise(p.id, p.revision, p.request, { timing: "Yes" });
+    254|     expect(p.spec).toBeNull();
+       |                    ^
+    255|     expect(store.get(p.id).answerQuestions).toEqual({
+    256|       timing: "Count only after the animation finishes?",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/generation-engine.test.ts > request-driven generation > records unavailable asset execution as failure without manual rescue or a completed task
+AssertionError: expected undefined to deeply equal []
+
+- Expected:
+[]
+
++ Received:
+undefined
+
+ ❯ tests/generation-engine.test.ts:425:35
+    423|     expect(calls).toBe(1);
+    424|     expect(p.stage).toBe("failed");
+    425|     expect(p.completedBuildTasks).toEqual([]);
+       |                                   ^
+    426|     expect(p.failure?.code).toBe("ASSET_PIPELINE_FAILED");
+    427|     expect(p.artifact!.scene).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/generation-engine.test.ts > request-driven generation > requires answers, replanning and current approval; edits invalidate the artifact
+AssertionError: expected { files: [ { …(3) } ], …(3) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "assets": [],
+  "coverage": [
+    {
+      "detail": "Fixture state installed",
+      "files": [
+        "ServerScriptService/Forge_1d02f8c89567/Game.server.luau",
+      ],
+      "requirementId": "core",
+      "status": "implemented",
+    },
+  ],
+  "files": [
+    {
+      "kind": "Script",
+      "path": "ServerScriptService/Forge_1d02f8c89567/Game.server.luau",
+      "source": "local state = Instance.new(\"IntValue\")
+state.Name = \"Harvest\"
+state.Value = 1
+state.Parent = script.Parent
+",
+    },
+  ],
+  "scene": [
+    {
+      "className": "Part",
+      "path": "Workspace/Forge_1d02f8c89567/Ground",
+      "properties": {
+        "Anchored": true,
+        "Color": {
+          "type": "Color3",
+          "value": [
+            0.2,
+            0.4,
+            0.3,
+          ],
+        },
+        "Size": {
+          "type": "Vector3",
+          "value": [
+            40,
+            1,
+            40,
+          ],
+        },
+      },
+    },
+  ],
+}
+
+ ❯ tests/generation-engine.test.ts:1427:24
+    1425|     p = await engine.wait(p.id);
+    1426|     p = engine.revise(p.id, 2, "Build a racing game", {});
+    1427|     expect(p.artifact).toBeNull();
+       |                        ^
+    1428|     expect(p.approvedRevision).toBeNull();
+    1429|     expect(() => engine.start(p.id, 3, "build")).toThrow("Approve");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/generation-task-integrity.test.ts > does not checkpoint invalid syntax or call downstream builders and reviewers
+AssertionError: expected undefined to deeply equal []
+
+- Expected:
+[]
+
++ Received:
+undefined
+
+ ❯ tests/generation-task-integrity.test.ts:208:39
+    206|   const project = await build(engine);
+    207|   expect(project.stage).toBe("failed");
+    208|   expect(project.completedBuildTasks).toEqual([]);
+       |                                       ^
+    209|   expect(project.artifact!.files).toEqual([]);
+    210|   expect(phases).toEqual(["planner:", "builder:coreTask", "builder:cor…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/generation-task-integrity.test.ts > continues rejecting foreign-task placeholders instead of silently filtering a model response
+AssertionError: expected undefined to deeply equal []
+
+- Expected:
+[]
+
++ Received:
+undefined
+
+ ❯ tests/generation-task-integrity.test.ts:290:39
+    288|   const project = await build(engine);
+    289|   expect(project.stage).toBe("failed");
+    290|   expect(project.completedBuildTasks).toEqual([]);
+       |                                       ^
+    291|   expect(project.artifact!.files).toEqual([]);
+    292|   expect(project.failure?.details).toContain("Remove this file entry e…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  tests/research.test.ts > retrieves cited evidence before planning, rejects lost mechanics and reuses current evidence
+AssertionError: expected { …(8) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "inputHash": "d4728b19491d1213d692c4221e7b28cffe70b0ee8f894dea1407510596372886",
+  "mechanics": [
+    {
+      "description": "Steal characters from other players",
+      "id": "steal",
+      "importance": "core",
+      "sourceUrls": [
+        "https://www.roblox.com/games/109983668079237/Steal-a-Brainrot",
+      ],
+    },
+  ],
+  "method": "openrouter-exa",
+  "referenceGame": "Steal a Brainrot",
+  "retrievedAt": "2026-09-24T02:00:32.901Z",
+  "sources": [
+    {
+      "excerpt": "Buy, steal, generate money, rebirth.",
+      "title": "Original experience",
+      "url": "https://www.roblox.com/games/109983668079237/Steal-a-Brainrot",
+    },
+  ],
+  "summary": "Acquire income-producing characters and steal rivals' characters.",
+  "unknowns": [
+    "Exact balance values are not verified.",
+  ],
+}
+
+ ❯ tests/research.test.ts:149:22
+    147|   expect(phases.filter((p) => p === "research")).toHaveLength(1);
+    148|   p = engine.revise(p.id, 1, p.request, { change: "No stealing" });
+    149|   expect(p.research).toBeNull();
+       |                      ^
+    150| });
+    151| it.each(["forged", "missing"] as const)(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  tests/settings-workspace.test.ts > planning and build share spend and a new brief starts a new bounded cycle
+Error: Existing generated files need a proposal dependency map for surgical replanning. Prepare a proposal first.
+ ❯ Engine.start src/generation/engine.ts:1118:46
+    1116|     if (p.proposal && ["plan", "concept", "build"].includes(kind))
+    1117|       throw new ConflictError("Use Approve & build for the saved propo…
+    1118|     if (p.artifact && kind === "plan") throw new ConflictError("Existi…
+       |                                              ^
+    1119|     if (p.artifact && p.staleImplementation && !p.proposal)
+    1120|       throw new ConflictError("This saved build has no proposal depend…
+ ❯ tests/settings-workspace.test.ts:380:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+
+ Test Files  8 failed | 87 passed (95)
+      Tests  15 failed | 1486 passed (1501)
+   Start at  21:59:42
+   Duration  63.86s (tests 79%, import 18%, transform 3%)
+
+    Isolate  95 workers spawned · ~146ms startup each (spawn + environment, per file)
+             at least ~6.80s faster with isolate: false — reuses workers across files instead of one per file
+

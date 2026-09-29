@@ -1,0 +1,22 @@
+[
+  {
+    "name": "title",
+    "text": "Here is the Takko workflow, recorded from the actual interface. We also ran a real paid model test. The response passed the technical checks, but missed an important choice in the request. This presentation shows what happened, where the test stopped, and the intended path to a playable game."
+  },
+  {
+    "name": "intro",
+    "text": "Start by describing your game in ordinary language. Models is your reusable library. Choose a provider and a model, then enter the key locally. Presets bring your model roles and spending limits together. Back in the workspace, creating a project saves the idea. Shape my idea is a separate action that asks the model to propose a direction. You should review the important choices before requesting a full plan. This introduction uses an empty demonstration workspace and makes no model calls."
+  },
+  {
+    "name": "initial",
+    "text": "This is the actual paid run, using Claude Haiku four point five through OpenRouter. The request explicitly leaves rescue versus battle undecided. The recording retains the real response wait. When the response arrives, Takko displays the concept and its choices. Notice that the model has already picked rescue. Its question asks how rescuing works, instead of helping settle rescue versus battle. Planning remains blocked, so the workflow does not pretend this is a finished game brief."
+  },
+  {
+    "name": "result",
+    "text": "The important distinction is that structured output worked, while the choice of game premise failed our predeclared review. We stopped after one request and did not retry. The call cost about half a cent. A larger budget does not make an unresolved concept correct. This single test does not establish how stronger models would perform."
+  },
+  {
+    "name": "workflow",
+    "text": "The intended workflow is simple. Save your models and a preset. Describe what sounds fun. Resolve the big choices with an option, your own answer, or choose for me. Review the direction and request a plan. Approve the specification before generating. Finally, connect to Studio and test the actual player actions. We did not reach those later steps in this trial, so this is a workflow explanation, not a claim that a game was built."
+  }
+]

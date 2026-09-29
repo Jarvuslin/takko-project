@@ -1,0 +1,22 @@
+{
+  "createdAt": "2026-09-20T17:58:26.192Z",
+  "authorization": "User authorized Jev asset-ranking pilot and explicitly requested the existing OpenRouter testing key.",
+  "model": "typesafe/jev-1.13",
+  "endpoint": "https://openrouter.ai/api/alpha/decisions",
+  "manifestHash": "809d585627603cfbf17a524faf3df39476d4b01a551e8197e1af30734b2d60a1",
+  "cases": 8,
+  "calls": 16,
+  "ceilingUsd": 0.05,
+  "perCallReservationUsd": 0.002688,
+  "totalWorstCaseReservationUsd": 0.043008,
+  "labelSource": "Assistant-authored synthetic fixtures, frozen before responses. Not human-labeled or representative Marketplace data.",
+  "baseline": "First candidate in fixture order, not a real Marketplace benchmark.",
+  "gate": "Exploratory only. At least 14/16 correct and all none-fit/adversarial cases correct before considering a separate real-data evaluation. Passing does not authorize production integration.",
+  "retryPolicy": "No automatic retry. Stop on first failed call or unreconciled cost.",
+  "keyBefore": {
+    "at": "2026-09-20T17:58:26.166Z",
+    "remaining": 1.5292564560000006,
+    "usage": 8.470743544,
+    "limit": 10
+  }
+}

@@ -1,0 +1,39 @@
+{"version":9,"type":"context-options","origin":"library","browserName":"","playwrightVersion":"1.63.0","options":{},"platform":"win32","wallTime":1790637341424,"monotonicTime":102273.384,"sdkLanguage":"javascript","title":"coordinator-workers.spec.ts:4 › coordinator activity exposes saved and interrupted worker results without claiming gameplay verification"}
+{"type":"before","callId":"call@459","startTime":102366.356,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/projects","method":"POST","jsonData":"{\"request\":\"A gliding game with energy and a readable HUD\"}"},"stepId":"pw:api@31"}
+{"type":"log","callId":"call@459","time":102368.835,"message":"→ POST http://127.0.0.1:4319/api/projects"}
+{"type":"log","callId":"call@459","time":102368.857,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"}
+{"type":"log","callId":"call@459","time":102368.861,"message":"  accept: */*"}
+{"type":"log","callId":"call@459","time":102368.864,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@459","time":102368.866,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@459","time":102368.868,"message":"  content-length: 59"}
+{"type":"log","callId":"call@459","time":102374.988,"message":"← 201 Created"}
+{"type":"log","callId":"call@459","time":102375.006,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@459","time":102375.013,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@459","time":102375.017,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@459","time":102375.022,"message":"  content-length: 3526"}
+{"type":"log","callId":"call@459","time":102375.028,"message":"  etag: W/\"dc6-qPT44hwESrZCLvbhCZVh0swgSDo\""}
+{"type":"log","callId":"call@459","time":102375.033,"message":"  date: Mon, 28 Sep 2026 23:15:41 GMT"}
+{"type":"log","callId":"call@459","time":102375.038,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@459","time":102375.044,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@459","endTime":102375.189,"result":{"response":{"url":"http://127.0.0.1:4319/api/projects","status":201,"statusText":"Created","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"3526"},{"name":"ETag","value":"W/\"dc6-qPT44hwESrZCLvbhCZVh0swgSDo\""},{"name":"Date","value":"Mon, 28 Sep 2026 23:15:41 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790637341519,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":0,"secureConnectionStart":-1,"connectEnd":2.0060000000084983,"requestStart":2.0060000000084983,"responseStart":5.86699999999837},"responseEndTiming":6.402000000001863,"fetchUid":"c587b44bbf6a165281b992dfdeb2b177"}}}
+{"type":"before","callId":"call@470","startTime":104143.103,"class":"APIRequestContext","method":"fetch","params":{"url":"http://127.0.0.1:4319/api/status","method":"GET","headers":[{"name":"accept","value":"*/*"},{"name":"accept-language","value":"en-US"},{"name":"content-type","value":"application/json"},{"name":"referer","value":"http://127.0.0.1:4319/?project=ff821820-d689-4084-b8c3-1c7def3c6f3c"},{"name":"user-agent","value":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"},{"name":"sec-ch-ua","value":"\"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""},{"name":"sec-ch-ua-mobile","value":"?0"},{"name":"sec-ch-ua-platform","value":"\"Windows\""}]},"stepId":"pw:api@37"}
+{"type":"log","callId":"call@470","time":104145.31,"message":"→ GET http://127.0.0.1:4319/api/status"}
+{"type":"log","callId":"call@470","time":104145.365,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"}
+{"type":"log","callId":"call@470","time":104145.371,"message":"  accept: */*"}
+{"type":"log","callId":"call@470","time":104145.376,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@470","time":104145.381,"message":"  accept-language: en-US"}
+{"type":"log","callId":"call@470","time":104145.384,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@470","time":104145.387,"message":"  referer: http://127.0.0.1:4319/?project=ff821820-d689-4084-b8c3-1c7def3c6f3c"}
+{"type":"log","callId":"call@470","time":104145.391,"message":"  sec-ch-ua: \"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""}
+{"type":"log","callId":"call@470","time":104145.394,"message":"  sec-ch-ua-mobile: ?0"}
+{"type":"log","callId":"call@470","time":104145.399,"message":"  sec-ch-ua-platform: \"Windows\""}
+{"type":"log","callId":"call@470","time":104148.136,"message":"← 200 OK"}
+{"type":"log","callId":"call@470","time":104148.159,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@470","time":104148.168,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@470","time":104148.175,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@470","time":104148.181,"message":"  content-length: 135"}
+{"type":"log","callId":"call@470","time":104148.186,"message":"  etag: W/\"87-YJ2TsbULcpv5TYPpMkWH98JwB5o\""}
+{"type":"log","callId":"call@470","time":104148.19,"message":"  date: Mon, 28 Sep 2026 23:15:43 GMT"}
+{"type":"log","callId":"call@470","time":104148.195,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@470","time":104148.199,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@470","endTime":104148.336,"result":{"response":{"url":"http://127.0.0.1:4319/api/status","status":200,"statusText":"OK","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"135"},{"name":"ETag","value":"W/\"87-YJ2TsbULcpv5TYPpMkWH98JwB5o\""},{"name":"Date","value":"Mon, 28 Sep 2026 23:15:43 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790637343296,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":1.0409999999974389,"responseStart":2.603000000002794},"responseEndTiming":2.944000000003143,"fetchUid":"be235653edb8926672f1282f5c2f7906"}}}

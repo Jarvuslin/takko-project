@@ -1,0 +1,501 @@
+diff --git a/.forge/models-provider-before/src/web/model-library.css b/src/web/model-library.css
+index 457ebfc..2eb61c7 100644
+--- a/.forge/models-provider-before/src/web/model-library.css
++++ b/src/web/model-library.css
+@@ -356,3 +356,496 @@
+     padding: 20px;
+   }
+ }
++/* Models reference: two quiet surfaces, strong identity, compact useful detail. */
++.models-reference.settings-workspace {
++  max-width: 1440px;
++  padding: 30px 32px 48px;
++}
++.models-reference .settings-page-head {
++  align-items: flex-start;
++  margin-bottom: 26px;
++}
++.models-reference .settings-page-head h1 {
++  font-size: 36px;
++  font-weight: 600;
++  letter-spacing: -1.2px;
++  margin-bottom: 6px;
++}
++.models-reference .settings-page-head .primary {
++  flex-shrink: 0;
++  padding: 11px 24px;
++}
++.saved-models-panel,
++.models-reference .provider-browser {
++  background: #171817;
++  border: 1px solid #303230;
++  border-radius: 18px;
++  padding: 22px;
++}
++.saved-models-panel {
++  display: grid;
++  grid-template-columns: minmax(200px, 1fr) minmax(280px, 0.9fr);
++  gap: 18px;
++}
++.saved-panel-title h2,
++.models-reference .provider-browser h2 {
++  font-size: 19px;
++  font-weight: 600;
++  letter-spacing: -0.35px;
++  margin: 0 0 5px;
++}
++.saved-panel-title p,
++.section-description {
++  margin: 0;
++  color: #aeb3bb;
++  font-size: 13px;
++}
++.count-badge {
++  display: inline-flex;
++  padding: 2px 9px;
++  margin-left: 8px;
++  border: 1px solid #363936;
++  border-radius: 8px;
++  color: #c4c7ca;
++  font-size: 12px;
++  font-weight: 400;
++  vertical-align: middle;
++}
++.models-reference .library-toolbar {
++  margin: 0;
++  gap: 10px;
++  align-self: center;
++}
++.models-reference input[type="search"] {
++  background: #1d1f1e;
++  border-color: #393c3a;
++  border-radius: 11px;
++  min-height: 39px;
++  font-size: 12px;
++}
++.models-reference select {
++  width: auto;
++  max-width: 100%;
++  min-height: 39px;
++  padding: 8px 30px 8px 13px;
++  background-color: #1d1f1e;
++  border: 1px solid #393c3a;
++  border-radius: 999px;
++  font-size: 12px;
++  color: #dddfe0;
++}
++.models-reference .model-library-list {
++  grid-column: 1 / -1;
++  margin: 0;
++}
++.models-reference .model-row {
++  display: flex;
++  gap: 16px;
++  align-items: center;
++  padding: 17px 14px;
++  border: 1px solid #303330;
++  border-radius: 12px;
++  margin-bottom: 8px;
++  background: transparent;
++}
++.models-reference .model-row:last-child {
++  margin-bottom: 0;
++}
++.model-description {
++  flex: 1;
++  min-width: 0;
++}
++.models-reference .model-row strong {
++  font-size: 14px;
++}
++.models-reference .model-row small {
++  color: #adb2bc;
++  font-size: 12px;
++}
++.models-reference .model-description > small {
++  overflow-wrap: anywhere;
++  margin-top: 4px;
++}
++.model-tags {
++  display: flex;
++  margin-top: 8px;
++  gap: 5px;
++}
++.model-tags span {
++  border-radius: 999px;
++  background: #262927;
++  color: #c5c9cf;
++  padding: 3px 9px;
++  font-size: 10px;
++}
++.library-key,
++.model-reply-limit {
++  font-size: 12px;
++  flex-shrink: 0;
++  min-width: 95px;
++}
++.library-key small,
++.model-reply-limit small,
++.catalog-context small {
++  display: block;
++  margin-bottom: 7px;
++}
++.models-reference .library-key.connected {
++  color: #82d99b;
++}
++.models-reference .model-row button {
++  padding: 8px 17px;
++  border-radius: 10px;
++  font-size: 12px;
++}
++.models-reference .provider-browser {
++  margin-top: 20px;
++}
++.models-reference .section-description {
++  margin-bottom: 20px;
++}
++.models-reference .provider-choices {
++  gap: 10px;
++}
++.models-reference .provider-choices button {
++  flex: 1;
++  justify-content: flex-start;
++  background: #1c1e1c;
++  border-color: #363936;
++  padding: 11px 14px;
++  border-radius: 12px !important;
++  font-size: 13px;
++  white-space: nowrap;
++}
++.models-reference .provider-choices button[aria-pressed="true"] {
++  background: #2a2d28;
++  border-color: #e2e3d8;
++  box-shadow: inset 0 0 0 1px #ffffff12;
++}
++.provider-connection {
++  margin-top: 18px;
++  padding: 18px;
++  background: #1e211e;
++  border-radius: 12px;
++}
++.connection-copy {
++  display: flex;
++  align-items: flex-start;
++  gap: 13px;
++}
++.connection-icon {
++  color: #b8c6b7;
++  padding: 7px;
++  border: 1px solid #434c42;
++  border-radius: 10px;
++}
++.connection-copy strong {
++  display: block;
++  font-size: 13px;
++  margin: 2px 0 5px;
++}
++.connection-copy small {
++  display: block;
++  color: #b7bdb7;
++  font-size: 12px;
++  line-height: 1.6;
++}
++.connection-copy small:last-child {
++  color: #a5ada5;
++  font-size: 11px;
++}
++.connection-entry {
++  display: flex;
++  align-items: flex-end;
++  gap: 12px;
++  margin: 17px 0 0 48px;
++}
++.connection-entry label {
++  flex: 1;
++  margin: 0;
++  font-size: 12px;
++}
++.connection-entry input {
++  min-height: 40px;
++  margin-top: 7px;
++  background: #151815;
++}
++.connection-entry button {
++  flex-shrink: 0;
++  min-height: 40px;
++  font-size: 12px;
++}
++.connection-actions {
++  display: flex;
++  gap: 8px;
++  flex-wrap: wrap;
++  margin: 12px 0 0 48px;
++}
++.connection-actions button {
++  font-size: 11px;
++  min-height: 30px;
++  padding: 5px 12px;
++  background: transparent;
++}
++.is-connected .connection-icon {
++  color: #93dea8;
++}
++.custom-provider-endpoint {
++  margin: 16px 0 0;
++}
++.models-reference .provider-catalog {
++  margin-top: 22px;
++}
++.catalog-filters {
++  display: flex;
++  align-items: center;
++  gap: 10px;
++  margin: 16px 0;
++}
++.catalog-filters .catalog-search {
++  flex: 1;
++  margin: 0;
++}
++.catalog-filters select {
++  min-width: 140px;
++}
++.models-reference .library-catalog-results {
++  max-height: 520px;
++  border-color: #333733;
++}
++.models-reference .catalog-model {
++  padding: 15px 13px;
++  min-height: 79px;
++}
++.models-reference .catalog-model strong {
++  font-size: 13px;
++}
++.catalog-context {
++  min-width: 92px;
++  font-size: 11px;
++  color: #c0c6cc;
++}
++.catalog-context small {
++  color: #aab2bb;
++  font-size: 10px;
++}
++.catalog-add {
++  display: flex;
++  align-items: center;
++  gap: 8px;
++  border: 1px solid #3b403b;
++  padding: 8px 14px;
++  border-radius: 12px;
++  font-size: 12px;
++}
++.models-reference .catalog-cost {
++  border-left: 1px solid #333733;
++  padding-left: 17px;
++  min-width: 160px;
++  text-align: left;
++  font-size: 11px;
++}
++.models-reference .catalog-cost small {
++  color: #abb2bb;
++  margin-top: 5px;
++}
++.models-reference .catalog-note {
++  color: #b9c0bb;
++  background: transparent;
++  padding: 8px 0;
++}
++.models-reference .catalog-heading strong {
++  font-size: 13px;
++  font-weight: 500;
++}
++.models-reference .catalog-heading small {
++  font-size: 11px;
++  color: #aeb6b0;
++}
++.models-reference .catalog-heading button {
++  font-size: 11px;
++  min-height: 30px;
++  padding: 5px 11px;
++}
++.library-no-results {
++  padding: 15px;
++  color: #b5b9bd;
++}
++@media (max-width: 1100px) {
++  .saved-models-panel {
++    grid-template-columns: 1fr;
++  }
++  .catalog-context {
++    display: none;
++  }
++  .models-reference .provider-choices button {
++    flex: none;
++  }
++  .model-reply-limit {
++    display: none;
++  }
++}
++@media (max-width: 650px) {
++  .models-reference.settings-workspace {
++    padding: 24px 16px;
++  }
++  .models-reference .settings-page-head {
++    gap: 12px;
++  }
++  .models-reference .settings-page-head h1 {
++    font-size: 29px;
++  }
++  .models-reference .settings-page-head p {
++    font-size: 12px;
++  }
++  .models-reference .settings-page-head .primary {
++    padding: 8px 13px;
++    font-size: 12px;
++  }
++  .saved-models-panel,
++  .models-reference .provider-browser {
++    padding: 15px;
++    border-radius: 14px;
++  }
++  .models-reference .library-toolbar {
++    flex-wrap: wrap;
++    gap: 8px;
++  }
++  .models-reference .library-toolbar label {
++    flex-basis: 100%;
++  }
++  .models-reference .model-row {
++    flex-wrap: wrap;
++    gap: 10px;
++  }
++  .models-reference .model-description {
++    flex-basis: calc(100% - 65px);
++  }
++  .models-reference .library-key {
++    flex: 1;
++    margin-left: 48px;
++  }
++  .models-reference .provider-choices button {
++    flex: 1 1 125px;
++    padding: 9px;
++    font-size: 11px;
++  }
++  .connection-entry {
++    flex-direction: column;
++    align-items: stretch;
++    margin-left: 0;
++  }
++  .connection-entry label {
++    width: 100%;
++  }
++  .connection-actions {
++    margin-left: 0;
++  }
++  .catalog-filters {
++    flex-wrap: wrap;
++  }
++  .catalog-filters .catalog-search {
++    flex-basis: 100%;
++  }
++  .catalog-filters select {
++    flex: 1;
++    min-width: 0;
++  }
++  .models-reference .catalog-model {
++    flex-wrap: wrap;
++    gap: 10px;
++  }
++  .models-reference .catalog-model > span:nth-child(2) {
++    flex-basis: calc(100% - 60px);
++  }
++  .models-reference .catalog-cost {
++    border: 0;
++    padding: 0 0 0 48px;
++    flex: 1;
++    min-width: 0;
++  }
++  .models-reference .catalog-add {
++    font-size: 11px;
++    padding: 7px 10px;
++  }
++}
++.models-reference .is-connected {
++  display: flex;
++  align-items: center;
++  gap: 16px;
++  padding: 13px 16px;
++}
++.models-reference .is-connected .connection-copy {
++  flex: 1;
++}
++.models-reference .is-connected .connection-actions {
++  margin: 0;
++  flex-shrink: 0;
++}
++.models-reference .is-connected:has(.connection-entry),
++.models-reference .is-connected:has([role="alert"]) {
++  flex-wrap: wrap;
++}
++.models-reference .is-connected .connection-entry,
++.models-reference .is-connected [role="alert"] {
++  flex-basis: 100%;
++}
++.models-reference .library-empty {
++  padding: 20px;
++  background: #1d201d;
++}
++.legacy-key-note {
++  display: block;
++  margin-top: 12px;
++  color: #b6c0b6;
++}
++@media (max-width: 1200px) {
++  .models-reference .is-connected {
++    flex-wrap: wrap;
++  }
++  .models-reference .is-connected .connection-copy {
++    flex-basis: 100%;
++  }
++}
++@media (max-width: 650px) {
++  .selected-model {
++    flex-wrap: wrap;
++  }
++}
++.models-reference .provider-catalog .catalog-heading {
++  gap: 10px;
++}
++.models-reference .provider-catalog .catalog-heading strong {
++  display: none;
++}
++.models-reference .provider-catalog {
++  margin-top: 16px;
++}
++.models-reference .catalog-filters {
++  margin: 10px 0 14px;
++}
++.models-reference .model-row button {
++  display: inline-flex;
++  align-items: center;
++  gap: 7px;
++}
++.models-reference .provider-browser .connection-copy small:last-child {
++  font-size: 11px;
++}
++.models-reference .saved-models-panel {
++  gap: 15px;
++}
++@media (min-width: 1101px) {
++  .models-reference.settings-workspace {
++    padding-top: 24px;
++  }
++  .models-reference .settings-page-head {
++    margin-bottom: 22px;
++  }
++}
++@media (max-width: 650px) {
++  .models-reference .catalog-model .catalog-cost {
++    display: block;
++  }
++}
++@media (max-width: 650px) { .models-reference .model-row .library-key { margin-left: 0; min-width: 78px; } }

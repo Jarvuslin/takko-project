@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "value": {
+    "stage": "failed",
+    "error": "The only offered candidate for the R15 punch animation (asset 12061946559) was already rejected after inspection: the packet contains only raw, unpublished KeyframeSequence pose data on disposable preview rigs, with no Animation instance or AnimationId anywhere in the hierarchy, and the requested clip key 1/1/18/1 cannot be unambiguously mapped to any of the captured sequences. Animator:LoadAnimation requires a published AnimationId, and converting raw KeyframeSequence data into a loadable animation requires Studio's Animation Editor/export workflow — a capability outside the available edit-manifest operations (script edits, subtree add/remove) and outside sandboxed runtime execution. This is exactly the kind of import/capability limitation the protocol requires be routed to explicit review rather than worked around: I cannot fabricate an AnimationId, cannot execute an export pipeline, and must not substitute a procedural placeholder animation for the user's specifically selected asset/clip. The current decision context also only permits reject or escalate actions here, and reject would terminally abandon the r_punch_animation requirement entirely rather than flag the underlying tooling gap. Escalating preserves the requirement (forward jab clip 1/1/18/1 driving r_core_punch_loop's animation feedback) for human intervention — e.g., manual Studio export/publish of the KeyframeSequence into a usable Animation asset, or sourcing a differently-packaged version of this same creator's clip — rather than closing off the need or inventing an unverifiable asset reference.",
+    "calls": 18,
+    "files": 0,
+    "opencodeRuns": []
+  }
+}

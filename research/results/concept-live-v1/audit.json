@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-20T19:53:19.465Z",
+  "paidCalls": 2,
+  "actualCostUsd": 0.008137,
+  "conservativeReservationsUsd": 0.030003,
+  "keyBefore": {
+    "at": "2026-09-20T19:44:53.314Z",
+    "remaining": 1.5286182240000006,
+    "usage": 8.471381776,
+    "limit": 10
+  },
+  "keyAfter": {
+    "at": "2026-09-20T19:49:57.644Z",
+    "remaining": 1.5204812239999992,
+    "usage": 8.479518776,
+    "limit": 10
+  },
+  "settledDeductionUsd": 0.008137000000001393,
+  "deductionMatchesReceipts": true,
+  "blockedRetryReservationUsd": 0.018534,
+  "applicationLedgerTotalUsd": 0.026671,
+  "caveat": "The application conservatively recorded an unknown-usage reservation for a correction blocked by the test guard before network dispatch. It is not a third provider charge.",
+  "unchangedTrialOutcome": "Failed at clarify. Plan and clear case not attempted.",
+  "offlineReplay": "Exact paid clarification accepted by the revised schema, full text retained. No inference.",
+  "rawRequestHashesVerified": true,
+  "receiptsVerified": true,
+  "secretPatternScanMatches": 0
+}

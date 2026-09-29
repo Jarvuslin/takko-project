@@ -1,0 +1,12 @@
+diff --git "a/.forge\\ui-polish-before\\src\\web\\Icons.tsx" "b/src\\web\\Icons.tsx"
+index c753128..72018a1 100644
+--- "a/.forge\\ui-polish-before\\src\\web\\Icons.tsx"
++++ "b/src\\web\\Icons.tsx"
+@@ -1,6 +1,7 @@
+ import type { SVGProps } from "react";
+ 
+ const paths = {
++  models: "M8 3h8v4h4v10h-4v4H8v-4H4V7h4zm0 4v10h8V7z",
+   key: "M14 5a5 5 0 1 1-3 9l-7 7H2v-4l7-7a5 5 0 0 1 5-5m2 3h.01",
+   plus: "M12 5v14M5 12h14",
+   search: "m20 20-4-4M18 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0",

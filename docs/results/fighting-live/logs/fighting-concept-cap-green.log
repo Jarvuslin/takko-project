@@ -1,0 +1,906 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/concept-reliability.test.ts (18 tests | 14 failed) 617ms
+   × stops invalid concepts after one dispatch and retains the actual field error 98ms
+   × preserves conservative accounting for an uncertain network failure 23ms
+   × retains a legacy proposal for inspection but does not equate no questions with readiness 28ms
+   × rejects an answered question with unchanged wording under a new ID 34ms
+   × requires a concrete decision for a delegated answer 32ms
+   × blocks inconsistent decision evidence: unknown source 32ms
+   × blocks inconsistent decision evidence: duplicate answer 33ms
+   × blocks inconsistent decision evidence: unselected default 32ms
+   × blocks inconsistent decision evidence: bad step 29ms
+   × keeps explicitly unresolved issues visible and blocks planning 26ms
+   × does not require or call disabled backup profiles for a concept 42ms
+   × does not bill a transport that explicitly reports no inference dispatch 31ms
+   × checks strict endpoint support before inference and accounts for wire schema bytes: true 37ms
+   × checks strict endpoint support before inference and accounts for wire schema bytes: false 31ms
+ ❯ tests/concept.test.ts (15 tests | 14 failed) 729ms
+   × exposes the concept API and makes only a bounded planner call before any full plan 187ms
+   × honors the configured reasoning and output allowance during concept generation 51ms
+   × stores paired player actions and outcomes without model-generated step references 44ms
+   × rejects a paired action with a missing outcome instead of inventing one 36ms
+   × blocks full planning and approval while concept choices remain, without more calls 39ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: A relaxed search 34ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: Choose a sensible default for me. 33ms
+   × preserves the answer and question, shares the allowance, then hands the concept to the planner: A cooperative search where friends carry pets together 33ms
+   × accepts a clear concept with no questions and invalidates it on request revision 37ms
+   × rejects malformed concepts and repeated answered choices without producing a plan 39ms
+   × accepts the saved live clarification without spending a correction attempt on its display length 35ms
+   × retains a five-step live response without a paid format correction and still bounds oversized guides 35ms
+   × does not call a provider when the concept reservation exceeds the allowance 33ms
+   × cancels concept work and rejects overlapping mutations 27ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 28 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/concept-reliability.test.ts > stops invalid concepts after one dispatch and retains the actual field error
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:62:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:62:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > preserves conservative accounting for an uncertain network failure
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:102:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:102:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > retains a legacy proposal for inspection but does not equate no questions with readiness
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:112:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:112:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > rejects an answered question with unchanged wording under a new ID
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:127:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:127:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > requires a concrete decision for a delegated answer
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:162:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:162:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > blocks inconsistent decision evidence: unknown source
+ FAIL  tests/concept-reliability.test.ts > blocks inconsistent decision evidence: duplicate answer
+ FAIL  tests/concept-reliability.test.ts > blocks inconsistent decision evidence: unselected default
+ FAIL  tests/concept-reliability.test.ts > blocks inconsistent decision evidence: bad step
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:188:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:188:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > keeps explicitly unresolved issues visible and blocks planning
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:200:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:200:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > does not require or call disabled backup profiles for a concept
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:223:11
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:223:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > does not bill a transport that explicitly reports no inference dispatch
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:232:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:232:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/28]⎯
+
+ FAIL  tests/concept-reliability.test.ts > checks strict endpoint support before inference and accounts for wire schema bytes: true
+ FAIL  tests/concept-reliability.test.ts > checks strict endpoint support before inference and accounts for wire schema bytes: false
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:301:19
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept-reliability.test.ts:301:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/28]⎯
+
+ FAIL  tests/concept.test.ts > exposes the concept API and makes only a bounded planner call before any full plan
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:110:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:110:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/28]⎯
+
+ FAIL  tests/concept.test.ts > honors the configured reasoning and output allowance during concept generation
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:142:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:142:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/28]⎯
+
+ FAIL  tests/concept.test.ts > stores paired player actions and outcomes without model-generated step references
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:172:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:172:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/28]⎯
+
+ FAIL  tests/concept.test.ts > rejects a paired action with a missing outcome instead of inventing one
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:206:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:206:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/28]⎯
+
+ FAIL  tests/concept.test.ts > blocks full planning and approval while concept choices remain, without more calls
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:217:3
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:217:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/28]⎯
+
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: A relaxed search
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: Choose a sensible default for me.
+ FAIL  tests/concept.test.ts > preserves the answer and question, shares the allowance, then hands the concept to the planner: A cooperative search where friends carry pets together
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:234:9
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:234:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/28]⎯
+
+ FAIL  tests/concept.test.ts > accepts a clear concept with no questions and invalidates it on request revision
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:280:7
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:280:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/28]⎯
+
+ FAIL  tests/concept.test.ts > rejects malformed concepts and repeated answered choices without producing a plan
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:308:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:308:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/28]⎯
+
+ FAIL  tests/concept.test.ts > accepts the saved live clarification without spending a correction attempt on its display length
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:336:7
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:336:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/28]⎯
+
+ FAIL  tests/concept.test.ts > retains a five-step live response without a paid format correction and still bounds oversized guides
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:362:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:362:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/28]⎯
+
+ FAIL  tests/concept.test.ts > does not call a provider when the concept reservation exceeds the allowance
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:387:17
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.wait src/generation/engine.ts:1011:23
+ ❯ tests/concept.test.ts:387:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/28]⎯
+
+ FAIL  tests/concept.test.ts > cancels concept work and rejects overlapping mutations
+Error: Saved project could not be read. The original file was left unchanged.
+ ❯ GenerationStore.get src/generation/store.ts:123:13
+    121|       if ((cause as NodeJS.ErrnoException).code === "ENOENT")
+    122|         throw new RequestError("Project not found", 404);
+    123|       throw new StoredDataError("project", { cause });
+       |             ^
+    124|     }
+    125|     // Preserve the rejected template project intact before migrating …
+ ❯ Engine.cancel src/generation/engine.ts:1007:23
+ ❯ tests/concept.test.ts:400:10
+
+Caused by: ZodError: [
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]
+ ❯ GenerationStore.get src/generation/store.ts:107:23
+ ❯ Engine.cancel src/generation/engine.ts:1007:23
+ ❯ tests/concept.test.ts:400:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { _zod: { def: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], constr: 'Function<ZodError>', traits: { constructor: 'Function<Set>', has: 'Function<has>', add: 'Function<add>', delete: 'Function<delete>', difference: 'Function<difference>', clear: 'Function<clear>', entries: 'Function<entries>', forEach: 'Function<forEach>', intersection: 'Function<intersection>', isSubsetOf: 'Function<isSubsetOf>', isSupersetOf: 'Function<isSupersetOf>', isDisjointFrom: 'Function<isDisjointFrom>', size: 2, symmetricDifference: 'Function<symmetricDifference>', union: 'Function<union>', values: 'Function<values>', keys: 'Function<values>' }, message: '[
+  {
+    "expected": "number",
+    "code": "invalid_type",
+    "path": [
+      "reservedMicros"
+    ],
+    "message": "Invalid input: expected number, received null"
+  }
+]' }, issues: [ { expected: 'number', code: 'invalid_type', path: [ 'reservedMicros' ], message: 'Invalid input: expected number, received null' } ], format: 'Function<anonymous>', flatten: 'Function<anonymous>', addIssue: 'Function<anonymous>', addIssues: 'Function<anonymous>', isEmpty: false }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/28]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  28 failed | 13 passed (41)
+   Start at  23:22:11
+   Duration  2.12s (tests 38%, transform 34%, import 27%)
+

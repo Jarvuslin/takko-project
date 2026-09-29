@@ -1,0 +1,271 @@
+[WebServer] (node:23044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:35916) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:39880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:33272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\b-foundation.spec.ts:3:1 › selected B workspace docks editing below the visible graph and preserves contracts (3.8s)
+  x   2 [desktop] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings (450ms)
+(node:3844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [desktop] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (1.6s)
+  ok  4 [desktop] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (578ms)
+  ok  5 [desktop] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (1.6s)
+  ok  6 [desktop] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (843ms)
+  ok  7 [desktop] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits (4.6s)
+  ok  8 [desktop] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts (3.5s)
+  ok  9 [desktop] › tests\browser\integrated-workspace.spec.ts:147:1 › R15 previews respect reduced motion and recover explicitly when graphics context is lost (3.4s)
+(node:31104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  10 [mobile] › tests\browser\b-foundation.spec.ts:3:1 › selected B workspace docks editing below the visible graph and preserves contracts (30.4s)
+(node:19676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  11 [mobile] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings (5.6s)
+(node:42780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [mobile] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (1.6s)
+  ok 13 [mobile] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (616ms)
+  ok 14 [mobile] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (1.4s)
+  ok 15 [mobile] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (922ms)
+  x  16 [mobile] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits (30.5s)
+(node:42728) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  17 [mobile] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts (30.3s)
+(node:40764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [mobile] › tests\browser\integrated-workspace.spec.ts:147:1 › R15 previews respect reduced motion and recover explicitly when graphics context is lost (3.0s)
+
+
+  1) [desktop] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings 
+
+    Error: locator.click: Error: strict mode violation: getByLabel('Projects', { exact: true }) resolved to 2 elements:
+        1) <summary title="Projects" aria-label="Projects">…</summary> aka getByTitle('Projects')
+        2) <nav aria-label="Projects">…</nav> aka getByRole('navigation', { name: 'Projects' })
+
+    Call log:
+      - waiting for getByLabel('Projects', { exact: true })
+
+
+      140 |   await page.goto("/?project=" + p.id);
+      141 |   if (info.project.name === "desktop") {
+    > 142 |     await page.getByLabel("Projects", { exact: true }).click();
+          |                                                        ^
+      143 |     await page.getByRole("searchbox", { name: "Search projects" }).fill(p.name);
+      144 |     await page
+      145 |       .getByRole("navigation", { name: "Projects", exact: true })
+        at D:\RobloxProjects\Roblox Gen\tests\browser\b-foundation.spec.ts:142:56
+
+    Error Context: test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\b-foundation.spec.ts:3:1 › selected B workspace docks editing below the visible graph and preserves contracts 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Review changes', exact: true })
+        - locator resolved to <button>Review changes</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        51 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      109 |   await page
+      110 |     .getByRole("button", { name: "Review changes", exact: true })
+    > 111 |     .click();
+          |      ^
+      112 |   await page
+      113 |     .getByRole("button", { name: "Save architecture", exact: true })
+      114 |     .click();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\b-foundation.spec.ts:111:6
+
+    Error Context: test-results\b-foundation-selected-B-wo-13114-aph-and-preserves-contracts-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\b-foundation-selected-B-wo-13114-aph-and-preserves-contracts-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\b-foundation-selected-B-wo-13114-aph-and-preserves-contracts-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByLabel('Project', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('Project', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Project', { exact: true })
+
+
+      151 |       "",
+      152 |     );
+    > 153 |   } else {
+          |           ^
+      154 |     await expect(page.getByLabel("Open project", { exact: true })).toBeVisible();
+      155 |   }
+      156 |   await page
+        at D:\RobloxProjects\Roblox Gen\tests\browser\b-foundation.spec.ts:153:63
+
+    Error Context: test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\b-foundation-B-icon-naviga-7cd5b-ion-and-real-model-settings-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: 'Game architecture' }).getByRole('button', { name: 'Load latest architecture' })
+        - locator resolved to <button>Load latest architecture</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        48 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      69 |     .getByLabel("Message", { exact: true })
+      70 |     .fill("Make attacks feel faster");
+    > 71 |   await map.getByRole("button", { name: "Load latest architecture" }).click();
+         |                                                                       ^
+      72 |   await expect(
+      73 |     map.getByRole("button", { name: "Edit HUD", exact: true }),
+      74 |   ).toBeVisible();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\integrated-workspace.spec.ts:71:71
+
+    Error Context: test-results\integrated-workspace-canva-caf15-never-overwrite-local-edits-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\integrated-workspace-canva-caf15-never-overwrite-local-edits-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\integrated-workspace-canva-caf15-never-overwrite-local-edits-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [mobile] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: 'Game architecture' }).getByRole('button', { name: 'Review changes' })
+        - locator resolved to <button>Review changes</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        52 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="chat-heading">…</div> from <section class="chat-panel" aria-label="Project conversation">…</section> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      132 |   }
+      133 |   await map.getByRole("button", { name: "Auto layout" }).click();
+    > 134 |   await map.getByRole("button", { name: "Review changes" }).click();
+          |                                                             ^
+      135 |   await expect(map).toContainText("Only node positions changed");
+      136 |   await map.getByRole("button", { name: "Save architecture" }).click();
+      137 |   await expect(
+        at D:\RobloxProjects\Roblox Gen\tests\browser\integrated-workspace.spec.ts:134:61
+
+    Error Context: test-results\integrated-workspace-canva-30408-e-game-connection-contracts-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\integrated-workspace-canva-30408-e-game-connection-contracts-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\integrated-workspace-canva-30408-e-game-connection-contracts-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [desktop] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings 
+    [mobile] › tests\browser\b-foundation.spec.ts:3:1 › selected B workspace docks editing below the visible graph and preserves contracts 
+    [mobile] › tests\browser\b-foundation.spec.ts:132:1 › B icon navigation retains project selection and real model settings 
+    [mobile] › tests\browser\integrated-workspace.spec.ts:11:1 › canvas and conversation stay visible and remote changes never overwrite local edits 
+    [mobile] › tests\browser\integrated-workspace.spec.ts:82:1 › canvas pan, zoom, dragging and auto layout preserve game connection contracts 
+  13 passed (2.4m)

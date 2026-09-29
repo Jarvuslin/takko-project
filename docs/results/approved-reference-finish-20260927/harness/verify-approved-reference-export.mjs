@@ -1,0 +1,15 @@
+import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';import {XMLParser,XMLValidator} from 'fast-xml-parser';
+const out='docs/results/approved-reference-finish-20260927';const p=JSON.parse(fs.readFileSync(`${out}/terminal-project.json`));const exp=JSON.parse(fs.readFileSync(`${out}/export-result.json`));const xml=fs.readFileSync(exp.path,'utf8');
+if(XMLValidator.validate(xml)!==true)throw Error('Invalid export XML');
+const tree=new XMLParser({ignoreAttributes:false,parseTagValue:false}).parse(xml);const nodes=[];
+const array=v=>v===undefined?[]:Array.isArray(v)?v:[v];
+function visit(item,parent=[]){const prop=array(item.Properties?.string).find(p=>p['@_name']==='Name');const name=typeof prop==="object"?prop['#text']:prop;const current=[...parent,name];nodes.push({path:current.join('/'),className:item['@_class']});for(const c of array(item.Item))visit(c,current);}
+for(const item of array(tree.roblox.Item))visit(item);
+const clip=JSON.parse(fs.readFileSync(`${out}/clip-path-verification.json`));
+const result={at:new Date().toISOString(),validXml:true,bytes:fs.statSync(exp.path).size,sha256:createHash('sha256').update(xml).digest('hex'),evidenceCopyIdentical:fs.readFileSync(exp.path).equals(fs.readFileSync(`${out}/game.rbxlx`)),approvedSequence:nodes.find(n=>n.path===clip.expected),dummy:nodes.find(n=>n.path===`Workspace/${p.scope}/Assets/dummy/dummy/Imported/Training Dummy`),scriptCount:nodes.filter(n=>['Script','LocalScript','ModuleScript'].includes(n.className)).length,keyframeSequences:nodes.filter(n=>n.className==='KeyframeSequence').length,observation:'Export structure only. No Studio session or gameplay.'};
+fs.writeFileSync(`${out}/export-structure.json`,JSON.stringify(result,null,2));console.log(result);
+if(!result.evidenceCopyIdentical||result.approvedSequence?.className!=='KeyframeSequence'||result.dummy?.className!=='Model')throw Error('Retained content missing from export');
+const manifest=JSON.parse(fs.readFileSync(`${out}/protected-before.json`));const mismatches=manifest.filter(e=>!fs.existsSync(e.path)||createHash('sha256').update(fs.readFileSync(e.path)).digest('hex')!==e.sha256).map(e=>e.path);
+const attestation=JSON.parse(fs.readFileSync(`${out}/offline-green.json`));const sourceChanges=attestation.sources.filter(e=>createHash('sha256').update(fs.readFileSync(e.file)).digest('hex')!==e.sha256).map(e=>e.file);
+const compiles=JSON.parse(fs.readFileSync(`${out}/generated-compile.json`)).compiles;const compiledFilesMatch=compiles.length===p.artifact.files.length&&compiles.every(c=>c.compiled&&c.sha256===createHash('sha256').update(p.artifact.files.find(f=>f.path===c.path).source).digest('hex'));
+fs.writeFileSync(`${out}/preservation-final.json`,JSON.stringify({at:new Date().toISOString(),protectedFiles:manifest.length,mismatches,sourceChanges,compiledFilesMatch},null,2));console.log({protectedFiles:manifest.length,mismatches,sourceChanges,compiledFilesMatch});if(mismatches.length||sourceChanges.length||!compiledFilesMatch)throw Error('Final preservation check failed');

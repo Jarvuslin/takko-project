@@ -273,6 +273,42 @@ async function inspect(f = setup(), input = need) {
   );
   return { ...f, inspection };
 }
+it("inspects an explicitly approved reference without pretending it came from a search", async () => {
+  const f = setup();
+  const candidate = {
+    id: "123",
+    name: "Board",
+    kind: "Model" as const,
+    creator: "FixtureCreator",
+    sourceUrl: "https://create.roblox.com/store/asset/123",
+    price: 0,
+    source: "creator_store" as const,
+  };
+  await expect(
+    f.adapter.inspect(need, candidate, "unbound", signal()),
+  ).rejects.toThrow("scoped search");
+  await f.adapter.bindApprovedReference(need, candidate, {
+    discoveryId: "00000000-0000-4000-8000-000000000001",
+    revision: 1,
+  });
+  await expect(
+    f.adapter.inspect(
+      { ...need, id: "other" },
+      candidate,
+      "wrong-need",
+      signal(),
+    ),
+  ).rejects.toThrow("scoped search");
+  await expect(
+    f.adapter.inspect(need, { ...candidate, id: "456" }, "wrong-id", signal()),
+  ).rejects.toThrow("scoped search");
+  const result = await f.adapter.inspect(need, candidate, "approved", signal());
+  expect(
+    result.receipts.some((r) => r.operation === "user_approved_reference"),
+  ).toBe(true);
+  expect(result.functional.contentLoaded).toBe(true);
+  await f.adapter.discard(result, signal());
+});
 function audioEvidence(binding: {
   studioId: string;
   candidateId: string;
@@ -1935,8 +1971,14 @@ describe("fixed emitted Luau (actual compiler/interpreter, mocked Roblox objects
       .map((c) => c.args.code as string);
     const directory = temporary(),
       suffix = process.platform === "win32" ? ".exe" : "";
-    const compiler = path.resolve("research/tools/luau/luau-compile" + suffix),
-      interpreter = path.resolve("research/tools/luau/luau" + suffix);
+    const compiler = path.resolve(
+        process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+        "luau-compile" + suffix,
+      ),
+      interpreter = path.resolve(
+        process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+        "luau" + suffix,
+      );
     for (const [index, code] of scripts.entries()) {
       const file = path.join(directory, `audio-template-${index}.luau`);
       fs.writeFileSync(file, code);
@@ -1984,8 +2026,14 @@ describe("fixed emitted Luau (actual compiler/interpreter, mocked Roblox objects
       .map((c) => c.args.code as string);
     const directory = temporary();
     const suffix = process.platform === "win32" ? ".exe" : "";
-    const compiler = path.resolve("research/tools/luau/luau-compile" + suffix);
-    const interpreter = path.resolve("research/tools/luau/luau" + suffix);
+    const compiler = path.resolve(
+      process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+      "luau-compile" + suffix,
+    );
+    const interpreter = path.resolve(
+      process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+      "luau" + suffix,
+    );
     for (const [index, code] of scripts.entries()) {
       const file = path.join(directory, `image-${index}.luau`);
       fs.writeFileSync(file, code);
@@ -2049,11 +2097,14 @@ describe("fixed emitted Luau (actual compiler/interpreter, mocked Roblox objects
     await f.adapter.discard(f.inspection, signal());
     const directory = temporary();
     const compiler = path.resolve(
-      "research/tools/luau/luau-compile" +
+      (process.env.LUAU_BIN_DIR ?? ".forge/tools/luau") +
+        "/luau-compile" +
         (process.platform === "win32" ? ".exe" : ""),
     );
     const interpreter = path.resolve(
-      "research/tools/luau/luau" + (process.platform === "win32" ? ".exe" : ""),
+      (process.env.LUAU_BIN_DIR ?? ".forge/tools/luau") +
+        "/luau" +
+        (process.platform === "win32" ? ".exe" : ""),
     );
     expect(fs.existsSync(compiler)).toBe(true);
     expect(fs.existsSync(interpreter)).toBe(true);

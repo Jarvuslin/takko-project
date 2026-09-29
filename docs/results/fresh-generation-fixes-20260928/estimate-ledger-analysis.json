@@ -1,0 +1,69 @@
+{
+  "totalCalls": 276,
+  "totalCost": 6.570267,
+  "runs": [
+    {
+      "id": "cf8280cc-c891-4d79-9085-9231d721a618",
+      "phase": "builder",
+      "chargeStart": 176,
+      "chargeEnd": 218,
+      "calls": 42,
+      "cost": 2.002795,
+      "start": "2026-09-27T18:56:26.357Z",
+      "end": "2026-09-27T19:09:30.541Z"
+    },
+    {
+      "id": "7ec00c77-3271-4762-8382-8b53091e866e",
+      "phase": "builder",
+      "chargeStart": 219,
+      "chargeEnd": 244,
+      "calls": 25,
+      "cost": 0.971575,
+      "start": "2026-09-27T20:57:46.733Z",
+      "end": "2026-09-27T21:03:34.850Z"
+    },
+    {
+      "id": "57c4993b-1165-4740-a7a0-b797074b19f7",
+      "phase": "builder",
+      "chargeStart": 245,
+      "chargeEnd": 275,
+      "calls": 30,
+      "cost": 1.53303,
+      "start": "2026-09-27T23:37:45.456Z",
+      "end": "2026-09-27T23:49:24.330Z"
+    }
+  ],
+  "firstReview": {
+    "phase": "reviewer",
+    "profileId": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+    "model": "anthropic/claude-sonnet-5",
+    "reservedMicros": 698790,
+    "chargedMicros": 477460,
+    "estimated": false,
+    "billingSource": "provider",
+    "inputTokens": 74890,
+    "outputTokens": 32768,
+    "cachedInputTokens": 0,
+    "status": "error",
+    "at": "2026-09-27T19:15:02.008Z"
+  },
+  "firstBuildThroughReview": 3.478858,
+  "phases": {
+    "planner": {
+      "calls": 169,
+      "cost": 0.317669
+    },
+    "builder": {
+      "calls": 99,
+      "cost": 4.642406
+    },
+    "reviewer": {
+      "calls": 8,
+      "cost": 1.610192
+    },
+    "repair": {
+      "calls": 0,
+      "cost": 0
+    }
+  }
+}

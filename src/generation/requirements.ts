@@ -1,3 +1,5 @@
+import { requirementSources, type SourceProject } from "./brief-sources";
+export { requirementSources } from "./brief-sources";
 import { z } from "zod";
 import { assetNeedSchema, assetIntentSchema } from "./asset-contract";
 import {
@@ -9,7 +11,7 @@ import {
 
 /** Advertise current source choices directly in the planner contract. Legacy saved
  * plans still use specSchema and exact-quotation validation; no source is guessed. */
-export function plannerOutputSchema(p: Pick<Project, "request" | "answers">) {
+export function plannerOutputSchema(p: SourceProject) {
   const sourceId = z.enum(requirementSources(p).map((source) => source.id));
   return specSchema.extend({
     assetNeeds: z
@@ -40,9 +42,7 @@ export function plannerOutputSchema(p: Pick<Project, "request" | "answers">) {
   });
 }
 
-export function plannerRequirementContract(
-  p: Pick<Project, "request" | "answers">,
-) {
+export function plannerRequirementContract(p: SourceProject) {
   return {
     requiredFieldsForEveryRequirement: [
       "id",
@@ -58,31 +58,27 @@ export function plannerRequirementContract(
       "For origin=user, also include sourceId chosen from allowedUserSourceIds. sourceQuote is optional; omit it to let Takko copy the selected source. Do not guess or combine quotations.",
     inferredEvidence:
       "For origin=inferred, explain the inferred requirement in description without inventing user evidence.",
+    distinctVocabularies: {
+      "requirements[].category": requirementSchema.shape.category.options,
+      "tasks[].proposalSections": [
+        "mechanics",
+        "theme",
+        "environment",
+        "assets",
+      ],
+      rule: "category classifies the implementation obligation. proposalSections names approved document sections affected by the task. Never copy category labels into proposalSections. In particular ui, animation, audio, network, lifecycle, presentation, world and singular mechanic are NOT section names. Select document dependencies by their provenance and meaning, not the kind of code. Requirement sourceId supplies mandatory section coverage independently.",
+    },
+    proposalCoverage:
+      "For each approved proposal source (proposal:mechanics, proposal:theme, proposal:environment), include at least one required user requirement with that exact sourceId and assign it to a task. Where existing approved content satisfies a section without new work, state that explicitly as a requirement owned by its existing task. Do not invent features or tasks merely to fill sections. Task proposalSections describe additional dependencies and cannot substitute for requirement provenance.",
     allowedUserSourceIds: requirementSources(p).map((source) => source.id),
   };
-}
-
-export function requirementSources(p: Pick<Project, "request" | "answers">) {
-  return [
-    { id: "request", text: p.request, answerId: null as string | null },
-    ...Object.entries(p.answers)
-      .filter(([, value]) => value.trim())
-      .map(([id, text]) => ({
-        id: "answer:" + id,
-        text,
-        answerId: id,
-      })),
-  ];
 }
 
 const comparable = (text: string) =>
   text.trim().replace(/\s+/g, " ").toLowerCase();
 
 /** Bind model citations to current user input; never treat model-authored questions as user answers. */
-export function bindRequirementSources(
-  spec: Spec,
-  p: Pick<Project, "request" | "answers">,
-) {
+export function bindRequirementSources(spec: Spec, p: SourceProject) {
   const sources = requirementSources(p);
   const errors: string[] = [];
   const requirements = spec.requirements.map((requirement) => {

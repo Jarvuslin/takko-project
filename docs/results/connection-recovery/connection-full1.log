@@ -1,0 +1,49 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/provider-audio.test.ts (22 tests | 1 failed) 81ms
+   ❯ provider audio transport (offline mocks) (22)
+     × sends Gemini inline WAV bytes separately from text and preserves total usage without double counting audio 41ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/provider-audio.test.ts > provider audio transport (offline mocks) > sends Gemini inline WAV bytes separately from text and preserves total usage without double counting audio
+AssertionError: expected { text: '{"accepted":true}', …(3) } to deeply equal { text: '{"accepted":true}', …(2) }
+
+- Expected
++ Received
+
+  {
+    "inputTokens": 100,
+    "outputTokens": 15,
++   "reasoningTokens": 3,
+    "text": "{\"accepted\":true}",
+  }
+
+ ❯ tests/provider-audio.test.ts:110:20
+    108|       responseMimeType: "application/json",
+    109|     });
+    110|     expect(result).toEqual({
+       |                    ^
+    111|       text: '{"accepted":true}',
+    112|       inputTokens: 100,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 89 passed (90)
+      Tests  1 failed | 1416 passed (1417)
+   Start at  01:21:10
+   Duration  84.05s (tests 78%, import 19%, transform 3%, worker 1%)
+
+    Isolate  90 workers spawned · ~114ms startup each (spawn + environment, per file)
+             at least ~10.14s faster with isolate: false — reuses workers across files instead of one per file
+

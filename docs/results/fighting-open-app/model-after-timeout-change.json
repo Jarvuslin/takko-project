@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-23T04:37:09.6881095Z",
+  "profile": {
+    "id": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+    "name": "Anthropic: Claude Sonnet 5",
+    "provider": "openrouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "model": "anthropic/claude-sonnet-5",
+    "inputRate": 2,
+    "outputRate": 10,
+    "pricingSource": "catalog",
+    "maxOutputTokens": 32768,
+    "requestTimeoutMs": 600000,
+    "jsonMode": true,
+    "hasKey": true
+  },
+  "note": "Only reply timeout changed, no model request dispatched"
+}

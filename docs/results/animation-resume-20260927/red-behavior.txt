@@ -1,0 +1,51 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/retained-animation.test.ts (4 tests | 2 failed) 1619ms
+   × supplies the mapped local sequence and concrete Studio playback code from retained evidence 341ms
+   × accepts the producer's local registration pattern and ignores pack IDs in comments or unrelated properties 341ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/retained-animation.test.ts > supplies the mapped local sequence and concrete Studio playback code from retained evidence
+AssertionError: expected undefined to match object { …(2) }
+
+- Expected:
+{
+  "destinationPath": "Workspace/Forge_8a81efe9b8ed/Assets/punchAnim",
+  "rootName": "punchAnim",
+}
+
++ Received:
+undefined
+
+ ❯ tests/retained-animation.test.ts:17:32
+     15| it("supplies the mapped local sequence and concrete Studio playback co…
+     16|   const context = componentBuilderContext(p, directory).find(c => c.re…
+     17|   expect(context.localContent).toMatchObject({ destinationPath: contex…
+       |                                ^
+     18|   expect(context.studioAnimation?.code).toContain("RegisterKeyframeSeq…
+     19|   expect(context.studioAnimation?.code).toContain("animation.Animation…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/retained-animation.test.ts > accepts the producer's local registration pattern and ignores pack IDs in comments or unrelated properties
+AssertionError: expected [Function] to not throw an error but 'TypeError: Cannot read properties of …' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"TypeError: Cannot read properties of undefined (reading 'code')"
+
+ ❯ tests/retained-animation.test.ts:27:219
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  16:24:37
+   Duration  2.37s (tests 72%, transform 15%, import 12%)
+

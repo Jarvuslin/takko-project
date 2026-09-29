@@ -1,0 +1,276 @@
+```json
+{
+  "title": "Punch the Dummy: Combat Trainer",
+  "summary": "A single-room boxing/dojo practice trainer. On spawn the player stands in a compact ~20x20 stud mat-floored room, facing a stationary training dummy anchored a few studs away at (0,3,15); a hit counter reads '0' in the top-right corner. Walking into melee range and pressing the attack input (left click or bound key) plays a punch animation on the player's arm; the server checks range/aim against the dummy's hitbox, and on a confirmed hit the impact sound plays at the dummy and the counter increments by one, giving the player an immediate, repeatable feedback loop of approach-punch-hear/see-count. A short per-swing cooldown matching the animation length stops duplicate hits from one press. There is no health, retaliation, win condition, or persistence beyond the session — the goal is simply to watch the counter climb. Assumptions applied without further questions: default R15 character with no custom rig, single mouse/keybind attack with no combos, per-player session-only counter with no leaderboard, exactly one dummy with no spawning/respawning, and standard baseplate-style lighting/materials for the gym-style room.",
+  "visualDirection": "Gritty, approachable gym/dojo training-space aesthetic rather than fantasy or sci-fi. Matte gray/neutral color palette: a mat-textured (or mat-colored) flat floor, simple flat walls or boundary markers, even functional lighting with no dramatic shadows or skybox complexity. The dummy is the visual focal point directly ahead of spawn, tape-wrapped/matte in tone, standing upright on a small anchored base. The HUD counter is a clean, legible numeric label fixed to the top-right corner, high-contrast against the room so it reads at a glance during rapid punching. Punch feedback should be readable: animation swing, synced impact sound at the dummy, and an immediate counter tick, reinforcing a satisfying but minimal training-room loop.",
+  "requirements": [
+    {
+      "id": "target_dummy",
+      "description": "A single stationary, anchored training dummy model (Xtrah962 Training Dummy, assetId 1245720733) stands upright at approximately (0,3,15) in the practice room, providing a fixed hitbox that never moves, retaliates, or resets.",
+      "sourceId": "proposal:environment",
+      "origin": "user",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "The dummy model is present in the workspace, anchored, upright at ~(0,3,15), with a clear torso/head hitbox reachable from the spawn point, and never changes position or state during play."
+    },
+    {
+      "id": "punch_loop",
+      "description": "Pressing the attack input (left mouse click or bound key) while near the dummy triggers a punch: animation plays, a server-authoritative hit check runs, and on a successful hit the hit sound plays and the on-screen counter increments by one.",
+      "sourceId": "proposal:mechanics",
+      "origin": "user",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Pressing the attack input near the dummy plays the punch animation, and when the swing connects the hit sound plays and the visible counter increments exactly once per successful swing; missing the dummy produces no sound or counter change."
+    },
+    {
+      "id": "theme_presentation",
+      "description": "The practice room and dummy read as a gritty gym/dojo training space: matte gray dummy coloring, mat-textured floor, simple walls, and even lighting, avoiding fantasy/sci-fi framing.",
+      "sourceId": "proposal:theme",
+      "origin": "user",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "Visual inspection of the built room shows matte/gym-style materials and colors on the floor, walls, and dummy, with simple even lighting and no fantasy/sci-fi elements."
+    },
+    {
+      "id": "punch_animation",
+      "description": "The player's character plays the selected R15 punch animation (Auevi R15 Punching Animations, assetId 12061946559, clip 1/1/18/1) on the attack input, timed to align with hit registration.",
+      "sourceId": "request",
+      "origin": "user",
+      "category": "animation",
+      "priority": "required",
+      "acceptance": "Triggering the attack input visibly plays the punch clip once on the player's arm/torso in Studio, without looping, and completes within the punch cooldown window."
+    },
+    {
+      "id": "hit_sound",
+      "description": "A punch impact sound (lorenzosaudiostash Hit - Impact - Punch - Blunt, assetId 126976659766267) plays immediately when a punch is server-confirmed to connect with the dummy.",
+      "sourceId": "request",
+      "origin": "user",
+      "category": "audio",
+      "priority": "required",
+      "acceptance": "On a confirmed hit, the impact sound audibly plays once at the dummy's location and passes load/playback verification; misses produce no sound."
+    },
+    {
+      "id": "hit_counter_ui",
+      "description": "A persistent on-screen numeric counter, anchored to a fixed screen corner (e.g. top-right), displays the number of successful hits and increments by one for each confirmed hit, without leaderboard or save persistence.",
+      "sourceId": "request",
+      "origin": "user",
+      "category": "ui",
+      "priority": "required",
+      "acceptance": "A ScreenGui label is visible in a fixed corner from spawn onward, starts at 0, and increases by exactly one each time a confirmed hit event is received from the server."
+    },
+    {
+      "id": "hit_detection_server",
+      "description": "The server authoritatively validates each punch attempt against the dummy's hitbox using a short-range touch/proximity or raycast check plus a distance check, rejecting hits that are out of range or spoofed by the client.",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "Server logs/tests show punch requests from beyond melee range or without a valid swing are rejected and do not increment any player's counter, while in-range swings are accepted."
+    },
+    {
+      "id": "punch_cooldown",
+      "description": "A per-player cooldown equal to the punch animation's duration is enforced so a single swing cannot register multiple hits or be spammed faster than the animation allows.",
+      "sourceId": "proposal:mechanics",
+      "origin": "user",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Rapidly repeating the attack input faster than the animation duration produces at most one counter increment per animation-length interval, verified server-side."
+    },
+    {
+      "id": "environment_room",
+      "description": "A single enclosed practice room roughly 20x20 studs with a flat, mat-textured floor, simple boundary walls, a safe collidable spawn near the center facing the dummy, and even baseplate-style lighting.",
+      "sourceId": "proposal:environment",
+      "origin": "user",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "The workspace contains one ~20x20 stud room with walkable anchored floor, boundary walls, a SpawnLocation near the center oriented toward the dummy, and lighting sufficient to clearly see the dummy and UI."
+    },
+    {
+      "id": "multiplayer_lifecycle",
+      "description": "Each player's hit counter and cooldown state is tracked independently by UserId on the server, reset appropriately on join, cleaned up on leave, and the HUD/animation bindings rebind correctly after a character respawn without duplicating UI or losing the visible count.",
+      "origin": "inferred",
+      "category": "lifecycle",
+      "priority": "required",
+      "acceptance": "Two simultaneous players see independent counters that do not interfere with each other; a player's counter/cooldown state is removed from server memory on leave; after respawning, the HUD shows exactly one counter label continuing to track hits correctly."
+    }
+  ],
+  "questions": [],
+  "assetStrategy": "All three approved assets are treated as complete reusable Marketplace components, not raw geometry to rebuild. The Training Dummy (1245720733) is expected to supply the standing hitbox and pose directly; it reports one embedded script, so inspection must review that script before trusting any embedded behavior — only missing integration (server hit validation, sound/counter hookup) will be authored, and any unsafe or unsupported script content will be reported as a review gap rather than silently replaced. The R15 Punching Animations model (12061946559, clip 1/1/18/1) is a raw KeyframeSequence source per the animation capability contract: it is usable for Studio playback via RegisterKeyframeSequence assigned to Animation.AnimationId and played through the player's Animator, with publishing remaining a recorded, non-blocking limitation — no procedural tween substitute will be authored in its place. The impact sound (126976659766267) is a verified Marketplace Audio asset that must pass load/playback/listening checks before being wired to the server-confirmed hit event; no builtin or generated sound will be substituted if it fails. Missing integration to author: RemoteEvent plumbing between client input and server validation, server-side distance/cooldown/hit checks against the dummy's hitbox, sound playback triggered from server-confirmed hits, and a persistent per-player HUD counter — none of which is expected to be supplied by the assets themselves.",
+  "assetNeeds": [
+    {
+      "id": "dummy",
+      "requirementId": "target_dummy",
+      "role": "Stationary target the player punches to test timing and trigger the hit counter.",
+      "kind": "Model",
+      "query": "boxing training dummy stand",
+      "constraints": "Humanoid-shaped stationary practice dummy, roughly 5-6 studs tall, matte gym/gray color scheme, anchored base or stand, R15-compatible rig acceptable but no locomotion needed, no moving parts required, must have a clear torso/head hitbox for touch or proximity hit detection.",
+      "intent": {
+        "experienceRole": "Serves as the practice target players repeatedly punch to test their combat timing and trigger scoring feedback, anchoring the entire gameplay loop.",
+        "interaction": "Player approaches and presses the attack input to swing at the dummy; on a successful hit the game plays the hit sound and immediately increments the on-screen hit counter. The dummy itself does not move, attack back, or reset.",
+        "reusableFeatures": [
+          "Existing humanoid rig or part layout usable as a hitbox for touch detection",
+          "Any built-in idle or wobble animation already on the dummy model",
+          "Anchored base plate or stand geometry included with the model"
+        ],
+        "relatedRequirementIds": ["target_dummy", "hit_sound", "hit_counter_ui"]
+      },
+      "required": true,
+      "position": [0, 3, 15],
+      "maxSize": 8
+    },
+    {
+      "id": "punchAnim",
+      "requirementId": "punch_animation",
+      "role": "Plays on the player character when the attack input is pressed, giving the punch visual weight.",
+      "kind": "Animation",
+      "query": "punch jab fighting animation",
+      "constraints": "R15-compatible single-arm jab or straight punch animation, non-looping, duration approximately 0.3-0.6 seconds, playable via AnimationController/Animator on the default player rig, timed to roughly align with hit registration.",
+      "intent": {
+        "experienceRole": "Provides the visual feedback of the player's attack action, making punches feel physical and readable so hits feel earned.",
+        "interaction": "Triggered the instant the player presses the attack input; plays once on the player's arm/torso during the punch swing, timed to align with hit detection on the dummy and the accompanying hit sound.",
+        "reusableFeatures": [
+          "Any existing attack/punch animations already rigged to the player character",
+          "Default Roblox R15 upper-body animation slots"
+        ],
+        "relatedRequirementIds": ["punch_animation", "target_dummy"]
+      },
+      "required": true,
+      "position": [0, 0, 0],
+      "maxSize": 12
+    },
+    {
+      "id": "hitSound",
+      "requirementId": "hit_sound",
+      "role": "Audible confirmation that a punch has successfully landed on the dummy.",
+      "kind": "Audio",
+      "query": "punch hit impact sound",
+      "constraints": "Short percussive punch/impact sound effect, 0.2-0.5 seconds duration, non-looping, clear and punchy for melee combat feedback, no music or dialogue.",
+      "intent": {
+        "experienceRole": "Delivers audible feedback confirming a successful punch connects with the dummy, reinforcing the hit counter increment and making hits feel satisfying.",
+        "interaction": "Plays once, immediately, whenever a punch registers as a hit on the dummy. Purely reactive audio feedback; the player does not directly control the sound.",
+        "reusableFeatures": [
+          "Any existing combat or impact sound cues bundled with the dummy model",
+          "Default Roblox damage/hit sound effects"
+        ],
+        "relatedRequirementIds": ["hit_sound", "target_dummy"]
+      },
+      "required": true,
+      "position": [0, 0, 0],
+      "maxSize": 12
+    }
+  ],
+  "tasks": [
+    {
+      "id": "environment_build",
+      "title": "Build practice arena room, spawn, and lighting",
+      "proposalSections": ["environment", "theme"],
+      "requirements": ["environment_room", "theme_presentation"],
+      "dependsOn": [],
+      "files": []
+    },
+    {
+      "id": "dummy_placement",
+      "title": "Import, inspect, and place the stationary training dummy",
+      "proposalSections": ["assets", "environment", "mechanics"],
+      "requirements": ["target_dummy"],
+      "dependsOn": ["environment_build"],
+      "files": []
+    },
+    {
+      "id": "shared_remote_module",
+      "title": "Shared punch/hit RemoteEvents and cooldown/range config module",
+      "proposalSections": ["mechanics"],
+      "requirements": ["punch_loop", "hit_detection_server", "punch_cooldown"],
+      "dependsOn": [],
+      "files": [
+        "ReplicatedStorage/Forge_8a81efe9b8ed/PunchRemotes.module.luau",
+        "ReplicatedStorage/Forge_8a81efe9b8ed/PunchConfig.module.luau"
+      ]
+    },
+    {
+      "id": "punch_input_client",
+      "title": "Client punch input capture, animation playback, and request dispatch",
+      "proposalSections": ["mechanics", "assets"],
+      "requirements": ["punch_loop", "punch_animation"],
+      "dependsOn": ["shared_remote_module", "dummy_placement"],
+      "files": [
+        "StarterPlayer/StarterPlayerScripts/Forge_8a81efe9b8ed/PunchController.client.luau"
+      ]
+    },
+    {
+      "id": "punch_validator_server",
+      "title": "Server-authoritative punch validation, cooldown enforcement, and hit sound",
+      "proposalSections": ["mechanics", "environment", "assets"],
+      "requirements": ["hit_detection_server", "punch_cooldown", "hit_sound", "multiplayer_lifecycle"],
+      "dependsOn": ["shared_remote_module", "dummy_placement"],
+      "files": [
+        "ServerScriptService/Forge_8a81efe9b8ed/PunchValidator.server.luau"
+      ]
+    },
+    {
+      "id": "hit_counter_hud",
+      "title": "Persistent on-screen hit counter HUD",
+      "proposalSections": ["mechanics", "theme", "environment"],
+      "requirements": ["hit_counter_ui", "multiplayer_lifecycle"],
+      "dependsOn": ["shared_remote_module", "punch_validator_server"],
+      "files": [
+        "StarterGui/Forge_8a81efe9b8ed/HitCounterHUD.client.luau"
+      ]
+    }
+  ],
+  "referenceDecisions": [
+    {
+      "mechanicId": "dummy",
+      "action": "include",
+      "requirementIds": ["target_dummy"],
+      "reason": "User-approved Training Dummy model provides the exact stationary hitbox required by the practice loop; retained pending script inspection.",
+      "userSourceId": "request",
+      "userQuote": "A fighting game where the player punches a stationary target dummy."
+    },
+    {
+      "mechanicId": "punchAnim",
+      "action": "include",
+      "requirementIds": ["punch_animation"],
+      "reason": "User-approved R15 punching animation clip (1/1/18/1) satisfies the explicit request for a punching animation; playback will use the raw KeyframeSequence Studio path per the capability contract.",
+      "userSourceId": "request",
+      "userQuote": "Include a punching animation, a punch/hit sound when the player hits the dummy"
+    },
+    {
+      "mechanicId": "hitSound",
+      "action": "include",
+      "requirementIds": ["hit_sound"],
+      "reason": "User-approved impact sound asset directly satisfies the explicit request for a punch/hit sound; will be triggered only on server-confirmed hits after playback verification.",
+      "userSourceId": "request",
+      "userQuote": "a punch/hit sound when the player hits the dummy"
+    }
+  ],
+  "architectureProposal": {
+    "nodes": [
+      {"id": "PlayerInputClient", "name": "Player Input & Punch Client", "purpose": "Captures the attack input, checks local cooldown, requests a punch attempt from the server, and triggers local punch animation playback.", "authority": "client", "x": 200, "y": 200},
+      {"id": "PunchAnimationSystem", "name": "Punch Animation Playback", "purpose": "Loads and plays the selected R15 punch clip on the player's Animator when a punch attempt begins.", "authority": "client", "x": 200, "y": 450},
+      {"id": "RemoteEvents", "name": "Punch RemoteEvent Channel", "purpose": "Carries punch-attempt requests from client to server and hit-confirmed/counter-update events from server to client.", "authority": "shared", "x": 650, "y": 320},
+      {"id": "PunchValidatorServer", "name": "Server Punch Validator", "purpose": "Authoritatively checks distance/range and swing validity against the dummy hitbox, enforces per-player cooldown, and decides whether a hit is confirmed.", "authority": "server", "x": 1100, "y": 200},
+      {"id": "DummyTarget", "name": "Stationary Training Dummy", "purpose": "Provides the fixed, anchored hitbox that punches are checked against; never moves or retaliates.", "authority": "shared", "x": 1100, "y": 550},
+      {"id": "HitSoundSystem", "name": "Hit Sound Playback", "purpose": "Plays the impact sound at the dummy's position whenever the server confirms a hit.", "authority": "server", "x": 1550, "y": 500},
+      {"id": "HitCounterState", "name": "Per-Player Hit Counter State", "purpose": "Tracks each player's confirmed hit count by UserId on the server and broadcasts updates to that player's client.", "authority": "server", "x": 1550, "y": 100},
+      {"id": "HitCounterHUD", "name": "Hit Counter HUD", "purpose": "Displays the persistent on-screen counter label in a fixed corner and updates it when the server reports a new count.", "authority": "client", "x": 2000, "y": 100},
+      {"id": "LifecycleManager", "name": "Player Lifecycle Manager", "purpose": "Initializes per-player state on join, cleans it up on leave, and rebinds HUD/animation bindings on character respawn.", "authority": "server", "x": 2000, "y": 500},
+      {"id": "EnvironmentRoom", "name": "Practice Room & Spawn", "purpose": "Defines the enclosed room geometry, floor/wall materials, lighting, and the spawn location facing the dummy.", "authority": "shared", "x": 650, "y": 700}
+    ],
+    "edges": [
+      {"id": "e1", "from": "PlayerInputClient", "to": "PunchAnimationSystem", "event": "AttackInputPressed", "effect": "Starts local punch animation playback in sync with the swing.", "kind": "event"},
+      {"id": "e2", "from": "PlayerInputClient", "to": "RemoteEvents", "event": "PunchAttemptRequested", "effect": "Sends a punch-attempt request toward the server for validation.", "kind": "event"},
+      {"id": "e3", "from": "RemoteEvents", "to": "PunchValidatorServer", "event": "PunchAttemptReceived", "effect": "Delivers the client's punch attempt to server-side validation.", "kind": "event"},
+      {"id": "e4", "from": "PunchValidatorServer", "to": "DummyTarget", "event": "HitboxCheck", "effect": "Reads the dummy's fixed position/hitbox to test range and aim of the swing.", "kind": "state"},
+      {"id": "e5", "from": "PunchValidatorServer", "to": "HitCounterState", "event": "HitConfirmed", "effect": "Increments the attacking player's stored hit count when validation succeeds.", "kind": "state"},
+      {"id": "e6", "from": "PunchValidatorServer", "to": "HitSoundSystem", "event": "HitConfirmed", "effect": "Triggers the impact sound to play at the dummy's position.", "kind": "event"},
+      {"id": "e7", "from": "HitSoundSystem", "to": "DummyTarget", "event": "PlaySoundAtHitbox", "effect": "Emits the confirmed-hit sound from the dummy's location so nearby players hear it.", "kind": "event"},
+      {"id": "e8", "from": "HitCounterState", "to": "RemoteEvents", "event": "CounterUpdated", "effect": "Broadcasts the player's updated count toward their client.", "kind": "event"},
+      {"id": "e9", "from": "RemoteEvents", "to": "HitCounterHUD", "event": "CounterUpdated", "effect": "Updates the visible on-screen counter label with the new count.", "kind": "event"},
+      {"id": "e10", "from": "LifecycleManager", "to": "HitCounterState", "event": "PlayerJoinedOrLeft", "effect": "Initializes new per-player counter state on join and removes it on leave.", "kind": "state"},
+      {"id": "e11", "from": "LifecycleManager", "to": "HitCounterHUD", "event": "CharacterAdded", "effect": "Rebinds the HUD controller after respawn so exactly one counter label persists.", "kind": "event"},
+      {"id": "e12", "from": "EnvironmentRoom", "to": "DummyTarget", "event": "RoomAnchorsDummy", "effect": "Positions the dummy within the room at its fixed practice location.", "kind": "state"},
+      {"id": "e13", "from": "EnvironmentRoom", "to": "PlayerInputClient", "event": "PlayerSpawned", "effect": "Places the player at the room's spawn point facing the dummy, ready to begin the punch loop.", "kind": "state"}
+    ]
+  }
+}
+```

@@ -1,0 +1,218 @@
+timestamp=2026-09-27T16:47:12.828Z level=INFO run=e6c6ed39 message="creating instance" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.831Z level=INFO run=e6c6ed39 message=fromDirectory directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.851Z level=INFO run=e6c6ed39 message=bootstrapping directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.858Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T16:47:12.992Z level=INFO run=e6c6ed39 message="all LSPs are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message="all formatters are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message=init
+timestamp=2026-09-27T16:47:13.384Z level=INFO run=e6c6ed39 message=created id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR slug=tidy-engine version=1.18.31 projectID=global directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" path=Users/7474g/AppData/Local/Temp/takko-opencode-JM8zOY workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790527633384 time.updated=1790527633384
+timestamp=2026-09-27T16:47:13.408Z level=INFO run=e6c6ed39 message="event connected"
+timestamp=2026-09-27T16:47:14.247Z level=INFO run=e6c6ed39 message=loop session.id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR step=0
+timestamp=2026-09-27T16:47:14.283Z level=INFO run=e6c6ed39 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T16:47:14.597Z level=INFO run=e6c6ed39 message="watcher backend" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" platform=win32 backend=windows
+timestamp=2026-09-27T16:47:14.636Z level=INFO run=e6c6ed39 message="project copy refresh started" projectID=global
+timestamp=2026-09-27T16:47:14.639Z level=INFO run=e6c6ed39 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-09-27T16:47:14.704Z level=INFO run=e6c6ed39 message="booting location services" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" workspaceID=undefined
+timestamp=2026-09-27T18:29:07.943Z level=INFO run=4d914565 message="creating instance" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace"
+timestamp=2026-09-27T18:29:07.945Z level=INFO run=4d914565 message=fromDirectory directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace"
+timestamp=2026-09-27T18:29:08.223Z level=INFO run=4d914565 message=bootstrapping directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace"
+timestamp=2026-09-27T18:29:08.233Z level=INFO run=4d914565 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T18:29:08.234Z level=INFO run=4d914565 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T18:29:08.234Z level=INFO run=4d914565 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T18:29:08.420Z level=DEBUG run=4d914565 message="loaded custom config from OPENCODE_CONFIG_CONTENT"
+timestamp=2026-09-27T18:29:08.484Z level=INFO run=4d914565 message="all LSPs are disabled"
+timestamp=2026-09-27T18:29:08.486Z level=INFO run=4d914565 message="all formatters are disabled"
+timestamp=2026-09-27T18:29:08.486Z level=INFO run=4d914565 message=init
+timestamp=2026-09-27T18:29:08.729Z level=INFO run=4d914565 message=created id=ses_f1bdf3807ffeA77Bl8MRDBBt1f slug=neon-engine version=1.18.31 projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace" path=docs/results/runtime-diagnostics-20260927/without-refusal-hold/workspace workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790533748728 time.updated=1790533748728
+timestamp=2026-09-27T18:29:08.745Z level=INFO run=4d914565 message="event connected"
+timestamp=2026-09-27T18:29:09.321Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=0
+timestamp=2026-09-27T18:29:09.348Z level=INFO run=4d914565 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T18:29:09.866Z level=INFO run=4d914565 message="watcher backend" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace" platform=win32 backend=windows
+timestamp=2026-09-27T18:29:09.877Z level=INFO run=4d914565 message="project copy refresh started" projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed
+timestamp=2026-09-27T18:29:10.495Z level=INFO run=4d914565 message="project copy refresh done" projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed updated=[] removed=[]
+timestamp=2026-09-27T18:29:10.684Z level=INFO run=4d914565 message="booting location services" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold\\workspace" workspaceID=undefined
+timestamp=2026-09-27T18:29:10.702Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ca4d001Iq9S474jPGVZaG
+timestamp=2026-09-27T18:29:10.705Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:10.718Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:10.980Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=1
+timestamp=2026-09-27T18:29:11.014Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d0c6001A839iIeWkq1P6x
+timestamp=2026-09-27T18:29:11.015Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:11.025Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:11.226Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=2
+timestamp=2026-09-27T18:29:11.240Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d1bc001yTFib9Y5mdkCcZ
+timestamp=2026-09-27T18:29:11.241Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:11.242Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:11.420Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=3
+timestamp=2026-09-27T18:29:11.449Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d27e001mTqGHUp9MPu4EB
+timestamp=2026-09-27T18:29:11.450Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:11.460Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:11.639Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=4
+timestamp=2026-09-27T18:29:11.664Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d359001dy7094AtgrVGkk
+timestamp=2026-09-27T18:29:11.664Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:11.665Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:11.831Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=5
+timestamp=2026-09-27T18:29:11.844Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d419001qJRdfgkREs8l5P
+timestamp=2026-09-27T18:29:11.845Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:11.847Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:12.042Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=6
+timestamp=2026-09-27T18:29:12.067Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d4eb001HTqUA40itPxtjp
+timestamp=2026-09-27T18:29:12.068Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:12.069Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:12.269Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=7
+timestamp=2026-09-27T18:29:12.282Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d5cf001cGBjFarvcUA3NC
+timestamp=2026-09-27T18:29:12.283Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:12.284Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:12.490Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=8
+timestamp=2026-09-27T18:29:12.503Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d6ac001E3SJjaf5ZqTioq
+timestamp=2026-09-27T18:29:12.504Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:12.505Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:12.726Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=9
+timestamp=2026-09-27T18:29:12.749Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d798001FVtjYFT4yrP5HL
+timestamp=2026-09-27T18:29:12.750Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:12.751Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:12.938Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=10
+timestamp=2026-09-27T18:29:12.961Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d86c001vf3kw1Y5DFMtWa
+timestamp=2026-09-27T18:29:12.962Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:12.963Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:13.159Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=11
+timestamp=2026-09-27T18:29:13.180Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420d948001RYSf4CiHNXui6Q
+timestamp=2026-09-27T18:29:13.181Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:13.183Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:13.368Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=12
+timestamp=2026-09-27T18:29:13.392Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420da1a001wOHKMHuvZQ8jG1
+timestamp=2026-09-27T18:29:13.393Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:13.394Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:13.626Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=13
+timestamp=2026-09-27T18:29:13.672Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420db1d001iatbux31mzMS4o
+timestamp=2026-09-27T18:29:13.673Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:13.674Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:13.893Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=14
+timestamp=2026-09-27T18:29:13.915Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420dc27001clOtMlmtYhd5Ww
+timestamp=2026-09-27T18:29:13.916Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:13.917Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:14.113Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=15
+timestamp=2026-09-27T18:29:14.130Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420dd03001vEughAY8YSjyVX
+timestamp=2026-09-27T18:29:14.131Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:14.133Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:14.363Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=16
+timestamp=2026-09-27T18:29:14.422Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ddfd001eWh4ZbzAntJDNh
+timestamp=2026-09-27T18:29:14.423Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:14.429Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:14.722Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=17
+timestamp=2026-09-27T18:29:14.767Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420df65001x0cKYDEKeJNxHP
+timestamp=2026-09-27T18:29:14.768Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:14.770Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:14.977Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=18
+timestamp=2026-09-27T18:29:15.005Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e063001zHEn5udtDctFVL
+timestamp=2026-09-27T18:29:15.006Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:15.008Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:15.248Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=19
+timestamp=2026-09-27T18:29:15.285Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e1740018qBztKH7N5mRRo
+timestamp=2026-09-27T18:29:15.286Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:15.287Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:15.524Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=20
+timestamp=2026-09-27T18:29:15.562Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e287001F43B15yd3C2ksL
+timestamp=2026-09-27T18:29:15.563Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:15.564Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:15.800Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=21
+timestamp=2026-09-27T18:29:15.837Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e39a001X4jvUaSWTAYC9K
+timestamp=2026-09-27T18:29:15.838Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:15.839Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:16.053Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=22
+timestamp=2026-09-27T18:29:16.074Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e497001sFHeG9QHv3PdYE
+timestamp=2026-09-27T18:29:16.075Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:16.077Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:16.277Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=23
+timestamp=2026-09-27T18:29:16.302Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e577001UpxPn3Upi2U2KU
+timestamp=2026-09-27T18:29:16.303Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:16.312Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:16.519Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=24
+timestamp=2026-09-27T18:29:16.541Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e669001FnJwHndrIR7rRq
+timestamp=2026-09-27T18:29:16.542Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:16.543Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:16.767Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=25
+timestamp=2026-09-27T18:29:16.788Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e761001fj3HIVApnqpZ6M
+timestamp=2026-09-27T18:29:16.789Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:16.790Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:16.986Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=26
+timestamp=2026-09-27T18:29:17.006Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e83c001I3nK7OPJkFzS6m
+timestamp=2026-09-27T18:29:17.007Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:17.008Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:17.218Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=27
+timestamp=2026-09-27T18:29:17.239Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e924001ID9c0JTZvsTJKy
+timestamp=2026-09-27T18:29:17.239Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:17.240Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:17.437Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=28
+timestamp=2026-09-27T18:29:17.459Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420e9ff0013APrm6cPhoA2TT
+timestamp=2026-09-27T18:29:17.460Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:17.461Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:17.691Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=29
+timestamp=2026-09-27T18:29:17.716Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420eafe001k9yH859glkW2jY
+timestamp=2026-09-27T18:29:17.717Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:17.718Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:17.928Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=30
+timestamp=2026-09-27T18:29:17.949Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ebea001ySLaqJ332WXFME
+timestamp=2026-09-27T18:29:17.950Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:17.951Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:18.149Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=31
+timestamp=2026-09-27T18:29:18.173Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ecc80016vBUzZsHBwO6AS
+timestamp=2026-09-27T18:29:18.174Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:18.175Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:18.372Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=32
+timestamp=2026-09-27T18:29:18.392Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420eda6001hzbDM2UrRVB13J
+timestamp=2026-09-27T18:29:18.393Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:18.394Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:18.595Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=33
+timestamp=2026-09-27T18:29:18.619Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ee85001nU0AEfHxlNX6T4
+timestamp=2026-09-27T18:29:18.619Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:18.621Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:18.822Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=34
+timestamp=2026-09-27T18:29:18.845Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420ef68001DdYVnrhLk7AfpJ
+timestamp=2026-09-27T18:29:18.845Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:18.846Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:19.059Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=35
+timestamp=2026-09-27T18:29:19.078Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f055001jhtQc5D8LhTAUG
+timestamp=2026-09-27T18:29:19.079Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:19.080Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:19.281Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=36
+timestamp=2026-09-27T18:29:19.301Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f133001WlUpGMkgUOl19R
+timestamp=2026-09-27T18:29:19.302Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:19.303Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:19.496Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=37
+timestamp=2026-09-27T18:29:19.519Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f20a001Xrx9YpJnOAZ9c0
+timestamp=2026-09-27T18:29:19.520Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:19.521Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:19.731Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=38
+timestamp=2026-09-27T18:29:19.756Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f2f6001bJKANtCxZzNQfC
+timestamp=2026-09-27T18:29:19.757Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:19.758Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:19.955Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=39
+timestamp=2026-09-27T18:29:19.977Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f3d6001ssQQ4c3SJO7djW
+timestamp=2026-09-27T18:29:19.978Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:19.979Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:20.193Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=40
+timestamp=2026-09-27T18:29:20.212Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f4c30018KcGlQBbnhPI3L
+timestamp=2026-09-27T18:29:20.212Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:20.213Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:20.403Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=41
+timestamp=2026-09-27T18:29:20.427Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f596001C0S80c2uj5KyLv
+timestamp=2026-09-27T18:29:20.427Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:20.428Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:20.641Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=42
+timestamp=2026-09-27T18:29:20.664Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f683001QYVwj3YjpCOyv0
+timestamp=2026-09-27T18:29:20.664Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:20.666Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:20.879Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=43
+timestamp=2026-09-27T18:29:20.904Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f77100115u5wS8AWzSu7K
+timestamp=2026-09-27T18:29:20.905Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:20.917Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:21.137Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=44
+timestamp=2026-09-27T18:29:21.162Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f873001DQId1Z0ZTGoVJr
+timestamp=2026-09-27T18:29:21.162Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:21.171Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:29:21.364Z level=INFO run=4d914565 message=loop session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f step=45
+timestamp=2026-09-27T18:29:21.384Z level=INFO run=4d914565 message=process session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f messageID=msg_0e420f957001ypInk2UNLT0slI
+timestamp=2026-09-27T18:29:21.385Z level=INFO run=4d914565 message=stream providerID=takko modelID=agent session.id=ses_f1bdf3807ffeA77Bl8MRDBBt1f small=false agent=build mode=primary
+timestamp=2026-09-27T18:29:21.386Z level=INFO run=4d914565 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent

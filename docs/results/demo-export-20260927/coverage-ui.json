@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-27T05:04:01.918Z",
+  "passed": true,
+  "source": "real run-11 inspection through production scanner, mocked asset preview UI",
+  "limitations": [
+    "Inspection coverage is incomplete. Uninspected content remains unknown. AssistantCommand:15: Asset exceeds 3000 inspected instances"
+  ],
+  "checks": [
+    "choose disabled before acknowledgment",
+    "limitation visible",
+    "choose enabled after acknowledgment",
+    "acknowledgment persisted"
+  ],
+  "browserErrors": []
+}

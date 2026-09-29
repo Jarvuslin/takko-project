@@ -1,0 +1,55 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/world-policy.test.ts (3 tests | 3 failed) 22ms
+   × records a fresh world, but never injects one into legacy Punch the Dummy: Combat Trainer 12ms
+   × records a fresh world, but never injects one into legacy Butter Crunch 2ms
+   × rejects every unrequested light in the preserved fighting scene 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world-policy.test.ts > records a fresh world, but never injects one into legacy Punch the Dummy: Combat Trainer
+ FAIL  tests/world-policy.test.ts > records a fresh world, but never injects one into legacy Butter Crunch
+AssertionError: expected { schemaVersion: 2, …(20) } to have property "world.kind" with value 'baseplate_template'
+
+- Expected:
+"baseplate_template"
+
++ Received:
+undefined
+
+ ❯ tests/world-policy.test.ts:15:19
+     13|   it(`records a fresh world, but never injects one into legacy ${old.n…
+     14|     const fresh = newProject(old.request, 8000000);
+     15|     expect(fresh).toHaveProperty("world.kind", "baseplate_template");
+       |                   ^
+     16|     expect(exportBundle(old.artifact!,old.scope)).not.toContain('name=…
+     17|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/world-policy.test.ts > rejects every unrequested light in the preserved fighting scene
+AssertionError: expected [ { …(3) } ] to have a length of 4 but got 1
+
+- Expected
++ Received
+
+- 4
++ 1
+
+ ❯ tests/world-policy.test.ts:24:111
+     22|   const lights=old.artifact!.scene.filter(n=>n.className==="PointLight…
+     23|   expect(lights).toHaveLength(4);
+     24|   expect(checkWorldScene(old.artifact!,p).filter(c=>c.id.startsWith("w…
+       |                                                                                                               ^
+     25| });
+     26|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  13:09:43
+   Duration  4.83s (import 83%, transform 15%, worker 1%, tests 1%)
+

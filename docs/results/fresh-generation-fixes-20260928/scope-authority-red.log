@@ -1,0 +1,40 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/scope-questions.test.ts (8 tests | 1 failed) 31ms
+   × does not reopen the real narrow request's explicit closed scope or implementation timing 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scope-questions.test.ts > does not reopen the real narrow request's explicit closed scope or implementation timing
+AssertionError: expected [ …(6) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "Should this limit apply, or should the mechanic support more? Single player character controllable via standard movement (walk/run) plus one dedicated punch input; no additional attack types are added.",
++   "Should this limit apply, or should the mechanic support more? Hit detection uses a simple forward hitbox or short raycast from the player's fist/hand bone active only during the punch animation's strike frames.",
++   "Should this limit apply, or should the mechanic support more? Exactly one hit-and-counter increment can occur per completed punch animation cycle, even if the hitbox theoretically overlaps the dummy for multiple frames.",
++   "Should this limit apply, or should the mechanic support more? The punch/hit sound is a single audio clip with no variation, layering, or randomization requested.",
++   "Should this limit apply, or should the mechanic support more? The on-screen counter is a plain numeric text UI element with no styling, animation, or visual feedback beyond updating the number.",
++   "Should this limit apply, or should the mechanic support more? No cooldown, stamina, or resource system limits punching beyond the animation's own playback duration.",
++ ]
+
+ ❯ tests/scope-questions.test.ts:9:71
+      7| it("does not reopen the real narrow request's explicit closed scope or…
+      8|  const narrow=read("docs/results/opencode-minimal-fighting-20260925/te…
+      9|  expect(scopeQuestions(narrow.proposal.mechanics.assumptions,narrow)).…
+       |                                                                       ^
+     10| });
+     11| it("does not treat an explicit no-combo answer as permission to remove…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  01:19:10
+   Duration  495ms (import 40%, transform 39%, tests 16%, worker 5%)
+

@@ -1,0 +1,21 @@
+[WebServer] (node:37032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:32380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:27768) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:37044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\chat-architecture.spec.ts:4:1 › reviewed node connections persist and do not dispatch generation (11.8s)
+  ok 2 [desktop] › tests\browser\chat-architecture.spec.ts:72:1 › chat retains message drafts and opens technical details without losing them (12.5s)
+  ok 3 [desktop] › tests\browser\chat-architecture.spec.ts:109:1 › actual imported keyframes move the inline rig and survive refresh (12.6s)
+(node:28084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [mobile] › tests\browser\chat-architecture.spec.ts:4:1 › reviewed node connections persist and do not dispatch generation (10.0s)
+  ok 5 [mobile] › tests\browser\chat-architecture.spec.ts:72:1 › chat retains message drafts and opens technical details without losing them (10.5s)
+  ok 6 [mobile] › tests\browser\chat-architecture.spec.ts:109:1 › actual imported keyframes move the inline rig and survive refresh (11.0s)
+
+  6 passed (1.4m)

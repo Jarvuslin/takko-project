@@ -1,0 +1,86 @@
+diff --git a/.forge/design-lab-before/ArchitectureEditor.tsx b/src/web/ArchitectureEditor.tsx
+index 3b6c628..3dfdc9e 100644
+--- a/.forge/design-lab-before/ArchitectureEditor.tsx
++++ b/src/web/ArchitectureEditor.tsx
+@@ -12,11 +12,20 @@ export function ArchitectureEditor({
+   ask,
+   details,
+   save,
++  presentation,
+ }: {
+   project: Project;
+   ask: (message: string) => void;
+   details: (name: string) => void;
+   save: (graph: GameArchitecture, id: string) => Promise<void>;
++  /** Optional preview presentation. Does not alter graph contracts or execution. */
++  presentation?: {
++    initialSelection?: string;
++    layoutKey?: string;
++    nodeHeight?: number;
++    bottomInset?: number;
++    nodeStatus?: (id: string) => { label: string; working?: boolean };
++  };
+ }) {
+   const original = projectGraph(project);
+   const remoteKey = JSON.stringify(original);
+@@ -41,7 +50,9 @@ export function ArchitectureEditor({
+   );
+   const [changed, setChanged] = useState(false);
+   const [graph, setGraph] = useState<GameArchitecture>(initial.graph);
+-  const [selected, setSelected] = useState("");
++  const [selected, setSelected] = useState(
++    presentation?.initialSelection ?? "",
++  );
+   const [from, setFrom] = useState("");
+   const [to, setTo] = useState("");
+   const [event, setEvent] = useState("");
+@@ -86,18 +97,25 @@ export function ArchitectureEditor({
+     const minX = Math.min(...value.nodes.map((n) => n.x)),
+       minY = Math.min(...value.nodes.map((n) => n.y));
+     const width = Math.max(...value.nodes.map((n) => n.x + 200)) - minX,
+-      height = Math.max(...value.nodes.map((n) => n.y + 100)) - minY;
++      height =
++        Math.max(
++          ...value.nodes.map((n) => n.y + (presentation?.nodeHeight ?? 100)),
++        ) - minY;
++    const availableHeight = box.height - (presentation?.bottomInset ?? 0);
+     const zoom = Math.max(
+       0.25,
+-      Math.min(1.15, (box.width - 60) / width, (box.height - 60) / height),
++      Math.min(1.15, (box.width - 60) / width, (availableHeight - 60) / height),
+     );
+     setCamera({
+       zoom,
+       x: (box.width - width * zoom) / 2 - minX * zoom,
+-      y: (box.height - height * zoom) / 2 - minY * zoom,
++      y: (availableHeight - height * zoom) / 2 - minY * zoom,
+     });
+   };
+   const fitted = useRef(0);
++  useEffect(() => {
++    if (presentation?.layoutKey) fit();
++  }, [presentation?.layoutKey]);
+   useEffect(() => {
+     if (graph.nodes.length > fitted.current) {
+       fit();
+@@ -312,7 +330,7 @@ export function ArchitectureEditor({
+           {graph.nodes.map((n) => (
+             <div
+               key={n.id}
+-              className={`architecture-node ${selected === n.id ? "selected" : ""} ${systemEvidence(project, n.id).active ? "node-working" : ""}`}
++              className={`architecture-node ${selected === n.id ? "selected" : ""} ${(presentation?.nodeStatus?.(n.id)?.working ?? systemEvidence(project, n.id).active) ? "node-working" : ""}`}
+               style={{ left: n.x, top: n.y }}
+             >
+               <button
+@@ -376,7 +394,10 @@ export function ArchitectureEditor({
+                       : "Shared module"}
+                 </small>
+                 <strong>{n.name}</strong>
+-                <small>{systemEvidence(project, n.id).status}</small>
++                <small>
++                  {presentation?.nodeStatus?.(n.id)?.label ??
++                    systemEvidence(project, n.id).status}
++                </small>
+               </button>
+               <div className="architecture-ports">
+                 <button

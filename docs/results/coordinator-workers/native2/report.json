@@ -1,0 +1,175 @@
+{
+  "at": "2026-09-22T18:50:18.625Z",
+  "executablePath": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-coordinator-workers-20260922-ready\\Takko-win32-x64\\Takko.exe",
+  "paidCalls": 0,
+  "actualCostMicros": 0,
+  "fixtureInference": true,
+  "nativeStudioTest": false,
+  "origin": "http://127.0.0.1:62324",
+  "identity": {
+    "packaged": true,
+    "executable": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-coordinator-workers-20260922-ready\\Takko-win32-x64\\Takko.exe",
+    "profile": "D:\\RobloxProjects\\Roblox Gen\\.forge\\coordinator-desktop\\native2"
+  },
+  "ok": true,
+  "calls": [
+    {
+      "phase": "planner",
+      "step": "outline"
+    },
+    {
+      "phase": "planner",
+      "step": "area"
+    },
+    {
+      "phase": "planner",
+      "step": "decide"
+    },
+    {
+      "phase": "builder",
+      "taskId": "core_coreTask"
+    },
+    {
+      "phase": "planner",
+      "step": "decide"
+    },
+    {
+      "phase": "reviewer",
+      "step": "review_requirement"
+    },
+    {
+      "phase": "planner",
+      "step": "decide"
+    }
+  ],
+  "finalStage": "ready_to_test",
+  "checks": [
+    {
+      "id": "structure",
+      "status": "passed",
+      "detail": "Paths, script placement, property shapes and duplicate instances checked."
+    },
+    {
+      "id": "coverage:core_core",
+      "status": "passed",
+      "detail": "Fixture state installed"
+    },
+    {
+      "id": "compile:ServerScriptService/Forge_671ae8421add/Game.server.luau",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:coreTest",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "test-coverage:core_core",
+      "status": "passed",
+      "detail": "Acceptance tests must assert observable behavior; execution remains pending."
+    },
+    {
+      "id": "studio",
+      "status": "pending",
+      "detail": "Apply and run this artifact in Studio. Static review does not establish gameplay or visual quality."
+    }
+  ],
+  "workerCount": 4,
+  "fixtureCharges": [
+    {
+      "phase": "planner",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 42813,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.381Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 45869,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.415Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 24824,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.513Z"
+    },
+    {
+      "phase": "builder",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 48723,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.562Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 25234,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.671Z"
+    },
+    {
+      "phase": "reviewer",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 33868,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.700Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "49caf3a7-11ea-4132-8cb9-e8dbf198dd2a",
+      "model": "fixture",
+      "reservedMicros": 26170,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-22T18:50:20.829Z"
+    }
+  ],
+  "rendererErrors": [],
+  "exported": true,
+  "closed": true
+}

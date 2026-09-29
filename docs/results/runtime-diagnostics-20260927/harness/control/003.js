@@ -1,0 +1,15 @@
+const id=JSON.parse(fs.readFileSync(path.join(output,'mode-verified.json'),'utf8')).projectId;
+const p=await api('/projects/'+id);
+if(p.jobId||p.spec||!p.assetDiscovery?.approved||p.proposal?.approval)throw Error('Single build approval precondition failed');
+const g=p.assetDiscovery.groups.find(g=>g.id==='combat');
+const chosen=p.assetDiscovery.choices.combat;
+const option=g.options.find(o=>o.assetId===chosen.assetId);
+const clip=option?.previewData?.pack?.entries.find(e=>e.key===chosen.clipKey);
+if(g.relevance.candidateId!==null||chosen.assetId!=='12061946559'||chosen.clipKey!=='1/1/18/1'||clip?.clip?.rig!=='R15')throw Error('Manual fallback evidence changed');
+fs.writeFileSync(path.join(output,'manual-animation-fallback.json'),JSON.stringify({at:new Date().toISOString(),authorization:'latest attachment permits manual fallback',selection:chosen,assetName:option.name,clipName:clip.name,duration:clip.clip.duration,rig:clip.clip.rig,assessment:g.relevance.assessments.find(a=>a.candidateId===chosen.assetId&&a.clipKey===chosen.clipKey),reason:'No automatic passing option. Choose inspected R15 punch clip near requested 0.3-0.6 seconds. Acquisition and gameplay remain unverified.'},null,2));
+fs.writeFileSync(path.join(output,'before-build.json'),JSON.stringify(p,null,2));
+await page.screenshot({path:path.join(output,'02-proposal-automatic-assets.png'),fullPage:true});
+mark('Dummy and audio automatic. Authorized manual animation fallback. One Approve & build action. Export only.');
+await page.getByRole('button',{name:'Approve & build',exact:true}).click();
+await page.waitForTimeout(500);
+return {stage:(await api('/projects/'+id)).stage,automatic:p.assetDiscovery.choices};

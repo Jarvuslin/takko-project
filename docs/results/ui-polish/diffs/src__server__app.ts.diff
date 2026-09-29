@@ -1,0 +1,43 @@
+diff --git "a/.forge\\ui-polish-before\\src\\server\\app.ts" "b/src\\server\\app.ts"
+index 5774a75..5875681 100644
+--- "a/.forge\\ui-polish-before\\src\\server\\app.ts"
++++ "b/src\\server\\app.ts"
+@@ -36,6 +36,7 @@ import { parseAssetReference } from "../marketplace/types";
+ import { randomUUID } from "node:crypto";
+ import type { CredentialVault } from "../generation/credential-vault";
+ import { validateProviderKey } from "../generation/provider-connection";
++import { UiPreferences } from "../generation/ui-preferences";
+ export function createApp(
+   directory: string,
+   options: {
+@@ -136,6 +137,13 @@ export function createApp(
+     }),
+   );
+   app.get("/api/models", (_req, res) => res.json(config.public()));
++  const uiPreferences = new UiPreferences(
++    path.join(directory, "configuration"),
++  );
++  app.get("/api/ui-preferences", (_req, res) => res.json(uiPreferences.read()));
++  app.put("/api/ui-preferences", (req, res) =>
++    res.json(uiPreferences.write(req.body)),
++  );
+   app.post("/api/provider-connections", async (req, res) => {
+     const { profile, key } = z
+       .object({
+@@ -160,12 +168,10 @@ export function createApp(
+       await validateProviderKey(profile, candidate, options.transport);
+     } catch {
+       if (!key) config.invalidate(profile);
+-      return res
+-        .status(400)
+-        .json({
+-          error:
+-            "Could not validate this provider. Check the key, endpoint and network connection. Your previous saved key has not been replaced.",
+-        });
++      return res.status(400).json({
++        error:
++          "Could not validate this provider. Check the key, endpoint and network connection. Your previous saved key has not been replaced.",
++      });
+     }
+     config.connect(profile, candidate);
+     res.json(config.public());

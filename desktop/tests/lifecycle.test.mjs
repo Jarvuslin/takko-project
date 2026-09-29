@@ -4,7 +4,70 @@ import { EventEmitter } from "node:events";
 import { ServiceSupervisor } from "../supervisor.mjs";
 import path from "node:path";
 import { desktopIdentity, desktopDataDirectory } from "../identity.mjs";
-import { isServiceUrl, readyOrigin, rendererPreferences } from "../policy.mjs";
+import {
+  isServiceUrl,
+  readyOrigin,
+  rendererPreferences,
+  isRobloxBrowserLink,
+  isRobloxThumbnailRequest,
+} from "../policy.mjs";
+
+test("Roblox CDN is allowed only for HTTPS image requests", () => {
+  assert.equal(
+    isRobloxThumbnailRequest("https://tr.rbxcdn.com/asset.png", "image"),
+    true,
+  );
+  for (const type of ["script", "xhr", "mainFrame", "subFrame", "media"])
+    assert.equal(
+      isRobloxThumbnailRequest("https://tr.rbxcdn.com/asset.png", type),
+      false,
+    );
+  for (const url of [
+    "https://rbxcdn.com.evil.test/asset.png",
+    "http://tr.rbxcdn.com/asset.png",
+    "https://user@tr.rbxcdn.com/asset.png",
+    "https://tr.rbxcdn.com:444/asset.png",
+    "file:///C:/asset.png",
+  ])
+    assert.equal(isRobloxThumbnailRequest(url, "image"), false);
+});
+
+test("only HTTPS Creator Store asset and Roblox documentation links open externally", () => {
+  for (const url of [
+    "https://create.roblox.com/store/asset/123/Test",
+    "https://create.roblox.com/docs/studio/mcp",
+  ])
+    assert.equal(isRobloxBrowserLink(url), true);
+  for (const url of [
+    "javascript:alert(1)",
+    "file:///C:/example",
+    "http://create.roblox.com/docs/studio/mcp",
+    "https://create.roblox.com.evil.test/docs/studio/mcp",
+    "https://user@create.roblox.com/docs/studio/mcp",
+    "https://create.roblox.com:444/docs/studio/mcp",
+    "https://create.roblox.com/store/asset/not-an-id",
+    "https://example.com",
+  ])
+    assert.equal(isRobloxBrowserLink(url), false);
+});
+import { serviceEnvironment } from "../service-environment.mjs";
+
+test("desktop keeps Roblox connector paths while excluding inference credentials", () => {
+  const source = {
+    LOCALAPPDATA: "C:\\Users\\test\\AppData\\Local",
+    APPDATA: "C:\\Users\\test\\AppData\\Roaming",
+    PATH: "tools",
+    OPENROUTER_API_KEY: "synthetic",
+    FORGE_API_KEY: "synthetic",
+    FORGE_OPENCODE_BINARY: "C:\\tools\\opencode.exe",
+  };
+  assert.deepEqual(serviceEnvironment(source), {
+    LOCALAPPDATA: source.LOCALAPPDATA,
+    APPDATA: source.APPDATA,
+    PATH: "tools",
+    FORGE_OPENCODE_BINARY: source.FORGE_OPENCODE_BINARY,
+  });
+});
 
 function fixture(options = {}) {
   const child = new EventEmitter();
@@ -38,6 +101,16 @@ test("Takko keeps the existing desktop storage and lock location after rebrandin
     path.join(appData, "Forge Desktop"),
   );
   assert.notEqual(desktopDataDirectory(appData), path.join(appData, "Takko"));
+});
+
+test("an explicit isolated workspace does not change the default desktop directory", () => {
+  const appData = path.resolve("user-app-data");
+  const isolated = path.resolve("isolated-ui-verification");
+  assert.equal(desktopDataDirectory(appData, isolated), isolated);
+  assert.equal(
+    desktopDataDirectory(appData, ""),
+    path.join(appData, "Forge Desktop"),
+  );
 });
 
 test("accepts only nonce-bound readiness from its own child", async () => {

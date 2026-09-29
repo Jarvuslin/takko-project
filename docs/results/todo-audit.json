@@ -1,0 +1,38 @@
+{
+  "ranAt": "2026-09-19T17:56:24.603Z",
+  "sourceFiles": 68,
+  "markers": [],
+  "consoleLog": [
+    {
+      "file": "src\\server\\start.ts",
+      "line": 27
+    }
+  ],
+  "unreachable": [
+    "src\\server\\store.ts",
+    "src\\web\\vite-env.d.ts"
+  ],
+  "importsOfLegacyProvider": [
+    "src\\core\\provider.ts",
+    "tests\\domain.test.ts",
+    "tests\\provider.test.ts"
+  ],
+  "exposure": {
+    "roots": 70,
+    "files": 1746,
+    "legacy": 4,
+    "bootBlocking": 0,
+    "malformedV2Envelope": 0,
+    "unreadableDirectories": 0
+  },
+  "compilerLocations": [
+    {
+      "directory": ".forge/tools/luau",
+      "exists": true
+    },
+    {
+      "directory": "research/tools/luau",
+      "exists": true
+    }
+  ]
+}

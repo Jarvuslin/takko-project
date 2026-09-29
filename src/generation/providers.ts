@@ -1,6 +1,24 @@
 import type { Profile } from "./schema";
+import { anthropicOutputSchema, type OutputContract } from "./output-contract";
 import { citationSources, type ResearchSource } from "./research";
 export type AudioInput = { data: string; format: "wav" };
+// Explicitly verified input capability. Unknown models use metadata-only asset evaluation.
+// https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash
+export function supportsAudioInput(
+  profile: Pick<Profile, "provider" | "model">,
+): boolean {
+  return (
+    (profile.provider === "gemini" && profile.model === "gemini-2.5-flash") ||
+    (profile.provider === "openrouter" &&
+      profile.model === "google/gemini-2.5-flash")
+  );
+}
+export function assertAudioInput(profile: Profile): void {
+  if (!supportsAudioInput(profile))
+    throw new DispatchDenied(
+      `Model ${profile.model} does not support verified audio input on ${profile.provider}. Use metadata-only evaluation.`,
+    );
+}
 const MAX_AUDIO_BYTES = 5 * 1024 * 1024;
 function validateAudio(audio: AudioInput): void {
   if (
@@ -35,6 +53,7 @@ export type Completion = {
   inputTokens: number | null;
   outputTokens: number | null;
   cachedInputTokens?: number;
+  reasoningTokens?: number;
   costMicros?: number;
   sources?: ResearchSource[];
 };
@@ -47,6 +66,12 @@ export class ProviderError extends Error {
     super(message);
   }
 }
+/** Only use when the caller knows no inference request was dispatched. */
+export class DispatchDenied extends ProviderError {
+  constructor(message: string) {
+    super(message, false);
+  }
+}
 export async function complete(
   profile: Profile,
   key: string,
@@ -57,14 +82,11 @@ export async function complete(
   image?: string,
   webResearch = false,
   audio?: AudioInput,
+  outputContract?: OutputContract,
 ): Promise<Completion> {
   if (audio !== undefined) {
     validateAudio(audio);
-    // Protocol support does not establish that the configured model accepts audio.
-    if (profile.provider !== "gemini" && profile.provider !== "openrouter")
-      throw new ProviderError(
-        "Audio input requires a configured Gemini or OpenRouter audio-capable model; this provider transport does not support it",
-      );
+    assertAudioInput(profile);
   }
   const imageMime =
     image?.match(/^data:(image\/(?:png|jpeg|webp));base64,/)?.[1] ??
@@ -192,9 +214,57 @@ export async function complete(
       ],
       max_tokens: profile.maxOutputTokens,
       ...(profile.jsonMode ? { response_format: { type: "json_object" } } : {}),
+      ...(profile.provider === "openrouter" && profile.reasoningEffort
+        ? { reasoning: { effort: profile.reasoningEffort } }
+        : {}),
     };
   }
   let response: Response;
+  if (outputContract && profile.structuredOutput === "anthropic") {
+    if (
+      profile.provider !== "openrouter" ||
+      profile.baseUrl.replace(/\/$/, "") !== "https://openrouter.ai/api/v1" ||
+      !/^anthropic\/[a-zA-Z0-9._-]+$/.test(profile.model)
+    )
+      throw new DispatchDenied(
+        "Strict concept output requires an Anthropic model on OpenRouter.",
+      );
+    // Read-only metadata, before any inference dispatch. Do not assume a model's
+    // general JSON support means the selected endpoint supports strict output.
+    try {
+      const metadata = await transport(
+        `https://openrouter.ai/api/v1/models/${profile.model}/endpoints`,
+        { signal, redirect: "error" },
+      );
+      if (!metadata.ok) throw Error("Metadata unavailable");
+      const data = await metadata.json();
+      const endpoint = data.data?.endpoints?.find(
+        (e: any) => e.tag === "anthropic",
+      );
+      if (
+        !endpoint?.supported_parameters?.includes("structured_outputs") ||
+        !endpoint.supported_parameters.includes("response_format")
+      )
+        throw Error("Unsupported endpoint");
+    } catch {
+      throw new DispatchDenied(
+        "Strict concept output could not be verified for the Anthropic endpoint. No inference request was sent.",
+      );
+    }
+    body.response_format = {
+      type: "json_schema",
+      json_schema: {
+        name: outputContract.name,
+        strict: true,
+        schema: anthropicOutputSchema(outputContract.schema),
+      },
+    };
+    body.provider = {
+      order: ["Anthropic"],
+      allow_fallbacks: false,
+      require_parameters: true,
+    };
+  }
   if (webResearch)
     body.plugins = [
       {
@@ -214,7 +284,8 @@ export async function complete(
       signal,
       redirect: "error",
     });
-  } catch {
+  } catch (error) {
+    if (error instanceof DispatchDenied) throw error;
     throw new ProviderError(
       signal.aborted
         ? "Model request cancelled or timed out"
@@ -226,6 +297,9 @@ export async function complete(
     throw new ProviderError(
       `Provider returned HTTP ${response.status}`,
       response.status === 429 || response.status >= 500,
+      response.status === 404
+        ? { text: "", inputTokens: 0, outputTokens: 0, costMicros: 0 }
+        : undefined,
     );
   if (Number(response.headers.get("content-length") ?? 0) > 2_000_000)
     throw new ProviderError("Provider response is too large");
@@ -244,10 +318,9 @@ export async function complete(
     input: unknown,
     output: unknown;
   let incomplete: string | undefined;
+  const truncated = `Output truncated at the ${profile.maxOutputTokens.toLocaleString("en-US")}-token reply limit. Open Models to adjust Maximum reply size or reasoning effort before trying again.`;
   if (profile.provider === "anthropic") {
-    if (data.stop_reason === "max_tokens")
-      incomplete =
-        "Output truncated: raise the model output limit or reduce task size";
+    if (data.stop_reason === "max_tokens") incomplete = truncated;
     text = (data.content ?? [])
       .filter((x: any) => x.type === "text")
       .map((x: any) => x.text)
@@ -261,7 +334,10 @@ export async function complete(
   } else if (profile.provider === "gemini") {
     const candidate = data.candidates?.[0];
     if (candidate?.finishReason !== "STOP")
-      incomplete = "Gemini response was blocked or incomplete";
+      incomplete =
+        candidate?.finishReason === "MAX_TOKENS"
+          ? truncated
+          : "Gemini response was blocked or incomplete";
     text = (candidate?.content?.parts ?? [])
       .filter((p: any) => !p.thought)
       .map((p: any) => p.text ?? "")
@@ -273,7 +349,10 @@ export async function complete(
       : null;
   } else if (profile.provider === "openai") {
     if (data.status && data.status !== "completed")
-      incomplete = "OpenAI response was incomplete";
+      incomplete =
+        data.incomplete_details?.reason === "max_output_tokens"
+          ? truncated
+          : "OpenAI response was incomplete";
     text = (data.output ?? [])
       .flatMap((o: any) => o.content ?? [])
       .filter((c: any) => c.type === "output_text")
@@ -282,9 +361,7 @@ export async function complete(
     input = data.usage?.input_tokens;
     output = data.usage?.output_tokens;
   } else {
-    if (data.choices?.[0]?.finish_reason === "length")
-      incomplete =
-        "Output truncated: raise the model output limit or reduce task size";
+    if (data.choices?.[0]?.finish_reason === "length") incomplete = truncated;
     text = data.choices?.[0]?.message?.content;
     input = data.usage?.prompt_tokens;
     output = data.usage?.completion_tokens;
@@ -325,6 +402,21 @@ export async function complete(
     cached <= result.inputTokens
   )
     result.cachedInputTokens = cached;
+  const reasoning = count(
+    data.usage?.completion_tokens_details?.reasoning_tokens ??
+      data.usage?.output_tokens_details?.reasoning_tokens ??
+      data.usageMetadata?.thoughtsTokenCount,
+  );
+  if (
+    reasoning !== null &&
+    result.outputTokens !== null &&
+    reasoning <= result.outputTokens
+  )
+    result.reasoningTokens = reasoning;
+  if (incomplete === truncated && !text.trim())
+    incomplete += reasoning
+      ? ` No answer text was returned. The provider reported ${reasoning.toLocaleString("en-US")} reasoning tokens.`
+      : " No answer text was returned. Reasoning may have used the available tokens.";
   if (incomplete) throw new ProviderError(incomplete, false, result);
   return result;
 }
@@ -347,22 +439,76 @@ export async function modelCatalog(
     headers["anthropic-version"] = "2023-06-01";
   } else if (profile.provider === "gemini") headers["x-goog-api-key"] = key;
   else if (key) headers.Authorization = `Bearer ${key}`;
-  const res = await transport(profile.baseUrl.replace(/\/$/, "") + "/models", {
-    headers,
-    signal: AbortSignal.timeout(15000),
-    redirect: "error",
-  });
-  if (!res.ok)
-    throw new ProviderError(`Model catalog returned HTTP ${res.status}`);
-  const data: any = await res.json();
-  return (data.data ?? data.models ?? []).slice(0, 3000).map((m: any) => ({
-    id: String(m.id ?? m.name).replace(/^models\//, ""),
-    name: String(m.name ?? m.displayName ?? m.id),
-    inputRate:
-      m.pricing?.prompt !== undefined ? Number(m.pricing.prompt) * 1e6 : null,
-    outputRate:
-      m.pricing?.completion !== undefined
-        ? Number(m.pricing.completion) * 1e6
-        : null,
-  }));
+  const endpoint = profile.baseUrl.replace(/\/$/, "") + "/models";
+  const signal = AbortSignal.timeout(30000);
+  const seen = new Set<string>();
+  let next = endpoint;
+  const models: {
+    id: string;
+    name: string;
+    inputRate: number | null;
+    outputRate: number | null;
+    contextLength?: number;
+  }[] = [];
+  const rate = (value: unknown) => {
+    if (
+      (typeof value !== "number" && typeof value !== "string") ||
+      value === ""
+    )
+      return null;
+    const n = Number(value) * 1e6;
+    return Number.isFinite(n) && n >= 0 && n <= 1000 ? n : null;
+  };
+  for (let page = 0; page < 100; page++) {
+    if (seen.has(next))
+      throw new ProviderError("Model catalog repeated a page");
+    seen.add(next);
+    const res = await transport(next, { headers, signal, redirect: "error" });
+    if (!res.ok)
+      throw new ProviderError(`Model catalog returned HTTP ${res.status}`);
+    const data: any = await res.json();
+    const rows = data.data ?? data.models ?? [];
+    if (!Array.isArray(rows)) throw new ProviderError("Invalid model catalog");
+    for (const m of rows) {
+      if (typeof (m.id ?? m.name) !== "string") continue;
+      if (
+        profile.provider === "gemini" &&
+        Array.isArray(m.supportedGenerationMethods) &&
+        !m.supportedGenerationMethods.includes("generateContent")
+      )
+        continue;
+      const id = String(m.id ?? m.name).replace(/^models\//, "");
+      if (models.some((existing) => existing.id === id)) continue;
+      models.push({
+        id,
+        name: String(m.display_name ?? m.displayName ?? m.name ?? m.id),
+        inputRate: rate(m.pricing?.prompt),
+        outputRate: rate(m.pricing?.completion),
+        ...(Number.isSafeInteger(m.context_length ?? m.inputTokenLimit) &&
+        (m.context_length ?? m.inputTokenLimit) > 0
+          ? { contextLength: m.context_length ?? m.inputTokenLimit }
+          : {}),
+      });
+      if (models.length > 3000)
+        throw new ProviderError("Model catalog exceeds the supported size");
+    }
+    const token =
+      profile.provider === "gemini"
+        ? data.nextPageToken
+        : profile.provider === "anthropic" && data.has_more
+          ? data.last_id
+          : null;
+    if (!token) {
+      if (profile.provider === "anthropic" && data.has_more)
+        throw new ProviderError("Model catalog pagination is incomplete");
+      return models;
+    }
+    const url = new URL(endpoint);
+    url.searchParams.set(
+      profile.provider === "gemini" ? "pageToken" : "after_id",
+      String(token),
+    );
+    next = url.toString();
+  }
+  throw new ProviderError("Model catalog pagination exceeds its limit");
 }

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import express from "express";
 import { createApp } from "../src/server/app";
+import { windowsCredentialVault } from "../src/generation/credential-vault";
 
 // Electron utilityProcess supplies parentPort. Node IPC is used only by offline tests.
 const parentPort = (
@@ -22,7 +23,10 @@ if (!path.isAbsolute(directory) || !path.isAbsolute(resources))
 fs.mkdirSync(directory, { recursive: true });
 process.chdir(directory);
 const app = createApp(path.join(directory, "projects"), {
-  env: {},
+  env: { FORGE_OPENCODE_BINARY: process.env.FORGE_OPENCODE_BINARY },
+  credentialVault: windowsCredentialVault(
+    path.join(directory, "provider-keys.dpapi"),
+  ),
   pluginPath: path.join(resources, "plugin", "Forge.plugin.luau"),
   audioHelperPath: path.join(
     resources,

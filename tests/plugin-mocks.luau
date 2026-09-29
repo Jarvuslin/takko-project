@@ -43,6 +43,7 @@ local playerScripts=Instance.new('StarterPlayerScripts');playerScripts.Parent=ga
 local function constructor(...) return table.concat({...},',') end
 local Vector3={new=constructor};local Vector2={new=constructor};local Color3={new=constructor,fromRGB=constructor};local CFrame={new=constructor};local UDim={new=constructor};local UDim2={new=constructor,fromScale=constructor}
 local Enum={InitialDockState={Right=1},Font={SourceSans=1},FinishRecordingOperation={Cancel=0,Commit=1}}
+Enum.Material={GetEnumItems=function() return {{Value=256,Name="Plastic"}} end}
 local DockWidgetPluginGuiInfo={new=function() return {} end}
 local plugin={CreateToolbar=function() return {CreateButton=function() return Instance.new('Button') end} end,CreateDockWidgetPluginGui=function() return Instance.new('Widget') end,Unloading=event()}
 local task={spawn=function() end,wait=function() end}

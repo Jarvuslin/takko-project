@@ -1,0 +1,24 @@
+{
+  "executablePath": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-ui-polish-20260921-final\\Takko-win32-x64\\Takko.exe",
+  "data": "D:\\RobloxProjects\\Roblox Gen\\.forge\\ui-polish-native\\native2",
+  "startedAt": "2026-09-21T19:00:25.412Z",
+  "paidCalls": 0,
+  "origin": "http://127.0.0.1:63121",
+  "identity": {
+    "packaged": true,
+    "executable": "D:\\RobloxProjects\\Roblox Gen\\release\\takko-ui-polish-20260921-final\\Takko-win32-x64\\Takko.exe",
+    "data": "D:\\RobloxProjects\\Roblox Gen\\.forge\\ui-polish-native\\native2",
+    "minimum": [
+      860,
+      640
+    ],
+    "preferences": {
+      "sandbox": true,
+      "contextIsolation": true,
+      "nodeIntegration": false
+    }
+  },
+  "result": "failed",
+  "error": "Error: browserContext.newPage: Protocol error (Target.createTarget): Not supported\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md",
+  "finishedAt": "2026-09-21T19:00:32.128Z"
+}

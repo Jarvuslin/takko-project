@@ -1,0 +1,24 @@
+✔ labels excluded and reversed order keeps candidate identities (1.7112ms)
+✔ worst-case reservations for all calls fit the ceiling (0.1776ms)
+✔ valid answers accepted (0.4775ms)
+✔ unknown choices and answer IDs rejected (0.3501ms)
+✔ invalid confidence, distribution and scores rejected (0.3068ms)
+✔ version changes rejected (0.1391ms)
+✔ complete mock run accounts for every call without saving key (41.6816ms)
+✔ HTTP failure stops after one call and retains unknown usage reservation (3.2062ms)
+✔ malformed answers preserve known billable usage and stop (4.1679ms)
+✔ attempted run cannot be silently repeated (3.3285ms)
+✔ ties do not get an arbitrary perfect reciprocal rank (0.2409ms)
+✔ missing credentials cause no network request (1.1343ms)
+✔ missing provider cost stops with reservation retained (3.4939ms)
+✔ provider cost is recorded independently from token-price estimate (16.8329ms)
+✔ dated model identity accepted and arbitrary versions rejected (0.1685ms)
+✔ request is pinned to TypeSafe without provider fallback (0.1608ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 172.4854

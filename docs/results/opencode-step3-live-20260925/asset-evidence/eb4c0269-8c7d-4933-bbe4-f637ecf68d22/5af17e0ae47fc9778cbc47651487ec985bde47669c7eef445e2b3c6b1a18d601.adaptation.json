@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "kind": "takko-component-adaptation",
+  "original": {
+    "archiveHash": "237168f0270888b3d0331d653d079dfa139c46c6adf31c2e8acc8869b47f25b1",
+    "manifestHash": "a3dac7c1fa36f830fba91cfb2f1d94c6d64be227fde66240748dabe9b6c19680"
+  },
+  "plan": {
+    "packetHash": "f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754",
+    "inputHash": "59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592",
+    "reason": "The prior review flagged the embedded 'Respawn' Script (index 18) as unsafe/unsuitable behavior: it polls the dummy's own Humanoid.Health and, on death, clones and re-parents a fresh dummy while destroying the original. This directly conflicts with r_dummy_stationary's requirement that the dummy 'cannot be damaged, destroyed, or knocked over' and shows no reactive behavior, and it is unrelated to any requested mechanic. This manifest removes only that Script subtree, preserving every other node: the Model hierarchy, its Parts, SpecialMesh geometry, Head, Torso, the Torso's Decal (rbxassetid://406436910 canvas heavy-bag texture), and the Humanoid component itself, which remains present but will never be driven by any damage-dealing logic elsewhere in this namespace. No replacement source or new script is added by this component; hitbox wiring and overlap math are explicitly owned by the separate hitDetectionModule task per the accepted integration task list, not by this asset-adaptation step.",
+    "removeSubtrees": [
+      {
+        "index": 18,
+        "reason": "Embedded 'Respawn' Script implements a Humanoid-health-triggered clone/respawn loop that would make the dummy reactive to damage and eventually swap/destroy the original Model. This conflicts with r_dummy_stationary's explicit acceptance criteria (no health depletion, no reactive/respawn behavior, cannot be defeated) and has no requested role in this minimal training-drill scope. Removing it is safe: it is a leaf Script with no descendants, and no other captured node references or depends on it."
+      }
+    ],
+    "replaceSources": [],
+    "addSources": [],
+    "preservedBehavior": [
+      "Model hierarchy (index 1-2) and all body Parts (indices 3,5,7,9,10,11,12) with their SpecialMesh geometry (indices 4,6,8) retained unchanged, preserving the dummy's red/black canvas heavy-bag visual shape.",
+      "Head (index 13) and its SpecialMesh (index 14) retained unchanged.",
+      "Torso (index 15) retained unchanged as the distinguishable body part designated for later hitbox use by the separate hitDetectionModule task.",
+      "Torso Decal (index 16) with Texture rbxassetid://406436910 retained unchanged, preserving the dummy's existing canvas heavy-bag appearance required by r_theme_gym.",
+      "Humanoid (index 17) retained on the Model; it remains present as part of the asset's original rig but is not wired to any damage source in this namespace, so it will not deplete or trigger reactive behavior now that the Respawn watcher script is removed.",
+      "All joints/welds implicit in the original Part hierarchy are left intact since no geometry-bearing node was altered or removed."
+    ],
+    "remainingIntegration": [
+      "Placement of this dummy Model at the fixed world position/CFrame specified for the practice-dummy target is owned by the worldSetup/dummyAssetIntegration tasks, not this component-level edit.",
+      "Designating Torso (index 15) as the authoritative server-side hitbox reference and implementing the strike-window overlap/distance math is owned by the separate hitDetectionModule task; no hitbox-defining code exists in this captured component.",
+      "Ensuring no other script anywhere in the namespace ever calls TakeDamage/sets Health on this dummy's Humanoid must be verified during integration of PunchServer and HitDetectionModule, since the Humanoid component itself was preserved rather than removed.",
+      "Visual/theme acceptance of the decal texture and mesh geometry against r_theme_gym still requires native rendering verification once the dummy is placed in the scene; this was not performed here."
+    ],
+    "nativeTestPlan": [
+      "In Roblox Studio Edit mode, confirm the dummy Model under the component's namespace no longer contains a 'Respawn' Script instance (index 18) after applying this manifest.",
+      "Enter Play/Test mode, observe the placed dummy: confirm it remains stationary, its Humanoid.Health stays at its initial value with no depletion or cloning/respawn event occurring even after extended idle time.",
+      "Visually inspect the dummy in Play mode to confirm the Torso Decal texture (rbxassetid://406436910) renders correctly, matching the canvas heavy-bag appearance, and that Head/Torso/limb mesh parts render without missing geometry or errors in the Output window.",
+      "Once the separate hitDetectionModule and PunchServer components are integrated, native-test that punching near the Torso part registers a hit only via that server module's overlap check, and confirm the dummy still never flinches, moves, or is destroyed regardless of hit count.",
+      "Check the Output/Developer Console during Play mode for any script errors referencing the removed Respawn script or orphaned references to it elsewhere in the place."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "planHash": "42252026e42068fa68ec6d5b8d6ee94e037d1cf6d4b131fc11d6613405eda95c",
+  "adapted": {
+    "archiveHash": "fc830d4404bb078910f4d980ad039121e8199270113df3581cd9d473a952090f",
+    "manifestHash": "f11fbe871b4ff7312d30cb0c450b475482f1e068ee9a197219b14fffd98bc7d7"
+  },
+  "indexMap": [
+    {
+      "before": 1,
+      "after": 1
+    },
+    {
+      "before": 2,
+      "after": 2
+    },
+    {
+      "before": 3,
+      "after": 3
+    },
+    {
+      "before": 4,
+      "after": 4
+    },
+    {
+      "before": 5,
+      "after": 5
+    },
+    {
+      "before": 6,
+      "after": 6
+    },
+    {
+      "before": 7,
+      "after": 7
+    },
+    {
+      "before": 8,
+      "after": 8
+    },
+    {
+      "before": 9,
+      "after": 9
+    },
+    {
+      "before": 10,
+      "after": 10
+    },
+    {
+      "before": 11,
+      "after": 11
+    },
+    {
+      "before": 12,
+      "after": 12
+    },
+    {
+      "before": 13,
+      "after": 13
+    },
+    {
+      "before": 14,
+      "after": 14
+    },
+    {
+      "before": 15,
+      "after": 15
+    },
+    {
+      "before": 16,
+      "after": 16
+    },
+    {
+      "before": 17,
+      "after": 17
+    }
+  ],
+  "sourceReview": "required",
+  "runtimeVerification": "not_performed",
+  "exported": false,
+  "executed": false
+}

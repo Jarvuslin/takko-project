@@ -1,0 +1,10 @@
+const id=JSON.parse(fs.readFileSync(path.join(output,'mode-verified.json'),'utf8')).projectId;
+const p=await api('/projects/'+id);
+if(p.jobId||p.spec||!p.assetDiscovery?.approved||p.proposal?.approval)throw Error('Single build approval precondition failed');
+if(p.assetDiscovery.groups.some(g=>!g.relevance?.candidateId||p.assetDiscovery.choices[g.id]?.assetId!==g.relevance.candidateId))throw Error('Expected every current selection to pass automatically');
+fs.writeFileSync(path.join(output,'before-build.json'),JSON.stringify(p,null,2));
+await page.screenshot({path:path.join(output,'02-proposal-automatic-assets.png'),fullPage:true});
+mark('All three groups selected automatically by Jev. One Approve & build action. Export only.');
+await page.getByRole('button',{name:'Approve & build',exact:true}).click();
+await page.waitForTimeout(500);
+return {stage:(await api('/projects/'+id)).stage,automatic:p.assetDiscovery.choices};

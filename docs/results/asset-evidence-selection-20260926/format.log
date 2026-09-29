@@ -1,0 +1,22 @@
+src/marketplace/relevance.ts 97ms
+src/marketplace/animations.ts 19ms
+src/marketplace/discovery-routes.ts 73ms
+src/marketplace/discovery.ts 12ms (unchanged)
+src/marketplace/studio.ts 46ms
+src/marketplace/preview.ts 6ms
+src/marketplace/selected-clip-context.ts 7ms (unchanged)
+src/generation/asset-gaps.ts 7ms
+src/generation/engine.ts 209ms
+src/generation/validation.ts 37ms
+src/web/AssetModelPreview.tsx 8ms
+src/web/AssetPreviewDialog.tsx 15ms
+src/web/preview/model-scene.ts 5ms
+src/web/preview/scenes.ts 8ms
+tests/asset-motion-evidence.test.ts 10ms
+tests/model-preview-evidence.test.ts 3ms
+tests/model-preview-producer.test.ts 5ms
+tests/asset-choices.test.ts 71ms
+tests/noncoding-decisions.test.ts 42ms (unchanged)
+tests/selected-clip-context.test.ts 6ms
+tests/browser/asset-evidence.spec.ts 6ms
+scripts/capture-marketplace-evidence.ts 5ms

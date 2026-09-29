@@ -1,0 +1,11 @@
+const dialog=page.getByRole("dialog",{name:"Choose assets",exact:true});
+await expect.poll(()=>dialog.locator("img").evaluateAll(images=>images.filter(img=>img.complete && img.naturalWidth>0).length),{timeout:20000}).toBeGreaterThan(0);
+const metrics=await dialog.evaluate(el=>Array.from(el.querySelectorAll("*" )).filter(e=>e.scrollHeight>e.clientHeight+10 && /auto|scroll/.test(getComputedStyle(e).overflowY)).map(e=>({tag:e.tagName,class:e.className,top:e.scrollTop,height:e.clientHeight,scrollHeight:e.scrollHeight})));
+const box=await dialog.boundingBox();
+await page.mouse.move(box.x+box.width/2,box.y+box.height/2);
+await page.mouse.wheel(0,650);
+await expect.poll(()=>dialog.evaluate(el=>Array.from(el.querySelectorAll("*")).some(e=>e.scrollTop>100))).toBe(true);
+await page.screenshot({path:path.join(output,"05-chooser-scrolled.png")});
+await dialog.getByRole("button",{name:"Fighting animation",exact:true}).click();
+await page.screenshot({path:path.join(output,"06-animation-options.png")});
+return {scrollBefore:metrics,body:await dialog.innerText(),images:await dialog.locator("img").evaluateAll(images=>images.map(img=>({alt:img.alt,loaded:img.complete&&img.naturalWidth>0})))};

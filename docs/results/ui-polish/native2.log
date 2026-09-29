@@ -1,0 +1,10 @@
+file:///D:/RobloxProjects/Roblox%20Gen/node_modules/@axe-core/playwright/dist/index.mjs:218
+      throw new Error(
+            ^
+
+Error: browserContext.newPage: Protocol error (Target.createTarget): Not supported
+ Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md
+    at AxeBuilder.analyze (file:///D:/RobloxProjects/Roblox%20Gen/node_modules/@axe-core/playwright/dist/index.mjs:218:13)
+    at async <anonymous> (D:\RobloxProjects\Roblox Gen\scripts\verify-ui-polish-desktop.ts:117:25)
+
+Node.js v24.15.0

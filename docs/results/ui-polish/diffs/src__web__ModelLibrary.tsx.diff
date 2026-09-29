@@ -1,0 +1,187 @@
+diff --git "a/.forge\\ui-polish-before\\src\\web\\ModelLibrary.tsx" "b/src\\web\\ModelLibrary.tsx"
+index 4e4e414..76fb1ab 100644
+--- "a/.forge\\ui-polish-before\\src\\web\\ModelLibrary.tsx"
++++ "b/src\\web\\ModelLibrary.tsx"
+@@ -221,7 +221,7 @@ function ProviderConnection({
+           </strong>
+           <small>
+             {source
+-              ? "No need to enter the key again. All models from this provider use this connection."
++              ? "Available to all models from this provider."
+               : "Add your provider key once. Validate it to unlock the model catalog."}
+           </small>
+           <small>
+@@ -274,43 +274,50 @@ function ProviderConnection({
+         </small>
+       )}
+       {source && !editing && (
+-        <div className="connection-actions">
+-          <button type="button" disabled={busy} onClick={() => void validate()}>
+-            {busy ? "Checking…" : "Test connection"}
+-          </button>
+-          <button type="button" onClick={() => setEditing(true)}>
+-            Replace key
+-          </button>
+-          <button
+-            type="button"
+-            disabled={busy}
+-            onClick={async () => {
+-              if (
+-                !confirm(
+-                  "Disconnect this provider? Its models stay in your library, but they will need a key again.",
++        <details className="connection-management">
++          <summary>Manage connection</summary>
++          <div className="connection-actions">
++            <button
++              type="button"
++              disabled={busy}
++              onClick={() => void validate()}
++            >
++              {busy ? "Checking…" : "Test connection"}
++            </button>
++            <button type="button" onClick={() => setEditing(true)}>
++              Replace key
++            </button>
++            <button
++              type="button"
++              disabled={busy}
++              onClick={async () => {
++                if (
++                  !confirm(
++                    "Disconnect this provider? Its models stay in your library, but they will need a key again.",
++                  )
+                 )
+-              )
+-                return;
+-              setBusy(true);
+-              try {
+-                saved(
+-                  await settingsApi("/provider-connections", "DELETE", {
+-                    profile: {
+-                      ...profile,
+-                      name: profile.name || providers[profile.provider].name,
+-                    },
+-                  }),
+-                );
+-              } catch (e) {
+-                setError((e as Error).message);
+-              } finally {
+-                setBusy(false);
+-              }
+-            }}
+-          >
+-            Disconnect
+-          </button>
+-        </div>
++                  return;
++                setBusy(true);
++                try {
++                  saved(
++                    await settingsApi("/provider-connections", "DELETE", {
++                      profile: {
++                        ...profile,
++                        name: profile.name || providers[profile.provider].name,
++                      },
++                    }),
++                  );
++                } catch (e) {
++                  setError((e as Error).message);
++                } finally {
++                  setBusy(false);
++                }
++              }}
++            >
++              Disconnect
++            </button>
++          </div>
++        </details>
+       )}
+       {error && <p role="alert">{error}</p>}
+     </div>
+@@ -424,7 +431,17 @@ function Catalog({
+           <Icon name="sliders" /> Refresh
+         </button>
+       </div>
+-      {busy && <p role="status">Loading available models…</p>}
++      {busy && (
++        <div className="catalog-loading" role="status">
++          <p>Loading available models…</p>
++          {[0, 1, 2].map((i) => (
++            <div className="catalog-skeleton" aria-hidden="true" key={i}>
++              <span />
++              <span />
++            </div>
++          ))}
++        </div>
++      )}
+       {status && (
+         <p className="catalog-note" role="status">
+           {status}
+@@ -535,7 +552,7 @@ function ModelForm({
+   const [busy, setBusy] = useState(false);
+   const [error, setError] = useState("");
+   const [remove, setRemove] = useState(false);
+-  const [manual, setManual] = useState(!!initial.model);
++  const [manual, setManual] = useState(false);
+   const [priceOpen, setPriceOpen] = useState(
+     initial.pricingSource === "unknown" && !!initial.model,
+   );
+@@ -575,7 +592,7 @@ function ModelForm({
+   return (
+     <SettingsDialog
+       title={exists ? "Edit model" : "Add model"}
+-      description="Choose a provider, then a model. Save it once and use it in any preset."
++      description="Choose a model for your library. Use it in any preset."
+       close={close}
+       dirty={dirty}
+       busy={busy}
+@@ -588,7 +605,7 @@ function ModelForm({
+       >
+         <div className="dialog-body model-form-body">
+           {error && <p role="alert">{error}</p>}
+-          <h3>1. Provider</h3>
++          <h3>Provider</h3>
+           <ProviderChoices
+             value={profile.provider}
+             change={(provider) => {
+@@ -617,7 +634,7 @@ function ModelForm({
+             settings={settings}
+             saved={saved}
+           />
+-          <h3>2. Model</h3>
++          <h3>Model</h3>
+           {!profile.model && (
+             <Catalog
+               profile={profile}
+@@ -631,7 +648,7 @@ function ModelForm({
+                       : undefined,
+                 }));
+                 setPriceOpen(picked(profile, m).pricingSource === "unknown");
+-                setManual(true);
++                setManual(false);
+               }}
+             />
+           )}
+@@ -654,7 +671,11 @@ function ModelForm({
+             disabled={!source}
+             onClick={() => setManual((v) => !v)}
+           >
+-            {manual ? "Hide model details" : "Can't find it? Enter a model ID"}
++            {manual
++              ? "Hide model details"
++              : profile.model
++                ? "Edit model details"
++                : "Can't find it? Enter a model ID"}
+           </button>
+           {manual && source && (
+             <div className="settings-form-grid">
+@@ -754,8 +775,7 @@ function ModelForm({
+           </details>
+           <details>
+             <summary>
+-              Fine-tune this model{" "}
+-              <small>Optional · defaults work for most models</small>
++              Advanced <small>Optional · defaults work for most models</small>
+             </summary>
+             <label>
+               Maximum reply size

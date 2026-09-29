@@ -1,0 +1,10 @@
+const id = new URL(page.url()).searchParams.get('project');
+const p = await api('/projects/'+id);
+fs.writeFileSync(path.join(output,'final-project.json'),JSON.stringify(p,null,2));
+await page.screenshot({path:path.join(output,'13-budget-stop.png'),fullPage:true});
+mark('Benchmark stopped by the cumulative budget guard before VFX/SFX planning dispatch. No generation retry, generated code or native game application.');
+const selected = JSON.parse(fs.readFileSync(path.join(output,'08-selected-project.json'),'utf8'));
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const retention={at:new Date().toISOString(),proposalSections:['mechanics','theme','environment'].every(id=>same(selected.proposal[id],p.proposal[id])),selectedAssets:same(selected.assetDiscovery.choices,p.assetDiscovery.choices),attachments:same(selected.assetAttachments,p.assetAttachments),generationId:selected.generation?.id===p.generation?.id,chargeStart:selected.generation?.chargeStart===p.generation?.chargeStart,completedWorkers:p.coordination?.workers.filter(w=>w.status==='completed').length,files:p.artifact?.files?.length??0,scene:p.artifact?.scene?.length??0,activeReservations:p.reservedMicros,error:p.error};
+fs.writeFileSync(path.join(output,'failure-retention.json'),JSON.stringify(retention,null,2));
+return retention;

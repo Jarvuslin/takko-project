@@ -10,9 +10,12 @@ import {
 } from "./component-review";
 import { loadComponentAdaptationChain } from "./component-adaptation";
 import { loadComponentXml } from "./component-xml-conversion";
+import { nameComponentRoot, anchorComponentParts } from "./component-xml";
+import { componentPhysics } from "./component-physics";
 import { assertNoRuntimeSourceWrites } from "./runtime-source-check";
 import type { AssetNeed } from "./asset-contract";
-import type { Project } from "./schema";
+import type { Project, Bundle, Check } from "./schema";
+import { retainedStudioAnimation } from "./retained-animation";
 const hash = (v: string | Buffer) =>
   createHash("sha256").update(v).digest("hex");
 const digest = z.string().regex(/^[a-f0-9]{64}$/);
@@ -72,6 +75,8 @@ export function persistComponentIntegration(
     scope: string;
     conversionHash: string;
     comparison: unknown;
+    instanceName?: string;
+    version?: 1 | 2;
   },
 ) {
   const fresh = componentEvidence(
@@ -83,8 +88,19 @@ export function persistComponentIntegration(
   if (!isDeepStrictEqual(fresh, args.evidence))
     throw Error("Integration evidence differs from retained component");
   assertIntegrationReview(fresh, args.review, args.need);
-  const destinationPath = `Workspace/${args.scope}/Assets/${args.need.id}`;
-  const xml = loadComponentXml(directory, args.conversionHash, destinationPath);
+  const version = args.version ?? 2;
+  const sourceData = args.need.kind === "Animation" || args.need.kind === "Audio" || args.need.deliveryRole === "source_data";
+  const destinationPath = `${version === 2 && sourceData ? "ReplicatedStorage" : "Workspace"}/${args.scope}/Assets/${args.need.id}`;
+  const retainedXml = loadComponentXml(
+    directory,
+    args.conversionHash,
+    destinationPath,
+  );
+  if (args.instanceName !== undefined && args.instanceName !== args.need.id)
+    throw Error("Component instance name must match its stable need identity");
+  const xml = args.instanceName
+    ? nameComponentRoot(retainedXml, args.instanceName)
+    : retainedXml;
   const conversion = JSON.parse(
     fs.readFileSync(
       path.join(directory, args.conversionHash + ".conversion.json"),
@@ -112,16 +128,17 @@ export function persistComponentIntegration(
     archiveHash: fresh.derivativeHash,
     conversionHash: args.conversionHash,
     destinationPath,
-    rootName: fresh.nodes[0].name,
+    rootName: args.instanceName ?? fresh.nodes[0].name,
     runtimeVerification: "not_performed" as const,
     placement: "worker_integration_required" as const,
   };
   const record = {
-    version: 1,
+    version,
     kind: "takko-component-integration",
     preparedHash: args.preparedHash,
     scope: args.scope,
     need: args.need,
+    ...(args.instanceName ? { instanceName: args.instanceName } : {}),
     review: args.review,
     comparison,
     xmlHash: xml.sha256,
@@ -149,7 +166,7 @@ export function loadComponentIntegration(
     throw Error("Integration record identity mismatch");
   const record = JSON.parse(bytes.toString("utf8"));
   if (
-    record.version !== 1 ||
+    ![1, 2].includes(record.version) ||
     record.kind !== "takko-component-integration" ||
     !isDeepStrictEqual(
       record.metadata,
@@ -173,10 +190,15 @@ export function loadComponentIntegration(
   return {
     record,
     evidence,
-    xml: loadComponentXml(directory, ref.conversionHash, ref.destinationPath),
+    xml: record.instanceName
+      ? nameComponentRoot(
+          loadComponentXml(directory, ref.conversionHash, ref.destinationPath),
+          record.instanceName,
+        )
+      : loadComponentXml(directory, ref.conversionHash, ref.destinationPath),
   };
 }
-export function projectComponents(project: Project, directory: string) {
+export function projectComponents(project: Project, directory: string, bundle: Bundle | null = project.artifact) {
   const run = project.assetPipeline,
     entries = run?.entries.filter((e) => e.component) ?? [];
   if (!entries.length) return [];
@@ -194,10 +216,10 @@ export function projectComponents(project: Project, directory: string) {
       entry.status !== "passed" ||
       !need ||
       ref.needId !== entry.needId ||
-      entry.componentContextHash !== run.inputHash ||
+      entry.componentContextHash !==
+        (entry.reusedFrom?.inputHash ?? run.inputHash) ||
       ref.candidateId !== entry.selected?.id ||
-      ref.destinationPath !==
-        `Workspace/${project.scope}/Assets/${entry.needId}`
+      !["Workspace", "ReplicatedStorage"].some(root => ref.destinationPath === `${root}/${project.scope}/Assets/${entry.needId}`)
     )
       throw Error("Component reference is not bound to the accepted need");
     const loaded = loadComponentIntegration(directory, ref);
@@ -206,13 +228,31 @@ export function projectComponents(project: Project, directory: string) {
       loaded.record.scope !== project.scope
     )
       throw Error("Component need or scope changed");
-    return { reference: ref, ...loaded };
+    const physics = componentPhysics(loaded.xml.xml);
+    const decision = bundle?.retainedPhysics?.find(d=>d.needId===entry.needId);
+    return { reference: ref, ...loaded, physics,
+      xml: decision?.mode === "anchor_all" ? anchorComponentParts(loaded.xml) : loaded.xml };
   });
 }
 export function componentBuilderContext(project: Project, directory: string) {
   return projectComponents(project, directory).map(
-    ({ reference, record, evidence }) => ({
+    ({ reference, record, evidence, physics }) => ({
       reference,
+      physics,
+      physicsObligation: reference.destinationPath.startsWith("Workspace/") && physics.unsupportedParts.length
+        ? "This retained visible prop has disconnected unanchored parts. Submit retainedPhysics with its needId and mode anchor_all to anchor the delivery copy, or deliberately_dynamic with the intended gameplay reason. Do not claim these loose parts are physically sound. The original retained archive stays unchanged."
+        : undefined,
+      localContent: {
+        destinationPath: reference.destinationPath,
+        rootName: reference.rootName,
+        instruction:
+          "Content is already retained in the Studio place. Reference it in place, never re-fetch it by asset ID.",
+      },
+      studioAnimation: retainedStudioAnimation(project, {
+        reference,
+        record,
+        evidence,
+      }),
       requestedPlacement: {
         position: record.need.position,
         maxSize: record.need.maxSize,
@@ -220,12 +260,29 @@ export function componentBuilderContext(project: Project, directory: string) {
       integrationNotes: record.review.integrationNotes,
       rootPath: reference.destinationPath + "/" + reference.rootName,
       nodes: evidence.nodes,
+      originalRootName: evidence.nodes[0].name,
+      instanceName: reference.rootName,
       sourceBodies: evidence.sourceBodies,
       media: evidence.contentReferences,
       runtimeOnlyInstances: evidence.runtimeOnlyInstances,
       runtimeOnlyHistory: evidence.runtimeOnlyHistory,
       instructions:
-        "Use this retained component at rootPath; its original hierarchy, sources and relative geometry are exported automatically. Do not recreate it or declare scene/files under destinationPath. Integrate its actual behavior with the game. Requested placement/scaling, media playback and gameplay remain unverified and must be implemented/tested by the game worker; a source review is not a runtime pass. Preserve Marketplace audio and animations.",
+        "Use this retained component at rootPath. The host gives its root the stable instanceName, so never use the uploader's originalRootName to locate it. Descendant names, sources and relative geometry are retained. Account for any name-sensitive behavior in the reviewed sources. Do not recreate it or declare scene/files under destinationPath. Integrate its actual behavior with the game. Requested placement/scaling, media playback and gameplay remain unverified and must be implemented/tested by the game worker; a source review is not a runtime pass. Preserve Marketplace audio and animations.",
     }),
   );
+}
+
+export function checkRetainedPhysics(project: Project, directory: string, bundle: Bundle): Check[] {
+  const components=projectComponents(project,directory,bundle);
+  const checks:Check[]=[];
+  for(const action of bundle.retainedPhysics??[]) {
+    if(!components.some(c=>c.reference.needId===action.needId)) checks.push({id:"physics:unknown:"+action.needId,status:"failed",detail:"Physics integration names an unknown retained need: "+action.needId});
+    if((bundle.retainedPhysics??[]).filter(d=>d.needId===action.needId).length!==1) checks.push({id:"physics:duplicate:"+action.needId,status:"failed",detail:"Duplicate physics integration decision: "+action.needId});
+  }
+  for(const c of components) {
+    if(!c.reference.destinationPath.startsWith("Workspace/") || !c.physics.unsupportedParts.length) continue;
+    const action=bundle.retainedPhysics?.find(d=>d.needId===c.reference.needId);
+    checks.push({id:"physics:"+c.reference.needId,status:action?.mode==="anchor_all"?"passed":action?"pending":"failed",detail:action?.mode==="anchor_all"?"Delivery copy anchors retained parts. Native placement remains unverified.":action?"Deliberately dynamic retained prop requires native verification: "+action.reason:`Retained need ${c.reference.needId} has ${c.physics.unsupportedParts.length} unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.`});
+  }
+  return checks;
 }

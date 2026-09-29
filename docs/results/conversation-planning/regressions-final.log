@@ -1,0 +1,26 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/conversation-planning.test.ts (13 tests | 1 failed) 2335ms
+   × repeated edits cannot reopen the original spending boundary 114ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/conversation-planning.test.ts > repeated edits cannot reopen the original spending boundary
+AssertionError: the given combination of arguments (null and string) is invalid for this assertion. You can use an array, a map, an object, a set, a string, or a weakset instead of a string
+ ❯ tests/conversation-planning.test.ts:518:27
+    516|   });
+    517|   const exhausted = await f.engine.wait(p.id);
+    518|   expect(exhausted.error).toContain("Generation budget");
+       |                           ^
+    519|   expect(f.calls.length).toBe(calls);
+    520|   expect(exhausted.proposal).toEqual(p.proposal);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 112 passed (113)
+   Start at  22:11:53
+   Duration  20.50s (tests 90%, transform 5%, import 5%)
+

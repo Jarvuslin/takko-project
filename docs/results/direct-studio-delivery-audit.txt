@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-09-20T05:34:00.739Z",
+  "kind": "offline-native-delivery-feasibility",
+  "rows": [
+    {
+      "name": "combat-training",
+      "recordHash": "b6b517db22603a670db9c0ba0819a44dde7bff7e15583eb21d5abecfbe2a6756",
+      "archiveHash": "623e5c36a7886cc5ea452261db1a109c6a0c7c24d30d625082dc74c9e3c6c7cf",
+      "nativeBytes": 7414,
+      "instances": 17,
+      "sources": 0,
+      "transferChunks": 1,
+      "integrationRevalidated": true,
+      "localChunkRoundTrip": "passed",
+      "missingChunkRejected": true,
+      "corruptChunkRejected": true
+    },
+    {
+      "name": "bubble-wrap",
+      "recordHash": "dcec251a2551f2aa79b55b5fd9ca96e8324da8a7b8832c91cb494fb4218c27a4",
+      "archiveHash": "e9545f2339dad70b91ff72eda5bc7b396bc94cf56653ae18c8a90fcce5a1692e",
+      "nativeBytes": 16228,
+      "instances": 367,
+      "sources": 74,
+      "transferChunks": 10,
+      "integrationRevalidated": true,
+      "localChunkRoundTrip": "passed",
+      "missingChunkRejected": true,
+      "corruptChunkRejected": true
+    },
+    {
+      "name": "checkpoint-parkour",
+      "recordHash": "e37f3eacf0bb0d9011cf757460da0f06f704ee9b4320b945fdd562f5b529e0a7",
+      "archiveHash": "d0afe4e29105e4fddaa64c02b7ccbf64ce78ad774ec5fc1deedf75b953e616cd",
+      "nativeBytes": 5960,
+      "instances": 4,
+      "sources": 1,
+      "transferChunks": 1,
+      "integrationRevalidated": true,
+      "localChunkRoundTrip": "passed",
+      "missingChunkRejected": true,
+      "corruptChunkRejected": true
+    }
+  ],
+  "transferCasesPassed": 9,
+  "nativeStudioCheck": "not_performed_no_connected_studio",
+  "httpTransfer": "not_performed",
+  "productionDelivery": "not_implemented",
+  "paidCalls": 0,
+  "costUsd": 0
+}

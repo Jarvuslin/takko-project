@@ -1,0 +1,52 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/approved-asset-binding.test.ts (3 tests | 1 failed) 31ms
+   ❯ approved asset links from real planner output (3)
+     × retains approved selection identity when all model-authored catalog numbers are absent 12ms
+ ❯ tests/asset-choices.test.ts (28 tests | 1 failed) 1712ms
+   ❯ brief asset review (20)
+     × does not offer approved combat models for an unrelated optional backdrop 72ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/approved-asset-binding.test.ts > approved asset links from real planner output > retains approved selection identity when all model-authored catalog numbers are absent
+AssertionError: expected [ '86089736228455' ] to deeply equal [ '132504023010884' ]
+
+- Expected
++ Received
+
+  [
+-   "132504023010884",
++   "86089736228455",
+  ]
+
+ ❯ tests/approved-asset-binding.test.ts:47:48
+     45|     for (const [i, need] of needs.entries()) {
+     46|       const result = await adapter.search(need, need.query, new AbortC…
+     47|       expect(result.candidates.map(c => c.id)).toEqual([expected[i]]);
+       |                                                ^
+     48|     }
+     49|     expect(native.search).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > does not offer approved combat models for an unrelated optional backdrop
+AssetOperationError: No approved asset matches Arena backdrop. Review asset choices before building. Find later remains unresolved.
+ ❯ Proxy.<anonymous> src/marketplace/approved-adapter.ts:92:19
+     90|           const matches = matchesFor(need);
+     91|           if (!matches.length && need.required !== false)
+     92|             throw new AssetOperationError(
+       |                   ^
+     93|               "No approved asset matches " +
+     94|                 need.role +
+ ❯ tests/asset-choices.test.ts:772:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 29 passed (31)
+   Start at  21:18:26
+   Duration  6.22s (import 58%, tests 28%, transform 15%)
+

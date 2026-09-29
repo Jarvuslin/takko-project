@@ -512,6 +512,7 @@ export class StudioAssetAdapter implements AssetAdapter {
   readonly identity = "roblox-studio-mcp-scoped-assets-v1";
   private readonly entries = new Map<string, Entry>();
   private readonly discovered = new Map<string, AssetCandidate>();
+  private readonly approvedReferences = new Map<string, AssetReceipt>();
   private readonly preparedIntegrations = new Map<
     string,
     {
@@ -812,6 +813,47 @@ export class StudioAssetAdapter implements AssetAdapter {
       throw error;
     }
   }
+  async bindApprovedReference(
+    needInput: AssetNeed,
+    candidate: AssetCandidate,
+    approval: { discoveryId: string; revision: number },
+  ) {
+    return this.exclusive(async () => {
+      const need = assetNeedSchema.parse(needInput);
+      z.object({ discoveryId: z.uuid(), revision: z.number().int().positive() })
+        .strict()
+        .parse(approval);
+      if (
+        !/^[1-9]\d*$/.test(candidate.id) ||
+        candidate.kind !== need.kind ||
+        candidate.source !== "creator_store" ||
+        candidate.price !== 0 ||
+        candidate.sourceUrl !==
+          "https://create.roblox.com/store/asset/" + candidate.id ||
+        !candidate.name?.trim() ||
+        !candidate.creator?.trim() ||
+        candidate.componentOrigin
+      )
+        throw new StudioAssetError(
+          "Invalid approved Creator Store reference",
+          [],
+          "none",
+        );
+      const key = need.id + ":" + candidate.id;
+      this.discovered.set(key, structuredClone(candidate));
+      this.approvedReferences.set(key, {
+        operation: "user_approved_reference",
+        at: new Date().toISOString(),
+        studioId: this.studioId,
+        data: {
+          ...approval,
+          needId: need.id,
+          candidateId: candidate.id,
+          nativeVerification: "not_performed",
+        },
+      });
+    });
+  }
   async search(needInput: AssetNeed, query: string, signal: AbortSignal) {
     return this.exclusive(async () => {
       const need = assetNeedSchema.parse(needInput),
@@ -939,6 +981,10 @@ export class StudioAssetAdapter implements AssetAdapter {
           [],
           "none",
         );
+      const approved = this.approvedReferences.get(
+        need.id + ":" + candidate.id,
+      );
+      if (approved) receipts.push(structuredClone(approved));
       const entry: Entry = {
         token: randomUUID(),
         attempt:
@@ -1883,6 +1929,7 @@ return reply("component_export",captured.status=="captured" and captured.roundTr
           evidence: verified,
           review,
           need,
+          instanceName: need.id,
           scope: this.scope,
           conversionHash: conversion.recordHash,
           comparison: snapshot.comparison,

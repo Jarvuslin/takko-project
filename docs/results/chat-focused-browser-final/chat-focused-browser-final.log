@@ -1,0 +1,103 @@
+[WebServer] (node:38060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:3652) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:35024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.2s)
+  ok  2 [desktop] › tests\browser\chat-architecture.spec.ts:76:1 › chat retains message drafts and opens technical details without losing them (2.0s)
+  ok  3 [desktop] › tests\browser\chat-architecture.spec.ts:117:1 › actual imported keyframes move the inline rig and survive refresh (3.3s)
+(node:36956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  4 [desktop] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (9.5s)
+  ok  5 [desktop] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (1.5s)
+  x   6 [desktop] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter (8.5s)
+(node:10856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  7 [mobile] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.6s)
+  ok  8 [mobile] › tests\browser\chat-architecture.spec.ts:76:1 › chat retains message drafts and opens technical details without losing them (1.9s)
+  ok  9 [mobile] › tests\browser\chat-architecture.spec.ts:117:1 › actual imported keyframes move the inline rig and survive refresh (3.1s)
+(node:35408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 10 [mobile] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (9.3s)
+  ok 11 [mobile] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (1.5s)
+  x  12 [mobile] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter (8.0s)
+
+
+  1) [desktop] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('code')
+    Expected substring: "Harvest"
+    Error: strict mode violation: locator('code') resolved to 2 elements:
+        1) <code>ServerScriptService/Forge_f13603feab25/Game.serve…</code> aka getByLabel('Saved conversation').getByText('ServerScriptService/')
+        2) <code>local state = Instance.new("IntValue")↵state.Name…</code> aka getByText('local state = Instance.new("')
+
+    Call log:
+      - Expect "toContainText" locator('code') with timeout 5000ms
+      - waiting for locator('code')
+
+
+      274 |     ).toBeVisible();
+      275 |     await page.getByRole("tab", { name: "Source", exact: true }).click();
+    > 276 |     await expect(page.locator("code")).toContainText("Harvest");
+          |                                        ^
+      277 |     await expect(page.locator("code")).not.toContainText("CombatCore");
+      278 |     await expect(
+      279 |       page.getByRole("link", { name: "Download place" }),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:276:40
+
+    Error Context: test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [mobile] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('code')
+    Expected substring: "Harvest"
+    Error: strict mode violation: locator('code') resolved to 2 elements:
+        1) <code>ServerScriptService/Forge_42a26e017d35/Game.serve…</code> aka getByLabel('Saved conversation').getByText('ServerScriptService/')
+        2) <code>local state = Instance.new("IntValue")↵state.Name…</code> aka getByText('local state = Instance.new("')
+
+    Call log:
+      - Expect "toContainText" locator('code') with timeout 5000ms
+      - waiting for locator('code')
+
+
+      274 |     ).toBeVisible();
+      275 |     await page.getByRole("tab", { name: "Source", exact: true }).click();
+    > 276 |     const sourceCode = page.getByRole("dialog", { name: "Source details" }).locator("code");
+          |                                        ^
+      277 |     await expect(sourceCode).toContainText("Harvest");
+      278 |     await expect(sourceCode).not.toContainText("CombatCore");
+      279 |     await expect(
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:276:40
+
+    Error Context: test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [desktop] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter 
+    [mobile] › tests\browser\workflow.spec.ts:212:1 › builds an approved non-combat project through a real HTTP provider adapter 
+  10 passed (1.2m)

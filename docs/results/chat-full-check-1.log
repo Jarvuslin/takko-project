@@ -1,0 +1,162 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+
+ Test Files  82 passed (82)
+      Tests  1349 passed (1349)
+   Start at  21:15:07
+   Duration  70.96s (tests 80%, import 17%, transform 3%)
+
+    Isolate  82 workers spawned · ~200ms startup each (spawn + environment, per file)
+             at least ~7.98s faster with isolate: false — reuses workers across files instead of one per file
+
+
+> takko-studio@0.2.0 test:luau
+> node scripts/test-luau.mjs
+
+PASS accepted strike and exact cooldown boundary
+PASS replayed or out of order requests cannot attack twice
+PASS malformed action and sequence values are rejected
+PASS dead player cannot attack and respawn has fresh state
+PASS ability cooldowns are independent
+PASS damage requires range visibility and a living target
+6 combat scenarios passed (offline, not Studio)
+COMPILES ServerScriptService\Combat.server.luau
+COMPILES ServerScriptService\CombatCore.luau
+COMPILES ReplicatedStorage\Forge\Config.luau
+COMPILES StarterPlayer\StarterPlayerScripts\Combat.client.luau
+
+> takko-studio@0.2.0 test:plugin
+> node scripts/test-plugin.mjs
+
+PASS one-click local pairing, supplied tokens and local-only endpoint validation
+PASS apply creates actual manifest objects and source, preserving unrelated content
+PASS test harness inserts server/client code and removes temporary instances
+PASS empty tests are rejected and failed harness setup is cleaned up
+PASS source edits and mismatched artifacts block replacement and stale test reports
+PASS source edits during yielding staging prevent replacement
+PASS failed staging preserves the existing project
+PASS forward references resolve to staged instances; missing references preserve the applied rig
+PASS authorized imported MeshPart is created through AssetService Content without assigning read-only MeshId
+PASS absent authorization, forged mesh IDs and noncanonical IDs are rejected before native allocation
+PASS native mesh allocation failure preserves the existing owned root and does not report success
+PASS yielding mesh allocation rechecks ownership and preserves concurrent texture edits
+PASS delivered work survives heartbeats, double clicks execute once, receipts retry, and stale commands cannot run
+PASS reconnect serializes with polling, commits connection state only on success, and preserves failed reconnect state
+COMPILES plugin and 8 injected sources. Studio APIs were mocked; no live Studio pass claimed.
+
+> takko-studio@0.2.0 test:guards
+> node scripts/evaluate-guards.mjs
+
+[
+  {
+    "id": "baseline",
+    "passed": true,
+    "expectedPass": true,
+    "matched": true
+  },
+  {
+    "id": "missing-cooldown",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "replay-accepted",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "out-of-range-damage",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "damage-through-walls",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "dead-player-attacks",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  }
+]
+
+> takko-studio@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 137 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                            0.52 kB │ gzip:   0.33 kB
+dist/assets/index-XG1pasOx.css            67.99 kB │ gzip:  14.27 kB
+dist/assets/AnimationPlayer-qJxYcpII.js    6.02 kB │ gzip:   2.44 kB
+dist/assets/index-B8F9-c_p.js            661.59 kB │ gzip: 149.07 kB
+
+✓ built in 394ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+
+> takko-studio@0.2.0 test:desktop
+> tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs && node --test desktop/tests/*.test.mjs
+
+Desktop resources built in dist-desktop. No application was launched.
+✔ Takko keeps the existing desktop storage and lock location after rebranding (1.7706ms)
+✔ accepts only nonce-bound readiness from its own child (2.29ms)
+✔ startup deadline fails and kills only owned worker (25.4443ms)
+✔ crash after readiness fails visibly without automatic restart (0.9666ms)
+✔ unresponsive shutdown escalates, repeated stop shares completion (33.4235ms)
+✔ lost IPC during heartbeat reports failure and cleans up the worker (13.4135ms)
+✔ lost shutdown IPC still terminates owned worker and settles stop (0.899ms)
+✔ stop during startup rejects pending start and prevents late readiness (0.4942ms)
+✔ navigation rejects other origins, credentials and non-HTTP schemes (0.5486ms)
+✔ bundled service uses isolated data, private readiness, and graceful shutdown (763.4263ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 979.9683
+
+> takko-studio@0.2.0 test:production
+> node scripts/smoke-production.mjs
+
+Production smoke passed: HTML, bundle, API, unknown route
+
+> takko-studio@0.2.0 test:e2e
+> playwright test
+
+[WebServer] (node:37808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:26816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:41044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+TypeError: Module "file:///D:/RobloxProjects/Roblox%20Gen/src/generation/roblox-capabilities.json" needs an import attribute of "type: json"
+    at eval (<anonymous>:1:1)
+

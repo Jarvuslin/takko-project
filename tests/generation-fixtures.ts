@@ -116,7 +116,17 @@ export function fakeTransport(
     const phase = /PHASE: (\w+)/.exec(system)![1];
     options.inspect?.(phase, context);
     let output: unknown;
-    if (phase === "planner") {
+    if (context.coordination?.step === "decide") {
+      const next = context.coordination.readyTasks[0];
+      output = next
+        ? { action: "delegate", taskId: next.id, objective: next.title }
+        : context.coordination.currentReview
+          ? { action: "finish" }
+          : {
+              action: "review",
+              objective: "Review the complete gameplay implementation",
+            };
+    } else if (phase === "planner") {
       const spec = specification(context.request, context.namespace);
       if (options.question && !context.answers.device)
         spec.questions = [
@@ -129,10 +139,55 @@ export function fakeTransport(
       if (options.question && context.answers.device) {
         spec.requirements[0].sourceQuote = "device: " + context.answers.device;
       }
-      output = spec;
-    } else if (phase === "reviewer") output = fixtureReview;
+      if (context.coordination?.step === "outline") {
+        output = {
+          title: spec.title,
+          summary: spec.summary,
+          visualDirection: spec.visualDirection,
+          questions: spec.questions,
+          sharedContracts:
+            "The server owns gameplay state. Client presentation observes it.",
+          areas: [
+            {
+              id: "core",
+              title: "Core gameplay",
+              objective: context.request,
+              dependsOn: [],
+            },
+          ],
+        };
+      } else if (context.coordination?.step === "area") {
+        const prefix = context.coordination.area.id + "_";
+        output = {
+          requirements: spec.requirements.map((r) => ({
+            ...r,
+            id: prefix + r.id,
+            sourceId:
+              options.question && context.answers.device
+                ? "answer:device"
+                : "request",
+          })),
+          tasks: spec.tasks.map((t) => ({
+            ...t,
+            id: prefix + t.id,
+            requirements: t.requirements.map((id) => prefix + id),
+          })),
+          assetNeeds: [],
+          referenceDecisions: [],
+        };
+      } else output = spec;
+    } else if (phase === "reviewer")
+      output = {
+        ...fixtureReview,
+        tests: fixtureReview.tests.map((t) => ({
+          ...t,
+          requirementId: context.spec?.requirements[0]?.id ?? t.requirementId,
+        })),
+      };
     else {
       const b = fixtureBundle(context.request, context.namespace);
+      if (context.workerAssignment && context.task)
+        b.coverage[0].requirementId = context.task.requirements[0];
       if (options.broken && (phase !== "repair" || !options.repairWorks))
         b.files[0].source = "local = broken";
       output = b;

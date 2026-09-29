@@ -23,6 +23,8 @@ import type { Bundle, Project } from "../src/generation/schema";
 import { researchInputHash } from "../src/generation/research";
 import { componentReviewFixture } from "./component-review.fixture";
 import { integrationFixture } from "./component-integration.fixture";
+import { bindAssetEvidence } from "../src/generation/asset-evidence-binding";
+import { refreshProposal } from "../src/generation/proposal";
 
 function researchFixture(p: Project): NonNullable<Project["research"]> {
   return {
@@ -388,6 +390,18 @@ function setup(
         });
       }
     }
+    if (phase === "builder" && typeof context.task === "object") {
+      // The model double consumes the producer's actual retained-prop obligation.
+      // A decorative tree is intentionally static. No archive fixture is altered.
+      const actions = (context.retainedComponents ?? [])
+        .filter((component: any) => component.physicsObligation)
+        .map((component: any) => ({
+          needId: component.reference.needId,
+          mode: "anchor_all" as const,
+          reason: "Keep this decorative prop stationary.",
+        }));
+      if (actions.length) (output as Bundle).retainedPhysics = actions;
+    }
     return Response.json({
       choices: [
         { finish_reason: "stop", message: { content: JSON.stringify(output) } },
@@ -589,6 +603,132 @@ afterEach(() => {
   }
 });
 
+it("builds through the real engine with an approved structured need link and behavior-only requirements", async () => {
+  const f = setup();
+  const p = await f.plan();
+  for (const requirement of p.spec!.requirements)
+    expect(requirement.description + " " + requirement.acceptance).not.toMatch(
+      /\b101\b/,
+    );
+  p.assetDiscovery = {
+    id: randomUUID(),
+    revision: p.revision,
+    studioId,
+    approved: true,
+    groups: [
+      {
+        id: "selected-prop",
+        assetNeedId: "tree",
+        label: "Orchard decoration",
+        query: "orchard tree",
+        preview: "model",
+        kind: "Model",
+        options: [
+          {
+            assetId: "101",
+            name: "xQ_junk_name",
+            kind: "Model",
+            creatorName: "offline-fixture",
+            updated: "fixture",
+          },
+        ],
+      },
+    ],
+    choices: { "selected-prop": { assetId: "101" } },
+  };
+  p.assetAttachments = [
+    {
+      assetId: "101",
+      name: "xQ_junk_name",
+      kind: "Model",
+      creatorName: "offline-fixture",
+      contentHash: "a".repeat(64),
+      revisionKey: "fixture",
+      inspectedAt: new Date().toISOString(),
+      scannerVersion: 1,
+      scriptCount: 0,
+      usage: "Orchard decoration",
+    },
+  ];
+  f.store.save(p);
+  f.engine.start(p.id, p.revision, "build");
+  const result = await f.engine.wait(p.id);
+  expect(result.stage, result.error ?? "").toBe("ready_to_test");
+  expect(result.assetPipeline!.needs.map((n) => n.id)).toEqual(["tree"]);
+  expect(f.adapter.search).not.toHaveBeenCalled();
+  expect(f.adapter.inspect).toHaveBeenCalled();
+  expect(result.artifact!.files.length).toBeGreaterThan(0);
+  expect(result.assetDiscovery!.choices).toEqual(p.assetDiscovery.choices);
+});
+
+it("reuses unchanged asset dependencies after a proposal edit without relabeling original receipts", async () => {
+  const f = setup();
+  const p = await f.build();
+  expect(p.stage).toBe("ready_to_test");
+  const section = { text: "Original", assumptions: [], unresolved: [] };
+  p.proposal = {
+    title: "Orchard",
+    mechanics: structuredClone(section),
+    theme: structuredClone(section),
+    environment: structuredClone(section),
+    revision: p.revision,
+    hash: "",
+    changed: [],
+  };
+  refreshProposal(p);
+  p.proposalPlan = {
+    hash: p.proposal.hash,
+    revision: p.revision,
+    tasks: Object.fromEntries(
+      p.spec!.tasks.map((t) => [
+        t.id,
+        { sections: ["mechanics", "environment", "assets"], scenePaths: [] },
+      ]),
+    ),
+  };
+  bindAssetEvidence(p, p.assetPipeline!);
+  const original = structuredClone(p.assetPipeline!);
+  const effects = [...f.effects];
+  p.revision++;
+  p.proposal.theme.text = "A new HUD accent";
+  refreshProposal(p, ["theme"]);
+  f.store.save(p);
+  await (f.engine as any).resolveAssets(
+    p,
+    p.spec!.assetNeeds,
+    f.config.read(),
+    new Map(),
+    new AbortController().signal,
+  );
+  expect(f.effects).toEqual(effects);
+  expect(p.assetPipeline!.status).toBe("passed");
+  expect(p.assetPipeline!.entries[0].reusedFrom).toEqual({
+    runId: original.runId,
+    revision: original.revision,
+    inputHash: original.inputHash,
+  });
+  expect(p.assetPipelineHistory![0]).toEqual(original);
+  expect(
+    p.assetPipeline!.events.filter((e) => e.step !== "asset_reused"),
+  ).toEqual(original.events.filter((e) => e.needId === "tree"));
+  const reused = structuredClone(p.assetPipeline!);
+  p.revision++;
+  p.proposal.mechanics.text = "Changed harvesting behavior";
+  refreshProposal(p, ["mechanics"]);
+  f.store.save(p);
+  await (f.engine as any).resolveAssets(
+    p,
+    p.spec!.assetNeeds,
+    f.config.read(),
+    new Map(),
+    new AbortController().signal,
+  );
+  expect(f.effects.length).toBeGreaterThan(effects.length);
+  expect(p.assetPipeline!.entries[0].reusedFrom).toBeUndefined();
+  expect(
+    p.assetPipelineHistory!.find((run) => run.runId === reused.runId),
+  ).toEqual(reused);
+});
 it("validates and serializes a bounded optional component reviewer without defaults", () => {
   const s = setup(),
     settings = s.config.read();

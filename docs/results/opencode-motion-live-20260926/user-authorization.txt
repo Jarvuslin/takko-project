@@ -1,0 +1,130 @@
+Authorized: one paid live run. Cap $8. Remaining funds were $15.695328280 at
+2026-09-26T00:08:28.762Z. Refresh and record the actual figure before dispatch.
+
+## Verified independently, do not redo
+
+I re-ran both myself:
+  - Full npm run check: exit 0, 1,583 tests across 107 files, 171 browser passes,
+    1 intentional skip, zero failures.
+  - scripts/replay-post-plan.ts: all three preserved cases pass through the real pinned
+    OpenCode binary at $0, all reaching ready_to_test.
+
+I also verified in source: per-joint rotationRange/translationRange/pose samples and
+hierarchy siblings reaching the evaluator, the gate-then-rank separation with no blended
+score, the Wilson vote prior, animation tiering, and the model preview accepting any
+BasePart at a 2000 cap with Wedge/CornerWedge and amber approximations.
+
+The Wilson prior and the per-clip gates were better than what was specified. Good calls.
+
+## What this run is for
+
+Everything structural is now proven offline. Exactly two things remain unknown, and
+only money answers them:
+
+  PRIMARY  Does a live model, given real motion evidence, clear 0.8 and select a
+           correct animation? "After confidence is unmeasured" is the honest current
+           state. This run measures it.
+  PRIMARY  Does real model-generated Luau COMPILE? Every replay used synthetic files
+           and a doubled compiler. This is the first time real output meets the real
+           compiler.
+  PRIMARY  What does a run that reaches coding actually cost, per phase?
+  SECONDARY Does the hit counter appear in the generated code?
+  SECONDARY Do blocked requirements and publishing limitations surface honestly in the
+           artifact and the UI?
+
+## The request
+
+Same minimal fighting brief, positive only, no exclusion instructions naming asset-type
+keywords:
+
+  "A fighting game where the player punches a stationary target dummy. Include a
+   punching animation, a punch/hit sound when the player hits the dummy, and an
+   on-screen counter that increments on each successful hit."
+
+## Measure automatic selection carefully
+
+This is the first run where the evaluator can see what it is judging. Record, per group:
+  - the vote-prior ranking and which ten candidates were captured
+  - per-clip relevance answers, confidences and outcomes for every assessed clip
+  - which candidates passed the gate, and the final vote-ordered pick
+  - any oversized-evidence entries recorded as unassessed
+
+Compare directly against the historical batch confidences 0.21, 0.33, 0.24, 0.44, 0.35
+and 0.59. Report the before/after side by side. If confidence now clears 0.8, say so
+plainly and note that the threshold was never the problem. If it still does not clear,
+record the actual numbers and the model's stated reasoning, then proceed with authorized
+manual picks and label the run assisted.
+
+Do NOT change the 0.8 threshold during this run. Measure first.
+
+## Expected outcomes that are NOT failures
+
+  - A selected animation may be a raw-only pack. Its requirement then carries a visible
+    publishing limitation. That is correct behaviour. Do not treat it as a defect and do
+    not silently substitute a published pack.
+  - An asset may fail acquisition. The build must now continue with that requirement
+    blocked and the gap reported. That is the intended design. Do not stop.
+  - A game with dummy, sound and a working hit counter plus one honestly blocked or
+    limitation-carrying animation requirement is a SUCCESS for this run.
+
+The bar is: files generated, and they compile. Not "good game."
+
+## Stop conditions
+
+No auto-retry. If a new gate fires, stop and record the exact error, its source
+location, whether it ran inside or outside a correction callback, whether it checks a
+structured property or demands evidence it was not given, and whether it self-corrected
+with cost.
+
+Watch the OpenCode ceilings: 48 exchanges and 15 minutes. Replays used 18 to 28
+exchanges on synthetic work, so real coding may use more. Record both against the limits
+and report if either binds.
+
+Do NOT change the 0.8 threshold during this run. Measure first.
+
+## Expected outcomes that are NOT failures
+
+  - A selected animation may be a raw-only pack. Its requirement then carries a visible
+    publishing limitation. That is correct behaviour. Do not treat it as a defect and do
+    not silently substitute a published pack.
+  - An asset may fail acquisition. The build must now continue with that requirement
+    blocked and the gap reported. That is the intended design. Do not stop.
+  - A game with dummy, sound and a working hit counter plus one honestly blocked or
+    limitation-carrying animation requirement is a SUCCESS for this run.
+
+The bar is: files generated, and they compile. Not "good game."
+
+## Stop conditions
+
+No auto-retry. If a new gate fires, stop and record the exact error, its source
+location, whether it ran inside or outside a correction callback, whether it checks a
+structured property or demands evidence it was not given, and whether it self-corrected
+with cost.
+
+Watch the OpenCode ceilings: 48 exchanges and 15 minutes. Replays used 18 to 28
+exchanges on synthetic work, so real coding may use more. Record both against the limits
+and report if either binds.
+
+If the $8 cap would be exceeded, stop and report rather than continuing.
+
+## Honesty
+
+Stop at ready_to_test. Compiling is not a working game. A review passing is not a
+working game. Native Studio gameplay is separate and human verified.
+
+If files are generated but the code is bad, SAY IT IS BAD AND KEEP IT. Bad generated
+code is a far better outcome than an eleventh pre-code failure, and it is the first real
+signal about model quality anyone will have had.
+
+Preserve every failure exactly as recorded. Do not modify any existing protected
+evidence directory.
+
+## After the run
+
+Report under docs/. Append a dated section at the top of research/notes/continuation.md
+with PIDs, ports, refreshed balance, per-phase costs, selection confidences before and
+after, blocked or limitation-carrying requirements, OpenCode session stats, compile
+results, what is paused and what must not be touched.
+
+Do not restart or kill the user's app. Do not resume any paused goal. No second paid run
+without new authorization regardless of how much of the $8 cap is unspent.

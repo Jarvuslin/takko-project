@@ -1,0 +1,695 @@
+[
+  {
+    "file": "src/generation/validation.ts",
+    "line": 38,
+    "owner": "safePath",
+    "expression": "throw Error(\"Path must stay inside the project namespace: \" + p);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 59,
+    "owner": "validateSpec",
+    "expression": "errors.push(`Architecture contract not planned: ${source.id}`)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 63,
+    "owner": "validateSpec",
+    "expression": "errors.push( \"Duplicate requirement IDs: \" + s.requirements .filter( (r, i) => s.requirements.findIndex((other) => other.id === r.id) !== i, ) .map((r) => r.id) .join(\", \"), )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 75,
+    "owner": "validateSpec",
+    "expression": "errors.push( \"Duplicate task IDs: \" + s.tasks .filter( (t, i) => s.tasks.findIndex((other) => other.id === t.id) !== i, ) .map((t) => t.id) .join(\", \"), )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 85,
+    "owner": "validateSpec",
+    "expression": "errors.push( \"Duplicate question IDs: \" + s.questions .filter( (q, i) => s.questions.findIndex((other) => other.id === q.id) !== i, ) .map((q) => q.id) .join(\", \"), )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 98,
+    "owner": "validateSpec",
+    "expression": "throw Error(\"Task dependency cycle at \" + id);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 101,
+    "owner": "validateSpec",
+    "expression": "throw Error(\"Unknown task dependency \" + id);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 111,
+    "owner": "validateSpec",
+    "expression": "errors.push((e as Error).message)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 115,
+    "owner": "validateSpec",
+    "expression": "errors.push(\"Task \" + t.id + \" references unknown requirement \" + id)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 120,
+    "owner": "validateSpec",
+    "expression": "errors.push((e as Error).message)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 123,
+    "owner": "validateSpec",
+    "expression": "errors.push( \"Task files must end in .luau: task \" + t.id + \", file \" + f, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 130,
+    "owner": "validateSpec",
+    "expression": "errors.push( `Task ${t.id}: LocalScript must be in a client container: ${f}`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 134,
+    "owner": "validateSpec",
+    "expression": "errors.push( `Task ${t.id}: Server Script must be in ServerScriptService: ${f}`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 138,
+    "owner": "validateSpec",
+    "expression": "errors.push(\"Two tasks own the same script: \" + f)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 147,
+    "owner": "validateSpec",
+    "expression": "errors.push(\"Unplanned requirement \" + r.id)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 148,
+    "owner": "validateSpec",
+    "expression": "throw Error([...new Set(errors)].join(\"\\n\"));",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 188,
+    "owner": "validateBundle",
+    "expression": "throw Error( \"Project namespace roots must be empty Folder declarations: \" + item.path, );",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 202,
+    "owner": "validateBundle",
+    "expression": "throw Error( \"Generated content overlaps a retained native component: \" + canonical, );",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 206,
+    "owner": "validateBundle",
+    "expression": "throw Error(\"Duplicate instance \" + canonical);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 211,
+    "owner": "validateBundle",
+    "expression": "throw Error(\"Script must end in .luau: \" + f.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 216,
+    "owner": "validateBundle",
+    "expression": "throw Error(\"LocalScript must be in a client container: \" + f.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 218,
+    "owner": "validateBundle",
+    "expression": "throw Error(\"Server Script must be in ServerScriptService: \" + f.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 242,
+    "owner": "validateBundle",
+    "expression": "throw Error( \"Scene property errors:\\n\" + groups.join(\"\\n\") + (propertyErrors.size > 8 ? `\\n${propertyErrors.size - 8} additional error types omitted.` : \"\"), );",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 263,
+    "owner": "validateBundle",
+    "expression": "throw Error(\"Unsupported property \" + n.path + \".\" + name);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 267,
+    "owner": "validateBundle",
+    "expression": "throw Error(propertyError + \" Node: \" + n.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 320,
+    "owner": "validateBundle",
+    "expression": "throw Error( \"Invalid \" + v.type + \" value at \" + n.path + \".\" + name, );",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 304,
+    "owner": "validateBundle",
+    "expression": "throw Error( n.path + \".\" + name + ' requires {type:\"Ref\",path:\"exact scene path\"}', );",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 272,
+    "owner": "validateBundle",
+    "expression": "throw Error( \"Missing reference target \" + v.path + \" for \" + n.path + \".\" + name, );",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 287,
+    "owner": "validateBundle",
+    "expression": "throw Error(name + \" must reference a BasePart: \" + v.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 292,
+    "owner": "validateBundle",
+    "expression": "throw Error(name + \" must reference an Attachment: \" + v.path);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/validation.ts",
+    "line": 502,
+    "owner": "compileSources",
+    "expression": "throw Error(\"Generation cancelled\");",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/architecture.ts",
+    "line": 38,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", message: \"Use at most 32 systems and connections together so each can be planned and checked.\", })",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/architecture.ts",
+    "line": 48,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", message: `Each system and connection needs a unique ID. Duplicate systems: ${ graph.nodes .filter( (n, i) => graph.nodes.findIndex((other) => other.id === n.id) !== i, ) .map((n) => n.id) .join(\", \") || \"none\" }. Duplicate connections: ${ graph.edges .filter( (e, i) => graph.edges.findIndex((other) => other.id === e.id) !== i, ) .map((e) => e.id) .join(\", \") || \"none\" }.`, })",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/architecture.ts",
+    "line": 70,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", message: `Edge ${edge.id} references system '${[edge.from, edge.to].filter((id) => !nodes.has(id)).join(\"', '\")}', which does not exist in this architecture.`, })",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/architecture.ts",
+    "line": 75,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", message: `Edge ${edge.id} connects ${edge.from} to itself. Internal lifecycle behaviour belongs on the system, not as an edge. Remove it.`, })",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/architecture.ts",
+    "line": 87,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", message: `This event connection already exists. Conflicting edges: ${graph.edges .filter((e, i, all) => all.some( (other, j) => i !== j && e.from === other.from && e.to === other.to && e.kind === other.kind && e.event.toLowerCase() === other.event.toLowerCase(), ), ) .map((e) => e.id) .join(\", \")}.`, })",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/marketplace-policy.ts",
+    "line": 8,
+    "owner": "assetNeedAuthoringIssues",
+    "expression": "issues.push({ path: [\"assetNeeds\", i, field], message: `Asset ${needs[i].id}: ${message}`, })",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "proposalDraftSchema + implementation acceptance (shared helper)"
+  },
+  {
+    "file": "src/generation/marketplace-policy.ts",
+    "line": 53,
+    "owner": "validateMarketplaceDiscovery",
+    "expression": "errors.push( \"Asset \" + need.id + \" needs intent describing its experienceRole, interaction, reusableFeatures and relatedRequirementIds. Ground discovery in the game's player experience and clarification answers, not just appearance.\", )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/marketplace-policy.ts",
+    "line": 65,
+    "owner": "validateMarketplaceDiscovery",
+    "expression": "errors.push( \"Asset intent must reference existing requirements and include its primary requirementId: \" + need.id, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/marketplace-policy.ts",
+    "line": 79,
+    "owner": "validateMarketplaceDiscovery",
+    "expression": "errors.push( `Asset ${need.id}: Marketplace-first mesh sourcing requires a Model discovery need for the same requirement ${need.requirementId} and complete reusable component before a bare MeshPart search. An unrelated component search does not qualify. Keep the same requested scope; do not invent a new gameplay feature.`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/marketplace-policy.ts",
+    "line": 82,
+    "owner": "validateMarketplaceDiscovery",
+    "expression": "throw Error(errors.join(\"\\n\"));",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/plan-validation.ts",
+    "line": 20,
+    "owner": "validateImplementationPlan",
+    "expression": "errors.push(error instanceof Error ? error.message : String(error))",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/plan-validation.ts",
+    "line": 30,
+    "owner": "validateImplementationPlan",
+    "expression": "errors.push( \"spec.assetStrategy / spec.assetNeeds: This request requires an explicit asset strategy and assetNeeds for relevant external content.\", )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/plan-validation.ts",
+    "line": 36,
+    "owner": "validateImplementationPlan",
+    "expression": "errors.push( `Asset ${need.id}: Asset needs must have unique IDs and refer to existing requirements. Unknown requirement ${need.requirementId}`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/plan-validation.ts",
+    "line": 47,
+    "owner": "validateImplementationPlan",
+    "expression": "errors.push( `Asset ${need.id}: Asset need query, role and constraints cannot be blank`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/plan-validation.ts",
+    "line": 51,
+    "owner": "validateImplementationPlan",
+    "expression": "throw Error( [...new Set(errors.flatMap((error) => error.split(\"\\n\")))].join(\"\\n\"), );",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/requirements.ts",
+    "line": 89,
+    "owner": "bindRequirementSources",
+    "expression": "errors.push( `Unknown user source ${requirement.sourceId} for requirement ${requirement.id}. Choose sourceId from ${JSON.stringify(sources.map((s) => s.id))}.`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/requirements.ts",
+    "line": 123,
+    "owner": "bindRequirementSources",
+    "expression": "errors.push( `User requirement has no matching quotation: ${requirement.id}. Set sourceId to one of ${JSON.stringify(sources.map((s) => s.id))} and omit sourceQuote so Takko copies the selected evidence. For legacy quotations, sourceQuote must copy an exact substring of the original request or a saved clarification answer; paraphrases and joined excerpts are not evidence.`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation authoring callback; architecture also checked on editor acceptance"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 110,
+    "owner": "validateResearch",
+    "expression": "throw Error( \"Research returned no retrieved source citations. Retry research or supply an exact game link; a brief will not be invented from memory.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 117,
+    "owner": "validateResearch",
+    "expression": "throw Error(\"Duplicate research mechanic \" + mechanic.id);",
+    "element": "element or bounded collection named (see expression)",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 121,
+    "owner": "validateResearch",
+    "expression": "throw Error( \"Research cited a URL absent from retrieved results: \" + url, );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 126,
+    "owner": "validateResearch",
+    "expression": "throw Error(\"Research must identify the reference game's core loop.\");",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 138,
+    "owner": "validateReferenceDecisions",
+    "expression": "errors.push(\"Invalid reference mechanic decision \" + d.mechanicId)",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan; research precedes it"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 156,
+    "owner": "validateReferenceDecisions",
+    "expression": "errors.push( \"Map reference mechanic to required brief requirements: \" + d.mechanicId, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan; research precedes it"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 143,
+    "owner": "validateReferenceDecisions",
+    "expression": "errors.push( \"Omitting a reference mechanic requires an exact user quotation: \" + d.mechanicId, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan; research precedes it"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 166,
+    "owner": "validateReferenceDecisions",
+    "expression": "errors.push( \"Brief omitted researched core mechanics: \" + missing.map((m) => m.id + \" (\" + m.description + \")\").join(\"; \") + \". Add referenceDecisions linking each to required requirements, or an explicit user-requested omission with userSourceId/userQuote.\", )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan; research precedes it"
+  },
+  {
+    "file": "src/generation/research.ts",
+    "line": 171,
+    "owner": "validateReferenceDecisions",
+    "expression": "throw Error(errors.join(\"\\n\"));",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan; research precedes it"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 28,
+    "owner": "schema refinement",
+    "expression": "ctx.addIssue({ code: \"custom\", ...issue })",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "proposal schema acceptance, currently one attempt",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 117,
+    "owner": "applyProposalPatch",
+    "expression": "throw new ConflictError( \"This proposal changed. Review it before applying this edit.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "proposal/edit acceptance; host state conflict is not model-repairable"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 124,
+    "owner": "applyProposalPatch",
+    "expression": "throw new ConflictError( \"The edit replaces an unrelated or duplicate proposal section.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "proposal/edit acceptance; host state conflict is not model-repairable"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 132,
+    "owner": "applyProposalPatch",
+    "expression": "throw new ConflictError( \"The edit contains no content change. The saved proposal and approval are retained.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "proposal/edit acceptance; host state conflict is not model-repairable"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 158,
+    "owner": "affectedTasks",
+    "expression": "throw new ConflictError( \"This saved build has no complete proposal dependency map. Files and evidence are retained. Broad regeneration requires an explicit new build decision.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "not pre-code planner callback",
+    "authored": "bundle/research/runtime path, not a pre-code planner constraint"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 214,
+    "owner": "mergeScopedPlan",
+    "expression": "throw Error( \"A scoped plan must replace only the affected tasks and requirements, preserving their IDs.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "scoped plan correction callback"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 224,
+    "owner": "mergeScopedPlan",
+    "expression": "throw Error( \"This edit changes file ownership or contracts beyond the declared dependency set. A broader plan must be reviewed explicitly.\", );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "scoped plan correction callback"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 232,
+    "owner": "mergeScopedPlan",
+    "expression": "throw Error(\"A scoped edit cannot drop existing proposal dependencies.\");",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "scoped plan correction callback"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 263,
+    "owner": "proposalPlanFor",
+    "expression": "errors.push( `Missing proposal requirement coverage: ${sourceId}. Add a requirement owned by an existing or necessary task. If no separate implementation is needed, explicitly describe which existing approved content satisfies it without adding scope.`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan, with approved source IDs advertised"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 268,
+    "owner": "proposalPlanFor",
+    "expression": "errors.push( `Unowned proposal requirement: ${requirement.id} (${sourceId}).`, )",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan, with approved source IDs advertised"
+  },
+  {
+    "file": "src/generation/proposal.ts",
+    "line": 273,
+    "owner": "proposalPlanFor",
+    "expression": "throw Error(errors.join(\"\\n\"));",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "implementation plan, with approved source IDs advertised"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 55,
+    "owner": "assetNeedForGroup",
+    "expression": "throw Error( \"Approved asset need link is stale or incompatible: \" + group.label, );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 76,
+    "owner": "assetNeedForGroup",
+    "expression": "throw Error(\"Ambiguous approved asset need link: \" + group.label);",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 89,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error(\"Approved asset option is missing: \" + group.label);",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 91,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error(\"Approved asset attachment is missing: \" + group.label);",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 104,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error( \"Ambiguous legacy approved asset requirement: \" + group.label, );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 114,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error(\"Ambiguous legacy approved asset need: \" + group.label);",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 129,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error( \"Approved asset needs a linked requirement before building: \" + group.label + \" #\" + option.assetId, );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 136,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error( \"Approved asset kind is incompatible with its linked need: \" + group.label, );",
+    "element": "generic: review expression; downstream/non-planner if marked",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  },
+  {
+    "file": "src/marketplace/asset-binding.ts",
+    "line": 141,
+    "owner": "approvedAssetLinks",
+    "expression": "throw Error( \"Multiple approved groups link to the same asset need: \" + need.id, );",
+    "element": "aggregate of located failures / collection-level diagnostic (see expression)",
+    "correction": "yes (planner); repeated downstream check is deterministic on accepted state",
+    "authored": "selection state originates in picker; linkage checked against plan inside callback"
+  }
+]

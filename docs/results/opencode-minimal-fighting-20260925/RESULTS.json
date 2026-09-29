@@ -1,0 +1,45 @@
+{
+  "at": "2026-09-25T05:37:24.850Z",
+  "projectId": "f4858378-2ea6-4465-a96a-c8f4723bbb36",
+  "outcome": "failed",
+  "error": "Implementation dependency coverage is missing for proposal section: theme",
+  "assisted": true,
+  "automaticSelectedRequiredGroups": 0,
+  "requiredGroups": 3,
+  "extraDiscoveryGroup": "effects",
+  "requirements": 15,
+  "tasks": 10,
+  "plannedScripts": 4,
+  "assetNeeds": 3,
+  "openCodeRuns": 0,
+  "generatedFiles": 0,
+  "applies": 0,
+  "gameplay": 0,
+  "offlineDiagnosticAssertions": 15,
+  "fullCheckThisTurn": "not run, no product changes",
+  "calls": 12,
+  "costMicros": 245952,
+  "reservedMicros": 0,
+  "unknownCalls": 0,
+  "providerBalance": {
+    "at": "2026-09-25T05:34:11.582Z",
+    "key": {
+      "limit": 20,
+      "remaining": 15.469134155999999,
+      "usage": 4.530865844
+    },
+    "credits": {
+      "totalCredits": 30,
+      "totalUsage": 13.02334437,
+      "remaining": 16.97665563
+    }
+  },
+  "operational": {
+    "ownedRemaining": [],
+    "studioPids": [
+      6604
+    ],
+    "listeners": [],
+    "at": "2026-09-25T05:37:27.2916391Z"
+  }
+}

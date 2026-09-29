@@ -80,7 +80,48 @@ function folder(name: string, referent: string): Element {
   };
 }
 
+/** Host naming overlay. Retained source XML and descendant names are untouched. */
+export function nameComponentRoot(
+  component: NativeComponentXml,
+  name: string,
+): NativeComponentXml {
+  if (!/^[A-Za-z][A-Za-z0-9_-]{0,63}$/.test(name))
+    throw Error("Invalid component instance name");
+  if (hash(component.xml) !== component.sha256)
+    throw Error("Component XML identity mismatch");
+  const children = root(component.xml);
+  const items = children.filter((e) => e.Item);
+  if (items.length !== 1) throw Error("Expected one component root for naming");
+  itemName(items[0]); // Validate one existing name before changing it.
+  const properties = content(items[0], "Item").find((e) => e.Properties)!;
+  const named = content(properties, "Properties").find(
+    (e) => e.string && e[":@"]?.["@_name"] === "Name",
+  )!;
+  named.string = [{ "#text": name }];
+  const xml = builder.build([{ roblox: children, ":@": { "@_version": "4" } }]);
+  return { ...component, xml, sha256: hash(xml) };
+}
+
 /** Retains property types/values and source text; rewrites only local referents. */
+export function anchorComponentParts(component: NativeComponentXml): NativeComponentXml {
+  if(hash(component.xml)!==component.sha256) throw Error("Component XML identity mismatch");
+  const children=root(component.xml);
+  const visit=(elements:Element[])=>{
+    for(const e of elements) if(e.Item) {
+      if(["Part","MeshPart","UnionOperation","WedgePart","CornerWedgePart","TrussPart","Seat","VehicleSeat","SpawnLocation"].includes(e[":@"]?.["@_class"])) {
+        const props=content(content(e,"Item").find(p=>p.Properties)!,"Properties");
+        const anchored=props.find(p=>p.bool && p[":@"]?.["@_name"]==="Anchored");
+        if(anchored) anchored.bool=[{"#text":"true"}];
+        else props.push({bool:[{"#text":"true"}],":@":{"@_name":"Anchored"}});
+      }
+      visit(content(e,"Item"));
+    }
+  };
+  visit(children);
+  const xml=builder.build([{roblox:children,":@":{"@_version":"4"}}]);
+  return {...component,xml,sha256:hash(xml)};
+}
+
 export function mergeNativeComponentXml(
   baseXml: string,
   scope: string,

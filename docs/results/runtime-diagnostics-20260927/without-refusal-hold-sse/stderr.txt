@@ -1,0 +1,24 @@
+timestamp=2026-09-27T18:30:22.404Z level=INFO run=3f6858f3 message="creating instance" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.406Z level=INFO run=3f6858f3 message=fromDirectory directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.683Z level=INFO run=3f6858f3 message=bootstrapping directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.693Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T18:30:22.694Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T18:30:22.694Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T18:30:22.870Z level=DEBUG run=3f6858f3 message="loaded custom config from OPENCODE_CONFIG_CONTENT"
+timestamp=2026-09-27T18:30:22.930Z level=INFO run=3f6858f3 message="all LSPs are disabled"
+timestamp=2026-09-27T18:30:22.931Z level=INFO run=3f6858f3 message="all formatters are disabled"
+timestamp=2026-09-27T18:30:22.931Z level=INFO run=3f6858f3 message=init
+timestamp=2026-09-27T18:30:23.167Z level=INFO run=3f6858f3 message=created id=ses_f1bde1540ffeHVJZdy8sROiNPC slug=glowing-moon version=1.18.31 projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace" path=docs/results/runtime-diagnostics-20260927/without-refusal-hold-sse/workspace workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790533823167 time.updated=1790533823167
+timestamp=2026-09-27T18:30:23.184Z level=INFO run=3f6858f3 message="event connected"
+timestamp=2026-09-27T18:30:23.799Z level=INFO run=3f6858f3 message=loop session.id=ses_f1bde1540ffeHVJZdy8sROiNPC step=0
+timestamp=2026-09-27T18:30:23.827Z level=INFO run=3f6858f3 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T18:30:24.327Z level=INFO run=3f6858f3 message="watcher backend" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace" platform=win32 backend=windows
+timestamp=2026-09-27T18:30:24.334Z level=INFO run=3f6858f3 message="project copy refresh started" projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed
+timestamp=2026-09-27T18:30:24.880Z level=INFO run=3f6858f3 message="project copy refresh done" projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed updated=[] removed=[]
+timestamp=2026-09-27T18:30:25.181Z level=INFO run=3f6858f3 message="booting location services" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace" workspaceID=undefined
+timestamp=2026-09-27T18:30:25.203Z level=INFO run=3f6858f3 message=process session.id=ses_f1bde1540ffeHVJZdy8sROiNPC messageID=msg_0e421ed3b001fYMBbpv3FLM1MO
+timestamp=2026-09-27T18:30:25.206Z level=INFO run=3f6858f3 message=stream providerID=takko modelID=agent session.id=ses_f1bde1540ffeHVJZdy8sROiNPC small=false agent=build mode=primary
+timestamp=2026-09-27T18:30:25.216Z level=INFO run=3f6858f3 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:30:25.445Z level=INFO run=3f6858f3 message=loop session.id=ses_f1bde1540ffeHVJZdy8sROiNPC step=1
+timestamp=2026-09-27T18:30:25.447Z level=INFO run=3f6858f3 message="exiting loop" session.id=ses_f1bde1540ffeHVJZdy8sROiNPC
+timestamp=2026-09-27T18:30:25.454Z level=INFO run=3f6858f3 message="disposing instance" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"

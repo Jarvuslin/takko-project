@@ -1,0 +1,44 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ✓ tests/chat-architecture.test.ts > treats proposed decisions as user sources only after revision-bound acceptance 6ms
+ ✓ tests/chat-architecture.test.ts > persists follow-ups separately, deduplicates retries and rejects conflicting IDs 205ms
+ ✓ tests/chat-architecture.test.ts > keeps a long conversation while bounding active instructions without silently dropping them 150ms
+ ✓ tests/chat-architecture.test.ts > archives the original artifact and invalidates approval when architecture changes 58ms
+ × tests/chat-architecture.test.ts > moving nodes preserves the approved plan and artifact without a new generation 60ms
+   → expected 2 to be 1 // Object.is equality
+ ✓ tests/chat-architecture.test.ts > rejects dangling, duplicate, self and oversized architecture contracts, while allowing game loops 3ms
+ ✓ tests/chat-architecture.test.ts > requires every graph system and edge to reach the plan and implementation tasks 5ms
+ ✓ tests/chat-architecture.test.ts > preserves failed runs and more than 120 events across process reloads 492ms
+ ✓ tests/chat-architecture.test.ts > paginates stable turns and returns a bounded current-project transcript 58ms
+ ✓ tests/chat-architecture.test.ts > does not invent historical dialogue for legacy projects 13ms
+ ✓ tests/chat-architecture.test.ts > validates rig compatibility and interpolates actual clip poses 5ms
+ ✓ tests/chat-architecture.test.ts > persists imported clips and their provenance without changing or verifying the game 54ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/chat-architecture.test.ts > moving nodes preserves the approved plan and artifact without a new generation
+AssertionError: expected 2 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/chat-architecture.test.ts:229:26
+    227|   expect(response.status).toBe(200);
+    228|   const saved = db.get(p.id);
+    229|   expect(saved.revision).toBe(1);
+       |                          ^
+    230|   expect(saved.approvedRevision).toBe(1);
+    231|   expect(saved.artifact).toEqual(p.artifact);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  21:30:10
+   Duration  3.24s (tests 37%, transform 36%, import 27%)
+

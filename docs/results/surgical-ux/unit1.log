@@ -1,0 +1,37 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-choices.test.ts (19 tests | 1 failed) 1289ms
+   ❯ brief asset review (19)
+     × searches three actual options per role and caches the revision without inference 348ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > searches three actual options per role and caches the revision without inference
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/asset-choices.test.ts:181:7
+    179|     expect(
+    180|       p.assetDiscovery.groups.every((g: any) => g.options.length === 3…
+    181|     ).toBe(true);
+       |       ^
+    182|     await f.search();
+    183|     expect(f.provider.search).toHaveBeenCalledTimes(6);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 68 passed (69)
+   Start at  00:02:42
+   Duration  7.96s (import 62%, tests 24%, transform 13%, worker 1%)
+
+    Isolate  3 workers spawned · ~292ms startup each (spawn + environment, per file)
+             at least ~584ms faster with isolate: false — reuses workers across files instead of one per file
+

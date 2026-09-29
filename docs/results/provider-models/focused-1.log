@@ -1,0 +1,53 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/settings-workspace.test.ts (16 tests | 2 failed) 867ms
+   × profile saves copy keys only explicitly and never return or persist a secret 43ms
+   × catalog previews do not save profiles and reject credential reuse across endpoints 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/settings-workspace.test.ts > profile saves copy keys only explicitly and never return or persist a secret
+AssertionError: expected 400 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 400
+
+ ❯ tests/settings-workspace.test.ts:250:27
+    248|   });
+    249|   const text = await response.text();
+    250|   expect(response.status).toBe(200);
+       |                           ^
+    251|   expect(text).not.toContain("settings-test-secret");
+    252|   expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/settings-workspace.test.ts > catalog previews do not save profiles and reject credential reuse across endpoints
+AssertionError: expected 502 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 502
+
+ ❯ tests/settings-workspace.test.ts:298:5
+    296|   expect(
+    297|     (await api("/model-catalog", "POST", { profile: candidate })).stat…
+    298|   ).toBe(200);
+       |     ^
+    299|   expect(
+    300|     fs.readFileSync(path.join(dir, "configuration/models.json"), "utf8…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  2 failed | 39 passed (41)
+   Start at  13:32:36
+   Duration  6.43s (tests 55%, import 23%, transform 21%)
+

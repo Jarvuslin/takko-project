@@ -7,6 +7,9 @@ export const desktopIdentity = Object.freeze({
   dataDirectoryName: "Forge Desktop",
 });
 
-export function desktopDataDirectory(appDataDirectory) {
-  return path.join(appDataDirectory, desktopIdentity.dataDirectoryName);
+export function desktopDataDirectory(appDataDirectory, explicitDirectory = "") {
+  // Honor Electron's standard explicit profile switch for isolated local workspaces.
+  return explicitDirectory
+    ? path.resolve(explicitDirectory)
+    : path.join(appDataDirectory, desktopIdentity.dataDirectoryName);
 }

@@ -1,3 +1,4 @@
+import { RequestError, ConflictError } from "../errors";
 import { z } from "zod";
 import { bundleHash } from "./validation";
 import type { Project } from "./schema";
@@ -24,27 +25,28 @@ export function currentVisualFeedback(p: Project) {
 }
 
 export function markVisualFeedbackForInspection(p: Project) {
-  if (p.visualEvidence)
-    p.visualEvidence.reviewStatus = "awaiting_inspection";
+  if (p.visualEvidence) p.visualEvidence.reviewStatus = "awaiting_inspection";
 }
 
 export function attachVisual(p: Project, input: unknown) {
   const b = schema.parse(input);
   if (p.jobId || p.revision !== b.revision)
-    throw Error("Revision conflict or generation is running");
+    throw new ConflictError("Revision conflict or generation is running");
   if (!p.artifact)
-    throw Error("Build an artifact before attaching a screenshot");
+    throw new ConflictError("Build an artifact before attaching a screenshot");
   const bytes = Buffer.from(b.dataUrl.split(",")[1], "base64");
   if (
     bytes.length < 33 ||
     bytes.subarray(0, 8).toString("hex") !== "89504e470d0a1a0a" ||
     bytes.subarray(12, 16).toString() !== "IHDR"
   )
-    throw Error("Upload a PNG screenshot");
+    throw new RequestError("Upload a PNG screenshot");
   const width = bytes.readUInt32BE(16),
     height = bytes.readUInt32BE(20);
   if (width < 1 || height < 1 || width > 2048 || height > 2048)
-    throw Error("Screenshot dimensions must be at most 2048 by 2048");
+    throw new RequestError(
+      "Screenshot dimensions must be at most 2048 by 2048",
+    );
   p.visualEvidence = {
     revision: p.revision,
     artifactHash: bundleHash(p.artifact),

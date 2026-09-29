@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "e28cd811d53995f90fb66db072cfa72fd4d5822dd46cd2b0e25844f35c368a4e",
+  "scope": "Forge_8a81efe9b8ed",
+  "need": {
+    "id": "dummy",
+    "requirementId": "target_dummy",
+    "role": "Stationary target the player punches to test timing and trigger the hit counter.",
+    "kind": "Model",
+    "query": "boxing training dummy stand",
+    "constraints": "Humanoid-shaped stationary practice dummy, roughly 5-6 studs tall, matte gym/gray color scheme, anchored base or stand, R15-compatible rig acceptable but no locomotion needed, no moving parts required, must have a clear torso/head hitbox for touch or proximity hit detection.",
+    "intent": {
+      "experienceRole": "Serves as the practice target players repeatedly punch to test their combat timing and trigger scoring feedback, anchoring the entire gameplay loop.",
+      "interaction": "Player approaches and presses the attack input to swing at the dummy; on a successful hit the game plays the hit sound and immediately increments the on-screen hit counter. The dummy itself does not move, attack back, or reset.",
+      "reusableFeatures": [
+        "Existing humanoid rig or part layout usable as a hitbox for touch detection",
+        "Any built-in idle or wobble animation already on the dummy model",
+        "Anchored base plate or stand geometry included with the model"
+      ],
+      "relatedRequirementIds": [
+        "target_dummy",
+        "hit_sound",
+        "hit_counter_ui"
+      ]
+    },
+    "required": false,
+    "position": [
+      0,
+      3,
+      15
+    ],
+    "maxSize": 8
+  },
+  "instanceName": "dummy",
+  "review": {
+    "packetHash": "3858615b2f62d61003a5a5570c39baaf950acaf0d3cb202750d299c2008fe484",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c",
+    "disposition": "integration_candidate",
+    "reason": "Current evidence has zero sourceBodies, confirming removal of the Respawn script (before-index 18, ff6eaa79...) which polled Humanoid.Health and used deprecated makeJoints()/clone-destroy to reset the dummy, conflicting with the never-resets requirement and serving no gameplay purpose here. Static hitbox geometry (parts, meshes, Head, Torso, Decal, Humanoid) survives unmodified per mapping. No scripts remain to review, no removed capabilities are listed, and no linked requirement is unknown, so this component qualifies as an integration candidate for the static dummy geometry; placement, sound, and HUD remain separately owned integration work.",
+    "serializedMedia": [
+      {
+        "index": 16,
+        "property": "Texture",
+        "value": "rbxassetid://406436910",
+        "purpose": "Decal texture on the Torso part providing the dummy's tape-wrapped visual surface; only a serialized reference, rendering/availability unverified.",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [],
+    "requirements": [
+      {
+        "requirementId": "target_dummy",
+        "status": "integration_needed",
+        "reason": "Static hitbox parts (Head index13, Torso index15 with Decal index16, Humanoid index17, plus body parts) are retained and the unsafe Respawn/reset script is confirmed removed. However current evidence shows no Anchored property or (0,3,15) position/orientation; placement and anchoring are explicitly deferred to the dummy_placement task, so world-placement acceptance is not yet established.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          2,
+          13,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "requirementId": "hit_sound",
+        "status": "integration_needed",
+        "reason": "This component contains no Sound instances or audio wiring of any kind; the impact sound asset is a separately pending need (hitSound, unstarted) and must be integrated by a future component triggered on server-confirmed hits.",
+        "sourceHashes": [],
+        "nodeIndices": []
+      },
+      {
+        "requirementId": "hit_counter_ui",
+        "status": "integration_needed",
+        "reason": "No UI/ScreenGui/counter elements exist in this model; the HUD counter is owned by the separate hit_counter_hud task and is not implemented within the dummy asset.",
+        "sourceHashes": [],
+        "nodeIndices": []
+      }
+    ],
+    "permissionImpacts": [],
+    "integrationNotes": [
+      "Confirmed via empty sourceBodies that the flagged Respawn Script (deprecated makeJoints(), unbounded Health-polling clone/destroy loop) is no longer present in current evidence, matching the applied plan's removeSubtrees claim; this is a static confirmation only, no runtime test was performed.",
+      "Remaining integration for target_dummy: set Anchored=true and position/orient parts at approximately (0,3,15) facing spawn; not established by current evidence.",
+      "Torso Decal texture rbxassetid://406436910 (index 16) is only a serialized reference; rendering/availability is unverified and should be confirmed during native testing.",
+      "Determine which part(s) (Head/Torso or a dedicated hitbox) should have CanTouch/CanQuery configured once punch_validator_server is authored; no such configuration is visible in current evidence.",
+      "hit_sound and hit_counter_ui requirements linked to this evidence packet are correctly out of scope for this dummy model and belong to the separately pending hitSound need and hit_counter_hud task respectively."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 509,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Humanoid.Health_XML",
+      "Humanoid.InternalBodyScale",
+      "Humanoid.InternalHeadScale",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "07b4a74ec673a4f08da8992e896daf736f1c6a6cf9f7554c7c44a6521ec2ad37",
+  "metadata": {
+    "needId": "dummy",
+    "candidateId": "1245720733",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c",
+    "packetHash": "3858615b2f62d61003a5a5570c39baaf950acaf0d3cb202750d299c2008fe484",
+    "archiveHash": "9af18071332f73d051301b4857f9d3a7039f1904edc28e222cbcc2df717f9110",
+    "conversionHash": "267104dcf2867df953b6139bc68266911ff6a1a7af9390adbfbeb355c8f5463c",
+    "destinationPath": "Workspace/Forge_8a81efe9b8ed/Assets/dummy",
+    "rootName": "dummy",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

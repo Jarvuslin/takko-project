@@ -1,0 +1,301 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run lint:css && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/noncoding-decisions.test.ts (40 tests | 13 failed) 3403ms
+   ❯ non-coding route through the real Engine (21)
+     × sends corrections and interpreted answers with the original asset brief 28ms
+     × rechecks the budget between candidate batches and keeps completed billing 17ms
+     × gates all 30 Creator Store candidates in bounded batches before rating 11ms
+     × stops on unknown billing instead of using the answer 10ms
+     × rejects a late response after model routing changes 1021ms
+     × rejects a completed answer after cancellation and releases its reservation 1037ms
+     × retains financial settlement when diagnostic writing fails 23ms
+     × preserves newer project state and settles a rejected stale reply 1019ms
+     × assesses actual offered metadata, saves advice and charges, but never approves/imports 12ms
+     × changed metadata invalidates cached advice 13ms
+     × enforces the project budget before dispatch 12ms
+     × settles malformed replies once without fallback or asset selection 15ms
+     × rejects changed revision and approved asset pools without spending 15ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > sends corrections and interpreted answers with the original asset brief
+TypeError: Cannot read properties of undefined (reading '1')
+ ❯ tests/noncoding-decisions.test.ts:320:63
+    318|     f.store.save(f.p);
+    319|     await f.engine.assessAssetChoices(f.p.id, 1);
+    320|     const sent = JSON.parse((f.transport as any).mock.calls[0][1].body…
+       |                                                               ^
+    321|     expect(sent.state.originalBrief).toBe(f.p.request);
+    322|     expect(sent.state.clarificationAnswers).toEqual(f.p.answers);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > rechecks the budget between candidate batches and keeps completed billing
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/noncoding-decisions.test.ts:383:23
+    381|     f.store.save(f.p);
+    382|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    383|     expect(p.charges).toHaveLength(1);
+       |                       ^
+    384|     expect(p.charges[0].chargedMicros).toBe(42);
+    385|     expect(p.assetDiscovery!.analysisError).toMatch(/budget/i);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > gates all 30 Creator Store candidates in bounded batches before rating
+AssertionError: expected [] to have a length of 2 but got +0
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/noncoding-decisions.test.ts:402:23
+    400|     f.store.save(f.p);
+    401|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    402|     expect(p.charges).toHaveLength(2);
+       |                       ^
+    403|     const requests = (f.transport as any).mock.calls.map((call: any[])…
+    404|       JSON.parse(call[1].body),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > stops on unknown billing instead of using the answer
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ tests/noncoding-decisions.test.ts:426:45
+    424|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    425|     expect(p.assetDiscovery?.groups[0].relevance).toBeUndefined();
+    426|     expect(p.assetDiscovery?.analysisError).toMatch(/billing/);
+       |                                             ^
+    427|     expect(p.charges[0]).toMatchObject({
+    428|       chargedMicros: 2688,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > rejects a late response after model routing changes
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/noncoding-decisions.test.ts:453:46
+    451|     const f = fixture(transport),
+    452|       run = f.engine.assessAssetChoices(f.p.id, 1);
+    453|     await vi.waitFor(() => expect(transport).toHaveBeenCalledTimes(1));
+       |                                              ^
+    454|     const cfg = f.config.read();
+    455|     cfg.routes.decisions = [];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > rejects a completed answer after cancellation and releases its reservation
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/noncoding-decisions.test.ts:474:46
+    472|     const f = fixture(transport),
+    473|       run = f.engine.assessAssetChoices(f.p.id, 1);
+    474|     await vi.waitFor(() => expect(transport).toHaveBeenCalledTimes(1));
+       |                                              ^
+    475|     f.engine.cancel(f.p.id);
+    476|     release();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > retains financial settlement when diagnostic writing fails
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/noncoding-decisions.test.ts:493:23
+    491|     });
+    492|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    493|     expect(p.charges).toHaveLength(1);
+       |                       ^
+    494|     expect(p.charges[0].chargedMicros).toBe(42);
+    495|     expect(p.reservedMicros).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > preserves newer project state and settles a rejected stale reply
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ ❯ tests/noncoding-decisions.test.ts:508:46
+    506|     const f = fixture(transport),
+    507|       run = f.engine.assessAssetChoices(f.p.id, 1);
+    508|     await vi.waitFor(() => expect(transport).toHaveBeenCalledTimes(1));
+       |                                              ^
+    509|     const changed = f.store.get(f.p.id);
+    510|     changed.revision++;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > assesses actual offered metadata, saves advice and charges, but never approves/imports
+AssertionError: expected undefined to match object { candidateId: '123', …(1) }
+
+- Expected:
+{
+  "candidateId": "123",
+  "state": "metadata_only",
+}
+
++ Received:
+undefined
+
+ ❯ tests/noncoding-decisions.test.ts:524:51
+    522|     const f = fixture();
+    523|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    524|     expect(p.assetDiscovery?.groups[0].relevance).toMatchObject({
+       |                                                   ^
+    525|       candidateId: "123",
+    526|       state: "metadata_only",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > changed metadata invalidates cached advice
+AssertionError: expected "vi.fn()" to be called 2 times, but got 0 times
+ ❯ tests/noncoding-decisions.test.ts:546:25
+    544|     f.store.save(p);
+    545|     await f.engine.assessAssetChoices(p.id, 1);
+    546|     expect(f.transport).toHaveBeenCalledTimes(2);
+       |                         ^
+    547|   });
+    548|   it("disabled route has no additional calls", async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > enforces the project budget before dispatch
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ tests/noncoding-decisions.test.ts:561:45
+    559|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    560|     expect(f.transport).not.toHaveBeenCalled();
+    561|     expect(p.assetDiscovery?.analysisError).toMatch(/budget/);
+       |                                             ^
+    562|     expect(p.charges).toEqual([]);
+    563|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > settles malformed replies once without fallback or asset selection
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/noncoding-decisions.test.ts:607:23
+    605|     const f = fixture(transport);
+    606|     const p = await f.engine.assessAssetChoices(f.p.id, 1);
+    607|     expect(p.charges).toHaveLength(1);
+       |                       ^
+    608|     expect(p.charges[0].chargedMicros).toBe(42);
+    609|     expect(p.reservedMicros).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/13]⎯
+
+ FAIL  tests/noncoding-decisions.test.ts > non-coding route through the real Engine > rejects changed revision and approved asset pools without spending
+AssertionError: promise resolved "{ schemaVersion: 2, …(22) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "answers": {},
++   "approvedRevision": null,
++   "artifact": null,
++   "assetDiscovery": {
++     "groups": [
++       {
++         "id": "dummy",
++         "kind": "Model",
++         "label": "Practice dummy",
++         "options": [
++           {
++             "assetId": "123",
++             "creatorName": "Fixture",
++             "kind": "Model",
++             "name": "Training dummy",
++             "updated": "v1",
++           },
++           {
++             "assetId": "456",
++             "creatorName": "Fixture",
++             "kind": "Model",
++             "name": "House",
++             "updated": "v1",
++           },
++         ],
++         "preview": "model",
++         "query": "training dummy",
++       },
++     ],
++     "id": "55284901-0322-4030-897f-f394cfd55b4b",
++     "revision": 1,
++     "studioId": "1cf2947b-e680-4c5b-a81f-c621dd2fc422",
++   },
++   "budgetMicros": 100000,
++   "charges": [],
++   "checks": [],
++   "conversation": [
++     {
++       "at": "2026-09-27T04:56:53.770Z",
++       "id": "1d59fb87-624f-4460-babd-d19ee23c1dc8",
++       "kind": "user",
++       "revision": 1,
++       "text": "A fist practice game with a dummy",
++     },
++   ],
++   "createdAt": "2026-09-27T04:56:53.770Z",
++   "error": null,
++   "events": [],
++   "id": "4974ab53-c9cc-4ea5-9739-44a2830720a7",
++   "jobId": null,
++   "name": "A fist practice game with a dummy",
++   "request": "A fist practice game with a dummy",
++   "reservedMicros": 0,
++   "review": null,
++   "revision": 1,
++   "schemaVersion": 2,
++   "scope": "Forge_4974ab53c9cc",
++   "spec": null,
++   "stage": "draft",
++   "studioEvidence": null,
+  }
+
+ ❯ tests/noncoding-decisions.test.ts:625:57
+    623|   it("rejects changed revision and approved asset pools without spendi…
+    624|     const f = fixture();
+    625|     await expect(f.engine.assessAssetChoices(f.p.id, 2)).rejects.toThr…
+       |                                                         ^
+    626|       /changed/,
+    627|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/13]⎯
+
+
+ Test Files  1 failed | 107 passed (108)
+      Tests  13 failed | 1577 passed (1590)
+   Start at  00:55:53
+   Duration  84.59s (tests 78%, import 19%, transform 3%)
+
+    Isolate  108 workers spawned · ~163ms startup each (spawn + environment, per file)
+             at least ~8.62s faster with isolate: false — reuses workers across files instead of one per file
+

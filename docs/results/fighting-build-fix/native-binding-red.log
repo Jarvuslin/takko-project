@@ -1,0 +1,26 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/studio-asset-adapter.test.ts (76 tests | 1 failed | 75 skipped) 15ms
+   × inspects an explicitly approved reference without pretending it came from a search 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/studio-asset-adapter.test.ts > inspects an explicitly approved reference without pretending it came from a search
+TypeError: f.adapter.bindApprovedReference is not a function
+ ❯ tests/studio-asset-adapter.test.ts:280:19
+    278|   const candidate = { id: "123", name: "Board", kind: "Model" as const…
+    279|   await expect(f.adapter.inspect(need, candidate, "unbound", signal())…
+    280|   await f.adapter.bindApprovedReference(need, candidate, { discoveryId…
+       |                   ^
+    281|   await expect(f.adapter.inspect({ ...need, id: "other" }, candidate, …
+    282|   await expect(f.adapter.inspect(need, { ...candidate, id: "456" }, "w…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 75 skipped (76)
+   Start at  14:44:45
+   Duration  816ms (transform 64%, import 33%, tests 2%, worker 1%)
+

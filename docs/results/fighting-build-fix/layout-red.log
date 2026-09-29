@@ -1,0 +1,53 @@
+[WebServer] (node:31572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:26160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:37584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:31620) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:14444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › four selected assets leave the conversation and send controls usable in a short window (2.5s)
+
+
+  1) [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › four selected assets leave the conversation and send controls usable in a short window 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 140
+    Received:    16
+
+      14 |   await expect(page.getByLabel('Use for Hit effect', { exact: true })).toHaveValue('Hit effect');
+      15 |   const thread = page.locator('.chat-thread-scroll');
+    > 16 |   expect((await thread.boundingBox())!.height).toBeGreaterThanOrEqual(140);
+         |                                                ^
+      17 |   const send = page.getByRole('button', { name: 'Send message and update plan' });
+      18 |   const bounds = (await send.boundingBox())!;
+      19 |   expect(bounds.y + bounds.height).toBeLessThanOrEqual(575);
+        at D:\RobloxProjects\Roblox Gen\tests\browser\chat-architecture.spec.ts:16:48
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\chat-architecture-four-sel-d3a12-ls-usable-in-a-short-window-desktop\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\chat-architecture-four-sel-d3a12-ls-usable-in-a-short-window-desktop\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\chat-architecture-four-sel-d3a12-ls-usable-in-a-short-window-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\chat-architecture-four-sel-d3a12-ls-usable-in-a-short-window-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › four selected assets leave the conversation and send controls usable in a short window 

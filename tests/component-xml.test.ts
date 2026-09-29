@@ -4,6 +4,7 @@ import { XMLParser, XMLValidator } from "fast-xml-parser";
 import { exportBundle } from "../src/generation/export";
 import {
   mergeNativeComponentXml,
+  nameComponentRoot,
   type NativeComponentXml,
 } from "../src/generation/component-xml";
 const parser = new XMLParser({
@@ -43,6 +44,32 @@ function all(xml: string) {
 }
 
 describe("native component XML export", () => {
+  it("replaces a junk root name while preserving child names, source, references and the original artifact", () => {
+    const original = artifact(
+      model.replace(
+        ">Imported</string>",
+        ">🌟 xX_zQ7_998_Xx / random</string>",
+      ),
+    );
+    const before = structuredClone(original);
+    const named = nameComponentRoot(original, "fishingDock");
+    const oldRoot = parser.parse(original.xml).roblox.Item;
+    const newRoot = parser.parse(named.xml).roblox.Item;
+    expect(newRoot.Properties.string).toEqual({
+      "#text": "fishingDock",
+      "@_name": "Name",
+    });
+    newRoot.Properties.string = oldRoot.Properties.string;
+    expect(newRoot).toEqual(oldRoot);
+    expect(original).toEqual(before);
+    expect(named.sha256).not.toBe(original.sha256);
+    expect(() => nameComponentRoot(original, "../escape")).toThrow(
+      "Invalid component instance name",
+    );
+    expect(() =>
+      nameComponentRoot({ ...original, sha256: "fake" }, "dock"),
+    ).toThrow("identity mismatch");
+  });
   it("preserves complete property types, exact source and internal references while remapping collisions", () => {
     const result = exportBundle(empty, scope, [
       artifact(),

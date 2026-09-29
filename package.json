@@ -9,7 +9,7 @@
     "build": "tsc --noEmit && vite build",
     "test:e2e": "playwright test",
     "test:luau": "node scripts/test-luau.mjs",
-    "check": "npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e",
+    "check": "npm run build && npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run lint:css && npm run test:desktop && npm run test:production && npm run test:e2e",
     "sample": "tsx scripts/export-sample.ts",
     "test:guards": "node scripts/evaluate-guards.mjs",
     "test:production": "node scripts/smoke-production.mjs",
@@ -19,13 +19,15 @@
     "desktop": "npm run desktop:build && electron dist-desktop",
     "desktop:package": "npm run desktop:build && node desktop/package.mjs",
     "test:desktop": "tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs && node --test desktop/tests/*.test.mjs",
-    "test:desktop:native": "electron desktop/tests/electron-smoke.mjs"
+    "test:desktop:native": "electron desktop/tests/electron-smoke.mjs",
+    "lint:css": "stylelint \"src/web/**/*.css\""
   },
   "type": "module",
   "dependencies": {
     "express": "^5.2.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "three": "^0.186.0",
     "zod": "^4.6.4"
   },
   "devDependencies": {
@@ -36,11 +38,14 @@
     "@types/node": "^26.5.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^6.1.1",
     "electron": "44.3.0",
     "esbuild": "0.28.2",
     "fast-xml-parser": "^5.11.1",
     "prettier": "^3.9.6",
+    "stylelint": "^17.15.0",
+    "stylelint-config-standard": "^40.0.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",

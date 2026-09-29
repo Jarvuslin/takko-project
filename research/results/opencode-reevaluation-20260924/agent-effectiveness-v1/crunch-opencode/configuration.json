@@ -1,0 +1,56 @@
+{
+  "model": "pilot/gpt-4.1-mini",
+  "small_model": "pilot/gpt-4.1-mini",
+  "enabled_providers": [
+    "pilot"
+  ],
+  "share": "disabled",
+  "autoupdate": false,
+  "snapshot": false,
+  "plugin": [],
+  "provider": {
+    "pilot": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Matched OpenRouter pilot",
+      "options": {
+        "baseURL": "http://127.0.0.1:64039/v1",
+        "apiKey": "local-only"
+      },
+      "models": {
+        "gpt-4.1-mini": {
+          "name": "GPT-4.1 mini",
+          "limit": {
+            "context": 128000,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0.39999999999999997,
+            "output": 1.5999999999999999
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "*": "deny",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "list": "allow",
+    "edit": {
+      "*": "deny",
+      "ReplicatedStorage/Forge_AgentComparison/Logic.module.luau": "allow",
+      "**/Logic.module.luau": "allow"
+    },
+    "bash": {
+      "*": "deny",
+      "node check.mjs": "allow"
+    },
+    "external_directory": "deny"
+  },
+  "agent": {
+    "build": {
+      "steps": 10
+    }
+  }
+}

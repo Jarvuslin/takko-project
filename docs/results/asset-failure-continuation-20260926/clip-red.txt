@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/selected-clip-context.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/selected-clip-context.test.ts [ tests/selected-clip-context.test.ts ]
+Error: Cannot find module '../src/marketplace/selected-clip-context' imported from D:/RobloxProjects/Roblox Gen/tests/selected-clip-context.test.ts
+ ❯ tests/selected-clip-context.test.ts:4:1
+      2| import { expect, it } from "vitest";
+      3| import { savedReplay } from "./post-plan-replay.fixture";
+      4| import { approvedClipContext, animationCapabilityContract } from "../s…
+       | ^
+      5| import { publishableAnimationPack } from "../src/marketplace/animation…
+      6| const project = savedReplay("opencode-step3-live-20260925");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  21:43:42
+   Duration  1.16s (worker 96%, environment 4%)
+

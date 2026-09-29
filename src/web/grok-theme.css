@@ -1,0 +1,854 @@
+/* Takko's approved monochrome concept, applied to the existing application. */
+.ui-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  vertical-align: middle;
+}
+.takko-mark {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+}
+.minimal {
+  background: var(--canvas);
+  color: var(--ink);
+}
+.minimal :is(button, .button) {
+  border-radius: 12px;
+  background: var(--panel);
+  border-color: var(--line);
+  min-height: 40px;
+}
+.minimal :is(button, .button):hover:not(:disabled) {
+  background: #2d2d2d;
+  border-color: #5c5c5c;
+}
+
+.minimal :is(input, select, .visual-feedback textarea) {
+  background: var(--panel);
+  border-color: var(--line-mid);
+  border-radius: 10px;
+}
+.minimal :is(input, textarea)::placeholder {
+  color: #a7a7a7;
+  opacity: 1;
+}
+.minimal .primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #111;
+}
+.minimal .primary:hover:not(:disabled) {
+  background: var(--ink-bright);
+  border-color: var(--ink-bright);
+}
+.minimal .sidebar,
+.minimal.editor:not(.sidebar-expanded) .sidebar {
+  width: 224px;
+  padding: 26px 14px 20px;
+  background: var(--sidebar);
+  border-right: 0;
+}
+.minimal .brand {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  gap: 11px;
+  margin: 0 12px 30px;
+}
+.minimal .brand-symbol,
+.minimal .brand-symbol .takko-mark {
+  width: 32px;
+  height: 32px;
+}
+.minimal .new-project,
+.minimal.editor:not(.sidebar-expanded) .new-project {
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  min-height: 44px;
+  background: var(--raised);
+  border: 0;
+  gap: 13px;
+  font-size: 14px;
+}
+.project-search {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.project-search > svg {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.minimal .project-search input {
+  padding: 10px 9px 10px 46px;
+  border-color: transparent;
+  background: transparent;
+  font-size: 13px;
+  min-height: 42px;
+}
+.minimal .project-search input:focus {
+  background: var(--panel);
+}
+.minimal .marketplace-launch {
+  justify-content: flex-start;
+  padding: 11px 14px;
+  margin: 0 0 36px;
+  border: 0;
+  background: transparent;
+  gap: 13px;
+  font-size: 14px;
+}
+.minimal .marketplace-launch[aria-expanded="true"] {
+  background: var(--raised);
+}
+.minimal .nav-label,
+.minimal.editor:not(.sidebar-expanded) .nav-label {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 14px;
+  margin-bottom: 14px;
+}
+.minimal .sidebar nav .project-link {
+  padding: 11px 14px;
+  min-height: 42px;
+  margin-bottom: 2px;
+  color: var(--ink-quieter);
+  border-radius: 10px;
+}
+.minimal .sidebar nav .project-link.selected {
+  background: var(--raised);
+  color: var(--ink);
+}
+.minimal .empty-nav {
+  font-size: 12px;
+  padding: 0 14px;
+}
+.minimal .sidebar-bottom {
+  padding-top: 28px;
+}
+.minimal .sidebar-bottom > button,
+.minimal .sidebar-download,
+.minimal.editor:not(.sidebar-expanded) .sidebar-bottom > button,
+.minimal.editor:not(.sidebar-expanded) .sidebar-download {
+  gap: 12px;
+  padding: 12px 14px;
+  min-height: 44px;
+  font-size: 12px;
+  color: var(--muted);
+  border-radius: 10px;
+}
+.minimal .sidebar-download > svg:last-child {
+  margin-left: auto;
+}
+.minimal .local-status {
+  font-size: 11px;
+  border-color: var(--line);
+  padding: 20px 14px 0;
+}
+.minimal .local-status i {
+  width: 6px;
+  height: 6px;
+}
+.minimal main,
+.minimal.editor main,
+.minimal.landing main,
+.minimal.editor:not(.sidebar-expanded) main {
+  margin-left: 224px;
+  width: calc(100% - 224px);
+  background: var(--canvas);
+}
+.minimal .topbar,
+.minimal.editor .topbar {
+  min-height: 76px;
+  height: auto;
+  padding: 20px 30px;
+  border-color: var(--surface-slate-raised);
+  gap: 18px;
+}
+.minimal.landing .topbar {
+  border-bottom-color: transparent;
+}
+.minimal.landing .topbar > div {
+  visibility: visible;
+}
+.minimal .topbar > div {
+  overflow: visible;
+}
+.minimal .topbar > div:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.minimal .topbar-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.minimal .topbar-actions > button {
+  min-height: 34px;
+  border-radius: 20px;
+  font-size: 12px;
+  background: transparent;
+}
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.connection-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+}
+.connection-status i.connected {
+  background: #b7d8bd;
+}
+.minimal .welcome {
+  width: min(100%, 824px);
+  padding: clamp(64px, 10vh, 110px) 32px 34px;
+  text-align: center;
+}
+.welcome .welcome-mark {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 32px;
+}
+.minimal .welcome h1 {
+  font-size: clamp(28px, 3.05vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+.minimal .welcome-description {
+  max-width: none;
+  font-size: 16px;
+  margin: 0 0 44px;
+  color: var(--muted);
+}
+.minimal .welcome form {
+  padding: 20px 18px 14px;
+  border-radius: 24px;
+  border-color: var(--line-soft);
+  background: var(--panel);
+}
+.minimal .welcome textarea {
+  padding: 0 6px 18px;
+  min-height: 70px;
+  height: 70px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+.minimal .composer-footer {
+  padding: 0;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+.minimal .attach-button {
+  width: auto;
+  min-width: 40px;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 12px;
+  font-size: 12px;
+  gap: 7px;
+}
+.minimal .composer-footer > .attach-button:first-child {
+  margin-right: auto;
+}
+.minimal .model-launcher {
+  background: transparent;
+  border-color: transparent;
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--ink-quieter);
+  gap: 7px;
+  max-width: 215px;
+  padding: 8px 10px;
+}
+.minimal .composer-footer .send-button {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  flex: 0 0 auto;
+}
+.minimal .starter-prompts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0 0;
+}
+.minimal .starter-prompts button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-quieter);
+  border-radius: 24px;
+  font-size: 12px;
+  min-height: 36px;
+  padding: 8px 14px;
+}
+.minimal .starter-prompts button:disabled {
+  opacity: 0.55;
+}
+.recent-projects {
+  margin: 60px 0 0;
+  text-align: left;
+}
+.minimal .recent-projects h2 {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.recent-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.minimal .recent-project-card {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  grid-template-rows: 76px auto;
+  align-items: center;
+  justify-content: initial;
+  text-align: left;
+  padding: 12px;
+  gap: 12px 10px;
+  border-radius: 14px;
+  min-width: 0;
+}
+.recent-project-card img {
+  width: 80px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+.recent-project-card strong {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.recent-project-card small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: capitalize;
+}
+.minimal .welcome-footnote {
+  margin: 56px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.minimal .workspace {
+  max-width: 1040px;
+}
+.minimal .chat-panel {
+  padding: 0 40px 36px;
+  background: var(--canvas);
+}
+.minimal .chat-heading {
+  background: var(--canvas);
+  min-height: 78px;
+}
+.minimal .chat-heading > strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+.minimal .chat-heading button {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+.minimal .stage {
+  border-radius: 20px;
+  padding: 6px 12px;
+  background: var(--panel);
+  font-size: 11px;
+}
+.minimal .tabs {
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.minimal .tabs button {
+  padding: 12px 4px;
+  margin-right: 14px;
+  font-size: 13px;
+}
+.minimal .tabs [aria-selected="true"] {
+  border-bottom-color: var(--ink);
+}
+.minimal .section-head > :is(h2, h3) {
+  font-size: 18px;
+  font-weight: 500;
+}
+.minimal .request-editor {
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: var(--raised);
+  border-color: var(--raised);
+  font-size: 16px;
+}
+.minimal
+  :is(
+    .requirements article,
+    .plan-aside,
+    .chat-history,
+    .empty-panel,
+    .generation-card
+  ) {
+  background: var(--panel);
+  border-color: var(--line);
+  border-radius: 14px;
+  box-shadow: none;
+}
+.minimal .chat-history {
+  padding: 20px;
+}
+.minimal .generation-card {
+  padding: 20px;
+}
+.minimal .generation-card small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.minimal .generation-card p {
+  font-size: 13px;
+}
+.minimal .chat-composer {
+  margin-top: 36px;
+  padding: 20px 18px 14px;
+  background: var(--panel);
+  border-color: var(--line-soft);
+  border-radius: 24px;
+}
+.minimal .chat-composer textarea {
+  padding: 0 6px 18px;
+  height: 70px;
+  min-height: 70px;
+  font-size: 16px;
+  border: 0;
+}
+.minimal .composer-hint {
+  margin: 16px 6px 0;
+  font-size: 11px;
+}
+.minimal .asset-attachments {
+  padding: 0 6px;
+}
+.minimal .asset-attachment {
+  background: #242a2d;
+  border-color: #465158;
+}
+.minimal .asset-attachment small,
+.minimal .asset-status {
+  color: #bccbd3;
+}
+.minimal .settings {
+  background: var(--sidebar);
+  border-color: var(--line);
+  border-radius: 20px;
+}
+.minimal :is(.provider, .catalog-picker, .model-popover) {
+  background: var(--panel);
+  border-color: var(--line-mid);
+}
+.minimal .dialog-footer {
+  background: var(--sidebar);
+  border-color: var(--line);
+}
+.minimal .model-popover {
+  border-radius: 18px;
+  padding: 18px;
+  max-height: 65dvh;
+  overflow: auto;
+  box-shadow: 0 16px 60px #0009;
+}
+.minimal .model-filters button {
+  border-radius: 20px;
+  min-height: var(--control-min);
+}
+.minimal .model-filters [aria-pressed="true"] {
+  background: var(--ink);
+  color: #111;
+  border-color: var(--ink);
+}
+.minimal .model-option[aria-pressed="true"] {
+  border-color: var(--muted);
+  background: var(--raised);
+}
+.minimal .model-option small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.minimal .checkbox input {
+  accent-color: var(--focus-ring);
+}
+.minimal .spinner {
+  border-color: var(--line-strong);
+  border-top-color: var(--ink);
+}
+.minimal .marketplace-panel {
+  width: 400px;
+  padding: 28px 24px;
+  background: #181818;
+  border-color: var(--line);
+}
+.minimal .marketplace-panel h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.minimal .marketplace-panel .eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+}
+.minimal .marketplace-panel header button {
+  background: transparent;
+  border-color: transparent;
+  padding: 8px;
+  min-width: 40px;
+}
+.minimal .marketplace-panel > p.muted {
+  font-size: 12px;
+  margin: 12px 0 24px;
+}
+.minimal .marketplace-panel label {
+  font-size: 12px;
+}
+.minimal .market-refresh {
+  background: transparent;
+  font-size: 11px;
+  min-height: var(--control-min);
+  margin: 6px 0 22px;
+  padding: 5px 0;
+  border: 0;
+}
+.minimal .market-tabs {
+  gap: 6px;
+  margin-bottom: 22px;
+}
+.minimal .market-tabs button {
+  background: transparent;
+  border: 0;
+  border-radius: 20px;
+  min-height: var(--control-min);
+  font-size: 12px;
+}
+.minimal .market-tabs button[aria-pressed="true"],
+.minimal .market-card-actions button[aria-pressed="true"] {
+  background: var(--line);
+  color: var(--ink);
+  border-color: #888;
+}
+.minimal .market-search-controls {
+  margin-bottom: 24px;
+}
+.minimal .market-search-controls button {
+  font-size: 12px;
+}
+.minimal .market-grid {
+  gap: 16px;
+}
+.minimal .market-card {
+  background: var(--panel);
+  border-color: var(--line);
+  border-radius: 14px;
+  padding: 10px;
+}
+.minimal .market-thumbnail {
+  background: var(--raised);
+  aspect-ratio: 1.4;
+  border-radius: 9px;
+  color: var(--muted);
+}
+.minimal .market-card > a {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.minimal .market-card small,
+.minimal .inspection-label {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.minimal .market-card-actions {
+  gap: 4px;
+}
+.minimal .market-card-actions button {
+  min-width: 32px;
+  padding: 7px;
+  min-height: var(--control-min);
+  font-size: 11px;
+  background: transparent;
+}
+.minimal .market-card-actions button:last-child {
+  margin-left: auto;
+}
+.minimal .market-notice {
+  font-size: 11px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+@media (min-width: 1200px) {
+  .app.minimal.market-open main {
+    margin-right: 400px;
+    width: calc(100% - 624px);
+  }
+  .minimal.market-open .chat-panel {
+    padding-inline: 30px;
+  }
+  .minimal.market-open .topbar .connection-status {
+    display: none;
+  }
+  .minimal.market-open .recent-project-grid {
+    grid-template-columns: 1fr;
+  }
+  .minimal.market-open .recent-project-card {
+    grid-template-columns: 64px 1fr auto;
+    grid-template-rows: auto;
+  }
+  .minimal.market-open .recent-project-card img {
+    width: 64px;
+    height: 48px;
+  }
+  .minimal.market-open .recent-project-card small {
+    grid-column: auto;
+  }
+}
+@media (min-width: 701px) and (max-width: 1199px) {
+  .app.minimal.market-open main {
+    margin-right: 0;
+    width: calc(100% - 224px);
+  }
+  .minimal .marketplace-panel {
+    box-shadow: -16px 0 60px var(--shadow-scrim);
+  }
+  .minimal .recent-project-grid {
+    grid-template-columns: 1fr;
+  }
+  .minimal .recent-project-card {
+    grid-template-columns: 64px 1fr auto;
+    grid-template-rows: auto;
+  }
+  .minimal .recent-project-card img {
+    width: 64px;
+    height: 48px;
+  }
+  .minimal .recent-project-card small {
+    grid-column: auto;
+  }
+  .minimal .topbar .connection-status {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .minimal .sidebar,
+  .minimal.editor:not(.sidebar-expanded) .sidebar {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+    gap: 10px;
+    min-height: 72px;
+  }
+  .minimal .brand {
+    margin: 0;
+    font-size: 22px;
+    gap: 8px;
+  }
+  .minimal .brand-symbol,
+  .minimal .brand-symbol .takko-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .minimal .project-search {
+    display: none;
+  }
+  .minimal .new-project,
+  .minimal.editor:not(.sidebar-expanded) .new-project {
+    margin: 0 0 0 auto;
+    width: auto;
+    padding: 10px;
+    gap: 6px;
+    font-size: 12px;
+  }
+  .minimal .marketplace-launch {
+    padding: 10px;
+    margin: 0;
+    width: 40px;
+    min-width: 40px;
+  }
+  .minimal .marketplace-launch span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .minimal main,
+  .minimal.editor main,
+  .minimal.landing main,
+  .minimal.editor:not(.sidebar-expanded) main,
+  .app.minimal.market-open main {
+    margin: 0;
+    width: 100%;
+  }
+  .minimal .topbar,
+  .minimal.editor .topbar {
+    padding: 10px 18px;
+    min-height: 52px;
+    height: auto;
+  }
+  .minimal.landing .topbar > div:first-child {
+    display: none;
+  }
+  .minimal .topbar .topbar-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .minimal .topbar .connection-status {
+    display: none;
+  }
+  .minimal .mobile-project-picker,
+  .minimal.landing .mobile-project-picker {
+    background: var(--canvas);
+    padding: 6px 18px 12px;
+    color: var(--muted);
+  }
+  .minimal .welcome {
+    padding: 44px 20px 34px;
+  }
+  .welcome .welcome-mark {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 26px;
+  }
+  .minimal .welcome h1 {
+    font-size: 30px;
+    letter-spacing: -0.04em;
+  }
+  .minimal .welcome-description {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  .minimal .welcome form {
+    padding: 18px 12px 12px;
+    border-radius: 22px;
+  }
+  .minimal .welcome textarea,
+  .minimal .chat-composer textarea {
+    min-height: 90px;
+    height: 90px;
+    font-size: 16px;
+  }
+  .minimal .composer-footer {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .minimal .composer-footer .attach-button {
+    padding: 8px;
+  }
+  .minimal .composer-footer .attach-button > span {
+    display: none;
+  }
+  .minimal .model-launcher {
+    max-width: 164px;
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+  .minimal .starter-prompts {
+    gap: 8px;
+    margin-top: 22px;
+  }
+  .minimal .starter-prompts button {
+    padding: 8px 11px;
+    font-size: 11px;
+  }
+  .minimal .recent-projects {
+    margin-top: 42px;
+  }
+  .minimal .recent-project-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .minimal .recent-project-card {
+    grid-template-columns: 64px 1fr;
+    grid-template-rows: auto auto;
+    gap: 4px 14px;
+  }
+  .minimal .recent-project-card img {
+    grid-row: span 2;
+    width: 64px;
+    height: 52px;
+  }
+  .minimal .recent-project-card small {
+    grid-column: 2;
+  }
+  .minimal .welcome-footnote {
+    margin-top: 38px;
+  }
+  .minimal .chat-panel {
+    padding: 0 18px 30px;
+  }
+  .minimal .chat-heading {
+    min-height: 70px;
+    padding-block: 18px;
+  }
+  .minimal .tabs {
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .minimal .tabs button {
+    margin-right: 4px;
+    padding: 10px 8px;
+  }
+  .minimal .chat-composer {
+    padding: 18px 12px 12px;
+  }
+  .minimal .model-popover {
+    position: fixed;
+    inset: auto 18px 18px 18px;
+    width: auto;
+    max-width: none;
+    max-height: 70dvh;
+    z-index: 12;
+  }
+  .minimal .marketplace-panel {
+    width: min(400px, 100vw);
+    padding: 24px 18px;
+    box-shadow: -16px 0 60px var(--shadow-scrim);
+  }
+  .minimal .market-grid {
+    gap: 12px;
+  }
+  .minimal .settings {
+    padding: 20px;
+  }
+}

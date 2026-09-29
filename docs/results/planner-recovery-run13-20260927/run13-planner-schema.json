@@ -1,0 +1,538 @@
+{
+  "type": "object",
+  "properties": {
+    "architectureProposal": {
+      "description": "Propose the game runtime systems and their event/state connections. This is a proposed architecture, not the build-task dependency DAG. Include server authority for gameplay rules. User acceptance is required before it becomes a saved architecture contract.",
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+              },
+              "name": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 80"
+              },
+              "purpose": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 5, maxLength: 600"
+              },
+              "authority": {
+                "type": "string",
+                "enum": [
+                  "server",
+                  "client",
+                  "shared"
+                ]
+              },
+              "x": {
+                "type": "number",
+                "description": "Locally validated constraints: minimum: 0, maximum: 4000"
+              },
+              "y": {
+                "type": "number",
+                "description": "Locally validated constraints: minimum: 0, maximum: 4000"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "purpose",
+              "authority",
+              "x",
+              "y"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Locally validated constraints: maxItems: 24"
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+              },
+              "event": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 80"
+              },
+              "effect": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 5, maxLength: 600"
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "event",
+                  "state"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "from",
+              "to",
+              "event",
+              "effect",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Locally validated constraints: maxItems: 48"
+        }
+      },
+      "required": [
+        "nodes",
+        "edges"
+      ],
+      "additionalProperties": false
+    },
+    "assetNeeds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+          },
+          "requirementId": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 64"
+          },
+          "role": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 1000"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "Model",
+              "MeshPart",
+              "Audio",
+              "Animation",
+              "Image"
+            ]
+          },
+          "query": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 200"
+          },
+          "constraints": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 2000"
+          },
+          "intent": {
+            "type": "object",
+            "properties": {
+              "experienceRole": {
+                "type": "string",
+                "description": "Why this asset matters to the requested player experience, beyond its appearance.. Locally validated constraints: minLength: 1, maxLength: 1000"
+              },
+              "interaction": {
+                "type": "string",
+                "description": "Player action, response and completion/reward timing; say explicitly when decorative or noninteractive.. Locally validated constraints: minLength: 1, maxLength: 1000"
+              },
+              "reusableFeatures": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Locally validated constraints: minLength: 1, maxLength: 300"
+                },
+                "description": "Existing geometry, behavior, animation or media to look for and inspect before authoring missing integration.. Locally validated constraints: maxItems: 8"
+              },
+              "relatedRequirementIds": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Locally validated constraints: minLength: 1, maxLength: 64"
+                },
+                "description": "Actual requirement IDs grounding this purpose, including the asset's primary requirementId.. Locally validated constraints: maxItems: 40"
+              }
+            },
+            "required": [
+              "experienceRole",
+              "interaction",
+              "reusableFeatures",
+              "relatedRequirementIds"
+            ],
+            "additionalProperties": false
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Set required explicitly. true means successful acquisition is mandatory and failure blocks generation; it does not merely require a Marketplace search. false permits unsuccessful optional visual/course sourcing to follow the existing bounded fallback policy after discovery and inspection. It never waives required audio, gameplay behavior, native verification, or capability gaps. Use the property required, not default."
+          },
+          "position": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              },
+              {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              },
+              {
+                "type": "number",
+                "minimum": -10000,
+                "maximum": 10000
+              }
+            ],
+            "items": false,
+            "minItems": 1,
+            "description": "Locally validated constraints: maxItems: 3, minItems: 3"
+          },
+          "maxSize": {
+            "default": 12,
+            "type": "number",
+            "description": "Locally validated constraints: maximum: 200, exclusiveMinimum: 0"
+          }
+        },
+        "required": [
+          "id",
+          "requirementId",
+          "role",
+          "kind",
+          "query",
+          "constraints",
+          "intent",
+          "required",
+          "position"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Locally validated constraints: maxItems: 16"
+    },
+    "assetStrategy": {
+      "type": "string",
+      "description": "Locally validated constraints: minLength: 1, maxLength: 3000"
+    },
+    "title": {
+      "type": "string",
+      "description": "Locally validated constraints: minLength: 1, maxLength: 80"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+    },
+    "visualDirection": {
+      "type": "string",
+      "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+    },
+    "requirements": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+              },
+              "description": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+              },
+              "sourceId": {
+                "type": "string",
+                "enum": [
+                  "request"
+                ]
+              },
+              "sourceQuote": {
+                "default": "",
+                "type": "string",
+                "description": "Locally validated constraints: maxLength: 3000"
+              },
+              "origin": {
+                "type": "string",
+                "const": "user"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "mechanic",
+                  "world",
+                  "ui",
+                  "animation",
+                  "audio",
+                  "network",
+                  "lifecycle",
+                  "presentation"
+                ]
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "required",
+                  "optional"
+                ]
+              },
+              "acceptance": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "sourceId",
+              "origin",
+              "category",
+              "priority",
+              "acceptance"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+              },
+              "description": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+              },
+              "sourceId": {
+                "type": "string",
+                "enum": [
+                  "request"
+                ]
+              },
+              "sourceQuote": {
+                "default": "",
+                "type": "string",
+                "description": "Locally validated constraints: maxLength: 3000"
+              },
+              "origin": {
+                "type": "string",
+                "const": "inferred"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "mechanic",
+                  "world",
+                  "ui",
+                  "animation",
+                  "audio",
+                  "network",
+                  "lifecycle",
+                  "presentation"
+                ]
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "required",
+                  "optional"
+                ]
+              },
+              "acceptance": {
+                "type": "string",
+                "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "origin",
+              "category",
+              "priority",
+              "acceptance"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "description": "Locally validated constraints: maxItems: 40"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+          },
+          "selection": {
+            "type": "string",
+            "enum": [
+              "single",
+              "multiple",
+              "text"
+            ]
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Locally validated constraints: maxLength: 200"
+            },
+            "description": "Locally validated constraints: maxItems: 5"
+          }
+        },
+        "required": [
+          "id",
+          "prompt",
+          "options"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Locally validated constraints: maxItems: 6"
+    },
+    "tasks": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "proposalSections": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "mechanics",
+                "theme",
+                "environment",
+                "assets"
+              ]
+            }
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 12000"
+          },
+          "requirements": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            }
+          },
+          "dependsOn": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\.luau$",
+              "description": "A script path ending in .luau, .server.luau or .client.luau; never a scene object path. Locally validated constraints: minLength: 1, maxLength: 240"
+            },
+            "description": "Owned script paths; use an empty array for scene-only tasks or discovery-dependent tasks whose necessary integration scripts are not yet known. After inspection, declare only necessary integration scripts with exclusive ownership.. Locally validated constraints: maxItems: 8"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "requirements",
+          "dependsOn",
+          "files"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Locally validated constraints: maxItems: 64"
+    },
+    "referenceDecisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mechanicId": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "include",
+              "adapt",
+              "omit"
+            ]
+          },
+          "requirementIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            },
+            "description": "Locally validated constraints: maxItems: 40"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Locally validated constraints: minLength: 1, maxLength: 1500"
+          },
+          "userSourceId": {
+            "type": "string",
+            "description": "Locally validated constraints: maxLength: 100"
+          },
+          "userQuote": {
+            "type": "string",
+            "description": "Locally validated constraints: maxLength: 3000"
+          }
+        },
+        "required": [
+          "mechanicId",
+          "action",
+          "requirementIds",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "description": "Locally validated constraints: maxItems: 20"
+    }
+  },
+  "required": [
+    "title",
+    "summary",
+    "visualDirection",
+    "requirements",
+    "questions",
+    "tasks"
+  ],
+  "additionalProperties": false
+}

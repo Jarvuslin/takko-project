@@ -1,0 +1,175 @@
+{
+  "kind": "takko-inert-asset-audit-v1",
+  "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+  "scope": "Forge_8a81efe9b8ed",
+  "token": "3b57975d-efed-436b-9f82-b5fc2eeedb95",
+  "candidate": {
+    "id": "1245720733",
+    "name": "Training Dummy",
+    "description": "User-approved reference for Practice dummy",
+    "kind": "Model",
+    "creator": "Xtrah962",
+    "sourceUrl": "https://create.roblox.com/store/asset/1245720733",
+    "price": 0,
+    "source": "creator_store"
+  },
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "audit": {
+    "mode": "inert_quarantine_static_inspection",
+    "sourceOrigin": "ScriptEditorService:GetEditorSource",
+    "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+    "executed": false,
+    "instanceLimit": 300,
+    "sourceLimit": 8,
+    "sourceByteLimit": 65536,
+    "instanceListTruncated": false,
+    "sourceListTruncated": false,
+    "sourceBytesReturned": 222,
+    "nodes": [
+      {
+        "index": 1,
+        "parentIndex": 0,
+        "name": "Imported",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 2,
+        "parentIndex": 1,
+        "name": "Training Dummy",
+        "nameTruncated": false,
+        "className": "Model"
+      },
+      {
+        "index": 3,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 4,
+        "parentIndex": 3,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 5,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 6,
+        "parentIndex": 5,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 7,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 8,
+        "parentIndex": 7,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 9,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 10,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 11,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 12,
+        "parentIndex": 2,
+        "name": "Part",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 13,
+        "parentIndex": 2,
+        "name": "Head",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 14,
+        "parentIndex": 13,
+        "name": "Mesh",
+        "nameTruncated": false,
+        "className": "SpecialMesh"
+      },
+      {
+        "index": 15,
+        "parentIndex": 2,
+        "name": "Torso",
+        "nameTruncated": false,
+        "className": "Part"
+      },
+      {
+        "index": 16,
+        "parentIndex": 15,
+        "name": "Decal",
+        "nameTruncated": false,
+        "className": "Decal"
+      },
+      {
+        "index": 17,
+        "parentIndex": 2,
+        "name": "Humanoid",
+        "nameTruncated": false,
+        "className": "Humanoid"
+      },
+      {
+        "index": 18,
+        "parentIndex": 2,
+        "name": "Respawn",
+        "nameTruncated": false,
+        "className": "Script"
+      }
+    ],
+    "sources": [
+      {
+        "index": 18,
+        "className": "Script",
+        "readable": true,
+        "source": "robo=script.Parent:clone()\nwhile true do\n\twait(0)\n\tif script.Parent.Humanoid.Health<1 then\n\t\twait(1)\n\t\trobot=robo:clone()\n\t\trobot.Parent=script.Parent.Parent\n\t\trobot:makeJoints()\n\t\tscript.Parent:remove()\n\tend\nend\n\n\t\t\n\n\n\n\n\n",
+        "sourceBytes": 222,
+        "sourceOmittedForLimit": false,
+        "disabled": false,
+        "runContext": "Enum.RunContext.Legacy",
+        "literalDependencies": [],
+        "dependencyListTruncated": false,
+        "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734"
+      }
+    ]
+  }
+}

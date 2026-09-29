@@ -1,0 +1,239 @@
+{
+  "ok": true,
+  "value": {
+    "needs": [
+      {
+        "id": "dummyModel",
+        "requirementId": "req-target-dummy",
+        "role": "The stationary target the player punches; must read clearly as a humanoid training dummy and support a fixed spawn point for hit-detection anchoring.",
+        "kind": "Model",
+        "query": "stationary punching bag training dummy humanoid model",
+        "constraints": "Static, non-humanoid-rig or simple stand-mounted dummy (boxing dummy, punching bag, or mannequin on a base); must not require a moving AI; scale roughly 4-6 studs tall to match an average player rig; should include a base/stand so it stays upright without physics tipping; PrimaryPart or clear root part required for anchoring a hit-detection region.",
+        "required": true,
+        "position": [
+          0,
+          3,
+          10
+        ],
+        "maxSize": 6
+      },
+      {
+        "id": "punchAnim",
+        "requirementId": "req-punch-animation",
+        "role": "Plays on the player's character when the attack input is triggered, giving visual feedback that a punch was thrown regardless of whether it lands.",
+        "kind": "Animation",
+        "query": "punch attack animation R15 humanoid",
+        "constraints": "Must be rigged for the standard R15 (or R6 fallback) Roblox humanoid skeleton; short single-strike jab or cross motion, roughly 0.3-0.8 seconds, loop=false; should return cleanly to idle pose; avoid combo/multi-hit animations since only a single punch is requested.",
+        "required": true,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "maxSize": 2
+      },
+      {
+        "id": "punchHitSound",
+        "requirementId": "req-punch-hit-sound",
+        "role": "Audible confirmation that a punch has connected with the dummy, reinforcing the hit feedback alongside the counter increment.",
+        "kind": "Audio",
+        "query": "punch impact hit sound effect fighting",
+        "constraints": "Short percussive impact sound, under 1 second, no vocal grunts required (dummy is stationary/silent), suitable for repeated rapid playback without becoming grating; must be usable as a one-shot SFX (not looped/ambient).",
+        "required": true,
+        "position": [
+          0,
+          3,
+          10
+        ],
+        "maxSize": 1
+      }
+    ],
+    "groups": [
+      {
+        "id": "dummy",
+        "pick": null,
+        "top": [
+          {
+            "id": "1245720733",
+            "name": "Training Dummy",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "1245720733",
+                "confidence": 0.65,
+                "relevant": false
+              }
+            ]
+          },
+          {
+            "id": "8767186735",
+            "name": "Training Dummy",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "8767186735",
+                "confidence": 0.59,
+                "relevant": false
+              }
+            ]
+          },
+          {
+            "id": "12765857120",
+            "name": "Damage Output Training Dummy",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "12765857120",
+                "confidence": 0.47,
+                "relevant": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "combat",
+        "pick": "2801965424",
+        "confidence": 0.96,
+        "top": [
+          {
+            "id": "14056318312",
+            "name": "The World m1, heavy punch, barrage, animations",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/1",
+                "confidence": 0.75,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/2",
+                "confidence": 0.15,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/3",
+                "confidence": 0.21,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/4",
+                "confidence": 0.24,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/5",
+                "confidence": 0.12,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/6",
+                "confidence": 0.36,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/7",
+                "confidence": 0.06,
+                "relevant": false
+              },
+              {
+                "candidateId": "14056318312",
+                "clipKey": "1/15/8",
+                "confidence": 0.42,
+                "relevant": false
+              }
+            ]
+          },
+          {
+            "id": "2801965424",
+            "name": "Punch Animation",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "2801965424",
+                "clipKey": "1/18/2",
+                "confidence": 0.96,
+                "relevant": true
+              },
+              {
+                "candidateId": "2801965424",
+                "clipKey": "1/18/3",
+                "confidence": 0.86,
+                "relevant": true
+              },
+              {
+                "candidateId": "2801965424",
+                "clipKey": "1/18/4",
+                "confidence": 0.8,
+                "relevant": true
+              }
+            ]
+          },
+          {
+            "id": "10445897943",
+            "name": "Star Platinum Heavy Punch Open Animation Editor",
+            "preview": true,
+            "score": [
+              {
+                "candidateId": "10445897943",
+                "clipKey": "1/18/1",
+                "confidence": 0.84,
+                "relevant": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sound",
+        "pick": null,
+        "top": [
+          {
+            "id": "96359585058783",
+            "name": "victim impact punch hit sfx attack",
+            "preview": false,
+            "score": [
+              {
+                "candidateId": "96359585058783",
+                "confidence": 0.59,
+                "relevant": false
+              }
+            ]
+          },
+          {
+            "id": "132504023010884",
+            "name": "Punch Impact 1",
+            "preview": false,
+            "score": [
+              {
+                "candidateId": "132504023010884",
+                "confidence": 0.58,
+                "relevant": false
+              }
+            ]
+          },
+          {
+            "id": "82235785832022",
+            "name": "Heavy_punch_impact_#3-1770242809040",
+            "preview": false,
+            "score": [
+              {
+                "candidateId": "82235785832022",
+                "confidence": 0.58,
+                "relevant": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "text": " indestructible training target. A brief per-swing cooldown (roughly matching animation length) prevents multiple counter increments from one punch. The on-screen counter resets to zero when a player joins or respawns; no persistent cross-session leaderboard is implied. Only one target dummy is needed; the player always punches the same fixed dummy rather than multiple targets.\n\nTheme\n\nA minimal boxing/martial-arts training theme: the experience is framed as a personal training session rather than a competitive fighting game. Visual language leans into a gym or dojo aesthetic — plain, functional, and focused on making the punch-and-counter feedback the star rather than elaborate combat systems or storyline. No enemies, no narrative, no progression tiers beyond the hit counter itself; the tone is practice-drill, arcade-style skill-building.\n\nAssumptions: No narrative framing, factions, or cosmetic customization is implied since the request is purely mechanical (punch, sound, counter). Visual style defaults to a simple, clean gym/training aesthetic rather than a stylized cartoon or realistic fighting-game art direction, since none was specified.\n\nEnvironment & layout\n\nA small, self-contained training area: a flat rectangular platform (roughly 20x20 studs) serving as the practice floor, with the target dummy fixed near the center-front of the space (approx. position [0,3,10]) so the player has a clear approach path and unobstructed view of the on-screen counter. A single player spawn point is placed a short distance from the dummy (e.g., 10-12 studs back) so the player must walk up to punching range rather than starting adjacent to it. Basic even lighting (default baseplate-style lighting) is sufficient since atmosphere is not the focus. No additional obstacles, other NPCs, or secondary rooms are needed — the layout should stay simple and uncluttered so the punch-and-counter loop is the sole focus of the space.\n\nAssumptions: A single flat platform area is sufficient; no multi-room gym or additional training equipment is required since only one dummy interaction was requested. Default Roblox baseplate-style lighting and skybox are acceptable since no specific atmosphere or time-of-day was requested. Only one spawn point and one dummy are needed; the layout does not need to scale to multiple simultaneous players punching separate dummies unless later requested.\n\nMarketplace assets\n\nPractice dummy: Unresolved · find during implementation\n\nFighting animation: Punch Animation #2801965424 · clip 1/18/2\n\nSound effects: Unresolved · find during implementation\n\nRecommendations use inspected content. Playback, permissions and gameplay still need Studio testing. Preview or replace assets below.\n\nApprove & build\nASSETS FOR YOUR BRIEF\nFind your game’s look and movement\n\n3 asset groups · preview a few options and choose what fits.\n\nPreview & choose assets\n\nYour build plan appears after planning.\n\nMessage\nPresets\nBudget\nEnter to send · Shift + Enter for a new line"
+  }
+}

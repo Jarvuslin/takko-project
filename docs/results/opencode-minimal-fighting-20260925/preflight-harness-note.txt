@@ -1,0 +1,1 @@
+Free harness check initially rejected a comment line in .env. Confirmed it contains only a comment and the authorized FORGE_OPENCODE_BINARY setting. Harness now ignores comments. No provider dispatch occurred.

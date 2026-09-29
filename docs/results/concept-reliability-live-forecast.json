@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-20T22:58:39.489Z",
+  "paidCalls": 0,
+  "estimates": [
+    {
+      "stage": "initial",
+      "reservedMicros": 18439
+    },
+    {
+      "stage": "clarify",
+      "reservedMicros": 18909
+    },
+    {
+      "stage": "plan",
+      "reservedMicros": 53801
+    },
+    {
+      "stage": "clear",
+      "reservedMicros": 18543
+    }
+  ],
+  "priorReservationsMicros": 46313,
+  "estimatedCombinedReservationsMicros": 156005,
+  "ceilingMicros": 150000,
+  "fitsEstimate": false,
+  "caveat": "Uses synthetic compact replies/answers for sizing only. Each actual request must pass the cumulative gate using its exact reservation."
+}

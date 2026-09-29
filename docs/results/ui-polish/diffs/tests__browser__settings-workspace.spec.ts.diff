@@ -1,0 +1,37 @@
+diff --git "a/.forge\\ui-polish-before\\tests\\browser\\settings-workspace.spec.ts" "b/tests\\browser\\settings-workspace.spec.ts"
+index 3ee67a9..933dc1a 100644
+--- "a/.forge\\ui-polish-before\\tests\\browser\\settings-workspace.spec.ts"
++++ "b/tests\\browser\\settings-workspace.spec.ts"
+@@ -170,6 +170,10 @@ test("provider catalog loads automatically and persists selected models", async
+     .getByRole("button", { name: /Example model.*openai\/example/ })
+     .click();
+   const dialog = page.getByRole("dialog");
++  await expect(dialog.getByLabel("Model ID", { exact: true })).toHaveCount(0);
++  await dialog
++    .getByRole("button", { name: "Edit model details", exact: true })
++    .click();
+   await expect(dialog.getByLabel("Model ID", { exact: true })).toHaveValue(
+     "openai/example",
+   );
+@@ -240,10 +244,7 @@ test("strict concept opt-in is saved for Anthropic and cleared when switching mo
+     .getByRole("button", { name: /Haiku test.*anthropic\/claude-haiku/ })
+     .click();
+   const dialog = page.getByRole("dialog");
+-  await dialog
+-    .locator("summary")
+-    .filter({ hasText: "Fine-tune this model" })
+-    .click();
++  await dialog.locator("summary").filter({ hasText: "Advanced" }).click();
+   await dialog
+     .getByLabel("Check concept response structure", { exact: true })
+     .check();
+@@ -262,6 +263,9 @@ test("strict concept opt-in is saved for Anthropic and cleared when switching mo
+     .locator(".model-row")
+     .getByRole("button", { name: /Edit/ })
+     .click();
++  await dialog
++    .getByRole("button", { name: "Edit model details", exact: true })
++    .click();
+   await dialog.getByLabel("Model ID", { exact: true }).fill("openai/example");
+   await dialog.getByRole("button", { name: "Save model", exact: true }).click();
+   await expect(dialog).toBeHidden();

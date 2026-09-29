@@ -79,6 +79,19 @@ async function run() {
     assert.equal(result.root, true);
     assert.equal(result.prompt, true, "React dashboard prompt should render");
     assert.equal(result.title, "Takko — Roblox creation studio");
+    await window.loadURL(origin + "/#models");
+    const models = await window.webContents.executeJavaScript(`(async () => {
+      for (let attempt = 0; attempt < 40; attempt++) {
+        const button = Array.from(document.querySelectorAll('button')).find(b => b.textContent === 'Validate & connect');
+        if (button) return { locked: button.disabled, encrypted: document.body.textContent.includes('protected by your Windows account'), explorer: !!document.querySelector('.provider-browser'), catalogRows: document.querySelectorAll('.catalog-model').length };
+        await new Promise(r => setTimeout(r, 50));
+      }
+      throw Error('Models did not render');
+    })()`);
+    assert.equal(models.locked, true);
+    assert.equal(models.catalogRows, 0);
+    assert.equal(models.explorer, true);
+    assert.equal(models.encrypted, process.platform === "win32");
     assert.ok(
       !errors.some((error) => /Content Security Policy|Refused to/.test(error)),
       errors.join("\n"),

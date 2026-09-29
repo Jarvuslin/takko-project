@@ -1,0 +1,37 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/scope-answer-reuse.test.ts (18 tests | 3 failed) 1577ms
+   × still asks about a new limit on the answered topic: Cannot move while punching. 79ms
+   × still asks about a new limit on the answered topic: At most two hits per minute. 69ms
+   × still asks about a new limit on the answered topic: A long cooldown is required. 78ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scope-answer-reuse.test.ts > still asks about a new limit on the answered topic: Cannot move while punching.
+ FAIL  tests/scope-answer-reuse.test.ts > still asks about a new limit on the answered topic: At most two hits per minute.
+ FAIL  tests/scope-answer-reuse.test.ts > still asks about a new limit on the answered topic: A long cooldown is required.
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/scope-answer-reuse.test.ts:64:41
+     62|     const p = after();
+     63|     const source = assumption + " " + extra;
+     64|     expect(scopeQuestions([source], p)).toHaveLength(1);
+       |                                         ^
+     65|     p.proposal!.mechanics.unresolved = [source];
+     66|     expect(proposalQuestions(p)).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 15 passed (18)
+   Start at  21:08:06
+   Duration  2.22s (tests 77%, transform 12%, import 11%)
+

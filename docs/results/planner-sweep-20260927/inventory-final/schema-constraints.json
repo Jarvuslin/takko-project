@@ -1,0 +1,2877 @@
+[
+  {
+    "path": "planner",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes",
+    "rule": "maxItems",
+    "value": 24,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z0-9_-]{1,64}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/name",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/name",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/name",
+    "rule": "maxLength",
+    "value": 80,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/purpose",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/purpose",
+    "rule": "minLength",
+    "value": 5,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/purpose",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/authority",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/authority",
+    "rule": "enum",
+    "value": [
+      "server",
+      "client",
+      "shared"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/x",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/x",
+    "rule": "minimum",
+    "value": 0,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/x",
+    "rule": "maximum",
+    "value": 4000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/y",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/y",
+    "rule": "minimum",
+    "value": 0,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items/properties/y",
+    "rule": "maximum",
+    "value": 4000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "name",
+      "purpose",
+      "authority",
+      "x",
+      "y"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/nodes/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges",
+    "rule": "maxItems",
+    "value": 48,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z0-9_-]{1,64}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/from",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/from",
+    "rule": "pattern",
+    "value": "^[a-zA-Z0-9_-]{1,64}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/to",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/to",
+    "rule": "pattern",
+    "value": "^[a-zA-Z0-9_-]{1,64}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/event",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/event",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/event",
+    "rule": "maxLength",
+    "value": 80,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/effect",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/effect",
+    "rule": "minLength",
+    "value": 5,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/effect",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/kind",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items/properties/kind",
+    "rule": "enum",
+    "value": [
+      "event",
+      "state"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "from",
+      "to",
+      "event",
+      "effect",
+      "kind"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal/properties/edges/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal",
+    "rule": "required",
+    "value": [
+      "nodes",
+      "edges"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/architectureProposal",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds",
+    "rule": "maxItems",
+    "value": 16,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/id",
+    "rule": "pattern",
+    "value": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/requirementId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/requirementId",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/requirementId",
+    "rule": "maxLength",
+    "value": 64,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/role",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/role",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/role",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/kind",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/kind",
+    "rule": "enum",
+    "value": [
+      "Model",
+      "MeshPart",
+      "Audio",
+      "Animation",
+      "Image"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/query",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/query",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/query",
+    "rule": "maxLength",
+    "value": 200,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/constraints",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/constraints",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/constraints",
+    "rule": "maxLength",
+    "value": 2000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "maxItems",
+    "value": 8,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "maxLength",
+    "value": 300,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "maxItems",
+    "value": 40,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "maxLength",
+    "value": 64,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent",
+    "rule": "required",
+    "value": [
+      "experienceRole",
+      "interaction",
+      "reusableFeatures",
+      "relatedRequirementIds"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/intent",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties",
+    "rule": "required",
+    "value": {
+      "type": "boolean",
+      "description": "Set required explicitly. true means successful acquisition is mandatory and failure blocks generation; it does not merely require a Marketplace search. false permits unsuccessful optional visual/course sourcing to follow the existing bounded fallback policy after discovery and inspection. It never waives required audio, gameplay behavior, native verification, or capability gaps. Use the property required, not default."
+    },
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position",
+    "rule": "minItems",
+    "value": 3,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/position",
+    "rule": "maxItems",
+    "value": 3,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/maxSize",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/maxSize",
+    "rule": "exclusiveMinimum",
+    "value": 0,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items/properties/maxSize",
+    "rule": "maximum",
+    "value": 200,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "requirementId",
+      "role",
+      "kind",
+      "query",
+      "constraints",
+      "intent",
+      "required",
+      "position"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetNeeds/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetStrategy",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetStrategy",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/assetStrategy",
+    "rule": "maxLength",
+    "value": 3000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/title",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/title",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/title",
+    "rule": "maxLength",
+    "value": 80,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/summary",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/summary",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/summary",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/visualDirection",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/visualDirection",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/visualDirection",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements",
+    "rule": "maxItems",
+    "value": 40,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/description",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/description",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/description",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/sourceId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/sourceId",
+    "rule": "enum",
+    "value": [
+      "request",
+      "proposal:mechanics",
+      "proposal:theme",
+      "proposal:environment"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/sourceQuote",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/sourceQuote",
+    "rule": "maxLength",
+    "value": 3000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/origin",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/origin",
+    "rule": "const",
+    "value": "user",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/category",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/category",
+    "rule": "enum",
+    "value": [
+      "mechanic",
+      "world",
+      "ui",
+      "animation",
+      "audio",
+      "network",
+      "lifecycle",
+      "presentation"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/priority",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/priority",
+    "rule": "enum",
+    "value": [
+      "required",
+      "optional"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/acceptance",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/acceptance",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0/properties/acceptance",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0",
+    "rule": "required",
+    "value": [
+      "id",
+      "description",
+      "sourceId",
+      "origin",
+      "category",
+      "priority",
+      "acceptance"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/0",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/description",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/description",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/description",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/sourceId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/sourceId",
+    "rule": "enum",
+    "value": [
+      "request",
+      "proposal:mechanics",
+      "proposal:theme",
+      "proposal:environment"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/sourceQuote",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/sourceQuote",
+    "rule": "maxLength",
+    "value": 3000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/origin",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/origin",
+    "rule": "const",
+    "value": "inferred",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/category",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/category",
+    "rule": "enum",
+    "value": [
+      "mechanic",
+      "world",
+      "ui",
+      "animation",
+      "audio",
+      "network",
+      "lifecycle",
+      "presentation"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/priority",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/priority",
+    "rule": "enum",
+    "value": [
+      "required",
+      "optional"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/acceptance",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/acceptance",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1/properties/acceptance",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1",
+    "rule": "required",
+    "value": [
+      "id",
+      "description",
+      "origin",
+      "category",
+      "priority",
+      "acceptance"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/requirements/items/oneOf/1",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions",
+    "rule": "maxItems",
+    "value": 6,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/prompt",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/prompt",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/prompt",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/selection",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/selection",
+    "rule": "enum",
+    "value": [
+      "single",
+      "multiple",
+      "text"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/optional",
+    "rule": "type",
+    "value": "boolean",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/options",
+    "rule": "maxItems",
+    "value": 5,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/options",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/options/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items/properties/options/items",
+    "rule": "maxLength",
+    "value": 200,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "prompt",
+      "options"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/questions/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks",
+    "rule": "maxItems",
+    "value": 64,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/proposalSections",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/proposalSections",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/proposalSections/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/proposalSections/items",
+    "rule": "enum",
+    "value": [
+      "mechanics",
+      "theme",
+      "environment",
+      "assets"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/id",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/title",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/title",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/title",
+    "rule": "maxLength",
+    "value": 12000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/requirements",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/requirements",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/requirements/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/requirements/items",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/dependsOn",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/dependsOn/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/dependsOn/items",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files",
+    "rule": "maxItems",
+    "value": 8,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files/items",
+    "rule": "maxLength",
+    "value": 240,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items/properties/files/items",
+    "rule": "pattern",
+    "value": "\\.luau$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "title",
+      "requirements",
+      "dependsOn",
+      "files"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/tasks/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions",
+    "rule": "maxItems",
+    "value": 20,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/mechanicId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/mechanicId",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/action",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/action",
+    "rule": "enum",
+    "value": [
+      "include",
+      "adapt",
+      "omit"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/requirementIds",
+    "rule": "maxItems",
+    "value": 40,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/requirementIds",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/requirementIds/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/requirementIds/items",
+    "rule": "pattern",
+    "value": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/reason",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/reason",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/reason",
+    "rule": "maxLength",
+    "value": 1500,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/userSourceId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/userSourceId",
+    "rule": "maxLength",
+    "value": 100,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/userQuote",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items/properties/userQuote",
+    "rule": "maxLength",
+    "value": 3000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items",
+    "rule": "required",
+    "value": [
+      "mechanicId",
+      "action",
+      "requirementIds",
+      "reason"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner/properties/referenceDecisions/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner",
+    "rule": "required",
+    "value": [
+      "title",
+      "summary",
+      "visualDirection",
+      "requirements",
+      "questions",
+      "tasks"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "planner",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/title",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/title",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/title",
+    "rule": "maxLength",
+    "value": 80,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds",
+    "rule": "maxItems",
+    "value": 16,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/id",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/id",
+    "rule": "pattern",
+    "value": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/requirementId",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/requirementId",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/requirementId",
+    "rule": "maxLength",
+    "value": 64,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/role",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/role",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/role",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/kind",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/kind",
+    "rule": "enum",
+    "value": [
+      "Model",
+      "MeshPart",
+      "Audio",
+      "Animation",
+      "Image"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/query",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/query",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/query",
+    "rule": "maxLength",
+    "value": 200,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/constraints",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/constraints",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/constraints",
+    "rule": "maxLength",
+    "value": 2000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/experienceRole",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/interaction",
+    "rule": "maxLength",
+    "value": 1000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "maxItems",
+    "value": 8,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/reusableFeatures/items",
+    "rule": "maxLength",
+    "value": 300,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "minItems",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "maxItems",
+    "value": 40,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent/properties/relatedRequirementIds/items",
+    "rule": "maxLength",
+    "value": 64,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent",
+    "rule": "required",
+    "value": [
+      "experienceRole",
+      "interaction",
+      "reusableFeatures",
+      "relatedRequirementIds"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/intent",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties",
+    "rule": "required",
+    "value": {
+      "default": true,
+      "type": "boolean"
+    },
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/0",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/1",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "minimum",
+    "value": -10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position/prefixItems/2",
+    "rule": "maximum",
+    "value": 10000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position",
+    "rule": "minItems",
+    "value": 3,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/position",
+    "rule": "maxItems",
+    "value": 3,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/maxSize",
+    "rule": "type",
+    "value": "number",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/maxSize",
+    "rule": "exclusiveMinimum",
+    "value": 0,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items/properties/maxSize",
+    "rule": "maximum",
+    "value": 200,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items",
+    "rule": "required",
+    "value": [
+      "id",
+      "requirementId",
+      "role",
+      "kind",
+      "query",
+      "constraints",
+      "position"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/assetNeeds/items",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/text",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/text",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/text",
+    "rule": "maxLength",
+    "value": 6000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/assumptions",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/assumptions",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/assumptions/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/assumptions/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/assumptions/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/unresolved",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/unresolved",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/unresolved/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/unresolved/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics/properties/unresolved/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics",
+    "rule": "required",
+    "value": [
+      "text",
+      "assumptions",
+      "unresolved"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/mechanics",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/text",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/text",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/text",
+    "rule": "maxLength",
+    "value": 6000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/assumptions",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/assumptions",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/assumptions/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/assumptions/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/assumptions/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/unresolved",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/unresolved",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/unresolved/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/unresolved/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme/properties/unresolved/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme",
+    "rule": "required",
+    "value": [
+      "text",
+      "assumptions",
+      "unresolved"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/theme",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment",
+    "rule": "type",
+    "value": "object",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/text",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/text",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/text",
+    "rule": "maxLength",
+    "value": 6000,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/assumptions",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/assumptions",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/assumptions/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/assumptions/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/assumptions/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/unresolved",
+    "rule": "maxItems",
+    "value": 12,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/unresolved",
+    "rule": "type",
+    "value": "array",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/unresolved/items",
+    "rule": "type",
+    "value": "string",
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/unresolved/items",
+    "rule": "minLength",
+    "value": 1,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment/properties/unresolved/items",
+    "rule": "maxLength",
+    "value": 600,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment",
+    "rule": "required",
+    "value": [
+      "text",
+      "assumptions",
+      "unresolved"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal/properties/environment",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal",
+    "rule": "required",
+    "value": [
+      "title",
+      "mechanics",
+      "theme",
+      "environment"
+    ],
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  },
+  {
+    "path": "proposal",
+    "rule": "additionalProperties",
+    "value": false,
+    "element": "Zod issue includes indexed property path",
+    "correction": "yes at producer schema.parse",
+    "authored": "advertised JSON contract at first proposal/plan authoring; source enums from saved approved data"
+  }
+]

@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/retained-animation.test.ts (5 tests | 1 failed) 2390ms
+   × resume exposes the producer context and rejects the real bad patch before replacing any saved work 470ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/retained-animation.test.ts > resume exposes the producer context and rejects the real bad patch before replacing any saved work
+AssertionError: Previously accepted assets are bound to a different game context, revision, Studio or model configuration. Start a new revision before resolving assets.: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/retained-animation.test.ts:104:41
+    102|     engine.start(saved.id, saved.revision, "repair");
+    103|     const result = await engine.wait(saved.id);
+    104|     expect(entered, result.error ?? "").toBe(true);
+       |                                         ^
+    105|     expect(result.error).toContain("Offline reproduction complete");
+    106|     expect(result.artifact).toEqual(p.artifact);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  16:26:17
+   Duration  3.51s (tests 71%, transform 19%, import 10%)
+

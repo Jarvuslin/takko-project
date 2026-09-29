@@ -1,0 +1,134 @@
+/*
+ * Takko design tokens. Single source of truth, imported before every other sheet.
+ *
+ * Values here are the ones that were already winning the cascade before this file
+ * existed. styles.css, grok-theme.css and ui-polish.css each declared their own
+ * :root block and the last one loaded won. Those blocks are gone now. Changing a
+ * value here changes it everywhere, which was not previously true.
+ *
+ * Typography stays on the system stack. src/web/fonts/ holds Saira Condensed,
+ * EB Garamond and JetBrains Mono from a 2026-09-14 direction that the grok
+ * redesign superseded, see docs/takko-grok-ui-implementation.md. They are
+ * unreferenced on purpose: the app makes no font download and no external font
+ * request, which tests/browser/typography.spec.ts asserts.
+ */
+
+:root {
+  /* Type. One system stack, no downloads. --font-mono replaces a hardcoded
+     ui-monospace stack that was repeated in the sheets. */
+  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  /* Type scale. The sheets still write px literals, but they were snapped onto
+     these values: 27 distinct sizes down to 16, and nothing below 11px (8px, 9px
+     and 10px rules are gone). New rules should use the tokens. */
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 26px;
+  --text-3xl: 32px;
+
+  /* Surfaces, darkest to lightest. */
+  --canvas: #111;
+  --sidebar: #161616;
+  --panel: #1d1d1d;
+  --surface-quiet: #1a1a19;
+  --surface-input: #242421;
+  --raised: #252525;
+  --surface-raised: #272725;
+
+  /* Ink. */
+  --ink: #f4f4f4;
+  --muted: #aaa;
+
+  /* Lines. --line-strong replaces the #555 borders, which measured 2.4:1
+     against the canvas and were the only contrast failure in the app. */
+  --line: #333;
+  --line-strong: #6b6b6b;
+  --border-subtle: #ffffff18;
+
+  /* Accents. These were named --green and --yellow and had been grey for a long
+     time. --selected was named --focus-ring but is used for checked and active
+     states, never for a focus outline. */
+  --accent: #f4f4f4;
+  --accent-dim: #d6d6d6;
+  --accent-ink: #242812;
+  --selected: #c8bc9e;
+  --selection: #d8d6cc;
+  --connection-accent: #d7ddaa;
+
+  /* Focus. One colour. There were three: #9cbbc9 in focus.css, #b8dfff in
+     grok-theme.css and #c8bc9e in ui-polish.css. */
+  --focus-ring: #9cbbc9;
+
+
+  /* Repeated literals, lifted out of the sheets. These 21 values accounted for 91
+     of the 463 hex occurrences. The remaining long tail is one-off and stays inline. */
+  --ink-bright: #fff;
+  --ink-soft: #eee;
+  --ink-dim: #ededed;
+  --ink-faint: #ddd;
+  --ink-quiet: #bdbdbd;
+  --ink-quieter: #bbb;
+  --surface-deep: #171717;
+  --surface-slate: #202020;
+  --surface-slate-raised: #292929;
+  --surface-shadowed: #222;
+  --surface-warm: #1b1b19;
+  --surface-warm-raised: #30302b;
+  --surface-warm-high: #363632;
+  --line-soft: #383838;
+  --line-mid: #444;
+  --line-cool: #414141;
+  --border-faint: #ffffff12;
+  --shadow-scrim: #000a;
+
+  /* Radius. */
+  --radius-control: 10px;
+  --radius-surface: 16px;
+
+  /* Space scale. NOT yet applied. The sheets still use 3, 5, 7, 9, 11, 13 and 17px
+     padding. This is the target for new rules. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Stacking. NOT yet applied. The sheets use ad hoc 1, 2, 3, 4, 5, 6, 8, 12, 20
+     and 30. Remapping them risks stacking regressions for no visual gain, so this
+     is the target for new rules. */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 20;
+  --z-panel: 30;
+  --z-overlay: 40;
+  --z-dialog: 50;
+  --z-toast: 60;
+
+  /* Minimum hit target. The small-window rules used to shrink controls to 26px. */
+  --control-min: 36px;
+
+  /* Root paint. grok-theme.css used to set these on :root directly. */
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  color: var(--ink);
+  background: var(--canvas);
+  color-scheme: dark;
+}
+
+/*
+ * Breakpoints are NOT consolidated. There are 27 distinct width values clustered
+ * at 500, 600, 640, 650, 680, 700 and 760px, which is real debt, but merging them
+ * is not a mechanical change. Widening the ui-polish 820px block to 900px on
+ * 2026-09-23 made a workspace-stacking rule fire at 844px, which cut the chat
+ * panel from 483px to 253px and pushed the send button off screen. That was
+ * reverted. Each block needs to be looked at at its own width before it moves.
+ */

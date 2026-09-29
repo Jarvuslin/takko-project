@@ -1,0 +1,20 @@
+diff --git a/.forge/b-foundation-before/concept.spec.ts b/tests/browser/concept.spec.ts
+index e2b6749..4ad81c6 100644
+--- a/.forge/b-foundation-before/concept.spec.ts
++++ b/tests/browser/concept.spec.ts
+@@ -209,12 +209,14 @@ test("a completed concept appears without waiting for another library scan", asy
+         .getByRole("combobox", { name: "Open project" })
+         .locator("option:checked"),
+     ).toHaveText("Tiny pet rescue");
+-  else
++  else {
++    await page.getByTitle("Projects", { exact: true }).click();
+     await expect(
+       page
+         .getByRole("navigation", { name: "Projects", exact: true })
+         .getByRole("button", { name: "Tiny pet rescue", exact: true }),
+     ).toBeVisible();
++  }
+   expect(listReads).toBe(1);
+   await expect(page.getByRole("alert")).toHaveCount(0);
+ });

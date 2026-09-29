@@ -1,0 +1,671 @@
+[
+  {
+    "run": "demo-export-20260927",
+    "index": 0,
+    "file": "docs/results/demo-export-20260927/planner-output-0.json",
+    "pass": true,
+    "findings": [],
+    "blocked": [
+      "Implementation-only gates: proposal output, not an implementation plan"
+    ],
+    "omitted": []
+  },
+  {
+    "run": "demo-export-20260927",
+    "index": 1,
+    "file": "docs/results/demo-export-20260927/planner-output-1.json",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.4.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.5.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.6.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.7.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.8.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.9.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.10.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.11.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.12.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.13.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.14.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.15.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "tasks.5.proposalSections.1: Invalid option: expected one of \"mechanics\"|\"theme\"|\"environment\"|\"assets\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "tasks.6.proposalSections.0: Invalid option: expected one of \"mechanics\"|\"theme\"|\"environment\"|\"assets\""
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_input_binding. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement hit_detection_server. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement counter_session_reset. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement dummy_invulnerable_stationary. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:theme for requirement gym_theme_environment. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement room_layout. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement hud_placement. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement lighting_simple. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement r15_rig_default_controls. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement no_win_lose_condition. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement single_player_scope. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_input_binding. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement hit_detection_server. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement counter_session_reset. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement dummy_invulnerable_stationary. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:theme for requirement gym_theme_environment. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement room_layout. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement hud_placement. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement lighting_simple. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement r15_rig_default_controls. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement no_win_lose_condition. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement single_player_scope. Choose sourceId from [\"request\"]."
+      }
+    ],
+    "blocked": [],
+    "omitted": [
+      "tasks.5.proposalSections (schema issues retained)",
+      "tasks.6.proposalSections (schema issues retained)"
+    ]
+  },
+  {
+    "run": "demo-export-20260927",
+    "index": 2,
+    "file": "docs/results/demo-export-20260927/planner-output-2.json",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "plannerSchema",
+        "detail": "architectureProposal: Edge e8 connects hit_counter_state to itself. Internal lifecycle behaviour belongs on the system, not as an edge. Remove it."
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.4.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.5.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.6.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.7.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.8.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.9.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.10.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.11.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.12.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.13.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.14.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.15.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_input_binding. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement hit_detection_server. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement counter_session_reset. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement dummy_invulnerable_stationary. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:theme for requirement gym_theme_environment. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement room_layout. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement hud_placement. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement lighting_simple. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement r15_rig_default_controls. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement no_win_lose_condition. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement single_player_scope. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_input_binding. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement hit_detection_server. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement punch_cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement counter_session_reset. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement dummy_invulnerable_stationary. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:theme for requirement gym_theme_environment. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement room_layout. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement hud_placement. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement lighting_simple. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement r15_rig_default_controls. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement no_win_lose_condition. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement single_player_scope. Choose sourceId from [\"request\"]."
+      }
+    ],
+    "blocked": [],
+    "omitted": [
+      "architectureProposal (schema issues retained)"
+    ]
+  },
+  {
+    "run": "run13-live-20260927",
+    "index": 0,
+    "file": "docs/results/run13-live-20260927/planner-output-0.json",
+    "pass": true,
+    "findings": [],
+    "blocked": [
+      "Implementation-only gates: proposal output, not an implementation plan"
+    ],
+    "omitted": []
+  },
+  {
+    "run": "run13-live-20260927",
+    "index": 1,
+    "file": "docs/results/run13-live-20260927/planner-output-1.json",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.0.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.1.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.2.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.4.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.6.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.7.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.9.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "marketplaceDiscovery",
+        "detail": "Model discovery must start with a short subject query (at most four terms). Put descriptive constraints in constraints and search the complete reusable component before a replacement prop. The planner must choose the query; no substitute query is supplied."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      }
+    ],
+    "blocked": [],
+    "omitted": []
+  },
+  {
+    "run": "run13-live-20260927",
+    "index": 2,
+    "file": "docs/results/run13-live-20260927/planner-output-2.json",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.0.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.1.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.2.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.4.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.6.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.7.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.9.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "tasks.7.proposalSections.1: Invalid option: expected one of \"mechanics\"|\"theme\"|\"environment\"|\"assets\""
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      }
+    ],
+    "blocked": [],
+    "omitted": [
+      "tasks.7.proposalSections (schema issues retained)"
+    ]
+  },
+  {
+    "run": "run13-live-20260927",
+    "index": 3,
+    "file": "docs/results/run13-live-20260927/planner-output-3.txt",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "JSON",
+        "detail": "Unexpected token '`', \"```json"
+      },
+      {
+        "stage": "JSON",
+        "detail": "{"
+      },
+      {
+        "stage": "JSON",
+        "detail": "\"... is not valid JSON"
+      }
+    ],
+    "blocked": [
+      "All typed validation: malformed JSON"
+    ],
+    "omitted": []
+  },
+  {
+    "run": "run13-live-20260927",
+    "index": 4,
+    "file": "docs/results/run13-live-20260927/planner-output-4.json",
+    "pass": false,
+    "findings": [
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.0.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.1.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.2.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.4.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.6.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.7.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "requirements.9.sourceId: Invalid input: expected \"request\""
+      },
+      {
+        "stage": "plannerSchema",
+        "detail": "tasks.7.proposalSections.0: Invalid option: expected one of \"mechanics\"|\"theme\"|\"environment\"|\"assets\""
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "validateSpec",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-target-dummy. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:environment for requirement req-training-area. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-punch-input. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-hit-detection. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-cooldown. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:mechanics for requirement req-per-player-state. Choose sourceId from [\"request\"]."
+      },
+      {
+        "stage": "completeCallback",
+        "detail": "Unknown user source proposal:theme for requirement req-theme-presentation. Choose sourceId from [\"request\"]."
+      }
+    ],
+    "blocked": [],
+    "omitted": [
+      "tasks.7.proposalSections (schema issues retained)"
+    ]
+  }
+]

@@ -1,4 +1,60 @@
 import type { Spec } from "./schema";
+import type { AssetNeed } from "./asset-contract";
+
+/** Shared by proposal authoring and implementation acceptance. No query rewriting. */
+export function assetNeedAuthoringIssues(needs: AssetNeed[]) {
+  const issues: { path: (string | number)[]; message: string }[] = [];
+  const add = (i: number, field: string, message: string) =>
+    issues.push({
+      path: ["assetNeeds", i, field],
+      message: `Asset ${needs[i].id}: ${message}`,
+    });
+  for (const [i, need] of needs.entries()) {
+    if (
+      need.intent &&
+      !need.intent.relatedRequirementIds.includes(need.requirementId)
+    )
+      add(
+        i,
+        "intent",
+        "Asset intent must include its primary requirementId: " +
+          need.requirementId,
+      );
+    for (const id of need.intent?.relatedRequirementIds ?? [])
+      if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/.test(id))
+        add(i, "intent", "Invalid related requirementId: " + id);
+    if (
+      need.kind === "MeshPart" &&
+      !needs.some(
+        (component) =>
+          component.kind === "Model" &&
+          component.requirementId === need.requirementId,
+      )
+    )
+      add(
+        i,
+        "kind",
+        `Marketplace-first mesh sourcing requires a Model discovery need for the same requirement ${need.requirementId} and complete reusable component before a bare MeshPart search. An unrelated component search does not qualify. Keep the same requested scope; do not invent a new gameplay feature.`,
+      );
+    if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/.test(need.requirementId))
+      add(
+        i,
+        "requirementId",
+        "requirementId must use the requirement ID contract: a letter followed by at most 63 letters, digits, underscores or hyphens",
+      );
+    if (needs.findIndex((n) => n.id === need.id) !== i)
+      add(i, "id", "Asset needs must have unique IDs");
+    for (const field of ["query", "role", "constraints"] as const)
+      if (!need[field].trim()) add(i, field, `${field} cannot be blank`);
+    if (need.kind === "Model" && need.query.trim().split(/[\s+]+/u).length > 4)
+      add(
+        i,
+        "query",
+        "Model discovery must start with a short subject query (at most four terms). Put descriptive constraints in constraints. The planner must choose the query; no substitute query is supplied.",
+      );
+  }
+  return issues;
+}
 
 /** Product policy for discovery, not evidence that an imported asset is safe. */
 export const marketplaceFirstInstructions = [
@@ -17,9 +73,10 @@ export function validateMarketplaceDiscovery(
   requireIntent = false,
 ) {
   const needs = spec.assetNeeds ?? [];
+  const errors = assetNeedAuthoringIssues(needs).map((issue) => issue.message);
   for (const need of needs) {
     if (requireIntent && !need.intent)
-      throw Error(
+      errors.push(
         "Asset " +
           need.id +
           " needs intent describing its experienceRole, interaction, reusableFeatures and relatedRequirementIds. Ground discovery in the game's player experience and clarification answers, not just appearance.",
@@ -31,27 +88,10 @@ export function validateMarketplaceDiscovery(
           (id) => !spec.requirements.some((r) => r.id === id),
         ))
     )
-      throw Error(
+      errors.push(
         "Asset intent must reference existing requirements and include its primary requirementId: " +
           need.id,
       );
-    if (need.kind === "Model" && need.query.trim().split(/[\s+]+/u).length > 4)
-      throw Error(
-        "Model discovery must start with a short subject query (at most four terms). Put descriptive constraints in constraints and search the complete reusable component before a replacement prop. The planner must choose the query; no substitute query is supplied.",
-      );
   }
-  if (
-    needs.some(
-      (need) =>
-        need.kind === "MeshPart" &&
-        !needs.some(
-          (component) =>
-            component.kind === "Model" &&
-            component.requirementId === need.requirementId,
-        ),
-    )
-  )
-    throw Error(
-      "Marketplace-first mesh sourcing requires a Model discovery need for the same requirement and complete reusable component before a bare MeshPart search. An unrelated component search does not qualify. Keep the same requested scope; do not invent a new gameplay feature.",
-    );
+  if (errors.length) throw Error(errors.join("\n"));
 }

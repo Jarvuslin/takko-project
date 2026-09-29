@@ -1,0 +1,48 @@
+{
+  "at": "2026-09-27T18:35:11.397Z",
+  "variants": [
+    {
+      "name": "reproduction",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 4369,
+      "mockCalls": 0,
+      "paidCalls": 0,
+      "error": "{\"type\":\"error\",\"timestamp\":1790533360715,\"sessionID\":\"ses_f1be52d5cffejk7iIWoDp1vuUR\",\"error\":{\"name\":\"APIError\",\"data\":{\"message\":\"Unknown provider billing must be reconciled before another OpenCode request.\",\"statusCode\":403,\"isRetryable\":false,\"responseHeaders\":{\"connection\":\"keep-alive\",\"content-length\":\"100\",\"content-type\":\"application/json; charset=utf-8\",\"date\":\"Sun, 27 Sep 2026 18:22:40 GMT\",\"etag\":\"W/\\\"64-FOaVHIsvq2rUgsPjQl62CSGVjKk\\\"\",\"keep-alive\":\"timeout=5\",\"x-powered-by\":\"Express\"},\"responseBody\":\"{\\\"error\\\":{\\\"message\\\":\\\"Unknown provider billing must be reconciled before another OpenCode request.\\\"}}\",\"metadata\":{\"url\":\"http://127.0.0.1:54008/v1/chat/completions\"}}}}\r"
+    },
+    {
+      "name": "without-refusal-hold",
+      "code": 1,
+      "signal": null,
+      "elapsedMs": 15234,
+      "mockCalls": 48,
+      "paidCalls": 0,
+      "error": "{\"type\":\"error\",\"timestamp\":1790533762110,\"sessionID\":\"ses_f1bdf3807ffeA77Bl8MRDBBt1f\",\"error\":{\"name\":\"APIError\",\"data\":{\"message\":\"OpenCode request limit reached.\",\"statusCode\":403,\"isRetryable\":false,\"responseHeaders\":{\"connection\":\"keep-alive\",\"content-length\":\"55\",\"content-type\":\"application/json; charset=utf-8\",\"date\":\"Sun, 27 Sep 2026 18:29:22 GMT\",\"etag\":\"W/\\\"37-AUVzSX2dceWiQTTr8arHFGCmPTY\\\"\",\"keep-alive\":\"timeout=5\",\"x-powered-by\":\"Express\"},\"responseBody\":\"{\\\"error\\\":{\\\"message\\\":\\\"OpenCode request limit reached.\\\"}}\",\"metadata\":{\"url\":\"http://127.0.0.1:56048/v1/chat/completions\"}}}}\r"
+    },
+    {
+      "name": "without-refusal-hold-sse",
+      "code": 0,
+      "signal": null,
+      "elapsedMs": 4104,
+      "mockCalls": 1,
+      "paidCalls": 0,
+      "error": null
+    },
+    {
+      "name": "system-path",
+      "code": 0,
+      "signal": null,
+      "elapsedMs": 3683,
+      "mockCalls": 1,
+      "paidCalls": 0,
+      "error": null
+    }
+  ],
+  "heartbeat": [
+    {
+      "file": "docs\\results\\planner-sweep-20260927\\opencode-runtime\\xdg_state_home\\opencode\\locks\\4f43c78dcfe651b3a92d61635c8a62a8fb5188c4.lock\\heartbeat",
+      "bytes": 0
+    }
+  ],
+  "interpretation": "Original-state clone rejects at gateway for prior unknown billing. Counterfactual copy removes the single HTTP404 reservation hold. Correct SSE mock exits zero with inherited Codex shell and system PowerShell. Initial JSON mock under stream mode made 48 zero-cost calls and was refused at the existing ceiling, not a production bug. Original evidence untouched."
+}

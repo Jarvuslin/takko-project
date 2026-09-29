@@ -1,0 +1,49 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/api.test.ts (18 tests | 1 failed) 996ms
+   × does not simulate a model or Studio connection when unconfigured 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.test.ts > does not simulate a model or Studio connection when unconfigured
+AssertionError: expected { mode: 'multi-model', …(4) } to deeply equal { mode: 'multi-model', …(3) }
+
+- Expected
++ Received
+
+  {
++   "assetChoices": true,
+    "concepts": true,
+    "configured": false,
+    "mode": "multi-model",
+    "studios": [],
+  }
+
+ ❯ tests/api.test.ts:529:47
+    527| it("does not simulate a model or Studio connection when unconfigured",…
+    528|   const { api } = await setup();
+    529|   expect(await (await api("/status")).json()).toEqual({
+       |                                               ^
+    530|     mode: "multi-model",
+    531|     concepts: true,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 86 passed (87)
+      Tests  1 failed | 1401 passed (1402)
+   Start at  17:52:40
+   Duration  109.66s (tests 79%, import 17%, transform 3%)
+
+    Isolate  87 workers spawned · ~143ms startup each (spawn + environment, per file)
+             at least ~12.26s faster with isolate: false — reuses workers across files instead of one per file
+

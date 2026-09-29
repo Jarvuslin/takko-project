@@ -1,0 +1,1591 @@
+[
+  {
+    "id": "home",
+    "title": "01 / A quieter home",
+    "hits": [
+      {
+        "x": 16,
+        "y": 88,
+        "w": 176,
+        "h": 38,
+        "label": "+  New project",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 237,
+        "w": 176,
+        "h": 40,
+        "label": "Projects",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 285,
+        "w": 176,
+        "h": 40,
+        "label": "Models",
+        "to": "models"
+      },
+      {
+        "x": 16,
+        "y": 333,
+        "w": 176,
+        "h": 40,
+        "label": "Routing",
+        "to": "routing"
+      },
+      {
+        "x": 16,
+        "y": 381,
+        "w": 176,
+        "h": 40,
+        "label": "Budget",
+        "to": "budget"
+      },
+      {
+        "x": 707,
+        "y": 444,
+        "w": 188,
+        "h": 38,
+        "label": "Routing · Custom",
+        "to": "routing"
+      },
+      {
+        "x": 908,
+        "y": 444,
+        "w": 143,
+        "h": 38,
+        "label": "Budget · $2",
+        "to": "run-budget"
+      },
+      {
+        "x": 1062,
+        "y": 444,
+        "w": 40,
+        "h": 38,
+        "label": "↑",
+        "to": "run-budget"
+      },
+      {
+        "x": 465,
+        "y": 535,
+        "w": 151,
+        "h": 38,
+        "label": "Build an obby",
+        "to": "home"
+      },
+      {
+        "x": 630,
+        "y": 535,
+        "w": 159,
+        "h": 38,
+        "label": "Make an arena",
+        "to": "home"
+      },
+      {
+        "x": 804,
+        "y": 535,
+        "w": 183,
+        "h": 38,
+        "label": "Create a cozy world",
+        "to": "home"
+      }
+    ]
+  },
+  {
+    "id": "models",
+    "title": "02 / Models: short, searchable rows",
+    "hits": [
+      {
+        "x": 16,
+        "y": 88,
+        "w": 176,
+        "h": 38,
+        "label": "+  New project",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 237,
+        "w": 176,
+        "h": 40,
+        "label": "Projects",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 285,
+        "w": 176,
+        "h": 40,
+        "label": "Models",
+        "to": "models"
+      },
+      {
+        "x": 16,
+        "y": 333,
+        "w": 176,
+        "h": 40,
+        "label": "Routing",
+        "to": "routing"
+      },
+      {
+        "x": 16,
+        "y": 381,
+        "w": 176,
+        "h": 40,
+        "label": "Budget",
+        "to": "budget"
+      },
+      {
+        "x": 272,
+        "y": 177,
+        "w": 110,
+        "h": 36,
+        "label": "My models",
+        "to": "models"
+      },
+      {
+        "x": 393,
+        "y": 177,
+        "w": 110,
+        "h": 36,
+        "label": "Providers",
+        "to": "providers"
+      },
+      {
+        "x": 1080,
+        "y": 92,
+        "w": 136,
+        "h": 38,
+        "label": "+  Add model",
+        "to": "add-model"
+      },
+      {
+        "x": 1090,
+        "y": 317,
+        "w": 96,
+        "h": 38,
+        "label": "Edit",
+        "to": "profile-settings"
+      },
+      {
+        "x": 1090,
+        "y": 412,
+        "w": 96,
+        "h": 38,
+        "label": "Edit",
+        "to": "profile-fast"
+      },
+      {
+        "x": 1090,
+        "y": 507,
+        "w": 96,
+        "h": 38,
+        "label": "Edit",
+        "to": "profile-review"
+      },
+      {
+        "x": 457,
+        "y": 634,
+        "w": 164,
+        "h": 38,
+        "label": "View providers",
+        "to": "providers"
+      }
+    ]
+  },
+  {
+    "id": "providers",
+    "title": "03 / Providers: connector-style directory",
+    "hits": [
+      {
+        "x": 16,
+        "y": 88,
+        "w": 176,
+        "h": 38,
+        "label": "+  New project",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 237,
+        "w": 176,
+        "h": 40,
+        "label": "Projects",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 285,
+        "w": 176,
+        "h": 40,
+        "label": "Models",
+        "to": "models"
+      },
+      {
+        "x": 16,
+        "y": 333,
+        "w": 176,
+        "h": 40,
+        "label": "Routing",
+        "to": "routing"
+      },
+      {
+        "x": 16,
+        "y": 381,
+        "w": 176,
+        "h": 40,
+        "label": "Budget",
+        "to": "budget"
+      },
+      {
+        "x": 272,
+        "y": 177,
+        "w": 110,
+        "h": 36,
+        "label": "My models",
+        "to": "models"
+      },
+      {
+        "x": 393,
+        "y": 177,
+        "w": 110,
+        "h": 36,
+        "label": "Providers",
+        "to": "providers"
+      },
+      {
+        "x": 1068,
+        "y": 177,
+        "w": 148,
+        "h": 38,
+        "label": "+  Custom",
+        "to": "custom-provider"
+      },
+      {
+        "x": 629,
+        "y": 302,
+        "w": 95,
+        "h": 38,
+        "label": "Manage",
+        "to": "connect-provider"
+      },
+      {
+        "x": 1104,
+        "y": 302,
+        "w": 95,
+        "h": 38,
+        "label": "Connect",
+        "to": "connect-openai"
+      },
+      {
+        "x": 629,
+        "y": 408,
+        "w": 95,
+        "h": 38,
+        "label": "Manage",
+        "to": "connect-anthropic"
+      },
+      {
+        "x": 1104,
+        "y": 408,
+        "w": 95,
+        "h": 38,
+        "label": "Connect",
+        "to": "connect-gemini"
+      },
+      {
+        "x": 629,
+        "y": 514,
+        "w": 95,
+        "h": 38,
+        "label": "Connect",
+        "to": "custom-provider"
+      }
+    ]
+  },
+  {
+    "id": "routing",
+    "title": "04 / Routing: one job per row",
+    "hits": [
+      {
+        "x": 16,
+        "y": 88,
+        "w": 176,
+        "h": 38,
+        "label": "+  New project",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 237,
+        "w": 176,
+        "h": 40,
+        "label": "Projects",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 285,
+        "w": 176,
+        "h": 40,
+        "label": "Models",
+        "to": "models"
+      },
+      {
+        "x": 16,
+        "y": 333,
+        "w": 176,
+        "h": 40,
+        "label": "Routing",
+        "to": "routing"
+      },
+      {
+        "x": 16,
+        "y": 381,
+        "w": 176,
+        "h": 40,
+        "label": "Budget",
+        "to": "budget"
+      },
+      {
+        "x": 1028,
+        "y": 92,
+        "w": 188,
+        "h": 38,
+        "label": "Use one model for all",
+        "to": "all-routes"
+      },
+      {
+        "x": 1100,
+        "y": 310,
+        "w": 96,
+        "h": 38,
+        "label": "Change",
+        "to": "edit-research"
+      },
+      {
+        "x": 1100,
+        "y": 376,
+        "w": 96,
+        "h": 38,
+        "label": "Change",
+        "to": "edit-planner"
+      },
+      {
+        "x": 1100,
+        "y": 442,
+        "w": 96,
+        "h": 38,
+        "label": "Change",
+        "to": "edit-route"
+      },
+      {
+        "x": 1100,
+        "y": 508,
+        "w": 96,
+        "h": 38,
+        "label": "Change",
+        "to": "edit-reviewer"
+      },
+      {
+        "x": 1100,
+        "y": 574,
+        "w": 96,
+        "h": 38,
+        "label": "Change",
+        "to": "edit-repair"
+      },
+      {
+        "x": 1080,
+        "y": 706,
+        "w": 136,
+        "h": 38,
+        "label": "Save routing",
+        "to": "routing"
+      }
+    ]
+  },
+  {
+    "id": "budget",
+    "title": "05 / Budget: generation and project limits",
+    "hits": [
+      {
+        "x": 16,
+        "y": 88,
+        "w": 176,
+        "h": 38,
+        "label": "+  New project",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 237,
+        "w": 176,
+        "h": 40,
+        "label": "Projects",
+        "to": "home"
+      },
+      {
+        "x": 16,
+        "y": 285,
+        "w": 176,
+        "h": 40,
+        "label": "Models",
+        "to": "models"
+      },
+      {
+        "x": 16,
+        "y": 333,
+        "w": 176,
+        "h": 40,
+        "label": "Routing",
+        "to": "routing"
+      },
+      {
+        "x": 16,
+        "y": 381,
+        "w": 176,
+        "h": 40,
+        "label": "Budget",
+        "to": "budget"
+      },
+      {
+        "x": 1090,
+        "y": 567,
+        "w": 126,
+        "h": 38,
+        "label": "2 rounds  ⌄",
+        "to": "budget"
+      },
+      {
+        "x": 1080,
+        "y": 706,
+        "w": 136,
+        "h": 38,
+        "label": "Save budget",
+        "to": "budget"
+      }
+    ]
+  },
+  {
+    "id": "add-model",
+    "title": "06 / Add model: focused catalog dialog",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 80,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 80,
+        "w": 310,
+        "h": 640,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 970,
+        "y": 80,
+        "w": 310,
+        "h": 640,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 720,
+        "w": 1280,
+        "h": 80,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 907,
+        "y": 97,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "models"
+      },
+      {
+        "x": 338,
+        "y": 174,
+        "w": 206,
+        "h": 38,
+        "label": "OpenRouter  ⌄",
+        "to": "connect-provider"
+      },
+      {
+        "x": 741,
+        "y": 174,
+        "w": 200,
+        "h": 38,
+        "label": "Enter model ID",
+        "to": "manual-model"
+      },
+      {
+        "x": 838,
+        "y": 298,
+        "w": 104,
+        "h": 38,
+        "label": "Selected",
+        "to": "add-model"
+      },
+      {
+        "x": 838,
+        "y": 384,
+        "w": 104,
+        "h": 38,
+        "label": "Select",
+        "to": "add-model"
+      },
+      {
+        "x": 838,
+        "y": 470,
+        "w": 104,
+        "h": 38,
+        "label": "Select",
+        "to": "add-model"
+      },
+      {
+        "x": 676,
+        "y": 660,
+        "w": 104,
+        "h": 38,
+        "label": "Cancel",
+        "to": "models"
+      },
+      {
+        "x": 792,
+        "y": 660,
+        "w": 150,
+        "h": 38,
+        "label": "Add to library",
+        "to": "models"
+      }
+    ],
+    "back": "models"
+  },
+  {
+    "id": "connect-provider",
+    "title": "07 / Connect provider: one compact form",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 908,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 642,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 845,
+        "y": 175,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "providers"
+      },
+      {
+        "x": 400,
+        "y": 397,
+        "w": 480,
+        "h": 38,
+        "label": "Advanced · endpoint settings  ⌄",
+        "to": "custom-provider"
+      },
+      {
+        "x": 602,
+        "y": 584,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "providers"
+      },
+      {
+        "x": 722,
+        "y": 584,
+        "w": 158,
+        "h": 38,
+        "label": "Connect provider",
+        "to": "providers"
+      }
+    ],
+    "back": "providers"
+  },
+  {
+    "id": "edit-route",
+    "title": "08 / Edit route: a focused side panel",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 800,
+        "label": "Close route editor",
+        "to": "routing"
+      },
+      {
+        "x": 1215,
+        "y": 24,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 800,
+        "y": 493,
+        "w": 170,
+        "h": 38,
+        "label": "+  Add a model",
+        "to": "add-model"
+      },
+      {
+        "x": 973,
+        "y": 739,
+        "w": 107,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 1092,
+        "y": 739,
+        "w": 156,
+        "h": 38,
+        "label": "Save route",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "profile-settings",
+    "title": "09 / Model profile: edit only one model",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 938,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 742,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 875,
+        "y": 75,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "models"
+      },
+      {
+        "x": 370,
+        "y": 594,
+        "w": 210,
+        "h": 38,
+        "label": "Connection settings",
+        "to": "connect-provider"
+      },
+      {
+        "x": 644,
+        "y": 685,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "models"
+      },
+      {
+        "x": 764,
+        "y": 685,
+        "w": 146,
+        "h": 38,
+        "label": "Save model",
+        "to": "models"
+      }
+    ],
+    "back": "models"
+  },
+  {
+    "id": "run-budget",
+    "title": "10 / Composer budget: adjust just this generation",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 157,
+        "label": "Close dialog",
+        "to": "home"
+      },
+      {
+        "x": 0,
+        "y": 157,
+        "w": 372,
+        "h": 486,
+        "label": "Close dialog",
+        "to": "home"
+      },
+      {
+        "x": 908,
+        "y": 157,
+        "w": 372,
+        "h": 486,
+        "label": "Close dialog",
+        "to": "home"
+      },
+      {
+        "x": 0,
+        "y": 643,
+        "w": 1280,
+        "h": 157,
+        "label": "Close dialog",
+        "to": "home"
+      },
+      {
+        "x": 845,
+        "y": 174,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "home"
+      },
+      {
+        "x": 400,
+        "y": 359,
+        "w": 101,
+        "h": 38,
+        "label": "$0.50",
+        "to": "run-budget"
+      },
+      {
+        "x": 513,
+        "y": 359,
+        "w": 101,
+        "h": 38,
+        "label": "$1.00",
+        "to": "run-budget"
+      },
+      {
+        "x": 626,
+        "y": 359,
+        "w": 101,
+        "h": 38,
+        "label": "$2.00",
+        "to": "run-budget"
+      },
+      {
+        "x": 600,
+        "y": 586,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "home"
+      },
+      {
+        "x": 720,
+        "y": 586,
+        "w": 160,
+        "h": 38,
+        "label": "Use this limit",
+        "to": "home"
+      }
+    ],
+    "back": "home"
+  },
+  {
+    "id": "edit-research",
+    "title": "Research route",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 800,
+        "label": "Close route editor",
+        "to": "routing"
+      },
+      {
+        "x": 1215,
+        "y": 24,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 800,
+        "y": 493,
+        "w": 170,
+        "h": 38,
+        "label": "+  Add a model",
+        "to": "add-model"
+      },
+      {
+        "x": 973,
+        "y": 739,
+        "w": 107,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 1092,
+        "y": 739,
+        "w": 156,
+        "h": 38,
+        "label": "Save route",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "edit-planner",
+    "title": "Planner / lead route",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 800,
+        "label": "Close route editor",
+        "to": "routing"
+      },
+      {
+        "x": 1215,
+        "y": 24,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 800,
+        "y": 493,
+        "w": 170,
+        "h": 38,
+        "label": "+  Add a model",
+        "to": "add-model"
+      },
+      {
+        "x": 973,
+        "y": 739,
+        "w": 107,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 1092,
+        "y": 739,
+        "w": 156,
+        "h": 38,
+        "label": "Save route",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "edit-reviewer",
+    "title": "Reviewer route",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 800,
+        "label": "Close route editor",
+        "to": "routing"
+      },
+      {
+        "x": 1215,
+        "y": 24,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 800,
+        "y": 493,
+        "w": 170,
+        "h": 38,
+        "label": "+  Add a model",
+        "to": "add-model"
+      },
+      {
+        "x": 973,
+        "y": 739,
+        "w": 107,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 1092,
+        "y": 739,
+        "w": 156,
+        "h": 38,
+        "label": "Save route",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "edit-repair",
+    "title": "Repair route",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 800,
+        "label": "Close route editor",
+        "to": "routing"
+      },
+      {
+        "x": 1215,
+        "y": 24,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 800,
+        "y": 493,
+        "w": 170,
+        "h": 38,
+        "label": "+  Add a model",
+        "to": "add-model"
+      },
+      {
+        "x": 973,
+        "y": 739,
+        "w": 107,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 1092,
+        "y": 739,
+        "w": 156,
+        "h": 38,
+        "label": "Save route",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "all-routes",
+    "title": "Use one model for all stages",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 230,
+        "label": "Close dialog",
+        "to": "routing"
+      },
+      {
+        "x": 0,
+        "y": 230,
+        "w": 372,
+        "h": 340,
+        "label": "Close dialog",
+        "to": "routing"
+      },
+      {
+        "x": 908,
+        "y": 230,
+        "w": 372,
+        "h": 340,
+        "label": "Close dialog",
+        "to": "routing"
+      },
+      {
+        "x": 0,
+        "y": 570,
+        "w": 1280,
+        "h": 230,
+        "label": "Close dialog",
+        "to": "routing"
+      },
+      {
+        "x": 845,
+        "y": 247,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "routing"
+      },
+      {
+        "x": 604,
+        "y": 501,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "routing"
+      },
+      {
+        "x": 724,
+        "y": 501,
+        "w": 156,
+        "h": 38,
+        "label": "Apply to all",
+        "to": "routing"
+      }
+    ],
+    "back": "routing"
+  },
+  {
+    "id": "custom-provider",
+    "title": "Compatible endpoint",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 113,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 113,
+        "w": 356,
+        "h": 574,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 924,
+        "y": 113,
+        "w": 356,
+        "h": 574,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 687,
+        "w": 1280,
+        "h": 113,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 861,
+        "y": 130,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "providers"
+      },
+      {
+        "x": 621,
+        "y": 613,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "providers"
+      },
+      {
+        "x": 741,
+        "y": 613,
+        "w": 155,
+        "h": 38,
+        "label": "Connect",
+        "to": "providers"
+      }
+    ],
+    "back": "providers"
+  },
+  {
+    "id": "manual-model",
+    "title": "Add model by ID",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 938,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 742,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 875,
+        "y": 75,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "models"
+      },
+      {
+        "x": 370,
+        "y": 594,
+        "w": 210,
+        "h": 38,
+        "label": "Connection settings",
+        "to": "connect-provider"
+      },
+      {
+        "x": 644,
+        "y": 685,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "models"
+      },
+      {
+        "x": 764,
+        "y": 685,
+        "w": 146,
+        "h": 38,
+        "label": "Save model",
+        "to": "models"
+      }
+    ],
+    "back": "models"
+  },
+  {
+    "id": "connect-openai",
+    "title": "Connect OpenAI",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 908,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 642,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 845,
+        "y": 175,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "providers"
+      },
+      {
+        "x": 400,
+        "y": 397,
+        "w": 480,
+        "h": 38,
+        "label": "Advanced · endpoint settings  ⌄",
+        "to": "custom-provider"
+      },
+      {
+        "x": 602,
+        "y": 584,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "providers"
+      },
+      {
+        "x": 722,
+        "y": 584,
+        "w": 158,
+        "h": 38,
+        "label": "Connect provider",
+        "to": "providers"
+      }
+    ],
+    "back": "providers"
+  },
+  {
+    "id": "connect-anthropic",
+    "title": "Connect Anthropic",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 908,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 642,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 845,
+        "y": 175,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "providers"
+      },
+      {
+        "x": 400,
+        "y": 397,
+        "w": 480,
+        "h": 38,
+        "label": "Advanced · endpoint settings  ⌄",
+        "to": "custom-provider"
+      },
+      {
+        "x": 602,
+        "y": 584,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "providers"
+      },
+      {
+        "x": 722,
+        "y": 584,
+        "w": 158,
+        "h": 38,
+        "label": "Connect provider",
+        "to": "providers"
+      }
+    ],
+    "back": "providers"
+  },
+  {
+    "id": "connect-gemini",
+    "title": "Connect Google Gemini",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 908,
+        "y": 158,
+        "w": 372,
+        "h": 484,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 0,
+        "y": 642,
+        "w": 1280,
+        "h": 158,
+        "label": "Close dialog",
+        "to": "providers"
+      },
+      {
+        "x": 845,
+        "y": 175,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "providers"
+      },
+      {
+        "x": 400,
+        "y": 397,
+        "w": 480,
+        "h": 38,
+        "label": "Advanced · endpoint settings  ⌄",
+        "to": "custom-provider"
+      },
+      {
+        "x": 602,
+        "y": 584,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "providers"
+      },
+      {
+        "x": 722,
+        "y": 584,
+        "w": 158,
+        "h": 38,
+        "label": "Connect provider",
+        "to": "providers"
+      }
+    ],
+    "back": "providers"
+  },
+  {
+    "id": "profile-fast",
+    "title": "Edit Fast builder",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 938,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 742,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 875,
+        "y": 75,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "models"
+      },
+      {
+        "x": 370,
+        "y": 594,
+        "w": 210,
+        "h": 38,
+        "label": "Connection settings",
+        "to": "connect-provider"
+      },
+      {
+        "x": 644,
+        "y": 685,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "models"
+      },
+      {
+        "x": 764,
+        "y": 685,
+        "w": 146,
+        "h": 38,
+        "label": "Save model",
+        "to": "models"
+      }
+    ],
+    "back": "models"
+  },
+  {
+    "id": "profile-review",
+    "title": "Edit Deep review",
+    "hits": [
+      {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 938,
+        "y": 58,
+        "w": 342,
+        "h": 684,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 0,
+        "y": 742,
+        "w": 1280,
+        "h": 58,
+        "label": "Close dialog",
+        "to": "models"
+      },
+      {
+        "x": 875,
+        "y": 75,
+        "w": 38,
+        "h": 38,
+        "label": "×",
+        "to": "models"
+      },
+      {
+        "x": 370,
+        "y": 594,
+        "w": 210,
+        "h": 38,
+        "label": "Connection settings",
+        "to": "connect-anthropic"
+      },
+      {
+        "x": 644,
+        "y": 685,
+        "w": 108,
+        "h": 38,
+        "label": "Cancel",
+        "to": "models"
+      },
+      {
+        "x": 764,
+        "y": 685,
+        "w": 146,
+        "h": 38,
+        "label": "Save model",
+        "to": "models"
+      }
+    ],
+    "back": "models"
+  }
+]

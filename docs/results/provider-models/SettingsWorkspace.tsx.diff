@@ -1,0 +1,18 @@
+diff --git "a/.forge\\models-provider-before\\src\\web\\SettingsWorkspace.tsx" b/src/web/SettingsWorkspace.tsx
+index 4226c63..8e374b8 100644
+--- "a/.forge\\models-provider-before\\src\\web\\SettingsWorkspace.tsx"
++++ b/src/web/SettingsWorkspace.tsx
+@@ -6,6 +6,13 @@ import "./settings-workspace.css";
+ export type SettingsPage = "models" | "presets" | "routing" | "budget";
+ export type PublicSettings = Omit<Settings, "profiles"> & {
+   profiles: (Profile & { hasKey?: boolean })[];
++  credentialStorage?: "windows-encrypted" | "session";
++  connections?: {
++    provider: Profile["provider"];
++    baseUrl: string;
++    hasKey: boolean;
++    validated: boolean;
++  }[];
+ };
+ export async function settingsApi<T>(
+   path: string,

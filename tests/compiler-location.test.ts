@@ -10,7 +10,9 @@ import type { Check } from "../src/generation/schema";
 
 const execute = promisify(execFile);
 const workspace = process.cwd();
-const compilerDirectory = path.resolve("research/tools/luau");
+const compilerDirectory = path.resolve(
+  process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+);
 const loader = createRequire(import.meta.url).resolve("tsx");
 const validationUrl = pathToFileURL(
   path.resolve("src/generation/validation.ts"),

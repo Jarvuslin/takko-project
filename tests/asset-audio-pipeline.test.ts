@@ -401,9 +401,11 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
     { rejected: false, correction: "unoffered" },
     { rejected: false, correction: "contradictory" },
     { rejected: false, correction: "always-empty" },
+    { rejected: false, correction: "none", metadataOnly: true },
+    { rejected: true, correction: "none", refused404: true },
   ])(
     "real Engine dispatch preserves evidence, costs and bounded correction: %j",
-    async ({ rejected, correction }) => {
+    async ({ rejected, correction, metadataOnly, refused404 }) => {
       const s = setup(),
         directory = fs.mkdtempSync(
           path.join(os.tmpdir(), "takko-audio-engine-"),
@@ -414,6 +416,9 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
         worker = profile("openrouter"),
         reviewer = profile("openrouter"),
         fallback = profile("openrouter");
+      reviewer.model = metadataOnly
+        ? "anthropic/claude-sonnet-5"
+        : "google/gemini-2.5-flash";
       const settings: Settings = {
         profiles: [worker, reviewer, fallback],
         routes: {
@@ -444,7 +449,7 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
         calls.push({ body, task });
         if (rejected && task === "asset-evaluation")
           return new Response(JSON.stringify({ error: "Unsupported audio" }), {
-            status: 400,
+            status: refused404 ? 404 : 400,
           });
         let value: unknown =
           task === "asset-selection"
@@ -519,15 +524,27 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
         }
       ).resolveAssets(project, [s.need], settings, new Map(), s.signal);
       if (correction === "always-empty") await expect(invoke).rejects.toThrow();
-      else if (rejected) await expect(invoke).rejects.toThrow("HTTP 400");
+      else if (rejected)
+        await expect(invoke).rejects.toThrow(
+          "HTTP " + (refused404 ? 404 : 400),
+        );
+      else if (metadataOnly) await expect(invoke).rejects.toThrow();
       else await invoke;
       const decisions = calls.filter((c) => c.task === "asset-selection");
-      expect(decisions).toHaveLength(correction === "none" ? 1 : 2);
+      expect(decisions).toHaveLength(
+        metadataOnly ? 3 : correction === "none" ? 1 : 2,
+      );
       expect(
         project.charges
           .filter((c) => c.profileId === worker.id)
           .map((c) => c.chargedMicros),
-      ).toEqual(correction === "none" ? [200] : [200, 200]);
+      ).toEqual(
+        metadataOnly
+          ? [200, 200, 200]
+          : correction === "none"
+            ? [200]
+            : [200, 200],
+      );
       if (correction !== "none") {
         expect(JSON.stringify(decisions[1].body.messages[1].content)).toContain(
           "last response failed validation",
@@ -549,7 +566,26 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
         return;
       }
       const audioCalls = calls.filter((c) => c.task === "asset-evaluation");
-      expect(audioCalls).toHaveLength(rejected ? 1 : 2);
+      expect(audioCalls).toHaveLength(rejected || metadataOnly ? 1 : 2);
+      if (metadataOnly) {
+        expect(typeof audioCalls[0].body.messages[1].content).toBe("string");
+        expect(audioCalls[0].body.messages[1].content).toContain(
+          "METADATA ONLY",
+        );
+        expect(audioCalls[0].body.messages[1].content).not.toContain(
+          s.inspection.audio!.dataUrl.split(",")[1],
+        );
+        const charge = project.charges.find(
+          (c) => c.profileId === reviewer.id,
+        )!;
+        expect(charge.reservedMicros).toBeLessThan(65536 * reviewer.inputRate);
+        expect(project.assetPipeline?.status).toBe("failed");
+        expect(JSON.stringify(project.assetPipeline)).toContain(
+          "Audible fit remains unverified",
+        );
+        expect(project.reservedMicros).toBe(0);
+        return;
+      }
       expect(
         audioCalls[0].body.messages[1].content.find(
           (p: any) => p.type === "input_audio",
@@ -569,6 +605,15 @@ describe("asset audio evaluation pipeline (offline fixtures)", () => {
       expect(project.charges.some((c) => c.profileId === fallback.id)).toBe(
         false,
       );
+      if (refused404) {
+        expect(audioCharges).toHaveLength(1);
+        expect(audioCharges[0]).toMatchObject({
+          chargedMicros: 0,
+          estimated: false,
+          status: "error",
+        });
+        expect(project.reservedMicros).toBe(0);
+      }
       if (!rejected) {
         expect(audioCharges.map((c) => c.chargedMicros)).toEqual([200, 200]);
         expect(

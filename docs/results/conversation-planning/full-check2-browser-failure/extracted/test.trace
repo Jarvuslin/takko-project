@@ -1,0 +1,70 @@
+{"version":9,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.63.0","options":{},"platform":"win32","wallTime":1790216653356,"monotonicTime":265563.213,"sdkLanguage":"javascript","testTimeout":30000,"annotations":[]}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":265563.61,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"hook@2","stepId":"hook@2","parentId":"hook@1","startTime":265563.652,"class":"Test","method":"hook","title":"beforeEach hook","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":336,"column":6}]}
+{"type":"before","callId":"fixture@26","stepId":"fixture@26","parentId":"hook@2","startTime":265567.304,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@27","stepId":"pw:api@27","parentId":"fixture@26","startTime":265567.86,"class":"Test","method":"pw:api","title":"Create context","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@27","endTime":265570,"annotations":[]}
+{"type":"after","callId":"fixture@26","endTime":265572.395,"annotations":[]}
+{"type":"before","callId":"fixture@28","stepId":"fixture@28","parentId":"hook@2","startTime":265572.691,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@29","stepId":"pw:api@29","parentId":"fixture@28","startTime":265573.39,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@29","endTime":265634.73,"annotations":[]}
+{"type":"after","callId":"fixture@28","endTime":265634.767,"annotations":[]}
+{"type":"before","callId":"fixture@30","stepId":"fixture@30","parentId":"hook@2","startTime":265634.841,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workspace-fixture.ts","line":4,"column":26}]}
+{"type":"before","callId":"pw:api@31","stepId":"pw:api@31","parentId":"fixture@30","startTime":265635.472,"class":"Test","method":"pw:api","title":"Route requests","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workspace-fixture.ts","line":6,"column":16,"function":"Object.page"}],"group":"route"}
+{"type":"after","callId":"pw:api@31","endTime":265636.865,"annotations":[]}
+{"type":"after","callId":"fixture@30","endTime":265636.913,"annotations":[]}
+{"type":"before","callId":"pw:api@32","stepId":"pw:api@32","parentId":"hook@2","startTime":265637.278,"class":"Test","method":"pw:api","title":"Route requests","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\provider-fixture.ts","line":11,"column":14,"function":"mockProviderConnections"}],"group":"route"}
+{"type":"after","callId":"pw:api@32","endTime":265637.556,"annotations":[]}
+{"type":"before","callId":"pw:api@33","stepId":"pw:api@33","parentId":"hook@2","startTime":265637.821,"class":"Test","method":"pw:api","title":"Route requests","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\provider-fixture.ts","line":31,"column":14,"function":"mockProviderConnections"}],"group":"route"}
+{"type":"after","callId":"pw:api@33","endTime":265638.127,"annotations":[]}
+{"type":"before","callId":"pw:api@34","stepId":"pw:api@34","parentId":"hook@2","startTime":265638.374,"class":"Test","method":"pw:api","title":"Route requests","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\provider-fixture.ts","line":59,"column":14,"function":"mockProviderConnections"}],"group":"route"}
+{"type":"after","callId":"pw:api@34","endTime":265638.722,"annotations":[]}
+{"type":"after","callId":"hook@2","endTime":265638.761,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":265638.861,"annotations":[]}
+{"type":"before","callId":"pw:api@35","stepId":"pw:api@35","startTime":265639.351,"class":"Test","method":"pw:api","title":"Navigate","subtitle":"/","params":{"url":"/"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":110,"column":14}]}
+{"type":"after","callId":"pw:api@35","endTime":265763.828,"annotations":[]}
+{"type":"before","callId":"expect@36","stepId":"expect@36","startTime":265764.357,"class":"Test","method":"expect","title":"Expect \"toBeVisible\"","subtitle":"getByRole('heading', { name: 'What do you want to build?' })","params":{"locator":"getByRole('heading', { name: 'What do you want to build?' })"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":113,"column":5}]}
+{"type":"after","callId":"expect@36","endTime":265790.484,"annotations":[]}
+{"type":"before","callId":"pw:api@37","stepId":"pw:api@37","startTime":265791.019,"class":"Test","method":"pw:api","title":"Fill \"Make a farming loop with crop growth, harvesting, selling and a shop\"","subtitle":"getByLabel('Game idea')","params":{"locator":"getByLabel('Game idea')","value":"Make a farming loop with crop growth, harvesting, selling and a shop"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":116,"column":6}]}
+{"type":"after","callId":"pw:api@37","endTime":265808.655,"annotations":[]}
+{"type":"before","callId":"expect@38","stepId":"expect@38","startTime":265809.111,"class":"Test","method":"expect","title":"Expect \"toHaveValue\"","subtitle":"getByLabel('Game idea')","params":{"locator":"getByLabel('Game idea')","expected":"Object"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":119,"column":46}]}
+{"type":"after","callId":"expect@38","endTime":265817.682,"annotations":[]}
+{"type":"before","callId":"pw:api@39","stepId":"pw:api@39","startTime":265818.244,"class":"Test","method":"pw:api","title":"Click","subtitle":"getByRole('button', { name: 'Create project' })","params":{"locator":"getByRole('button', { name: 'Create project' })"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":120,"column":62}]}
+{"type":"after","callId":"pw:api@39","endTime":265865.318,"annotations":[]}
+{"type":"before","callId":"expect@40","stepId":"expect@40","startTime":265865.769,"class":"Test","method":"expect","title":"Expect \"toHaveValue\"","subtitle":"getByLabel('Project request')","params":{"locator":"getByLabel('Project request')","expected":"Object"},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":121,"column":52}]}
+{"type":"after","callId":"expect@40","endTime":270934.144,"annotations":[],"error":{"name":"","message":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Project request')\nExpected pattern: \u001b[32m/farming/\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('Project request') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Project request')\u001b[22m\n","stack":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Project request')\nExpected pattern: \u001b[32m/farming/\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('Project request') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Project request')\u001b[22m\n\n    at D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts:121:52"}}
+{"type":"error","message":"Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByLabel('Project request')\nExpected pattern: \u001b[32m/farming/\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('Project request') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('Project request')\u001b[22m\n","stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":121,"column":52}]}
+{"type":"before","callId":"hook@41","stepId":"hook@41","startTime":270934.828,"class":"Test","method":"hook","title":"After Hooks","params":{},"stack":[]}
+{"type":"before","callId":"hook@42","stepId":"hook@42","parentId":"hook@41","startTime":270934.933,"class":"Test","method":"hook","title":"afterEach hook","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":340,"column":6}]}
+{"type":"before","callId":"pw:api@43","stepId":"pw:api@43","parentId":"hook@42","startTime":270935.605,"class":"Test","method":"pw:api","title":"Unroute requests","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workflow.spec.ts","line":341,"column":3}],"group":"route"}
+{"type":"after","callId":"pw:api@43","endTime":270937.583,"annotations":[]}
+{"type":"after","callId":"hook@42","endTime":270937.658,"annotations":[]}
+{"type":"before","callId":"fixture@44","stepId":"fixture@44","parentId":"hook@41","startTime":270937.745,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[{"file":"D:\\RobloxProjects\\Roblox Gen\\tests\\browser\\workspace-fixture.ts","line":4,"column":26}]}
+{"type":"after","callId":"fixture@44","endTime":270937.797,"annotations":[]}
+{"type":"before","callId":"fixture@45","stepId":"fixture@45","parentId":"hook@41","startTime":270938.106,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@45","endTime":270938.144,"annotations":[]}
+{"type":"before","callId":"fixture@46","stepId":"fixture@46","parentId":"hook@41","startTime":270938.522,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@47","stepId":"pw:api@47","parentId":"fixture@46","startTime":271100.122,"class":"Test","method":"pw:api","title":"Close context","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@47","endTime":271103.077,"annotations":[]}
+{"type":"after","callId":"fixture@46","endTime":271103.121,"annotations":[]}
+{"type":"before","callId":"attach@1d2017678a284fe82abb8d9d257445e0","stepId":"attach@1d2017678a284fe82abb8d9d257445e0","startTime":271107.415,"class":"Test","method":"test.attach","title":"Attach \"error-context\"","params":{},"stack":[]}
+{"type":"after","callId":"attach@1d2017678a284fe82abb8d9d257445e0","endTime":271107.425,"attachments":[{"name":"error-context","contentType":"text/markdown","file":"attachments/88c356a64fe2c0b82e4fed74230a97ec48871ca2"}]}
+{"type":"before","callId":"fixture@56","stepId":"fixture@56","parentId":"hook@41","startTime":271108.098,"class":"Test","method":"fixture","title":"Fixture \"baseURL\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@56","endTime":271108.109,"annotations":[]}
+{"type":"before","callId":"fixture@57","stepId":"fixture@57","parentId":"hook@41","startTime":271108.118,"class":"Test","method":"fixture","title":"Fixture \"userAgent\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@57","endTime":271108.126,"annotations":[]}
+{"type":"before","callId":"fixture@59","stepId":"fixture@59","parentId":"hook@41","startTime":271108.305,"class":"Test","method":"fixture","title":"Fixture \"viewport\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@59","endTime":271108.314,"annotations":[]}
+{"type":"before","callId":"fixture@67","stepId":"fixture@67","parentId":"hook@41","startTime":271109.228,"class":"Test","method":"fixture","title":"Fixture \"isMobile\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@67","endTime":271109.233,"annotations":[]}
+{"type":"before","callId":"fixture@71","stepId":"fixture@71","parentId":"hook@41","startTime":271109.606,"class":"Test","method":"fixture","title":"Fixture \"hasTouch\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@71","endTime":271109.66,"annotations":[]}
+{"type":"before","callId":"fixture@74","stepId":"fixture@74","parentId":"hook@41","startTime":271109.91,"class":"Test","method":"fixture","title":"Fixture \"deviceScaleFactor\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@74","endTime":271109.915,"annotations":[]}
+{"type":"after","callId":"hook@41","endTime":271110.658,"annotations":[]}
+{"type":"before","callId":"hook@81","stepId":"hook@81","startTime":271110.828,"class":"Test","method":"hook","title":"Worker Cleanup","params":{},"stack":[]}
+{"type":"before","callId":"fixture@86","stepId":"fixture@86","parentId":"hook@81","startTime":271111.903,"class":"Test","method":"fixture","title":"Fixture \"browser\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@86","endTime":271377.845,"annotations":[]}
+{"type":"before","callId":"fixture@90","stepId":"fixture@90","parentId":"hook@81","startTime":271378.379,"class":"Test","method":"fixture","title":"Fixture \"defaultBrowserType\"","params":{},"stack":[{"file":"project#desktop","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@90","endTime":271378.389,"annotations":[]}
+{"type":"after","callId":"hook@81","endTime":271379.279,"annotations":[]}

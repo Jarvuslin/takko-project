@@ -22,7 +22,7 @@ function runLuau(body: string) {
   const file = path.join(directory, "fixture.luau");
   fs.writeFileSync(file, world + "\n" + body);
   const executable = path.resolve(
-    "research/tools/luau",
+    process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
     process.platform === "win32" ? "luau.exe" : "luau",
   );
   expect(

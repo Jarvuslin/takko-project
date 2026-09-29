@@ -1,0 +1,18 @@
+/* One modality policy for the shared browser and desktop renderer. */
+html[data-focus-modality="pointer"]
+  :is(button, a, input, textarea, select, summary, [tabindex]):focus {
+  outline: none;
+}
+html[data-focus-modality="keyboard"]
+  :is(
+    button,
+    a,
+    input,
+    textarea,
+    select,
+    summary,
+    [tabindex="0"]
+  ):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

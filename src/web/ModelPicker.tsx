@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Profile, Settings } from "../generation/schema";
+import { Icon } from "./Icons";
 
 type PublicSettings = Omit<Settings, "profiles"> & {
   profiles: (Profile & { hasKey?: boolean })[];
@@ -73,7 +74,8 @@ export function ModelPicker({
         aria-expanded={open}
         onClick={() => setOpen(!open)}
       >
-        ◉ <span>{current?.model.split("/").at(-1) || "Choose model"}</span>⌄
+        <span>{current?.model.split("/").at(-1) || "Choose model"}</span>
+        <Icon name="chevron" size={16} />
       </button>
       {open && (
         <div className="model-popover" aria-label="Choose a model">
@@ -132,7 +134,7 @@ export function ModelPicker({
               }}
             >
               <span>
-                ◉ {profile.name}
+                {profile.name}
                 <small>{profile.model || "Model ID required"}</small>
               </span>
               <span>
@@ -155,7 +157,7 @@ export function ModelPicker({
               configure();
             }}
           >
-            Models & budget ↗
+            Models & budget <Icon name="external" size={16} />
           </button>
         </div>
       )}

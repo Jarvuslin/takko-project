@@ -1,0 +1,22 @@
+{
+  "evidenceType": "Observed native Studio tool results, transcribed from this task",
+  "studioId": "53d07c5f-45dd-4db7-ae2c-2ba919d78a59",
+  "scratchFile": ".forge/fresh-fixes-scratch/Counter-Scratch.rbxlx",
+  "modeDuringCaptures": "Play, Client",
+  "camera": "CFrame.new(0,5,10,-1,0,0,0,1,0,0,0,-1), Scriptable, FOV70",
+  "unchangedLighting": true,
+  "simulator": "hd_1080, per-session SetResolutionAsync, FitToWindow",
+  "observedViewports": [
+    {"requested": [1920,1080], "viewport": [1920,1079], "counterPosition": [1754,16], "counterSize": [150,50], "text":"Hits: 0", "guiInset":[0,58]},
+    {"requested": [2560,1440], "viewport": [2560,1438], "counterPosition": [2394,16], "counterSize": [150,50], "text":"Hits: 0"},
+    {"requested": [3440,1440], "viewport": [3440,1437], "counterPosition": [3274,16], "counterSize": [150,50], "text":"Hits: 0"},
+    {"requested": [960,540], "viewport": [960,539], "counterPosition": [794,16], "counterSize": [150,50], "text":"Hits: 1"}
+  ],
+  "actualInput": "Server moved the scratch character five studs in front of the dummy, then native Client keyPress F and wait 900ms. Counter changed 0 to 1. Walking/navigation was bypassed.",
+  "missingData": "Server CounterUpdated:FireClient(player,nil). Subsequent Client label read remained Hits: 1. No separate missing-data image.",
+  "malformedData": "Server CounterUpdated:FireClient(player,{invalid=true}). Subsequent label read and counter-malformed.jpg remained Hits: 1.",
+  "resize": "A task.spawn sequence set 1200x700, 1800x1000, 2400x1350, 3440x1440, 960x540 with one-second intervals. counter-resize.jpg was captured during that sequence. A single still does not prove uninterrupted visibility.",
+  "captureLimitation": "screen_capture resizes images to the Studio viewport display. Saved JPGs are 742 pixels wide, not full requested resolutions. Camera viewport differs by 1-3 pixels in height. This is not separate player-client evidence.",
+  "failedProbe": "SetScalingModeAsync(Enum.DeviceSimulatorScalingMode.ScaleToFit) failed because ScaleToFit is not a valid enum. Enum inspection identified FitToWindow, which was then used.",
+  "restoration": "Stopped Play. Restored saved device iphone_17_pro, resolution 874x402, LandscapeLeft, saved pixel density, ScaleToPhysicalSize. Cleared _G.CounterDeviceBackup. RunService:IsRunning() false and get_studio_state Edit. No scripts or saved export files changed."
+}

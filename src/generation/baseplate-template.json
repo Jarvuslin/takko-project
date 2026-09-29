@@ -1,0 +1,116 @@
+{
+  "source": "https://create.roblox.com/docs/studio/command-line-interface#run-a-script",
+  "capturedAt": "2026-09-28T04:36:15.132Z",
+  "version": "0.740.0.7400927",
+  "instances": [
+    {
+      "path": "Workspace.Baseplate",
+      "properties": {
+        "Transparency": 0,
+        "CanCollide": true,
+        "Position": [
+          0,
+          -8,
+          0
+        ],
+        "Color": [
+          0.35686275362968445,
+          0.35686275362968445,
+          0.35686275362968445
+        ],
+        "Material": {
+          "name": "Enum.Material.Plastic",
+          "value": 256
+        },
+        "Anchored": true,
+        "Size": [
+          2048,
+          16,
+          2048
+        ]
+      },
+      "className": "Part"
+    },
+    {
+      "path": "Lighting",
+      "properties": {
+        "ExposureCompensation": 0,
+        "GlobalShadows": true,
+        "EnvironmentSpecularScale": 1,
+        "GeographicLatitude": 0,
+        "Ambient": [
+          0.27450981736183167,
+          0.27450981736183167,
+          0.27450981736183167
+        ],
+        "OutdoorAmbient": [
+          0.27450981736183167,
+          0.27450981736183167,
+          0.27450981736183167
+        ],
+        "ClockTime": 14.5,
+        "Brightness": 3,
+        "ShadowSoftness": 0.20000000298023224,
+        "EnvironmentDiffuseScale": 1
+      },
+      "className": "Lighting"
+    },
+    {
+      "path": "Lighting.Sky",
+      "properties": {
+        "StarCount": 3000,
+        "SkyboxUp": "rbxassetid://6412503613",
+        "MoonTextureId": "rbxassetid://6444320592",
+        "SkyboxBk": "rbxassetid://6444884337",
+        "CelestialBodiesShown": true,
+        "SkyboxDn": "rbxassetid://6444884785",
+        "SkyboxFt": "rbxassetid://6444884337",
+        "SunTextureId": "rbxassetid://6196665106",
+        "SunAngularSize": 11,
+        "SkyboxLf": "rbxassetid://6444884337",
+        "SkyboxRt": "rbxassetid://6444884337",
+        "MoonAngularSize": 11
+      },
+      "className": "Sky"
+    },
+    {
+      "path": "Lighting.SunRays",
+      "properties": {
+        "Enabled": true,
+        "Intensity": 0.009999999776482582,
+        "Spread": 0.10000000149011612
+      },
+      "className": "SunRaysEffect"
+    },
+    {
+      "path": "Lighting.Atmosphere",
+      "properties": {
+        "Density": 0.30000001192092896,
+        "Haze": 0,
+        "Color": [
+          0.7803921699523926,
+          0.7803921699523926,
+          0.7803921699523926
+        ],
+        "Decay": [
+          0.4156862795352936,
+          0.43921568989753723,
+          0.4901960790157318
+        ],
+        "Glare": 0,
+        "Offset": 0.25
+      },
+      "className": "Atmosphere"
+    },
+    {
+      "path": "Lighting.Bloom",
+      "properties": {
+        "Enabled": true,
+        "Threshold": 2,
+        "Intensity": 1,
+        "Size": 24
+      },
+      "className": "BloomEffect"
+    }
+  ]
+}

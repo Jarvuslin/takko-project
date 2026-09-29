@@ -1,0 +1,2509 @@
+{
+  "candidate": {
+    "id": "12061946559",
+    "name": "R15 Punching Animations",
+    "kind": "Model",
+    "creator": "Auevi",
+    "sourceUrl": "https://create.roblox.com/store/asset/12061946559",
+    "price": 0,
+    "source": "creator_store",
+    "description": "User-approved reference for Fighting animation"
+  },
+  "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+  "path": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1/Imported",
+  "safe": false,
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "reasons": [
+    "Asset exceeds 300 instances",
+    "Unsupported or executable class: Attachment",
+    "Unsupported or executable class: Vector3Value",
+    "Unsupported or executable class: Motor6D",
+    "Unsupported or executable class: Humanoid",
+    "Unsupported or executable class: Animator",
+    "Unsupported or executable class: SpecialMesh",
+    "Decal lacks supported image content identity",
+    "Unsupported or executable class: KeyframeSequence",
+    "Unsupported or executable class: Keyframe",
+    "Unsupported or executable class: Pose",
+    "Unsupported or executable class: AnimationRigData",
+    "Unsupported or executable class: Script",
+    "Embedded executable behavior requires a reviewed complete-asset import path"
+  ],
+  "snapshot": {
+    "marker": "takko_asset_v1",
+    "operation": "inspect",
+    "ok": false,
+    "reasons": [
+      "Asset exceeds 300 instances",
+      "Unsupported or executable class: Attachment",
+      "Unsupported or executable class: Vector3Value",
+      "Unsupported or executable class: Motor6D",
+      "Unsupported or executable class: Humanoid",
+      "Unsupported or executable class: Animator",
+      "Unsupported or executable class: SpecialMesh",
+      "Decal lacks supported image content identity",
+      "Unsupported or executable class: KeyframeSequence",
+      "Unsupported or executable class: Keyframe",
+      "Unsupported or executable class: Pose",
+      "Unsupported or executable class: AnimationRigData",
+      "Unsupported or executable class: Script",
+      "Embedded executable behavior requires a reviewed complete-asset import path"
+    ],
+    "functional": {
+      "contentLoaded": false,
+      "instanceCount": 636,
+      "scriptCount": 1
+    },
+    "capabilityBlock": {
+      "kind": "interactive_asset_requires_review",
+      "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+    },
+    "componentTransfer": {
+      "encodedBytes": 168816,
+      "jsonBytes": 126611,
+      "sha256": "de79241c3a06a1df539074cd3d3f67286ecb9deef8d942d567f230273803bffc",
+      "chunkSize": 32768
+    },
+    "scene": [],
+    "center": [
+      0,
+      0,
+      0
+    ],
+    "size": 1,
+    "inertAudit": {
+      "mode": "inert_quarantine_static_inspection",
+      "sourceOrigin": "ScriptEditorService:GetEditorSource",
+      "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+      "executed": false,
+      "instanceLimit": 300,
+      "sourceLimit": 8,
+      "sourceByteLimit": 65536,
+      "instanceListTruncated": true,
+      "sourceListTruncated": false,
+      "sourceBytesReturned": 200,
+      "nodes": [
+        {
+          "index": 1,
+          "parentIndex": 0,
+          "name": "Imported",
+          "nameTruncated": false,
+          "className": "Folder"
+        },
+        {
+          "index": 2,
+          "parentIndex": 1,
+          "name": "punching animation 1",
+          "nameTruncated": false,
+          "className": "Model"
+        },
+        {
+          "index": 3,
+          "parentIndex": 2,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 4,
+          "parentIndex": 3,
+          "name": "RootRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 5,
+          "parentIndex": 4,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 6,
+          "parentIndex": 3,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 7,
+          "parentIndex": 2,
+          "name": "LeftHand",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 8,
+          "parentIndex": 7,
+          "name": "LeftWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 9,
+          "parentIndex": 8,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 10,
+          "parentIndex": 7,
+          "name": "LeftGripAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 11,
+          "parentIndex": 10,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 12,
+          "parentIndex": 7,
+          "name": "LeftWrist",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 13,
+          "parentIndex": 7,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 14,
+          "parentIndex": 2,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 15,
+          "parentIndex": 14,
+          "name": "LeftElbowRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 16,
+          "parentIndex": 15,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 17,
+          "parentIndex": 14,
+          "name": "LeftWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 18,
+          "parentIndex": 17,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 19,
+          "parentIndex": 14,
+          "name": "LeftElbow",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 20,
+          "parentIndex": 14,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 21,
+          "parentIndex": 2,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 22,
+          "parentIndex": 21,
+          "name": "LeftShoulderRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 23,
+          "parentIndex": 22,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 24,
+          "parentIndex": 21,
+          "name": "LeftElbowRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 25,
+          "parentIndex": 24,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 26,
+          "parentIndex": 21,
+          "name": "LeftShoulderAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 27,
+          "parentIndex": 26,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 28,
+          "parentIndex": 21,
+          "name": "LeftShoulder",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 29,
+          "parentIndex": 21,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 30,
+          "parentIndex": 2,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 31,
+          "parentIndex": 30,
+          "name": "RightWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 32,
+          "parentIndex": 31,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 33,
+          "parentIndex": 30,
+          "name": "RightGripAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 34,
+          "parentIndex": 33,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 35,
+          "parentIndex": 30,
+          "name": "RightWrist",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 36,
+          "parentIndex": 30,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 37,
+          "parentIndex": 2,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 38,
+          "parentIndex": 37,
+          "name": "RightElbowRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 39,
+          "parentIndex": 38,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 40,
+          "parentIndex": 37,
+          "name": "RightWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 41,
+          "parentIndex": 40,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 42,
+          "parentIndex": 37,
+          "name": "RightElbow",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 43,
+          "parentIndex": 37,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 44,
+          "parentIndex": 2,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 45,
+          "parentIndex": 44,
+          "name": "RightShoulderRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 46,
+          "parentIndex": 45,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 47,
+          "parentIndex": 44,
+          "name": "RightElbowRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 48,
+          "parentIndex": 47,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 49,
+          "parentIndex": 44,
+          "name": "RightShoulderAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 50,
+          "parentIndex": 49,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 51,
+          "parentIndex": 44,
+          "name": "RightShoulder",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 52,
+          "parentIndex": 44,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 53,
+          "parentIndex": 2,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 54,
+          "parentIndex": 53,
+          "name": "WaistRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 55,
+          "parentIndex": 54,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 56,
+          "parentIndex": 53,
+          "name": "NeckRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 57,
+          "parentIndex": 56,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 58,
+          "parentIndex": 53,
+          "name": "LeftShoulderRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 59,
+          "parentIndex": 58,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 60,
+          "parentIndex": 53,
+          "name": "RightShoulderRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 61,
+          "parentIndex": 60,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 62,
+          "parentIndex": 53,
+          "name": "BodyFrontAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 63,
+          "parentIndex": 62,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 64,
+          "parentIndex": 53,
+          "name": "BodyBackAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 65,
+          "parentIndex": 64,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 66,
+          "parentIndex": 53,
+          "name": "LeftCollarAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 67,
+          "parentIndex": 66,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 68,
+          "parentIndex": 53,
+          "name": "RightCollarAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 69,
+          "parentIndex": 68,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 70,
+          "parentIndex": 53,
+          "name": "NeckAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 71,
+          "parentIndex": 70,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 72,
+          "parentIndex": 53,
+          "name": "Waist",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 73,
+          "parentIndex": 53,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 74,
+          "parentIndex": 2,
+          "name": "LeftFoot",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 75,
+          "parentIndex": 74,
+          "name": "LeftAnkleRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 76,
+          "parentIndex": 75,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 77,
+          "parentIndex": 74,
+          "name": "LeftAnkle",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 78,
+          "parentIndex": 74,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 79,
+          "parentIndex": 2,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 80,
+          "parentIndex": 79,
+          "name": "LeftKneeRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 81,
+          "parentIndex": 80,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 82,
+          "parentIndex": 79,
+          "name": "LeftAnkleRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 83,
+          "parentIndex": 82,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 84,
+          "parentIndex": 79,
+          "name": "LeftKnee",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 85,
+          "parentIndex": 79,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 86,
+          "parentIndex": 2,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 87,
+          "parentIndex": 86,
+          "name": "LeftHipRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 88,
+          "parentIndex": 87,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 89,
+          "parentIndex": 86,
+          "name": "LeftKneeRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 90,
+          "parentIndex": 89,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 91,
+          "parentIndex": 86,
+          "name": "LeftHip",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 92,
+          "parentIndex": 86,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 93,
+          "parentIndex": 2,
+          "name": "RightFoot",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 94,
+          "parentIndex": 93,
+          "name": "RightAnkleRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 95,
+          "parentIndex": 94,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 96,
+          "parentIndex": 93,
+          "name": "RightAnkle",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 97,
+          "parentIndex": 93,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 98,
+          "parentIndex": 2,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 99,
+          "parentIndex": 98,
+          "name": "RightKneeRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 100,
+          "parentIndex": 99,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 101,
+          "parentIndex": 98,
+          "name": "RightAnkleRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 102,
+          "parentIndex": 101,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 103,
+          "parentIndex": 98,
+          "name": "RightKnee",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 104,
+          "parentIndex": 98,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 105,
+          "parentIndex": 2,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 106,
+          "parentIndex": 105,
+          "name": "RightHipRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 107,
+          "parentIndex": 106,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 108,
+          "parentIndex": 105,
+          "name": "RightKneeRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 109,
+          "parentIndex": 108,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 110,
+          "parentIndex": 105,
+          "name": "RightHip",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 111,
+          "parentIndex": 105,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 112,
+          "parentIndex": 2,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 113,
+          "parentIndex": 112,
+          "name": "RootRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 114,
+          "parentIndex": 113,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 115,
+          "parentIndex": 112,
+          "name": "WaistRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 116,
+          "parentIndex": 115,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 117,
+          "parentIndex": 112,
+          "name": "LeftHipRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 118,
+          "parentIndex": 117,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 119,
+          "parentIndex": 112,
+          "name": "RightHipRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 120,
+          "parentIndex": 119,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 121,
+          "parentIndex": 112,
+          "name": "WaistCenterAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 122,
+          "parentIndex": 121,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 123,
+          "parentIndex": 112,
+          "name": "WaistFrontAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 124,
+          "parentIndex": 123,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 125,
+          "parentIndex": 112,
+          "name": "WaistBackAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 126,
+          "parentIndex": 125,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 127,
+          "parentIndex": 112,
+          "name": "Root",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 128,
+          "parentIndex": 112,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 129,
+          "parentIndex": 2,
+          "name": "Humanoid",
+          "nameTruncated": false,
+          "className": "Humanoid"
+        },
+        {
+          "index": 130,
+          "parentIndex": 129,
+          "name": "Animator",
+          "nameTruncated": false,
+          "className": "Animator"
+        },
+        {
+          "index": 131,
+          "parentIndex": 2,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 132,
+          "parentIndex": 131,
+          "name": "Mesh",
+          "nameTruncated": false,
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 133,
+          "parentIndex": 132,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 134,
+          "parentIndex": 131,
+          "name": "FaceCenterAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 135,
+          "parentIndex": 134,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 136,
+          "parentIndex": 131,
+          "name": "FaceFrontAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 137,
+          "parentIndex": 136,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 138,
+          "parentIndex": 131,
+          "name": "HairAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 139,
+          "parentIndex": 138,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 140,
+          "parentIndex": 131,
+          "name": "HatAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 141,
+          "parentIndex": 140,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 142,
+          "parentIndex": 131,
+          "name": "NeckRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 143,
+          "parentIndex": 142,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 144,
+          "parentIndex": 131,
+          "name": "face",
+          "nameTruncated": false,
+          "className": "Decal"
+        },
+        {
+          "index": 145,
+          "parentIndex": 131,
+          "name": "Neck",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 146,
+          "parentIndex": 131,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 147,
+          "parentIndex": 131,
+          "name": "face",
+          "nameTruncated": false,
+          "className": "Decal"
+        },
+        {
+          "index": 148,
+          "parentIndex": 2,
+          "name": "AnimSaves",
+          "nameTruncated": false,
+          "className": "Model"
+        },
+        {
+          "index": 149,
+          "parentIndex": 148,
+          "name": "punching animation",
+          "nameTruncated": false,
+          "className": "KeyframeSequence"
+        },
+        {
+          "index": 150,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 151,
+          "parentIndex": 150,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 152,
+          "parentIndex": 151,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 153,
+          "parentIndex": 152,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 154,
+          "parentIndex": 153,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 155,
+          "parentIndex": 154,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 156,
+          "parentIndex": 153,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 157,
+          "parentIndex": 153,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 158,
+          "parentIndex": 157,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 159,
+          "parentIndex": 158,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 160,
+          "parentIndex": 152,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 161,
+          "parentIndex": 160,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 162,
+          "parentIndex": 161,
+          "name": "LeftFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 163,
+          "parentIndex": 152,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 164,
+          "parentIndex": 163,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 165,
+          "parentIndex": 164,
+          "name": "RightFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 166,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 167,
+          "parentIndex": 166,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 168,
+          "parentIndex": 167,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 169,
+          "parentIndex": 168,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 170,
+          "parentIndex": 169,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 171,
+          "parentIndex": 170,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 172,
+          "parentIndex": 169,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 173,
+          "parentIndex": 169,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 174,
+          "parentIndex": 173,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 175,
+          "parentIndex": 168,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 176,
+          "parentIndex": 175,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 177,
+          "parentIndex": 168,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 178,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 179,
+          "parentIndex": 178,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 180,
+          "parentIndex": 179,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 181,
+          "parentIndex": 180,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 182,
+          "parentIndex": 181,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 183,
+          "parentIndex": 182,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 184,
+          "parentIndex": 181,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 185,
+          "parentIndex": 181,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 186,
+          "parentIndex": 185,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 187,
+          "parentIndex": 186,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 188,
+          "parentIndex": 180,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 189,
+          "parentIndex": 180,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 190,
+          "parentIndex": 189,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 191,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 192,
+          "parentIndex": 191,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 193,
+          "parentIndex": 192,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 194,
+          "parentIndex": 193,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 195,
+          "parentIndex": 194,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 196,
+          "parentIndex": 195,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 197,
+          "parentIndex": 194,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 198,
+          "parentIndex": 194,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 199,
+          "parentIndex": 198,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 200,
+          "parentIndex": 199,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 201,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 202,
+          "parentIndex": 201,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 203,
+          "parentIndex": 202,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 204,
+          "parentIndex": 203,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 205,
+          "parentIndex": 204,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 206,
+          "parentIndex": 205,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 207,
+          "parentIndex": 204,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 208,
+          "parentIndex": 204,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 209,
+          "parentIndex": 208,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 210,
+          "parentIndex": 209,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 211,
+          "parentIndex": 203,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 212,
+          "parentIndex": 211,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 213,
+          "parentIndex": 212,
+          "name": "LeftFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 214,
+          "parentIndex": 203,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 215,
+          "parentIndex": 214,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 216,
+          "parentIndex": 215,
+          "name": "RightFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 217,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 218,
+          "parentIndex": 217,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 219,
+          "parentIndex": 218,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 220,
+          "parentIndex": 219,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 221,
+          "parentIndex": 220,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 222,
+          "parentIndex": 221,
+          "name": "LeftFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 223,
+          "parentIndex": 219,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 224,
+          "parentIndex": 223,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 225,
+          "parentIndex": 223,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 226,
+          "parentIndex": 225,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 227,
+          "parentIndex": 219,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 228,
+          "parentIndex": 227,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 229,
+          "parentIndex": 228,
+          "name": "RightFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 230,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 231,
+          "parentIndex": 230,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 232,
+          "parentIndex": 231,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 233,
+          "parentIndex": 232,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 234,
+          "parentIndex": 233,
+          "name": "LeftLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 235,
+          "parentIndex": 234,
+          "name": "LeftFoot",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 236,
+          "parentIndex": 232,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 237,
+          "parentIndex": 236,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 238,
+          "parentIndex": 236,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 239,
+          "parentIndex": 236,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 240,
+          "parentIndex": 239,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 241,
+          "parentIndex": 232,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 242,
+          "parentIndex": 241,
+          "name": "RightLowerLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 243,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 244,
+          "parentIndex": 243,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 245,
+          "parentIndex": 244,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 246,
+          "parentIndex": 245,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 247,
+          "parentIndex": 246,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 248,
+          "parentIndex": 246,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 249,
+          "parentIndex": 246,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 250,
+          "parentIndex": 245,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 251,
+          "parentIndex": 245,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 252,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 253,
+          "parentIndex": 252,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 254,
+          "parentIndex": 253,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 255,
+          "parentIndex": 254,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 256,
+          "parentIndex": 255,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 257,
+          "parentIndex": 255,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 258,
+          "parentIndex": 255,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 259,
+          "parentIndex": 258,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 260,
+          "parentIndex": 254,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 261,
+          "parentIndex": 254,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 262,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 263,
+          "parentIndex": 262,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 264,
+          "parentIndex": 263,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 265,
+          "parentIndex": 264,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 266,
+          "parentIndex": 265,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 267,
+          "parentIndex": 265,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 268,
+          "parentIndex": 267,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 269,
+          "parentIndex": 268,
+          "name": "RightHand",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 270,
+          "parentIndex": 265,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 271,
+          "parentIndex": 264,
+          "name": "RightUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 272,
+          "parentIndex": 264,
+          "name": "LeftUpperLeg",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 273,
+          "parentIndex": 149,
+          "name": "Keyframe",
+          "nameTruncated": false,
+          "className": "Keyframe"
+        },
+        {
+          "index": 274,
+          "parentIndex": 273,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 275,
+          "parentIndex": 274,
+          "name": "LowerTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 276,
+          "parentIndex": 275,
+          "name": "UpperTorso",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 277,
+          "parentIndex": 276,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 278,
+          "parentIndex": 276,
+          "name": "RightUpperArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 279,
+          "parentIndex": 278,
+          "name": "RightLowerArm",
+          "nameTruncated": false,
+          "className": "Pose"
+        },
+        {
+          "index": 280,
+          "parentIndex": 149,
+          "name": "punching animationAnimationRigData",
+          "nameTruncated": false,
+          "className": "AnimationRigData"
+        },
+        {
+          "index": 281,
+          "parentIndex": 1,
+          "name": "punching animation 2",
+          "nameTruncated": false,
+          "className": "Model"
+        },
+        {
+          "index": 282,
+          "parentIndex": 281,
+          "name": "HumanoidRootPart",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 283,
+          "parentIndex": 282,
+          "name": "RootRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 284,
+          "parentIndex": 283,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 285,
+          "parentIndex": 282,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 286,
+          "parentIndex": 281,
+          "name": "LeftHand",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 287,
+          "parentIndex": 286,
+          "name": "LeftWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 288,
+          "parentIndex": 287,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 289,
+          "parentIndex": 286,
+          "name": "LeftGripAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 290,
+          "parentIndex": 289,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 291,
+          "parentIndex": 286,
+          "name": "LeftWrist",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 292,
+          "parentIndex": 286,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 293,
+          "parentIndex": 281,
+          "name": "LeftLowerArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        },
+        {
+          "index": 294,
+          "parentIndex": 293,
+          "name": "LeftElbowRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 295,
+          "parentIndex": 294,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 296,
+          "parentIndex": 293,
+          "name": "LeftWristRigAttachment",
+          "nameTruncated": false,
+          "className": "Attachment"
+        },
+        {
+          "index": 297,
+          "parentIndex": 296,
+          "name": "OriginalPosition",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 298,
+          "parentIndex": 293,
+          "name": "LeftElbow",
+          "nameTruncated": false,
+          "className": "Motor6D"
+        },
+        {
+          "index": 299,
+          "parentIndex": 293,
+          "name": "OriginalSize",
+          "nameTruncated": false,
+          "className": "Vector3Value"
+        },
+        {
+          "index": 300,
+          "parentIndex": 281,
+          "name": "LeftUpperArm",
+          "nameTruncated": false,
+          "className": "MeshPart"
+        }
+      ],
+      "sources": [
+        {
+          "index": 636,
+          "className": "Script",
+          "readable": true,
+          "source": "--For Auevi's Quest System Roblox Studio Tutorial Tutorial!\n--You can use either of these animations for your Enemy, \n--just make sure to publish the animation yourself!\n\n--Like, Comment & Subscribe!\n",
+          "sourceBytes": 200,
+          "sourceOmittedForLimit": false,
+          "disabled": true,
+          "runContext": "Enum.RunContext.Legacy",
+          "literalDependencies": [],
+          "dependencyListTruncated": false,
+          "sha256": "973dfd691c1d2540383ca199d48cecd1907760a6a58f8b312961009fb70766ed"
+        }
+      ]
+    },
+    "component": {
+      "status": "captured",
+      "sha256": "39934bd68cac86e004f030e50f5e235388220a969a141e991f333a5caa98295d",
+      "bytes": 31362,
+      "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-animation-probe\\39934bd68cac86e004f030e50f5e235388220a969a141e991f333a5caa98295d.rbxm",
+      "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-animation-probe\\69fb0ab2cc3ef4d2662ca23ff656430634e81b6a82d968c708224ab645638cb8.component.json",
+      "instanceCount": 636,
+      "scriptCount": 1,
+      "sourceBytes": 200,
+      "roundTrip": {
+        "passed": true,
+        "checkedProperties": 4810,
+        "checkedAttributes": 0,
+        "checkedReferences": 65,
+        "unobservableProperties": [
+          "AnimationRigData.Generic",
+          "AnimationRigData.label",
+          "AnimationRigData.postTransform",
+          "AnimationRigData.preTransform",
+          "AnimationRigData.transform",
+          "Humanoid.Health_XML",
+          "Humanoid.InternalBodyScale",
+          "Humanoid.InternalHeadScale",
+          "MeshPart.Color3uint8",
+          "MeshPart.MaterialVariantSerialized",
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ],
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ]
+      },
+      "persisted": true,
+      "securityReview": "not_performed",
+      "runtimeVerification": "not_performed",
+      "exportConversion": "not_performed"
+    }
+  },
+  "functional": {
+    "contentLoaded": false,
+    "instanceCount": 636,
+    "scriptCount": 1
+  },
+  "receipts": [
+    {
+      "operation": "user_approved_reference",
+      "at": "2026-09-23T18:47:32.870Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "discoveryId": "e3dc8259-b417-403d-b6a8-80d76aa4feb6",
+        "revision": 6,
+        "needId": "animation_probe",
+        "candidateId": "12061946559",
+        "nativeVerification": "not_performed"
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-23T18:47:32.872Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "operation": "prepare",
+        "sessionId": "2c904205-d697-471d-a52d-36975fdcb61e",
+        "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+        "scope": "Forge_4cbb9300a271",
+        "stagingPath": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1",
+        "previewPath": "Workspace/Forge_4cbb9300a271/AssetPreviews/attempt_056d23b43815d52fa983a0e1",
+        "finalPath": "Workspace/Forge_4cbb9300a271/Assets/animation_probe"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:47:32.920Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:47:32.934Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-23T18:47:32.958Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:47:32.960Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:47:32.970Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "insert_asset",
+      "at": "2026-09-23T18:47:33.552Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"insertGuid\":\"db8340e6-c725-4da6-b411-7c94c0c609e1\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.Forge_4cbb9300a271.AssetStaging.attempt_056d23b43815d52fa983a0e1.Imported\",\"name\":\"Imported\",\"className\":\"Folder\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"12061946559\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:db8340e6-c725-4da6-b411-7c94c0c609e1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-23T18:47:33.552Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "operation": "inspect",
+        "sessionId": "2c904205-d697-471d-a52d-36975fdcb61e",
+        "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+        "scope": "Forge_4cbb9300a271",
+        "stagingPath": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1",
+        "previewPath": "Workspace/Forge_4cbb9300a271/AssetPreviews/attempt_056d23b43815d52fa983a0e1",
+        "finalPath": "Workspace/Forge_4cbb9300a271/Assets/animation_probe"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:47:33.553Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:47:33.565Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-23T18:47:33.632Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"reasons\":[\"Asset exceeds 300 instances\",\"Unsupported or executable class: Attachment\",\"Unsupported or executable class: Vector3Value\",\"Unsupported or executable class: Motor6D\",\"Unsupported or executable class: Humanoid\",\"Unsupported or executable class: Animator\",\"Unsupported or executable class: SpecialMesh\",\"Decal lacks supported image content identity\",\"Unsupported or executable class: KeyframeSequence\",\"Unsupported or executable class: Keyframe\",\"Unsupported or executable class: Pose\",\"Unsupported or executable class: AnimationRigData\",\"Unsupported or executable class: Script\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":168816,\"chunkSize\":32768,\"sha256\":\"de79241c3a06a1df539074cd3d3f67286ecb9deef8d942d567f230273803bffc\",\"jsonBytes\":126611},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":1,\"contentLoaded\":false,\"instanceCount\":636},\"size\":1}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "component_transfer",
+      "at": "2026-09-23T18:47:33.791Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+        "candidateId": "12061946559",
+        "encodedBytes": 168816,
+        "jsonBytes": 126611,
+        "sha256": "de79241c3a06a1df539074cd3d3f67286ecb9deef8d942d567f230273803bffc",
+        "chunkSize": 32768,
+        "chunksRead": 6,
+        "verified": true,
+        "readOnly": true
+      }
+    },
+    {
+      "operation": "component_archive",
+      "at": "2026-09-23T18:47:33.796Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+        "candidateId": "12061946559",
+        "status": "captured",
+        "sha256": "39934bd68cac86e004f030e50f5e235388220a969a141e991f333a5caa98295d",
+        "bytes": 31362,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-animation-probe\\39934bd68cac86e004f030e50f5e235388220a969a141e991f333a5caa98295d.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-animation-probe\\69fb0ab2cc3ef4d2662ca23ff656430634e81b6a82d968c708224ab645638cb8.component.json",
+        "instanceCount": 636,
+        "scriptCount": 1,
+        "sourceBytes": 200,
+        "roundTrip": {
+          "passed": true,
+          "checkedProperties": 4810,
+          "checkedAttributes": 0,
+          "checkedReferences": 65,
+          "unobservableProperties": [
+            "AnimationRigData.Generic",
+            "AnimationRigData.label",
+            "AnimationRigData.postTransform",
+            "AnimationRigData.preTransform",
+            "AnimationRigData.transform",
+            "Humanoid.Health_XML",
+            "Humanoid.InternalBodyScale",
+            "Humanoid.InternalHeadScale",
+            "MeshPart.Color3uint8",
+            "MeshPart.MaterialVariantSerialized",
+            "Model.ModelMeshCFrame",
+            "Model.ModelMeshData",
+            "Model.ModelMeshSize",
+            "Model.NeedsPivotMigration",
+            "Model.ScaleFactor",
+            "Model.WorldPivotData",
+            "Part.Color3uint8",
+            "Part.MaterialVariantSerialized",
+            "Part.formFactorRaw",
+            "Script.ScriptGuid"
+          ],
+          "ignoredIdentityProperties": [
+            "UniqueId",
+            "HistoryId"
+          ]
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      }
+    },
+    {
+      "operation": "inert_asset_audit",
+      "at": "2026-09-23T18:47:33.797Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "3e0370d7-e53b-46b0-9f6b-5bb16b1bf03e",
+        "candidateId": "12061946559",
+        "sha256": "f6a0f0ada4bd51d3e2531e09ec7b4604020994bf714a9fc9cd6cbcfe6a8ede8d",
+        "bytes": 50750,
+        "auditFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-animation-probe\\f6a0f0ada4bd51d3e2531e09ec7b4604020994bf714a9fc9cd6cbcfe6a8ede8d.audit.json",
+        "persistence": "full_original_sources_in_sidecar",
+        "sourceBytesReturned": 200
+      }
+    }
+  ]
+}

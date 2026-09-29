@@ -1,3 +1,4 @@
+import { architectureSchema } from "./architecture";
 import { sceneClasses } from "./capabilities";
 import { z } from "zod";
 import { assetNeedSchema, type AssetPipelineRun } from "./asset-contract";
@@ -10,6 +11,7 @@ export const phaseSchema = z.enum([
   "repair",
 ]);
 export type Phase = z.infer<typeof phaseSchema>;
+export const DEFAULT_REQUEST_TIMEOUT_MS = 600000;
 const id = z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/);
 const text = z.string().trim().min(1).max(12000);
 const scriptPath = z
@@ -35,13 +37,17 @@ export const providerSchema = z
     model: z.string().trim().max(160),
     inputRate: z.number().finite().min(0).max(1000),
     outputRate: z.number().finite().min(0).max(1000),
+    pricingSource: z.enum(["catalog", "manual", "unknown"]).optional(),
     maxOutputTokens: z.number().int().min(512).max(32768).default(8192),
+    reasoningEffort: z.enum(["low", "medium", "high"]).optional(),
     requestTimeoutMs: z.number().int().min(1000).max(600000).optional(),
     jsonMode: z.boolean().default(true),
+    /** Opt-in concept contract, capability-checked against the pinned endpoint. */
+    structuredOutput: z.literal("anthropic").optional(),
   })
   .strict();
 export type Profile = z.infer<typeof providerSchema>;
-export const settingsSchema = z
+const baseSettingsSchema = z
   .object({
     profiles: z.array(providerSchema).max(30),
     routes: z
@@ -52,10 +58,17 @@ export const settingsSchema = z
         reviewer: z.array(z.uuid()).max(3),
         componentReviewer: z.array(z.uuid()).max(1).optional(),
         componentAdapter: z.array(z.uuid()).max(1).optional(),
+        decisions: z.array(z.uuid()).max(1).optional(),
         repair: z.array(z.uuid()).max(3),
       })
       .strict(),
     budgetMicros: z.number().int().min(1000).max(100_000_000),
+    generationBudgetMicros: z
+      .number()
+      .int()
+      .min(1000)
+      .max(100_000_000)
+      .optional(),
     reservationBudgetMicros: z
       .number()
       .int()
@@ -66,6 +79,18 @@ export const settingsSchema = z
     researchEnabled: z.boolean().optional(),
   })
   .strict();
+export const presetSchema = baseSettingsSchema.omit({ profiles: true }).extend({
+  id: z.uuid(),
+  name: z.string().trim().min(1).max(60),
+  icon: z
+    .enum(["taco", "bolt", "spark", "leaf", "rocket", "robot"])
+    .default("taco"),
+});
+export type ModelPreset = z.infer<typeof presetSchema>;
+export const settingsSchema = baseSettingsSchema.extend({
+  presets: z.array(presetSchema).max(50).optional(),
+  activePresetId: z.uuid().nullable().optional(),
+});
 export type Settings = z.infer<typeof settingsSchema>;
 export const requirementSchema = z
   .object({
@@ -97,6 +122,13 @@ export const requirementSchema = z
   .strict();
 export const taskSchema = z
   .object({
+    proposalSections: z
+      .array(z.enum(["mechanics", "theme", "environment", "assets"]))
+      .min(1)
+      .optional()
+      .describe(
+        "Approved document section dependencies, NOT requirement category labels. Only mechanics, theme, environment, assets are legal. UI, animation, audio, network and lifecycle are categories, never section names. A HUD behavior depends on mechanics, its styling on theme, and its placement on environment. An animation asset depends on assets and its trigger on mechanics. Include only actual dependencies.",
+      ),
     id,
     title: text,
     requirements: z.array(id).min(1),
@@ -111,6 +143,11 @@ export const taskSchema = z
   .strict();
 export const specSchema = z
   .object({
+    architectureProposal: architectureSchema
+      .optional()
+      .describe(
+        "Propose the game runtime systems and their event/state connections. This is a proposed architecture, not the build-task dependency DAG. Include server authority for gameplay rules. User acceptance is required before it becomes a saved architecture contract.",
+      ),
     assetNeeds: z.array(assetNeedSchema).max(16).optional(),
     assetStrategy: z.string().min(1).max(3000).optional(),
     title: z.string().min(1).max(80),
@@ -123,12 +160,14 @@ export const specSchema = z
           .object({
             id,
             prompt: text,
+            selection: z.enum(["single", "multiple", "text"]).optional(),
+            optional: z.boolean().optional(),
             options: z.array(z.string().max(200)).max(5),
           })
           .strict(),
       )
       .max(6),
-    tasks: z.array(taskSchema).min(1).max(12),
+    tasks: z.array(taskSchema).min(1).max(64),
     referenceDecisions: z
       .array(
         z
@@ -225,6 +264,21 @@ export const bundleSchema = z
     scene: z.array(nodeSchema).max(600).default([]),
     coverage: z.array(coverageSchema).max(80).default([]),
     assets: z.array(assetSchema).max(80).default([]),
+    retainedPhysics: z
+      .array(
+        z
+          .object({
+            needId: id,
+            mode: z.enum(["anchor_all", "deliberately_dynamic"]),
+            reason: z.string().trim().min(1).max(1200),
+          })
+          .strict(),
+      )
+      .max(16)
+      .optional()
+      .describe(
+        "Explicit integration decisions for retained visible props with disconnected unanchored parts. anchor_all is applied by the host to the delivery copy. deliberately_dynamic requires a gameplay reason and native verification.",
+      ),
   })
   .strict();
 export type Bundle = z.infer<typeof bundleSchema>;
@@ -263,6 +317,8 @@ export type Check = {
   detail: string;
 };
 export type Charge = {
+  requestId?: string;
+  opencodeRunId?: string;
   billingSource?: "provider" | "configured-rate" | "reservation";
   phase: Phase;
   profileId: string;
@@ -278,6 +334,79 @@ export type Charge = {
   at: string;
 };
 export type Project = {
+  clarificationQuestions?: import("./questions").StructuredQuestion[];
+  /** Absent on legacy projects. Never infer a template while loading/exporting. */
+  world?: import("./world-policy").WorldDecision;
+  /** User-owned exclusions for this project/run, never a global catalog blacklist. */
+  excludedAssetIds?: string[];
+  assetPipelineHistory?: AssetPipelineRun[];
+  assetEvidenceBindings?: Record<
+    string,
+    {
+      fingerprint: string;
+      origin: { runId: string; revision: number; inputHash: string };
+    }
+  >;
+  proposal?: import("./proposal").Proposal;
+  proposalPlan?: import("./proposal").ProposalPlan;
+  pendingProposalEdit?: {
+    id: string;
+    text: string;
+    baseRevision: number;
+    baseHash: string;
+    submissionHash: string;
+    answers?: Record<string, string>;
+  };
+  implementationBackup?: {
+    artifact: Bundle;
+    completedBuildTasks: string[];
+    review: Review | null;
+    checks: Check[];
+    spec: Spec;
+    plan?: import("./proposal").ProposalPlan;
+    changed: import("./proposal").Proposal["changed"];
+    scopedPaths?: { files: string[]; scene: string[] };
+  };
+  implementationCandidate?: {
+    hash: string;
+    artifact: Bundle;
+    completedBuildTasks: string[];
+    spec: Spec;
+    plan?: import("./proposal").ProposalPlan;
+    scopedPaths?: { files: string[]; scene: string[] };
+  };
+  staleImplementation?: boolean;
+  decisionAdvice?: {
+    identity: string;
+    task: string;
+    at: string;
+    result: import("./decisions").DecisionResult;
+  }[];
+  executionMode?: "coordinator" | "opencode";
+  opencodeRuns?: import("./opencode-runtime").OpenCodeRun[];
+  opencodePending?: {
+    requestId: string;
+    runId?: string;
+    profileId: string;
+    model: string;
+    phase: Phase;
+    reservedMicros: number;
+    at: string;
+  }[];
+  coordination?: import("./coordinator").Coordination;
+  briefApprovedRevision?: number;
+  assetDiscovery?: import("../marketplace/discovery").AssetDiscovery;
+  assetChoiceAttachmentIds?: string[];
+  conversationBefore?: string | null;
+  conversation?: import("./conversation").ConversationTurn[];
+  briefChanges?: import("./conversation").BriefChange[];
+  architecture?: import("./architecture").GameArchitecture;
+  submissions?: { id: string; hash: string }[];
+  conceptAcceptedRevision?: number;
+  animationClips?: import("./animation").SavedAnimation[];
+  animationPacks?: import("../marketplace/animations").SavedAnimationPack[];
+  concept?: import("./concept").GameConcept | null;
+  assetAttachments?: import("../marketplace/types").AssetAttachment[];
   assetStudioId?: string;
   assetPipeline?: AssetPipelineRun | null;
   schemaVersion: 2;
@@ -291,6 +420,8 @@ export type Project = {
   answers: Record<string, string>;
   /** Planner-authored question text retained to interpret exact user answers. */
   answerQuestions?: Record<string, string>;
+  /** Accepted question identities are owned by the saved revision, not regenerated. */
+  conceptQuestions?: Record<string, string>;
   approvedRevision: number | null;
   stage:
     | "draft"
@@ -310,6 +441,13 @@ export type Project = {
   checks: Check[];
   charges: Charge[];
   budgetMicros: number;
+  /** One plan/build/repair cycle. Retrying work retains this accounting boundary. */
+  generation?: {
+    id: string;
+    budgetMicros: number;
+    chargeStart: number;
+    briefHash?: string;
+  };
   reservedMicros: number;
   events: { at: string; message: string }[];
   jobId: string | null;

@@ -1,0 +1,34 @@
+
+> takko-studio@0.2.0 desktop:package
+> npm run desktop:build && node desktop/package.mjs
+
+
+> takko-studio@0.2.0 desktop:build
+> npm run build && tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs
+
+
+> takko-studio@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 152 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.52 kB │ gzip:   0.33 kB
+dist/assets/DesignLab-Clo1Y0WS.css         33.18 kB │ gzip:   6.64 kB
+dist/assets/index-BBcHqJeT.css            112.60 kB │ gzip:  21.75 kB
+dist/assets/AnimationGallery-BXtaYoeP.js    1.30 kB │ gzip:   0.72 kB
+dist/assets/DesignLab-CKHH9BW9.js          45.46 kB │ gzip:  11.47 kB
+dist/assets/index-GSBgwBPb.js             431.84 kB │ gzip: 128.91 kB
+dist/assets/AnimationPlayer-rkTNRHP6.js   564.84 kB │ gzip: 141.22 kB
+
+✓ built in 550ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+Desktop resources built in dist-desktop. No application was launched.
+Packaging app for platform win32 x64 using electron v44.3.0
+Unsigned local application bundle: release\takko-ui-polish-20260921-v2\Takko-win32-x64

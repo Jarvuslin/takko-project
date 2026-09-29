@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
+import fs from "node:fs";
 import { createHash } from "node:crypto";
 import { runAssetPipeline } from "../src/generation/asset-pipeline";
 import { componentReviewFixture } from "./component-review.fixture";
@@ -170,6 +171,89 @@ function setup(needs = [need()]) {
     verification,
   };
 }
+
+it("preserves the real evaluator rejection as advisory for an approved reference while still performing native placement", async () => {
+  const p = JSON.parse(
+    fs.readFileSync(
+      "docs/results/animation-resume-20260927/terminal-project.json",
+      "utf8",
+    ),
+  );
+  const evaluation = p.assetPipeline.events.find(
+    (e: any) =>
+      e.needId === "hitSound" && e.step === "inspection_evaluation_result",
+  ).data;
+  // Replay the real verdict through a different asset kind, using the adapter's actual producer contract.
+  const f = setup();
+  f.adapter.searchScope = "approved_references";
+  vi.mocked(f.model.evaluate).mockResolvedValue(evaluation);
+  const result = await runAssetPipeline(f.input);
+  expect(result.status).toBe("passed");
+  expect(f.adapter.place).toHaveBeenCalledOnce();
+  expect(
+    result.events.filter((e) => e.step === "approval_limitation"),
+  ).toHaveLength(2);
+  expect(
+    result.events.find((e) => e.step === "inspection_evaluation_result")?.data,
+  ).toEqual(evaluation);
+});
+
+it("approved references still reject source-backed user conflicts and native failures", async () => {
+  const f = setup();
+  f.adapter.searchScope = "approved_references";
+  f.run.inputContext = {
+    revision: 1,
+    request: "No moving parts",
+    needs: f.run.needs,
+    gameContext: { userSources: [{ id: "request", text: "No moving parts" }] },
+  };
+  vi.mocked(f.model.evaluate).mockResolvedValue({
+    accepted: false,
+    visualFit: true,
+    functionalFit: false,
+    reason: "Native observation conflicts with the user",
+    rejectionBasis: {
+      kind: "user_statement",
+      sourceId: "request",
+      quote: "No moving parts",
+    },
+  });
+  const result = await runAssetPipeline(f.input);
+  expect(result.status).toBe("failed");
+  expect(f.adapter.place).not.toHaveBeenCalled();
+  expect(result.events.some((e) => e.step === "approval_limitation")).toBe(
+    false,
+  );
+  const unsafe = setup();
+  unsafe.adapter.searchScope = "approved_references";
+  vi.mocked(unsafe.adapter.inspect).mockImplementation(async (_n, c) => ({
+    ...unsafe.inspect(c),
+    safe: false,
+    reasons: ["Unsupported native import"],
+  }));
+  expect((await runAssetPipeline(unsafe.input)).status).toBe("failed");
+  expect(unsafe.model.evaluate).not.toHaveBeenCalled();
+  expect(unsafe.adapter.place).not.toHaveBeenCalled();
+});
+
+it.each([true, false])(
+  "resolves empty approved pools without paid search retries, required=%s",
+  async (required) => {
+    const f = setup([need("backdrop", required)]);
+    Object.assign(f.adapter, { searchScope: "approved_references" });
+    vi.mocked(f.adapter.search).mockResolvedValue({
+      candidates: [],
+      receipts: [receipt("approved_references")],
+    });
+    const result = await runAssetPipeline(f.input);
+    expect(result.status).toBe(required ? "failed" : "passed");
+    expect(result.entries[0].status).toBe("failed");
+    expect(result.entries[0].reason).toContain("approved");
+    expect(f.adapter.search).toHaveBeenCalledTimes(1);
+    expect(f.model.decide).not.toHaveBeenCalled();
+    expect(f.adapter.inspect).not.toHaveBeenCalled();
+  },
+);
 
 it.each([
   "repaired",

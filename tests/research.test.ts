@@ -146,7 +146,8 @@ it("retrieves cited evidence before planning, rejects lost mechanics and reuses 
   await engine.wait(p.id);
   expect(phases.filter((p) => p === "research")).toHaveLength(1);
   p = engine.revise(p.id, 1, p.request, { change: "No stealing" });
-  expect(p.research).toBeNull();
+  expect(p.research).not.toBeNull();
+  expect(researchIsCurrent(p)).toBe(false);
 });
 it.each(["forged", "missing"] as const)(
   "does not plan using %s source citations",

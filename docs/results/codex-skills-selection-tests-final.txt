@@ -1,0 +1,16 @@
+✔ exact name outranks description mentions (2.7832ms)
+✔ discovery returns original paths and descriptions (2.8939ms)
+✔ empty and unmatched queries produce no invented choices (0.3605ms)
+✔ repeated words do not inflate ranking (0.3267ms)
+✔ limits bound the returned choices (0.2333ms)
+✔ unicode descriptions remain searchable (0.2ms)
+✔ installed catalog entries resolve to actual skill files (147.0531ms)
+✔ catalog migration retains every original skill identity (11.7462ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 282.0977

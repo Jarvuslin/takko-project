@@ -1,0 +1,58 @@
+{
+  "at": "2026-09-28T22:16:45.090Z",
+  "revision": 2,
+  "stage": "draft",
+  "chargeCount": 465,
+  "answers": {},
+  "contentPreserved": true,
+  "choicesPreserved": true,
+  "priorChargesPreserved": true,
+  "budgetPreserved": true,
+  "questions": [
+    {
+      "id": "scope_3b7dbac6eedc",
+      "prompt": "How many target dummies should the training area include?",
+      "choices": [
+        "Single dummy",
+        "Multiple dummies"
+      ],
+      "recommended": "keep"
+    },
+    {
+      "id": "scope_c4b8ddd90418",
+      "prompt": "Should the dummy have health/damage mechanics or stay purely passive?",
+      "choices": [
+        "Passive dummy, no health",
+        "Add health and damage"
+      ],
+      "recommended": "keep"
+    },
+    {
+      "id": "scope_3f4a802fa492",
+      "prompt": "Should the hit counter persist across sessions or reset each time the player joins?",
+      "choices": [
+        "Reset each session",
+        "Persistent leaderboard"
+      ],
+      "recommended": "keep"
+    },
+    {
+      "id": "scope_3a9e8f1bf00e",
+      "prompt": "Should punching stay a single simple action, or should combos/multiple attack types be added?",
+      "choices": [
+        "Single punch action",
+        "Combo system"
+      ],
+      "recommended": "keep"
+    },
+    {
+      "id": "scope_152104d450ef",
+      "prompt": "Should the counter stay a plain always-visible label, or should extra UI like a reset button or best-score display be added?",
+      "choices": [
+        "Plain counter label",
+        "Add reset button and best score"
+      ],
+      "recommended": "keep"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/component-integration.test.ts (16 tests | 1 failed | 15 skipped) 259ms
+   × exports a meaningful need-bound root name without rewriting the retained archive or script sources 258ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/component-integration.test.ts > exports a meaningful need-bound root name without rewriting the retained archive or script sources
+AssertionError: expected 'Model' to be 'component' // Object.is equality
+
+Expected: "component"
+Received: "Model"
+
+ ❯ tests/component-integration.test.ts:24:30
+     22|     comparison: f.comparison, instanceName: f.need.id,
+     23|   } as any);
+     24|   expect(reference.rootName).toBe(f.need.id);
+       |                              ^
+     25|   const renamed = loadComponentIntegration(directory, reference);
+     26|   expect(renamed.xml.xml).toContain(`<string name="Name">${f.need.id}<…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 skipped (16)
+   Start at  21:19:53
+   Duration  984ms (transform 41%, tests 31%, import 28%, worker 1%)
+

@@ -1,0 +1,704 @@
+/* Selected direction: B's visual language with a docked game-system inspector. */
+.project-library > summary {
+  display: none;
+}
+.project-library-content {
+  min-width: 0;
+}
+.app.minimal.workspace-native {
+  --workspace-agent: 400px;
+}
+.app.minimal.workspace-native .integrated-workspace {
+  grid-template-columns: minmax(0, 1fr) var(--workspace-agent);
+  gap: 12px;
+  padding: 0 16px 16px 24px;
+  box-sizing: border-box;
+}
+.app.minimal.workspace-native .topbar {
+  border: 0;
+  padding-inline: 32px;
+}
+.app.minimal.workspace-native .chat-panel {
+  background: #1a1a19;
+  border: 0;
+  border-radius: 22px;
+  padding: 0 22px 14px;
+  min-height: 0;
+}
+.app.minimal.workspace-native .chat-heading {
+  background: #1a1a19;
+  min-height: 68px;
+  border: 0;
+  gap: 8px;
+  padding: 16px 0;
+}
+.workspace-native .chat-heading > .takko-mark {
+  width: 23px;
+  height: 23px;
+}
+.app.minimal.workspace-native .chat-heading > strong {
+  width: auto;
+  margin-right: auto;
+  font-size: 14px;
+}
+.workspace-native .chat-heading .stage {
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+.app.minimal.workspace-native .chat-heading button {
+  background: transparent;
+  border: 0;
+  padding: 5px;
+  min-height: var(--control-min);
+  font-size: 11px;
+}
+.workspace-native .chat-thread-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3d3d39 transparent;
+  padding-right: 3px;
+}
+.workspace-native .conversation-timeline {
+  gap: 26px;
+}
+.workspace-native .conversation-turn > p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #d0d0cc;
+}
+.app.minimal.workspace-native .conversation-turn.user-turn {
+  background: #272725;
+  border: 0;
+  border-radius: 18px 18px 5px 18px;
+  padding: 14px 16px;
+}
+.workspace-native .turn-byline {
+  gap: 8px;
+  font-size: 13px;
+}
+.workspace-native .turn-byline small {
+  font-size: 11px;
+}
+.workspace-native .run-activity {
+  border: 0;
+  border-left: 1px solid #6b6557;
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 12px;
+}
+.workspace-native .run-activity summary {
+  font-size: 13px;
+}
+.workspace-native .result-card {
+  border-color: #ffffff0c;
+  background: #222220;
+  border-radius: 15px;
+}
+.workspace-native .animation-player {
+  background: #222220;
+  border: 0;
+  padding: 14px;
+  border-radius: 18px;
+}
+.workspace-native .animation-player .turn-byline {
+  margin-bottom: 10px;
+}
+.workspace-native .animation-player .turn-byline strong {
+  font-size: 12px;
+}
+.workspace-native .viewport-surface {
+  height: 225px;
+  border-radius: 10px;
+}
+.workspace-native .viewport-controls {
+  gap: 8px;
+  padding: 8px 0;
+}
+.workspace-native .viewport-controls input[type="range"] {
+  accent-color: var(--selection, #d8d6cc);
+  min-height: 0;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+}
+.workspace-native .viewport-controls button {
+  min-height: 36px;
+  border: 1px solid var(--border-subtle, #ffffff18);
+  background: var(--surface-input, var(--surface-input));
+}
+.app.minimal.workspace-native .chat-composer {
+  background: #292927;
+  border: 1px solid #ffffff0e;
+  border-radius: 21px;
+  box-shadow: none;
+  padding: 14px;
+  margin: 0;
+}
+.app.minimal.workspace-native .chat-composer textarea {
+  background: transparent;
+  font-size: 14px;
+  min-height: 58px;
+}
+.app.minimal.workspace-native .chat-composer .composer-footer button {
+  background: transparent;
+  border: 0;
+}
+.app.minimal.workspace-native .chat-composer .composer-footer .primary {
+  background: #d8d6cc;
+  border-radius: 50%;
+  color: #1c1c1b;
+}
+.workspace-native .chat-budget {
+  color: #969691;
+  padding-bottom: 6px;
+}
+.workspace-native .conversation-suggestions button {
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  padding: 10px 3px;
+  font-size: 13px;
+}
+.workspace-native .canvas-heading {
+  min-height: 96px;
+  padding: 22px 12px 18px;
+  border: 0;
+  align-items: flex-end;
+}
+.workspace-native .canvas-eyebrow {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: #a4a39e;
+  margin-bottom: 12px;
+}
+.workspace-native .canvas-heading strong {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.65px;
+  max-width: none;
+}
+.workspace-native .canvas-heading small {
+  font-size: 11px;
+  margin-top: 9px;
+}
+.workspace-native .canvas-detail-actions {
+  gap: 2px;
+}
+.app.minimal.workspace-native .canvas-detail-actions button,
+.app.minimal.workspace-native .architecture-toolbar button {
+  background: transparent;
+  border-color: transparent;
+  min-height: 30px;
+  font-size: 11px;
+}
+.workspace-native .architecture-toolbar {
+  padding: 10px 12px 12px;
+  min-height: 48px;
+  gap: 8px;
+}
+.workspace-native .map-surface {
+  background-image: radial-gradient(#ffffff0b 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 16px;
+}
+.workspace-native .architecture-node {
+  width: 200px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: #252421;
+  box-shadow: 0 8px 22px #0002;
+}
+.workspace-native .architecture-node.selected {
+  border-color: #c8bc9e;
+  box-shadow: 0 0 0 4px #c8bc9e08;
+}
+.app.minimal.workspace-native .architecture-node-title {
+  height: 110px;
+  min-height: 110px;
+  padding: 15px 16px 12px;
+  gap: 9px;
+  border: 0;
+  border-radius: 18px 18px 0 0;
+  background: transparent;
+  justify-content: center;
+}
+.workspace-native .architecture-node-title > * {
+  flex-shrink: 0;
+}
+.workspace-native .architecture-node-title small {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #aaa9a3;
+}
+.workspace-native .architecture-node-title small:first-child {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.workspace-native .architecture-node-title strong {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.workspace-native .architecture-node-title small:last-child {
+  color: #b6bdad;
+  font-size: 11px;
+}
+.workspace-native .architecture-node.node-working {
+  border-color: #8a7852;
+  border-style: solid;
+  animation: none;
+}
+.workspace-native .architecture-node.node-working small:last-child {
+  color: #d2bb87;
+}
+.workspace-native .architecture-ports {
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px 5px;
+  border-top: 1px solid #ffffff05;
+}
+.app.minimal.workspace-native .architecture-ports button {
+  background: transparent;
+  border: 0;
+  min-height: var(--control-min);
+  font-size: 11px;
+  padding: 3px 6px;
+  color: #c7c1b0;
+}
+.workspace-native .architecture-wires path {
+  stroke: #8e897c;
+  stroke-width: 1.5px;
+  opacity: 0.85;
+}
+.workspace-native .architecture-wires text {
+  fill: #d8d4c8;
+  stroke: var(--canvas);
+  stroke-width: 5px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  text-anchor: middle;
+  font-size: 12px;
+  font-weight: 500;
+}
+.workspace-native .canvas-controls {
+  position: static;
+  align-self: flex-start;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 20px;
+  background: var(--surface-warm);
+  padding: 4px 8px;
+  margin: 8px 0 0 12px;
+  gap: 4px;
+  min-height: 34px;
+}
+.app.minimal.workspace-native .canvas-controls button {
+  background: transparent;
+  border: 0;
+  min-height: var(--control-min);
+  font-size: 11px;
+  padding: 4px 8px;
+}
+.workspace-native .canvas-inspector {
+  position: relative;
+  inset: auto;
+  flex: 0 1 260px;
+  min-height: 120px;
+  width: 100%;
+  max-height: 36vh;
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 1fr;
+  grid-template-rows: 28px minmax(0, 1fr);
+  gap: 12px 20px;
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  border: 1px solid #ffffff09;
+  border-radius: 18px;
+  background: #1e1e1c;
+  box-shadow: none;
+}
+.workspace-native .inspector-heading {
+  grid-column: 1 / -1;
+}
+.workspace-native .inspector-heading strong {
+  font-size: 14px;
+}
+.app.minimal.workspace-native .inspector-heading button {
+  min-height: var(--control-min);
+  height: 28px;
+  border: 0;
+  background: transparent;
+  padding: 4px 10px;
+}
+.workspace-native .canvas-inspector > fieldset,
+.workspace-native .canvas-inspector > .architecture-connections {
+  min-height: 0;
+  overflow: auto;
+  margin: 0;
+  padding: 0 6px 8px 0;
+  border: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #494840 transparent;
+}
+.workspace-native .canvas-inspector:not(:has(.remove-system)) {
+  grid-template-columns: 1fr 1fr;
+}
+.workspace-native .canvas-inspector legend {
+  padding: 0 0 10px;
+  font-size: 11px;
+  color: #aaa79c;
+}
+.workspace-native .canvas-inspector label {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.app.minimal.workspace-native .canvas-inspector :is(input, select, textarea) {
+  background: var(--surface-input);
+  border-color: #ffffff14;
+  font-size: 12px;
+  min-height: 34px;
+  padding: 8px;
+  border-radius: 8px;
+}
+.workspace-native .canvas-inspector textarea {
+  height: 66px;
+  min-height: 66px;
+  resize: vertical;
+}
+.app.minimal.workspace-native .canvas-inspector button {
+  min-height: var(--control-min);
+  padding: 5px 8px;
+  border-color: var(--border-faint);
+  background: transparent;
+  font-size: 11px;
+}
+.workspace-native .canvas-inspector .remove-system {
+  margin-top: 16px;
+  color: #d4a99c;
+}
+.workspace-native .architecture-connections li {
+  display: block;
+  border: 0;
+  padding: 4px 0 12px;
+}
+.workspace-native .architecture-connections li + li {
+  border-top: 1px solid #ffffff08;
+  padding-top: 12px;
+}
+.workspace-native .architecture-connections strong {
+  font-size: 12px;
+}
+.workspace-native .canvas-save {
+  position: relative;
+  inset: auto;
+  align-self: flex-end;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+.workspace-native .canvas-save .dialog-actions {
+  margin-top: 6px;
+}
+.workspace-native .canvas-save .architecture-review {
+  max-width: 100%;
+  max-height: 150px;
+  border-radius: 12px;
+  background: var(--surface-input);
+}
+@media (min-width: 701px) {
+  .app.minimal.workspace-native .sidebar {
+    width: 76px;
+    padding: 24px 14px 18px;
+    overflow: visible;
+    background: #141413;
+    align-items: center;
+    gap: 12px;
+  }
+  .app.minimal.workspace-native .brand {
+    margin: 0 0 18px;
+    padding: 0;
+  }
+  .app.minimal.workspace-native .brand-word {
+    display: none;
+  }
+  .app.minimal.workspace-native
+    .sidebar
+    :is(
+      .new-project,
+      .marketplace-launch,
+      .settings-sidebar-nav button,
+      .sidebar-download
+    ) {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    min-height: 44px;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    border-radius: 14px;
+    background: transparent;
+    font-size: 14px;
+  }
+  .app.minimal.workspace-native
+    .sidebar
+    :is(
+      .new-project,
+      .marketplace-launch,
+      .settings-sidebar-nav button,
+      .sidebar-download
+    ):hover {
+    background: #272621;
+  }
+  .workspace-native
+    .sidebar
+    :is(
+      .new-project,
+      .marketplace-launch,
+      .settings-sidebar-nav button,
+      .sidebar-download
+    )
+    > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .app.minimal.workspace-native .settings-sidebar-nav {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .workspace-native .sidebar-download > svg:last-child,
+  .workspace-native .local-status {
+    display: none;
+  }
+  .app.minimal.workspace-native .sidebar-bottom {
+    width: 44px;
+    margin-top: auto;
+    padding: 0;
+  }
+  .app.minimal.workspace-native .local-status {
+    display: none;
+  }
+  .app.minimal.workspace-native main,
+  .app.minimal.workspace-native:not(.sidebar-expanded) main {
+    width: calc(100% - 76px);
+    margin-left: 76px;
+    height: 100dvh;
+  }
+  .workspace-native .project-library {
+    order: 0;
+  }
+  .workspace-native .project-library > summary {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #aaa79c;
+    cursor: pointer;
+    list-style: none;
+  }
+  .workspace-native .project-library > summary span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .workspace-native .project-library[open] > summary {
+    background: #292820;
+    color: var(--ink);
+  }
+  .workspace-native .project-library-content {
+    position: absolute;
+    top: 86px;
+    left: 70px;
+    width: 260px;
+    max-height: calc(100dvh - 120px);
+    overflow: auto;
+    padding: 18px 12px;
+    border-radius: 16px;
+    border: 1px solid #ffffff18;
+    background: #20201e;
+    box-shadow: 0 18px 45px #0007;
+    z-index: 20;
+  }
+  .workspace-native .project-library-content .nav-label {
+    display: block;
+    margin-top: 14px;
+  }
+  .app.minimal.workspace-native .project-library-content nav .project-link {
+    width: 100%;
+  }
+  .app.minimal.workspace-native.market-open {
+    --workspace-agent: 360px;
+  }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .app.minimal.workspace-native {
+    --workspace-agent: 350px;
+  }
+  .app.minimal.workspace-native .integrated-workspace {
+    padding-left: 12px;
+    gap: 8px;
+  }
+  .workspace-native .canvas-heading {
+    flex-wrap: wrap;
+    padding-top: 16px;
+  }
+  .workspace-native .canvas-heading strong {
+    font-size: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .app.minimal.workspace-native .integrated-workspace {
+    padding: 0 8px 8px;
+    gap: 8px;
+    overflow-y: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(230px, 37%) minmax(230px, 1fr);
+  }
+  .app.minimal.workspace-native
+    .integrated-workspace:has(
+      .canvas-save .architecture-review,
+      .canvas-save > p
+    ) {
+    grid-template-rows: minmax(330px, 48%) minmax(230px, 1fr);
+  }
+  .app.minimal.workspace-native .integrated-workspace:has(.inspector-open) {
+    grid-template-rows: minmax(380px, 62%) minmax(230px, 1fr);
+  }
+  .workspace-native .map-surface {
+    min-height: 40px;
+  }
+  .workspace-native .canvas-save > p {
+    max-height: 95px;
+    overflow: auto;
+  }
+  .app.minimal.workspace-native .canvas-heading {
+    min-height: 43px;
+    padding: 6px 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .workspace-native .canvas-eyebrow {
+    display: none;
+  }
+  .workspace-native .canvas-heading strong {
+    font-size: 14px;
+    letter-spacing: -0.2px;
+  }
+  .workspace-native .canvas-heading small {
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  .app.minimal.workspace-native .canvas-heading .canvas-detail-actions button {
+    padding: 3px;
+    min-height: 32px;
+    height: 26px;
+    font-size: 11px;
+  }
+  .workspace-native .architecture-toolbar {
+    min-height: 32px;
+    padding: 3px 8px;
+    gap: 4px;
+  }
+  .app.minimal.workspace-native .architecture-toolbar button {
+    min-height: 25px;
+    font-size: 11px;
+    padding: 3px 5px;
+  }
+  .workspace-native .canvas-controls {
+    min-height: 25px;
+    padding: 0 5px;
+    margin: 3px 0 0;
+  }
+  .app.minimal.workspace-native .canvas-controls button {
+    min-height: 32px;
+    height: 24px;
+    padding: 3px 5px;
+    font-size: 11px;
+  }
+  .workspace-native .canvas-inspector {
+    flex-basis: 160px;
+    max-height: 160px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    display: block;
+    overflow: auto;
+    margin-top: 6px;
+    padding: 10px 14px;
+    border-radius: 14px;
+  }
+  .workspace-native .inspector-heading {
+    position: sticky;
+    top: -10px;
+    background: #1e1e1c;
+    padding: 3px 0 7px;
+    z-index: 1;
+  }
+  .workspace-native .canvas-inspector > fieldset,
+  .workspace-native .canvas-inspector > .architecture-connections {
+    overflow: visible;
+    margin-bottom: 14px;
+  }
+  .workspace-native .canvas-save {
+    margin-top: 0;
+  }
+  .workspace-native .canvas-save .dialog-actions {
+    margin-top: 3px;
+  }
+  .workspace-native .canvas-save .architecture-review {
+    max-height: 80px;
+    padding: 8px;
+  }
+  .app.minimal.workspace-native .chat-panel {
+    padding: 0 12px 8px;
+    border: 0;
+    border-radius: 18px;
+  }
+  .app.minimal.workspace-native .chat-heading {
+    min-height: 42px;
+    padding: 7px 0;
+  }
+  .app.minimal.workspace-native .chat-composer {
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .app.minimal.workspace-native .chat-composer textarea {
+    min-height: 35px;
+    font-size: 13px;
+  }
+  .workspace-native .conversation-turn > p {
+    font-size: 14px;
+  }
+  .workspace-native .project-library {
+    display: none;
+  }
+  .workspace-native .viewport-surface {
+    height: 200px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .workspace-native .map-updated .architecture-node {
+    animation: none;
+  }
+}

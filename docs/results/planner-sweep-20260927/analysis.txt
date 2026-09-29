@@ -1,0 +1,151 @@
+{
+  "at": "2026-09-27T16:50:46.778Z",
+  "projectId": "25d036de-fb24-4a83-8dfb-bc997dd42886",
+  "phases": {
+    "Jev interpretation": {
+      "calls": 2,
+      "chargedMicros": 96,
+      "reservationChargeMicros": 0
+    },
+    "Proposal": {
+      "calls": 1,
+      "chargedMicros": 36652,
+      "reservationChargeMicros": 0
+    },
+    "Asset relevance": {
+      "calls": 33,
+      "chargedMicros": 10372,
+      "reservationChargeMicros": 0
+    },
+    "Implementation planning": {
+      "calls": 1,
+      "chargedMicros": 247528,
+      "reservationChargeMicros": 0
+    },
+    "Asset acquisition": {
+      "calls": 5,
+      "chargedMicros": 998470,
+      "reservationChargeMicros": 601792
+    },
+    "OpenCode coding": {
+      "calls": 0,
+      "chargedMicros": 0,
+      "reservationChargeMicros": 0
+    },
+    "Game review": {
+      "calls": 0,
+      "chargedMicros": 0,
+      "reservationChargeMicros": 0
+    },
+    "Export": {
+      "calls": 0,
+      "chargedMicros": 0,
+      "reservationChargeMicros": 0
+    }
+  },
+  "groups": [
+    {
+      "id": "dummy",
+      "assetNeedId": "TargetDummy",
+      "choice": {
+        "assetId": "1245720733"
+      },
+      "automatic": true,
+      "confidence": 0.83,
+      "passed": 1,
+      "assessed": 30
+    },
+    {
+      "id": "combat",
+      "assetNeedId": "PunchAnim",
+      "choice": {
+        "assetId": "2801965424",
+        "clipKey": "1/18/2"
+      },
+      "automatic": true,
+      "confidence": 0.95,
+      "passed": 7,
+      "assessed": 46,
+      "clip": {
+        "name": "Right Punch",
+        "duration": 0.699999988079071,
+        "rig": "R15",
+        "tier": "studio_only"
+      }
+    },
+    {
+      "id": "sound",
+      "assetNeedId": "PunchHitSound",
+      "choice": {
+        "assetId": "101355487033225"
+      },
+      "automatic": true,
+      "confidence": 0.87,
+      "passed": 7,
+      "assessed": 30
+    }
+  ],
+  "attempts": [
+    {
+      "index": 0,
+      "durationMs": 38745,
+      "at": "2026-09-27T16:38:36.011Z",
+      "pass": true,
+      "findings": [],
+      "blocked": [
+        "Implementation-only gates: proposal output, not an implementation plan"
+      ],
+      "omitted": []
+    },
+    {
+      "index": 1,
+      "durationMs": 197051,
+      "at": "2026-09-27T16:43:15.782Z",
+      "pass": true,
+      "findings": [],
+      "blocked": [],
+      "omitted": []
+    }
+  ],
+  "generatedFiles": 0,
+  "completedTasks": 0,
+  "totalTasks": 7,
+  "requirements": 13,
+  "opencodeJobs": 1,
+  "hostSessionIds": [],
+  "localSessionIds": [
+    "ses_f1c3c8817ffeyqEVqrUQ2ChaPR"
+  ],
+  "opencodeExchanges": 0,
+  "runtimeElapsedMs": 3936,
+  "exportPath": null,
+  "assetEntries": [
+    {
+      "needId": "TargetDummy",
+      "status": "passed",
+      "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified.",
+      "component": true
+    },
+    {
+      "needId": "PunchAnim",
+      "status": "failed",
+      "reason": "Asset reuse capability blocked: Imported asset exceeds the supported property, class or instance structure; complete asset reuse requires a supported structure contract",
+      "component": false
+    },
+    {
+      "needId": "PunchHitSound",
+      "status": "failed",
+      "reason": "Error: Error: Provider returned HTTP 404",
+      "component": false
+    }
+  ],
+  "providerDelta": 0.6913083980000003,
+  "conservativeLedger": 1.293118,
+  "unknownHold": 0.601792,
+  "validationFeedback": [
+    {
+      "at": "2026-09-27T16:46:34.101Z",
+      "message": "Validation feedback: Component review must cover every captured content reference exactly without inventing values"
+    }
+  ]
+}

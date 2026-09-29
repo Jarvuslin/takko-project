@@ -1,0 +1,430 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/post-plan-replay.test.ts (13 tests | 7 failed) 310ms
+   × replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch 58ms
+   × replays opencode-minimal-fighting-20260925 through real post-plan orchestration and correction to OpenCode dispatch 34ms
+   × corrects structured approved-reference binding inside planning before any Studio effect 36ms
+   × retains the previous plan and all historical spending when correction is exhausted 36ms
+   × reports external Studio failure without treating it as a correctable planner defect 30ms
+   × retains an existing saved plan when replacement validation fails 32ms
+   × enforces cumulative budget admission before replay inference or Studio effects 27ms
+ ❯ tests/asset-failure-continuation.test.ts (4 tests | 2 failed) 172ms
+   × still halts before coding when native import effects are unknown 59ms
+   × the preserved rejected approved asset completes coding with blocked coverage and retains other assets 44ms
+ ❯ tests/generation-asset-integration.test.ts (76 tests | 30 failed) 96001ms
+   × keeps ordinary builder, selection, visual evaluation and review separate from the opt-in adapter 2577ms
+   × invalidates retained component identity when the adapter changes: enable 2653ms
+   × invalidates retained component identity when the adapter changes: switch 2530ms
+   × invalidates retained component identity when the adapter changes: remove 2214ms
+   × invalidates retained component identity when the adapter changes: model 2257ms
+   × invalidates retained component identity when the adapter changes: inputRate 2945ms
+   × invalidates retained component identity when the adapter changes: outputRate 2271ms
+   × invalidates retained component identity when the adapter changes: baseUrl 2464ms
+   × invalidates retained component identity when the adapter changes: maxOutputTokens 2536ms
+   × invalidates retained component identity when the adapter changes: requestTimeoutMs 4962ms
+   × invalidates retained component identity when the adapter changes: jsonMode 3479ms
+   × keeps visual asset evaluation and general review on the regular reviewer with component override enabled 2315ms
+   × preserves legacy source routing and hash shape for undefined override 2486ms
+   × preserves legacy source routing and hash shape for undefined override 2524ms
+   × invalidates retained component reuse when source reviewer configuration changes: enable 2380ms
+   × invalidates retained component reuse when source reviewer configuration changes: switch 2700ms
+   × invalidates retained component reuse when source reviewer configuration changes: remove 2228ms
+   × invalidates retained component reuse when source reviewer configuration changes: profile 2350ms
+   × retains imports across completed-task script registration before later task discovery 2612ms
+   × blocks retained context changes beyond validated completed-task file additions (scope) 2476ms
+   × blocks retained context changes beyond validated completed-task file additions (title) 2735ms
+   × blocks retained context changes beyond validated completed-task file additions (dependency) 2683ms
+   × blocks retained context changes beyond validated completed-task file additions (requirements) 2509ms
+   × blocks retained context changes beyond validated completed-task file additions (removed-file) 2643ms
+   × blocks retained context changes beyond validated completed-task file additions (unregistered-file) 2461ms
+   × blocks retained context changes beyond validated completed-task file additions (unfinished-task) 2696ms
+   × blocks retained context changes beyond validated completed-task file additions (foreign-scope-file) 2687ms
+   × accepts retained component coverage from a discovery-dependent task without forcing replacement scripts 2955ms
+   × continues generation with retained components, including added asset needs (false) 2808ms
+   × continues generation with retained components, including added asset needs (true) 2276ms
+ ❯ tests/benchmark-fixtures.test.ts (4 tests | 4 failed) 74ms
+   ❯ prepared public benchmark starting fixtures (4)
+     × pins exact bundle/export hashes and exposes no private project wrapper 37ms
+     × retains the exact authored quarry artifact and its working interaction identities 18ms
+     × gives all six game genres identical bytes while preserving separate primary prompt bindings 4ms
+     × rejects applying a pinned fixture to a different case, version or changed brief 13ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 43 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-failure-continuation.test.ts > still halts before coding when native import effects are unknown
+AssertionError: expected undefined to be true // Object.is equality
+
+- Expected:
+true
+
++ Received:
+undefined
+
+ ❯ tests/asset-failure-continuation.test.ts:39:61
+     37|   try {
+     38|     expect(r.dispatched).toBe(false);
+     39|     expect(r.project.assetPipeline?.requiresReconciliation).toBe(true);
+       |                                                             ^
+     40|     expect(r.project.stage).toBe("failed");
+     41|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/43]⎯
+
+ FAIL  tests/asset-failure-continuation.test.ts > the preserved rejected approved asset completes coding with blocked coverage and retains other assets
+AssertionError: ["admission:Error: Answer the consequential gameplay questions before approving: Should this limit apply, or should the mechanic support more? Single-player only; no multiplayer, AI opponent behavior, or networking.\nShould this limit apply, or should the mechanic support more? Dummy is purely stationary and cannot be damaged, destroyed, or knocked over, and has no flinch or reactive animation.\nShould this limit apply, or should the mechanic support more? Only one punch type/animation is required (no combos, kicks, blocks, or special moves) per the request scope.\nShould this limit apply, or should the mechanic support more? Default control scheme: standard Roblox movement plus one button for punching; no reset-counter input or button is included.\nShould this limit apply, or should the mechanic support more? No scoring, timer, win condition, or difficulty progression is required; this is a practice/demo loop.\nShould this limit apply, or should the mechanic support more? Punch and hit use the same single sound effect (no separate whiff vs. connect sounds) unless later expanded.\nShould this limit apply, or should the mechanic support more? Player avatar and dummy appearance are provided entirely by the selected default/selected Roblox assets; no custom clothing or rig modifications are required.\nShould this limit apply, or should the mechanic support more? Camera uses the default Roblox third-person follow camera; no fixed framing or custom camera control is implemented."]: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/asset-failure-continuation.test.ts:108:70
+    106|   });
+    107|   try {
+    108|     expect(dispatched, r.project.error ?? JSON.stringify(r.effects)).t…
+       |                                                                      ^
+    109|     expect(r.project.stage, r.project.error ?? "").toBe("ready_to_test…
+    110|     expect(r.project.artifact!.files).toHaveLength(5);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/43]⎯
+
+ FAIL  tests/benchmark-fixtures.test.ts > prepared public benchmark starting fixtures > pins exact bundle/export hashes and exposes no private project wrapper
+Error: Fixture export differs from the public bundle
+ ❯ readBenchmarkFixture scripts/prepare-benchmark-fixtures.ts:163:11
+    161|     throw Error("Fixture file hash mismatch");
+    162|   if (exportBundle(bundle, manifest.scope) !== exported.toString())
+    163|     throw Error("Fixture export differs from the public bundle");
+       |           ^
+    164|   if (
+    165|     definition.fixture.artifactSha256 &&
+ ❯ tests/benchmark-fixtures.test.ts:38:36
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/43]⎯
+
+ FAIL  tests/benchmark-fixtures.test.ts > prepared public benchmark starting fixtures > retains the exact authored quarry artifact and its working interaction identities
+Error: Fixture export differs from the public bundle
+ ❯ readBenchmarkFixture scripts/prepare-benchmark-fixtures.ts:163:11
+    161|     throw Error("Fixture file hash mismatch");
+    162|   if (exportBundle(bundle, manifest.scope) !== exported.toString())
+    163|     throw Error("Fixture export differs from the public bundle");
+       |           ^
+    164|   if (
+    165|     definition.fixture.artifactSha256 &&
+ ❯ tests/benchmark-fixtures.test.ts:64:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/43]⎯
+
+ FAIL  tests/benchmark-fixtures.test.ts > prepared public benchmark starting fixtures > gives all six game genres identical bytes while preserving separate primary prompt bindings
+Error: Fixture export differs from the public bundle
+ ❯ readBenchmarkFixture scripts/prepare-benchmark-fixtures.ts:163:11
+    161|     throw Error("Fixture file hash mismatch");
+    162|   if (exportBundle(bundle, manifest.scope) !== exported.toString())
+    163|     throw Error("Fixture export differs from the public bundle");
+       |           ^
+    164|   if (
+    165|     definition.fixture.artifactSha256 &&
+ ❯ tests/benchmark-fixtures.test.ts:97:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/43]⎯
+
+ FAIL  tests/benchmark-fixtures.test.ts > prepared public benchmark starting fixtures > rejects applying a pinned fixture to a different case, version or changed brief
+Error: Fixture export differs from the public bundle
+ ❯ readBenchmarkFixture scripts/prepare-benchmark-fixtures.ts:163:11
+    161|     throw Error("Fixture file hash mismatch");
+    162|   if (exportBundle(bundle, manifest.scope) !== exported.toString())
+    163|     throw Error("Fixture export differs from the public bundle");
+       |           ^
+    164|   if (
+    165|     definition.fixture.artifactSha256 &&
+ ❯ tests/benchmark-fixtures.test.ts:138:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > keeps ordinary builder, selection, visual evaluation and review separate from the opt-in adapter
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:886:34
+    884|   s.config.save(settings);
+    885|   const p = await s.build();
+    886|   expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                  ^
+    887|   expect(
+    888|     s.calls.some(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: enable
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: switch
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: remove
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: model
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: inputRate
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: outputRate
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: baseUrl
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: maxOutputTokens
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: requestTimeoutMs
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component identity when the adapter changes: jsonMode
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:965:36
+    963|     s.config.save(settings);
+    964|     const p = await s.build();
+    965|     expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                    ^
+    966|     const original = structuredClone(p.assetPipeline!),
+    967|       calls = s.calls.length;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > keeps visual asset evaluation and general review on the regular reviewer with component override enabled
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1085:34
+    1083|   s.config.save(settings);
+    1084|   const p = await s.build();
+    1085|   expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                  ^
+    1086|   expect(p.assetPipeline!.policy.maxSearches).toBe(3);
+    1087|   const source = s.calls.filter(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > preserves legacy source routing and hash shape for undefined override
+ FAIL  tests/generation-asset-integration.test.ts > preserves legacy source routing and hash shape for undefined override
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1123:36
+    1121|     s.config.save(settings);
+    1122|     const p = await s.build();
+    1123|     expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                    ^
+    1124|     expect(
+    1125|       s.calls.find((call) => call.context.task === "component-source-r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component reuse when source reviewer configuration changes: enable
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component reuse when source reviewer configuration changes: switch
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component reuse when source reviewer configuration changes: remove
+ FAIL  tests/generation-asset-integration.test.ts > invalidates retained component reuse when source reviewer configuration changes: profile
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1156:36
+    1154|     s.config.save(initial);
+    1155|     const p = await s.build();
+    1156|     expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                    ^
+    1157|     const retained = structuredClone(p.assetPipeline!),
+    1158|       callCount = s.calls.length;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > retains imports across completed-task script registration before later task discovery
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1486:34
+    1484|   });
+    1485|   const p = await s.build();
+    1486|   expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                  ^
+    1487|   const originalReview = s.calls.find(
+    1488|     (call) => call.context.task === "component-source-review",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (scope)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (title)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (dependency)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (requirements)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (removed-file)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (unregistered-file)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (unfinished-task)
+ FAIL  tests/generation-asset-integration.test.ts > blocks retained context changes beyond validated completed-task file additions (foreign-scope-file)
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1527:36
+    1525|     const s = setup({ componentReview: true, componentPrepared: true }…
+    1526|     const p = await s.build();
+    1527|     expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                    ^
+    1528|     const original = structuredClone(p.assetPipeline!);
+    1529|     const callCount = s.calls.length;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > accepts retained component coverage from a discovery-dependent task without forcing replacement scripts
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1602:34
+    1600|   });
+    1601|   const p = await s.build();
+    1602|   expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                  ^
+    1603|   expect(p.spec!.tasks[0].files).toEqual([]);
+    1604|   expect(p.artifact!.files).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/43]⎯
+
+ FAIL  tests/generation-asset-integration.test.ts > continues generation with retained components, including added asset needs (false)
+ FAIL  tests/generation-asset-integration.test.ts > continues generation with retained components, including added asset needs (true)
+AssertionError: Could not complete Implement core loop. Retained need tree has 1 unanchored parts without a joint path to an anchor or rig. Supply its explicit retainedPhysics integration decision.: expected 'failed' to be 'ready_to_test' // Object.is equality
+
+Expected: "ready_to_test"
+Received: "failed"
+
+ ❯ tests/generation-asset-integration.test.ts:1632:36
+    1630|     });
+    1631|     const p = await s.build();
+    1632|     expect(p.stage, p.error ?? "").toBe("ready_to_test");
+       |                                    ^
+    1633|     expect(p.assetPipeline?.status).toBe("passed");
+    1634|     expect(p.assetPipeline?.entries[0].component?.runtimeVerification)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch
+AssertionError: {"error":null,"effects":["admission:Error: Answer the consequential gameplay questions before approving: Should this limit apply, or should the mechanic support more? Single-player prototype focused on one core loop: approach, punch, hit-register, counter increments — no win/lose condition or opponent AI beyond the passive dummy.\nShould this limit apply, or should the mechanic support more? Only one punch attack type is required initially (a basic straight punch); additional attacks (kicks, combos, blocks) are out of scope unless requested.\nShould this limit apply, or should the mechanic support more? Hit Counter persists only for the current play session and resets to 0 via a manual reset action (button/key), not automatically over time.\nShould this limit apply, or should the mechanic support more? One VFX type (impact burst) and one SFX cue (punch impact) are sufficient for this first pass; no separate whiff/miss VFX or SFX unless requested later.\nShould this limit apply, or should the mechanic support more? No multiplayer, scoring leaderboard, or save/persistence of the hit counter across sessions is included in this scope."],"events":[{"at":"2026-09-24T18:58:44.556Z","message":"Gameplay interpretation saved as advice. Your full request remains authoritative."},{"at":"2026-09-24T18:58:44.577Z","message":"planner: Anthropic: Claude Sonnet 5 / anthropic/claude-sonnet-5"},{"at":"2026-09-24T19:03:34.170Z","message":"Validation feedback: requirements.18.sourceId: Invalid input: expected string, received null; requirements.19.sourceId: Invalid input: expected string, received null; requirements.20.sourceId: Invalid input: expected string, received null; requirements.21.sourceId: Invalid input: expected string, received null; requirements.22.sourceId: Invalid input: expected string, received null"},{"at":"2026-09-24T19:03:34.182Z","message":"planner: Anthropic: Claude Sonnet 5 / anthropic/claude-sonnet-5 — correcting output"},{"at":"2026-09-24T19:05:07.781Z","message":"Specification ready for review."}]}: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:28:9
+     26|           events: r.project.events.slice(-5),
+     27|         }),
+     28|       ).toBe(true);
+       |         ^
+     29|       expect(r.project.assetPipeline?.status).toBe("passed");
+     30|       expect(r.project.assetPipeline?.entries).toHaveLength(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > replays opencode-minimal-fighting-20260925 through real post-plan orchestration and correction to OpenCode dispatch
+AssertionError: {"error":null,"effects":["admission:Error: Answer the consequential gameplay questions before approving: Should this limit apply, or should the mechanic support more? Single player character controllable via standard movement (walk/run) plus one dedicated punch input; no additional attack types are added.\nShould this limit apply, or should the mechanic support more? Punch input default: left mouse click (PC) or a single mapped gamepad button; rebinding is out of scope unless requested later.\nShould this limit apply, or should the mechanic support more? Hit detection uses a simple forward hitbox or short raycast from the player's fist/hand bone active only during the punch animation's strike frames.\nShould this limit apply, or should the mechanic support more? Exactly one hit-and-counter increment can occur per completed punch animation cycle, even if the hitbox theoretically overlaps the dummy for multiple frames.\nShould this limit apply, or should the mechanic support more? The punch/hit sound is a single audio clip with no variation, layering, or randomization requested.\nShould this limit apply, or should the mechanic support more? The on-screen counter is a plain numeric text UI element with no styling, animation, or visual feedback beyond updating the number.\nShould this limit apply, or should the mechanic support more? No cooldown, stamina, or resource system limits punching beyond the animation's own playback duration."],"events":[{"at":"2026-09-25T05:27:20.699Z","message":"Proposal saved. Review the game and asset recommendations, then Approve & build."},{"at":"2026-09-25T05:28:59.332Z","message":"planner: Jev non-coding decisions / typesafe/jev-1.13"},{"at":"2026-09-25T05:28:59.618Z","message":"Gameplay interpretation saved as advice. Your full request remains authoritative."},{"at":"2026-09-25T05:28:59.642Z","message":"planner: Anthropic: Claude Sonnet 5 / anthropic/claude-sonnet-5"},{"at":"2026-09-25T05:31:58.710Z","message":"Specification ready for review."}]}: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:28:9
+     26|           events: r.project.events.slice(-5),
+     27|         }),
+     28|       ).toBe(true);
+       |         ^
+     29|       expect(r.project.assetPipeline?.status).toBe("passed");
+     30|       expect(r.project.assetPipeline?.entries).toHaveLength(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > corrects structured approved-reference binding inside planning before any Studio effect
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:74:49
+     72|   });
+     73|   try {
+     74|     expect(r.dispatched, r.project.error ?? "").toBe(true);
+       |                                                 ^
+     75|     expect(r.plannerCalls).toBe(2);
+     76|     expect(r.requests[1].input).toMatch(/linked requirement|asset need…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > retains the previous plan and all historical spending when correction is exhausted
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/post-plan-replay.test.ts:84:29
+     82|   const r = await replayPostPlan(replayRuns[1], { maxAttempts: 1 });
+     83|   try {
+     84|     expect(r.project.error).toMatch(/proposal:theme/);
+       |                             ^
+     85|     expect(r.project.spec).toBeNull();
+     86|     expect(r.effects).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > reports external Studio failure without treating it as a correctable planner defect
+AssertionError: expected +0 to be 1 // Object.is equality
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ tests/post-plan-replay.test.ts:133:28
+    131|   try {
+    132|     expect(r.dispatched).toBe(false);
+    133|     expect(r.plannerCalls).toBe(1);
+       |                            ^
+    134|     expect(r.project.error).toMatch(/Studio unavailable/);
+    135|     expect(r.effects.filter((e) => e.startsWith("inspect:"))).toHaveLe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > retains an existing saved plan when replacement validation fails
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/post-plan-replay.test.ts:149:29
+    147|   });
+    148|   try {
+    149|     expect(r.project.error).toMatch(/proposal:theme/);
+       |                             ^
+    150|     expect(r.project.spec).toEqual(original.spec);
+    151|     expect(r.effects).toEqual([]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/43]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > enforces cumulative budget admission before replay inference or Studio effects
+TypeError: .toMatch() expects to receive a string, but got object
+ ❯ tests/post-plan-replay.test.ts:168:29
+    166|     expect(r.plannerCalls).toBe(0);
+    167|     expect(r.dispatched).toBe(false);
+    168|     expect(r.project.error).toMatch(/budget/i);
+       |                             ^
+    169|     expect(r.project.charges).toEqual(r.original.charges);
+    170|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/43]⎯
+
+
+ Test Files  4 failed | 116 passed (120)
+      Tests  43 failed | 1622 passed (1665)
+   Start at  00:58:05
+   Duration  155.37s (tests 85%, import 13%, transform 2%)
+
+    Isolate  120 workers spawned · ~185ms startup each (spawn + environment, per file)
+             at least ~10.93s faster with isolate: false — reuses workers across files instead of one per file
+

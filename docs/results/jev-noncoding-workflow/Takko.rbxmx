@@ -1,0 +1,302 @@
+<roblox version="4"><External>null</External><External>nil</External><Item class="Script" referent="RBX0"><Properties><string name="Name">Takko</string><ProtectedString name="Source">-- Original Takko Studio bridge. Model API keys never enter Studio.
+local Http = game:GetService(&quot;HttpService&quot;)
+local Editor = game:GetService(&quot;ScriptEditorService&quot;)
+local History = game:GetService(&quot;ChangeHistoryService&quot;)
+local Run = game:GetService(&quot;RunService&quot;)
+local Test = game:GetService(&quot;StudioTestService&quot;)
+local Assets = game:GetService(&quot;AssetService&quot;)
+local toolbar = plugin:CreateToolbar(&quot;Takko&quot;)
+local toggle = toolbar:CreateButton(&quot;Takko&quot;, &quot;Connect to local Takko&quot;, &quot;&quot;)
+local widget = plugin:CreateDockWidgetPluginGui(&quot;ForgeV2&quot;, DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Right, true, false, 360, 390, 280, 300))
+widget.Title = &quot;Takko · Local generation&quot;
+local frame = Instance.new(&quot;Frame&quot;)
+frame.Size = UDim2.fromScale(1, 1)
+frame.BackgroundColor3 = Color3.fromRGB(24, 26, 31)
+frame.Parent = widget
+local function field(class, y, height, text)
+ local x = Instance.new(class)
+ x.Position = UDim2.new(0, 14, 0, y)
+ x.Size = UDim2.new(1, -28, 0, height)
+ x.BackgroundColor3 = Color3.fromRGB(40, 44, 53)
+ x.TextColor3 = Color3.fromRGB(235, 237, 242)
+ x.Font = Enum.Font.SourceSans
+ x.TextSize = 17
+ x.Text = text
+ x.TextWrapped = true
+ x.Parent = frame
+ return x
+end
+local endpoint = field(&quot;TextBox&quot;, 14, 38, &quot;http://127.0.0.1:64341&quot;)
+endpoint.ClearTextOnFocus = false
+local key = field(&quot;TextBox&quot;, 62, 38, &quot;&quot;)
+key.PlaceholderText = &quot;Pairing token (optional for local Takko)&quot;
+key.ClearTextOnFocus = false
+local connect = field(&quot;TextButton&quot;, 110, 38, &quot;Connect to Takko&quot;)
+local status = field(&quot;TextLabel&quot;, 158, 110, &quot;Open Takko on this computer, then press Connect to Takko. The local pairing token is fetched automatically. This session: &quot;..game.Name)
+local execute = field(&quot;TextButton&quot;, 280, 42, &quot;No queued operation&quot;)
+execute.Active = false
+toggle.Click:Connect(function() widget.Enabled = not widget.Enabled end)
+local session, token, url, pending, outbox
+local alive, busy = true, false
+local connecting, polling = false, false
+local completed = {}
+local baselines = {}
+local applied = {}
+local dirty, watchers = {}, {}
+local function watch(prefix, root)
+ local id=prefix..&quot;/&quot;..root.Name
+ for _,connection in watchers[id] or {} do connection:Disconnect() end
+ watchers[id]={};dirty[id]=false
+ local function changed() dirty[id]=true end
+ for _,obj in {root,table.unpack(root:GetDescendants())} do
+  table.insert(watchers[id],obj.Changed:Connect(changed))
+  table.insert(watchers[id],obj.AttributeChanged:Connect(changed))
+ end
+ table.insert(watchers[id],root.DescendantAdded:Connect(changed))
+ table.insert(watchers[id],root.DescendantRemoving:Connect(changed))
+end
+local function request(route, body, targetUrl, targetToken)
+ local r = Http:RequestAsync({Url=(targetUrl or url)..&quot;/api/bridge&quot;..route, Method=body and &quot;POST&quot; or &quot;GET&quot;, Headers={Authorization=&quot;Bearer &quot;..(targetToken or token),[&quot;Content-Type&quot;]=&quot;application/json&quot;}, Body=body and Http:JSONEncode(body) or nil})
+ assert(r.Success, &quot;Takko HTTP &quot;..r.StatusCode..&quot;: &quot;..string.sub(tostring(r.Body or &quot;&quot;),1,200))
+ return Http:JSONDecode(r.Body)
+end
+local function canonical(p) return (p:gsub(&quot;%.server%.luau$&quot;, &quot;&quot;):gsub(&quot;%.client%.luau$&quot;, &quot;&quot;):gsub(&quot;%.module%.luau$&quot;, &quot;&quot;):gsub(&quot;%.luau$&quot;, &quot;&quot;)) end
+local function signature(root)
+ local entries = {}
+ for _, obj in {root, table.unpack(root:GetDescendants())} do
+  local parts = {obj:GetFullName(), obj.ClassName}
+  if obj:IsA(&quot;LuaSourceContainer&quot;) then table.insert(parts, Editor:GetEditorSource(obj)) end
+  if obj:IsA(&quot;BasePart&quot;) then table.insert(parts, tostring(obj.CFrame));table.insert(parts,tostring(obj.Size));table.insert(parts,tostring(obj.Color)) end
+  for _, name in {&quot;Text&quot;, &quot;Image&quot;, &quot;SoundId&quot;, &quot;AnimationId&quot;, &quot;MeshId&quot;, &quot;TextureID&quot;, &quot;Enabled&quot;, &quot;Visible&quot;, &quot;Transparency&quot;, &quot;Anchored&quot;, &quot;CanCollide&quot;} do
+   local ok, value = pcall(function() return obj[name] end)
+   if ok then table.insert(parts, name..&quot;:&quot;..tostring(value)) end
+  end
+  table.insert(entries, table.concat(parts, &quot;\0&quot;))
+ end
+ table.sort(entries)
+ return table.concat(entries, &quot;\1&quot;)
+end
+local function value(v, nodes)
+ if type(v) ~= &quot;table&quot; then return v end
+ if v.type == &quot;Ref&quot; then
+  if v.path == nil then return nil end
+  assert(nodes[v.path], &quot;Missing reference target &quot;..v.path)
+  return nodes[v.path]
+ end
+ if v.type == &quot;Enum&quot; then
+  for _, item in Enum[v.enum]:GetEnumItems() do if item.Value == v.value then return item end end
+  error(&quot;Unknown enum value&quot;)
+ end
+ local constructors = {Vector3=Vector3.new, Vector2=Vector2.new, Color3=Color3.new, CFrame=CFrame.new, UDim2=UDim2.new, UDim=UDim.new}
+ assert(constructors[v.type], &quot;Unknown property type&quot;)
+ return constructors[v.type](table.unpack(v.value))
+end
+local function apply(op)
+ assert(not Run:IsRunning(), &quot;Stop play mode before applying&quot;)
+ local importedMeshIds = {}
+ local function normalizedMeshId(id) return type(id)==&quot;string&quot; and id:match(&quot;^rbxassetid://[1-9]%d*$&quot;) ~= nil end
+ assert(op.importedMeshIds==nil or type(op.importedMeshIds)==&quot;table&quot;, &quot;Invalid imported mesh authorization&quot;)
+ for _,id in op.importedMeshIds or {} do
+  assert(normalizedMeshId(id), &quot;Imported mesh authorization requires normalized asset IDs&quot;)
+  importedMeshIds[id]=true
+ end
+ local roots = {Workspace=workspace, ReplicatedStorage=game:GetService(&quot;ReplicatedStorage&quot;), ServerScriptService=game:GetService(&quot;ServerScriptService&quot;), ServerStorage=game:GetService(&quot;ServerStorage&quot;), StarterGui=game:GetService(&quot;StarterGui&quot;), [&quot;StarterPlayer/StarterPlayerScripts&quot;]=game:GetService(&quot;StarterPlayer&quot;).StarterPlayerScripts}
+ local staged, old, nodes = {}, {}, {}
+ for prefix, parent in roots do
+  local existing = parent:FindFirstChild(op.scope)
+  if existing then assert(not dirty[prefix..&quot;/&quot;..op.scope] and baselines[prefix..&quot;/&quot;..op.scope] == signature(existing), &quot;Owned objects changed or plugin restarted. Preserve your edits and use a new Takko project.&quot;) end
+  old[prefix] = existing
+  local root = Instance.new(&quot;Folder&quot;);root.Name=op.scope;staged[prefix]=root;nodes[prefix..&quot;/&quot;..op.scope]=root
+ end
+ local meshIdsByPath = {}
+ local function ensure(p, class, properties)
+  local meshId = properties and properties.MeshId
+  if class==&quot;MeshPart&quot; then
+   assert(normalizedMeshId(meshId), &quot;MeshPart requires a normalized declared MeshId&quot;)
+   assert(importedMeshIds[meshId], &quot;MeshPart MeshId is not authorized by imported asset receipts&quot;)
+  end
+  if nodes[p] then
+   assert(not class or nodes[p].ClassName == class, &quot;Conflicting instance classes&quot;)
+   if class==&quot;MeshPart&quot; then assert(meshIdsByPath[p]==meshId, &quot;Conflicting imported mesh IDs&quot;) end
+   return nodes[p]
+  end
+  local parentPath, name = p:match(&quot;^(.*)/([^/]+)$&quot;)
+  assert(parentPath and name ~= &quot;..&quot; and name ~= &quot;.&quot;, &quot;Invalid instance path&quot;)
+  local parent = nodes[parentPath] or ensure(parentPath, &quot;Folder&quot;)
+  local obj
+  if class==&quot;MeshPart&quot; then
+   -- MeshId is read-only. This API yields and creates the authorized mesh off-tree.
+   obj=Assets:CreateMeshPartAsync(Content.fromUri(meshId), {})
+   if not obj or obj.ClassName~=&quot;MeshPart&quot; or obj.Parent~=nil then
+    if obj then obj:Destroy() end
+    error(&quot;AssetService did not return an unparented MeshPart&quot;)
+   end
+   meshIdsByPath[p]=meshId
+  else obj=Instance.new(class or &quot;Folder&quot;) end
+  obj.Name=name;obj.Parent=parent;nodes[p]=obj;return obj
+ end
+ local ok, err = pcall(function()
+  local scene = table.clone(op.bundle.scene)
+  table.sort(scene, function(a,b) return #a.path:split(&quot;/&quot;) &lt; #b.path:split(&quot;/&quot;) end)
+  for _, item in scene do ensure(item.path,item.className,item.properties) end
+  for _, f in op.bundle.files do local obj=ensure(canonical(f.path),f.kind);Editor:UpdateSourceAsync(obj,function() return f.source end) end
+  for _, item in scene do
+   local obj=nodes[item.path]
+   for name,v in item.properties do
+    assert(name~=&quot;Parent&quot; and name~=&quot;Source&quot; and name~=&quot;Name&quot;, &quot;Reserved property&quot;)
+    if item.className~=&quot;MeshPart&quot; or name~=&quot;MeshId&quot; then obj[name]=value(v,nodes) end
+   end
+  end
+ end)
+ if not ok then for _,root in staged do root:Destroy() end;error(err) end
+ -- Source and mesh staging can yield. Recheck ownership immediately before replacing roots.
+ for prefix,parent in roots do
+  local existing=parent:FindFirstChild(op.scope)
+  if existing~=old[prefix] or existing and (dirty[prefix..&quot;/&quot;..op.scope] or baselines[prefix..&quot;/&quot;..op.scope]~=signature(existing)) then
+   for _,root in staged do root:Destroy() end
+   error(&quot;Owned objects changed during staging. Preserve your edits and retry with a new Takko project.&quot;)
+  end
+ end
+ local recording=History:TryBeginRecording(&quot;ForgeApply&quot;, &quot;Apply Takko generation&quot;)
+ if not recording then for _,root in staged do root:Destroy() end;error(&quot;Could not begin Studio undo recording&quot;) end
+ local swapped, swapError=pcall(function()
+  for prefix,parent in roots do if old[prefix] then old[prefix].Parent=nil end;staged[prefix].Parent=parent end
+ end)
+ if not swapped then
+  for prefix,parent in roots do staged[prefix]:Destroy();if old[prefix] then old[prefix].Parent=parent end end
+  History:FinishRecording(recording,Enum.FinishRecordingOperation.Cancel)
+  error(swapError)
+ end
+ for _,root in old do root:Destroy() end
+ History:FinishRecording(recording,Enum.FinishRecordingOperation.Commit)
+ for prefix,root in staged do baselines[prefix..&quot;/&quot;..op.scope]=signature(root);watch(prefix,root) end
+ applied[op.scope]=op.artifactHash
+ return {checks={{id=&quot;apply&quot;,status=&quot;passed&quot;,detail=&quot;Applied generated instances and sources.&quot;}},logs={&quot;Applied revision &quot;..op.revision}}
+end
+local function runTests(op)
+ assert(not Run:IsRunning(), &quot;Stop play mode before running acceptance tests&quot;)
+ assert(type(op.tests)==&quot;table&quot; and #op.tests&gt;0, &quot;No acceptance tests are configured. This artifact has not been tested.&quot;)
+ assert(applied[op.scope] == op.artifactHash, &quot;Apply this exact artifact in this plugin session before testing&quot;)
+ for _,parent in {workspace,game:GetService(&quot;ReplicatedStorage&quot;),game:GetService(&quot;ServerScriptService&quot;),game:GetService(&quot;ServerStorage&quot;),game:GetService(&quot;StarterGui&quot;),game:GetService(&quot;StarterPlayer&quot;).StarterPlayerScripts} do
+  local root=parent:FindFirstChild(op.scope)
+  local prefix=parent==game:GetService(&quot;StarterPlayer&quot;).StarterPlayerScripts and &quot;StarterPlayer/StarterPlayerScripts&quot; or parent.ClassName
+  assert(root and not dirty[prefix..&quot;/&quot;..op.scope] and baselines[prefix..&quot;/&quot;..op.scope]==signature(root), &quot;Generated artifact changed after apply&quot;)
+ end
+ local rs=game:GetService(&quot;ReplicatedStorage&quot;)
+ local name=&quot;ForgeTest_&quot;..op.id:gsub(&quot;-&quot;, &quot;&quot;)
+ local inserted={}
+ local setupOk,setupResult=pcall(function()
+ local folder=Instance.new(&quot;Folder&quot;);table.insert(inserted,folder);folder.Name=name;folder.Parent=rs
+ local remote=Instance.new(&quot;RemoteEvent&quot;);remote.Name=&quot;Results&quot;;remote.Parent=folder
+ local serverTests,clientTests={},{}
+ for _,t in op.tests do
+  local m=Instance.new(&quot;ModuleScript&quot;);m.Name=t.id;m.Parent=folder;Editor:UpdateSourceAsync(m,function() return t.source end)
+  table.insert(t.mode==&quot;client&quot; and clientTests or serverTests,t.id)
+ end
+ local function quoted(t) local s={} for _,v in t do table.insert(s,string.format(&quot;%q&quot;,v)) end return &quot;{&quot;..table.concat(s,&quot;,&quot;)..&quot;}&quot; end
+ local runner=[[
+local function runTests(ids)
+ local results={}
+ for _,id in ids do
+  local done,ok,err=false,false,&quot;Acceptance test timed out&quot;
+  local thread=task.spawn(function() ok,err=pcall(function() local fn=require(folder:WaitForChild(id));assert(type(fn)==&quot;function&quot;,&quot;Test must return a function&quot;);fn({scope=SCOPE}) end);done=true end)
+  local deadline=os.clock()+12
+  repeat task.wait() until done or os.clock()&gt;deadline
+  if not done then task.cancel(thread) end
+  table.insert(results,{id=id,status=done and ok and &quot;passed&quot; or &quot;failed&quot;,detail=done and ok and &quot;Assertion scenario completed in Studio&quot; or tostring(err)})
+ end
+ return results
+end
+]]
+ local prefix=string.format(&quot;local folder=game:GetService(&apos;ReplicatedStorage&apos;):WaitForChild(%q)\nlocal SCOPE=%q\n&quot;,name,op.scope)
+ local serverSource=prefix..runner..&quot;\nlocal clientResults=nil\nfolder.Results.OnServerEvent:Connect(function(_,r) if type(r)==&apos;table&apos; then clientResults=r end end)\nlocal logs={}\ngame:GetService(&apos;LogService&apos;).MessageOut:Connect(function(message) if #logs&lt;80 then table.insert(logs,string.sub(message,1,2000)) end end)\ntask.wait(3)\nlocal checks=runTests(&quot;..quoted(serverTests)..&quot;)\nlocal deadline=os.clock()+&quot;..tostring(20+#clientTests*13)..&quot;\nwhile &quot;..tostring(#clientTests&gt;0)..&quot; and not clientResults and os.clock()&lt;deadline do task.wait(.2) end\nfor _,r in clientResults or {} do table.insert(checks,r) end\ngame:GetService(&apos;StudioTestService&apos;):EndTest({checks=checks,logs=logs})&quot;
+ local clientSource=prefix..runner..&quot;\ntask.wait(3)\nfolder.Results:FireServer(runTests(&quot;..quoted(clientTests)..&quot;))&quot;
+ local function insert(class,parent,source)
+  local obj=Instance.new(class);obj.Name=name;obj.Parent=parent;table.insert(inserted,obj);Editor:UpdateSourceAsync(obj,function() return source end)
+ end
+ local ok,result=pcall(function()
+  insert(&quot;Script&quot;,game:GetService(&quot;ServerScriptService&quot;),serverSource)
+  insert(&quot;LocalScript&quot;,game:GetService(&quot;StarterPlayer&quot;).StarterPlayerScripts,clientSource)
+  return Test:ExecutePlayModeAsync({forgeOperation=op.id})
+ end)
+ assert(ok,tostring(result));assert(type(result)==&quot;table&quot;,&quot;Studio returned no test report&quot;)
+ return result
+ end)
+ for _,obj in inserted do obj:Destroy() end
+ assert(setupOk,tostring(setupResult))
+ return setupResult
+end
+local function connectToForge()
+ if busy or connecting or polling then return end
+ if pending or outbox then status.Text=&quot;Finish the delivered operation or let its receipt reach Takko before reconnecting.&quot;;return end
+ local candidate=endpoint.Text:gsub(&quot;/$&quot;, &quot;&quot;)
+ if not candidate:match(&quot;^http://127%.0%.0%.1:%d+$&quot;) and not candidate:match(&quot;^http://localhost:%d+$&quot;) then status.Text=&quot;Use a local Takko address.&quot;;return end
+ local supplied=key.Text:match(&quot;^%s*(.-)%s*$&quot;)
+ connecting=true
+ local pairing=supplied
+ local ok,result=pcall(function()
+  if pairing==&quot;&quot; then
+   local response=Http:RequestAsync({Url=candidate..&quot;/api/studio/pairing&quot;,Method=&quot;GET&quot;})
+   assert(response.Success,&quot;Could not pair with local Takko (HTTP &quot;..response.StatusCode..&quot;). Open Takko and retry.&quot;)
+   pairing=Http:JSONDecode(response.Body).token
+  end
+  assert(type(pairing)==&quot;string&quot; and pairing~=&quot;&quot;,&quot;Takko returned no pairing token&quot;)
+  local response=request(&quot;/connect&quot;,{name=game.Name,protocolVersion=2,capabilities={&quot;apply&quot;,&quot;test&quot;}},candidate,pairing)
+  assert(type(response.id)==&quot;string&quot; and response.id~=&quot;&quot;, &quot;Takko returned no Studio session&quot;)
+  return response
+ end)
+ if ok then url=candidate;token=pairing;session=result.id;key.Text=&quot;&quot;;connect.Text=&quot;Reconnect to Takko&quot;;status.Text=&quot;Connected: &quot;..game.Name..&quot;. Select this session in Takko&apos;s Studio panel, then apply your completed build.&quot;
+ else status.Text=&quot;Could not connect. Confirm Takko is running at &quot;..candidate..&quot;. &quot;..tostring(result) end
+ connecting=false
+end
+connect.MouseButton1Click:Connect(connectToForge)
+local function executePending()
+ if busy or connecting or polling or not pending then return end
+ busy=true;execute.Active=false
+ local op=pending
+ local freshOk,fresh=pcall(function() return request(&quot;/&quot;..session..&quot;/operations/&quot;..op.id) end)
+ if not freshOk then busy=false;execute.Active=true;status.Text=&quot;Could not confirm the operation. No changes were made. &quot;..tostring(fresh);return end
+ if fresh.state~=&quot;dispatched&quot; or fresh.dispatchId~=op.dispatchId or fresh.artifactHash~=op.artifactHash or fresh.revision~=op.revision or DateTime.now().UnixTimestampMillis&gt;=fresh.expiresAt then
+  local report={operationId=op.id,dispatchId=op.dispatchId,revision=op.revision,artifactHash=op.artifactHash,executionStatus=&quot;not_started&quot;,ok=false,checks={},logs={&quot;Plugin confirmed this command was never executed: authorization or deadline changed before execution.&quot;}}
+  completed[op.id]=report;outbox=report
+  pending=nil;busy=false;execute.Text=&quot;No queued operation&quot;;status.Text=&quot;This operation was not executed. Sending that confirmation to Takko.&quot;;return
+ end
+ pending=nil;execute.Text=&quot;Running…&quot;;status.Text=&quot;Running &quot;..op.kind..&quot;. Studio may enter play mode.&quot;
+ local ok,result=pcall(function() return op.kind==&quot;apply&quot; and apply(op) or runTests(op) end)
+ local passed=ok
+ if ok then for _,check in result.checks or {} do if check.status~=&quot;passed&quot; then passed=false end end end
+ if op.kind==&quot;test&quot; and ok and #(result.checks or {})==0 then passed=false end
+ local report={operationId=op.id,dispatchId=op.dispatchId,revision=op.revision,artifactHash=op.artifactHash,ok=passed,checks=ok and result.checks or {},logs=ok and result.logs or {tostring(result)}}
+ completed[op.id]=report;outbox=report;busy=false;status.Text=ok and &quot;Operation completed. Sending observations to Takko.&quot; or tostring(result);execute.Text=&quot;No queued operation&quot;
+end
+execute.MouseButton1Click:Connect(executePending)
+plugin.Unloading:Connect(function() alive=false;for _,connections in watchers do for _,connection in connections do connection:Disconnect() end end end)
+local function pollOnce()
+  if connecting or polling or not session then return end
+  polling=true
+  if session and busy then
+   -- Keep the session visible while ExecutePlayModeAsync yields for tests.
+   pcall(function() request(&quot;/&quot;..session..&quot;/poll&quot;) end)
+  elseif session then
+   local ok,err=pcall(function()
+    if outbox then request(&quot;/&quot;..session..&quot;/result&quot;,outbox);outbox=nil end
+    local reply=request(&quot;/&quot;..session..&quot;/poll&quot;)
+    if reply.operation then
+     if completed[reply.operation.id] then outbox=completed[reply.operation.id]
+     else
+      assert(reply.operation.protocolVersion==2 and type(reply.operation.dispatchId)==&quot;string&quot;, &quot;Update Takko before executing this operation&quot;)
+      pending=reply.operation;execute.Text=pending.kind==&quot;apply&quot; and &quot;Apply queued generation&quot; or &quot;Run queued acceptance tests&quot;;execute.Active=true
+     end
+    elseif not pending then execute.Text=&quot;No queued operation&quot;;execute.Active=false
+    end
+   end)
+   if not ok then status.Text=&quot;Connection interrupted; results will retry. &quot;..tostring(err) end
+  end
+  polling=false
+end
+task.spawn(function()
+ while alive do
+  pollOnce();task.wait(2)
+ end
+end)
+</ProtectedString></Properties></Item></roblox>

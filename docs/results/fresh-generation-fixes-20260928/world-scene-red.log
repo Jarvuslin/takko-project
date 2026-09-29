@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/world-scene-check.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world-scene-check.test.ts [ tests/world-scene-check.test.ts ]
+Error: Cannot find module '../src/generation/world-scene-check' imported from D:/RobloxProjects/Roblox Gen/tests/world-scene-check.test.ts
+ ❯ tests/world-scene-check.test.ts:3:1
+      1| import fs from "node:fs";
+      2| import { expect, it } from "vitest";
+      3| import { checkWorldScene } from "../src/generation/world-scene-check";
+       | ^
+      4| import type { Project } from "../src/generation/schema";
+      5| const read = (file: string): Project => JSON.parse(fs.readFileSync(fil…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:38:24
+   Duration  268ms (worker 95%, environment 5%)
+

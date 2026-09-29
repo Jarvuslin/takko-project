@@ -1,0 +1,243 @@
+timestamp=2026-09-27T18:56:27.509Z level=INFO run=f98c0af1 message="creating instance" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI"
+timestamp=2026-09-27T18:56:27.511Z level=INFO run=f98c0af1 message=fromDirectory directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI"
+timestamp=2026-09-27T18:56:27.529Z level=INFO run=f98c0af1 message=bootstrapping directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI"
+timestamp=2026-09-27T18:56:27.536Z level=INFO run=f98c0af1 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T18:56:27.541Z level=INFO run=f98c0af1 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T18:56:27.542Z level=INFO run=f98c0af1 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T18:56:27.740Z level=DEBUG run=f98c0af1 message="loaded custom config from OPENCODE_CONFIG_CONTENT"
+timestamp=2026-09-27T18:56:27.820Z level=INFO run=f98c0af1 message="all LSPs are disabled"
+timestamp=2026-09-27T18:56:27.822Z level=INFO run=f98c0af1 message="all formatters are disabled"
+timestamp=2026-09-27T18:56:27.822Z level=INFO run=f98c0af1 message=init
+timestamp=2026-09-27T18:56:28.055Z level=INFO run=f98c0af1 message=created id=ses_f1bc63468ffeuSjXYLNGdaujOE slug=neon-wolf version=1.18.31 projectID=global directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI" path=Users/7474g/AppData/Local/Temp/takko-opencode-aCnlQI workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790535388055 time.updated=1790535388055
+timestamp=2026-09-27T18:56:28.085Z level=INFO run=f98c0af1 message="event connected"
+timestamp=2026-09-27T18:56:28.778Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=0
+timestamp=2026-09-27T18:56:28.813Z level=INFO run=f98c0af1 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T18:56:29.067Z level=INFO run=f98c0af1 message="watcher backend" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI" platform=win32 backend=windows
+timestamp=2026-09-27T18:56:29.079Z level=INFO run=f98c0af1 message="project copy refresh started" projectID=global
+timestamp=2026-09-27T18:56:29.081Z level=INFO run=f98c0af1 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-09-27T18:56:29.387Z level=INFO run=f98c0af1 message="booting location services" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-aCnlQI" workspaceID=undefined
+timestamp=2026-09-27T18:56:29.617Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e439ce6e001ogGOCaOb1XZQvS
+timestamp=2026-09-27T18:56:29.619Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:29.629Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:34.341Z level=INFO run=f98c0af1 message=evaluated permission=takko_manifest pattern=* action.permission=takko_manifest action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:35.252Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=1
+timestamp=2026-09-27T18:56:35.337Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e439e7b80014ROl129C7BeHz9
+timestamp=2026-09-27T18:56:35.338Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:35.354Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:39.948Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:40.098Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=2
+timestamp=2026-09-27T18:56:40.138Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e439faa5001jiZtZ7XnpwDHhi
+timestamp=2026-09-27T18:56:40.139Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:40.140Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:44.824Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:44.973Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=3
+timestamp=2026-09-27T18:56:45.023Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a0db0001TsrkOeuaCs2L3G
+timestamp=2026-09-27T18:56:45.025Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:45.036Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:49.607Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:49.786Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=4
+timestamp=2026-09-27T18:56:49.838Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a207d001lqzF0gySAx0fUz
+timestamp=2026-09-27T18:56:49.841Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:49.859Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:53.868Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:54.021Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=5
+timestamp=2026-09-27T18:56:54.074Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a3109001E1U5IWfYhNbLMS
+timestamp=2026-09-27T18:56:54.076Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:54.089Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:56:58.194Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:56:58.325Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=6
+timestamp=2026-09-27T18:56:58.360Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a41d7001bjNDdt0aSVJDhL
+timestamp=2026-09-27T18:56:58.361Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:56:58.362Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:04.623Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:04.805Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=7
+timestamp=2026-09-27T18:57:04.848Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a5b27001HkPslD0KZ84diM
+timestamp=2026-09-27T18:57:04.849Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:04.859Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:09.943Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:10.043Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=8
+timestamp=2026-09-27T18:57:10.069Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a6f9d001zw9L6Js1SHejX5
+timestamp=2026-09-27T18:57:10.070Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:10.072Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:18.690Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:18.847Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=9
+timestamp=2026-09-27T18:57:18.868Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43a92020011KSssoV0Gvf7Ky
+timestamp=2026-09-27T18:57:18.870Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:18.872Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:24.102Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:24.276Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=10
+timestamp=2026-09-27T18:57:24.304Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43aa737001n6V1PSiYQju5Wi
+timestamp=2026-09-27T18:57:24.305Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:24.313Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:34.014Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:34.036Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:34.058Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:36.269Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=11
+timestamp=2026-09-27T18:57:36.334Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43ad614001C45yQq4RlhRQ2S
+timestamp=2026-09-27T18:57:36.335Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:36.338Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:43.412Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:43.490Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:43.634Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=12
+timestamp=2026-09-27T18:57:43.676Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43af2d6001WivLYJpkc7yzVy
+timestamp=2026-09-27T18:57:43.678Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:43.681Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T18:57:49.296Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:49.313Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T18:57:49.641Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=13
+timestamp=2026-09-27T18:57:49.685Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43b0a4f001Mtp8rOUc5JKmZ8
+timestamp=2026-09-27T18:57:49.687Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T18:57:49.690Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:00:23.502Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:00:24.272Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=14
+timestamp=2026-09-27T19:00:24.298Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43d6667001UZWpKUzOcei34O
+timestamp=2026-09-27T19:00:24.301Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=compaction mode=primary
+timestamp=2026-09-27T19:00:24.323Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:00:55.383Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=15
+timestamp=2026-09-27T19:00:55.401Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43ddfda001mPzEawtVxyQM41
+timestamp=2026-09-27T19:00:55.402Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:00:55.404Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:09.147Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:09.226Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:09.373Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=16
+timestamp=2026-09-27T19:01:09.416Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43e1681001xkQrUd94qtWwwB
+timestamp=2026-09-27T19:01:09.417Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:09.418Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:15.761Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:15.876Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:16.093Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=17
+timestamp=2026-09-27T19:01:16.157Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43e30c20017eXj3C9ZvbIISj
+timestamp=2026-09-27T19:01:16.158Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:16.161Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:23.088Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:23.154Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:23.261Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=18
+timestamp=2026-09-27T19:01:23.289Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43e4cc2001FSIa3VttxvMSVv
+timestamp=2026-09-27T19:01:23.290Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:23.300Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:31.559Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:32.134Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:32.847Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=19
+timestamp=2026-09-27T19:01:32.894Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43e7234001Y5zkpFezbfPePh
+timestamp=2026-09-27T19:01:32.895Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:32.896Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:38.320Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:38.333Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:38.495Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=20
+timestamp=2026-09-27T19:01:38.536Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43e8844001kikYFxMan1IWYl
+timestamp=2026-09-27T19:01:38.537Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:38.539Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:44.674Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:44.690Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:44.847Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=21
+timestamp=2026-09-27T19:01:44.890Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43ea113001XRNGc5bwysm5nu
+timestamp=2026-09-27T19:01:44.891Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:44.893Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:01:50.798Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:50.854Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:01:50.968Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=22
+timestamp=2026-09-27T19:01:51.004Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43eb8fc001C4KPmONJGv3xQg
+timestamp=2026-09-27T19:01:51.005Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:01:51.007Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:02:38.488Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:02:39.550Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=23
+timestamp=2026-09-27T19:02:39.571Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43f76c4001y0GYgZeBYFEMfx
+timestamp=2026-09-27T19:02:39.572Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:02:39.575Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:03:05.435Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:03:06.294Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=24
+timestamp=2026-09-27T19:03:06.326Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43fdf3c001ku07wHmZh06TX6
+timestamp=2026-09-27T19:03:06.327Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:03:06.338Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:03:09.396Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T19:03:10.042Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T19:03:10.912Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=25
+timestamp=2026-09-27T19:03:10.954Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e43ff145001r2OuAqd1GUNwLF
+timestamp=2026-09-27T19:03:10.955Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:03:10.957Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:03:15.326Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:03:15.925Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:03:16.042Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=26
+timestamp=2026-09-27T19:03:16.060Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e440055a001JewZTsH4UFLD2U
+timestamp=2026-09-27T19:03:16.061Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=compaction mode=primary
+timestamp=2026-09-27T19:03:16.080Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:03:59.956Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=27
+timestamp=2026-09-27T19:03:59.992Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e440b0db0013oAjduhiJjLEWr
+timestamp=2026-09-27T19:03:59.995Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:03:59.997Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:04:27.167Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:27.302Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:27.415Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=28
+timestamp=2026-09-27T19:04:27.458Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e4411c1b0015vRizOrXMjskU3
+timestamp=2026-09-27T19:04:27.459Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:04:27.461Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:04:35.610Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:35.621Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:35.778Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=29
+timestamp=2026-09-27T19:04:35.805Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e4413cc8001qY06I0h1f2Qot9
+timestamp=2026-09-27T19:04:35.806Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:04:35.807Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:04:41.504Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:41.563Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:41.670Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=30
+timestamp=2026-09-27T19:04:41.699Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e44153cb001zuXBlgdpSAkSF2
+timestamp=2026-09-27T19:04:41.700Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:04:41.701Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:04:48.170Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:48.181Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:48.316Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=31
+timestamp=2026-09-27T19:04:48.333Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e4416dc2001zrrayIKQVudqH2
+timestamp=2026-09-27T19:04:48.333Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:04:48.335Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:04:57.838Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:58.553Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:04:58.671Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=32
+timestamp=2026-09-27T19:04:58.721Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e44196350013gi806jd0nMDLn
+timestamp=2026-09-27T19:04:58.722Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:04:58.723Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:05:09.886Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:05:09.954Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:05:10.104Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=33
+timestamp=2026-09-27T19:05:10.138Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e441c2e0001zsH3uYJo19lvwo
+timestamp=2026-09-27T19:05:10.140Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:05:10.151Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:05:23.825Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:05:23.948Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=34
+timestamp=2026-09-27T19:05:23.962Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e441f8f8001HoxXPG6S8Dtp33
+timestamp=2026-09-27T19:05:23.963Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=compaction mode=primary
+timestamp=2026-09-27T19:05:23.968Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:06:11.177Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=35
+timestamp=2026-09-27T19:06:11.201Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e442b171001itqVLJK5c08XdB
+timestamp=2026-09-27T19:06:11.202Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:06:11.205Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:07:37.592Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:05.856Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:06.753Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=36
+timestamp=2026-09-27T19:08:06.804Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e44474ea00138UM2set7eRTGT
+timestamp=2026-09-27T19:08:06.807Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:08:06.810Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:08:09.802Z level=INFO run=f98c0af1 message=evaluated permission=takko_task_context pattern=* action.permission=takko_task_context action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:10.521Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=37
+timestamp=2026-09-27T19:08:10.579Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e44483a3001p5VeI0w3Jdk17w
+timestamp=2026-09-27T19:08:10.580Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:08:10.591Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:08:15.553Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:15.762Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=38
+timestamp=2026-09-27T19:08:15.812Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e444981a0019LEJ5wPpxekRDo
+timestamp=2026-09-27T19:08:15.813Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:08:15.824Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:08:20.890Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:21.057Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=39
+timestamp=2026-09-27T19:08:21.105Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e444acca001a3jBgwrvlQGW9n
+timestamp=2026-09-27T19:08:21.105Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:08:21.107Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:08:25.707Z level=INFO run=f98c0af1 message=evaluated permission=takko_read_output pattern=* action.permission=takko_read_output action.action=allow action.pattern=*
+timestamp=2026-09-27T19:08:25.939Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=40
+timestamp=2026-09-27T19:08:25.981Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e444bfdd001kYR2H8wrsUvoVX
+timestamp=2026-09-27T19:08:25.982Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:08:25.984Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent
+timestamp=2026-09-27T19:09:20.011Z level=INFO run=f98c0af1 message=evaluated permission=takko_submit_task pattern=* action.permission=takko_submit_task action.action=allow action.pattern=*
+timestamp=2026-09-27T19:09:20.674Z level=INFO run=f98c0af1 message=loop session.id=ses_f1bc63468ffeuSjXYLNGdaujOE step=41
+timestamp=2026-09-27T19:09:20.750Z level=INFO run=f98c0af1 message=process session.id=ses_f1bc63468ffeuSjXYLNGdaujOE messageID=msg_0e44595aa001qDApHC77Dv6XRl
+timestamp=2026-09-27T19:09:20.752Z level=INFO run=f98c0af1 message=stream providerID=takko modelID=agent session.id=ses_f1bc63468ffeuSjXYLNGdaujOE small=false agent=build mode=primary
+timestamp=2026-09-27T19:09:20.755Z level=INFO run=f98c0af1 message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent

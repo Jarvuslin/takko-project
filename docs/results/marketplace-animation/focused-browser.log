@@ -1,0 +1,32 @@
+[WebServer] (node:40536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:33456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:35180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:11332) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.8s)
+  ok 2 [desktop] › tests\browser\chat-architecture.spec.ts:81:1 › chat retains message drafts and opens technical details without losing them (2.7s)
+  ok 3 [desktop] › tests\browser\chat-architecture.spec.ts:124:1 › actual imported keyframes move the inline rig and survive refresh (4.9s)
+(node:39800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [desktop] › tests\browser\marketplace-animation.spec.ts:4:1 › dropped animation pack opens all entries, switches real WebGL clips and survives reload (2.7s)
+(node:34936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 [mobile] › tests\browser\chat-architecture.spec.ts:5:1 › reviewed node connections persist and do not dispatch generation (3.4s)
+  ok 6 [mobile] › tests\browser\chat-architecture.spec.ts:81:1 › chat retains message drafts and opens technical details without losing them (2.7s)
+  ok 7 [mobile] › tests\browser\chat-architecture.spec.ts:124:1 › actual imported keyframes move the inline rig and survive refresh (4.7s)
+(node:38112) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 8 [mobile] › tests\browser\marketplace-animation.spec.ts:4:1 › dropped animation pack opens all entries, switches real WebGL clips and survives reload (2.6s)
+
+  8 passed (39.2s)

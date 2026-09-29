@@ -1,0 +1,110 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/concept-reliability.test.ts (6 tests | 5 failed) 237ms
+   × stops invalid concepts after one dispatch and retains the actual field error 96ms
+   × honors a one-attempt policy for planning independently of repairLimit 35ms
+   × runs the dispatch gate before transport and adds no charge for a known local refusal 29ms
+   × retains a legacy proposal for inspection but does not equate no questions with readiness 25ms
+   × rejects an answered question with unchanged wording under a new ID 27ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/concept-reliability.test.ts > stops invalid concepts after one dispatch and retains the actual field error
+AssertionError: expected [ { model: 'fixture', …(3) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/concept-reliability.test.ts:39:17
+     37|   engine.start(p.id, 1, "concept");
+     38|   const saved = await engine.wait(p.id);
+     39|   expect(calls).toHaveLength(1);
+       |                 ^
+     40|   expect(saved.error).toMatch(/title/);
+     41|   expect(saved.error).not.toMatch(/connection/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/concept-reliability.test.ts > honors a one-attempt policy for planning independently of repairLimit
+AssertionError: expected [ { model: 'fixture', …(3) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/concept-reliability.test.ts:49:17
+     47|   engine.start(p.id, 1, "plan");
+     48|   const saved = await engine.wait(p.id);
+     49|   expect(calls).toHaveLength(1);
+       |                 ^
+     50|   expect(saved.stage).toBe("failed");
+     51|   expect(saved.failure?.attempts).toBe(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/concept-reliability.test.ts > runs the dispatch gate before transport and adds no charge for a known local refusal
+AssertionError: expected [ { model: 'fixture', …(3) } ] to have a length of +0 but got 1
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/concept-reliability.test.ts:60:17
+     58|   engine.start(p.id, 1, "concept");
+     59|   const saved = await engine.wait(p.id);
+     60|   expect(calls).toHaveLength(0);
+       |                 ^
+     61|   expect(saved.charges).toHaveLength(0);
+     62|   expect(saved.reservedMicros).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/concept-reliability.test.ts > retains a legacy proposal for inspection but does not equate no questions with readiness
+AssertionError: expected undefined to be 'needs_revision' // Object.is equality
+
+- Expected:
+"needs_revision"
+
++ Received:
+undefined
+
+ ❯ tests/concept-reliability.test.ts:81:45
+     79|   const saved = await engine.wait(p.id);
+     80|   expect(saved.concept?.playerExperience).toBe(legacy.playerExperience…
+     81|   expect((saved.concept as any)?.readiness).toBe("needs_revision");
+       |                                             ^
+     82|   expect(() => engine.start(p.id, 1, "plan")).toThrow(/concept/i);
+     83| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/concept-reliability.test.ts > rejects an answered question with unchanged wording under a new ID
+AssertionError: expected 'clarification' to be 'failed' // Object.is equality
+
+Expected: "failed"
+Received: "clarification"
+
+ ❯ tests/concept-reliability.test.ts:95:23
+     93|   engine.start(p.id, 1, "concept");
+     94|   const saved = await engine.wait(p.id);
+     95|   expect(saved.stage).toBe("failed");
+       |                       ^
+     96|   expect(saved.error).toMatch(/answered/i);
+     97|   expect(calls).toHaveLength(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 1 passed (6)
+   Start at  18:46:15
+   Duration  1.41s (transform 53%, import 28%, tests 19%)
+

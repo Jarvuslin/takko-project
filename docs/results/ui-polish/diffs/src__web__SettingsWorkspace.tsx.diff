@@ -1,0 +1,17 @@
+diff --git "a/.forge\\ui-polish-before\\src\\web\\SettingsWorkspace.tsx" "b/src\\web\\SettingsWorkspace.tsx"
+index 8e374b8..035eeb1 100644
+--- "a/.forge\\ui-polish-before\\src\\web\\SettingsWorkspace.tsx"
++++ "b/src\\web\\SettingsWorkspace.tsx"
+@@ -73,7 +73,11 @@ export function SettingsDialog({
+           event.currentTarget.querySelectorAll<HTMLElement>(
+             "button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,a[href]",
+           ),
+-        ).filter((element) => element.getClientRects().length > 0);
++        ).filter(
++          (element) =>
++            !element.matches(":disabled") &&
++            element.getClientRects().length > 0,
++        );
+         const first = items[0],
+           last = items.at(-1);
+         if (event.shiftKey && document.activeElement === first) {

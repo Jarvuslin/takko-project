@@ -4,7 +4,7 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 /** AST check for direct protected-source writes; not a sandbox or a full analyzer. */
-export function assertNoRuntimeSourceWrites(source: string) {
+export function runtimeSourceAst(source: string): unknown {
   const executable = path.resolve(
     process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
     "luau-ast" + (process.platform === "win32" ? ".exe" : ""),
@@ -33,36 +33,39 @@ export function assertNoRuntimeSourceWrites(source: string) {
     } catch {
       throw Error("Runtime source could not be parsed by Luau AST checker");
     }
-    const pending: unknown[] = [ast];
-    let visited = 0;
-    while (pending.length) {
-      if (++visited > 500000) throw Error("Runtime source AST exceeds bound");
-      const node: any = pending.pop();
-      if (!node || typeof node !== "object") continue;
-      if (
-        node.type === "AstStatAssign" ||
-        node.type === "AstStatCompoundAssign"
-      ) {
-        for (const target of node.vars ?? [node.var]) {
-          if (
-            (target?.type === "AstExprIndexName" &&
-              target.index === "Source") ||
-            (target?.type === "AstExprIndexExpr" &&
-              target.index?.type === "AstExprConstantString" &&
-              target.index.value === "Source")
-          )
-            throw Error(
-              "Runtime assignment to protected Source is unsupported at " +
-                target.location +
-                ". Create a real script with addSources during Edit; do not write script source during gameplay.",
-            );
-        }
-      }
-      for (const value of Object.values(node))
-        if (Array.isArray(value)) pending.push(...value);
-        else if (value && typeof value === "object") pending.push(value);
-    }
+    return ast;
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
+  }
+}
+
+export function assertNoRuntimeSourceWrites(source: string) {
+  const pending: unknown[] = [runtimeSourceAst(source)];
+  let visited = 0;
+  while (pending.length) {
+    if (++visited > 500000) throw Error("Runtime source AST exceeds bound");
+    const node: any = pending.pop();
+    if (!node || typeof node !== "object") continue;
+    if (
+      node.type === "AstStatAssign" ||
+      node.type === "AstStatCompoundAssign"
+    ) {
+      for (const target of node.vars ?? [node.var]) {
+        if (
+          (target?.type === "AstExprIndexName" && target.index === "Source") ||
+          (target?.type === "AstExprIndexExpr" &&
+            target.index?.type === "AstExprConstantString" &&
+            target.index.value === "Source")
+        )
+          throw Error(
+            "Runtime assignment to protected Source is unsupported at " +
+              target.location +
+              ". Create a real script with addSources during Edit; do not write script source during gameplay.",
+          );
+      }
+    }
+    for (const value of Object.values(node))
+      if (Array.isArray(value)) pending.push(...value);
+      else if (value && typeof value === "object") pending.push(value);
   }
 }

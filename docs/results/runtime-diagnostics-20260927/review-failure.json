@@ -1,0 +1,11 @@
+{
+  "phase": "reviewer",
+  "model": "anthropic/claude-sonnet-5",
+  "incomplete": true,
+  "outputTokens": 32768,
+  "reasoningTokens": 28793,
+  "maxOutputTokens": 32768,
+  "error": "Output truncated at the 32,768-token reply limit. Open Models to adjust Maximum reply size or reasoning effort before trying again.",
+  "at": "2026-09-27T19:15:02.007Z",
+  "responseBytes": 10015
+}

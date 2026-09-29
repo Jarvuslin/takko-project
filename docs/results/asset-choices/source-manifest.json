@@ -1,0 +1,272 @@
+[
+  {
+    "priorSnapshot": false,
+    "sha256": "A489AAA90EA2EF137F5BFF6AFFF0EE5BF6E84FA2B9C2ABADA1A8F10AA5D975A8",
+    "path": "desktop/build.mjs"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "17499DDD2FC589F92A9885F6CD421B2E220BFD87B393C7A366C4F7E751C13E41",
+    "path": "desktop/main.mjs"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "8106EFC071D174968FD8F766E0DF279BD9B1F3F283CDFF4B7458DAA03A5A32D6",
+    "path": "desktop/policy.mjs"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "5EDDD6B0B88044C188FCBB11DC98CC8BC9BF95DF5FFA917E4AF765800869F0E7",
+    "path": "desktop/service-environment.mjs"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "515999FA88F0CA173FE68BBB5D6F9C1A5893007B96DB6EDD7AFC1AFAB5499CDA",
+    "path": "desktop/tests/lifecycle.test.mjs"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "1F48C108F1A6DA84EBF444640EA6E9E97F7A1D4DB6A2869C24B4986B39264A15",
+    "path": "playwright.config.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "7DE07C552665E449D9C36C8AEE37AB04EF25504057AA6ABFE9F62BEA030DCAAF",
+    "path": "scripts/browser-test-server.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "9E5CE8C1D8C4634BBEDC46B440D7C090A5048EDE39D229D093FC3EDDFD6B8B2E",
+    "path": "scripts/verify-asset-choices-desktop.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "EA0AD75029F60CE82FA0347ABFA601EB552C8DC45BAD7713F9A58E1E6C9FC3BD",
+    "path": "scripts/verify-asset-choices-live.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "A9E2F4BA326FB34C8F6A09F7EDFCD4CED6A087D0CA837856072F64DA823D2F4B",
+    "path": "src/generation/asset-provenance.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "C6497CB8EFCAA6E8B910727D493ADBCF2B09E6694C80E6E89A7CCE5844FD402B",
+    "path": "src/generation/engine.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "297857859B247DC762338F3AF1D221EEA618706D57A0EEACD2D0D1847898808C",
+    "path": "src/generation/game-context.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "DC6EADC9EA46520A027733921AE16CFC0A3DC85CA4C5AED6D629682B6CFDA06F",
+    "path": "src/generation/schema.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "CA873EA1D3B126DECDF5ED86EBAC3C1B3FF7D809CE9E53632FD679A6563E0836",
+    "path": "src/generation/validation.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "D782141BE1830481AF2A17933F5C92F7D29F4ED2E0AE376BB6B635243A6119BF",
+    "path": "src/marketplace/approved-adapter.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "29A849A5E6B05CF7A2FC8D71BEF65872995BDD7A3E151516D84458134F522DE7",
+    "path": "src/marketplace/discovery-routes.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "3672D8F773E27FDADFCC0FBDA8736439CD2707A07907F30BFCEAAF95769BFD2F",
+    "path": "src/marketplace/discovery.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "2AE5291BF4A33B6344DB84CF7E78F4B5F5983004CEB64FC98287DFAE2ADC3486",
+    "path": "src/marketplace/library.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "64A5CFAA4A6117041B55ECBFBAD654810065B4C14CE9FBA5852E96F3D0E1EC1D",
+    "path": "src/marketplace/preview.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "BF55DD20031733AC3D07ADE344605C3D28BAEFF9A9FCDA0878A01A98F5D81D46",
+    "path": "src/marketplace/studio.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "714AE37F9DA7EC2529D389B307A5B3138618C7B11DE1ECBB1146063D163A1517",
+    "path": "src/server/app.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "50186AF89828333F8854EFDCDBA658C15BDE98005CE0B407C2487FAEF4D381EA",
+    "path": "src/web/App.tsx"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "7B55F4951EBBD245A19E2D696A209F8DC8E5D4C28F7BC224F905AF57FCCD94E2",
+    "path": "src/web/asset-choices.css"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "69D53C078BD6E0E74C54031C4411E9959D9F74AC36A592E5912AC448D3D35BE2",
+    "path": "src/web/AssetChoices.tsx"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "E760B23A9B1773A53B81F7AA10C85D1F154699342098D362FF16BCF0B7F09DA5",
+    "path": "src/web/AssetModelPreview.tsx"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "2F74C88579787A518F0A5DCDE94CC7174039A5C259F2A289EA527E8503A89DA0",
+    "path": "src/web/GameConcept.tsx"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "BEC03191D88D0DC5ADB98AAB5ED35450DAE80CA17B792E66B69A04553D49E878",
+    "path": "src/web/marketplace-polish.css"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "C74A8A511EEA73E0D874F85B36CDD6138DBD46D1FEA98CA3BAC939F8AF08FE38",
+    "path": "src/web/SettingsWorkspace.tsx"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "A5D7E6BC3DC401B7B44070A06073D4CB4D33B953E0033FBE5FC0906602908FA1",
+    "path": "src/web/studio-connection.css"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "E4C1B51C8D1533F85177C0CD65FBC7AFBE6B82E386CABF336889597ED829FF92",
+    "path": "src/web/StudioConnection.tsx"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "D33530E9FA9313027F7FAACBEACC8FF2223223E58D4E5E1DBF7EDCCFEF4F30A7",
+    "path": "tests/api.test.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "AB17D1BD00DC9B12A31380A2FD8F33D546DD963F4793BB2946B7572F1CB12534",
+    "path": "tests/asset-choices.test.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "EF411CF4A0CB8AD13DAFCF52FE70C780AE46C9C6DD6CB227CB17867F828DBDF2",
+    "path": "tests/browser/asset-choices-fixture.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "5CDE55132F9DE47AE98144C32384B80837F4831D572F14F5211C6AC2365C6B1A",
+    "path": "tests/browser/asset-choices.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "BA3172337A0387C838B53F6148ECEED0580A7111F4701B685E7FECC04DD465BA",
+    "path": "tests/browser/asset-execution.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "B43D7A5C85E7DE545DE584A77BFD249D4516AA79FAB17F25F393B230BE6C6748",
+    "path": "tests/browser/b-foundation.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "3DB94BF1DB098C7D026115ED7787797058816368D18089336B97459D370F62A0",
+    "path": "tests/browser/chat-architecture.spec.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "5FA460E3A3AC8D1259AC91D0E83429FBD1CD5845CB21015348EDC527F9CFFB3F",
+    "path": "tests/browser/concept.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "E71236F2AF28E9625C9583147956E067F085F65F478494107513716A50E6D591",
+    "path": "tests/browser/design-lab.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "6424CB518D64D21450CE0A384AF06EB263F4B182923928CF4B93C72CABB3A3BB",
+    "path": "tests/browser/grok-ui.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "85785364ED2A2368D99B7661969F672B308E9B75D2C154E65C5E1E822BA9AFEA",
+    "path": "tests/browser/integrated-workspace.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "93829418D9A06A3C678819EC90D4E433CA0062DDDC763BE271B92BBCE3F6BE0A",
+    "path": "tests/browser/lemonade-layout.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "0094F8123B8B0467EB7BA430C4DB5C1E2F5F1795B1F347152A35E5670B1F6289",
+    "path": "tests/browser/marketplace-animation.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "7499A5AA0DAEF85AEDA29FFA60265070E267665E362C66008B686DEEF1ADAF50",
+    "path": "tests/browser/marketplace.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "6D362194E0B433411F5069EF9BDE260D2FAF7B9B46B72F9CE366D91ECE5CB02B",
+    "path": "tests/browser/polling.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "46C5A82F3C6A7B10767CC761C3F425D5DEB21E498588994FC310A5285F6159CE",
+    "path": "tests/browser/provider-connections.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "0EF5D22710C8F2ADE7CD9F8C02084A155F9BF6F097D3D0F313C33D2FE5D604B7",
+    "path": "tests/browser/settings-workspace.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "517C68F72F190C05201C1C561E54E363FC5ABA3F97190A2E999E1424B8FF757B",
+    "path": "tests/browser/studio-connection.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "5179D642E0E13BED70BA7C0D2B73956EB8D948F3806FB738D116A4ACACAB61CB",
+    "path": "tests/browser/studio-recovery.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "C6F2AA702ECEBAD8642EC574201659F693578ACE4C93866836A86BD47DFBCBAE",
+    "path": "tests/browser/typography.spec.ts"
+  },
+  {
+    "priorSnapshot": true,
+    "sha256": "2DEE9B2F2AE2360F0ECF501982BAF89B24CFBD707BACB273807A3686F0C76D35",
+    "path": "tests/browser/ui-polish.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "E0B485680BF5085046FC90310A530B1874EF6A99B29422F88E1D4080142EF4BF",
+    "path": "tests/browser/workflow.spec.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "7BE104C1BE8C201F5342827D93800C3E7EA89BB67F8941391791756474612F8E",
+    "path": "tests/browser/workspace-fixture.ts"
+  },
+  {
+    "priorSnapshot": false,
+    "sha256": "316D197C9FCFD7660EDF7618C533C1BD10BB48839ECCB7D60AB99BB101EED6D0",
+    "path": "tests/studio-connection.test.ts"
+  }
+]

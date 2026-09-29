@@ -1,0 +1,21 @@
+diff --git "a/.forge\\ui-polish-before\\desktop\\tests\\lifecycle.test.mjs" "b/desktop\\tests\\lifecycle.test.mjs"
+index 03264f9..8d66425 100644
+--- "a/.forge\\ui-polish-before\\desktop\\tests\\lifecycle.test.mjs"
++++ "b/desktop\\tests\\lifecycle.test.mjs"
+@@ -40,6 +40,16 @@ test("Takko keeps the existing desktop storage and lock location after rebrandin
+   assert.notEqual(desktopDataDirectory(appData), path.join(appData, "Takko"));
+ });
+ 
++test("an explicit isolated workspace does not change the default desktop directory", () => {
++  const appData = path.resolve("user-app-data");
++  const isolated = path.resolve("isolated-ui-verification");
++  assert.equal(desktopDataDirectory(appData, isolated), isolated);
++  assert.equal(
++    desktopDataDirectory(appData, ""),
++    path.join(appData, "Forge Desktop"),
++  );
++});
++
+ test("accepts only nonce-bound readiness from its own child", async () => {
+   const f = fixture();
+   const started = f.supervisor.start();

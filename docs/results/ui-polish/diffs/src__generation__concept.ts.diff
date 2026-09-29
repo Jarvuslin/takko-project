@@ -1,0 +1,15 @@
+diff --git "a/.forge\\ui-polish-before\\src\\generation\\concept.ts" "b/src\\generation\\concept.ts"
+index 2b1207d..098bce0 100644
+--- "a/.forge\\ui-polish-before\\src\\generation\\concept.ts"
++++ "b/src\\generation\\concept.ts"
+@@ -25,7 +25,9 @@ export const conceptSchema = z
+           .object({
+             id: z.string().regex(/^[a-z][a-z0-9_]{0,59}$/),
+             prompt: sentence,
+-            options: z.array(z.string().trim().min(1).max(180)).min(2).max(3),
++            selection: z.enum(["single", "multiple", "text"]).optional(),
++            optional: z.boolean().optional(),
++            options: z.array(z.string().trim().min(1).max(180)).max(5),
+           })
+           .strict(),
+       )

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 2,
+  "id": "d1622b00-21be-47c4-a1a6-728a31626bf0",
+  "name": "Pet Game Direction",
+  "request": "I want to make a pet game, but I am not sure if players should rescue lost pets or battle with them. Help me choose what players actually do before building anything.",
+  "revision": 1,
+  "scope": "Forge_d1622b0021be",
+  "spec": null,
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "clarification",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "5ce0a89d-e791-4c2d-97d0-21aed13048ec",
+      "model": "anthropic/claude-haiku-4.5",
+      "reservedMicros": 14403,
+      "chargedMicros": 3942,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 817,
+      "outputTokens": 625,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-20T19:45:32.580Z"
+    }
+  ],
+  "budgetMicros": 150000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-20T19:45:24.458Z",
+      "message": "Shaping your idea before planning the game."
+    },
+    {
+      "at": "2026-09-20T19:45:24.460Z",
+      "message": "planner: Live trial - Haiku 4.5 / anthropic/claude-haiku-4.5"
+    },
+    {
+      "at": "2026-09-20T19:45:32.585Z",
+      "message": "Choose a direction to finish your game concept."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-20T19:45:24.435Z",
+  "studioEvidence": null,
+  "generation": {
+    "id": "69922631-2197-497f-a0dc-517393fe57c5",
+    "budgetMicros": 150000,
+    "chargeStart": 0,
+    "briefHash": "846a26a920e1f81b1959023efc29aabafaa4b9d8195c36154091b031a089f7f0"
+  },
+  "failure": null,
+  "concept": {
+    "title": "Pet Game Direction",
+    "playerExperience": "Players care for and interact with pets in a way that creates ongoing reasons to return. The core question is whether that interaction centers on finding and caring for pets in distress, or on training and competing with pets you already own. Each direction shapes what players do moment-to-moment and why they stay engaged.",
+    "visualDirection": "A pet-focused interface showing individual animals with clear state (lost/injured versus healthy/trained). Visual feedback should make the chosen interaction—rescue or battle—feel immediate and rewarding. Pet appearance and condition change visibly as a result of player actions.",
+    "assumptions": [
+      "A playable session lasts 5–15 minutes and focuses on one representative interaction, not the full game loop.",
+      "The game world contains multiple pets; the question is how players engage with them, not how many exist.",
+      "Pet state persists between play sessions (pets remember the player; conditions improve or worsen over time)."
+    ],
+    "questions": [
+      {
+        "id": "core_interaction",
+        "prompt": "Do you want players to primarily discover and restore lost or injured pets to health, or to train and test pets they bond with in competitive challenges?",
+        "options": [
+          "Rescue: find distressed pets, heal them, reunite them with owners or sanctuary",
+          "Battle: train owned pets, level them up, compete in turn-based or real-time contests"
+        ]
+      },
+      {
+        "id": "progression_motivation",
+        "prompt": "What drives players to return—emotional attachment (watching a rescued pet recover), or mastery and achievement (training a pet to win)?",
+        "options": [
+          "Care and recovery: seeing rescued pets improve gives satisfaction; players bond emotionally",
+          "Competition and growth: winning matches or unlocking new pet abilities feels rewarding",
+          "Hybrid: both emotional connection and competitive progression matter equally"
+        ]
+      }
+    ],
+    "firstPlaytest": {
+      "goal": "Verify that one representative interaction (rescue or battle) is clear, takes ~5 minutes, and leaves the player wanting to repeat it.",
+      "steps": [
+        "Set up one pet in a starting state (lost/injured, or untrained and weak).",
+        "Guide the player through one full interaction: rescue-and-heal, or battle-with-training.",
+        "Observe whether the player understands what changed and why it matters."
+      ],
+      "expected": "Player completes the interaction, can explain what the pet's state was before and after, and expresses interest in doing it again with a different pet or harder challenge."
+    },
+    "revision": 1
+  },
+  "research": null,
+  "assetPipeline": null,
+  "visualEvidence": null
+}

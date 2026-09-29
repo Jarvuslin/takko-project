@@ -1,0 +1,25 @@
+{
+  "kind": "Composite free regression evidence, not a real generation",
+  "paidCalls": 0,
+  "pinnedCli": {
+    "version": "1.18.31",
+    "log": "cli-replay-final.log",
+    "runs": ["opencode-fighting-live-20260924", "opencode-minimal-fighting-20260925", "opencode-step3-live-20260925"],
+    "actualProducerConsumed": "OpenCode host task_context output",
+    "proves": ["baseplate context", "lighting guidance", "real tool dispatch and submission", "scene-check results on historical geometry", "explicit closed scope retained"],
+    "doesNotProve": ["model quality", "new asset search", "native game behavior"]
+  },
+  "freshProposal": {
+    "artifact": "fresh-proposal-replays-final.json",
+    "runs": ["opencode-fighting-live-20260924", "opencode-step3-live-20260925"],
+    "actualProducerConsumed": "Engine proposal orchestration consumes the saved real model proposal through an offline transport",
+    "proves": ["questions are saved as unresolved before approval", "baseplate and light context sent", "approval refuses unanswered consequential questions"]
+  },
+  "assetSelection": {
+    "tests": "tests/asset-choices.test.ts, leaves an unresolved real multi-clip pack unselected",
+    "fixtures": ["captured-pack-12061946559.json", "captured-pack-77935648543779.json"],
+    "actualProducerConsumed": "Offline search-assets HTTP route and inspected pack producer",
+    "proves": ["no selected asset or clip when relevance does not identify one", "preview choices remain available", "proposal does not become approved"],
+    "boundary": "These API regressions test selection separately. The pinned CLI runs begin with historical approved selections and do not rediscover them."
+  }
+}

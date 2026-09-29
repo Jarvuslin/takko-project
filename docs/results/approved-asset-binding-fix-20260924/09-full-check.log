@@ -1,0 +1,103 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run lint:css && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/component-media.test.ts (21 tests | 4 failed) 1291ms
+   ❯ adapter-owned embedded audio discovery (mock native transport) (5)
+     × rejects forged refs, non-Audio needs, stale files and canceled calls without native work 164ms
+     × registers exact candidates through normal inspect without bypassing audio capture or Edit guards 150ms
+     × keeps immutable registration, need-scoped IDs and original provenance across repeated discovery and search 163ms
+     × preserves first exact provenance when a second prepared component contains the same audio 146ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/component-media.test.ts > adapter-owned embedded audio discovery (mock native transport) > rejects forged refs, non-Audio needs, stale files and canceled calls without native work
+AssertionError: expected StudioAssetError: Current adapter prepare… { …(4) } to match object { message: StringMatching{…}, …(2) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+- {
++ StudioAssetError {
+    "effects": "none",
+-   "message": StringMatching /identity mismatch/,
+    "receipts": [
+-     {
++     ObjectContaining {
+        "operation": "component_audio_discovery_intent",
+      },
+    ],
+  }
+
+ ❯ tests/component-media.test.ts:373:6
+    371|     await expect(
+    372|       f.adapter.discoverComponentAudio(audioNeed, f.component, signal(…
+    373|     ).rejects.toMatchObject({
+       |      ^
+    374|       message: expect.stringMatching(/identity mismatch/),
+    375|       effects: "none",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/component-media.test.ts > adapter-owned embedded audio discovery (mock native transport) > registers exact candidates through normal inspect without bypassing audio capture or Edit guards
+StudioAssetError: Current adapter prepared and cleaned component required for audio discovery
+ ❯ src/generation/studio-asset-adapter.ts:2060:15
+    2058|         return { candidates, receipts };
+    2059|       } catch (error) {
+    2060|         throw new StudioAssetError(
+       |               ^
+    2061|           error instanceof Error ? error.message : String(error),
+    2062|           receipts,
+ ❯ StudioAssetAdapter.exclusive src/generation/studio-asset-adapter.ts:573:20
+ ❯ StudioAssetAdapter.discoverComponentAudio src/generation/studio-asset-adapter.ts:1994:17
+ ❯ tests/component-media.test.ts:387:44
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/component-media.test.ts > adapter-owned embedded audio discovery (mock native transport) > keeps immutable registration, need-scoped IDs and original provenance across repeated discovery and search
+StudioAssetError: Current adapter prepared and cleaned component required for audio discovery
+ ❯ src/generation/studio-asset-adapter.ts:2060:15
+    2058|         return { candidates, receipts };
+    2059|       } catch (error) {
+    2060|         throw new StudioAssetError(
+       |               ^
+    2061|           error instanceof Error ? error.message : String(error),
+    2062|           receipts,
+ ❯ StudioAssetAdapter.exclusive src/generation/studio-asset-adapter.ts:573:20
+ ❯ StudioAssetAdapter.discoverComponentAudio src/generation/studio-asset-adapter.ts:1994:17
+ ❯ tests/component-media.test.ts:427:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/component-media.test.ts > adapter-owned embedded audio discovery (mock native transport) > preserves first exact provenance when a second prepared component contains the same audio
+StudioAssetError: Current adapter prepared and cleaned component required for audio discovery
+ ❯ src/generation/studio-asset-adapter.ts:2060:15
+    2058|         return { candidates, receipts };
+    2059|       } catch (error) {
+    2060|         throw new StudioAssetError(
+       |               ^
+    2061|           error instanceof Error ? error.message : String(error),
+    2062|           receipts,
+ ❯ StudioAssetAdapter.exclusive src/generation/studio-asset-adapter.ts:573:20
+ ❯ StudioAssetAdapter.discoverComponentAudio src/generation/studio-asset-adapter.ts:1994:17
+ ❯ tests/component-media.test.ts:459:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed | 99 passed (100)
+      Tests  4 failed | 1549 passed (1553)
+   Start at  21:25:04
+   Duration  60.86s (tests 78%, import 19%, transform 3%)
+
+    Isolate  100 workers spawned · ~137ms startup each (spawn + environment, per file)
+             at least ~6.70s faster with isolate: false — reuses workers across files instead of one per file
+

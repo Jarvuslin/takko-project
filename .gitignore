@@ -24,3 +24,11 @@ coverage/
 *.dpapi
 .DS_Store
 Thumbs.db
+
+# Bulky run artifacts stay on disk, out of git: screen recordings, Playwright
+# traces and npm caches copied into evidence folders.
+docs/results/**/*.webm
+docs/results/**/trace.zip
+docs/results/**/npm-cache/
+docs/results/**/localappdata/
+*.rbxlx.lock

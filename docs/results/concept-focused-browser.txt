@@ -1,0 +1,21 @@
+[WebServer] (node:36312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:40660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:18576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:36160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\concept.spec.ts:27:1 › concept choices, explicit delegation, reload and planning handoff (8.1s)
+  ok 2 [desktop] › tests\browser\concept.spec.ts:54:1 › custom answers are retained and edited requests cannot use a stale concept (5.1s)
+  ok 3 [desktop] › tests\browser\concept.spec.ts:68:1 › older running servers retain direct planning without offering an unavailable action (285ms)
+(node:17192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 4 [mobile] › tests\browser\concept.spec.ts:27:1 › concept choices, explicit delegation, reload and planning handoff (8.0s)
+  ok 5 [mobile] › tests\browser\concept.spec.ts:54:1 › custom answers are retained and edited requests cannot use a stale concept (3.4s)
+  ok 6 [mobile] › tests\browser\concept.spec.ts:68:1 › older running servers retain direct planning without offering an unavailable action (302ms)
+
+  6 passed (34.4s)

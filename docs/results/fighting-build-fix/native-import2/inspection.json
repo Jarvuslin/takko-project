@@ -1,0 +1,501 @@
+{
+  "candidate": {
+    "id": "1245720733",
+    "name": "Training Dummy",
+    "kind": "Model",
+    "creator": "Xtrah962",
+    "sourceUrl": "https://create.roblox.com/store/asset/1245720733",
+    "price": 0,
+    "source": "creator_store",
+    "description": "User-approved reference for Practice dummy"
+  },
+  "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+  "path": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1/Imported",
+  "safe": false,
+  "capabilityBlock": {
+    "kind": "interactive_asset_requires_review",
+    "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+  },
+  "reasons": [
+    "Unsupported or executable class: SpecialMesh",
+    "Unsupported or executable class: Humanoid",
+    "Unsupported or executable class: Script",
+    "Embedded executable behavior requires a reviewed complete-asset import path"
+  ],
+  "snapshot": {
+    "marker": "takko_asset_v1",
+    "operation": "inspect",
+    "ok": false,
+    "reasons": [
+      "Unsupported or executable class: SpecialMesh",
+      "Unsupported or executable class: Humanoid",
+      "Unsupported or executable class: Script",
+      "Embedded executable behavior requires a reviewed complete-asset import path"
+    ],
+    "functional": {
+      "contentLoaded": false,
+      "instanceCount": 18,
+      "scriptCount": 1
+    },
+    "capabilityBlock": {
+      "kind": "interactive_asset_requires_review",
+      "reason": "Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement"
+    },
+    "componentTransfer": {
+      "encodedBytes": 21116,
+      "jsonBytes": 15836,
+      "sha256": "a7d2716023f45a93bc6bcb10c0b996fb009179c2313a64766ad53f697d98a132",
+      "chunkSize": 32768
+    },
+    "scene": [],
+    "center": [
+      0,
+      0,
+      0
+    ],
+    "size": 1,
+    "inertAudit": {
+      "mode": "inert_quarantine_static_inspection",
+      "sourceOrigin": "ScriptEditorService:GetEditorSource",
+      "dependencyAnalysis": "lexical_literals_only_not_execution_proof",
+      "executed": false,
+      "instanceLimit": 300,
+      "sourceLimit": 8,
+      "sourceByteLimit": 65536,
+      "instanceListTruncated": false,
+      "sourceListTruncated": false,
+      "sourceBytesReturned": 222,
+      "nodes": [
+        {
+          "index": 1,
+          "parentIndex": 0,
+          "name": "Imported",
+          "nameTruncated": false,
+          "className": "Model"
+        },
+        {
+          "index": 2,
+          "parentIndex": 1,
+          "name": "Training Dummy",
+          "nameTruncated": false,
+          "className": "Model"
+        },
+        {
+          "index": 3,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 4,
+          "parentIndex": 3,
+          "name": "Mesh",
+          "nameTruncated": false,
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 5,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 6,
+          "parentIndex": 5,
+          "name": "Mesh",
+          "nameTruncated": false,
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 7,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 8,
+          "parentIndex": 7,
+          "name": "Mesh",
+          "nameTruncated": false,
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 9,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 10,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 11,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 12,
+          "parentIndex": 2,
+          "name": "Part",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 13,
+          "parentIndex": 2,
+          "name": "Head",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 14,
+          "parentIndex": 13,
+          "name": "Mesh",
+          "nameTruncated": false,
+          "className": "SpecialMesh"
+        },
+        {
+          "index": 15,
+          "parentIndex": 2,
+          "name": "Torso",
+          "nameTruncated": false,
+          "className": "Part"
+        },
+        {
+          "index": 16,
+          "parentIndex": 15,
+          "name": "Decal",
+          "nameTruncated": false,
+          "className": "Decal"
+        },
+        {
+          "index": 17,
+          "parentIndex": 2,
+          "name": "Humanoid",
+          "nameTruncated": false,
+          "className": "Humanoid"
+        },
+        {
+          "index": 18,
+          "parentIndex": 2,
+          "name": "Respawn",
+          "nameTruncated": false,
+          "className": "Script"
+        }
+      ],
+      "sources": [
+        {
+          "index": 18,
+          "className": "Script",
+          "readable": true,
+          "source": "robo=script.Parent:clone()\nwhile true do\n\twait(0)\n\tif script.Parent.Humanoid.Health<1 then\n\t\twait(1)\n\t\trobot=robo:clone()\n\t\trobot.Parent=script.Parent.Parent\n\t\trobot:makeJoints()\n\t\tscript.Parent:remove()\n\tend\nend\n\n\t\t\n\n\n\n\n\n",
+          "sourceBytes": 222,
+          "sourceOmittedForLimit": false,
+          "disabled": false,
+          "runContext": "Enum.RunContext.Legacy",
+          "literalDependencies": [],
+          "dependencyListTruncated": false,
+          "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734"
+        }
+      ]
+    },
+    "component": {
+      "status": "captured",
+      "sha256": "8a2f3afdba4dda3adbbe81dfe551e3f42b8de4b4e76724836e2272e261b57c5c",
+      "bytes": 8054,
+      "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-import2\\8a2f3afdba4dda3adbbe81dfe551e3f42b8de4b4e76724836e2272e261b57c5c.rbxm",
+      "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-import2\\c452b31fee9d7f2f49f72bd0ab97e15a67407dbc23d2edfa8b99490e206467fe.component.json",
+      "instanceCount": 18,
+      "scriptCount": 1,
+      "sourceBytes": 222,
+      "roundTrip": {
+        "passed": true,
+        "checkedProperties": 514,
+        "checkedAttributes": 0,
+        "checkedReferences": 0,
+        "unobservableProperties": [
+          "Humanoid.Health_XML",
+          "Humanoid.InternalBodyScale",
+          "Humanoid.InternalHeadScale",
+          "Model.ModelMeshCFrame",
+          "Model.ModelMeshData",
+          "Model.ModelMeshSize",
+          "Model.NeedsPivotMigration",
+          "Model.ScaleFactor",
+          "Model.WorldPivotData",
+          "Part.Color3uint8",
+          "Part.MaterialVariantSerialized",
+          "Part.formFactorRaw",
+          "Script.ScriptGuid"
+        ],
+        "ignoredIdentityProperties": [
+          "UniqueId",
+          "HistoryId"
+        ]
+      },
+      "persisted": true,
+      "securityReview": "not_performed",
+      "runtimeVerification": "not_performed",
+      "exportConversion": "not_performed"
+    }
+  },
+  "functional": {
+    "contentLoaded": false,
+    "instanceCount": 18,
+    "scriptCount": 1
+  },
+  "receipts": [
+    {
+      "operation": "user_approved_reference",
+      "at": "2026-09-23T18:46:05.754Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "discoveryId": "e3dc8259-b417-403d-b6a8-80d76aa4feb6",
+        "revision": 6,
+        "needId": "dummy_probe",
+        "candidateId": "1245720733",
+        "nativeVerification": "not_performed"
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-23T18:46:05.755Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "operation": "prepare",
+        "sessionId": "f4a05649-9f9f-4cf8-80f4-982d9e778a2f",
+        "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+        "scope": "Forge_4cbb9300a271",
+        "stagingPath": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1",
+        "previewPath": "Workspace/Forge_4cbb9300a271/AssetPreviews/attempt_056d23b43815d52fa983a0e1",
+        "finalPath": "Workspace/Forge_4cbb9300a271/Assets/dummy_probe"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:46:05.805Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:46:05.815Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-23T18:46:05.846Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"operation\":\"prepare\",\"reasons\":[],\"ok\":true,\"marker\":\"takko_asset_v1\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:46:05.850Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:46:05.859Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "insert_asset",
+      "at": "2026-09-23T18:46:06.615Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"insertGuid\":\"eabf62f2-0a17-468c-a10e-f319ed2e1738\",\"insertedInstances\":[{\"fullPath\":\"game.ServerStorage.Forge_4cbb9300a271.AssetStaging.attempt_056d23b43815d52fa983a0e1.Imported\",\"name\":\"Imported\",\"className\":\"Model\"}],\"sandboxed\":true,\"assetType\":\"Model\",\"sandboxNote\":\"Inserted and set Sandboxed property to true on all scripts with all SecurityCapabilities included except for dangerous ones.\",\"assetId\":\"1245720733\",\"assetName\":\"Imported\",\"status\":\"success\",\"isPackage\":false,\"tag\":\"Assistant:eabf62f2-0a17-468c-a10e-f319ed2e1738\"}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "ownership_intent",
+      "at": "2026-09-23T18:46:06.615Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "operation": "inspect",
+        "sessionId": "f4a05649-9f9f-4cf8-80f4-982d9e778a2f",
+        "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+        "scope": "Forge_4cbb9300a271",
+        "stagingPath": "ServerStorage/Forge_4cbb9300a271/AssetStaging/attempt_056d23b43815d52fa983a0e1",
+        "previewPath": "Workspace/Forge_4cbb9300a271/AssetPreviews/attempt_056d23b43815d52fa983a0e1",
+        "finalPath": "Workspace/Forge_4cbb9300a271/Assets/dummy_probe"
+      }
+    },
+    {
+      "operation": "list_roblox_studios",
+      "at": "2026-09-23T18:46:06.615Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"studios\":[{\"id\":\"ca13ff86-472b-4f75-82a8-b2300a2d1b76\",\"name\":\"Untitled Experience (placeId: 122588481889475)\"}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "get_studio_state",
+      "at": "2026-09-23T18:46:06.627Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "execute_luau",
+      "at": "2026-09-23T18:46:06.659Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"reasons\":[\"Unsupported or executable class: SpecialMesh\",\"Unsupported or executable class: Humanoid\",\"Unsupported or executable class: Script\",\"Embedded executable behavior requires a reviewed complete-asset import path\"],\"componentTransfer\":{\"encodedBytes\":21116,\"chunkSize\":32768,\"sha256\":\"a7d2716023f45a93bc6bcb10c0b996fb009179c2313a64766ad53f697d98a132\",\"jsonBytes\":15836},\"marker\":\"takko_asset_v1\",\"center\":[0,0,0],\"capabilityBlock\":{\"reason\":\"Imported asset contains embedded code; complete asset reuse requires script and dependency review, not procedural replacement\",\"kind\":\"interactive_asset_requires_review\"},\"ok\":false,\"operation\":\"inspect\",\"functional\":{\"scriptCount\":1,\"contentLoaded\":false,\"instanceCount\":18},\"size\":1}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "operation": "component_transfer",
+      "at": "2026-09-23T18:46:06.690Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+        "candidateId": "1245720733",
+        "encodedBytes": 21116,
+        "jsonBytes": 15836,
+        "sha256": "a7d2716023f45a93bc6bcb10c0b996fb009179c2313a64766ad53f697d98a132",
+        "chunkSize": 32768,
+        "chunksRead": 1,
+        "verified": true,
+        "readOnly": true
+      }
+    },
+    {
+      "operation": "component_archive",
+      "at": "2026-09-23T18:46:06.692Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+        "candidateId": "1245720733",
+        "status": "captured",
+        "sha256": "8a2f3afdba4dda3adbbe81dfe551e3f42b8de4b4e76724836e2272e261b57c5c",
+        "bytes": 8054,
+        "archiveFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-import2\\8a2f3afdba4dda3adbbe81dfe551e3f42b8de4b4e76724836e2272e261b57c5c.rbxm",
+        "manifestFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-import2\\c452b31fee9d7f2f49f72bd0ab97e15a67407dbc23d2edfa8b99490e206467fe.component.json",
+        "instanceCount": 18,
+        "scriptCount": 1,
+        "sourceBytes": 222,
+        "roundTrip": {
+          "passed": true,
+          "checkedProperties": 514,
+          "checkedAttributes": 0,
+          "checkedReferences": 0,
+          "unobservableProperties": [
+            "Humanoid.Health_XML",
+            "Humanoid.InternalBodyScale",
+            "Humanoid.InternalHeadScale",
+            "Model.ModelMeshCFrame",
+            "Model.ModelMeshData",
+            "Model.ModelMeshSize",
+            "Model.NeedsPivotMigration",
+            "Model.ScaleFactor",
+            "Model.WorldPivotData",
+            "Part.Color3uint8",
+            "Part.MaterialVariantSerialized",
+            "Part.formFactorRaw",
+            "Script.ScriptGuid"
+          ],
+          "ignoredIdentityProperties": [
+            "UniqueId",
+            "HistoryId"
+          ]
+        },
+        "persisted": true,
+        "securityReview": "not_performed",
+        "runtimeVerification": "not_performed",
+        "exportConversion": "not_performed"
+      }
+    },
+    {
+      "operation": "inert_asset_audit",
+      "at": "2026-09-23T18:46:06.694Z",
+      "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+      "data": {
+        "token": "dc9236fb-dc54-495d-ace0-e239d8f2154c",
+        "candidateId": "1245720733",
+        "sha256": "5f2dea6171ef17307de7bb167894d132d9a5379277bbc80dfd5f7462dd7ca747",
+        "bytes": 4541,
+        "auditFile": "D:\\RobloxProjects\\Roblox Gen\\docs\\results\\fighting-build-fix\\native-import2\\5f2dea6171ef17307de7bb167894d132d9a5379277bbc80dfd5f7462dd7ca747.audit.json",
+        "persistence": "full_original_sources_in_sidecar",
+        "sourceBytesReturned": 222
+      }
+    }
+  ]
+}

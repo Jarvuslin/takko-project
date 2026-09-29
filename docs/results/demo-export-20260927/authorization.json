@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-27T05:10:48.927Z",
+  "source": "7b702265-c7cd-42b9-b609-405cc9fcd52f/Pasted text.txt",
+  "freshTrial": true,
+  "capMicros": 8000000,
+  "maxAttempts": 2,
+  "allowFallbacks": false,
+  "repairLimit": 0,
+  "automaticSelectionFirst": true,
+  "manualSelectionAfterFailureAuthorized": true,
+  "stopAt": "place_export",
+  "delivery": "GET /api/projects/:id/export",
+  "bridgeApplyAuthorized": false,
+  "gameplayAuthorized": false,
+  "priorAccountedMicros": 6098676
+}

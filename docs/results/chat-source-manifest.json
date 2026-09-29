@@ -1,0 +1,161 @@
+{
+  "at": "2026-09-21T01:52:27.689Z",
+  "baseline": ".forge/chat-architecture-before",
+  "changes": [
+    {
+      "path": "src/generation/animation.ts",
+      "before": null,
+      "after": "27dbe4e4df061b3fab507cedaf7852c3c9c672451ed0e3216102c7a6391371c9"
+    },
+    {
+      "path": "src/generation/architecture.ts",
+      "before": null,
+      "after": "61c99bd85309e450ba712a082eebc5ec510ebf090930e59c3c74be331289ea77"
+    },
+    {
+      "path": "src/generation/bridge.ts",
+      "before": "8bb6445faf3381ca64e9de22f2e52a4fd9e89cbab4ce12513747432e9fa95bae",
+      "after": "ba92a41bd60d698fcbd9b4243942f988ce1b8c303876582ccf5637ceae150dd0"
+    },
+    {
+      "path": "src/generation/brief-sources.ts",
+      "before": null,
+      "after": "7563ef08b568eb8e34f89a3bc17dcc7dafb671687b0f4269aca3995cf6df28d8"
+    },
+    {
+      "path": "src/generation/concept.ts",
+      "before": "2a37f9bc1c99c7f387420d6ab3485e55d289840701a2d0f143b4560822cf3359",
+      "after": "bb4752e8310a2fb2aeb9bfabb83f6c07df92d3cb49400a97d99128a2b2f0a65e"
+    },
+    {
+      "path": "src/generation/conversation.ts",
+      "before": null,
+      "after": "d42f900d15903583d8201215a894d54735b22f76ed37fc0288a0df9624cc2aab"
+    },
+    {
+      "path": "src/generation/engine.ts",
+      "before": "fa34bb16b5b2086aadae9576e90aa972d178df7f19151093739406d6449693ac",
+      "after": "942717ebdd170b26aac61478a5716355e6461430bddc0baef58908656c9a883f"
+    },
+    {
+      "path": "src/generation/requirements.ts",
+      "before": "12068837d0017fc633b8ae3f3b92696e78b7c6e27958de94694dc8ba25bac3e9",
+      "after": "6f6a113acf62dadb2df956395c647690daf3d19f5c0e0bd6569ee50e62ecc8e6"
+    },
+    {
+      "path": "src/generation/schema.ts",
+      "before": "e431a1385f951f923e7782793f7b4ad0890318a4bf385aef6efa8d660e2e3d10",
+      "after": "ebe013736e73b03bdba5310e1e13c5f509d74130c5ba4333db9f21b06f1b127b"
+    },
+    {
+      "path": "src/generation/store.ts",
+      "before": "ea06120d33d297244d23a0b6e78b52d7efb5305f52faa27128ba1afdc276b871",
+      "after": "11251658ae5af3be368c72274e0a97fd666d40a2643ec209cc36470cf54cd0f5"
+    },
+    {
+      "path": "src/generation/validation.ts",
+      "before": "d32549a39603051e679ff9cc1619093ed9871d0d808d223656e3d012ef1e55f4",
+      "after": "4dbe1e0444d0cd2d44a9cab0c25f9eb7c405f680d811f5b314b7351972b875ed"
+    },
+    {
+      "path": "src/server/app.ts",
+      "before": "ffab209c1159f7c93a473b9ad06e1378a696987373cff1c9aa608ca5b65cc857",
+      "after": "aa6de4afb4eae1a53f89a768b8f9c1e061d0b55dc0a5c9b56b1941fa33c30379"
+    },
+    {
+      "path": "src/web/AnimationPlayer.tsx",
+      "before": null,
+      "after": "b0ae30838d8b04bcf6db72d127d695a73b55648f91f9d3a06f961ee14476aa5c"
+    },
+    {
+      "path": "src/web/App.tsx",
+      "before": "0d620379061066681574cc2c67585d34df28ac9218b525f9447aeb21076abc17",
+      "after": "54108b05dde0935c9c911ff4fdfb5795341d716dc4739b74e57133f62639d927"
+    },
+    {
+      "path": "src/web/ArchitectureEditor.tsx",
+      "before": null,
+      "after": "f767e38bcb31247048b4759cfcf4dcfcc4eed3baa3867728ba2cf95f44d5d395"
+    },
+    {
+      "path": "src/web/conversation.css",
+      "before": null,
+      "after": "2313f228bd309d98d9e7b549b97671829456e862ce3042ffcccb528ef87f0e23"
+    },
+    {
+      "path": "src/web/Conversation.tsx",
+      "before": null,
+      "after": "5b723c16f3104cdbf5c0a346eff7a3e5d51bcd2a89fb7385db3a845adb101636"
+    },
+    {
+      "path": "src/web/GameConcept.tsx",
+      "before": "3c6b7f15b2807976cce287fbb1da29e8a18b7c13f9469c0b3f6a6ef43b3d1e60",
+      "after": "0d1673e92c4b5f4d3542349269bd50c699e57009ef6d00796b62f558324fbc96"
+    },
+    {
+      "path": "src/web/SettingsWorkspace.tsx",
+      "before": "b8e2eb1ad3323d8910d0d045cdcc69ef0099f07cf13a68be82eeb036e87d7bae",
+      "after": "46c351e57afbf7f0a1d43d299a7daaaf41be492de81b73491f8353a0378cb5b7"
+    },
+    {
+      "path": "src/web/StudioConversation.tsx",
+      "before": null,
+      "after": "9c850e20aca53e7095498e838a43985d0f49a0b8f1dc830dc808b81098059340"
+    },
+    {
+      "path": "tests/browser/chat-architecture.spec.ts",
+      "before": null,
+      "after": "678d042ed2cd1162af1f7aa2b3fed599e02ff3c9bf3b6c25bf6c5b6d2d4ac94a"
+    },
+    {
+      "path": "tests/browser/concept.spec.ts",
+      "before": "6de3810ae12cf8ed532c1b1ccab00af20c740ad4fd031faa655e2cca3d4b4dbd",
+      "after": "1f0386600f23aa9e63b21b75a6b86c9d1af34d7e227f77e5dd83a53e59406122"
+    },
+    {
+      "path": "tests/browser/grok-ui.spec.ts",
+      "before": "646e52455b2b11704e347f4ab0985a77d43d2052b8726cf96e4b5d69a0e534d9",
+      "after": "f7dc2021f4405fb2bb81a69881c87402789ac56e142818652e560d1fabc8511b"
+    },
+    {
+      "path": "tests/browser/lemonade-layout.spec.ts",
+      "before": "521b4b0cf46520f6c331b4d07fce4014913961adc4fe211b9ff0ff441c199db1",
+      "after": "0194ad934b9aa48456e1bc385a051d33866af648d0ff8cde89b6bd93efc57dda"
+    },
+    {
+      "path": "tests/browser/marketplace.spec.ts",
+      "before": "ede787fe61f07927da8db18899ec65986d7ad8c094134c76c8008e296efdedf7",
+      "after": "de0c75c15401196861430404f8c4642c59ec605b88bab4803b5106cf72b60e23"
+    },
+    {
+      "path": "tests/browser/polling.spec.ts",
+      "before": "a0a65c22f67b0b3d803ead281951fb0fff94d8a12b2e8ac9a166be8cb6335ed8",
+      "after": "9d0151eab73b81350b451fcb8289f8a7fed8db0f5d63afff5815dd5f9e8086d3"
+    },
+    {
+      "path": "tests/browser/settings-workspace.spec.ts",
+      "before": "2a7c3ecc7d97e78d55afb3b2a2dc0480aa7670b20ba0501b4d6c92f80239dbc4",
+      "after": "661e9f0821f5e9146fea7d2478006ed8a9ccbf1eec8dc62a4d4a1bd8da5fc5c2"
+    },
+    {
+      "path": "tests/browser/studio-recovery.spec.ts",
+      "before": "a07a41a3e9807bc4c1d1918632cc8fc98774f4e64cc45fc78fc2ec654211eee4",
+      "after": "6e51056547002f5ed32efdaa6bed790877b047044c3f9e19cd42b658c8388136"
+    },
+    {
+      "path": "tests/browser/typography.spec.ts",
+      "before": "1ef152d89d04797ed99d31d5d0a3302880f0d29788525c25060e0f878f7ee358",
+      "after": "35cf7fec9442d64689f63eadb1172a448c24c1cdf85de86d4e22a9000faf426c"
+    },
+    {
+      "path": "tests/browser/workflow.spec.ts",
+      "before": "2198cb2a776fee3761c1026993d54fcd53b130d863127ee305f589f612d73908",
+      "after": "af3890347b4b9b9b20cfd829079545953d448a3b1d825a7c239e9392cb5bb43c"
+    },
+    {
+      "path": "tests/chat-architecture.test.ts",
+      "before": null,
+      "after": "e18ec56031ba4d26e9c21815e8796175da36c149a513ca18290203c1f497f09f"
+    }
+  ]
+}

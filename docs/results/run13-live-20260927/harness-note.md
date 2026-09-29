@@ -1,0 +1,1 @@
+The copied final browser marker says new architecture validation gate. That legacy marker is inaccurate for this run. The preserved API error, raw responses and planner-attempts.json establish invalid proposalSections on the fourth attempt. The original marker is retained rather than rewritten.

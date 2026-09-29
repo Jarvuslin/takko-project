@@ -1,0 +1,12 @@
+import fs from 'node:fs';
+import {assessEvidenceOptions,votePrior,motionEvidence} from '../src/marketplace/relevance';
+const out='docs/results/opencode-motion-live-20260926';
+const p=JSON.parse(fs.readFileSync(out+'/automatic-before-proposal.json','utf8'));
+const requests=[];for(const g of p.assetDiscovery.groups)await assessEvidenceOptions(p,g,async r=>{requests.push({group:g.id,request:r});return null;});
+const advice=p.decisionAdvice.filter(d=>d.task==='asset-relevance');
+fs.writeFileSync(out+'/selection-requests-reconstructed.json',JSON.stringify(requests,null,2));
+fs.writeFileSync(out+'/selection-advice.json',JSON.stringify(advice,null,2));
+const groups=p.assetDiscovery.groups.map(g=>({id:g.id,query:g.query,selected:g.relevance,ranking:g.options.map((o,i)=>({rank:i+1,id:o.assetId,name:o.name,votes:o.votes,prior:votePrior(o),captured:!!o.previewData,previewError:o.previewError,clips:o.previewData?.pack?.entries.map(e=>({key:e.key,name:e.name,rig:e.clip?.rig,duration:e.clip?.duration}))})),passed:g.relevance.assessments.filter(a=>a.relevant),unassessed:g.relevance.assessments.filter(a=>a.error)}));
+fs.writeFileSync(out+'/automatic-outcome.json',JSON.stringify({at:new Date().toISOString(),historicalBatchConfidences:[.21,.33,.24,.44,.35,.59],groups,advice,requestCount:requests.length,note:'Requests reconstructed without dispatch from the preserved actual pre-proposal project. Raw production responses are in traces and decisionAdvice.'},null,2));
+const g=p.assetDiscovery.groups.find(g=>g.id==='combat'),e=g.options.find(o=>o.assetId===g.relevance.candidateId).previewData.pack.entries.find(e=>e.key===g.relevance.clipKey);
+console.log(JSON.stringify({adviceCount:advice.length,requests:requests.length,adviceExample:advice[0],selectedMotion:motionEvidence(e.clip)},null,2));

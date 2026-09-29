@@ -1,0 +1,189 @@
+[WebServer] (node:26612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:34348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:42892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:34548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 26 tests using 1 worker
+
+(node:428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [desktop] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing (32.9s)
+(node:13244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [desktop] › tests\browser\asset-choices.spec.ts:98:1 › dirty and changed briefs invalidate approval and search again (2.6s)
+  ok  3 [desktop] › tests\browser\asset-choices.spec.ts:118:1 › connection failures and empty results give an explicit recovery path (2.5s)
+  ok  4 [desktop] › tests\browser\concept.spec.ts:59:1 › concept choices, explicit delegation, reload and planning handoff (6.3s)
+  ok  5 [desktop] › tests\browser\concept.spec.ts:120:1 › custom answers are retained and edited requests cannot use a stale concept (3.6s)
+  ok  6 [desktop] › tests\browser\concept.spec.ts:154:1 › older running servers retain direct planning without offering an unavailable action (392ms)
+  x   7 [desktop] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan (8.0s)
+(node:29968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [desktop] › tests\browser\concept.spec.ts:226:1 › legacy and unresolved concepts remain inspectable without a planning action (2.6s)
+  ok  9 [desktop] › tests\browser\ui-polish.spec.ts:5:1 › focused decisions retain choices, support multiple and skip, and save a compact receipt (7.5s)
+  ok 10 [desktop] › tests\browser\ui-polish.spec.ts:88:1 › dialog custom input, focus loop, Escape and restored draft work without submission (2.9s)
+  ok 11 [desktop] › tests\browser\ui-polish.spec.ts:123:1 › one simple decision stays inline and custom answers remain available (2.5s)
+  ok 12 [desktop] › tests\browser\ui-polish.spec.ts:143:1 › panel pointer and keyboard resize respect bounds and survive reload (1.1s)
+  ok 13 [desktop] › tests\browser\ui-polish.spec.ts:185:1 › inspector, source, Studio, plan and composer stay usable (1.8s)
+(node:40432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  14 [mobile] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing (32.8s)
+(node:31232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 [mobile] › tests\browser\asset-choices.spec.ts:98:1 › dirty and changed briefs invalidate approval and search again (2.8s)
+  ok 16 [mobile] › tests\browser\asset-choices.spec.ts:118:1 › connection failures and empty results give an explicit recovery path (2.5s)
+  ok 17 [mobile] › tests\browser\concept.spec.ts:59:1 › concept choices, explicit delegation, reload and planning handoff (6.0s)
+  ok 18 [mobile] › tests\browser\concept.spec.ts:120:1 › custom answers are retained and edited requests cannot use a stale concept (2.7s)
+  ok 19 [mobile] › tests\browser\concept.spec.ts:154:1 › older running servers retain direct planning without offering an unavailable action (346ms)
+  x  20 [mobile] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan (7.8s)
+(node:20204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 21 [mobile] › tests\browser\concept.spec.ts:226:1 › legacy and unresolved concepts remain inspectable without a planning action (2.6s)
+  ok 22 [mobile] › tests\browser\ui-polish.spec.ts:5:1 › focused decisions retain choices, support multiple and skip, and save a compact receipt (7.9s)
+  ok 23 [mobile] › tests\browser\ui-polish.spec.ts:88:1 › dialog custom input, focus loop, Escape and restored draft work without submission (2.8s)
+  ok 24 [mobile] › tests\browser\ui-polish.spec.ts:123:1 › one simple decision stays inline and custom answers remain available (2.5s)
+  -  25 [mobile] › tests\browser\ui-polish.spec.ts:143:1 › panel pointer and keyboard resize respect bounds and survive reload
+  ok 26 [mobile] › tests\browser\ui-polish.spec.ts:185:1 › inspector, source, Studio, plan and composer stay usable (2.0s)
+
+
+  1) [desktop] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Choose assets' }).getByRole('region', { name: 'Fighting animation', exact: true }).getByLabel('Animation time')
+
+
+      55 |     .getByRole("button", { name: /Pause/ })
+      56 |     .click();
+    > 57 |   await combat.getByLabel("Animation time").fill("0.75");
+         |                                             ^
+      58 |   await page.screenshot({
+      59 |     path: `docs/results/asset-choices/options-${info.project.name}.png`,
+      60 |   });
+        at D:\RobloxProjects\Roblox Gen\tests\browser\asset-choices.spec.ts:57:45
+
+    Error Context: test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('alert')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      221 |   }
+      222 |   expect(listReads).toBe(1);
+    > 223 |   await expect(page.getByRole("alert")).toHaveCount(0);
+          |                                         ^
+      224 | });
+      225 |
+      226 | test("legacy and unresolved concepts remain inspectable without a planning action", async ({
+        at D:\RobloxProjects\Roblox Gen\tests\browser\concept.spec.ts:223:41
+
+    Error Context: test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [mobile] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: 'Choose assets' }).getByRole('region', { name: 'Fighting animation', exact: true }).getByLabel('Animation time')
+
+
+      55 |     .getByRole("button", { name: /Pause/ })
+      56 |     .click();
+    > 57 |   await combat.getByRole("slider", { name: /Position in/ }).fill("0.75");
+         |                                             ^
+      58 |   await page.screenshot({
+      59 |     path: `docs/results/asset-choices/options-${info.project.name}.png`,
+      60 |   });
+        at D:\RobloxProjects\Roblox Gen\tests\browser\asset-choices.spec.ts:57:45
+
+    Error Context: test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\asset-choices-brief-search-61b62-hen-approves-without-typing-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [mobile] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('alert')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      221 |   }
+      222 |   expect(listReads).toBe(1);
+    > 223 |   await expect(page.getByRole("alert")).toHaveCount(0);
+          |                                         ^
+      224 | });
+      225 |
+      226 | test("legacy and unresolved concepts remain inspectable without a planning action", async ({
+        at D:\RobloxProjects\Roblox Gen\tests\browser\concept.spec.ts:223:41
+
+    Error Context: test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [desktop] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing 
+    [desktop] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan 
+    [mobile] › tests\browser\asset-choices.spec.ts:4:1 › brief searches automatically, previews geometry and clips, then approves without typing 
+    [mobile] › tests\browser\concept.spec.ts:171:1 › a completed concept appears without waiting for another library scan 
+  1 skipped
+  21 passed (2.8m)

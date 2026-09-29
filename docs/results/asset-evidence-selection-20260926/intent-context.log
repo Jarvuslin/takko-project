@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-motion-evidence.test.ts (4 tests | 1 failed) 76ms
+   × gates each real captured clip before ranking votes and retains the assessed clip identity 49ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-motion-evidence.test.ts > gates each real captured clip before ranking votes and retains the assessed clip identity
+AssertionError: expected [ { id: '12061946559', …(10) }, …(2) ] to have a length of 5 but got 3
+
+- Expected
++ Received
+
+- 5
++ 3
+
+ ❯ tests/asset-motion-evidence.test.ts:71:56
+     69|   expect(result?.candidateId).toBe(low.assetId);
+     70|   expect(result?.clipKey).toBe(pack.entries[0].key);
+     71|   expect(decisions.flatMap((r) => r.state.candidates)).toHaveLength(
+       |                                                        ^
+     72|     pack.entries.filter((e) => e.clip).length +
+     73|       sword.entries.filter((e: any) => e.clip).length,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 43 passed (44)
+   Start at  14:47:38
+   Duration  2.38s (transform 45%, tests 30%, import 24%)
+

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 2,
+  "id": "895b9667-99d1-4fdf-ab8d-c08cded53f8c",
+  "name": "Saved glider",
+  "request": "Build a wind gliding game",
+  "revision": 3,
+  "scope": "Forge_legacy",
+  "spec": {
+    "title": "Saved glider",
+    "summary": "The saved legacy specification",
+    "visualDirection": "Warm sky",
+    "questions": [],
+    "requirements": [
+      {
+        "id": "flight",
+        "description": "Glide",
+        "origin": "inferred",
+        "sourceQuote": "",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "The player glides"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "flight_task",
+        "title": "Flight",
+        "requirements": ["flight"],
+        "dependsOn": [],
+        "files": ["ServerScriptService/Forge_legacy/Flight.server.luau"]
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": 3,
+  "stage": "ready_to_test",
+  "artifact": {
+    "files": [
+      {
+        "path": "ServerScriptService/Forge_legacy/Flight.server.luau",
+        "kind": "Script",
+        "source": "print('legacy evidence must remain unchanged')\n"
+      }
+    ],
+    "scene": [],
+    "assets": [],
+    "coverage": [
+      {
+        "requirementId": "flight",
+        "status": "implemented",
+        "detail": "Legacy fixture only",
+        "files": ["ServerScriptService/Forge_legacy/Flight.server.luau"]
+      }
+    ]
+  },
+  "completedBuildTasks": ["flight_task"],
+  "review": null,
+  "checks": [],
+  "charges": [],
+  "budgetMicros": 1000000,
+  "reservedMicros": 0,
+  "events": [],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-01T00:00:00Z",
+  "studioEvidence": {
+    "revision": 3,
+    "artifactHash": "legacy-original-hash",
+    "checks": [],
+    "logs": ["Offline fixture. No native test was performed."],
+    "at": "2026-09-01T00:00:00Z"
+  }
+}

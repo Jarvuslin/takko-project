@@ -1,0 +1,50 @@
+{
+  "profiles": [
+    {
+      "id": "5ce0a89d-e791-4c2d-97d0-21aed13048ec",
+      "name": "Live trial - Haiku 4.5",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "anthropic/claude-haiku-4.5",
+      "inputRate": 1,
+      "outputRate": 5,
+      "maxOutputTokens": 8000,
+      "requestTimeoutMs": 120000,
+      "jsonMode": true
+    }
+  ],
+  "routes": {
+    "planner": [
+      "5ce0a89d-e791-4c2d-97d0-21aed13048ec"
+    ],
+    "builder": [],
+    "reviewer": [],
+    "repair": []
+  },
+  "budgetMicros": 150000,
+  "generationBudgetMicros": 150000,
+  "reservationBudgetMicros": 150000,
+  "repairLimit": 0,
+  "researchEnabled": false,
+  "presets": [
+    {
+      "routes": {
+        "planner": [
+          "5ce0a89d-e791-4c2d-97d0-21aed13048ec"
+        ],
+        "builder": [],
+        "reviewer": [],
+        "repair": []
+      },
+      "budgetMicros": 150000,
+      "generationBudgetMicros": 150000,
+      "reservationBudgetMicros": 150000,
+      "repairLimit": 0,
+      "researchEnabled": false,
+      "id": "00000000-0000-4000-8000-000000000001",
+      "name": "My first preset",
+      "icon": "taco"
+    }
+  ],
+  "activePresetId": "00000000-0000-4000-8000-000000000001"
+}

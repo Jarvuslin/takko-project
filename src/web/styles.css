@@ -1,18 +1,182 @@
-:root {
-  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-family: var(--font-ui);
-  font-size: 14px;
+/* Tokens live in tokens.css, which is imported first. */
+
+.marketplace-launch {
+  margin: 8px 0;
+  text-align: left;
+}
+.marketplace-panel {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: 360px;
+  z-index: 12;
+  padding: 22px 18px;
+  background: var(--surface-slate);
+  border-left: 1px solid var(--line-cool);
+  overflow-y: auto;
+}
+.marketplace-panel header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.marketplace-panel h2 {
+  margin: 4px 0 12px;
+  font-size: 22px;
+}
+.marketplace-panel label {
+  display: block;
+}
+.marketplace-panel select,
+.marketplace-panel input {
+  width: 100%;
+  min-width: 0;
+}
+.market-refresh {
+  margin: 8px 0 16px;
+  font-size: 12px;
+}
+.market-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.market-tabs button {
+  flex: 1;
+  padding: 8px;
+}
+.market-tabs button[aria-pressed="true"],
+.market-card-actions button[aria-pressed="true"] {
+  background: #414a39;
+  border-color: #b2c893;
+  color: #edf8dd;
+}
+.market-search-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+.market-empty {
+  color: var(--ink-quiet);
+  padding: 28px 8px;
+  text-align: center;
+}
+.market-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.market-card {
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #424242;
+  background: #272727;
+  border-radius: 12px;
+}
+.market-card[draggable="true"] {
+  cursor: grab;
+}
+.market-thumbnail {
+  aspect-ratio: 1;
+  background: #323232;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.market-thumbnail span {
+  font-size: 38px;
+  color: var(--muted);
+}
+.market-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.market-card a {
   color: #f2f3f4;
-  background: #171717;
-  color-scheme: dark;
-  --ink: #f2f3f4;
-  --muted: #aaa;
-  --line: #353535;
-  --panel: #202020;
-  --green: #e8e8e8;
-  --yellow: #d6d6d6;
+  text-decoration: none;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.market-card small,
+.inspection-label {
+  display: block;
+  margin-top: 6px;
+  color: #c2c2c2;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.market-card-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.market-card-actions button {
+  font-size: 11px;
+  padding: 5px 7px;
+  min-height: var(--control-min);
+}
+.market-notice {
+  color: var(--ink-quiet);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 22px;
+}
+.asset-attachments {
+  padding: 0 14px;
+  text-align: left;
+}
+.asset-attachment {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #545c48;
+  border-radius: 10px;
+  background: #292d25;
+}
+.asset-attachment small {
+  display: block;
+  color: #c0c6b9;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.asset-attachment input {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  font-size: 12px;
+}
+.asset-status {
+  color: #d5dec8;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.asset-findings {
+  margin: 10px 0;
+  font-size: 12px;
+  color: #ead9af;
+  overflow-wrap: anywhere;
+}
+.asset-findings small {
+  display: block;
+}
+@media (min-width: 1100px) {
+  .app.minimal.market-open main {
+    margin-right: 360px;
+    width: calc(100% - 580px);
+  }
+}
+@media (max-width: 1099px) {
+  .marketplace-panel {
+    width: min(360px, 92vw);
+    box-shadow: -12px 0 40px #0008;
+  }
 }
 * {
   box-sizing: border-box;
@@ -34,14 +198,7 @@ textarea,
 summary {
   outline-offset: 3px;
 }
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-summary:focus-visible {
-  outline: 2px solid #e9f777;
-}
+
 button,
 .button {
   display: inline-flex;
@@ -72,9 +229,9 @@ button:disabled {
   cursor: not-allowed;
 }
 .primary {
-  background: var(--green);
-  border-color: var(--green);
-  color: #242812;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
 }
 .primary:hover {
   background: #f0fa76;
@@ -102,7 +259,7 @@ p {
   margin-top: 0;
 }
 h2 {
-  font-size: 19px;
+  font-size: 20px;
   line-height: 1.4;
 }
 h1,
@@ -175,7 +332,7 @@ label {
   font-weight: 400;
   letter-spacing: 4px;
   text-decoration: none;
-  color: #fff;
+  color: var(--ink-bright);
   margin-bottom: 26px;
 }
 .brand-symbol {
@@ -197,7 +354,7 @@ label {
   margin-bottom: 22px;
 }
 .new-project:hover {
-  background: #fff;
+  background: var(--ink-bright);
   color: #171819;
 }
 .nav-label {
@@ -273,12 +430,12 @@ label {
     radial-gradient(ellipse at 100% 0, #309bb6, transparent 70%),
     linear-gradient(120deg, #092434, #0069a6);
   text-decoration: none;
-  color: #fff;
+  color: var(--ink-bright);
   margin-bottom: 12px;
   overflow: hidden;
   position: relative;
 }
-.plugin-card:after {
+.plugin-card::after {
   content: "";
   position: absolute;
   left: -10%;
@@ -291,7 +448,7 @@ label {
   pointer-events: none;
 }
 .plugin-card > span:first-child {
-  font-size: 25px;
+  font-size: 26px;
 }
 .plugin-card strong {
   font: 400 29px/1.1 var(--font-display);
@@ -299,7 +456,7 @@ label {
   z-index: 1;
 }
 .plugin-card-action {
-  background: #fff;
+  background: var(--ink-bright);
   color: #202124;
   padding: 13px;
   border-radius: 12px;
@@ -374,7 +531,7 @@ main {
 .welcome h1 {
   font: 400 clamp(52px, 4.4vw, 78px)/1.1 var(--font-display);
   letter-spacing: 0.05em;
-  color: #fff;
+  color: var(--ink-bright);
   margin: 0 0 26px;
 }
 .welcome h1 > span {
@@ -407,7 +564,7 @@ main {
   background: #ffffff0d;
   border-radius: 50%;
   padding: 3px;
-  font-size: 15px;
+  font-size: 16px;
   color: #c2c8cc;
 }
 .welcome form {
@@ -446,7 +603,7 @@ main {
 }
 .model-launcher {
   background: #ffffff0c;
-  border-color: #ffffff12;
+  border-color: var(--border-faint);
   min-height: 40px;
   font-size: 12px;
   max-width: 220px;
@@ -483,7 +640,7 @@ main {
 .model-filters button {
   border-radius: 20px;
   font-size: 11px;
-  min-height: 30px;
+  min-height: var(--control-min);
   padding: 6px 10px;
   background: #232629;
 }
@@ -505,7 +662,7 @@ main {
 .model-option small {
   display: block;
   color: #c3c7ca;
-  font-size: 10px;
+  font-size: 11px;
   margin-top: 5px;
   overflow-wrap: anywhere;
 }
@@ -592,11 +749,11 @@ main {
 }
 .chat-heading button {
   font-size: 11px;
-  min-height: 34px;
+  min-height: var(--control-min);
   padding: 7px 10px;
 }
 .stage {
-  font-size: 10px;
+  font-size: 11px;
   background: #34383c;
   color: #d6dadd;
   border: 1px solid #4b5156;
@@ -625,7 +782,7 @@ main {
   border-bottom: 2px solid #dbe96c;
 }
 .spend {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
   margin-left: auto;
   padding: 8px 0;
@@ -665,7 +822,7 @@ main {
   font-size: 11px;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1px;
   color: #bbc5ca;
 }
@@ -702,10 +859,10 @@ main {
   margin-bottom: 10px;
 }
 .requirements .muted {
-  font-size: 10px;
+  font-size: 11px;
 }
 .requirement-category {
-  font-size: 9px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #ccd7a1;
@@ -903,7 +1060,7 @@ details {
 }
 summary {
   cursor: pointer;
-  min-height: 28px;
+  min-height: var(--control-min);
   color: #d2d9dc;
 }
 .scene-list p {
@@ -1010,14 +1167,11 @@ summary {
 }
 .chat-composer .model-launcher {
   max-width: 170px;
-  font-size: 10px;
+  font-size: 11px;
   padding: 8px;
 }
 .chat-composer .model-popover {
-  top: auto;
-  bottom: calc(100% + 12px);
-  right: auto;
-  left: -40px;
+  inset: auto auto calc(100% + 12px) -40px;
   width: 310px;
 }
 .attach-button {
@@ -1028,7 +1182,7 @@ summary {
 .composer-hint {
   display: block;
   padding: 0 16px 12px;
-  font-size: 9px;
+  font-size: 11px;
   color: #bdc6cc;
   line-height: 1.5;
 }
@@ -1040,7 +1194,7 @@ summary {
   margin-bottom: 15px;
 }
 .chat-history h2 {
-  font-size: 15px;
+  font-size: 16px;
 }
 .explore-prompts {
   padding-top: 16px;
@@ -1082,7 +1236,7 @@ summary {
   overflow: auto;
 }
 .settings {
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
   background: #26292c;
   border: 1px solid #454b51;
@@ -1223,7 +1377,7 @@ summary {
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
@@ -1302,7 +1456,7 @@ time {
   line-height: 2.25;
 }
 code {
-  font-family: var(--font-ui);
+  font-family: var(--font-mono);
   font-variant-ligatures: none;
 }
 @media (min-width: 1600px) {
@@ -1327,7 +1481,7 @@ code {
     max-width: 110px;
   }
   .map-project span {
-    font-size: 10px;
+    font-size: 11px;
   }
   .studio-launch {
     margin-left: 0;
@@ -1402,9 +1556,6 @@ code {
   }
 }
 @media (max-width: 700px) {
-  :root {
-    font-size: 14px;
-  }
   .app {
     display: block;
   }
@@ -1424,7 +1575,7 @@ code {
   }
   .brand {
     margin: 0;
-    font-size: 23px;
+    font-size: 22px;
   }
   .editor:not(.sidebar-expanded) .brand-word {
     display: inline;
@@ -1480,7 +1631,7 @@ code {
   }
   .landing .mobile-project-picker {
     background: none;
-    color: #fff;
+    color: var(--ink-bright);
   }
   .mobile-project-picker select {
     font-size: 16px;
@@ -1523,7 +1674,7 @@ code {
     min-height: 40px;
   }
   .model-launcher {
-    font-size: 10px;
+    font-size: 11px;
     max-width: 162px;
     padding: 8px;
   }
@@ -1643,7 +1794,7 @@ code {
 }
 .generation-card small {
   display: block;
-  font-size: 10px;
+  font-size: 11px;
   color: #bdc6cc;
   margin: 8px 0 0 18px;
   font-weight: 400;
@@ -1678,10 +1829,7 @@ code {
   .model-popover,
   .chat-composer .model-popover {
     position: fixed;
-    top: auto;
-    bottom: 18px;
-    left: 18px;
-    right: 18px;
+    inset: auto 18px 18px 18px;
     width: auto;
     max-width: none;
     max-height: 70dvh;
@@ -1694,14 +1842,14 @@ code {
 }
 /* Minimal working interface: one project panel, no decorative canvas. */
 .minimal {
-  background: #171717;
-  color: #ededed;
+  background: var(--surface-deep);
+  color: var(--ink-dim);
 }
 .minimal h1,
 .minimal h2,
 .minimal h3,
 .minimal .chat-heading > strong {
-  font-family: var(--font-ui);
+  font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.02em;
   text-transform: none;
@@ -1709,7 +1857,7 @@ code {
 .minimal h2,
 .minimal .chat-panel h2,
 .minimal .settings h2 {
-  font-size: 19px;
+  font-size: 20px;
 }
 .minimal h3,
 .minimal .chat-panel h3,
@@ -1719,7 +1867,7 @@ code {
 .minimal p,
 .minimal input,
 .minimal textarea {
-  font-family: var(--font-ui);
+  font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.6;
 }
@@ -1729,8 +1877,8 @@ code {
   letter-spacing: 0;
   font-size: 13px;
   min-height: 36px;
-  background: #292929;
-  border-color: #414141;
+  background: var(--surface-slate-raised);
+  border-color: var(--line-cool);
 }
 .minimal button:hover,
 .minimal .button:hover {
@@ -1738,31 +1886,29 @@ code {
   border-color: #666;
 }
 .minimal .primary {
-  background: #ededed;
-  border-color: #ededed;
-  color: #171717;
+  background: var(--ink-dim);
+  border-color: var(--ink-dim);
+  color: var(--surface-deep);
   font-weight: 600;
 }
 .minimal .primary:hover {
-  background: #fff;
-  border-color: #fff;
+  background: var(--ink-bright);
+  border-color: var(--ink-bright);
 }
-.minimal :is(button, a, input, textarea, select, summary):focus-visible {
-  outline-color: #eee;
-}
+
 .minimal a {
-  color: #ddd;
+  color: var(--ink-faint);
 }
 .minimal .sidebar,
 .minimal.editor:not(.sidebar-expanded) .sidebar {
   width: 220px;
   padding: 24px 16px;
   background: #1d1d1d;
-  border-color: #333;
+  border-color: var(--line);
 }
 .minimal .brand {
   gap: 10px;
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: 0.02em;
   margin-bottom: 28px;
   font-weight: 600;
@@ -1779,7 +1925,7 @@ code {
 .minimal .new-project,
 .minimal.editor:not(.sidebar-expanded) .new-project {
   display: flex;
-  color: #ededed;
+  color: var(--ink-dim);
 }
 .minimal .nav-label,
 .minimal.editor:not(.sidebar-expanded) .nav-label {
@@ -1824,10 +1970,10 @@ code {
 .minimal .local-status,
 .minimal.editor:not(.sidebar-expanded) .local-status {
   display: flex;
-  color: #aaa;
+  color: var(--muted);
 }
 .minimal .local-status i {
-  background: #aaa;
+  background: var(--muted);
   box-shadow: none;
 }
 .minimal main,
@@ -1839,7 +1985,7 @@ code {
   min-height: 100dvh;
   height: auto;
   overflow: visible;
-  background: #171717;
+  background: var(--surface-deep);
 }
 .minimal .topbar,
 .minimal.editor .topbar {
@@ -1864,31 +2010,31 @@ code {
   padding: clamp(60px, 12vh, 130px) 32px 60px;
 }
 .minimal .welcome h1 {
-  color: #eee;
+  color: var(--ink-soft);
   font-size: clamp(25px, 3vw, 32px);
   line-height: 1.25;
   margin: 14px 0 12px;
 }
 .minimal .welcome-description {
-  color: #aaa;
+  color: var(--muted);
   max-width: 530px;
   margin-bottom: 28px;
 }
 .minimal .welcome form {
   width: 100%;
   max-width: none;
-  background: #222;
+  background: var(--surface-shadowed);
   border: 1px solid #424242;
   border-radius: 12px;
   padding: 16px;
   box-shadow: none;
 }
 .minimal .welcome textarea {
-  color: #eee;
+  color: var(--ink-soft);
   background: transparent;
   min-height: 130px;
   padding: 0 0 16px;
-  font-size: 15px;
+  font-size: 16px;
   border-radius: 0;
 }
 .minimal .composer-footer {
@@ -1905,13 +2051,13 @@ code {
   overflow: visible;
   border: 0;
   padding: 0 32px 32px;
-  background: #171717;
+  background: var(--surface-deep);
 }
 .minimal .chat-heading {
   position: static;
   min-height: 70px;
   height: auto;
-  background: #171717;
+  background: var(--surface-deep);
   gap: 12px;
 }
 .minimal .chat-heading > strong {
@@ -1921,7 +2067,7 @@ code {
 }
 .minimal .stage {
   background: #262626;
-  border-color: #414141;
+  border-color: var(--line-cool);
   color: #ccc;
   font-size: 11px;
 }
@@ -1934,11 +2080,11 @@ code {
   background: transparent;
   border-radius: 0;
   padding: 10px 14px;
-  color: #aaa;
+  color: var(--muted);
 }
 .minimal .tabs [aria-selected="true"] {
-  color: #fff;
-  border-bottom: 2px solid #ddd;
+  color: var(--ink-bright);
+  border-bottom: 2px solid var(--ink-faint);
 }
 .minimal .spend {
   font-size: 11px;
@@ -1947,8 +2093,8 @@ code {
 .minimal input,
 .minimal select,
 .minimal .visual-feedback textarea {
-  background: #222;
-  border: 1px solid #444;
+  background: var(--surface-shadowed);
+  border: 1px solid var(--line-mid);
   border-radius: 7px;
 }
 .minimal .request-editor {
@@ -1958,7 +2104,7 @@ code {
   font-size: 14px;
 }
 .minimal .requirements article {
-  background: #202020;
+  background: var(--surface-slate);
   border-color: #363636;
   border-radius: 7px;
 }
@@ -1968,8 +2114,8 @@ code {
 .minimal .plan-aside,
 .minimal .chat-history,
 .minimal .empty-panel {
-  background: #202020;
-  border-color: #383838;
+  background: var(--surface-slate);
+  border-color: var(--line-soft);
   border-radius: 7px;
 }
 .minimal .plan-aside > article {
@@ -1977,7 +2123,7 @@ code {
 }
 .minimal .task-status {
   display: inline-block;
-  color: #bdbdbd;
+  color: var(--ink-quiet);
   font-size: 12px;
 }
 .minimal .task-source {
@@ -1990,8 +2136,8 @@ code {
 }
 .minimal .chat-composer {
   position: static;
-  background: #222;
-  border: 1px solid #444;
+  background: var(--surface-shadowed);
+  border: 1px solid var(--line-mid);
   border-radius: 9px;
   padding: 14px;
   margin-top: 26px;
@@ -2006,24 +2152,24 @@ code {
   min-width: 62px;
 }
 .minimal .composer-hint {
-  color: #aaa;
+  color: var(--muted);
   font-size: 11px;
 }
 .minimal .settings {
-  background: #202020;
+  background: var(--surface-slate);
 }
 .minimal .model-popover {
   background: #242424;
-  border-color: #555;
+  border-color: var(--line-strong);
 }
 .minimal .model-chip {
-  background: #292929;
-  border: 1px solid #414141;
-  color: #ddd;
+  background: var(--surface-slate-raised);
+  border: 1px solid var(--line-cool);
+  color: var(--ink-faint);
 }
 .minimal pre,
 .minimal code {
-  font-family: ui-monospace, Consolas, monospace;
+  font-family: var(--font-mono);
 }
 @media (max-width: 700px) {
   .minimal .sidebar,
@@ -2060,7 +2206,7 @@ code {
   }
   .minimal .mobile-project-picker,
   .minimal.landing .mobile-project-picker {
-    background: #171717;
+    background: var(--surface-deep);
     font-size: 12px;
   }
   .minimal .welcome {

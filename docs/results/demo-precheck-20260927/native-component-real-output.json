@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-27T04:36:16.184Z",
+  "project": "eb4c0269-8c7d-4933-bbe4-f637ecf68d22",
+  "originalStage": "failed",
+  "nativeComponents": 1,
+  "httpStatus": 409,
+  "response": {
+    "error": "Studio is not connected"
+  },
+  "source": "Unchanged preserved real paid-run project. Component guard executes before readiness checks. Prior replay had no components, its queued operation was cancelled without dispatch."
+}

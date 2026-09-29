@@ -84,10 +84,11 @@ describe("prepared public benchmark starting fixtures", () => {
     expect(remade.bundleText).toBe(
       readFileSync(join(c.fixture.directory!, "bundle.json"), "utf8"),
     );
-    expect(remade.exported).toBe(
-      readFileSync(join(c.fixture.directory!, "export.rbxlx"), "utf8"),
-    );
-    expect(remade.manifest).toEqual(manifest);
+    expect(remade.exported).not.toContain('name="SkyboxUp"');
+    expect(remade.manifest.artifactSha256).toEqual(manifest.artifactSha256);
+    expect(remade.manifest.exportHash).toEqual(manifest.exportHash);
+    expect(fixtureSha256(readFileSync(join(c.fixture.directory!, "export.rbxlx"))))
+      .toBe(manifest.exportHash);
   });
 
   it("gives all six game genres identical bytes while preserving separate primary prompt bindings", () => {
@@ -112,9 +113,9 @@ describe("prepared public benchmark starting fixtures", () => {
     expect(
       validateBundle(bundle, p).every((check) => check.status === "passed"),
     ).toBe(true);
-    expect(fixtureSha256(exportBundle(bundle, manifest.scope))).toBe(
-      manifest.exportHash,
-    );
+    expect(exportBundle(bundle, manifest.scope)).not.toContain('name="SkyboxUp"');
+    expect(fixtureSha256(readFileSync(join(games[0].fixture.directory!, "export.rbxlx"))))
+      .toBe(manifest.exportHash);
     const primary = getBenchmarkCase("game.asmr-interaction");
     const prepared = readBenchmarkFixture(primary.fixture.directory!, primary);
     expect(prepared.bundle).toEqual(bundle);

@@ -1,0 +1,456 @@
+{
+  "at": "2026-09-27T16:20:59.430Z",
+  "method": "Text inventory of explicit throw statements in the named files and Engine proposal-build through OpenCode-dispatch segment. Not branch coverage. Schema refinements and called helpers have additional guards.",
+  "rows": [
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 117,
+      "expression": "throw new ConflictError( \"This proposal changed. Review it before applying this edit.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 124,
+      "expression": "throw new ConflictError( \"The edit replaces an unrelated or duplicate proposal section.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 132,
+      "expression": "throw new ConflictError( \"The edit contains no content change. The saved proposal and approval are retained.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 158,
+      "expression": "throw new ConflictError( \"This saved build has no complete proposal dependency map. Files and evidence are retained. Broad regeneration requires an explicit new build decision.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 214,
+      "expression": "throw Error( \"A scoped plan must replace only the affected tasks and requirements, preserving their IDs.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 224,
+      "expression": "throw Error( \"This edit changes file ownership or contracts beyond the declared dependency set. A broader plan must be reviewed explicitly.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 232,
+      "expression": "throw Error(\"A scoped edit cannot drop existing proposal dependencies.\");",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/proposal.ts",
+      "line": 273,
+      "expression": "if (errors.length) throw Error(errors.join(\"\\n\"));",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/generation/plan-validation.ts",
+      "line": 51,
+      "expression": "throw Error( [...new Set(errors.flatMap((error) => error.split(\"\\n\")))].join(\"\\n\"), );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 55,
+      "expression": "throw Error( \"Approved asset need link is stale or incompatible: \" + group.label, );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 76,
+      "expression": "throw Error(\"Ambiguous approved asset need link: \" + group.label);",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 89,
+      "expression": "throw Error(\"Approved asset option is missing: \" + group.label);",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 91,
+      "expression": "throw Error(\"Approved asset attachment is missing: \" + group.label);",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 104,
+      "expression": "throw Error( \"Ambiguous legacy approved asset requirement: \" + group.label, );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 114,
+      "expression": "throw Error(\"Ambiguous legacy approved asset need: \" + group.label);",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 129,
+      "expression": "throw Error( \"Approved asset needs a linked requirement before building: \" + group.label + \" #\" + option.assetId, );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 136,
+      "expression": "throw Error( \"Approved asset kind is incompatible with its linked need: \" + group.label, );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/asset-binding.ts",
+      "line": 141,
+      "expression": "throw Error( \"Multiple approved groups link to the same asset need: \" + need.id, );",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/marketplace/approved-adapter.ts",
+      "line": 107,
+      "expression": "throw new AssetOperationError( \"No approved asset matches \" + need.role + \". Review asset choices before building. Find later remains unresolved.\", [], \"none\", );",
+      "category": "Approved selection enforcement"
+    },
+    {
+      "file": "src/marketplace/approved-adapter.ts",
+      "line": 137,
+      "expression": "throw new AssetOperationError( \"This asset was not approved for this requirement. Review the asset choices before importing a replacement.\", [], \"none\", );",
+      "category": "Approved selection enforcement"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 142,
+      "expression": "throw Error( \"Component stage need differs from declared acquisition context\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 150,
+      "expression": "throw Error( \"Component stage entries differ from declared acquisition context\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 159,
+      "expression": "throw Error(\"Component stage candidate differs from current selection\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 162,
+      "expression": "throw Error(\"Component stage namespace is invalid\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 204,
+      "expression": "throw Error( \"Component stage retained reference is not bound to this accepted context\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 327,
+      "expression": "throw Error(\"Audio receipts do not identify one selected Studio\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 341,
+      "expression": "throw Error( \"Placement audio must be a fresh capture from the same bound Studio process\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 384,
+      "expression": "throw Error( \"Asset pipeline requires a fresh run; historical/interrupted receipts cannot be reused\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 390,
+      "expression": "throw Error(\"Duplicate asset need IDs\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 396,
+      "expression": "throw Error(\"Asset need query, role and constraints cannot be blank\");",
+      "category": "Candidate structure/provenance"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 403,
+      "expression": "throw Error(\"Asset run/adapter identity mismatch\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 410,
+      "expression": "throw Error(\"Asset run entries do not match needs\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 435,
+      "expression": "throw new PersistenceHalt( \"Asset history exceeded its bounded storage limit\", !!owned || run.requiresReconciliation === true, );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 442,
+      "expression": "throw new PersistenceHalt( \"Cannot persist asset pipeline history: \" + String(error), !!owned || run.requiresReconciliation === true, );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 450,
+      "expression": "throw new PipelineHalt(\"Asset pipeline cancelled\", \"interrupted\");",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 468,
+      "expression": "if (error instanceof PersistenceHalt) throw error;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 508,
+      "expression": "if (retry) throw adapterFailure;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 509,
+      "expression": "throw new PipelineHalt( String(error), signal.aborted ? \"interrupted\" : \"failed\", uncertainMutation, );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 532,
+      "expression": "if (error instanceof PersistenceHalt) throw error;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 552,
+      "expression": "throw new PipelineHalt( \"Owned asset cleanup failed: \" + String(error), signal.aborted ? \"interrupted\" : \"failed\", !cleaned, );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 701,
+      "expression": "throw error;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 774,
+      "expression": "throw new PipelineHalt( \"Embedded audio discovery requires an unchanged current-run retained component\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 803,
+      "expression": "throw new PipelineHalt( \"Embedded audio candidate origin differs from the retained component reference\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 897,
+      "expression": "throw new PipelineHalt( \"Retry decision requires a nonblank query\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 912,
+      "expression": "throw new PipelineHalt( \"Model selected an unoffered or already attempted candidate ID\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 946,
+      "expression": "throw Error( \"Inspection returned no owned token; native import outcome is unresolved\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 965,
+      "expression": "throw new PipelineHalt( \"Inspection did not return the selected candidate and an owned token\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1007,
+      "expression": "throw Error( \"Prepared component identity differs from selected asset or game context\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1149,
+      "expression": "throw Error( \"Adapted component identity differs from selected asset/context or was not recaptured\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1229,
+      "expression": "throw Error( \"Integration reference differs from reviewed need/component\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1245,
+      "expression": "throw new PipelineHalt( \"Component preparation returned an unrelated generated bundle\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1508,
+      "expression": "throw new PipelineHalt( \"Asset export must contain scene objects and no executable scripts\", );",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1559,
+      "expression": "throw error;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1587,
+      "expression": "if (error instanceof PersistenceHalt) throw error; // Never issue an unlogged follow-up mutation.",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/asset-pipeline.ts",
+      "line": 1599,
+      "expression": "if (cleanupError instanceof PersistenceHalt) throw cleanupError;",
+      "category": "External acquisition, evidence or lifecycle"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 169,
+      "expression": "throw Error(\"Unknown output reference or offset.\");",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 217,
+      "expression": "if (res.destroyed) throw Error(\"Runtime disconnected.\");",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 275,
+      "expression": "if (!tool) throw Error(\"Unknown host tool.\");",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 289,
+      "expression": "throw Error( \"OpenCode stopped after 12 tools without a validated checkpoint.\", );",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 294,
+      "expression": "throw Error( \"Tool evidence exceeds the bounded retrieval capacity. Saved project data remains intact.\", );",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 327,
+      "expression": "throw Error(\"Missing local OpenCode address.\");",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 334,
+      "expression": "if (error) throw error;",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 350,
+      "expression": "throw Error( \"Configure FORGE_OPENCODE_BINARY with the absolute path to the pinned OpenCode 1.18.31 Windows executable.\", );",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 360,
+      "expression": "throw Error( \"OpenCode executable does not match the tested 1.18.31 Windows binary. Runtime was not started.\", );",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 524,
+      "expression": "throw Error( \"OpenCode exited without completing the required validated patches.\", );",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/opencode-runtime.ts",
+      "line": 531,
+      "expression": "throw e;",
+      "category": "Runtime protocol/admission"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 2629,
+      "expression": "throw Error(\"Approve the exact saved proposal before building.\");",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 2722,
+      "expression": "throw Error(\"Approved proposal changed or build cancelled.\");",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 2724,
+      "expression": "throw Error( \"Implementation planning needs a decision: \" + p .spec!.questions.filter((q) => !q.optional && !p.answers[q.id]) .map((q) => q.prompt) .join(\" \") + \" Answer through the proposal conversation before continuing.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 2748,
+      "expression": "throw Error( \"Scoped build changed an unrelated path: \" + original.path + \". Previous artifact retained.\", );",
+      "category": "Approval/edit state or patch contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 3132,
+      "expression": "throw Error( \"Takko resolved the requested assets. Return an updated task using only these retained imports and exact paths: \" + JSON.stringify( p.assetPipeline?.entries.map((e) => ({ selected: e.selected, assets: e.bundle?.assets, paths: e.bundle?.scene.map((n) => n.path), component: e.component, })), ).slice(0, 2200), );",
+      "category": "Worker output or compiler contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 3173,
+      "expression": "throw Error( \"Builder returned an empty task for \" + task.id + \": provide implemented coverage for every task requirement using existing context paths, or supply its implementation. Available evidence: \" + [...existing].join(\", \"), );",
+      "category": "Worker output or compiler contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 3195,
+      "expression": "throw Error(taskFailures.map((check) => check.detail).join(\"\\n\"));",
+      "category": "Worker output or compiler contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 3206,
+      "expression": "throw Error( \"Task scripts must compile before becoming dependencies:\\n\" + failures .map((check) => check.id + \": \" + check.detail) .join(\"\\n\"), );",
+      "category": "Worker output or compiler contract"
+    },
+    {
+      "file": "src/generation/engine.ts",
+      "line": 3232,
+      "expression": "throw Error(\"Generation cancelled before committing worker output\");",
+      "category": "Approval/edit state or patch contract"
+    }
+  ]
+}

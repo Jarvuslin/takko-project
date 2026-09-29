@@ -1,0 +1,27 @@
+
+> takko-studio@0.2.0 test:desktop
+> tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs && node --test desktop/tests/*.test.mjs
+
+Desktop resources built in dist-desktop. No application was launched.
+✔ Roblox CDN is allowed only for HTTPS image requests (1.1402ms)
+✔ only HTTPS Creator Store asset and Roblox documentation links open externally (0.5165ms)
+✔ desktop keeps Roblox connector paths while excluding inference credentials (1.304ms)
+✔ Takko keeps the existing desktop storage and lock location after rebranding (0.4374ms)
+✔ an explicit isolated workspace does not change the default desktop directory (0.2626ms)
+✔ accepts only nonce-bound readiness from its own child (2.8881ms)
+✔ startup deadline fails and kills only owned worker (24.5229ms)
+✔ crash after readiness fails visibly without automatic restart (0.5352ms)
+✔ unresponsive shutdown escalates, repeated stop shares completion (29.7445ms)
+✔ lost IPC during heartbeat reports failure and cleans up the worker (15.2594ms)
+✔ lost shutdown IPC still terminates owned worker and settles stop (0.4479ms)
+✔ stop during startup rejects pending start and prevents late readiness (0.2328ms)
+✔ navigation rejects other origins, credentials and non-HTTP schemes (0.1953ms)
+✔ bundled service uses isolated data, private readiness, and graceful shutdown (471.3205ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 594.4384

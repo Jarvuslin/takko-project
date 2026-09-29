@@ -1,0 +1,99 @@
+diff --git "a/.forge\\ui-polish-before\\src\\web\\GameConcept.tsx" "b/src\\web\\GameConcept.tsx"
+index be9e5cc..64ff531 100644
+--- "a/.forge\\ui-polish-before\\src\\web\\GameConcept.tsx"
++++ "b/src\\web\\GameConcept.tsx"
+@@ -1,3 +1,4 @@
++import { Clarifications, answerComplete } from "./Clarifications";
+ import type { GameConcept as Concept } from "../generation/concept";
+ import { conceptCanPlan } from "../generation/concept";
+ import "./game-concept.css";
+@@ -5,7 +6,7 @@ import "./game-concept.css";
+ export function GameConcept({
+   concept,
+   answers,
+-  onAnswer,
++  onAnswers,
+   onRefine,
+   onPlan,
+   disabled,
+@@ -13,21 +14,28 @@ export function GameConcept({
+ }: {
+   concept: Concept;
+   answers: Record<string, string>;
+-  onAnswer: (id: string, value: string) => void;
++  onAnswers: (answers: Record<string, string>) => void;
+   onRefine: () => void;
+   onPlan: () => void;
+   disabled: boolean;
+   dirty: boolean;
+ }) {
+-  const complete = concept.questions.every((q) => answers[q.id]?.trim());
++  const complete = concept.questions.every((q) => answerComplete(q, answers));
+   return (
+     <section className="game-concept" aria-label="Your game concept">
+       <span className="eyebrow">YOUR GAME CONCEPT</span>
+       <h2>{concept.title}</h2>
+       <p>{concept.playerExperience}</p>
+       <p className="muted">Look and feel: {concept.visualDirection}</p>
++      <Clarifications
++        key={concept.revision}
++        questions={concept.questions}
++        answers={answers}
++        change={onAnswers}
++        disabled={disabled}
++      />
+       {!!concept.decisions?.length && (
+-        <details open>
++        <details>
+           <summary>Choices to review</summary>
+           <ul>
+             {concept.decisions.map((decision, i) => (
+@@ -68,38 +76,6 @@ export function GameConcept({
+           </ul>
+         </details>
+       )}
+-      {concept.questions.map((q) => (
+-        <fieldset key={q.id} disabled={disabled}>
+-          <legend>{q.prompt}</legend>
+-          <div className="concept-choices">
+-            {[...q.options, "Choose for me"].map((option) => {
+-              const value =
+-                option === "Choose for me"
+-                  ? "Choose a sensible default for me."
+-                  : option;
+-              return (
+-                <button
+-                  type="button"
+-                  key={option}
+-                  aria-pressed={answers[q.id] === value}
+-                  onClick={() => onAnswer(q.id, value)}
+-                >
+-                  {option}
+-                </button>
+-              );
+-            })}
+-          </div>
+-          <label htmlFor={"concept-" + q.id}>Your answer</label>
+-          <textarea
+-            id={"concept-" + q.id}
+-            rows={2}
+-            maxLength={3000}
+-            placeholder="Pick an option above or describe your own idea"
+-            value={answers[q.id] ?? ""}
+-            onChange={(e) => onAnswer(q.id, e.target.value)}
+-          />
+-        </fieldset>
+-      ))}
+       <div className="concept-playtest">
+         <h3>First thing to try</h3>
+         <p>{concept.firstPlaytest.goal}</p>
+@@ -147,7 +123,8 @@ export function GameConcept({
+       </div>
+       {dirty && !concept.questions.length && (
+         <p className="muted">
+-          Your request has changed. Update the concept before continuing.
++          Your choices or request have changed. Update the concept before
++          continuing.
+         </p>
+       )}
+     </section>

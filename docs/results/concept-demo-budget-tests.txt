@@ -1,0 +1,13 @@
+✔ retains every previous paid reservation even across failed trials (1.627ms)
+✔ uses only the explicit authorized ceiling (0.5536ms)
+✔ blocks repeat attempts and unknown charges (0.3884ms)
+✔ rejects unbounded stages and invalid amounts (0.4893ms)
+✔ a spending ceiling is not a required prepaid balance (2.2025ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 138.6534

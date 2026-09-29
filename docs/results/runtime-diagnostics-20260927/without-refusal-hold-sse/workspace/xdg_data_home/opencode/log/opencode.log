@@ -1,0 +1,33 @@
+timestamp=2026-09-27T16:47:12.828Z level=INFO run=e6c6ed39 message="creating instance" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.831Z level=INFO run=e6c6ed39 message=fromDirectory directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.851Z level=INFO run=e6c6ed39 message=bootstrapping directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.858Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T16:47:12.992Z level=INFO run=e6c6ed39 message="all LSPs are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message="all formatters are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message=init
+timestamp=2026-09-27T16:47:13.384Z level=INFO run=e6c6ed39 message=created id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR slug=tidy-engine version=1.18.31 projectID=global directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" path=Users/7474g/AppData/Local/Temp/takko-opencode-JM8zOY workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790527633384 time.updated=1790527633384
+timestamp=2026-09-27T16:47:13.408Z level=INFO run=e6c6ed39 message="event connected"
+timestamp=2026-09-27T16:47:14.247Z level=INFO run=e6c6ed39 message=loop session.id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR step=0
+timestamp=2026-09-27T16:47:14.283Z level=INFO run=e6c6ed39 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T16:47:14.597Z level=INFO run=e6c6ed39 message="watcher backend" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" platform=win32 backend=windows
+timestamp=2026-09-27T16:47:14.636Z level=INFO run=e6c6ed39 message="project copy refresh started" projectID=global
+timestamp=2026-09-27T16:47:14.639Z level=INFO run=e6c6ed39 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-09-27T16:47:14.704Z level=INFO run=e6c6ed39 message="booting location services" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" workspaceID=undefined
+timestamp=2026-09-27T18:30:22.404Z level=INFO run=3f6858f3 message="creating instance" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.406Z level=INFO run=3f6858f3 message=fromDirectory directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.683Z level=INFO run=3f6858f3 message=bootstrapping directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace"
+timestamp=2026-09-27T18:30:22.693Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T18:30:22.694Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T18:30:22.694Z level=INFO run=3f6858f3 message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T18:30:22.870Z level=DEBUG run=3f6858f3 message="loaded custom config from OPENCODE_CONFIG_CONTENT"
+timestamp=2026-09-27T18:30:22.930Z level=INFO run=3f6858f3 message="all LSPs are disabled"
+timestamp=2026-09-27T18:30:22.931Z level=INFO run=3f6858f3 message="all formatters are disabled"
+timestamp=2026-09-27T18:30:22.931Z level=INFO run=3f6858f3 message=init
+timestamp=2026-09-27T18:30:23.167Z level=INFO run=3f6858f3 message=created id=ses_f1bde1540ffeHVJZdy8sROiNPC slug=glowing-moon version=1.18.31 projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace" path=docs/results/runtime-diagnostics-20260927/without-refusal-hold-sse/workspace workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790533823167 time.updated=1790533823167
+timestamp=2026-09-27T18:30:23.184Z level=INFO run=3f6858f3 message="event connected"
+timestamp=2026-09-27T18:30:23.799Z level=INFO run=3f6858f3 message=loop session.id=ses_f1bde1540ffeHVJZdy8sROiNPC step=0
+timestamp=2026-09-27T18:30:23.827Z level=INFO run=3f6858f3 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T18:30:24.327Z level=INFO run=3f6858f3 message="watcher backend" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\without-refusal-hold-sse\\workspace" platform=win32 backend=windows
+timestamp=2026-09-27T18:30:24.334Z level=INFO run=3f6858f3 message="project copy refresh started" projectID=62ded5c4e848b47c4254ad4fea7067cb86d44eed

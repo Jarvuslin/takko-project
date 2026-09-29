@@ -1,0 +1,127 @@
+diff --git a/.forge/b-foundation-before/ArchitectureEditor.tsx b/src/web/ArchitectureEditor.tsx
+index 3dfdc9e..5d44b25 100644
+--- a/.forge/b-foundation-before/ArchitectureEditor.tsx
++++ b/src/web/ArchitectureEditor.tsx
+@@ -13,11 +13,13 @@ export function ArchitectureEditor({
+   details,
+   save,
+   presentation,
++  docked = false,
+ }: {
+   project: Project;
+   ask: (message: string) => void;
+   details: (name: string) => void;
+   save: (graph: GameArchitecture, id: string) => Promise<void>;
++  docked?: boolean;
+   /** Optional preview presentation. Does not alter graph contracts or execution. */
+   presentation?: {
+     initialSelection?: string;
+@@ -113,6 +115,23 @@ export function ArchitectureEditor({
+     });
+   };
+   const fitted = useRef(0);
++  const currentFit = useRef(fit);
++  useEffect(() => {
++    currentFit.current = fit;
++  });
++  useEffect(() => {
++    if (!docked || !surface.current) return;
++    let frame = 0;
++    const observer = new ResizeObserver(() => {
++      cancelAnimationFrame(frame);
++      frame = requestAnimationFrame(() => currentFit.current());
++    });
++    observer.observe(surface.current);
++    return () => {
++      observer.disconnect();
++      cancelAnimationFrame(frame);
++    };
++  }, [docked]);
+   useEffect(() => {
+     if (presentation?.layoutKey) fit();
+   }, [presentation?.layoutKey]);
+@@ -146,12 +165,15 @@ export function ArchitectureEditor({
+   ];
+   return (
+     <section
+-      className="architecture-editor architecture-workspace"
++      className={`architecture-editor architecture-workspace${docked ? " architecture-docked" : ""}${inspector ? " inspector-open" : ""}`}
+       aria-label="Game architecture"
+     >
+       <header className="canvas-heading">
+         <div>
+-          <strong>{project.name}</strong>
++          {docked && (
++            <span className="canvas-eyebrow">Your game, connected</span>
++          )}
++          <strong>{docked ? "Game architecture" : project.name}</strong>
+           <small>
+             {project.stage.replaceAll("_", " ")} ·{" "}
+             {project.architecture
+@@ -207,8 +229,10 @@ export function ArchitectureEditor({
+                   name: "New system",
+                   purpose: "Describe what this system does for the player.",
+                   authority: "server",
+-                  x: 35 + (graph.nodes.length % 3) * 230,
+-                  y: 40 + Math.floor(graph.nodes.length / 3) * 130,
++                  x: 35 + (graph.nodes.length % 3) * (docked ? 280 : 230),
++                  y:
++                    40 +
++                    Math.floor(graph.nodes.length / 3) * (docked ? 210 : 130),
+                 },
+               ],
+             });
+@@ -287,7 +311,10 @@ export function ArchitectureEditor({
+           style={{
+             transform: `translate(${camera.x}px, ${camera.y}px) scale(${camera.zoom})`,
+             width: Math.max(740, ...graph.nodes.map((n) => n.x + 230)),
+-            height: Math.max(330, ...graph.nodes.map((n) => n.y + 130)),
++            height: Math.max(
++              330,
++              ...graph.nodes.map((n) => n.y + (docked ? 200 : 130)),
++            ),
+           }}
+         >
+           <svg className="architecture-wires" aria-label="System connections">
+@@ -307,13 +334,23 @@ export function ArchitectureEditor({
+             {graph.edges.map((edge) => {
+               const a = graph.nodes.find((n) => n.id === edge.from)!,
+                 b = graph.nodes.find((n) => n.id === edge.to)!;
++              const portY = docked ? 126 : 45;
++              const centerX = (a.x + (docked ? 200 : 190) + b.x) / 2;
++              const channelY = Math.max(a.y, b.y) + 154;
+               return (
+                 <g key={edge.id}>
+                   <path
+-                    d={`M ${a.x + 190} ${a.y + 45} C ${a.x + 240} ${a.y + 45}, ${b.x - 50} ${b.y + 45}, ${b.x} ${b.y + 45}`}
++                    d={
++                      docked
++                        ? `M ${a.x + 200} ${a.y + portY} C ${a.x + 245} ${a.y + portY}, ${centerX - 30} ${channelY}, ${centerX} ${channelY} C ${centerX + 30} ${channelY}, ${b.x - 45} ${b.y + portY}, ${b.x} ${b.y + portY}`
++                        : `M ${a.x + 190} ${a.y + portY} C ${a.x + 240} ${a.y + portY}, ${b.x - 50} ${b.y + portY}, ${b.x} ${b.y + portY}`
++                    }
+                     markerEnd="url(#flow-arrow)"
+                   />
+-                  <text x={(a.x + 190 + b.x) / 2} y={(a.y + b.y) / 2 + 35}>
++                  <text
++                    x={centerX}
++                    y={docked ? channelY + 19 : (a.y + b.y) / 2 + 35}
++                  >
+                     {edge.event}
+                   </text>
+                 </g>
+@@ -545,6 +582,7 @@ export function ArchitectureEditor({
+                 </button>
+               )}
+               <button
++                className="remove-system"
+                 onClick={() => {
+                   update({
+                     nodes: graph.nodes.filter((n) => n.id !== node.id),
+@@ -723,6 +761,7 @@ export function ArchitectureEditor({
+                 return;
+               }
+               if (!review) {
++                if (docked) setInspector(false);
+                 setReview(true);
+                 return;
+               }

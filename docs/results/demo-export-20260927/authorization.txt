@@ -1,0 +1,111 @@
+CORRECTION TO THE PREVIOUS PROMPT. The demo path is NOT bridge apply. It is place
+export. Your precheck was correct and the stop was correct given what I wrote, but I
+named the wrong mechanism.
+
+The bridge refusal at bridge.ts:386 is real and stays. Do not touch it. The export path
+already handles native components:
+
+  app.ts:836   GET /api/projects/:id/export
+               exportBundle(p.artifact, p.scope, projectComponents(...).map(c => c.xml))
+  export.ts:130  mergeNativeComponentXml(document, scope, components)
+
+It produces Takko-<id>.rbxlx with component XML merged in. That is the documented
+primary delivery route in orientation.md. There is no blocker.
+
+Precheck is DONE and does not need repeating: plugin updated and source-verified, bridge
+round trip proven with an acknowledged receipt, Studio clean in Edit mode.
+
+===============================================================================
+DO THIS
+===============================================================================
+  export.ts:130  mergeNativeComponentXml(document, scope, components)
+
+It produces Takko-<id>.rbxlx with component XML merged in. That is the documented
+primary delivery route in orientation.md. There is no blocker.
+
+Precheck is DONE and does not need repeating: plugin updated and source-verified, bridge
+round trip proven with an acknowledged receipt, Studio clean in Edit mode.
+
+===============================================================================
+DO THIS
+===============================================================================
+
+STEP 1. The three fixes from the previous prompt, unchanged:
+
+  FIX 1  Bound inspection by transfer BYTES, not a fixed instance count. 3,000 nodes is
+         ~300 KB against a 4 MB budget. At minimum it must not be lower than the
+         10,000-instance preview walk at animations.ts:96, or the product keeps
+         recommending assets it cannot accept.
+
+  FIX 2  Separate incomplete coverage from an actual finding. The UI said "needs a
+         source review" for a coverage limit with ZERO findings. Wrong severity, wrong
+         wording. Coverage limits on a user-previewed, user-chosen asset become an
+         acknowledged limitation using the existing visible-limitation pattern. An
+         actual detected finding still blocks. Not a blanket bypass.
+
+  FIX 3  Discovery ran before the proposal existed, so discovery-routes.ts:276 never
+         saved recommendations and the relevance gate got a synthetic choice_<group>
+         need instead of the planner's real assetNeed. Fix the ordering.
+
+STEP 2. Verify. Failing tests first from the preserved run-11 capture that triggered the
+3,000-instance gate. Full npm run check with REAL counts. All three
+scripts/replay-post-plan.ts cases still passing at $0. If red, stop.
+
+STEP 3. ONE paid run, cap $8. Refresh and record the balance first; it was
+$15.663329032 at 2026-09-27T04:38:12.619Z.
+
+  Brief, positive-only, unchanged:
+  "A fighting game where the player punches a stationary target dummy. Include a
+   punching animation, a punch/hit sound when the player hits the dummy, and an
+   on-screen counter that increments on each successful hit."
+
+  Let Jev select automatically. It cleared 0.8 last run at 0.96/0.98. Manual picks only
+  if it selects nothing.
+
+STEP 4. Export. On ready_to_test, call GET /api/projects/:id/export, save the .rbxlx
+into the run evidence directory, and tell the user its exact path and that they open it
+directly in Studio and press Play. Do NOT use bridge apply. Do NOT modify place
+122588481889475.
+
+===============================================================================
+SUCCESS BAR
+===============================================================================
+
+  1. Luau files generated
+  2. They compile
+  3. A .rbxlx exists that the user can open and play
+  4. Cost per phase recorded
+
+Quality is NOT the bar. Eleven runs, zero files.
+
+ACCEPTABLE, do not stop for these:
+  - raw-only animation with a visible Studio-only publishing limitation
+  - incomplete-inspection limitation on an approved asset
+  - an asset failing acquisition, build continues with the gap reported
+  - a crude, ugly or partly broken game, as long as it builds and exports
+
+STOP only for: a genuinely new gate, the $8 cap, or an actual safety finding.
+
+IMPORTANT: do not stop for a delivery-mechanism question again. If bridge apply is
+unavailable for any reason, export is the path. If export itself fails, THAT is a real
+stop, and report the exact error and location.
+
+===============================================================================
+STILL DEFERRED, DO NOT DO
+===============================================================================
+
+Relevance gate redesign. Clarifying questions in asset selection. Streaming, progress
+UI, cost display, in-thread failure recovery. EditableMesh. Vision scoring. Confidence
+threshold. Place binding. Native-component bridge delivery. Anything not in STEP 1.
+
+===============================================================================
+AFTER
+===============================================================================
+
+Report under docs/. Dated section at the top of continuation.md with PIDs, ports,
+refreshed balance, per-phase costs, selection results, limitation-carrying requirements,
+OpenCode session stats, compile results, and the exact .rbxlx path.
+
+If the generated code is bad, SAY SO AND KEEP IT. That is the first real quality signal
+in twelve runs. Do not restart the user's app. No second paid run without new
+authorization.

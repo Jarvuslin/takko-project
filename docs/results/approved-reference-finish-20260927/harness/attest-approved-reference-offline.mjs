@@ -1,0 +1,12 @@
+import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+const out='docs/results/approved-reference-finish-20260927';
+for(const name of ['full-check','full-check-final','cli-replays'])if(fs.readFileSync(`${out}/${name}-exit.txt`,'utf8').trim()!=='0')throw Error(name+' did not pass');
+const log=fs.readFileSync(`${out}/full-check-final.txt`,'utf8');
+if(!log.includes('1633 passed')||!log.includes('171 passed')||!log.includes('1 skipped'))throw Error('Unexpected final counts');
+const replays=fs.readFileSync(`${out}/cli-replays.txt`,'utf8').trim().split(/\r?\n/).filter(l=>l.startsWith('{')).map(JSON.parse);
+if(replays.length!==3||replays.some(r=>!r.passed||r.actualCost!==0))throw Error('Expected all three free replays');
+const files=[];function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){const f=path.join(dir,e.name);if(e.isDirectory())walk(f);else files.push(f);}}for(const dir of ['src','tests','scripts'])walk(dir);
+const start=fs.statSync(`${out}/full-check-final.txt`).birthtimeMs;
+const sources=files.map(file=>{if(fs.statSync(file).mtimeMs>start)throw Error('Source changed after final check began: '+file);return{file,sha256:createHash('sha256').update(fs.readFileSync(file)).digest('hex')};});
+fs.writeFileSync(`${out}/offline-green.json`,JSON.stringify({at:new Date().toISOString(),fullCheckExit:0,unitTests:1633,unitFiles:114,browserPassed:171,browserSkipped:1,replays,cost:0,sources},null,2));
+console.log('Full final check and three CLI replays attested at $0');

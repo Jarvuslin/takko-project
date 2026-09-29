@@ -1,0 +1,32 @@
+Finish the remaining generic pipeline fixes, then prepare one fresh paid generation of the fighting-game request for the user's approval. Takko's own models must produce the fixed game. No hand-patching of generated output counts toward this goal.
+
+Read AGENTS.md, the top of research/notes/continuation.md, docs/instance-path-replication-gates.md and the full earlier fix prompt at C:\Users\7474g\AppData\Local\Temp\claude\D--RobloxProjects-Roblox-Gen\18c665cc-aa8c-45e1-b54a-4124bed08a1b\scratchpad\fix-prompt.md. That file holds the evidence for every item below. Its rules still apply: generic fixes only, no names, asset IDs or paths from project 8a81efe9-b8ed-44bc-a21a-5aad132813ac in production code, each fix tested against this project's real output AND a different real preserved output, red first, then green. Do not edit that project or anything under docs/results/approved-reference-finish-20260927/.
+
+## Part 1: free fixes (no paid calls)
+
+Item 2 (instance path gate) is done. Do the rest:
+
+1. **Baseplate world, built on the ground.** The export and the Studio push start from a standard Baseplate world: Baseplate top at y=0, Lighting, Sky and Atmosphere with verified Baseplate template values (cite the source, do not invent them). Every planner and builder is told the baseplate exists at y=0 and to build directly on it. No invented floor slab, enclosing box, ceiling or raised platform unless the request asks for one. Reword design-guidance.ts:15 so it stops pushing enclosed rooms. Add a scene check that flags a ground slab on the baseplate, a spawn far above y=0, or a sealed box the request did not ask for, and feeds it back to the builder as a repair error.
+2. **Lighting.** The user tested the hand-patched copy and says the lighting is still far too bright. First finish the isolation shots from the earlier scratch capture (GlobalShadows on, Ambient and OutdoorAmbient zero, PointLights off, one at a time, restored between). Then decide, from those captures, what the base world provides and what builders must be told, for example a light budget relative to space size, no stacked full-coverage PointLights outdoors, and GlobalShadows on. Add a scene check for the cause the captures actually show. Use the roblox-visual-capture skill for every visual verdict.
+3. **Physically sound retained props.** Detect unanchored BaseParts with no joint path to an anchored part or a rig, and make handling them a builder requirement.
+4. **Source packs out of Workspace.** Retained animation packs and other source-data packs go to a non-rendered container the generated code can still reach, and they must pass the path gate.
+5. **Multi-clip selection.** Never default to the first clip. An unresolved clip stays unselected and the user picks it in the UI. Fix the relevance pass that marked every punching clip irrelevant. Use a second, non-punching pack in the test.
+6. **Planner asks about core mechanics.** Silent assumptions that remove core gameplay ("no combos", "no upgrades", "single ...") become clarifying questions. If the user picks a combo, the spec requires one clip slot per combo step.
+7. **Hit counter not visible.** In the hand-patched copy the user hears the hit sound but sees no counter. The sound and CounterUpdated:FireClient run in the same server branch, so hits register. Astra's scratch run read the label text as "Hits: 3" but never captured it on screen. Reproduce in a scratch copy of Takko-Fighting-Review-20260927-patched.rbxlx. Announce before any Studio action. Check whether the ScreenGui exists in PlayerGui, is Enabled, is on screen and not covered by the top bar, and whether the label updates. Capture the actual screen. Fix the generic cause in builder guidance or a check, not in that file.
+
+Then run the full `npm run check` with real counts per stage, and free mock replays of at least two different requests showing: baseplate context present, box/slab check active, lighting guidance present, no first-clip default, the combo question asked. State that a mock replay is not a real generation.
+
+## Part 2: prepare the fresh generation (do not start it)
+
+Stop after Part 1 and give the user:
+- The exact request text, unchanged: "A fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit."
+- The model routes you will use, with the saved profile IDs.
+- A cost estimate built from real ledgers, not guesses. For reference, project 8a81efe9 spent $6.5703 over 276 charges: Sonnet builder 99 calls $4.6424, Sonnet reviewer 8 calls $1.6102, Sonnet planner 2 calls $0.2657, typesafe/jev-1.13 planner 167 calls $0.0520. Most of that went on repeated repair resumes. Give an expected cost and a hard cap for one fresh run.
+- The current key balance, freshly read with a UTC timestamp. The last verified figure is $5.625646434 at 2026-09-27T23:52:52Z. If the cap does not fit the balance, say so. Do not shrink the run to make it fit.
+- The steps where the user must answer or pick: clarifying questions, including combos, and the asset choices, including the animation clip. The user wants the clip from the "punching animation 2" model, not model 1.
+
+No paid call happens until the user explicitly approves that run and its cap. When approved, follow AGENTS.md cost rules: per-call cost, reservations, reconciliation and no auto-retry. After export, the user tests it. Nobody hand-edits the generated output.
+
+## Report
+
+Write docs/<name>.md and a dated section at the top of research/notes/continuation.md with what changed, test counts, visual captures, what is not proven, $0 spent in Part 1, ports, PIDs and what stays paused. Leave every Studio place you touched in Edit mode. Ask before stopping or touching the user's own Studio sessions.

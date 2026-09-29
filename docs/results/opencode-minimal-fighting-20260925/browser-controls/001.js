@@ -1,0 +1,10 @@
+const verified=JSON.parse(fs.readFileSync(path.join(output,'mode-verified.json'),'utf8'));
+await page.goto('http://127.0.0.1:4335/?project='+verified.projectId);
+await page.getByRole('button',{name:'Prepare persistent proposal',exact:true}).waitFor();
+fs.writeFileSync(path.join(output,'initial-status.json'),JSON.stringify(await api('/status'),null,2));
+fs.writeFileSync(path.join(output,'model-settings.json'),JSON.stringify(await api('/models'),null,2));
+await page.screenshot({path:path.join(output,'01-before-paid-proposal.png'),fullPage:true});
+mark('Saved fresh project verified opencode with zero charges and $6 cap. Dispatch exactly one proposal, retry and fallback disabled.');
+await page.getByRole('button',{name:'Prepare persistent proposal',exact:true}).click();
+await page.waitForTimeout(1000);
+return {url:page.url(),text:await page.locator('body').innerText()};

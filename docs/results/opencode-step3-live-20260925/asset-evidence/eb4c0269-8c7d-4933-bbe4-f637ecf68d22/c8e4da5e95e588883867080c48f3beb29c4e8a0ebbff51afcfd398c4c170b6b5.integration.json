@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754",
+  "scope": "Forge_eb4c02698c7d",
+  "need": {
+    "id": "dummyAsset",
+    "requirementId": "r_dummy_stationary",
+    "role": "Stationary training dummy providing the target's appearance and hitbox for punch registration",
+    "kind": "Model",
+    "query": "boxing training dummy",
+    "constraints": "Must resolve to the user-selected asset 1245720733 (Training Dummy by Xtrah962). Verify it is a stationary, non-humanoid-controlled prop with no health/damage/AI loop. Identify a clear hitbox part usable for server distance/overlap checks. Inspect its 1 embedded script and report/exclude any behavior that would move, flinch, or animate the dummy, since the approved design requires it to remain purely stationary and non-reactive.",
+    "intent": {
+      "experienceRole": "The sole punchable target that gives the player a concrete goal to walk to and strike; its fixed presence anchors the entire training-drill loop.",
+      "interaction": "Non-interactive prop for positioning purposes only; the player's punch strike-window overlaps its hitbox to register a hit server-side, but the dummy itself never reacts, moves, flinches, or attacks.",
+      "reusableFeatures": [
+        "Existing red/black canvas heavy-bag mesh and stand/base geometry",
+        "A distinguishable torso/body part usable as the hit-detection hitbox",
+        "Inspection of the embedded script to confirm it does not add movement, damage, or AI behavior that must be disabled"
+      ],
+      "relatedRequirementIds": [
+        "r_dummy_stationary",
+        "r_hit_detection"
+      ]
+    },
+    "required": true,
+    "position": [
+      8,
+      0,
+      0
+    ],
+    "maxSize": 12
+  },
+  "instanceName": "dummyAsset",
+  "review": {
+    "packetHash": "5af17e0ae47fc9778cbc47651487ec985bde47669c7eef445e2b3c6b1a18d601",
+    "inputHash": "59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592",
+    "disposition": "integration_candidate",
+    "reason": "Reactive Respawn Script removed; remaining Model is static geometry (Parts/meshes, Head, Torso, canvas Decal) with an undriven Humanoid and zero embedded scripts. No unsafe/unresolved behavior remains. Placement and hitbox/hit-detection logic are explicitly owned by other pending tasks, not this asset.",
+    "serializedMedia": [
+      {
+        "index": 16,
+        "property": "Texture",
+        "value": "rbxassetid://406436910",
+        "purpose": "Canvas heavy-bag surface texture on the Torso Decal, providing the dummy's red/black training-dummy appearance required by r_theme_gym and r_dummy_stationary.",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [],
+    "requirements": [
+      {
+        "requirementId": "r_dummy_stationary",
+        "status": "static_evidence_present",
+        "reason": "The only behavior script (health-poll clone/respawn loop) was removed. Surviving nodes are pure static geometry, Head/Torso parts, the canvas Decal, and a Humanoid with no scripted driver in this component, so no health depletion, flinch, or reactive behavior can occur from this asset. Fixed-point CFrame placement is owned by worldSetup/dummyAssetIntegration.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          2,
+          13,
+          15,
+          17
+        ]
+      },
+      {
+        "requirementId": "r_hit_detection",
+        "status": "integration_needed",
+        "reason": "This component contains no hit-detection code. Torso (index 15) is a plausible hitbox candidate part, but the server-authoritative strike-window overlap/distance math is owned by the separate hitDetectionModule/PunchServer tasks and is absent here.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          15
+        ]
+      }
+    ],
+    "permissionImpacts": [],
+    "integrationNotes": [
+      "Placement of the dummy at the fixed target point and designation of Torso as the authoritative server hitbox are owned by worldSetup/dummyAssetIntegration/hitDetectionModule, not this component-level capture.",
+      "Humanoid (index 17) is retained but currently has no script driving damage or health changes in this component; integration must verify no other namespace script ever calls TakeDamage/sets Health on it, per r_dummy_stationary.",
+      "Decal Texture rbxassetid://406436910 on Torso (index 16) preserves the canvas heavy-bag look required by r_theme_gym; native rendering/visual acceptance in the placed scene remains unverified.",
+      "Removal of the Respawn Script eliminated the only previously observed capability-bearing source; current evidence reports no removedCapabilities, so no permission-impact entries apply to this captured state."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 509,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Humanoid.Health_XML",
+      "Humanoid.InternalBodyScale",
+      "Humanoid.InternalHeadScale",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "39e5f3693a36cbd8433a2092b9fbd2b508e09158bfe54dd1f79145f0d6169b09",
+  "metadata": {
+    "needId": "dummyAsset",
+    "candidateId": "1245720733",
+    "inputHash": "59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592",
+    "packetHash": "5af17e0ae47fc9778cbc47651487ec985bde47669c7eef445e2b3c6b1a18d601",
+    "archiveHash": "fc830d4404bb078910f4d980ad039121e8199270113df3581cd9d473a952090f",
+    "conversionHash": "5e07e7a79209ff102c5ee90214cfb781dcacd595ec9e26df9ca6ca145c1d7c4a",
+    "destinationPath": "Workspace/Forge_eb4c02698c7d/Assets/dummyAsset",
+    "rootName": "dummyAsset",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

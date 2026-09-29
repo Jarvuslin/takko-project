@@ -1,0 +1,153 @@
+{
+  "at": "2026-09-20T22:13:00.380Z",
+  "paidCalls": 0,
+  "networkDisabled": true,
+  "productAndEvidenceUnchanged": true,
+  "sourceHashes": {
+    "research/results/concept-live-v1/clarify-request.json": "af87d5eb2bd9e72a9a045966056fa2a44e4f6e99df97513ac8a7d2612b4078b4",
+    "research/results/concept-live-v1/clarify-response.json": "dc4381617d2f3c7ba797182fd468f28c199df2b6a788867c4bb94286a1ef1da9",
+    "research/results/concept-live-v1/model-metadata.json": "cc72a76e9ef5dfe4115ea5ed545704e14e1c78b87793cde02efd3ff477beba73",
+    "research/results/concept-live-v2/clarify-request.json": "7c689eb914a86576b3e4d0600642a1faaf40fe47983b01b5c2694c9de3e38a52",
+    "research/results/concept-live-v2/clarify-response.json": "08c8efd30eb6d7124465d7699c983033d80ab6b771a6e9bd2c5a2a3ab85b59cd",
+    "research/results/concept-live-v2/model-metadata.json": "55a238252de59833c41c526a94d79d3d5aded39279b011150bd8ae2965e2520a",
+    "src/generation/engine.ts": "05d6decf524eaf23821949e5bda0949148943efa9135a18c4b1ae6a2484546ab",
+    "src/generation/providers.ts": "1f84c36164526582efc78d41d0f297b05b628ec8f96758266ac07888c155f45e",
+    "src/generation/concept.ts": "ab335a0d506ebbf5b24cc41854a1c081d51eca616c54375b78548df947a7084f",
+    "src/generation/settings.ts": "918b0617860b0935436eb1d90e1288f3915692e641a0e62db76bb499e63ca112"
+  },
+  "observations": [
+    {
+      "name": "original failure is the two exact length constraints, not JSON parsing",
+      "passed": true,
+      "detail": {
+        "lengths": [
+          522,
+          531
+        ],
+        "issues": [
+          {
+            "origin": "string",
+            "code": "too_big",
+            "maximum": 500,
+            "inclusive": true,
+            "path": [
+              "playerExperience"
+            ],
+            "message": "Too big: expected string to have <=500 characters"
+          },
+          {
+            "origin": "string",
+            "code": "too_big",
+            "maximum": 500,
+            "inclusive": true,
+            "path": [
+              "visualDirection"
+            ],
+            "message": "Too big: expected string to have <=500 characters"
+          }
+        ]
+      }
+    },
+    {
+      "name": "description-only fix leaves independent five-step failure unchanged",
+      "passed": true,
+      "detail": {
+        "steps": 5,
+        "issues": [
+          {
+            "origin": "array",
+            "code": "too_big",
+            "maximum": 4,
+            "inclusive": true,
+            "path": [
+              "firstPlaytest",
+              "steps"
+            ],
+            "message": "Too big: expected array to have <=4 items"
+          }
+        ]
+      }
+    },
+    {
+      "name": "recorded requests use JSON mode, with constraints only in prompt",
+      "passed": true,
+      "detail": {
+        "format": "json_object",
+        "schemaInPrompt": true,
+        "recordedEndpointAdvertisesStructuredOutputs": true
+      }
+    },
+    {
+      "name": "one-dispatch guard produces connection error and extra unknown-usage reservation",
+      "passed": true,
+      "detail": {
+        "transportAttempts": 2,
+        "guardAccepted": 1,
+        "error": "Could not complete planner. Provider connection failed",
+        "offlineCharges": [
+          {
+            "phase": "planner",
+            "profileId": "18a6d07e-c094-4c0e-a2b0-007bb16b586f",
+            "model": "anthropic/claude-haiku-4.5",
+            "reservedMicros": 16310,
+            "chargedMicros": 3830,
+            "estimated": false,
+            "billingSource": "provider",
+            "inputTokens": 1230,
+            "outputTokens": 520,
+            "cachedInputTokens": 0,
+            "status": "ok",
+            "at": "2026-09-20T22:13:00.289Z"
+          },
+          {
+            "phase": "planner",
+            "profileId": "18a6d07e-c094-4c0e-a2b0-007bb16b586f",
+            "model": "anthropic/claude-haiku-4.5",
+            "reservedMicros": 18604,
+            "chargedMicros": 18604,
+            "estimated": true,
+            "billingSource": "reservation",
+            "inputTokens": null,
+            "outputTokens": null,
+            "status": "error",
+            "at": "2026-09-20T22:13:00.296Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "allowing a synthetic valid correction succeeds with repairLimit zero",
+      "passed": true,
+      "detail": {
+        "transportAttempts": 2,
+        "repairLimit": 0,
+        "caveat": "Second response is hand-corrected offline, not a live model outcome"
+      }
+    },
+    {
+      "name": "local dispatch refusal and simulated network failure lose their distinction",
+      "passed": true,
+      "detail": {
+        "errors": [
+          "Provider connection failed",
+          "Provider connection failed"
+        ]
+      }
+    },
+    {
+      "name": "current concept flow accepts the saved unresolved choice and manual setup guidance",
+      "passed": false,
+      "error": "Error: Add an API key for Live trial - Haiku 4.5"
+    },
+    {
+      "name": "exact answered question ID is rejected by the existing semantic check",
+      "passed": false,
+      "error": "Error: Add an API key for Live trial - Haiku 4.5"
+    },
+    {
+      "name": "renaming an answered question ID bypasses the repetition check",
+      "passed": false,
+      "error": "Error: Add an API key for Live trial - Haiku 4.5"
+    }
+  ]
+}

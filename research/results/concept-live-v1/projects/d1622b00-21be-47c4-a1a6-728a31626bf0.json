@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "id": "d1622b00-21be-47c4-a1a6-728a31626bf0",
+  "name": "Pet Game Direction",
+  "request": "I want to make a pet game, but I am not sure if players should rescue lost pets or battle with them. Help me choose what players actually do before building anything.",
+  "revision": 2,
+  "scope": "Forge_d1622b0021be",
+  "spec": null,
+  "answers": {
+    "core_interaction": "Rescue: find distressed pets, heal them, reunite them with owners or sanctuary. Make it a relaxed solo game where I find pets, carry them to a shelter, earn coins, and unlock the next forest path. No combat, trading, or pets getting worse while I am offline. Keep that whole loop in the plan.",
+    "progression_motivation": "Choose a sensible default for me."
+  },
+  "approvedRevision": null,
+  "stage": "failed",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "5ce0a89d-e791-4c2d-97d0-21aed13048ec",
+      "model": "anthropic/claude-haiku-4.5",
+      "reservedMicros": 14403,
+      "chargedMicros": 3942,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 817,
+      "outputTokens": 625,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-20T19:45:32.580Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5ce0a89d-e791-4c2d-97d0-21aed13048ec",
+      "model": "anthropic/claude-haiku-4.5",
+      "reservedMicros": 15600,
+      "chargedMicros": 4195,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 1085,
+      "outputTokens": 622,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-09-20T19:46:47.856Z"
+    },
+    {
+      "phase": "planner",
+      "profileId": "5ce0a89d-e791-4c2d-97d0-21aed13048ec",
+      "model": "anthropic/claude-haiku-4.5",
+      "reservedMicros": 18534,
+      "chargedMicros": 18534,
+      "estimated": true,
+      "billingSource": "reservation",
+      "inputTokens": null,
+      "outputTokens": null,
+      "status": "error",
+      "at": "2026-09-20T19:46:47.873Z"
+    }
+  ],
+  "budgetMicros": 150000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-20T19:45:24.458Z",
+      "message": "Shaping your idea before planning the game."
+    },
+    {
+      "at": "2026-09-20T19:45:24.460Z",
+      "message": "planner: Live trial - Haiku 4.5 / anthropic/claude-haiku-4.5"
+    },
+    {
+      "at": "2026-09-20T19:45:32.585Z",
+      "message": "Choose a direction to finish your game concept."
+    },
+    {
+      "at": "2026-09-20T19:46:39.014Z",
+      "message": "Shaping your idea before planning the game."
+    },
+    {
+      "at": "2026-09-20T19:46:39.018Z",
+      "message": "planner: Live trial - Haiku 4.5 / anthropic/claude-haiku-4.5"
+    },
+    {
+      "at": "2026-09-20T19:46:47.869Z",
+      "message": "Validation feedback: playerExperience: Too big: expected string to have <=500 characters; visualDirection: Too big: expected string to have <=500 characters"
+    },
+    {
+      "at": "2026-09-20T19:46:47.870Z",
+      "message": "planner: Live trial - Haiku 4.5 / anthropic/claude-haiku-4.5 — correcting output"
+    }
+  ],
+  "jobId": null,
+  "error": "Could not complete planner. Provider connection failed",
+  "createdAt": "2026-09-20T19:45:24.435Z",
+  "studioEvidence": null,
+  "generation": {
+    "id": "69922631-2197-497f-a0dc-517393fe57c5",
+    "budgetMicros": 150000,
+    "chargeStart": 0,
+    "briefHash": "78d4472d125d6bc815a272bbc22af6b1d25422b0d1ae78045402590a01d7a87d"
+  },
+  "failure": {
+    "code": "GENERATION_OUTPUT_REJECTED",
+    "phase": "planner",
+    "attempts": 2,
+    "details": "Provider connection failed",
+    "at": "2026-09-20T19:46:47.875Z"
+  },
+  "concept": null,
+  "research": null,
+  "assetPipeline": null,
+  "visualEvidence": null,
+  "answerQuestions": {
+    "core_interaction": "Do you want players to primarily discover and restore lost or injured pets to health, or to train and test pets they bond with in competitive challenges?",
+    "progression_motivation": "What drives players to return—emotional attachment (watching a rescued pet recover), or mastery and achievement (training a pet to win)?"
+  }
+}

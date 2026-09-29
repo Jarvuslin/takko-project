@@ -1,0 +1,643 @@
+[WebServer] (node:34220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:29396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 44 tests using 1 worker
+
+(node:33968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x   1 [desktop] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (30.4s)
+(node:31068) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 [desktop] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (528ms)
+  ok  3 [desktop] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (1.5s)
+  x   4 [desktop] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (30.4s)
+(node:15448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  5 [desktop] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (10.7s)
+  ok  6 [desktop] › tests\browser\lemonade-layout.spec.ts:269:1 › sending a follow-up preserves the original request and updates the plan once (4.5s)
+  x   7 [desktop] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (30.2s)
+(node:11796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [desktop] › tests\browser\settings-workspace.spec.ts:74:1 › creates a named preset and activates it without generation (3.4s)
+  ok  9 [desktop] › tests\browser\settings-workspace.spec.ts:108:1 › draft and one-off limit survive opening Models (508ms)
+  x  10 [desktop] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values (30.4s)
+(node:29040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  11 [desktop] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models (6.1s)
+(node:15580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  12 [desktop] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused (5.8s)
+(node:34516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 13 [desktop] › tests\browser\settings-workspace.spec.ts:192:1 › Models tabs and dialogs pass accessibility and keep actions visible (11.8s)
+  ok 14 [desktop] › tests\browser\settings-workspace.spec.ts:234:1 › project-specific preset route survives refresh (1.6s)
+  ok 15 [desktop] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (1.4s)
+  ok 16 [desktop] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and tabs support arrow keys (5.8s)
+  x  17 [desktop] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates (5.7s)
+(node:28812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 18 [desktop] › tests\browser\workflow.spec.ts:95:1 › welcomes multiple game ideas without generating a preset or claiming a connection (4.1s)
+  x  19 [desktop] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage (30.6s)
+(node:7848) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  20 [desktop] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails (30.7s)
+(node:16540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 21 [desktop] › tests\browser\workflow.spec.ts:187:1 › welcome and model settings pass accessibility checks and fit the viewport (1.3s)
+  ok 22 [desktop] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (18.8s)
+(node:32996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  23 [mobile] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (30.2s)
+(node:33884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 24 [mobile] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (433ms)
+  ok 25 [mobile] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (1.4s)
+  x  26 [mobile] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (30.2s)
+(node:4408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 27 [mobile] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (6.6s)
+  ok 28 [mobile] › tests\browser\lemonade-layout.spec.ts:269:1 › sending a follow-up preserves the original request and updates the plan once (4.2s)
+  x  29 [mobile] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (30.2s)
+(node:32604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 30 [mobile] › tests\browser\settings-workspace.spec.ts:74:1 › creates a named preset and activates it without generation (3.5s)
+  ok 31 [mobile] › tests\browser\settings-workspace.spec.ts:108:1 › draft and one-off limit survive opening Models (478ms)
+  x  32 [mobile] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values (30.2s)
+(node:34372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  33 [mobile] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models (5.6s)
+(node:28892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  34 [mobile] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused (5.8s)
+(node:20300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 35 [mobile] › tests\browser\settings-workspace.spec.ts:192:1 › Models tabs and dialogs pass accessibility and keep actions visible (5.1s)
+  ok 36 [mobile] › tests\browser\settings-workspace.spec.ts:234:1 › project-specific preset route survives refresh (1.6s)
+  ok 37 [mobile] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (1.4s)
+  ok 38 [mobile] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and tabs support arrow keys (5.7s)
+  x  39 [mobile] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates (5.6s)
+(node:27836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 40 [mobile] › tests\browser\workflow.spec.ts:95:1 › welcomes multiple game ideas without generating a preset or claiming a connection (3.6s)
+  x  41 [mobile] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage (30.4s)
+(node:23908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  42 [mobile] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails (30.4s)
+(node:8456) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 43 [mobile] › tests\browser\workflow.spec.ts:187:1 › welcome and model settings pass accessibility checks and fit the viewport (1.7s)
+  ok 44 [mobile] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (16.7s)
+
+
+  1) [desktop] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true }).first()
+
+
+      11 |     .getByRole("button", { name: "Edit preset", exact: true })
+      12 |     .first()
+    > 13 |     .click();
+         |      ^
+      14 |   const toggle = page.getByRole("checkbox", {
+      15 |     name: "Research before planning",
+      16 |   });
+        at D:\RobloxProjects\Roblox Gen\tests\browser\lemonade-layout.spec.ts:13:6
+
+    Error Context: test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: apiRequestContext.put: Test timeout of 30000ms exceeded.
+
+      181 |     });
+      182 |   } finally {
+    > 183 |     await page.request.put("/api/models", {
+          |                        ^
+      184 |       data: {
+      185 |         ...settings,
+      186 |         profiles: [],
+        at D:\RobloxProjects\Roblox Gen\tests\browser\lemonade-layout.spec.ts:183:24
+
+    Error Context: test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true })
+
+
+      39 |   const before = await (await page.request.get("/api/models")).json();
+      40 |   await page.goto("/#presets");
+    > 41 |   await page.getByRole("button", { name: "Edit preset", exact: true }).click();
+         |                                                                        ^
+      42 |   const dialog = page.getByRole("dialog");
+      43 |   await dialog
+      44 |     .locator(".preset-role")
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:41:72
+
+    Error Context: test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true })
+
+
+      125 | test("unsaved preset dismissal keeps saved values", async ({ page }) => {
+      126 |   await page.goto("/#presets");
+    > 127 |   await page.getByRole("button", { name: "Edit preset", exact: true }).click();
+          |                                                                        ^
+      128 |   await page.getByLabel("Preset name").fill("Unsaved");
+      129 |   await page.keyboard.press("Escape");
+      130 |   await page.getByRole("button", { name: "Keep editing" }).click();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:127:72
+
+    Error Context: test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('Model ID', { exact: true })
+    Expected: "openai/example"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('Model ID', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      143 |     .click();
+      144 |   const dialog = page.getByRole("dialog");
+    > 145 |   await expect(dialog.getByLabel("Model ID", { exact: true })).toHaveValue(
+          |                                                                ^
+      146 |     "openai/example",
+      147 |   );
+      148 |   await dialog.getByRole("button", { name: "Add to library" }).click();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:145:64
+
+    Error Context: test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [desktop] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('API key', { exact: true })
+    Expected: ""
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('API key', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('API key', { exact: true })
+
+
+      185 |     .getByLabel("Provider endpoint")
+      186 |     .fill(settings.profiles[0].baseUrl);
+    > 187 |   await expect(dialog.getByLabel("API key", { exact: true })).toHaveValue("");
+          |                                                               ^
+      188 |   await expect(
+      189 |     dialog.getByText(/No need to enter the key again/),
+      190 |   ).toBeVisible();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:187:63
+
+    Error Context: test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [desktop] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('Model ID', { exact: true })
+    Expected: "test/economy"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('Model ID', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      78 |   await dialog.getByLabel("Search provider models").fill("economy");
+      79 |   await dialog.getByRole("button", { name: /Economy.*economy/ }).click();
+    > 80 |   await expect(dialog.getByLabel("Model ID", { exact: true })).toHaveValue(
+         |                                                                ^
+      81 |     "test/economy",
+      82 |   );
+      83 |   await expect(dialog.getByLabel("Reading price")).toHaveValue("0.1");
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:80:64
+
+    Error Context: test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [desktop] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      138 |     .click();
+      139 |   await dialog.getByLabel("Library name").fill("My model");
+    > 140 |   await dialog.getByLabel("Model ID", { exact: true }).fill("test/model");
+          |                                                        ^
+      141 |   await dialog
+      142 |     .getByLabel("API key", { exact: true })
+      143 |     .fill("browser-test-secret");
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:140:56
+
+    Error Context: test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [desktop] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      177 |     .getByRole("button", { name: "Can't find it? Enter a model ID" })
+      178 |     .click();
+    > 179 |   await dialog.getByLabel("Model ID", { exact: true }).fill("sample/model");
+          |                                                        ^
+      180 |   await dialog.getByRole("button", { name: "Add to library" }).click();
+      181 |   await expect(dialog).toBeVisible();
+      182 |   await expect(dialog.getByRole("alert")).toContainText(
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:179:56
+
+    Error Context: test-results\workflow-keeps-the-model-editor-open-when-saving-fails-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-keeps-the-model-editor-open-when-saving-fails-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-keeps-the-model-editor-open-when-saving-fails-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [mobile] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true }).first()
+
+
+      11 |     .getByRole("button", { name: "Edit My first preset", exact: true })
+      12 |     .first()
+    > 13 |     .click();
+         |      ^
+      14 |   const toggle = page.getByRole("checkbox", {
+      15 |     name: "Research before planning",
+      16 |   });
+        at D:\RobloxProjects\Roblox Gen\tests\browser\lemonade-layout.spec.ts:13:6
+
+    Error Context: test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lemonade-layout-research-r-f83c9-ce-survives-save-and-reopen-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [mobile] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: apiRequestContext.put: Test timeout of 30000ms exceeded.
+
+      181 |     });
+      182 |   } finally {
+    > 183 |     await page.request.put("/api/models", {
+          |                        ^
+      184 |       data: {
+      185 |         ...settings,
+      186 |         profiles: [],
+        at D:\RobloxProjects\Roblox Gen\tests\browser\lemonade-layout.spec.ts:183:24
+
+    Error Context: test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\lemonade-layout-minimal-pr-c66da-serve-real-role-preferences-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [mobile] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true })
+
+
+      39 |   const before = await (await page.request.get("/api/models")).json();
+      40 |   await page.goto("/#presets");
+    > 41 |   await page.getByRole("button", { name: "Edit My first preset", exact: true }).click();
+         |                                                                        ^
+      42 |   const dialog = page.getByRole("dialog");
+      43 |   await dialog
+      44 |     .locator(".preset-role")
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:41:72
+
+    Error Context: test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-preset--5e8b6-its-own-budget-after-reload-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [mobile] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit preset', exact: true })
+
+
+      125 |   ).toContainText("$0.75");
+      126 | });
+    > 127 | test("unsaved preset dismissal keeps saved values", async ({ page }) => {
+          |                                                                        ^
+      128 |   await page.goto("/#presets");
+      129 |   await page
+      130 |     .getByRole("button", { name: "Edit My first preset", exact: true })
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:127:72
+
+    Error Context: test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-unsaved-b249f-ismissal-keeps-saved-values-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [mobile] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('Model ID', { exact: true })
+    Expected: "openai/example"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('Model ID', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      143 |   await page.goto("/#models");
+      144 |   await page.getByRole("button", { name: "Browse providers" }).click();
+    > 145 |   await page
+          |             ^
+      146 |     .getByRole("button", { name: /Example model.*openai\/example/ })
+      147 |     .click();
+      148 |   const dialog = page.getByRole("dialog");
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:145:64
+
+    Error Context: test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [mobile] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('API key', { exact: true })
+    Expected: ""
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('API key', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('API key', { exact: true })
+
+
+      185 |   await expect(
+      186 |     dialog.getByRole("button", { name: /Example model.*openai/ }),
+    > 187 |   ).toHaveCount(0);
+          |                    ^
+      188 |   await dialog
+      189 |     .getByRole("button", { name: "Other / local", exact: true })
+      190 |     .click();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:187:63
+
+    Error Context: test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-a6eef-hing-credentials-are-reused-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [mobile] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByRole('dialog').getByLabel('Model ID', { exact: true })
+    Expected: "test/economy"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByRole('dialog').getByLabel('Model ID', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      78 |   await dialog.getByLabel("Search provider models").fill("economy");
+      79 |   await dialog.getByRole("button", { name: /Economy.*economy/ }).click();
+    > 80 |   await expect(dialog.getByLabel("Model ID", { exact: true })).toHaveValue(
+         |                                                                ^
+      81 |     "test/economy",
+      82 |   );
+      83 |   await expect(dialog.getByLabel("Reading price")).toHaveValue("0.1");
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:80:64
+
+    Error Context: test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [mobile] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      138 |     .click();
+      139 |   await dialog.getByLabel("Library name").fill("My model");
+    > 140 |   await dialog.getByLabel("Model ID", { exact: true }).fill("test/model");
+          |                                                        ^
+      141 |   await dialog
+      142 |     .getByLabel("API key", { exact: true })
+      143 |     .fill("browser-test-secret");
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:140:56
+
+    Error Context: test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [mobile] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').getByLabel('Model ID', { exact: true })
+
+
+      177 |     .getByRole("button", { name: "Can't find it? Enter a model ID" })
+      178 |     .click();
+    > 179 |   await dialog.getByLabel("Model ID", { exact: true }).fill("sample/model");
+          |                                                        ^
+      180 |   await dialog.getByRole("button", { name: "Add to library" }).click();
+      181 |   await expect(dialog).toBeVisible();
+      182 |   await expect(dialog.getByRole("alert")).toContainText(
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:179:56
+
+    Error Context: test-results\workflow-keeps-the-model-editor-open-when-saving-fails-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-keeps-the-model-editor-open-when-saving-fails-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-keeps-the-model-editor-open-when-saving-fails-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18 failed
+    [desktop] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen 
+    [desktop] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences 
+    [desktop] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload 
+    [desktop] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values 
+    [desktop] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models 
+    [desktop] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused 
+    [desktop] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates 
+    [desktop] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+    [desktop] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails 
+    [mobile] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen 
+    [mobile] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences 
+    [mobile] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload 
+    [mobile] › tests\browser\settings-workspace.spec.ts:125:1 › unsaved preset dismissal keeps saved values 
+    [mobile] › tests\browser\settings-workspace.spec.ts:136:1 › provider catalog loads automatically and persists selected models 
+    [mobile] › tests\browser\settings-workspace.spec.ts:162:1 › provider change clears catalog and matching credentials are reused 
+    [mobile] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates 
+    [mobile] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+    [mobile] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails 
+  26 passed (9.0m)

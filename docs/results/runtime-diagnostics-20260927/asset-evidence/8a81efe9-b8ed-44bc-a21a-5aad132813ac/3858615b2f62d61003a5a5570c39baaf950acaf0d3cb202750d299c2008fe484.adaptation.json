@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "kind": "takko-component-adaptation",
+  "original": {
+    "archiveHash": "21262489534b7f14bbe9e8c8b548e3fc5373cc876e459c851f2982c7c87c7341",
+    "manifestHash": "ddbf85bb849c24946a916679a16fe1c1262e27d5b98a409237084b02e3fc3215"
+  },
+  "plan": {
+    "packetHash": "e28cd811d53995f90fb66db072cfa72fd4d5822dd46cd2b0e25844f35c368a4e",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c",
+    "reason": "Addressing the needs_more_evidence review's concrete defect: the sole embedded script (index 18, Respawn) polls Humanoid.Health every frame and, if it ever drops below 1, clones the dummy, calls the deprecated Instance:makeJoints(), and destroys the original model instance. This clone-and-replace reset directly conflicts with target_dummy's acceptance criterion that the dummy 'never changes position or state' and has 'no fail state, health system, or win condition,' and it is unsafe/legacy behavior (makeJoints, unbounded polling loop) that should not be carried into the final place. Since this design has no damage mechanic that would ever lower the dummy's Health, the script serves no required gameplay purpose and is removed outright rather than stubbed, per the instruction that inert stubs do not resolve defects — removal eliminates the conflicting behavior cleanly while keeping every other part of the hierarchy intact. All reusable static content (Head/Torso parts, SpecialMesh geometry, the Torso Decal, and the Humanoid) is preserved untouched so it remains available as the stationary hitbox for later touch/proximity hit detection. Anchoring, exact (0,3,15) placement, Decal texture rendering verification, and wiring to the separately-owned hit_sound/hit_counter_ui components are explicitly deferred to the dummy_placement and downstream integration tasks, not fabricated here.",
+    "removeSubtrees": [
+      {
+        "index": 18,
+        "reason": "Removes the Respawn Script whose Humanoid.Health<1 clone/destroy loop (using deprecated Instance:makeJoints()) conflicts with the requirement that the dummy never resets, retaliates, or changes state; no damage system exists in this design to justify retaining this reset behavior, and stubbing it in place would leave dead/unsafe code rather than resolving the defect."
+      }
+    ],
+    "replaceSources": [],
+    "preservedBehavior": [
+      "Head part with SpecialMesh (index 13/14) retained as the dummy's head hitbox geometry.",
+      "Torso part with SpecialMesh and Decal (indices 15/16, texture rbxassetid://406436910) retained as the dummy's torso hitbox and tape-wrapped visual detail, pending render/availability verification.",
+      "Additional body Parts and SpecialMeshes (indices 3-12) retained to preserve the model's full humanoid silhouette for touch/proximity detection.",
+      "Humanoid instance (index 17) retained so the model still exposes a Health/state object usable by future hit-detection logic if needed, even though no damage will be applied to it in this design.",
+      "Model/Imported hierarchy (indices 1-2) retained unmodified except for the removed Respawn script."
+    ],
+    "remainingIntegration": [
+      "Set Anchored = true and position/orient the dummy's parts at approximately (0,3,15) facing the player spawn; this is not established by current evidence and belongs to the dummy_placement task alongside environment_build.",
+      "Verify the Torso Decal (rbxassetid://406436910) actually renders and is available/rights-cleared; currently only a serialized reference, not confirmed playback/appearance.",
+      "Wire the hit_sound asset (separately selected Marketplace audio) to play at this dummy's location only on server-confirmed hits; this dummy component supplies no Sound instances itself.",
+      "Author the hit_counter_ui HUD and the shared RemoteEvent/validator/cooldown scripts as separate ServerScriptService/StarterGui/StarterPlayerScripts components per the accepted integrationTasks list; none of that logic belongs inside this dummy model.",
+      "Confirm which parts (e.g. Head, Torso, or a dedicated hit-detector part) should have CanQuery/CanCollide/CanTouch enabled appropriately for the eventual server-side touch or raycast hit check, once punch_validator_server is implemented."
+    ],
+    "nativeTestPlan": [
+      "In Studio Edit mode, open the adapted dummy model and confirm the Respawn Script (formerly index 18) is no longer present under Training Dummy.",
+      "Select the Torso part and visually confirm the Decal with texture rbxassetid://406436910 loads and displays without errors in the Properties/Explorer preview.",
+      "Confirm Head, Torso, and other Part instances retain their original Size/Mesh assignments and that the Humanoid instance is still present and unmodified.",
+      "Manually lower the retained Humanoid's Health property below 1 in Studio and observe over several seconds that no clone/destroy behavior occurs and the original model persists unchanged, confirming the removed script's reset behavior no longer fires.",
+      "Defer and separately native-test: anchoring/placement at (0,3,15) once dummy_placement executes, hit_sound playback once wired to a confirmed-hit event, and hit_counter_ui increment once the HUD and validator scripts are authored and connected."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "planHash": "91916b5c2a517f05884c8af6250a01f86f6652593c7dd8971c6965cad21ebc83",
+  "adapted": {
+    "archiveHash": "9af18071332f73d051301b4857f9d3a7039f1904edc28e222cbcc2df717f9110",
+    "manifestHash": "1aaa73bd96b365ae2e713126d7ed3651ffc63b5b7df95542bd09d2087fb5274f"
+  },
+  "indexMap": [
+    {
+      "before": 1,
+      "after": 1
+    },
+    {
+      "before": 2,
+      "after": 2
+    },
+    {
+      "before": 3,
+      "after": 3
+    },
+    {
+      "before": 4,
+      "after": 4
+    },
+    {
+      "before": 5,
+      "after": 5
+    },
+    {
+      "before": 6,
+      "after": 6
+    },
+    {
+      "before": 7,
+      "after": 7
+    },
+    {
+      "before": 8,
+      "after": 8
+    },
+    {
+      "before": 9,
+      "after": 9
+    },
+    {
+      "before": 10,
+      "after": 10
+    },
+    {
+      "before": 11,
+      "after": 11
+    },
+    {
+      "before": 12,
+      "after": 12
+    },
+    {
+      "before": 13,
+      "after": 13
+    },
+    {
+      "before": 14,
+      "after": 14
+    },
+    {
+      "before": 15,
+      "after": 15
+    },
+    {
+      "before": 16,
+      "after": 16
+    },
+    {
+      "before": 17,
+      "after": 17
+    }
+  ],
+  "sourceReview": "required",
+  "runtimeVerification": "not_performed",
+  "exported": false,
+  "executed": false
+}

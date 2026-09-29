@@ -1,0 +1,34 @@
+[
+  {
+    run: 'opencode-fighting-live-20260924',
+    request: 'want a fighting game with punching animation, vfx, sfx, target dummy, hit counter for everytime you hit the dummy',
+    questions: [
+      'Should this limit apply, or should the mechanic support more? Single-player prototype focused on one core loop: approach, punch, hit-register, counter increments — no win/lose condition or opponent AI beyond the passive dummy.',
+      'Should this limit apply, or should the mechanic support more? Only one punch attack type is required initially (a basic straight punch); additional attacks (kicks, combos, blocks) are out of scope unless requested.',
+      'Should this limit apply, or should the mechanic support more? One VFX type (impact burst) and one SFX cue (punch impact) are sufficient for this first pass; no separate whiff/miss VFX or SFX unless requested later.',
+      'Should this limit apply, or should the mechanic support more? No multiplayer, scoring leaderboard, or save/persistence of the hit counter across sessions is included in this scope.'
+    ],
+    baseplateContext: true,
+    lightingGuidance: true,
+    approvalBlockedUntilAnswered: true,
+    actualCost: 0
+  },
+  {
+    run: 'opencode-step3-live-20260925',
+    request: 'A fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit.',
+    questions: [
+      'Should this limit apply, or should the mechanic support more? Single-player only; no multiplayer, AI opponent behavior, or networking.',
+      'Should this limit apply, or should the mechanic support more? Dummy is purely stationary and cannot be damaged, destroyed, or knocked over, and has no flinch or reactive animation.',
+      'Should this limit apply, or should the mechanic support more? Only one punch type/animation is required (no combos, kicks, blocks, or special moves) per the request scope.',
+      'Should this limit apply, or should the mechanic support more? Default control scheme: standard Roblox movement plus one button for punching; no reset-counter input or button is included.',
+      'Should this limit apply, or should the mechanic support more? No scoring, timer, win condition, or difficulty progression is required; this is a practice/demo loop.',
+      'Should this limit apply, or should the mechanic support more? Punch and hit use the same single sound effect (no separate whiff vs. connect sounds) unless later expanded.',
+      'Should this limit apply, or should the mechanic support more? Player avatar and dummy appearance are provided entirely by the selected default/selected Roblox assets; no custom clothing or rig modifications are required.',
+      'Should this limit apply, or should the mechanic support more? Camera uses the default Roblox third-person follow camera; no fixed framing or custom camera control is implemented.'
+    ],
+    baseplateContext: true,
+    lightingGuidance: true,
+    approvalBlockedUntilAnswered: true,
+    actualCost: 0
+  }
+]

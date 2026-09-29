@@ -1,0 +1,169 @@
+{
+  "at": "2026-09-26T00:04:02.748Z",
+  "error": "Component review must cover every captured content reference exactly without inventing values",
+  "source": [
+    "src/generation/component-review.ts:381",
+    "src/generation/component-review.ts:408"
+  ],
+  "callback": "src/generation/engine.ts reviewComponent callback calls validateComponentReview",
+  "insideCorrectionCallback": true,
+  "property": "Structured evidence.contentReferences index/property/value compared with review.serializedMedia",
+  "syntacticProxy": false,
+  "expected": [
+    {
+      "index": 16,
+      "property": "Texture",
+      "value": "rbxassetid://406436910"
+    }
+  ],
+  "first": {
+    "phase": "reviewer",
+    "model": "anthropic/claude-sonnet-5",
+    "response": "{\"packetHash\":\"f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754\",\"inputHash\":\"59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592\",\"disposition\":\"needs_more_evidence\",\"reason\":\"Dummy geometry, mesh, head/torso parts and decal texture are reusable for appearance and hitbox placement, but the embedded 'Respawn' Script implements a health-death respawn loop that conflicts with the required purely stationary, non-reactive dummy and must be disabled/excluded before acceptance; that removal has not been applied yet.\",\"sources\":[{\"sha256\":\"ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734\",\"behavior\":\"On load clones script.Parent (the dummy Model) into a local var. Runs an infinite while-true loop (wait(0)) polling script.Parent.Humanoid.Health; if Health<1 it waits 1s, clones the stored original, parents the clone to script.Parent.Parent, calls makeJoints() on it, then removes the original dummy Model. No animation/movement/attack logic; purely a death-respawn watcher tied to the dummy's own Humanoid health.\",\"reuse\":\"unsuitable\",\"dependencies\":[],\"unresolved\":[]}],\"requirements\":[{\"requirementId\":\"r_dummy_stationary\",\"status\":\"integration_needed\",\"reason\":\"Geometry (Parts/Mesh/Head/Torso/Decal) is a stationary, non-humanoid-controlled prop with a fixed CFrame achievable by placement, satisfying most of this requirement. However the embedded Respawn Script watches script.Parent.Humanoid.Health and would clone/respawn the dummy on death, which conflicts with 'no reactive behavior/cannot be defeated'; per the requirement's own acceptance criteria this script must be disabled/excluded, which has not yet been done.\",\"sourceHashes\":[\"ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734\"],\"nodeIndices\":[17,18]},{\"requirementId\":\"r_hit_detection\",\"status\":\"integration_needed\",\"reason\":\"The Model provides distinguishable body parts (e.g. Torso, Head) usable as a hitbox reference, but no source in this component defines or wires a hitbox for server-side overlap/distance checks; that logic is owned by the separate hitDetectionModule task and is not present in this captured asset.\",\"sourceHashes\":[],\"nodeIndices\":[15]}],\"permissionImpacts\":[],\"integrationNotes\":[\"Disable or remove the 'Respawn' Script (index 18) before placing the dummy so no death/respawn behavior can ever trigger, satisfying the non-reactive stationary requirement; this removal is a proposed integration action, not yet applied.\",\"Torso (index 15) is the most distinguishable body part suitable to designate as the server-side hit-detection hitbox for the pending hitDetectionModule work.\",\"Decal Texture rbxassetid://406436910 on the Torso (index 16) supplies the dummy's canvas heavy-bag visual appearance and is reusable as-is for the requested gym theme.\",\"Humanoid (index 17) remains present on the dummy; ensure no damage-dealing script is ever added elsewhere in the namespace, since even with the Respawn script disabled the dummy should never take or process damage per r_dummy_stationary.\"],\"runtimeVerification\":\"not_performed\"}",
+    "requestTiming": {
+      "elapsedMs": 80939,
+      "deadlineMs": 600000
+    },
+    "at": "2026-09-26T00:01:59.277Z",
+    "parsed": {
+      "packetHash": "f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754",
+      "inputHash": "59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592",
+      "disposition": "needs_more_evidence",
+      "reason": "Dummy geometry, mesh, head/torso parts and decal texture are reusable for appearance and hitbox placement, but the embedded 'Respawn' Script implements a health-death respawn loop that conflicts with the required purely stationary, non-reactive dummy and must be disabled/excluded before acceptance; that removal has not been applied yet.",
+      "sources": [
+        {
+          "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734",
+          "behavior": "On load clones script.Parent (the dummy Model) into a local var. Runs an infinite while-true loop (wait(0)) polling script.Parent.Humanoid.Health; if Health<1 it waits 1s, clones the stored original, parents the clone to script.Parent.Parent, calls makeJoints() on it, then removes the original dummy Model. No animation/movement/attack logic; purely a death-respawn watcher tied to the dummy's own Humanoid health.",
+          "reuse": "unsuitable",
+          "dependencies": [],
+          "unresolved": []
+        }
+      ],
+      "requirements": [
+        {
+          "requirementId": "r_dummy_stationary",
+          "status": "integration_needed",
+          "reason": "Geometry (Parts/Mesh/Head/Torso/Decal) is a stationary, non-humanoid-controlled prop with a fixed CFrame achievable by placement, satisfying most of this requirement. However the embedded Respawn Script watches script.Parent.Humanoid.Health and would clone/respawn the dummy on death, which conflicts with 'no reactive behavior/cannot be defeated'; per the requirement's own acceptance criteria this script must be disabled/excluded, which has not yet been done.",
+          "sourceHashes": [
+            "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734"
+          ],
+          "nodeIndices": [
+            17,
+            18
+          ]
+        },
+        {
+          "requirementId": "r_hit_detection",
+          "status": "integration_needed",
+          "reason": "The Model provides distinguishable body parts (e.g. Torso, Head) usable as a hitbox reference, but no source in this component defines or wires a hitbox for server-side overlap/distance checks; that logic is owned by the separate hitDetectionModule task and is not present in this captured asset.",
+          "sourceHashes": [],
+          "nodeIndices": [
+            15
+          ]
+        }
+      ],
+      "permissionImpacts": [],
+      "integrationNotes": [
+        "Disable or remove the 'Respawn' Script (index 18) before placing the dummy so no death/respawn behavior can ever trigger, satisfying the non-reactive stationary requirement; this removal is a proposed integration action, not yet applied.",
+        "Torso (index 15) is the most distinguishable body part suitable to designate as the server-side hit-detection hitbox for the pending hitDetectionModule work.",
+        "Decal Texture rbxassetid://406436910 on the Torso (index 16) supplies the dummy's canvas heavy-bag visual appearance and is reusable as-is for the requested gym theme.",
+        "Humanoid (index 17) remains present on the dummy; ensure no damage-dealing script is ever added elsewhere in the namespace, since even with the Respawn script disabled the dummy should never take or process damage per r_dummy_stationary."
+      ],
+      "runtimeVerification": "not_performed"
+    }
+  },
+  "corrected": {
+    "phase": "reviewer",
+    "model": "anthropic/claude-sonnet-5",
+    "response": "{\"packetHash\":\"f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754\",\"inputHash\":\"59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592\",\"disposition\":\"needs_more_evidence\",\"reason\":\"Dummy geometry, mesh, head/torso parts and decal texture are reusable for appearance and hitbox placement, but the embedded 'Respawn' Script implements a health-death respawn loop that conflicts with the required purely stationary, non-reactive dummy and must be disabled/excluded before acceptance; that removal has not been applied yet.\",\"serializedMedia\":[{\"index\":16,\"property\":\"Texture\",\"value\":\"rbxassetid://406436910\",\"purpose\":\"Decal texture on Torso providing the dummy's canvas heavy-bag visual appearance\",\"verification\":\"unverified\"}],\"sources\":[{\"sha256\":\"ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734\",\"behavior\":\"On load clones script.Parent (the dummy Model) into a local var. Runs an infinite while-true loop (wait(0)) polling script.Parent.Humanoid.Health; if Health<1 it waits 1s, clones the stored original, parents the clone to script.Parent.Parent, calls makeJoints() on it, then removes the original dummy Model. No animation/movement/attack logic; purely a death-respawn watcher tied to the dummy's own Humanoid health.\",\"reuse\":\"unsuitable\",\"dependencies\":[],\"unresolved\":[]}],\"requirements\":[{\"requirementId\":\"r_dummy_stationary\",\"status\":\"integration_needed\",\"reason\":\"Geometry (Parts/Mesh/Head/Torso/Decal) is a stationary, non-humanoid-controlled prop with a fixed CFrame achievable by placement, satisfying most of this requirement. However the embedded Respawn Script watches script.Parent.Humanoid.Health and would clone/respawn the dummy on death, which conflicts with 'no reactive behavior/cannot be defeated'; per the requirement's own acceptance criteria this script must be disabled/excluded, which has not yet been done.\",\"sourceHashes\":[\"ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734\"],\"nodeIndices\":[17,18]},{\"requirementId\":\"r_hit_detection\",\"status\":\"integration_needed\",\"reason\":\"The Model provides distinguishable body parts (e.g. Torso, Head) usable as a hitbox reference, but no source in this component defines or wires a hitbox for server-side overlap/distance checks; that logic is owned by the separate hitDetectionModule task and is not present in this captured asset.\",\"sourceHashes\":[],\"nodeIndices\":[15]}],\"permissionImpacts\":[],\"integrationNotes\":[\"Disable or remove the 'Respawn' Script (index 18) before placing the dummy so no death/respawn behavior can ever trigger, satisfying the non-reactive stationary requirement; this removal is a proposed integration action, not yet applied.\",\"Torso (index 15) is the most distinguishable body part suitable to designate as the server-side hit-detection hitbox for the pending hitDetectionModule work.\",\"Decal Texture rbxassetid://406436910 on the Torso (index 16) supplies the dummy's canvas heavy-bag visual appearance and is reusable as-is for the requested gym theme.\",\"Humanoid (index 17) remains present on the dummy; ensure no damage-dealing script is ever added elsewhere in the namespace, since even with the Respawn script disabled the dummy should never take or process damage per r_dummy_stationary.\"],\"runtimeVerification\":\"not_performed\"}",
+    "requestTiming": {
+      "elapsedMs": 16533,
+      "deadlineMs": 600000
+    },
+    "at": "2026-09-26T00:02:15.839Z",
+    "parsed": {
+      "packetHash": "f29608d606f0117dea25730af1807a0caa5dc6b729a5813a7d25c34a21f0b754",
+      "inputHash": "59f30b8f66843ded2b493c8b9192837361f0ae7434592435d183d5daf49d4592",
+      "disposition": "needs_more_evidence",
+      "reason": "Dummy geometry, mesh, head/torso parts and decal texture are reusable for appearance and hitbox placement, but the embedded 'Respawn' Script implements a health-death respawn loop that conflicts with the required purely stationary, non-reactive dummy and must be disabled/excluded before acceptance; that removal has not been applied yet.",
+      "serializedMedia": [
+        {
+          "index": 16,
+          "property": "Texture",
+          "value": "rbxassetid://406436910",
+          "purpose": "Decal texture on Torso providing the dummy's canvas heavy-bag visual appearance",
+          "verification": "unverified"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734",
+          "behavior": "On load clones script.Parent (the dummy Model) into a local var. Runs an infinite while-true loop (wait(0)) polling script.Parent.Humanoid.Health; if Health<1 it waits 1s, clones the stored original, parents the clone to script.Parent.Parent, calls makeJoints() on it, then removes the original dummy Model. No animation/movement/attack logic; purely a death-respawn watcher tied to the dummy's own Humanoid health.",
+          "reuse": "unsuitable",
+          "dependencies": [],
+          "unresolved": []
+        }
+      ],
+      "requirements": [
+        {
+          "requirementId": "r_dummy_stationary",
+          "status": "integration_needed",
+          "reason": "Geometry (Parts/Mesh/Head/Torso/Decal) is a stationary, non-humanoid-controlled prop with a fixed CFrame achievable by placement, satisfying most of this requirement. However the embedded Respawn Script watches script.Parent.Humanoid.Health and would clone/respawn the dummy on death, which conflicts with 'no reactive behavior/cannot be defeated'; per the requirement's own acceptance criteria this script must be disabled/excluded, which has not yet been done.",
+          "sourceHashes": [
+            "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734"
+          ],
+          "nodeIndices": [
+            17,
+            18
+          ]
+        },
+        {
+          "requirementId": "r_hit_detection",
+          "status": "integration_needed",
+          "reason": "The Model provides distinguishable body parts (e.g. Torso, Head) usable as a hitbox reference, but no source in this component defines or wires a hitbox for server-side overlap/distance checks; that logic is owned by the separate hitDetectionModule task and is not present in this captured asset.",
+          "sourceHashes": [],
+          "nodeIndices": [
+            15
+          ]
+        }
+      ],
+      "permissionImpacts": [],
+      "integrationNotes": [
+        "Disable or remove the 'Respawn' Script (index 18) before placing the dummy so no death/respawn behavior can ever trigger, satisfying the non-reactive stationary requirement; this removal is a proposed integration action, not yet applied.",
+        "Torso (index 15) is the most distinguishable body part suitable to designate as the server-side hit-detection hitbox for the pending hitDetectionModule work.",
+        "Decal Texture rbxassetid://406436910 on the Torso (index 16) supplies the dummy's canvas heavy-bag visual appearance and is reusable as-is for the requested gym theme.",
+        "Humanoid (index 17) remains present on the dummy; ensure no damage-dealing script is ever added elsewhere in the namespace, since even with the Respawn script disabled the dummy should never take or process damage per r_dummy_stationary."
+      ],
+      "runtimeVerification": "not_performed"
+    }
+  },
+  "firstCharge": {
+    "phase": "reviewer",
+    "profileId": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+    "model": "anthropic/claude-sonnet-5",
+    "reservedMicros": 485980,
+    "chargedMicros": 131056,
+    "estimated": false,
+    "billingSource": "provider",
+    "inputTokens": 27728,
+    "outputTokens": 7560,
+    "cachedInputTokens": 0,
+    "status": "ok",
+    "at": "2026-09-26T00:01:59.269Z"
+  },
+  "correctionCharge": {
+    "phase": "reviewer",
+    "profileId": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+    "model": "anthropic/claude-sonnet-5",
+    "reservedMicros": 492588,
+    "chargedMicros": 73146,
+    "estimated": false,
+    "billingSource": "provider",
+    "inputTokens": 28988,
+    "outputTokens": 1517,
+    "cachedInputTokens": 0,
+    "status": "ok",
+    "at": "2026-09-26T00:02:15.831Z"
+  },
+  "modelSelfCorrected": true
+}

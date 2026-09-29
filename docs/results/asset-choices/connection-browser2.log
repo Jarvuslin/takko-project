@@ -1,0 +1,134 @@
+[WebServer] (node:27404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:29716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:12752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:3104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (4.4s)
+  x   2 [desktop] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (30.4s)
+(node:28948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  3 [desktop] › tests\browser\marketplace.spec.ts:224:1 › blocked first drops display findings and never become chat attachments (604ms)
+  ok  4 [desktop] › tests\browser\studio-connection.spec.ts:5:1 › disconnected projects show setup, offline hides architecture, reconnect opens it (1.1s)
+  ok  5 [desktop] › tests\browser\studio-connection.spec.ts:87:1 › a created project checks Studio before showing its architecture (1.1s)
+(node:25608) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [mobile] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (4.5s)
+  ok  7 [mobile] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (5.1s)
+  ok  8 [mobile] › tests\browser\marketplace.spec.ts:224:1 › blocked first drops display findings and never become chat attachments (564ms)
+  ok  9 [mobile] › tests\browser\studio-connection.spec.ts:5:1 › disconnected projects show setup, offline hides architecture, reconnect opens it (1.1s)
+  ok 10 [mobile] › tests\browser\studio-connection.spec.ts:87:1 › a created project checks Studio before showing its architecture (1.1s)
+
+
+  1) [desktop] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.dragTo: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('complementary', { name: 'Marketplace' }).getByRole('article')
+        - locator resolved to <article draggable="true" class="market-card">…</article>
+      - attempting move and down action
+        - waiting for element to be visible and stable
+        - element is visible and stable
+        - scrolling into view if needed
+        - done scrolling
+        - performing move and down action
+        - move and down action done
+        - waiting for scheduled navigations to finish
+        - navigations have finished
+      - waiting for getByLabel('Game idea')
+        - locator resolved to <textarea required="" minlength="5" id="new-request" maxlength="12000" placeholder="Describe your game. Start with the fun part.">Make a satisfying butter game</textarea>
+      - attempting move and up action
+        2 × waiting for element to be visible and stable
+          - element is visible and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="market-thumbnail">…</div> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+        - retrying move and up action
+        - waiting 20ms
+        - waiting for element to be visible and stable
+        - element is visible and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="market-thumbnail">…</div> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+      2 × retrying move and up action
+          - waiting 100ms
+          - waiting for element to be visible and stable
+          - element is visible and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <label>…</label> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+      13 × retrying move and up action
+           - waiting 500ms
+           - waiting for element to be visible and stable
+           - element is visible and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="market-thumbnail">…</div> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+         - retrying move and up action
+           - waiting 500ms
+           - waiting for element to be visible and stable
+           - element is visible and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="market-thumbnail">…</div> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+         - retrying move and up action
+           - waiting 500ms
+           - waiting for element to be visible and stable
+           - element is visible and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <label>…</label> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+         - retrying move and up action
+           - waiting 500ms
+           - waiting for element to be visible and stable
+           - element is visible and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <label>…</label> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+      - retrying move and up action
+        - waiting 500ms
+        - waiting for element to be visible and stable
+        - element is visible and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="market-thumbnail">…</div> from <dialog open="" data-modal="false" class="focused-dialog" aria-label="Marketplace">…</dialog> subtree intercepts pointer events
+      - retrying move and up action
+        - waiting 500ms
+
+
+      189 |   await expect(card).toHaveCount(1);
+      190 |   if (testInfo.project.name === "desktop") {
+    > 191 |     await card.dragTo(page.getByLabel("Game idea"));
+          |                ^
+      192 |   } else await card.getByRole("button", { name: "Add", exact: true }).click();
+      193 |   await expect(page.getByRole("status")).toContainText(
+      194 |     "Inspected and attached",
+        at D:\RobloxProjects\Roblox Gen\tests\browser\marketplace.spec.ts:191:16
+
+    Error Context: test-results\marketplace-Marketplace-su-e504f-and-chat-attachment-context-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\marketplace-Marketplace-su-e504f-and-chat-attachment-context-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\marketplace-Marketplace-su-e504f-and-chat-attachment-context-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [desktop] › tests\browser\marketplace.spec.ts:100:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context 
+  9 passed (57.6s)

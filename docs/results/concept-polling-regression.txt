@@ -1,0 +1,61 @@
+[WebServer] (node:27968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:31876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:38712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:34040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\browser\concept.spec.ts:166:1 › a completed concept appears without waiting for another library scan (2.3s)
+  ok 2 [desktop] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (6.6s)
+  ok 3 [desktop] › tests\browser\polling.spec.ts:36:1 › slow polls do not overlap and a transient failure clears after recovery (7.5s)
+  ok 4 [desktop] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (15.9s)
+(node:29780) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  5 [mobile] › tests\browser\concept.spec.ts:166:1 › a completed concept appears without waiting for another library scan (7.4s)
+(node:31484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 6 [mobile] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (6.6s)
+  ok 7 [mobile] › tests\browser\polling.spec.ts:36:1 › slow polls do not overlap and a transient failure clears after recovery (7.5s)
+  ok 8 [mobile] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (13.2s)
+
+
+  1) [mobile] › tests\browser\concept.spec.ts:166:1 › a completed concept appears without waiting for another library scan 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('navigation', { name: 'Projects', exact: true }).getByRole('button', { name: 'Tiny pet rescue', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('navigation', { name: 'Projects', exact: true }).getByRole('button', { name: 'Tiny pet rescue', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: 'Projects', exact: true }).getByRole('button', { name: 'Tiny pet rescue', exact: true })
+
+
+      204 |       .getByRole("navigation", { name: "Projects", exact: true })
+      205 |       .getByRole("button", { name: "Tiny pet rescue", exact: true }),
+    > 206 |   ).toBeVisible();
+          |     ^
+      207 |   expect(listReads).toBe(1);
+      208 |   await expect(page.getByRole("alert")).toHaveCount(0);
+      209 | });
+        at D:\RobloxProjects\Roblox Gen\tests\browser\concept.spec.ts:206:5
+
+    Error Context: test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\concept-a-completed-concep-247f4-ng-for-another-library-scan-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [mobile] › tests\browser\concept.spec.ts:166:1 › a completed concept appears without waiting for another library scan 
+  7 passed (1.3m)

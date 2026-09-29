@@ -1,0 +1,26 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/retained-delivery.test.ts (4 tests | 1 failed) 5010ms
+   × preserves the actual animation role through Model acquisition: opencode-step3-live-20260925 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/retained-delivery.test.ts > preserves the actual animation role through Model acquisition: opencode-step3-live-20260925
+AssertionError: expected 0 to be greater than 0
+ ❯ tests/retained-delivery.test.ts:16:29
+     14|   const needs=buildAssetNeeds(p);
+     15|   const animations=p.spec!.assetNeeds!.filter(n=>n.kind==="Animation" …
+     16|   expect(animations.length).toBeGreaterThan(0);
+       |                             ^
+     17|   for(const n of animations) expect(needs.find(x=>x.id===n.id)).toMatc…
+     18|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  00:49:20
+   Duration  6.05s (tests 85%, transform 9%, import 6%)
+

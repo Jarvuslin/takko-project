@@ -1,0 +1,19 @@
+[
+  {
+    "stage": "clarify",
+    "at": "2026-09-20T20:43:32.010Z",
+    "reservedMicros": 16310,
+    "requestHash": "661490106fc82cbf2adc6427c5e67bdc1fea70451cf655f26783a7cf0cc6ec2b",
+    "status": "reconciled",
+    "httpStatus": 200,
+    "elapsedMs": 7061,
+    "receipt": {
+      "id": "gen-1789937011-5z11iuWhZQPjYDtXNjM2",
+      "model": "anthropic/claude-haiku-4.5",
+      "provider": "Anthropic",
+      "costUsd": 0.00383,
+      "inputTokens": 1230,
+      "outputTokens": 520
+    }
+  }
+]

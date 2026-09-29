@@ -1,0 +1,110 @@
+{
+  "at": "2026-09-21T03:56:58.892Z",
+  "files": [
+    {
+      "file": "src/generation/animation.ts",
+      "before": "27dbe4e4df061b3fab507cedaf7852c3c9c672451ed0e3216102c7a6391371c9",
+      "after": "c74ffbb16d7f214d5c993fe1c044c6783e701970c57d01581e7d23d88a3fe021"
+    },
+    {
+      "file": "src/generation/conversation.ts",
+      "before": "1999fd90a228d82c40de365efb5e79dbd01b9ea080ec7662836c8f308550b938",
+      "after": "708165e224310d33bdcb763c4e1a0e9a69650390b14499d2aa3c3dfd751c9aa2"
+    },
+    {
+      "file": "src/generation/schema.ts",
+      "before": "ebe013736e73b03bdba5310e1e13c5f509d74130c5ba4333db9f21b06f1b127b",
+      "after": "9a469fd5b98d9f0bf37c590615d61f386569b22031f43a96b5e156a5aba6645d"
+    },
+    {
+      "file": "src/marketplace/animations.ts",
+      "before": null,
+      "after": "09471d4b45840acdaf7efd9ad38b3c5f7f5f01bff2365c3bd13b399a663933b2"
+    },
+    {
+      "file": "src/marketplace/library.ts",
+      "before": "9dc999818a9fba7abaaca0ffa7ff6c3b4c9eecfb710ed0aeb9301ecae7d242f7",
+      "after": "afe89bc5080fadbb57f76e9d36d5826a167f7260215a60113e6c9f5f0c81323d"
+    },
+    {
+      "file": "src/marketplace/studio.ts",
+      "before": "ec12096a50729bc8624508abf585c35b585d3faafee4d7faa896c31ec5522b8e",
+      "after": "689faaa452b12e557a22d5784da152c916daf2a911fcb655b2df684eb06305f6"
+    },
+    {
+      "file": "src/marketplace/types.ts",
+      "before": "46057fb57fa236ef402302f4edc6341146fa4fb5bd14275d2e4caf114a99ee99",
+      "after": "9a101897d97290fbaf05e19aac2ef04f2980fdc35961bf4339d23b59f37a286e"
+    },
+    {
+      "file": "src/server/app.ts",
+      "before": "aa6de4afb4eae1a53f89a768b8f9c1e061d0b55dc0a5c9b56b1941fa33c30379",
+      "after": "cad50aefe5e4bafc8df3ed505b83992e02e99eabb75766c42486ef3f3abe26a7"
+    },
+    {
+      "file": "src/web/AnimationGallery.tsx",
+      "before": null,
+      "after": "d1dbd6d765e5e070d3f5d97a1575fc2b05093bcaba55041e0bc7d4896e90720a"
+    },
+    {
+      "file": "src/web/AnimationPlayer.tsx",
+      "before": "04aa2f61b8c6f95e3fe009e5fbfc030c6c008f75911c40ec17d829750f0bd5b9",
+      "after": "bf2f1bf3878a2b7fbb3519c3a4b87863b9a82c0a7150c28c2c41ecf1b14316c6"
+    },
+    {
+      "file": "src/web/App.tsx",
+      "before": "863a34aa2e92709f1c58b93bfbe0a91134d891e6fa13c29dba2d27e08c0ea643",
+      "after": "11e9d4b7b354e57a351630772ab26c629a58ddcb82eeaf717eae60f93d8bbc23"
+    },
+    {
+      "file": "src/web/conversation.css",
+      "before": "1fdce1c55e5c5245220ea637797b692a88d89020fa3cc3971476c6f4ba36863f",
+      "after": "64456a0f0027c81067833038eab6ecf18c0ecba02243d657c7fae5b73776fe33"
+    },
+    {
+      "file": "src/web/Conversation.tsx",
+      "before": "54b7a46a1476c7cfd9553ee3fc437dec2192d44f6340ac5660a9cb42ec808f69",
+      "after": "2c59b39d3e509cda5c53de162c2c2a75924a2b18c4d42147ab577235761ab51c"
+    },
+    {
+      "file": "src/web/Marketplace.tsx",
+      "before": "583c7489b04dd1cb4b1fcfc3966cef7b0a9d3797cc09f67a472dd869bf0b8469",
+      "after": "5e50d72a62538a5f81e53b92b8ec04a5ada171532db6ec176457460a5b718b3f"
+    },
+    {
+      "file": "src/web/preview/native-animation.ts",
+      "before": null,
+      "after": "a5be715782ec3c62635227f962308c9396fd4d8e0b875f2f6dde174966a19e9f"
+    },
+    {
+      "file": "src/web/preview/scenes.ts",
+      "before": "438d9db5dbf39e028c78e36c96897612a6c4bba1df5c55240c2a3b4f9134486f",
+      "after": "fc578f1382080af2f6b0d1592bee0e82b517ce67dc569f89e29af58507e9cba2"
+    },
+    {
+      "file": "src/web/preview/TakkoViewport.tsx",
+      "before": "daec035f54e312fa7bbe83435ab1b9f83e2ce278a390f523e9ef123f236f0d5a",
+      "after": "6e2a7ad4db9af07689df43846da51384f9850aba47a62c1c2b72e31abc437304"
+    },
+    {
+      "file": "tests/browser/chat-architecture.spec.ts",
+      "before": "40d64b158005ef57a78c18b2b780501c09c080dd22b004321865db928d78096a",
+      "after": "796ea960c948e32252a6e7d9ac4f5796592885756ddf4b342204150423a53a70"
+    },
+    {
+      "file": "tests/browser/marketplace-animation.spec.ts",
+      "before": null,
+      "after": "a1d922efb1f190ff5e11d27fd83713781b9607e2dddf551e5dd317d2863c4715"
+    },
+    {
+      "file": "tests/fixtures/roblox-r15-dance.json",
+      "before": null,
+      "after": "8f4a6032865bf980dd6d68e10246ca4708bfa7a30a96f0a4b79efab2060dc102"
+    },
+    {
+      "file": "tests/marketplace-animation.test.ts",
+      "before": null,
+      "after": "d42ffbc4eb88ac1e9a18c8a04e9d72520e4527a503be9aff09befb3b9c839c13"
+    }
+  ]
+}

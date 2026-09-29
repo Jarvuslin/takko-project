@@ -1,0 +1,424 @@
+[WebServer] (node:27052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [plugin builtin:vite-reporter] 
+[WebServer] (!) Some chunks are larger than 500 kB after minification. Consider:
+[WebServer] - Using dynamic import() to code-split the application
+[WebServer] - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+[WebServer] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[WebServer] (node:24368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:22648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 36 tests using 1 worker
+
+(node:36344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\settings-workspace.spec.ts:38:1 › preset keeps ordered backups, specialist roles and its own budget after reload (2.7s)
+  ok  2 [desktop] › tests\browser\settings-workspace.spec.ts:78:1 › creates a named preset and activates it without generation (2.6s)
+  ok  3 [desktop] › tests\browser\settings-workspace.spec.ts:112:1 › draft and one-off limit survive opening Models (2.0s)
+  ok  4 [desktop] › tests\browser\settings-workspace.spec.ts:151:1 › unsaved preset dismissal keeps saved values (1.5s)
+  x   5 [desktop] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models (8.9s)
+(node:21632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  6 [desktop] › tests\browser\settings-workspace.spec.ts:193:1 › provider change clears catalog and matching credentials are reused (2.8s)
+  x   7 [desktop] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models (2.5s)
+(node:21120) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  8 [desktop] › tests\browser\settings-workspace.spec.ts:273:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (7.5s)
+  x   9 [desktop] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh (1.5s)
+(node:35668) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 10 [desktop] › tests\browser\settings-workspace.spec.ts:334:1 › Presets is a separate sidebar page directly below Models (1.7s)
+  ok 11 [desktop] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (2.0s)
+  ok 12 [desktop] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and detail controls support keyboard activation (4.2s)
+  x  13 [desktop] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates (2.1s)
+(node:28508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 14 [desktop] › tests\browser\workflow.spec.ts:103:1 › welcomes multiple game ideas without generating a preset or claiming a connection (3.5s)
+  x  15 [desktop] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage (30.3s)
+(node:33860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 [desktop] › tests\browser\workflow.spec.ts:178:1 › keeps the model editor open when saving fails (2.5s)
+  ok 17 [desktop] › tests\browser\workflow.spec.ts:200:1 › welcome and model settings pass accessibility checks and fit the viewport (2.5s)
+  ok 18 [desktop] › tests\browser\workflow.spec.ts:223:1 › builds an approved non-combat project through a real HTTP provider adapter (11.2s)
+(node:16664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 19 [mobile] › tests\browser\settings-workspace.spec.ts:38:1 › preset keeps ordered backups, specialist roles and its own budget after reload (3.9s)
+  ok 20 [mobile] › tests\browser\settings-workspace.spec.ts:78:1 › creates a named preset and activates it without generation (3.4s)
+  ok 21 [mobile] › tests\browser\settings-workspace.spec.ts:112:1 › draft and one-off limit survive opening Models (1.9s)
+  ok 22 [mobile] › tests\browser\settings-workspace.spec.ts:151:1 › unsaved preset dismissal keeps saved values (1.6s)
+  x  23 [mobile] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models (9.0s)
+(node:36836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 24 [mobile] › tests\browser\settings-workspace.spec.ts:193:1 › provider change clears catalog and matching credentials are reused (2.3s)
+  x  25 [mobile] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models (2.1s)
+(node:27060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 26 [mobile] › tests\browser\settings-workspace.spec.ts:273:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (7.0s)
+  x  27 [mobile] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh (2.1s)
+(node:7876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 28 [mobile] › tests\browser\settings-workspace.spec.ts:334:1 › Presets is a separate sidebar page directly below Models (2.2s)
+  ok 29 [mobile] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (2.0s)
+  ok 30 [mobile] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and detail controls support keyboard activation (4.8s)
+  x  31 [mobile] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates (2.2s)
+(node:9516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 32 [mobile] › tests\browser\workflow.spec.ts:103:1 › welcomes multiple game ideas without generating a preset or claiming a connection (3.1s)
+  x  33 [mobile] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage (30.2s)
+(node:9108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 34 [mobile] › tests\browser\workflow.spec.ts:178:1 › keeps the model editor open when saving fails (2.9s)
+  ok 35 [mobile] › tests\browser\workflow.spec.ts:200:1 › welcome and model settings pass accessibility checks and fit the viewport (2.6s)
+  x  36 [mobile] › tests\browser\workflow.spec.ts:223:1 › builds an approved non-combat project through a real HTTP provider adapter (12.4s)
+
+
+  1) [desktop] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.model-row')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.model-row') with timeout 5000ms
+      - waiting for locator('.model-row')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      178 |   await page.reload();
+      179 |   await page.getByRole("searchbox", { name: "Search models" }).fill("Example");
+    > 180 |   await expect(page.locator(".model-row")).toHaveCount(1);
+          |                                            ^
+      181 |   await expect(page.locator(".model-row img")).toHaveAttribute(
+      182 |     "src",
+      183 |     "/brands/openai.svg",
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:180:44
+
+    Error Context: test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [desktop] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models 
+
+    TypeError: Cannot read properties of undefined (reading 'structuredOutput')
+
+      254 |     (p: any) => p.model === "anthropic/claude-haiku-4.5",
+      255 |   );
+    > 256 |   expect(saved.structuredOutput).toBe("anthropic");
+          |                ^
+      257 |   await page.reload();
+      258 |   await page
+      259 |     .getByRole("searchbox", { name: "Search models" })
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:256:16
+
+    Error Context: test-results\settings-workspace-strict--4fae1-eared-when-switching-models-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-strict--4fae1-eared-when-switching-models-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-strict--4fae1-eared-when-switching-models-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [desktop] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh 
+
+    Error: "route.fetch: Test ended.
+    Call log:
+      - → GET http://127.0.0.1:4319/api/models
+        - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+        - accept-language: en-US
+        - content-type: application/json
+        - referer: http://127.0.0.1:4319/?project=70f30cfe-f733-440e-bc20-47ab2120c8e9
+        - sec-ch-ua: "HeadlessChrome";v="153", "Not_A Brand";v="8", "Chromium";v="153"
+        - sec-ch-ua-mobile: ?0
+        - sec-ch-ua-platform: "Windows"
+    " while running route callback.
+    Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+    before the end of the test to ignore remaining routes in flight.
+
+       at provider-fixture.ts:13
+
+      11 |   await page.route("**/api/models", async (route) => {
+      12 |     if (route.request().method() !== "GET") return route.continue();
+    > 13 |     const response = await route.fetch();
+         |                                  ^
+      14 |     await route.fulfill({
+      15 |       json: {
+      16 |         ...(await response.json()),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\provider-fixture.ts:13:34
+
+    Error Context: test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [desktop] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates 
+
+    TypeError: Cannot read properties of undefined (reading 'model')
+
+       97 |   await expect(dialog).toBeHidden();
+       98 |   const saved = await (await page.request.get("/api/models")).json();
+    >  99 |   expect(saved.profiles[0].model).toBe("test/economy");
+          |                            ^
+      100 |   await page.request.delete("/api/model-profiles/" + saved.profiles[0].id);
+      101 | });
+      102 |
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:99:28
+
+    Error Context: test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [desktop] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit My model', exact: true })
+
+
+      157 |   await page
+      158 |     .getByRole("button", { name: "Edit My model", exact: true })
+    > 159 |     .click();
+          |      ^
+      160 |   await expect(
+      161 |     dialog.getByText(/No need to enter the key again/),
+      162 |   ).toBeVisible();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:159:6
+
+    Error Context: test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-desktop\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [mobile] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.model-row')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.model-row') with timeout 5000ms
+      - waiting for locator('.model-row')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      178 |   await page.reload();
+      179 |   await page.getByRole("searchbox", { name: "Search models" }).fill("Example");
+    > 180 |   await expect(page.locator(".model-row")).toHaveCount(1);
+          |                                            ^
+      181 |   await expect(page.locator(".model-row img")).toHaveAttribute(
+      182 |     "src",
+      183 |     "/brands/openai.svg",
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:180:44
+
+    Error Context: test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-provide-cf3b2-nd-persists-selected-models-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [mobile] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models 
+
+    TypeError: Cannot read properties of undefined (reading 'structuredOutput')
+
+      254 |     (p: any) => p.model === "anthropic/claude-haiku-4.5",
+      255 |   );
+    > 256 |   expect(saved.structuredOutput).toBe("anthropic");
+          |                ^
+      257 |   await page.reload();
+      258 |   await page
+      259 |     .getByRole("searchbox", { name: "Search models" })
+        at D:\RobloxProjects\Roblox Gen\tests\browser\settings-workspace.spec.ts:256:16
+
+    Error Context: test-results\settings-workspace-strict--4fae1-eared-when-switching-models-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-strict--4fae1-eared-when-switching-models-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-strict--4fae1-eared-when-switching-models-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [mobile] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh 
+
+    Error: "route.fetch: Test ended.
+    Call log:
+      - → GET http://127.0.0.1:4319/api/models
+        - user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+        - accept-language: en-US
+        - content-type: application/json
+        - referer: http://127.0.0.1:4319/?project=9be02b36-6b5b-4138-ae35-266f24bcf52c
+        - sec-ch-ua: "HeadlessChrome";v="153", "Not_A Brand";v="8", "Chromium";v="153"
+        - sec-ch-ua-mobile: ?1
+        - sec-ch-ua-platform: "iOS"
+    " while running route callback.
+    Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+    before the end of the test to ignore remaining routes in flight.
+
+       at provider-fixture.ts:13
+
+      11 |   await page.route("**/api/models", async (route) => {
+      12 |     if (route.request().method() !== "GET") return route.continue();
+    > 13 |     const response = await route.fetch();
+         |                                  ^
+      14 |     await route.fulfill({
+      15 |       json: {
+      16 |         ...(await response.json()),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\provider-fixture.ts:13:34
+
+    Error Context: test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\settings-workspace-project-63a3f-eset-route-survives-refresh-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [mobile] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates 
+
+    TypeError: Cannot read properties of undefined (reading 'model')
+
+       97 |   await expect(dialog).toBeHidden();
+       98 |   const saved = await (await page.request.get("/api/models")).json();
+    >  99 |   expect(saved.profiles[0].model).toBe("test/economy");
+          |                            ^
+      100 |   await page.request.delete("/api/model-profiles/" + saved.profiles[0].id);
+      101 | });
+      102 |
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:99:28
+
+    Error Context: test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-catalog-search-se-e8c69-del-and-its-published-rates-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [mobile] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Edit My model', exact: true })
+
+
+      157 |   await page
+      158 |     .getByRole("button", { name: "Edit My model", exact: true })
+    > 159 |     .click();
+          |      ^
+      160 |   await expect(
+      161 |     dialog.getByText(/No need to enter the key again/),
+      162 |   ).toBeVisible();
+        at D:\RobloxProjects\Roblox Gen\tests\browser\workflow.spec.ts:159:6
+
+    Error Context: test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-configures-provid-7c92c-ing-them-in-browser-storage-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [mobile] › tests\browser\workflow.spec.ts:223:1 › builds an approved non-combat project through a real HTTP provider adapter 
+
+    Error: "route.fetch: Test ended.
+    Call log:
+      - → GET http://127.0.0.1:4319/api/models
+        - user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1
+        - accept: */*
+        - accept-encoding: gzip,deflate,br
+        - accept-language: en-US
+        - content-type: application/json
+        - referer: http://127.0.0.1:4319/
+        - sec-ch-ua: "HeadlessChrome";v="153", "Not_A Brand";v="8", "Chromium";v="153"
+        - sec-ch-ua-mobile: ?1
+        - sec-ch-ua-platform: "iOS"
+    " while running route callback.
+    Consider awaiting `await page.unrouteAll({ behavior: 'ignoreErrors' })`
+    before the end of the test to ignore remaining routes in flight.
+
+       at provider-fixture.ts:13
+
+      11 |   await page.route("**/api/models", async (route) => {
+      12 |     if (route.request().method() !== "GET") return route.continue();
+    > 13 |     const response = await route.fetch();
+         |                                  ^
+      14 |     await route.fulfill({
+      15 |       json: {
+      16 |         ...(await response.json()),
+        at D:\RobloxProjects\Roblox Gen\tests\browser\provider-fixture.ts:13:34
+
+    Error Context: test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\workflow-builds-an-approve-191aa--real-HTTP-provider-adapter-mobile\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11 failed
+    [desktop] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models 
+    [desktop] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models 
+    [desktop] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh 
+    [desktop] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates 
+    [desktop] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+    [mobile] › tests\browser\settings-workspace.spec.ts:164:1 › provider catalog loads automatically and persists selected models 
+    [mobile] › tests\browser\settings-workspace.spec.ts:222:1 › strict concept opt-in is saved for Anthropic and cleared when switching models 
+    [mobile] › tests\browser\settings-workspace.spec.ts:318:1 › project-specific preset route survives refresh 
+    [mobile] › tests\browser\workflow.spec.ts:58:1 › catalog search selects a model and its published rates 
+    [mobile] › tests\browser\workflow.spec.ts:132:1 › configures provider keys without reflecting secrets or persisting them in browser storage 
+    [mobile] › tests\browser\workflow.spec.ts:223:1 › builds an approved non-combat project through a real HTTP provider adapter 
+  25 passed (3.6m)

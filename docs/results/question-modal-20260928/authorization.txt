@@ -1,0 +1,47 @@
+The user cannot answer the blocking questions on live project c8550a5b-5b9f-4b79-8a25-b7ee0827618c (http://127.0.0.1:4340). Approval is blocked on those questions, so the paid run is stuck. Build a proper question modal. Read AGENTS.md and the top of research/notes/continuation.md first.
+
+## What is wrong (confirmed by reading the source and the live project)
+
+- Proposal-stage questions are plain strings in proposal.mechanics.unresolved, built by src/generation/scope-questions.ts:28 as "Should this limit apply, or should the mechanic support more? <assumption text>".
+- src/web/Proposal.tsx:39-40 renders them as one read-only line, "Unresolved: ...". There is no input, button or choice anywhere.
+- src/generation/engine.ts:1259-1260 blocks approval until p.answers[scopeQuestionId(question)] is set, but nothing in the proposal UI can set it. The user is stuck.
+- The concept flow (src/generation/concept.ts:167-168 and App.tsx around line 1485) already has structured questions with options, but only two generic options: "Keep these limits" / "Change the mechanic". Those tell the user nothing about what "more" means.
+- The live project currently has three of these questions: one target dummy only, counter resets on join/respawn, and "simple click/tap-to-punch, no combo system, blocking, or multiple attack types".
+
+## What the user wants
+
+When the run needs an answer, a modal pops up in the workspace, like a ChatGPT/Claude question prompt. It is not buried in the proposal text. Each question shows:
+- A clear, specific question in plain words, for example "How should punching work?", not "Should this limit apply?".
+- Up to 3 concrete choices, each with a one-line description of what it means for the game. For example: "Single punch: one attack on click", "2-hit combo: jab then cross, press again within 0.5s", "3-hit combo: jab, cross, hook".
+- One choice marked "Recommended", with a short reason.
+- An "Other" option with a text box where the user types their own answer.
+- Multiple questions step through one at a time (question 1 of 3), with back and next, and a final review before submitting.
+- The modal can be closed and reopened from a visible "N questions need answers" badge or button. It is never a dead end.
+- Keyboard accessible, focus trapped, Escape closes, works at mobile width. Use the existing tokens.css. No external fonts.
+
+## Implementation requirements
+
+1. **Structured questions end to end.** Replace the string-only unresolved questions with a shared structured shape used by both concept and proposal stages: id, prompt, options (2-3, each with label and description), recommended option id, recommendation reason, allowOther. Keep stable IDs through scopeQuestionId so saved answers still match. Old projects with string-only unresolved entries must still load and must still be answerable. Map them to the structured shape with a safe fallback, not by crashing or dropping them.
+2. **Good options come from the planner, not a regex.** The planner schema must return the structured options and the recommendation for each consequential question. The deterministic scope-questions detector still decides WHICH assumptions must be asked (keep that gate), but the wording and choices come from the model's structured output, validated by schema. If the model gave no options for a detected question, fall back to generic but still specific choices built from the assumption text, and mark them as fallback.
+3. **Answers flow back correctly.** Choosing an option or typing Other saves p.answers[id] through the existing answers API, not a new side channel. An answer that changes scope (e.g. a combo) must update the proposal, including the sequence asset slots from sequenceAssetIssues (one Animation slot per combo step). That update is a planner edit. Say whether it costs a paid call, and count it against the same $8 cap. "Keep" answers clear the question with no paid call.
+4. **Approval gate.** Approve & build stays blocked until every blocking question has an answer, and the button says why, e.g. "Answer 3 questions first", and opens the modal when clicked.
+5. **The live project.** Its three questions already exist as strings. Make them answerable in the new modal. If producing good options for them needs one small planner call, that is within the existing $8 run cap. Record it in COSTS.md like every other call. Do not re-run the whole proposal.
+
+## Tests
+
+- Unit tests for the structured question schema, the legacy string migration, answer saving, the approval gate and the combo-to-sequence-slot update, built from this live project's real saved proposal and one other real preserved proposal.
+- Playwright browser tests: the modal opens when questions exist, shows 3 choices with one Recommended, Other accepts typed text, step-through works, keyboard and Escape work, mobile width works, Approve & build is blocked then unblocked.
+- Screenshots of the modal at desktop and mobile width saved under docs/results/.
+- Full `npm run check` with real counts per stage.
+
+## The running service
+
+The isolated service PID 32684 on port 4340 is serving the live project from .forge/world-policy-live-20260928. The new UI needs that service rebuilt and restarted. Ask the user before stopping or restarting it. Confirm first that the project state is saved on disk and survives a restart, and say so when you ask. Do not touch any other running app or the user's Studio sessions.
+
+## After it works
+
+Tell the user the URL to open. The modal should be waiting with the three questions. Do not answer them for the user. Do not press Approve & build. Do not start any paid build. The build still needs the user's own Approve & build under the existing $8 cap.
+
+## Report
+
+docs/<name>.md and a dated section at the top of research/notes/continuation.md: what changed, test counts, screenshots, any paid call made for question options with its cost and the remaining cap, PIDs and ports, and what stays paused.

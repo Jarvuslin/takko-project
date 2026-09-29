@@ -1,0 +1,28 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {windowsCredentialVault} from '../src/generation/credential-vault';
+const output=path.resolve('docs/results/opencode-motion-live-20260926');
+const directory=path.resolve('.forge/opencode-motion-live-profile-20260926');
+const id=JSON.parse(fs.readFileSync(path.join(output,'mode-verified.json'),'utf8')).projectId;
+const p=JSON.parse(fs.readFileSync(path.join(directory,id+'.json'),'utf8'));
+if(p.jobId)throw Error('Do not finalize an active job');
+fs.writeFileSync(path.join(output,'terminal-project.json'),JSON.stringify(p,null,2));
+const key=windowsCredentialVault(path.join(directory,'provider-keys.dpapi'))!.read()['openrouter|https://openrouter.ai/api/v1'];
+const balance:any={at:new Date().toISOString()};
+for(const endpoint of ['key','credits']){const r=await fetch('https://openrouter.ai/api/v1/'+endpoint,{headers:{Authorization:'Bearer '+key},signal:AbortSignal.timeout(15000),redirect:'error'});if(!r.ok)throw Error(endpoint+' HTTP '+r.status);const{data}=await r.json();balance[endpoint]=endpoint==='key'?{limit:data.limit,remaining:data.limit_remaining,usage:data.usage}:{totalCredits:data.total_credits,totalUsage:data.total_usage,remaining:data.total_credits-data.total_usage};}
+fs.writeFileSync(path.join(output,'balance-after.json'),JSON.stringify(balance,null,2));
+const before=JSON.parse(fs.readFileSync(path.join(output,'balance-before.json'),'utf8'));
+const spent=p.charges.reduce((n:number,c:any)=>n+c.chargedMicros,0);
+let cumulative=0;
+const charges=p.charges.map((c:any,i:number)=>({...c,index:i+1,cumulativeMicros:cumulative+=c.chargedMicros,ledgerAccountRemaining:before.credits.remaining-cumulative/1e6,ledgerKeyRemaining:before.key.remaining-cumulative/1e6}));
+const ledger={at:new Date().toISOString(),project:id,stage:p.stage,error:p.error,capMicros:8000000,priorAccountedMicros:6066664,newAccountedMicros:spent,totalHistoricalAccountedMicros:6066664+spent,reservedMicros:p.reservedMicros,unknownCalls:p.charges.filter((c:any)=>c.billingSource==='unknown').length,charges,opencodeRuns:p.opencodeRuns??[],providerBalance:balance,observedAccountUsageDelta:balance.credits.totalUsage-before.credits.totalUsage,observedKeyUsageDelta:balance.key.usage-before.key.usage};
+fs.writeFileSync(path.join(output,'ledger.json'),JSON.stringify(ledger,null,2));
+const table=`| # | UTC | Phase | Model | Status | Reservation USD | Charge USD | Cumulative USD | Ledger account remaining USD | Input | Cached | Output | Billing |\n|---:|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|\n${charges.map((c:any)=>`| ${c.index} | ${c.at} | ${c.phase} | ${c.model} | ${c.status} | ${(c.reservedMicros/1e6).toFixed(6)} | ${(c.chargedMicros/1e6).toFixed(6)} | ${(c.cumulativeMicros/1e6).toFixed(6)} | ${c.ledgerAccountRemaining.toFixed(9)} | ${c.inputTokens??''} | ${c.cachedInputTokens??''} | ${c.outputTokens??''} | ${c.billingSource} |`).join('\n')}`;
+fs.writeFileSync(path.join(output,'COSTS.md'),`# Minimal fighting benchmark costs\n\n${ledger.at}. One authorized fresh run, $8 cumulative cap. One bounded correction is allowed. Terminal retries, fallback models and paid repair are disabled. Prior accounted $6.066664 remains unchanged, including earlier unknown holds.\n\n${table}\n\nPer-call remaining funds above are ledger-derived from the starting account balance, not independent provider reads at every call. The fast Jev calls completed in batches between read-only balance polls. balances-per-call.jsonl preserves those actual timestamped provider snapshots without claiming one snapshot per request. The provider balance endpoint also lags new receipts.\n\nNew accounted $${(spent/1e6).toFixed(6)}. Active reservations $${(p.reservedMicros/1e6).toFixed(6)}. Unknown new calls ${ledger.unknownCalls}. Remaining run authorization $${((8000000-spent-p.reservedMicros)/1e6).toFixed(6)} is unspent, not permission to retry. Account funds $${balance.credits.remaining.toFixed(9)}, key allowance $${balance.key.remaining.toFixed(9)} at ${balance.at}. Provider account usage delta $${ledger.observedAccountUsageDelta.toFixed(9)}, rounded per-call ledger $${(spent/1e6).toFixed(6)}.\n`);
+fs.cpSync(path.join(directory,'traces'),path.join(output,'traces'),{recursive:true});
+const manifest=JSON.parse(fs.readFileSync(path.join(output,'protected-before.json'),'utf8'));
+const changed=manifest.filter((e:any)=>!fs.existsSync(e.path)||createHash('sha256').update(fs.readFileSync(e.path)).digest('hex')!==e.sha256);
+fs.writeFileSync(path.join(output,'protected-after.json'),JSON.stringify({at:new Date().toISOString(),checked:manifest.length,unchanged:manifest.length-changed.length,changed},null,2));
+if(changed.length)throw Error('Prior evidence changed');
+console.log(JSON.stringify({at:ledger.at,stage:p.stage,error:p.error,calls:p.charges.length,spentMicros:spent,reservedMicros:p.reservedMicros,balance,openCodeRuns:ledger.opencodeRuns,protectedFiles:manifest.length}));

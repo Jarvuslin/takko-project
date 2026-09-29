@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./workspace-fixture";
 import { fixtureBundle } from "../generation-fixtures";
 
 test("Studio shows unresolved delivery honestly and only cancels undispatched work", async ({
@@ -36,14 +36,16 @@ test("Studio shows unresolved delivery honestly and only cancels undispatched wo
     r.fulfill({ json: { studios: [studio] } }),
   );
   await page.goto("/?project=" + p.id);
-  await page.getByRole("tab", { name: "Studio", exact: true }).click();
+  await page.getByRole("button", { name: "Studio details", exact: true }).click();
   await expect(
     page.getByText("delivered to Studio; awaiting confirmation or result", {
       exact: false,
     }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Apply to Studio", exact: true }),
+    page
+      .getByRole("dialog")
+      .getByRole("button", { name: "Apply to Studio", exact: true }),
   ).toBeDisabled();
   await expect(
     page.getByRole("button", { name: "Cancel queued operation" }),
@@ -73,7 +75,9 @@ test("Studio shows unresolved delivery honestly and only cancels undispatched wo
     page.getByText("cancelled before execution", { exact: false }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Apply to Studio", exact: true }),
+    page
+      .getByRole("dialog")
+      .getByRole("button", { name: "Apply to Studio", exact: true }),
   ).toBeEnabled();
   studio.protocolVersion = 1;
   await expect(
@@ -82,6 +86,8 @@ test("Studio shows unresolved delivery honestly and only cancels undispatched wo
     ),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: "Apply to Studio", exact: true }),
+    page
+      .getByRole("dialog")
+      .getByRole("button", { name: "Apply to Studio", exact: true }),
   ).toBeDisabled();
 });

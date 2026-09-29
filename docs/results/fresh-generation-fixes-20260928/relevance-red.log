@@ -1,0 +1,63 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-motion-evidence.test.ts (6 tests | 2 failed | 4 skipped) 51ms
+   × supplies captured variant identity and distinguishes uncertainty from rejection: docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json 25ms
+   × supplies captured variant identity and distinguishes uncertainty from rejection: docs/results/asset-evidence-selection-20260926/captured-pack-77935648543779.json 24ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-motion-evidence.test.ts > supplies captured variant identity and distinguishes uncertainty from rejection: docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json
+AssertionError: expected undefined to match object { key: '1/1/18/1', …(1) }
+
+- Expected:
+{
+  "key": "1/1/18/1",
+  "name": "punching animation",
+}
+
++ Received:
+undefined
+
+ ❯ tests/asset-motion-evidence.test.ts:152:35
+    150|       for(const candidate of state.candidates) {
+    151|         const entry=captured.entries.find((e:any)=>e.key===candidate.c…
+    152|         expect(candidate.variant).toMatchObject({key:entry.key,name:en…
+       |                                   ^
+    153|         expect(candidate.motion).toEqual(motionEvidence(entry.clip));
+    154|       }
+ ❯ assessEvidenceOptions src/marketplace/relevance.ts:279:26
+ ❯ tests/asset-motion-evidence.test.ts:148:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/asset-motion-evidence.test.ts > supplies captured variant identity and distinguishes uncertainty from rejection: docs/results/asset-evidence-selection-20260926/captured-pack-77935648543779.json
+AssertionError: expected undefined to match object { key: '1/1/18/1', …(1) }
+
+- Expected:
+{
+  "key": "1/1/18/1",
+  "name": "Sword Idle 2",
+}
+
++ Received:
+undefined
+
+ ❯ tests/asset-motion-evidence.test.ts:152:35
+    150|       for(const candidate of state.candidates) {
+    151|         const entry=captured.entries.find((e:any)=>e.key===candidate.c…
+    152|         expect(candidate.variant).toMatchObject({key:entry.key,name:en…
+       |                                   ^
+    153|         expect(candidate.motion).toEqual(motionEvidence(entry.clip));
+    154|       }
+ ❯ assessEvidenceOptions src/marketplace/relevance.ts:279:26
+ ❯ tests/asset-motion-evidence.test.ts:148:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 skipped (6)
+   Start at  00:42:51
+   Duration  2.16s (transform 66%, import 31%, tests 3%)
+

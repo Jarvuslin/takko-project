@@ -47,6 +47,8 @@ export const assetNeedSchema = z
     requirementId: z.string().min(1).max(64),
     role: z.string().min(1).max(1000),
     kind: z.enum(["Model", "MeshPart", "Audio", "Animation", "Image"]),
+    deliveryRole: z.enum(["visible_prop", "source_data"]).optional().describe("Use source_data for packs/libraries retained only as animation, audio or other source data. They are delivered to ReplicatedStorage, not rendered in Workspace."),
+    sequence: z.object({id:z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/),step:z.number().int().min(1).max(16),total:z.number().int().min(2).max(16)}).strict().optional().describe("For a chosen animated action sequence, one separate Animation need per step with the same sequence id and total. Each step gets its own user-selected clip."),
     query: z.string().min(1).max(200),
     constraints: z.string().min(1).max(2000),
     intent: assetIntentSchema.optional(),
@@ -149,6 +151,14 @@ export type AssetVerification = {
 };
 export interface AssetAdapter {
   identity: string;
+  /** A fixed, role-bound approval pool. Changing the query cannot find new candidates. */
+  searchScope?: "approved_references";
+  /** Host-validated user approval, separate from Marketplace search provenance. */
+  bindApprovedReference?(
+    need: AssetNeed,
+    candidate: AssetCandidate,
+    approval: { discoveryId: string; revision: number },
+  ): Promise<void>;
   discoverComponentAudio?(
     need: AssetNeed,
     component: import("./component-integration").ComponentReference,
@@ -283,6 +293,14 @@ export const assetEvaluationSchema = z
     visualFit: z.boolean(),
     functionalFit: z.boolean(),
     audioFit: z.boolean().optional(),
+    rejectionBasis: z
+      .object({
+        kind: z.enum(["user_statement", "capability"]),
+        sourceId: z.string().optional(),
+        quote: z.string().min(1).max(3000),
+      })
+      .strict()
+      .optional(),
   })
   .strict();
 export type AssetModel = {
@@ -358,6 +376,7 @@ export type AssetPipelineRun = {
   adapter: string;
   needs: AssetNeed[];
   entries: {
+    reusedFrom?: { runId: string; revision: number; inputHash: string };
     needId: string;
     status: "pending" | "passed" | "failed" | "escalation_required";
     selected?: AssetCandidate;

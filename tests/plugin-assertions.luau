@@ -183,4 +183,23 @@ exports.poll()
 assert(httpRequests[#httpRequests].Url=='http://127.0.0.1:4319/api/bridge/replacement-session/poll','Failed reconnect replaced the previous endpoint')
 assert(httpRequests[#httpRequests].Headers.Authorization=='Bearer new-token','Failed reconnect replaced the previous token')
 print('PASS reconnect serializes with polling, commits connection state only on success, and preserves failed reconnect state')
+
+local foundationOp={id='base-world',scope='Forge_BaseWorld',artifactHash='world1',revision=1,bundle={scene={},files={}},baseWorld=verifiedBaseWorld}
+exports.apply(foundationOp)
+local baseplate=workspace:FindFirstChild('Baseplate')
+assert(baseplate and baseplate.Size=='2048,16,2048' and baseplate.Position=='0,-8,0','Missing verified baseplate')
+assert(game:GetService('Lighting').GlobalShadows==true and game:GetService('Lighting').ClockTime==14.5,'Missing template lighting')
+assert(game:GetService('Lighting'):FindFirstChild('Sky') and game:GetService('Lighting'):FindFirstChild('Atmosphere'),'Missing sky/atmosphere')
+game:GetService('Lighting').ClockTime=7
+exports.apply(foundationOp)
+assert(workspace:FindFirstChild('Baseplate')==baseplate,'Second apply duplicated baseplate')
+assert(game:GetService('Lighting').ClockTime==7,'Existing place lighting was overwritten')
+baseplate.Parent=nil
+exports.apply(foundationOp)
+assert(workspace:FindFirstChild('Baseplate')==nil,'Follow-up recreated a deliberately removed world element')
+assert(game:GetService('Lighting').ClockTime==7,'Follow-up reset lighting without a baseplate')
+baseplate.Parent=workspace
+print('PASS shared verified base world bootstrap and existing world preservation')
+
 for _,text in captured do print('SOURCE_BEGIN');print(text);print('SOURCE_END') end
+

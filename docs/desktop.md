@@ -56,3 +56,9 @@ Verified in this implementation pass: all nine desktop tests passed, the separat
 - [Electron security recommendations](https://www.electronjs.org/docs/latest/tutorial/security)
 - [Electron utilityProcess API](https://www.electronjs.org/docs/latest/api/utility-process)
 - [Electron Packager options](https://electron.github.io/packager/main/interfaces/Options.html)
+
+## Provider keys
+
+Models now validates a provider before browsing its catalog or adding a model. One connection serves all models at that provider and endpoint. Windows stores connections in `%APPDATA%/Forge Desktop/provider-keys.dpapi`, encrypted for the current Windows account. Reopening Takko restores keys without putting them in browser storage or project JSON. Replace key validates the replacement before saving. Disconnect removes the provider key and keeps model profiles. A failed unlock does not fall back to plaintext. Other platforms remain explicitly session-only.
+
+A dated package can be built with `TAKKO_PACKAGE_OUT` pointing to a new directory under `release`, then updating the desktop shortcut to that package. This leaves existing packages available for rollback. Do not overwrite a running app.

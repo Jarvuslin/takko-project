@@ -1,0 +1,207 @@
+{
+  "status": "captured",
+  "format": "roblox-native-rbxm-v1",
+  "engineVersion": "0.740.0.7400927",
+  "bytes": 8054,
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Training Dummy",
+      "className": "Model"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 4,
+      "parentIndex": 3,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 5,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 6,
+      "parentIndex": 5,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 7,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 8,
+      "parentIndex": 7,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 9,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 10,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 11,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 12,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 13,
+      "parentIndex": 2,
+      "name": "Head",
+      "className": "Part"
+    },
+    {
+      "index": 14,
+      "parentIndex": 13,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 15,
+      "parentIndex": 2,
+      "name": "Torso",
+      "className": "Part"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "name": "Decal",
+      "className": "Decal"
+    },
+    {
+      "index": 17,
+      "parentIndex": 2,
+      "name": "Humanoid",
+      "className": "Humanoid"
+    },
+    {
+      "index": 18,
+      "parentIndex": 2,
+      "name": "Respawn",
+      "className": "Script"
+    }
+  ],
+  "sources": [
+    {
+      "index": 18,
+      "className": "Script",
+      "source": "robo=script.Parent:clone()\nwhile true do\n\twait(0)\n\tif script.Parent.Humanoid.Health<1 then\n\t\twait(1)\n\t\trobot=robo:clone()\n\t\trobot.Parent=script.Parent.Parent\n\t\trobot:makeJoints()\n\t\tscript.Parent:remove()\n\tend\nend\n\n\t\t\n\n\n\n\n\n",
+      "sourceBytes": 222,
+      "disabled": false,
+      "runContext": "Enum.RunContext.Legacy",
+      "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 4,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 4,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 6,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 6,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 8,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 8,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 14,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 14,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 16,
+      "property": "Texture",
+      "value": "rbxassetid://406436910"
+    }
+  ],
+  "configurationValues": [],
+  "sourceBytes": 222,
+  "roundTrip": {
+    "passed": true,
+    "checkedProperties": 514,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Humanoid.Health_XML",
+      "Humanoid.InternalBodyScale",
+      "Humanoid.InternalHeadScale",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw",
+      "Script.ScriptGuid"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "executed": false,
+  "sha256": "52677ad22a1c94d98a4737d9ebf736306f9b186533b06ffb619fd9a91614e745",
+  "securityReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "identityBoundary": "exact imported hierarchy before static normalization; import tool controls the outer root name"
+}

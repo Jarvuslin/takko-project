@@ -1,0 +1,31 @@
+diff --git "a/.forge\\ui-polish-before\\tests\\browser\\lemonade-layout.spec.ts" "b/tests\\browser\\lemonade-layout.spec.ts"
+index 2779348..7e0f569 100644
+--- "a/.forge\\ui-polish-before\\tests\\browser\\lemonade-layout.spec.ts"
++++ "b/tests\\browser\\lemonade-layout.spec.ts"
+@@ -222,16 +222,21 @@ test("minimal task list, source, history and follow-up use the current project",
+   await expect(
+     page.getByRole("button", { name: "Explore", exact: true }),
+   ).toHaveCount(0);
+-  await page.getByText("Build plan · 2 tasks", { exact: true }).click();
++  await page.locator(".compact-plan > summary").click();
+   const plan = page.locator(".plan-aside");
+   await expect(plan).toContainText("Harvest shop");
+-  await expect(plan).toContainText("Depends on: coreTask");
++  await plan.locator("li summary").filter({ hasText: "Harvest shop" }).click();
++  await expect(plan).toContainText("After: Implement core loop");
+   await expect(
+-    plan.locator("article").filter({ hasText: "Implement core loop" }),
+-  ).toContainText("Completed");
++    plan.locator("li").filter({ hasText: "Implement core loop" }).first(),
++  ).toContainText("Complete");
+   await expect(
+-    plan.locator("article").filter({ hasText: "Harvest shop" }),
++    plan.locator("li").filter({ hasText: "Harvest shop" }),
+   ).toContainText("Planned");
++  await plan
++    .locator("li summary")
++    .filter({ hasText: "Implement core loop" })
++    .click();
+   await plan
+     .getByRole("button", { name: /ServerScriptService.*Game.server.luau/ })
+     .click();

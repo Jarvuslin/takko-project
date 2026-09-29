@@ -1,5 +1,5 @@
-import { test, expect } from "@playwright/test";
-import type { Locator, Page } from "@playwright/test";
+import { test, expect } from "./workspace-fixture";
+import type { Locator, Page } from "./workspace-fixture";
 import { specification } from "../generation-fixtures";
 
 async function expectTextFits(locator: Locator): Promise<void> {
@@ -85,6 +85,7 @@ test("workspace typography keeps prose readable and controls usable", async ({
   );
   await page.goto("/?project=" + created.id);
   await fontsReady(page);
+  await page.getByText("Edit original brief", { exact: true }).click();
   await expect(page.getByRole("heading", { name: "Your request" })).toHaveCSS(
     "font-family",
     /Segoe UI/,
@@ -97,17 +98,17 @@ test("workspace typography keeps prose readable and controls usable", async ({
     ),
   ).toBeGreaterThanOrEqual(14);
   await expectTextFits(page.locator(".chat-heading"));
-  await expectTextFits(page.locator(".tabs"));
+  await expectTextFits(page.locator(".canvas-heading"));
   await expectTextFits(page.getByLabel("Project request"));
   await page
     .getByLabel("Message", { exact: true })
     .fill("Let players sell harvested crops together.");
   await expectTextFits(page.locator(".chat-composer"));
-  await page.getByRole("tab", { name: "Source", exact: true }).click();
+  await page.getByRole("button", { name: "Source details", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "The generated project" }),
   ).toBeVisible();
-  await page.getByRole("tab", { name: "Brief", exact: true }).click();
+  await page.keyboard.press("Escape");
   await page.getByLabel("Project request").scrollIntoViewIfNeeded();
   expect(
     await page.evaluate(

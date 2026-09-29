@@ -1,0 +1,12 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+
+ Test Files  6 passed (6)
+      Tests  183 passed (183)
+   Start at  13:57:24
+   Duration  9.38s (tests 58%, import 36%, transform 6%, worker 1%)
+
+    Isolate  6 workers spawned · ~255ms startup each (spawn + environment, per file)
+             at least ~509ms faster with isolate: false — reuses workers across files instead of one per file
+

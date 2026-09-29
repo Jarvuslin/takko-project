@@ -1,0 +1,83 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/post-plan-replay.test.ts (4 tests | 4 failed) 1590ms
+   × replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch 1479ms
+   × replays opencode-minimal-fighting-20260925 through real post-plan orchestration and correction to OpenCode dispatch 100ms
+   × does not accept arbitrary section tags as missing source coverage 5ms
+   × derives dependencies from requirement provenance without requiring duplicate task tags 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/post-plan-replay.test.ts > replays opencode-fighting-live-20260924 through real post-plan orchestration and correction to OpenCode dispatch
+AssertionError: {"error":"Error: Audio input requires a configured Gemini or OpenRouter audio-capable model; this provider transport does not support it","effects":["inspect:trainingDummyAsset","place:trainingDummyAsset","discard:1245720733","inspect:punchAnimationAsset","place:punchAnimationAsset","discard:12061946559","inspect:impactVfxAsset","place:impactVfxAsset","discard:86089736228455","inspect:impactSfxAsset","discard:132504023010884","adapter:close"],"assetEvents":[],"events":[{"at":"2026-09-25T17:51:06.864Z","message":"reviewer: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:51:06.958Z","message":"reviewer: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:51:07.190Z","message":"reviewer: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:51:07.288Z","message":"reviewer: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:51:07.538Z","message":"reviewer: Fixture / anthropic/claude-sonnet-5"}]}: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:8:200
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > replays opencode-minimal-fighting-20260925 through real post-plan orchestration and correction to OpenCode dispatch
+AssertionError: {"error":"Implementation dependency coverage is missing for proposal section: theme","effects":[],"events":[{"at":"2026-09-25T05:28:59.618Z","message":"Gameplay interpretation saved as advice. Your full request remains authoritative."},{"at":"2026-09-25T05:28:59.642Z","message":"planner: Anthropic: Claude Sonnet 5 / anthropic/claude-sonnet-5"},{"at":"2026-09-25T05:31:58.710Z","message":"Specification ready for review."},{"at":"2026-09-25T17:51:07.719Z","message":"planner: Fixture / anthropic/claude-sonnet-5"},{"at":"2026-09-25T17:51:07.739Z","message":"Specification ready for review."}]}: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/post-plan-replay.test.ts:8:200
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > does not accept arbitrary section tags as missing source coverage
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/post-plan-replay.test.ts:22:35
+     20|   const p=savedReplay(replayRuns[1]);
+     21|   p.spec!.tasks[0].proposalSections!.push("theme");
+     22|   expect(()=>bindProposalPlan(p)).toThrow(/proposal:theme/);
+       |                                   ^
+     23| });
+     24| it("derives dependencies from requirement provenance without requiring…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/post-plan-replay.test.ts > derives dependencies from requirement provenance without requiring duplicate task tags
+AssertionError: expected [Function] to not throw an error but 'Error: Implementation tasks must decl…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"Error: Implementation tasks must declare proposalSections, including indirect theme, UI, lighting, layout, animation and rig dependencies."
+
+ ❯ tests/post-plan-replay.test.ts:27:39
+     25|   const p=savedReplay(replayRuns[0]);
+     26|   for(const t of p.spec!.tasks)delete t.proposalSections;
+     27|   expect(()=>bindProposalPlan(p)).not.toThrow();
+       |                                       ^
+     28|   for(const task of p.spec!.tasks)for(const id of task.requirements){
+     29|     const source=p.spec!.requirements.find(r=>r.id===id)!.sourceId;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  13:51:05
+   Duration  2.70s (tests 63%, transform 24%, import 13%)
+

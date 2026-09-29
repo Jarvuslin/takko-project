@@ -1,0 +1,71 @@
+{"version":9,"type":"context-options","origin":"library","browserName":"","playwrightVersion":"1.63.0","options":{},"platform":"win32","wallTime":1790054975339,"monotonicTime":296009.08,"sdkLanguage":"javascript","title":"b-foundation.spec.ts:3 › selected B workspace docks editing below the visible graph and preserves contracts"}
+{"type":"before","callId":"call@78","startTime":296067.538,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/projects","method":"POST","jsonData":"{\"request\":\"Arena architecture dock regression\"}"},"stepId":"pw:api@31"}
+{"type":"log","callId":"call@78","time":296069.275,"message":"→ POST http://127.0.0.1:4319/api/projects"}
+{"type":"log","callId":"call@78","time":296069.291,"message":"  user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1"}
+{"type":"log","callId":"call@78","time":296069.298,"message":"  accept: */*"}
+{"type":"log","callId":"call@78","time":296069.326,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@78","time":296069.331,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@78","time":296069.335,"message":"  content-length: 48"}
+{"type":"log","callId":"call@78","time":296073.957,"message":"← 201 Created"}
+{"type":"log","callId":"call@78","time":296073.971,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@78","time":296073.976,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@78","time":296073.979,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@78","time":296073.983,"message":"  content-length: 649"}
+{"type":"log","callId":"call@78","time":296073.987,"message":"  etag: W/\"289-9icasev6yPaLD21jK51QiL9N3qY\""}
+{"type":"log","callId":"call@78","time":296073.991,"message":"  date: Tue, 22 Sep 2026 05:29:35 GMT"}
+{"type":"log","callId":"call@78","time":296073.995,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@78","time":296073.998,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@78","endTime":296074.079,"result":{"response":{"url":"http://127.0.0.1:4319/api/projects","status":201,"statusText":"Created","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"649"},{"name":"ETag","value":"W/\"289-9icasev6yPaLD21jK51QiL9N3qY\""},{"name":"Date","value":"Tue, 22 Sep 2026 05:29:35 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790054975399,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":0,"secureConnectionStart":-1,"connectEnd":1.3189999999594875,"requestStart":1.3189999999594875,"responseStart":4.853999999992084},"responseEndTiming":5.018999999971129,"fetchUid":"4e07889ee83cf9dccbb87d60368fb0a2"}}}
+{"type":"before","callId":"call@81","startTime":296076.223,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5/architecture","method":"POST","jsonData":"{\"id\":\"d39f2cfa-a7eb-4904-87b5-1e0b41cd9826\",\"revision\":1,\"architecture\":{\"nodes\":[{\"id\":\"combat\",\"name\":\"Combat\",\"purpose\":\"Verify hits\",\"authority\":\"server\",\"x\":40,\"y\":50},{\"id\":\"energy\",\"name\":\"Energy\",\"purpose\":\"Award energy\",\"authority\":\"server\",\"x\":320,\"y\":50},{\"id\":\"hud\",\"name\":\"Ability HUD\",\"purpose\":\"Show energy\",\"authority\":\"client\",\"x\":600,\"y\":190}],\"edges\":[{\"id\":\"hit\",\"from\":\"combat\",\"to\":\"energy\",\"event\":\"Hit confirmed\",\"effect\":\"Add ten energy\",\"kind\":\"event\"},{\"id\":\"meter\",\"from\":\"energy\",\"to\":\"hud\",\"event\":\"Energy changed\",\"effect\":\"Update ability meter\",\"kind\":\"state\"}]}}"},"stepId":"pw:api@32"}
+{"type":"log","callId":"call@81","time":296077.175,"message":"→ POST http://127.0.0.1:4319/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5/architecture"}
+{"type":"log","callId":"call@81","time":296077.185,"message":"  user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1"}
+{"type":"log","callId":"call@81","time":296077.188,"message":"  accept: */*"}
+{"type":"log","callId":"call@81","time":296077.19,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@81","time":296077.192,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@81","time":296077.193,"message":"  content-length: 596"}
+{"type":"log","callId":"call@81","time":296083.444,"message":"← 200 OK"}
+{"type":"log","callId":"call@81","time":296083.461,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@81","time":296083.468,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@81","time":296083.471,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@81","time":296083.475,"message":"  content-length: 1600"}
+{"type":"log","callId":"call@81","time":296083.478,"message":"  etag: W/\"640-HZwIfzALC70jnfSpNIvtQ62sLpA\""}
+{"type":"log","callId":"call@81","time":296083.483,"message":"  date: Tue, 22 Sep 2026 05:29:35 GMT"}
+{"type":"log","callId":"call@81","time":296083.487,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@81","time":296083.49,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@81","endTime":296083.669,"result":{"response":{"url":"http://127.0.0.1:4319/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5/architecture","status":200,"statusText":"OK","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"1600"},{"name":"ETag","value":"W/\"640-HZwIfzALC70jnfSpNIvtQ62sLpA\""},{"name":"Date","value":"Tue, 22 Sep 2026 05:29:35 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790054975407,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.23300000000745058,"responseStart":5.631999999983236},"responseEndTiming":5.904999999969732,"fetchUid":"15a000e4f0a78c3eefe808163c31ba78"}}}
+{"type":"before","callId":"call@87","startTime":298511.858,"class":"APIRequestContext","method":"fetch","params":{"url":"http://127.0.0.1:4319/api/status","method":"GET","headers":[{"name":"accept","value":"*/*"},{"name":"accept-language","value":"en-US"},{"name":"content-type","value":"application/json"},{"name":"referer","value":"http://127.0.0.1:4319/?project=614c8493-8f87-4d27-9a6d-4b0079f487e5"},{"name":"user-agent","value":"Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1"},{"name":"sec-ch-ua","value":"\"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""},{"name":"sec-ch-ua-mobile","value":"?1"},{"name":"sec-ch-ua-platform","value":"\"iOS\""}]},"stepId":"pw:api@36"}
+{"type":"log","callId":"call@87","time":298513.061,"message":"→ GET http://127.0.0.1:4319/api/status"}
+{"type":"log","callId":"call@87","time":298513.08,"message":"  user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1"}
+{"type":"log","callId":"call@87","time":298513.086,"message":"  accept: */*"}
+{"type":"log","callId":"call@87","time":298513.089,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@87","time":298513.093,"message":"  accept-language: en-US"}
+{"type":"log","callId":"call@87","time":298513.097,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@87","time":298513.1,"message":"  referer: http://127.0.0.1:4319/?project=614c8493-8f87-4d27-9a6d-4b0079f487e5"}
+{"type":"log","callId":"call@87","time":298513.103,"message":"  sec-ch-ua: \"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""}
+{"type":"log","callId":"call@87","time":298513.108,"message":"  sec-ch-ua-mobile: ?1"}
+{"type":"log","callId":"call@87","time":298513.111,"message":"  sec-ch-ua-platform: \"iOS\""}
+{"type":"log","callId":"call@87","time":298515.435,"message":"← 200 OK"}
+{"type":"log","callId":"call@87","time":298515.444,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@87","time":298515.447,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@87","time":298515.45,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@87","time":298515.452,"message":"  content-length: 118"}
+{"type":"log","callId":"call@87","time":298515.454,"message":"  etag: W/\"76-p0oyMzOhKmgwuIfTPuVC9XvVCF4\""}
+{"type":"log","callId":"call@87","time":298515.462,"message":"  date: Tue, 22 Sep 2026 05:29:37 GMT"}
+{"type":"log","callId":"call@87","time":298515.464,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@87","time":298515.468,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@87","endTime":298515.537,"result":{"response":{"url":"http://127.0.0.1:4319/api/status","status":200,"statusText":"OK","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"118"},{"name":"ETag","value":"W/\"76-p0oyMzOhKmgwuIfTPuVC9XvVCF4\""},{"name":"Date","value":"Tue, 22 Sep 2026 05:29:37 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790054977843,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.41499999997904524,"responseStart":2.1649999999790452},"responseEndTiming":2.378000000026077,"fetchUid":"bd71a5138105c24e4e4568f19f11e5c6"}}}
+{"type":"before","callId":"call@134","startTime":299089.247,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5","method":"GET"},"stepId":"pw:api@56"}
+{"type":"log","callId":"call@134","time":299090.344,"message":"→ GET http://127.0.0.1:4319/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5"}
+{"type":"log","callId":"call@134","time":299090.359,"message":"  user-agent: Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Mobile/15E148 Safari/604.1"}
+{"type":"log","callId":"call@134","time":299090.364,"message":"  accept: */*"}
+{"type":"log","callId":"call@134","time":299090.368,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@134","time":299093.169,"message":"← 200 OK"}
+{"type":"log","callId":"call@134","time":299093.185,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@134","time":299093.19,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@134","time":299093.193,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@134","time":299093.197,"message":"  content-length: 1893"}
+{"type":"log","callId":"call@134","time":299093.2,"message":"  etag: W/\"765-+FTLnB7a5u8sIdOqjfL6D6cfU0Q\""}
+{"type":"log","callId":"call@134","time":299093.203,"message":"  date: Tue, 22 Sep 2026 05:29:38 GMT"}
+{"type":"log","callId":"call@134","time":299093.206,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@134","time":299093.209,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@134","endTime":299093.319,"result":{"response":{"url":"http://127.0.0.1:4319/api/projects/614c8493-8f87-4d27-9a6d-4b0079f487e5","status":200,"statusText":"OK","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"1893"},{"name":"ETag","value":"W/\"765-+FTLnB7a5u8sIdOqjfL6D6cfU0Q\""},{"name":"Date","value":"Tue, 22 Sep 2026 05:29:38 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790054978420,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.40100000001257285,"responseStart":2.3850000000093132},"responseEndTiming":2.705000000016298,"fetchUid":"65ff3a1885e6cde932c53372158b501c"}}}

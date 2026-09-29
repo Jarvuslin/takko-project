@@ -1,0 +1,169 @@
+## STATUS
+
+OpenCode succeeded: 784s, 42 exchanges, 6/6 tasks, exit 0. Five Luau files, 495 lines,
+all compile. The server logic is genuinely good. Only the final review truncated.
+
+## FIX 1: reviewer truncation (blocks the export)
+
+32,768 allowance, 28,793 REASONING tokens (88%), ~3,975 left for content, truncated at
+10,015 chars. maxOutputTokens is already at its schema ceiling, so raise nothing.
+
+Set reasoningEffort to "medium" for the REVIEWER ROUTE ONLY. If it still truncates, try
+"low". Do not change planner, builder or decision routes, maxOutputTokens, or the model.
+Record which setting was used and the resulting reasoning/content token split.
+
+## FIX 2: animation integration is a real defect, not an honest gap
+
+The animation was ACQUIRED AND RETAINED:
+
+    assetPipeline entry  needId=punchAnim  status=passed  component=yes
+    destinationPath      Workspace/Forge_8a81efe9b8ed/Assets/punchAnim
+
+The content is IN THE PLACE, inside the generated namespace. The generated code wrote:
+
+    local PUNCH_ANIMATION_ID = "rbxassetid://12061946559"
+
+That is the PACK asset id, for content that was already retained locally. It reached
+across the network for something sitting in its own folder. Animator:LoadAnimation will
+fail on it.
+
+Worse, the model UNDERSTOOD the correct path and did not take it. Its own comment says
+the Studio-only temporary registration id "plays correctly for in-Studio testing". It
+then produced publishing-shaped code anyway and labelled it an unmet dependency. The
+comment claim that "the wiring below is correct" is FALSE for the Studio path it was
+told to target.
+
+Root cause: the builder receives animationCapabilityContract as prose describing
+options, with a prominent publishedGame:"unsupported" and a limitation field. The model
+weighed the limitation and hedged. It was never plainly told (a) where the retained
+content is, (b) that a Studio place is this product's actual deliverable, or (c) the
+exact pattern to emit.
+
+Changes:
+
+  a) TELL THE BUILDER WHERE THE CONTENT IS. When a need has a retained component, pass
+     its destinationPath and rootName into the builder task context as local content.
+     Retained assets must be referenced in-place, never re-fetched by asset id.
+
+  b) SUPPLY THE EXACT PATTERN, NOT A DESCRIPTION. For a retained raw KeyframeSequence,
+     give the concrete integration shape: locate the sequence under the component root,
+     KeyframeSequenceProvider:RegisterKeyframeSequence(sequence), assign the returned
+     string UNCHANGED to Animation.AnimationId (no rbxassetid:// prefix, no hash://
+     prefix), then Animator:LoadAnimation. The native probe proved this plays, with
+     0.98 rad of real joint motion, ordinary Script and LocalScript, server and client.
+
+  c) STATE THE TARGET. Takko delivers a Studio place for testing. Studio-local playback
+     is the SUPPORTED path for generated code. The publishing limitation is a
+     project-level note for the user, not a reason for the builder to hedge or emit
+     non-working wiring. Keep the limitation visible in requirement coverage, but stop
+     presenting it to the builder as a blocker.
+
+  d) MAKE IT CHECKABLE, not hopeful. Add a validation: if a need's retained component is
+     a raw KeyframeSequence and generated code assigns "rbxassetid://<that pack id>" to
+     an Animation.AnimationId, reject it in the correction callback with a message that
+     names the file, the need and the retained destinationPath. This is the same
+     principle as every other fix: verify the structured fact rather than trusting prose.
+
+Do NOT add publishing. Do NOT invent an AnimationId. Do NOT special-case this asset,
+this animation or fighting games. The rule is generic: retained component content is
+referenced in place.
+
+## IGNORE SOUND THIS TURN
+
+The audio gap is honest. The planner specified 0.2-0.5s, the only candidate measured
+~1.53s, acquisition correctly rejected it and the code correctly refused to fabricate a
+Sound. Leave it. (Separately, selection had no duration signal at all, which is why a
+1.53s clip was picked at 0.87 confidence. Record it, do not fix it now.)
+
+## BUDGET AND SEQUENCE
+
+Cap $4. Remaining credit was $10.224550608 at 2026-09-27T19:17:48.400Z. Refresh and
+record before dispatch.
+
+  1. Implement Fix 2 offline. Failing test first, from the preserved terminal-project
+     and generated PunchController. Full npm run check with REAL counts. Three replays
+     at $0.
+  2. Apply Fix 1 (reviewer reasoning).
+  3. Resume project 8a81efe9-b8ed-44bc-a21a-5aad132813ac. engine.ts:1476 shows resume
+     skips completedBuildTasks, so it should not re-plan, re-select or re-acquire.
+     Fix 2 will require regenerating the animation-owning task. That is expected and
+     authorized. Do NOT regenerate tasks that do not touch animation integration.
+  4. Complete the review, then export.
+
+If the review completes but reports FAILED checks, record every one verbatim. One
+bounded repair is allowed within the cap. If repair would exceed $4, stop and report.
+
+## DELIVERY
+
+GET /api/projects/8a81efe9-b8ed-44bc-a21a-5aad132813ac/export
+     0.98 rad of real joint motion, ordinary Script and LocalScript, server and client.
+
+  c) STATE THE TARGET. Takko delivers a Studio place for testing. Studio-local playback
+     is the SUPPORTED path for generated code. The publishing limitation is a
+     project-level note for the user, not a reason for the builder to hedge or emit
+     non-working wiring. Keep the limitation visible in requirement coverage, but stop
+     presenting it to the builder as a blocker.
+
+  d) MAKE IT CHECKABLE, not hopeful. Add a validation: if a need's retained component is
+     a raw KeyframeSequence and generated code assigns "rbxassetid://<that pack id>" to
+     an Animation.AnimationId, reject it in the correction callback with a message that
+     names the file, the need and the retained destinationPath. This is the same
+     principle as every other fix: verify the structured fact rather than trusting prose.
+
+Do NOT add publishing. Do NOT invent an AnimationId. Do NOT special-case this asset,
+this animation or fighting games. The rule is generic: retained component content is
+referenced in place.
+
+## IGNORE SOUND THIS TURN
+
+The audio gap is honest. The planner specified 0.2-0.5s, the only candidate measured
+~1.53s, acquisition correctly rejected it and the code correctly refused to fabricate a
+Sound. Leave it. (Separately, selection had no duration signal at all, which is why a
+1.53s clip was picked at 0.87 confidence. Record it, do not fix it now.)
+
+## BUDGET AND SEQUENCE
+
+Cap $4. Remaining credit was $10.224550608 at 2026-09-27T19:17:48.400Z. Refresh and
+record before dispatch.
+
+  1. Implement Fix 2 offline. Failing test first, from the preserved terminal-project
+     and generated PunchController. Full npm run check with REAL counts. Three replays
+     at $0.
+  2. Apply Fix 1 (reviewer reasoning).
+  3. Resume project 8a81efe9-b8ed-44bc-a21a-5aad132813ac. engine.ts:1476 shows resume
+     skips completedBuildTasks, so it should not re-plan, re-select or re-acquire.
+     Fix 2 will require regenerating the animation-owning task. That is expected and
+     authorized. Do NOT regenerate tasks that do not touch animation integration.
+  4. Complete the review, then export.
+
+If the review completes but reports FAILED checks, record every one verbatim. One
+bounded repair is allowed within the cap. If repair would exceed $4, stop and report.
+
+## DELIVERY
+
+GET /api/projects/8a81efe9-b8ed-44bc-a21a-5aad132813ac/export
+
+Save the .rbxlx somewhere immediately findable, repository root or similar, not buried
+in an evidence subdirectory, and keep an evidence copy. Report the exact absolute path.
+No bridge apply. Do not modify place 122588481889475. Do not rewrite the stage or bypass
+the exporter.
+
+FALLBACK: if export stays blocked, place the generated .luau files where the user can
+read them, report the paths, and state exactly which checks blocked it.
+
+## TELL THE USER HOW TO REVIEW IT
+
+  - exact .rbxlx path, opened directly in Studio, press Play
+  - the scene has a built room: ground, ceiling, four walls, spawn and four point-light
+    fixtures, plus the retained dummy at Workspace/Forge_8a81efe9b8ed/Assets/dummy
+  - SHOULD WORK: dummy present, punch input bound, server-validated hit detection,
+    on-screen hit counter incrementing, and after Fix 2 the punch animation playing
+  - WILL NOT WORK: no sound, and why
+  - whether the animation actually played, stated as observed or not observed. Do not
+    claim gameplay you did not watch.
+
+## DO NOT DO
+
+Model swap. Planner or decision route changes. Audio selection redesign. Relevance or
+thresholds. The duplicate relevance pass (5 passes / 165 calls, record only). Place
+binding. Bridge delivery. Streaming. Anything not in Fix 1 or Fix 2.

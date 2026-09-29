@@ -1,0 +1,70 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/provider-audio.test.ts (25 tests | 3 failed) 85ms
+   ❯ provider audio transport (offline mocks) (25)
+     × refuses unverified model anthropic/claude-sonnet-5 before dispatch 43ms
+     × refuses unverified model unknown-audio-model before dispatch 2ms
+     × records a definite HTTP 404 refusal as zero cost instead of an unknown hold 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/provider-audio.test.ts > provider audio transport (offline mocks) > refuses unverified model anthropic/claude-sonnet-5 before dispatch
+ FAIL  tests/provider-audio.test.ts > provider audio transport (offline mocks) > refuses unverified model unknown-audio-model before dispatch
+AssertionError: promise resolved "{ text: '{"accepted":true}', …(3) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "costMicros": 321,
++   "inputTokens": 100,
++   "outputTokens": 12,
++   "text": "{\"accepted\":true}",
+  }
+
+ ❯ tests/provider-audio.test.ts:87:126
+     85|   it.each(["anthropic/claude-sonnet-5", "unknown-audio-model"])("refus…
+     86|     const mock = transport(routerResponse);
+     87|     await expect(complete({...profile("openrouter"), model}, "key", "s…
+       |                                                                                                                              ^
+     88|     expect(mock).not.toHaveBeenCalled();
+     89|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/provider-audio.test.ts > provider audio transport (offline mocks) > records a definite HTTP 404 refusal as zero cost instead of an unknown hold
+AssertionError: expected Error: Provider returned HTTP 404 { …(2) } to match object { retryable: false, …(1) }
+
+- Expected
++ Received
+
+- {
+-   "completion": {
+-     "costMicros": 0,
+-     "inputTokens": 0,
+-     "outputTokens": 0,
+-   },
++ ProviderError {
++   "completion": undefined,
+    "retryable": false,
+  }
+
+ ❯ tests/provider-audio.test.ts:92:84
+     90|   it("records a definite HTTP 404 refusal as zero cost instead of an u…
+     91|     const mock = transport({error:{message:"No endpoints found"}},404);
+     92|     await expect(complete(profile("openrouter"),"key","system","user",…
+       |                                                                                    ^
+     93|     expect(mock).toHaveBeenCalledTimes(1);
+     94|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 22 passed (25)
+   Start at  14:27:17
+   Duration  486ms (transform 39%, import 35%, tests 24%, worker 1%)
+

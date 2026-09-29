@@ -1,0 +1,30 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/retained-animation.test.ts (5 tests | 1 failed) 6716ms
+   × resume exposes the producer context and rejects the real bad patch before replacing any saved work 3941ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/retained-animation.test.ts > resume exposes the producer context and rejects the real bad patch before replacing any saved work
+AssertionError: expected 'expected [Function] to throw error ma…' to contain 'Offline reproduction complete'
+
+Expected: "Offline reproduction complete"
+Received: "expected [Function] to throw error matching /PunchController.*punchAnim.*Workspace/ but got 'ReplicatedStorage/Forge_8a81efe9b8ed/…'"
+
+ ❯ tests/retained-animation.test.ts:133:26
+    131|     const result = await engine.wait(saved.id);
+    132|     expect(entered, result.error ?? "").toBe(true);
+    133|     expect(result.error).toContain("Offline reproduction complete");
+       |                          ^
+    134|     expect(result.artifact!.files.filter((f) => f.path !== file.path))…
+    135|       files.filter((f) => f.path !== file.path),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  1 failed | 27 passed (28)
+   Start at  22:22:48
+   Duration  8.34s (tests 78%, transform 11%, import 10%)
+

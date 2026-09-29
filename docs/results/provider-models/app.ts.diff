@@ -1,0 +1,156 @@
+diff --git "a/.forge\\models-provider-before\\src\\server\\app.ts" b/src/server/app.ts
+index 85b5d8e..5774a75 100644
+--- "a/.forge\\models-provider-before\\src\\server\\app.ts"
++++ b/src/server/app.ts
+@@ -34,10 +34,13 @@ import { appendTurn } from "../generation/conversation";
+ import { animationPackSchema } from "../marketplace/animations";
+ import { parseAssetReference } from "../marketplace/types";
+ import { randomUUID } from "node:crypto";
++import type { CredentialVault } from "../generation/credential-vault";
++import { validateProviderKey } from "../generation/provider-connection";
+ export function createApp(
+   directory: string,
+   options: {
+     transport?: typeof fetch;
++    credentialVault?: CredentialVault;
+     executionPolicy?: ExecutionPolicy;
+     env?: NodeJS.ProcessEnv;
+     pluginPath?: string;
+@@ -50,7 +53,10 @@ export function createApp(
+ ) {
+   const app = express(),
+     store = new GenerationStore(directory),
+-    config = new Configuration(path.join(directory, "configuration"));
++    config = new Configuration(
++      path.join(directory, "configuration"),
++      options.credentialVault,
++    );
+   config.importEnvironment(options.env ?? {});
+   const assetAdapterFactory =
+     options.assetAdapterFactory ??
+@@ -130,6 +136,48 @@ export function createApp(
+     }),
+   );
+   app.get("/api/models", (_req, res) => res.json(config.public()));
++  app.post("/api/provider-connections", async (req, res) => {
++    const { profile, key } = z
++      .object({
++        profile: providerSchema,
++        key: z.string().trim().min(1).max(1000).optional(),
++      })
++      .strict()
++      .parse(req.body);
++    validateProviderEndpoint(profile);
++    const legacy = config
++      .read()
++      .profiles.find(
++        (p) =>
++          p.provider === profile.provider &&
++          p.baseUrl.replace(/\/$/, "") === profile.baseUrl.replace(/\/$/, "") &&
++          config.key(p.id),
++      );
++    const candidate =
++      key ??
++      (config.providerKey(profile) || (legacy ? config.key(legacy.id) : ""));
++    try {
++      await validateProviderKey(profile, candidate, options.transport);
++    } catch {
++      if (!key) config.invalidate(profile);
++      return res
++        .status(400)
++        .json({
++          error:
++            "Could not validate this provider. Check the key, endpoint and network connection. Your previous saved key has not been replaced.",
++        });
++    }
++    config.connect(profile, candidate);
++    res.json(config.public());
++  });
++  app.delete("/api/provider-connections", (req, res) => {
++    const { profile } = z
++      .object({ profile: providerSchema })
++      .strict()
++      .parse(req.body);
++    config.disconnect(profile);
++    res.json(config.public());
++  });
+   app.get("/api/asset-studios", async (_req, res) => {
+     const client = new StdioStudioClient();
+     try {
+@@ -202,7 +250,7 @@ export function createApp(
+       .strict()
+       .parse(req.body);
+     validateProviderEndpoint(input.profile);
+-    let key = input.key ?? "";
++    let key = input.key ?? config.providerKey(input.profile);
+     if (input.sourceId && input.key === undefined) {
+       const source = config.profile(input.sourceId);
+       if (
+@@ -215,8 +263,10 @@ export function createApp(
+       key = config.key(source.id);
+     }
+     try {
++      await validateProviderKey(input.profile, key, options.transport);
+       res.json(await modelCatalog(input.profile, key, options.transport));
+     } catch {
++      config.invalidate(input.profile);
+       res.status(502).json({
+         error:
+           "Could not load the model catalog. Check the provider connection or enter a model ID manually.",
+@@ -247,7 +297,7 @@ export function createApp(
+       }),
+     );
+   });
+-  app.put("/api/model-profiles/:id", (req, res) => {
++  app.put("/api/model-profiles/:id", async (req, res) => {
+     const input = z
+       .object({
+         profile: providerSchema,
+@@ -273,6 +323,35 @@ export function createApp(
+     }
+     const current = config.read();
+     const exists = current.profiles.some((p) => p.id === input.profile.id);
++    const previous = current.profiles.find((p) => p.id === input.profile.id);
++    if (
++      !exists ||
++      input.key !== undefined ||
++      input.copyKeyFrom ||
++      previous?.provider !== input.profile.provider ||
++      previous?.baseUrl !== input.profile.baseUrl
++    ) {
++      validateProviderEndpoint(input.profile);
++      const key =
++        input.key ??
++        (input.copyKeyFrom
++          ? config.key(input.copyKeyFrom)
++          : config.providerKey(input.profile));
++      if (
++        !config.isValidated(input.profile) ||
++        input.key !== undefined ||
++        input.copyKeyFrom
++      ) {
++        try {
++          await validateProviderKey(input.profile, key, options.transport);
++        } catch {
++          throw new RequestError(
++            "Validate your provider key before adding a model.",
++          );
++        }
++        config.connect(input.profile, key);
++      }
++    }
+     config.save({
+       ...current,
+       profiles: exists
+@@ -322,6 +401,11 @@ export function createApp(
+   });
+   app.get("/api/models/:id/catalog", async (req, res) => {
+     try {
++      await validateProviderKey(
++        config.profile(req.params.id),
++        config.key(req.params.id),
++        options.transport,
++      );
+       res.json(
+         await modelCatalog(
+           config.profile(req.params.id),

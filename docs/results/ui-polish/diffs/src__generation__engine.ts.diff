@@ -1,0 +1,13 @@
+diff --git "a/.forge\\ui-polish-before\\src\\generation\\engine.ts" "b/src\\generation\\engine.ts"
+index e9fb65a..603a712 100644
+--- "a/.forge\\ui-polish-before\\src\\generation\\engine.ts"
++++ "b/src\\generation\\engine.ts"
+@@ -975,7 +975,7 @@ export class Engine {
+       throw new ConflictError(
+         "Complete planning successfully before approving the brief.",
+       );
+-    if (p.spec.questions.some((q) => !p.answers[q.id]))
++    if (p.spec.questions.some((q) => !q.optional && !p.answers[q.id]))
+       throw new ConflictError(
+         "Answer the open questions and replan before approval",
+       );

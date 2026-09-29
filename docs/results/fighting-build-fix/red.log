@@ -1,0 +1,134 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/asset-choices.test.ts (21 tests | 1 failed) 969ms
+   ❯ brief asset review (20)
+     × does not offer approved combat models for an unrelated optional backdrop 62ms
+ ❯ tests/generation-request-deadline.test.ts (13 tests | 2 failed) 106ms
+   ❯ per-profile generation request deadline (offline mocked provider) (13)
+     × aborts at the selected deadline undefined, releases the live reservation, and retains conservative unknown-call cost 40ms
+     × accepts a long reasoning response under the default deadline without fallback or an extra call 16ms
+ ❯ tests/asset-pipeline.test.ts (125 tests | 2 failed) 1976ms
+   × resolves empty approved pools without paid search retries, required=true 25ms
+   × resolves empty approved pools without paid search retries, required=false 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/asset-choices.test.ts > brief asset review > does not offer approved combat models for an unrelated optional backdrop
+AssertionError: expected [ { id: '101', …(7) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "creator": "Fixture",
++     "description": "User-approved reference for Fighting animation",
++     "id": "101",
++     "kind": "Model",
++     "name": "combat animation pack 1",
++     "price": 0,
++     "source": "creator_store",
++     "sourceUrl": "https://create.roblox.com/store/asset/101",
++   },
++ ]
+
+ ❯ tests/asset-choices.test.ts:567:82
+    565|     const signal = new AbortController().signal;
+    566|     const backdrop = { kind: "Model", role: "Arena backdrop", requirem…
+    567|     expect((await adapter.search(backdrop, "cartoon arena", signal)).c…
+       |                                                                                  ^
+    568|     expect((await adapter.search(backdrop, "boxing stage", signal)).ca…
+    569|     expect(native.search).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/asset-pipeline.test.ts > resolves empty approved pools without paid search retries, required=true
+AssertionError: expected 'No suitable candidate' to contain 'approved'
+
+Expected: "approved"
+Received: "No suitable candidate"
+
+ ❯ tests/asset-pipeline.test.ts:181:36
+    179|   expect(result.status).toBe(required ? "failed" : "passed");
+    180|   expect(result.entries[0].status).toBe("failed");
+    181|   expect(result.entries[0].reason).toContain("approved");
+       |                                    ^
+    182|   expect(f.adapter.search).toHaveBeenCalledTimes(1);
+    183|   expect(f.model.decide).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/asset-pipeline.test.ts > resolves empty approved pools without paid search retries, required=false
+AssertionError: expected 'failed' to be 'passed' // Object.is equality
+
+Expected: "passed"
+Received: "failed"
+
+ ❯ tests/asset-pipeline.test.ts:179:25
+    177|   vi.mocked(f.adapter.search).mockResolvedValue({ candidates: [], rece…
+    178|   const result = await runAssetPipeline(f.input);
+    179|   expect(result.status).toBe(required ? "failed" : "passed");
+       |                         ^
+    180|   expect(result.entries[0].status).toBe("failed");
+    181|   expect(result.entries[0].reason).toContain("approved");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  tests/generation-request-deadline.test.ts > per-profile generation request deadline (offline mocked provider) > aborts at the selected deadline undefined, releases the live reservation, and retains conservative unknown-call cost
+AssertionError: expected "timeout" to be called once with arguments: [ 600000 ]
+
+Received:
+
+  1st timeout call:
+
+  [
+-   600000,
++   120000,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/generation-request-deadline.test.ts:144:21
+    142|       const activeReservation = store.get(project.id).reservedMicros;
+    143|       expect(activeReservation).toBeGreaterThan(0);
+    144|       expect(clock).toHaveBeenCalledExactlyOnceWith(deadline ?? 600000…
+       |                     ^
+    145|       await vi.advanceTimersByTimeAsync((deadline ?? 600000) - 1);
+    146|       expect(provider.signals[0].aborted).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  tests/generation-request-deadline.test.ts > per-profile generation request deadline (offline mocked provider) > accepts a long reasoning response under the default deadline without fallback or an extra call
+AssertionError: expected "timeout" to be called once with arguments: [ 600000 ]
+
+Received:
+
+  1st timeout call:
+
+  [
+-   600000,
++   120000,
+  ]
+
+
+Number of calls: 1
+
+ ❯ tests/generation-request-deadline.test.ts:196:19
+    194|     engine.start(project.id, project.revision, "plan");
+    195|     await provider.dispatched;
+    196|     expect(clock).toHaveBeenCalledExactlyOnceWith(600000);
+       |                   ^
+    197|     await vi.advanceTimersByTimeAsync(120000);
+    198|     expect(provider.signals[0].aborted).toBe(false);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  5 failed | 154 passed (159)
+   Start at  14:24:29
+   Duration  2.72s (tests 62%, transform 20%, import 18%)
+

@@ -1,0 +1,34 @@
+{
+  "ok": true,
+  "value": {
+    "stage": "draft",
+    "choices": {
+      "dummy": {
+        "assetId": "1245720733"
+      },
+      "sound": {
+        "assetId": "101355487033225"
+      },
+      "combat": {
+        "assetId": "12061946559",
+        "clipKey": "1/1/18/1"
+      }
+    },
+    "attachments": [
+      {
+        "id": "1245720733",
+        "name": "Training Dummy"
+      },
+      {
+        "id": "12061946559",
+        "name": "R15 Punching Animations"
+      },
+      {
+        "id": "101355487033225",
+        "name": "Punch impact"
+      }
+    ],
+    "charges": 68,
+    "text": "kes beyond personal practice.\n\nAssumptions: Tone is casual/sporty training-gym rather than violent or narrative-driven combat. No additional NPCs, story, or progression narrative are implied beyond the practice loop. Color palette and materials default to simple, clean gym aesthetics (neutral floor, light walls) unless the player specifies otherwise.\n\nEnvironment & layout\n\nA small, enclosed rectangular room (roughly 20x20 studs) with a flat floor and simple walls to keep the player focused and to prevent wandering off. The player spawns near one side of the room facing into the open space. The target dummy is anchored a short, comfortable punching distance in front of the spawn point (a few studs away, well within normal punch reach) so the player can immediately begin hitting it without navigating. The on-screen hit counter is a persistent HUD element (not a 3D world object) rendered in a corner of the screen for constant visibility during play. Lighting is simple and even (default baseplate-style lighting) so the punch animation and dummy remain clearly visible; no complex weather, day-night cycle, or additional set pieces are included, keeping the whole environment focused purely on the punch-the-dummy loop.\n\nAssumptions: A single small room is sufficient; no need for multiple rooms, obstacles, or additional dummies in this version. Default/simple lighting and materials are acceptable since the focus is gameplay feedback, not visual spectacle. The dummy's placement a few studs from spawn is close enough to punch immediately without requiring pathfinding or extended movement.\n\nMarketplace assets\n\nPractice dummy: Training Dummy #1245720733\n\nFighting animation: R15 Punching Animations #12061946559 · clip 1/1/18/1 · your pinned choice\n\nSound effects: Punch impact #101355487033225\n\nRecommendations use inspected content. Playback, permissions and gameplay still need Studio testing. Preview or replace assets below.\n\nApprove & build\nASSETS FOR YOUR BRIEF\nFind your game’s look and movement\n\n3 asset groups · preview a few options and choose what fits.\n\nPreview & choose assets\n\nYour build plan appears after planning.\n\nMessage\n\nSelected assets · tell the AI what to keep or change\n\nTraining Dummy\n#1245720733 · inspected\nR15 Punching Animations\n#12061946559 · inspected\nPunch impact\n#101355487033225 · inspected\nPresets\nBudget\nEnter to send · Shift + Enter for a new line"
+  }
+}

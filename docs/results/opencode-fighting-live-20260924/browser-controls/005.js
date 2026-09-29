@@ -1,0 +1,10 @@
+const id = new URL(page.url()).searchParams.get('project');
+const p = await api('/projects/'+id);
+if(p.jobId || ['mechanics','theme','environment'].some(k=>p.proposal[k].unresolved.length)) throw Error('Proposal not ready');
+if(p.executionMode !== 'opencode')throw Error('Wrong backend');
+fs.writeFileSync(path.join(output,'before-approve.json'),JSON.stringify(p,null,2));
+mark('One Approve & build. Manual asset selection fallback disclosed. New run has user authorization without the old budget cap.');
+await page.getByRole('button',{name:'Approve & build',exact:true}).click();
+await page.waitForTimeout(1200);
+await page.screenshot({path:path.join(output,'09-approved-building.png'),fullPage:true});
+return {text:await page.locator('body').innerText()};

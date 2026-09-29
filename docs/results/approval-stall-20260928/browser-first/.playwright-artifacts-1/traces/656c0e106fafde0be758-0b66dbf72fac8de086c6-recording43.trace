@@ -1,0 +1,39 @@
+{"version":9,"type":"context-options","origin":"library","browserName":"","playwrightVersion":"1.63.0","options":{},"platform":"win32","wallTime":1790637373723,"monotonicTime":134571.619,"sdkLanguage":"javascript","title":"lemonade-layout.spec.ts:92 › shows a concise generation failure with expandable diagnostics"}
+{"type":"before","callId":"call@1408","startTime":134659.941,"class":"APIRequestContext","method":"fetch","params":{"url":"/api/projects","method":"POST","jsonData":"{\"request\":\"Build a cookie scene\"}"},"stepId":"pw:api@31"}
+{"type":"log","callId":"call@1408","time":134661.693,"message":"→ POST http://127.0.0.1:4319/api/projects"}
+{"type":"log","callId":"call@1408","time":134661.717,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"}
+{"type":"log","callId":"call@1408","time":134661.722,"message":"  accept: */*"}
+{"type":"log","callId":"call@1408","time":134661.725,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@1408","time":134661.728,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@1408","time":134661.731,"message":"  content-length: 34"}
+{"type":"log","callId":"call@1408","time":134668.755,"message":"← 201 Created"}
+{"type":"log","callId":"call@1408","time":134668.773,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@1408","time":134668.779,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@1408","time":134668.783,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@1408","time":134668.787,"message":"  content-length: 3451"}
+{"type":"log","callId":"call@1408","time":134668.791,"message":"  etag: W/\"d7b-9RgyRoaJVj6g5t75xPKRj7JN0fw\""}
+{"type":"log","callId":"call@1408","time":134668.796,"message":"  date: Mon, 28 Sep 2026 23:16:13 GMT"}
+{"type":"log","callId":"call@1408","time":134668.8,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@1408","time":134668.804,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@1408","endTime":134668.937,"result":{"response":{"url":"http://127.0.0.1:4319/api/projects","status":201,"statusText":"Created","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"3451"},{"name":"ETag","value":"W/\"d7b-9RgyRoaJVj6g5t75xPKRj7JN0fw\""},{"name":"Date","value":"Mon, 28 Sep 2026 23:16:13 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790637373812,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":0,"secureConnectionStart":-1,"connectEnd":1.470999999990454,"requestStart":1.470999999990454,"responseStart":6.807999999989988},"responseEndTiming":7.080000000016298,"fetchUid":"c2de16a4859d3680f86e866e00c236d3"}}}
+{"type":"before","callId":"call@1419","startTime":136430.919,"class":"APIRequestContext","method":"fetch","params":{"url":"http://127.0.0.1:4319/api/status","method":"GET","headers":[{"name":"accept","value":"*/*"},{"name":"accept-language","value":"en-US"},{"name":"content-type","value":"application/json"},{"name":"referer","value":"http://127.0.0.1:4319/?project=0e8a13f2-8214-489a-97e7-49a581272c3d"},{"name":"user-agent","value":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"},{"name":"sec-ch-ua","value":"\"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""},{"name":"sec-ch-ua-mobile","value":"?0"},{"name":"sec-ch-ua-platform","value":"\"Windows\""}]},"stepId":"pw:api@36"}
+{"type":"log","callId":"call@1419","time":136432.259,"message":"→ GET http://127.0.0.1:4319/api/status"}
+{"type":"log","callId":"call@1419","time":136432.29,"message":"  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36"}
+{"type":"log","callId":"call@1419","time":136432.298,"message":"  accept: */*"}
+{"type":"log","callId":"call@1419","time":136432.304,"message":"  accept-encoding: gzip,deflate,br"}
+{"type":"log","callId":"call@1419","time":136432.308,"message":"  accept-language: en-US"}
+{"type":"log","callId":"call@1419","time":136432.311,"message":"  content-type: application/json"}
+{"type":"log","callId":"call@1419","time":136432.316,"message":"  referer: http://127.0.0.1:4319/?project=0e8a13f2-8214-489a-97e7-49a581272c3d"}
+{"type":"log","callId":"call@1419","time":136432.321,"message":"  sec-ch-ua: \"HeadlessChrome\";v=\"153\", \"Not_A Brand\";v=\"8\", \"Chromium\";v=\"153\""}
+{"type":"log","callId":"call@1419","time":136432.329,"message":"  sec-ch-ua-mobile: ?0"}
+{"type":"log","callId":"call@1419","time":136432.333,"message":"  sec-ch-ua-platform: \"Windows\""}
+{"type":"log","callId":"call@1419","time":136435.481,"message":"← 200 OK"}
+{"type":"log","callId":"call@1419","time":136435.494,"message":"  x-content-type-options: nosniff"}
+{"type":"log","callId":"call@1419","time":136435.501,"message":"  cache-control: no-store"}
+{"type":"log","callId":"call@1419","time":136435.505,"message":"  content-type: application/json; charset=utf-8"}
+{"type":"log","callId":"call@1419","time":136435.509,"message":"  content-length: 135"}
+{"type":"log","callId":"call@1419","time":136435.513,"message":"  etag: W/\"87-YJ2TsbULcpv5TYPpMkWH98JwB5o\""}
+{"type":"log","callId":"call@1419","time":136435.517,"message":"  date: Mon, 28 Sep 2026 23:16:15 GMT"}
+{"type":"log","callId":"call@1419","time":136435.52,"message":"  connection: keep-alive"}
+{"type":"log","callId":"call@1419","time":136435.524,"message":"  keep-alive: timeout=5"}
+{"type":"after","callId":"call@1419","endTime":136435.648,"result":{"response":{"url":"http://127.0.0.1:4319/api/status","status":200,"statusText":"OK","headers":[{"name":"X-Content-Type-Options","value":"nosniff"},{"name":"Cache-Control","value":"no-store"},{"name":"Content-Type","value":"application/json; charset=utf-8"},{"name":"Content-Length","value":"135"},{"name":"ETag","value":"W/\"87-YJ2TsbULcpv5TYPpMkWH98JwB5o\""},{"name":"Date","value":"Mon, 28 Sep 2026 23:16:15 GMT"},{"name":"Connection","value":"keep-alive"},{"name":"Keep-Alive","value":"timeout=5"}],"serverAddr":{"ipAddress":"127.0.0.1","port":4319},"timing":{"startTime":1790637375583,"domainLookupStart":-1,"domainLookupEnd":-1,"connectStart":-1,"secureConnectionStart":-1,"connectEnd":-1,"requestStart":0.49299999998766,"responseStart":2.9509999999718275},"responseEndTiming":3.1749999999883585,"fetchUid":"99a8f387f445ad1c9c64c117e84d5229"}}}

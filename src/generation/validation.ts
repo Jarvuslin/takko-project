@@ -4,14 +4,19 @@ import { isDeepStrictEqual } from "node:util";
 import fs from "node:fs";
 import path from "node:path";
 import type { Bundle, Check, Project, Spec } from "./schema";
+import { unmetAssetRequirements } from "./asset-gaps";
+import { architectureSources } from "./architecture";
 import { bindRequirementSources } from "./requirements";
 import {
   isRetrievedAsset,
+  isInspectedApprovedReference,
   isRetrievedMeshProperty,
   retrievedContentIds,
   retrievedBundles,
+  suppliedAssetReferences,
 } from "./asset-provenance";
 import { scenePropertyError } from "./capabilities";
+import { sequenceAssetIssues } from "./scope-questions";
 import builtins from "./roblox-builtin-assets.json";
 const builtinAssets: Record<string, string> = builtins.assets;
 export const roots = [
@@ -35,22 +40,64 @@ export function safePath(p: string, scope: string) {
     throw Error("Path must stay inside the project namespace: " + p);
   return p;
 }
-export function validateSpec(s: Spec, p: Project) {
+export function validateSpec(
+  s: Spec,
+  p: Project,
+  options: { partial?: boolean } = {},
+) {
   const bound = bindRequirementSources(s, p);
   s = bound.spec;
-  const errors: string[] = [...bound.errors];
+  const errors: string[] = [...bound.errors, ...sequenceAssetIssues(s.assetNeeds??[],p)];
+  for (const source of options.partial
+    ? []
+    : architectureSources(p.architecture)) {
+    const requirement = s.requirements.find(
+      (r) =>
+        r.origin === "user" &&
+        r.sourceId === source.id &&
+        r.priority === "required",
+    );
+    if (!requirement)
+      errors.push(`Architecture contract not planned: ${source.id}`);
+  }
   const ids = new Set(s.requirements.map((r) => r.id));
   if (ids.size !== s.requirements.length)
-    errors.push("Duplicate requirement IDs");
+    errors.push(
+      "Duplicate requirement IDs: " +
+        s.requirements
+          .filter(
+            (r, i) =>
+              s.requirements.findIndex((other) => other.id === r.id) !== i,
+          )
+          .map((r) => r.id)
+          .join(", "),
+    );
   const tasks = new Map(s.tasks.map((t) => [t.id, t]));
-  if (tasks.size !== s.tasks.length) errors.push("Duplicate task IDs");
+  if (tasks.size !== s.tasks.length)
+    errors.push(
+      "Duplicate task IDs: " +
+        s.tasks
+          .filter(
+            (t, i) => s.tasks.findIndex((other) => other.id === t.id) !== i,
+          )
+          .map((t) => t.id)
+          .join(", "),
+    );
   if (new Set(s.questions.map((q) => q.id)).size !== s.questions.length)
-    errors.push("Duplicate question IDs");
+    errors.push(
+      "Duplicate question IDs: " +
+        s.questions
+          .filter(
+            (q, i) => s.questions.findIndex((other) => other.id === q.id) !== i,
+          )
+          .map((q) => q.id)
+          .join(", "),
+    );
   const seen = new Set<string>(),
     active = new Set<string>(),
     files = new Set<string>();
   const visit = (id: string) => {
-    if (active.has(id)) throw Error("Task dependency cycle");
+    if (active.has(id)) throw Error("Task dependency cycle at " + id);
     if (seen.has(id)) return;
     const t = tasks.get(id);
     if (!t) throw Error("Unknown task dependency " + id);
@@ -74,7 +121,21 @@ export function validateSpec(s: Spec, p: Project) {
       } catch (e) {
         errors.push((e as Error).message);
       }
-      if (!f.endsWith(".luau")) errors.push("Task files must end in .luau");
+      if (!f.endsWith(".luau"))
+        errors.push(
+          "Task files must end in .luau: task " + t.id + ", file " + f,
+        );
+      if (
+        f.endsWith(".client.luau") &&
+        !/^(StarterGui|StarterPlayer)\//.test(f)
+      )
+        errors.push(
+          `Task ${t.id}: LocalScript must be in a client container: ${f}`,
+        );
+      if (f.endsWith(".server.luau") && !f.startsWith("ServerScriptService/"))
+        errors.push(
+          `Task ${t.id}: Server Script must be in ServerScriptService: ${f}`,
+        );
       if (files.has(instancePath(f)))
         errors.push("Two tasks own the same script: " + f);
       files.add(instancePath(f));
@@ -148,14 +209,15 @@ export function validateBundle(
       all.add(canonical);
     }
     for (const f of b.files) {
-      if (!f.path.endsWith(".luau")) throw Error("Script must end in .luau");
+      if (!f.path.endsWith(".luau"))
+        throw Error("Script must end in .luau: " + f.path);
       if (
         f.kind === "LocalScript" &&
         !/^(StarterGui|StarterPlayer)\//.test(f.path)
       )
-        throw Error("LocalScript must be in a client container");
+        throw Error("LocalScript must be in a client container: " + f.path);
       if (f.kind === "Script" && !f.path.startsWith("ServerScriptService/"))
-        throw Error("Server Script must be in ServerScriptService");
+        throw Error("Server Script must be in ServerScriptService: " + f.path);
     }
     const propertyErrors = new Map<string, string[]>();
     for (const n of b.scene) {
@@ -200,7 +262,7 @@ export function validateBundle(
             "RunContext",
           ].includes(name)
         )
-          throw Error("Unsupported property " + name);
+          throw Error("Unsupported property " + n.path + "." + name);
         const propertyError = isRetrievedMeshProperty(p, n, name, v)
           ? null
           : scenePropertyError(n.className, name, v);
@@ -241,7 +303,12 @@ export function validateBundle(
             "Adornee",
           ].includes(name)
         ) {
-          throw Error(name + ' requires {type:"Ref",path:"exact scene path"}');
+          throw Error(
+            n.path +
+              "." +
+              name +
+              ' requires {type:"Ref",path:"exact scene path"}',
+          );
         } else if (typeof v === "object" && v.type !== "Enum") {
           const lengths = {
             Vector3: 3,
@@ -252,7 +319,9 @@ export function validateBundle(
             Vector2: 2,
           };
           if (v.value.length !== lengths[v.type])
-            throw Error("Invalid " + v.type + " value");
+            throw Error(
+              "Invalid " + v.type + " value at " + n.path + "." + name,
+            );
         }
       }
     add(
@@ -280,6 +349,18 @@ export function validateBundle(
       );
   for (const r of p.spec?.requirements ?? [])
     if (r.priority === "required") {
+      const gaps = unmetAssetRequirements(p).filter(
+        (g) => g.requirementId === r.id,
+      );
+      if (gaps.length) {
+        checks.push({
+          id: "coverage:" + r.id,
+          status: "pending",
+          detail:
+            "UNMET: " + gaps.map((g) => g.role + ": " + g.reason).join("\n"),
+        });
+        continue;
+      }
       const c = b.coverage.filter((c) => c.requirementId === r.id);
       add(
         "coverage:" + r.id,
@@ -293,7 +374,7 @@ export function validateBundle(
               ". Report those paths in coverage.files.",
       );
     }
-  const supplied = p.request + " " + Object.values(p.answers).join(" ");
+  const supplied = suppliedAssetReferences(p);
   for (const imported of retrievedBundles(p)) {
     for (const node of imported.scene)
       add(
@@ -309,29 +390,51 @@ export function validateBundle(
       );
   }
   for (const a of b.assets) {
+    if (
+      a.status === "needed" &&
+      !a.assetId &&
+      unmetAssetRequirements(p)
+        .filter((g) => g.kind === "missing_dependency")
+        .some((g) => g.requirementId === a.requirementId)
+    ) {
+      checks.push({
+        id: "asset:" + a.id,
+        status: "pending",
+        detail:
+          "Asset remains missing after acquisition. Its required behavior is blocked.",
+      });
+      continue;
+    }
     const approved =
       a.assetId && new RegExp("(^|\\D)" + a.assetId + "(\\D|$)").test(supplied);
     add(
       "asset:" + a.id,
-      a.kind === "audio"
-        ? isRetrievedAsset(p, a)
-        : (a.status === "procedural" && !a.assetId) ||
+      isInspectedApprovedReference(p, a) ||
+        (a.kind === "audio"
+          ? isRetrievedAsset(p, a)
+          : (a.status === "procedural" && !a.assetId) ||
             (a.status === "builtin" &&
               !a.assetId &&
               builtinAssets[a.sourceUrl ?? ""] === a.kind) ||
-            (a.status === "provided" && !!approved) ||
-            isRetrievedAsset(p, a),
-      a.kind === "audio" && !isRetrievedAsset(p, a)
-        ? "Audio requires retained Marketplace acquisition and native playback/listening evidence from the asset pipeline; provided IDs and built-in/procedural substitutes do not establish it."
-        : isRetrievedAsset(p, a)
-          ? "Retrieved by Takko's asset loop with retained native receipts; full-game integration still requires its own checks."
-          : a.status === "builtin"
-            ? "Built-in asset checked against the installed content catalog; rendering/playback still requires Studio testing."
-            : a.status === "procedural"
-              ? "Procedural asset; playback still requires Studio testing."
-              : approved
-                ? "User-supplied ID; permissions and playback still require Studio testing."
-                : "An asset is missing or its ID was not supplied by the user.",
+            (a.status === "provided" &&
+              !!approved &&
+              !["model", "mesh"].includes(a.kind)) ||
+            isRetrievedAsset(p, a)),
+      isInspectedApprovedReference(p, a)
+        ? "Approved, safely inspected content reference. Search-hint conflict is advisory. Fit, integration and gameplay remain unverified."
+        : a.kind === "audio" && !isRetrievedAsset(p, a)
+          ? "Audio requires retained Marketplace acquisition and native playback/listening evidence from the asset pipeline; provided IDs and built-in/procedural substitutes do not establish it."
+          : a.status === "provided" && ["model", "mesh"].includes(a.kind)
+            ? "A provided model or mesh ID is only a reference. Acquire its actual hierarchy through the native asset pipeline before claiming integration. Empty containers are not imported assets."
+            : isRetrievedAsset(p, a)
+              ? "Retrieved by Takko's asset loop with retained native receipts; full-game integration still requires its own checks."
+              : a.status === "builtin"
+                ? "Built-in asset checked against the installed content catalog; rendering/playback still requires Studio testing."
+                : a.status === "procedural"
+                  ? "Procedural asset; playback still requires Studio testing."
+                  : approved
+                    ? "User-supplied ID; permissions and playback still require Studio testing."
+                    : "An asset is missing or its ID was not supplied by the user.",
     );
   }
   const ids = new Set(

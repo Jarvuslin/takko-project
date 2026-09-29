@@ -1,0 +1,33 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/concept.test.ts (14 tests | 1 failed) 1078ms
+   × stores paired player actions and outcomes without model-generated step references 46ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/concept.test.ts > stores paired player actions and outcomes without model-generated step references
+AssertionError: expected 'Could not complete planner. firstPlay…' to be null
+
+- Expected:
+null
+
++ Received:
+"Could not complete planner. firstPlaytest.steps: Invalid input: expected array, received undefined; firstPlaytest: Unrecognized key: \"actions\" Allowed model attempts exhausted."
+
+ ❯ tests/concept.test.ts:145:23
+    143|   engine.start(project.id, 1, "concept");
+    144|   const saved = await engine.wait(project.id);
+    145|   expect(saved.error).toBeNull();
+       |                       ^
+    146|   expect(saved.concept?.firstPlaytest.steps).toEqual(["Walk up to the …
+    147|   expect(saved.concept?.firstPlaytest.checks).toEqual([
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 passed (14)
+   Start at  23:15:51
+   Duration  7.61s (import 72%, tests 15%, transform 12%, worker 1%)
+

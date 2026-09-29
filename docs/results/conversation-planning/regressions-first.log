@@ -1,0 +1,76 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/conversation-planning.test.ts (12 tests | 3 failed) 941ms
+   × runs one approval through planning and coordination, then rebuilds only theme and transitive HUD consumers 91ms
+   × preserves the prior artifact on a failed incremental build and resumes completed replacement workers 87ms
+   × blocks edits and approval during native apply and unknown native outcomes 96ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/conversation-planning.test.ts > runs one approval through planning and coordination, then rebuilds only theme and transitive HUD consumers
+AssertionError: expected 'Could not complete planner. Worker ID…' to be null
+
+- Expected:
+null
+
++ Received:
+"Could not complete planner. Worker IDs must start with core_ Allowed model attempts exhausted."
+
+ ❯ built tests/conversation-planning.test.ts:101:19
+     99|   expect((await f.post(`/projects/${f.p.id}/approve-proposal`,{revisio…
+    100|   const p = await f.engine.wait(f.p.id);
+    101|   expect(p.error).toBeNull(); expect(p.stage).toBe("ready_to_test");
+       |                   ^
+    102|   return {...f,p};
+    103| }
+ ❯ tests/conversation-planning.test.ts:148:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/conversation-planning.test.ts > preserves the prior artifact on a failed incremental build and resumes completed replacement workers
+AssertionError: expected 'Could not complete planner. Worker ID…' to be null
+
+- Expected:
+null
+
++ Received:
+"Could not complete planner. Worker IDs must start with core_ Allowed model attempts exhausted."
+
+ ❯ built tests/conversation-planning.test.ts:101:19
+     99|   expect((await f.post(`/projects/${f.p.id}/approve-proposal`,{revisio…
+    100|   const p = await f.engine.wait(f.p.id);
+    101|   expect(p.error).toBeNull(); expect(p.stage).toBe("ready_to_test");
+       |                   ^
+    102|   return {...f,p};
+    103| }
+ ❯ tests/conversation-planning.test.ts:166:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/conversation-planning.test.ts > blocks edits and approval during native apply and unknown native outcomes
+AssertionError: expected 'Could not complete planner. Worker ID…' to be null
+
+- Expected:
+null
+
++ Received:
+"Could not complete planner. Worker IDs must start with core_ Allowed model attempts exhausted."
+
+ ❯ built tests/conversation-planning.test.ts:101:19
+     99|   expect((await f.post(`/projects/${f.p.id}/approve-proposal`,{revisio…
+    100|   const p = await f.engine.wait(f.p.id);
+    101|   expect(p.error).toBeNull(); expect(p.stage).toBe("ready_to_test");
+       |                   ^
+    102|   return {...f,p};
+    103| }
+ ❯ tests/conversation-planning.test.ts:180:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 9 passed (12)
+   Start at  21:57:50
+   Duration  2.47s (tests 41%, transform 36%, import 23%)
+

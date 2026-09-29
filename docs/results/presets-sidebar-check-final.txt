@@ -1,0 +1,231 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+
+ Test Files  78 passed (78)
+      Tests  1301 passed (1301)
+   Start at  12:38:23
+   Duration  49.57s (tests 80%, import 16%, transform 3%, worker 1%)
+
+    Isolate  78 workers spawned · ~151ms startup each (spawn + environment, per file)
+             at least ~5.75s faster with isolate: false — reuses workers across files instead of one per file
+
+
+> takko-studio@0.2.0 test:luau
+> node scripts/test-luau.mjs
+
+PASS accepted strike and exact cooldown boundary
+PASS replayed or out of order requests cannot attack twice
+PASS malformed action and sequence values are rejected
+PASS dead player cannot attack and respawn has fresh state
+PASS ability cooldowns are independent
+PASS damage requires range visibility and a living target
+6 combat scenarios passed (offline, not Studio)
+COMPILES ServerScriptService\Combat.server.luau
+COMPILES ServerScriptService\CombatCore.luau
+COMPILES ReplicatedStorage\Forge\Config.luau
+COMPILES StarterPlayer\StarterPlayerScripts\Combat.client.luau
+
+> takko-studio@0.2.0 test:plugin
+> node scripts/test-plugin.mjs
+
+PASS one-click local pairing, supplied tokens and local-only endpoint validation
+PASS apply creates actual manifest objects and source, preserving unrelated content
+PASS test harness inserts server/client code and removes temporary instances
+PASS empty tests are rejected and failed harness setup is cleaned up
+PASS source edits and mismatched artifacts block replacement and stale test reports
+PASS source edits during yielding staging prevent replacement
+PASS failed staging preserves the existing project
+PASS forward references resolve to staged instances; missing references preserve the applied rig
+PASS authorized imported MeshPart is created through AssetService Content without assigning read-only MeshId
+PASS absent authorization, forged mesh IDs and noncanonical IDs are rejected before native allocation
+PASS native mesh allocation failure preserves the existing owned root and does not report success
+PASS yielding mesh allocation rechecks ownership and preserves concurrent texture edits
+PASS delivered work survives heartbeats, double clicks execute once, receipts retry, and stale commands cannot run
+PASS reconnect serializes with polling, commits connection state only on success, and preserves failed reconnect state
+COMPILES plugin and 8 injected sources. Studio APIs were mocked; no live Studio pass claimed.
+
+> takko-studio@0.2.0 test:guards
+> node scripts/evaluate-guards.mjs
+
+[
+  {
+    "id": "baseline",
+    "passed": true,
+    "expectedPass": true,
+    "matched": true
+  },
+  {
+    "id": "missing-cooldown",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "replay-accepted",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "out-of-range-damage",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "damage-through-walls",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  },
+  {
+    "id": "dead-player-attacks",
+    "passed": false,
+    "expectedPass": false,
+    "matched": true
+  }
+]
+
+> takko-studio@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 121 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.52 kB │ gzip:   0.33 kB
+dist/assets/index-DzNojn59.css   61.68 kB │ gzip:  13.08 kB
+dist/assets/index-CFEYqwFu.js   369.75 kB │ gzip: 111.51 kB
+
+✓ built in 253ms
+
+> takko-studio@0.2.0 test:desktop
+> tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs && node --test desktop/tests/*.test.mjs
+
+Desktop resources built in dist-desktop. No application was launched.
+✔ Takko keeps the existing desktop storage and lock location after rebranding (1.7821ms)
+✔ accepts only nonce-bound readiness from its own child (1.2695ms)
+✔ startup deadline fails and kills only owned worker (20.0923ms)
+✔ crash after readiness fails visibly without automatic restart (0.5718ms)
+✔ unresponsive shutdown escalates, repeated stop shares completion (28.9246ms)
+✔ lost IPC during heartbeat reports failure and cleans up the worker (15.2746ms)
+✔ lost shutdown IPC still terminates owned worker and settles stop (0.4046ms)
+✔ stop during startup rejects pending start and prevents late readiness (0.2527ms)
+✔ navigation rejects other origins, credentials and non-HTTP schemes (0.2601ms)
+✔ bundled service uses isolated data, private readiness, and graceful shutdown (404.1995ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 535.719
+
+> takko-studio@0.2.0 test:production
+> node scripts/smoke-production.mjs
+
+Production smoke passed: HTML, bundle, API, unknown route
+
+> takko-studio@0.2.0 test:e2e
+> playwright test
+
+[WebServer] (node:34732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:30360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:40564) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 74 tests using 1 worker
+
+(node:40184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\browser\asset-execution.spec.ts:3:1 › asset execution requires explicit Studio selection and shows unavailable connection honestly (6.1s)
+  ok  2 [desktop] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (1.8s)
+  ok  3 [desktop] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (317ms)
+  ok  4 [desktop] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (1.4s)
+  ok  5 [desktop] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (442ms)
+  ok  6 [desktop] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (3.5s)
+  ok  7 [desktop] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (297ms)
+  ok  8 [desktop] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (1.3s)
+  ok  9 [desktop] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (4.4s)
+  ok 10 [desktop] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (10.8s)
+  ok 11 [desktop] › tests\browser\lemonade-layout.spec.ts:269:1 › sending a follow-up preserves the original request and updates the plan once (4.7s)
+  ok 12 [desktop] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (1.7s)
+  ok 13 [desktop] › tests\browser\marketplace.spec.ts:72:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (3.0s)
+  ok 14 [desktop] › tests\browser\marketplace.spec.ts:192:1 › blocked first drops display findings and never become chat attachments (395ms)
+  ok 15 [desktop] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (7.5s)
+  ok 16 [desktop] › tests\browser\polling.spec.ts:36:1 › slow polls do not overlap and a transient failure clears after recovery (7.4s)
+  ok 17 [desktop] › tests\browser\polling.spec.ts:64:1 › a successful poll does not clear an action error (2.2s)
+  ok 18 [desktop] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (2.0s)
+  ok 19 [desktop] › tests\browser\settings-workspace.spec.ts:76:1 › creates a named preset and activates it without generation (4.5s)
+  ok 20 [desktop] › tests\browser\settings-workspace.spec.ts:110:1 › draft and one-off limit survive opening Models (493ms)
+  ok 21 [desktop] › tests\browser\settings-workspace.spec.ts:130:1 › unsaved preset dismissal keeps saved values (1.5s)
+  ok 22 [desktop] › tests\browser\settings-workspace.spec.ts:143:1 › provider catalog loads automatically and persists selected models (4.9s)
+  ok 23 [desktop] › tests\browser\settings-workspace.spec.ts:172:1 › provider change clears catalog and matching credentials are reused (504ms)
+  ok 24 [desktop] › tests\browser\settings-workspace.spec.ts:202:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (13.3s)
+  ok 25 [desktop] › tests\browser\settings-workspace.spec.ts:247:1 › project-specific preset route survives refresh (1.6s)
+  ok 26 [desktop] › tests\browser\settings-workspace.spec.ts:263:1 › Presets is a separate sidebar page directly below Models (1.5s)
+  ok 27 [desktop] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (10.4s)
+  ok 28 [desktop] › tests\browser\typography.spec.ts:19:1 › system typography requires no external fonts and fits the minimal responsive layout (569ms)
+  ok 29 [desktop] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (1.5s)
+  ok 30 [desktop] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (1.2s)
+  ok 31 [desktop] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and tabs support arrow keys (5.9s)
+  ok 32 [desktop] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates (1.8s)
+  ok 33 [desktop] › tests\browser\workflow.spec.ts:95:1 › welcomes multiple game ideas without generating a preset or claiming a connection (3.9s)
+  ok 34 [desktop] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage (2.7s)
+  ok 35 [desktop] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails (434ms)
+  ok 36 [desktop] › tests\browser\workflow.spec.ts:187:1 › welcome and model settings pass accessibility checks and fit the viewport (2.1s)
+  ok 37 [desktop] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (18.9s)
+(node:29528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 38 [mobile] › tests\browser\asset-execution.spec.ts:3:1 › asset execution requires explicit Studio selection and shows unavailable connection honestly (4.9s)
+  ok 39 [mobile] › tests\browser\grok-ui.spec.ts:3:1 › taco mascot loads in both brand placements and shares the favicon asset (1.5s)
+  ok 40 [mobile] › tests\browser\grok-ui.spec.ts:32:1 › starting points fill the composer without creating or generating a project (317ms)
+  ok 41 [mobile] › tests\browser\grok-ui.spec.ts:59:1 › recent cards open saved projects and project search only filters navigation (1.4s)
+  ok 42 [mobile] › tests\browser\grok-ui.spec.ts:109:1 › monochrome layout keeps composer actions reachable at narrow widths (525ms)
+  ok 43 [mobile] › tests\browser\lemonade-layout.spec.ts:5:1 › research routing preference survives save and reopen (3.4s)
+  ok 44 [mobile] › tests\browser\lemonade-layout.spec.ts:39:1 › shows reference research, uncertainty and source links in the brief (286ms)
+  ok 45 [mobile] › tests\browser\lemonade-layout.spec.ts:92:1 › shows a concise generation failure with expandable diagnostics (1.4s)
+  ok 46 [mobile] › tests\browser\lemonade-layout.spec.ts:126:1 › minimal prompt and saved preset preserve real role preferences (3.9s)
+  ok 47 [mobile] › tests\browser\lemonade-layout.spec.ts:193:1 › minimal task list, source, history and follow-up use the current project (6.4s)
+  ok 48 [mobile] › tests\browser\lemonade-layout.spec.ts:269:1 › sending a follow-up preserves the original request and updates the plan once (4.2s)
+  ok 49 [mobile] › tests\browser\marketplace.spec.ts:4:1 › existing-project asset roles survive follow-up and reload without leaking into new chat (1.6s)
+  ok 50 [mobile] › tests\browser\marketplace.spec.ts:72:1 › Marketplace supports saved assets, inspected drag/drop and chat attachment context (2.7s)
+  ok 51 [mobile] › tests\browser\marketplace.spec.ts:192:1 › blocked first drops display findings and never become chat attachments (418ms)
+  ok 52 [mobile] › tests\browser\polling.spec.ts:3:1 › a slow project poll cannot overlap or restore a project after navigating home (7.5s)
+  ok 53 [mobile] › tests\browser\polling.spec.ts:36:1 › slow polls do not overlap and a transient failure clears after recovery (7.4s)
+  ok 54 [mobile] › tests\browser\polling.spec.ts:64:1 › a successful poll does not clear an action error (2.2s)
+  ok 55 [mobile] › tests\browser\settings-workspace.spec.ts:36:1 › preset keeps ordered backups, specialist roles and its own budget after reload (2.0s)
+  ok 56 [mobile] › tests\browser\settings-workspace.spec.ts:76:1 › creates a named preset and activates it without generation (4.4s)
+  ok 57 [mobile] › tests\browser\settings-workspace.spec.ts:110:1 › draft and one-off limit survive opening Models (468ms)
+  ok 58 [mobile] › tests\browser\settings-workspace.spec.ts:130:1 › unsaved preset dismissal keeps saved values (1.4s)
+  ok 59 [mobile] › tests\browser\settings-workspace.spec.ts:143:1 › provider catalog loads automatically and persists selected models (4.8s)
+  ok 60 [mobile] › tests\browser\settings-workspace.spec.ts:172:1 › provider change clears catalog and matching credentials are reused (530ms)
+  ok 61 [mobile] › tests\browser\settings-workspace.spec.ts:202:1 › Models and Presets pages and dialogs pass accessibility and keep actions visible (5.5s)
+  ok 62 [mobile] › tests\browser\settings-workspace.spec.ts:247:1 › project-specific preset route survives refresh (1.6s)
+  ok 63 [mobile] › tests\browser\settings-workspace.spec.ts:263:1 › Presets is a separate sidebar page directly below Models (1.5s)
+  ok 64 [mobile] › tests\browser\studio-recovery.spec.ts:4:1 › Studio shows unresolved delivery honestly and only cancels undispatched work (10.2s)
+  ok 65 [mobile] › tests\browser\typography.spec.ts:19:1 › system typography requires no external fonts and fits the minimal responsive layout (512ms)
+  ok 66 [mobile] › tests\browser\typography.spec.ts:71:1 › workspace typography keeps prose readable and controls usable (1.7s)
+  ok 67 [mobile] › tests\browser\workflow.spec.ts:6:1 › model dialog traps keyboard focus and restores its launcher (966ms)
+  ok 68 [mobile] › tests\browser\workflow.spec.ts:26:1 › project selection survives refresh and tabs support arrow keys (5.9s)
+  ok 69 [mobile] › tests\browser\workflow.spec.ts:51:1 › catalog search selects a model and its published rates (1.7s)
+  ok 70 [mobile] › tests\browser\workflow.spec.ts:95:1 › welcomes multiple game ideas without generating a preset or claiming a connection (3.5s)
+  ok 71 [mobile] › tests\browser\workflow.spec.ts:122:1 › configures provider keys without reflecting secrets or persisting them in browser storage (2.4s)
+  ok 72 [mobile] › tests\browser\workflow.spec.ts:166:1 › keeps the model editor open when saving fails (425ms)
+  ok 73 [mobile] › tests\browser\workflow.spec.ts:187:1 › welcome and model settings pass accessibility checks and fit the viewport (2.2s)
+  ok 74 [mobile] › tests\browser\workflow.spec.ts:210:1 › builds an approved non-combat project through a real HTTP provider adapter (15.9s)
+
+  74 passed (4.4m)

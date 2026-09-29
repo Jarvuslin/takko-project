@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./workspace-fixture";
 
 test("asset execution requires explicit Studio selection and shows unavailable connection honestly", async ({
   page,
@@ -6,7 +6,7 @@ test("asset execution requires explicit Studio selection and shows unavailable c
   await page.goto("/");
   await page.getByLabel("Game idea").fill("Asset execution UI regression");
   await page.getByRole("button", { name: "Create project" }).click();
-  await page.getByRole("tab", { name: "Build", exact: true }).click();
+  await page.getByRole("button", { name: "Build details", exact: true }).click();
   const assets = page.getByRole("region", { name: "Asset execution" });
   await page.route("**/api/asset-studios", (route) =>
     route.fulfill({
@@ -35,7 +35,7 @@ test("asset execution requires explicit Studio selection and shows unavailable c
     "Asset execution will use the selected Studio.",
   );
   await page.reload();
-  await page.getByRole("tab", { name: "Build", exact: true }).click();
+  await page.getByRole("button", { name: "Build details", exact: true }).click();
   await expect(
     assets.getByText("Studio selected for this project."),
   ).toBeVisible();

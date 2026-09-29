@@ -1,0 +1,39 @@
+timestamp=2026-09-27T16:47:12.828Z level=INFO run=e6c6ed39 message="creating instance" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.831Z level=INFO run=e6c6ed39 message=fromDirectory directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.851Z level=INFO run=e6c6ed39 message=bootstrapping directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY"
+timestamp=2026-09-27T16:47:12.858Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T16:47:12.865Z level=INFO run=e6c6ed39 message=loading path="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T16:47:12.992Z level=INFO run=e6c6ed39 message="all LSPs are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message="all formatters are disabled"
+timestamp=2026-09-27T16:47:12.993Z level=INFO run=e6c6ed39 message=init
+timestamp=2026-09-27T16:47:13.384Z level=INFO run=e6c6ed39 message=created id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR slug=tidy-engine version=1.18.31 projectID=global directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" path=Users/7474g/AppData/Local/Temp/takko-opencode-JM8zOY workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790527633384 time.updated=1790527633384
+timestamp=2026-09-27T16:47:13.408Z level=INFO run=e6c6ed39 message="event connected"
+timestamp=2026-09-27T16:47:14.247Z level=INFO run=e6c6ed39 message=loop session.id=ses_f1c3c8817ffeyqEVqrUQ2ChaPR step=0
+timestamp=2026-09-27T16:47:14.283Z level=INFO run=e6c6ed39 message="shell tool using shell" shell="C:\\Users\\7474g\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.EXE"
+timestamp=2026-09-27T16:47:14.597Z level=INFO run=e6c6ed39 message="watcher backend" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" platform=win32 backend=windows
+timestamp=2026-09-27T16:47:14.636Z level=INFO run=e6c6ed39 message="project copy refresh started" projectID=global
+timestamp=2026-09-27T16:47:14.639Z level=INFO run=e6c6ed39 message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-09-27T16:47:14.704Z level=INFO run=e6c6ed39 message="booting location services" directory="C:\\Users\\7474g\\AppData\\Local\\Temp\\takko-opencode-JM8zOY" workspaceID=undefined
+timestamp=2026-09-27T18:30:28.287Z level=INFO run=3fef940c message="creating instance" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace"
+timestamp=2026-09-27T18:30:28.289Z level=INFO run=3fef940c message=fromDirectory directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace"
+timestamp=2026-09-27T18:30:28.433Z level=INFO run=3fef940c message=bootstrapping directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace"
+timestamp=2026-09-27T18:30:28.444Z level=INFO run=3fef940c message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace\\xdg_config_home\\opencode\\config.json"
+timestamp=2026-09-27T18:30:28.445Z level=INFO run=3fef940c message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace\\xdg_config_home\\opencode\\opencode.json"
+timestamp=2026-09-27T18:30:28.446Z level=INFO run=3fef940c message=loading path="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace\\xdg_config_home\\opencode\\opencode.jsonc"
+timestamp=2026-09-27T18:30:28.628Z level=DEBUG run=3fef940c message="loaded custom config from OPENCODE_CONFIG_CONTENT"
+timestamp=2026-09-27T18:30:28.701Z level=INFO run=3fef940c message="all LSPs are disabled"
+timestamp=2026-09-27T18:30:28.703Z level=INFO run=3fef940c message="all formatters are disabled"
+timestamp=2026-09-27T18:30:28.703Z level=INFO run=3fef940c message=init
+timestamp=2026-09-27T18:30:28.893Z level=INFO run=3fef940c message=created id=ses_f1bddfee3ffeynBOB1ZOxi0t7G slug=misty-canyon version=1.18.31 projectID=global directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace" path="RobloxProjects/Roblox Gen/docs/results/runtime-diagnostics-20260927/system-path/workspace" workspaceID=undefined parentID=undefined title="Takko builder" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1790533828893 time.updated=1790533828893
+timestamp=2026-09-27T18:30:28.909Z level=INFO run=3fef940c message="event connected"
+timestamp=2026-09-27T18:30:29.468Z level=INFO run=3fef940c message=loop session.id=ses_f1bddfee3ffeynBOB1ZOxi0t7G step=0
+timestamp=2026-09-27T18:30:29.491Z level=INFO run=3fef940c message="shell tool using shell" shell="C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE"
+timestamp=2026-09-27T18:30:29.768Z level=INFO run=3fef940c message="downloading ripgrep" url=https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-pc-windows-msvc.zip
+timestamp=2026-09-27T18:30:29.849Z level=INFO run=3fef940c message="watcher backend" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace" platform=win32 backend=windows
+timestamp=2026-09-27T18:30:29.863Z level=INFO run=3fef940c message="project copy refresh started" projectID=global
+timestamp=2026-09-27T18:30:29.865Z level=INFO run=3fef940c message="project copy refresh done" projectID=global updated=[] removed=[]
+timestamp=2026-09-27T18:30:30.126Z level=INFO run=3fef940c message="booting location services" directory="D:\\RobloxProjects\\Roblox Gen\\docs\\results\\runtime-diagnostics-20260927\\system-path\\workspace" workspaceID=undefined
+timestamp=2026-09-27T18:30:30.308Z level=INFO run=3fef940c message=process session.id=ses_f1bddfee3ffeynBOB1ZOxi0t7G messageID=msg_0e422035f00150cPTzNXNS5Vwb
+timestamp=2026-09-27T18:30:30.310Z level=INFO run=3fef940c message=stream providerID=takko modelID=agent session.id=ses_f1bddfee3ffeynBOB1ZOxi0t7G small=false agent=build mode=primary
+timestamp=2026-09-27T18:30:30.318Z level=INFO run=3fef940c message="llm runtime selected" llm.runtime=ai-sdk llm.provider=takko llm.model=agent

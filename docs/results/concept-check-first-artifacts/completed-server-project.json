@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 2,
+  "id": "6d5099a1-b101-48c7-8928-d152bf95e07c",
+  "name": "Orchard",
+  "request": "Build a farming game",
+  "revision": 2,
+  "scope": "Forge_6d5099a1b101",
+  "spec": {
+    "title": "Orchard",
+    "summary": "Build a farming game",
+    "visualDirection": "Readable silhouettes and warm lighting",
+    "requirements": [
+      {
+        "id": "core",
+        "description": "Build a farming game",
+        "sourceQuote": "Build a farming game",
+        "origin": "user",
+        "category": "mechanic",
+        "priority": "required",
+        "acceptance": "The core gameplay state is observable.",
+        "sourceId": "request"
+      }
+    ],
+    "questions": [
+      {
+        "id": "device",
+        "prompt": "Which devices?",
+        "options": [
+          "Desktop",
+          "Mobile"
+        ]
+      }
+    ],
+    "tasks": [
+      {
+        "id": "coreTask",
+        "title": "Implement core loop",
+        "requirements": [
+          "core"
+        ],
+        "dependsOn": [],
+        "files": [
+          "ServerScriptService/Forge_6d5099a1b101/Game.server.luau"
+        ]
+      }
+    ]
+  },
+  "answers": {},
+  "approvedRevision": null,
+  "stage": "clarification",
+  "artifact": null,
+  "review": null,
+  "checks": [],
+  "charges": [
+    {
+      "phase": "planner",
+      "profileId": "f6d74dff-67d3-415a-bc9f-524211412ec1",
+      "model": "fixture",
+      "reservedMicros": 35338,
+      "chargedMicros": 500,
+      "estimated": false,
+      "billingSource": "configured-rate",
+      "inputTokens": 100,
+      "outputTokens": 200,
+      "status": "ok",
+      "at": "2026-09-20T19:22:18.155Z"
+    }
+  ],
+  "budgetMicros": 2000000,
+  "reservedMicros": 0,
+  "events": [
+    {
+      "at": "2026-09-20T19:22:18.136Z",
+      "message": "planner: Fixture / fixture"
+    },
+    {
+      "at": "2026-09-20T19:22:18.174Z",
+      "message": "Specification ready for review."
+    }
+  ],
+  "jobId": null,
+  "error": null,
+  "createdAt": "2026-09-20T19:22:16.269Z",
+  "studioEvidence": null,
+  "answerQuestions": {},
+  "concept": null,
+  "assetPipeline": null,
+  "research": null,
+  "visualEvidence": null,
+  "failure": null
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "review:target_dummy",
+    "status": "failed",
+    "detail": "The retained Training Dummy component was never actually positioned or anchored in the scene bundle. No scene entries set Anchored=true or a CFrame near (0,3,15) on any part of Workspace/Forge_8a81efe9b8ed/Assets/dummy/dummy/Imported/'Training Dummy'. The integrationNotes for this component explicitly flagged this as remaining work ('set Anchored=true and position/orient parts at approximately (0,3,15)... not established by current evidence'), but no file or scene node in this artifact does it. Without this, the dummy retains whatever import-time position/anchoring it shipped with, so it may not stand upright at the required location, may not collide, and PunchValidator's distance check against its Head/Torso parts (which assumes it is at ~(0,3,15)) will be measuring against the wrong location. Additionally, the coverage entry for target_dummy contains copy-pasted text from the hit_sound rejection reasoning ('Audible confirmation that a punch has successfully landed on the dummy... 126976659766267...'), which is not a valid justification for blocking target_dummy and indicates a bookkeeping error that should be corrected regardless of the underlying placement gap."
+  },
+  {
+    "id": "review:hit_sound",
+    "status": "failed",
+    "detail": "The required hit_sound requirement is completely unimplemented: PunchValidator.server.luau explicitly plays no Sound and no Sound instance exists anywhere in the artifact. The rejection rationale is that the user-approved asset (126976659766267, already present in assetChoices/selectedAssets as the user's chosen Sound Effects asset) has a ~1.53s native duration versus an inferred 0.2-0.5s constraint that appears only in the assetNeeds.constraints field (a worker-authored search constraint), not in any actual user statement. The user's request and clarifications only ask for 'a punch/hit sound when the player hits the dummy' with no stated duration limit. Per policy, user-approved asset choices are authoritative and 'Find later' language does not authorize dropping a user-approved reference; a duration mismatch against an inferred internal constraint is not the kind of import/capability limitation that justifies unilateral abandonment without escalation. The asset should have been loaded and played (trimmed via TimePosition/audio playback range if truly too long, or accepted as-is) rather than the requirement being left fully unmet with no Sound instance at all."
+  },
+  {
+    "id": "review:punch_loop",
+    "status": "failed",
+    "detail": "punch_loop's acceptance criterion requires that 'when the swing connects the hit sound plays and the visible counter increments exactly once per successful swing.' Because hit_sound is entirely unimplemented (no Sound instance, no playback code in PunchValidator.server.luau), the confirmed-hit feedback loop is incomplete: only the animation and counter legs of the three-part feedback (animation + sound + counter) are wired up. This is a direct, uncorrected gap in the core requested loop, not an optional extra."
+  }
+]

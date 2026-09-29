@@ -1,0 +1,48 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/scope-questions.test.ts (6 tests | 2 failed) 23ms
+   × does not repeat a specifically answered scope decision or use it to resolve a different one 6ms
+   × does not mistake duplicate-hit protection or technical defaults for removed core mechanics 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/scope-questions.test.ts > does not repeat a specifically answered scope decision or use it to resolve a different one
+TypeError: undefined is not a function
+ ❯ tests/scope-questions.test.ts:10:36
+      8|  const assumptions=real.proposal.mechanics.assumptions;
+      9|  const questions=scopeQuestions(assumptions,{...real,answers:{}});
+     10|  const answered={...real,answers:{[scopeQuestionId(questions[0])]:"Kee…
+       |                                    ^
+     11|  expect(scopeQuestions(assumptions,answered)).not.toContain(questions[…
+     12|  expect(scopeQuestions(assumptions,answered)).toContain(questions[1]);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/scope-questions.test.ts > does not mistake duplicate-hit protection or technical defaults for removed core mechanics
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "Should this limit apply, or should the mechanic support more? A brief per-punch cooldown equal to the animation duration prevents duplicate hit registration from a single swing.",
++ ]
+
+ ❯ tests/scope-questions.test.ts:16:42
+     14| it("does not mistake duplicate-hit protection or technical defaults fo…
+     15|  const incidental=real.proposal.mechanics.assumptions.filter((s:string…
+     16|  expect(scopeQuestions(incidental,real)).toEqual([]);
+       |                                          ^
+     17| });
+     18| it("asks about the real silently removed mechanic instead of approving…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  01:09:55
+   Duration  532ms (transform 41%, import 39%, tests 14%, worker 5%, environment 1%)
+

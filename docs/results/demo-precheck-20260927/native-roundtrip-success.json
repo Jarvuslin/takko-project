@@ -1,0 +1,79 @@
+{
+  "at": "2026-09-27T04:35:42.722Z",
+  "ok": true,
+  "connected": true,
+  "projectId": "924f2fd5-22cb-4c8b-867e-5be3bca8c0a0",
+  "scope": "Forge_924f2fd522cb",
+  "placeId": 122588481889475,
+  "receipt": {
+    "ok": true,
+    "revision": 1,
+    "dispatchId": "6a4e25ff-da3d-458d-a5b7-954b3340429c",
+    "checks": [
+      {
+        "id": "apply",
+        "status": "passed",
+        "detail": "Applied generated instances and sources."
+      }
+    ],
+    "logs": [
+      "Applied revision 1"
+    ],
+    "artifactHash": "645d24b9a17a2c9541fcdfc70fc49862c5a9019b5bf21a0c621a02243b8e207a",
+    "operationId": "c7b30b3a-3200-4fa2-a020-e1aa5d407229"
+  },
+  "cleaned": true,
+  "running": false,
+  "nativeObjectsVerified": true,
+  "source": "return { probe = \"Takko free native delivery precheck\" }",
+  "execution": "Current plugin source in a temporary native Plugin, not proof the old loaded plugin hot-reloaded",
+  "queued": {
+    "revision": 1,
+    "projectId": "924f2fd5-22cb-4c8b-867e-5be3bca8c0a0",
+    "id": "c7b30b3a-3200-4fa2-a020-e1aa5d407229",
+    "expiresAt": 1790483802401,
+    "state": "queued",
+    "artifactHash": "645d24b9a17a2c9541fcdfc70fc49862c5a9019b5bf21a0c621a02243b8e207a",
+    "protocolVersion": 2,
+    "testsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "createdAt": 1790483742401,
+    "expectedTestIds": [],
+    "kind": "apply",
+    "studioId": "c27cf34b-8978-4352-ba1b-e75881509679"
+  },
+  "acknowledged": {
+    "kind": "apply",
+    "revision": 1,
+    "projectId": "924f2fd5-22cb-4c8b-867e-5be3bca8c0a0",
+    "outcomeDeadline": 1790484342419,
+    "id": "c7b30b3a-3200-4fa2-a020-e1aa5d407229",
+    "dispatchedAt": 1790483742419,
+    "dispatchId": "6a4e25ff-da3d-458d-a5b7-954b3340429c",
+    "expiresAt": 1790483802401,
+    "state": "done",
+    "artifactHash": "645d24b9a17a2c9541fcdfc70fc49862c5a9019b5bf21a0c621a02243b8e207a",
+    "protocolVersion": 2,
+    "testsHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "createdAt": 1790483742401,
+    "expectedTestIds": [],
+    "result": {
+      "ok": true,
+      "revision": 1,
+      "dispatchId": "6a4e25ff-da3d-458d-a5b7-954b3340429c",
+      "checks": [
+        {
+          "id": "apply",
+          "status": "passed",
+          "detail": "Applied generated instances and sources."
+        }
+      ],
+      "executionStatus": "completed",
+      "logs": [
+        "Applied revision 1"
+      ],
+      "artifactHash": "645d24b9a17a2c9541fcdfc70fc49862c5a9019b5bf21a0c621a02243b8e207a",
+      "operationId": "c7b30b3a-3200-4fa2-a020-e1aa5d407229"
+    },
+    "studioId": "c27cf34b-8978-4352-ba1b-e75881509679"
+  }
+}

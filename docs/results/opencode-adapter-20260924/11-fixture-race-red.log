@@ -1,0 +1,35 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/workspace-fixture-lifecycle.test.ts (2 tests | 2 failed) 17ms
+   × drains a pending status response before fixture disposal, including failed tests (false) 7ms
+   × drains a pending status response before fixture disposal, including failed tests (true) 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/workspace-fixture-lifecycle.test.ts > drains a pending status response before fixture disposal, including failed tests (false)
+ FAIL  tests/workspace-fixture-lifecycle.test.ts > drains a pending status response before fixture disposal, including failed tests (true)
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/workspace-fixture-lifecycle.test.ts:29:31
+     27|   await lifecycle;
+     28|   await pending;
+     29|   expect(disposedBeforeDrain).toBe(false);
+       |                               ^
+     30|   expect(drained).toBe(true);
+     31| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  13:50:39
+   Duration  201ms (transform 43%, tests 27%, import 22%, worker 7%)
+

@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "kind": "takko-component-integration",
+  "preparedHash": "364dae409c3b83f582930760e07b7848c2fb7d0533b5fb545f0afca0b6524af2",
+  "scope": "Forge_25d036defb24",
+  "need": {
+    "id": "TargetDummy",
+    "requirementId": "req-dummy-target",
+    "role": "Stationary humanoid target that the player punches to score hits.",
+    "kind": "Model",
+    "query": "boxing training dummy",
+    "constraints": "Static, non-moving mannequin/dummy on a fixed base, roughly human-height (5-6 studs tall), CanCollide true, no built-in scripts required, visually reads as a punchable target (heavy bag or mannequin style), no moving parts or animation rig needed.",
+    "intent": {
+      "experienceRole": "Serves as the sole gameplay objective: the object the player must repeatedly strike to generate hit events and drive the on-screen counter.",
+      "interaction": "Non-interactive itself (it does not move or react physically); player-driven punch detection (touch/proximity/raycast) against this model triggers the hit sound, animation feedback, and counter increment on each successful punch.",
+      "reusableFeatures": [
+        "Existing collision geometry suitable for touch/hit detection",
+        "Any built-in stand/base part to anchor the dummy in place"
+      ],
+      "relatedRequirementIds": [
+        "req-dummy-target",
+        "req-hit-counter"
+      ]
+    },
+    "required": false,
+    "position": [
+      0,
+      3,
+      12
+    ],
+    "maxSize": 8
+  },
+  "instanceName": "TargetDummy",
+  "review": {
+    "packetHash": "0e03b3d2b831d6eb6f6da5f1bff82d2831992343d25720f9941814b2aa5687ee",
+    "inputHash": "54c477e793126e614580a2b47931b9ddc450b64510233606004dd5c1f4654b82",
+    "disposition": "integration_candidate",
+    "reason": "Current evidence shows the disqualifying auto-respawn Script (former index 18) is gone: sourceBodies is empty and node list ends at 17 (Humanoid), matching the mapping's removedBeforeIndices:[18]. Remaining content is inert mannequin geometry plus one unverified Decal texture reference. No scripts remain to assess, so no unresolved source defects exist here. Placement/anchoring at the approved position and hit-counting logic are separately owned integration work, not defects in this component.",
+    "serializedMedia": [
+      {
+        "index": 16,
+        "property": "Texture",
+        "value": "rbxassetid://406436910",
+        "purpose": "Decal texture applied to the Torso part for the mannequin's visual appearance; unverified media reference captured on the Decal instance, not sourced from executable script logic.",
+        "verification": "unverified"
+      }
+    ],
+    "sources": [],
+    "requirements": [
+      {
+        "requirementId": "req-dummy-target",
+        "status": "integration_needed",
+        "reason": "Static evidence confirms removal of the Health-polling clone/respawn Script that previously violated 'never respawns/resets'; no script remains in current evidence. However, anchoring, CanCollide state, and actual placement at [0,3,12] are not established by this capture, and native confirmation that repeated hits leave the dummy unchanged has not been performed (runtimeVerification not_performed). These are the outstanding items for the separately owned targetDummySetup placement task.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "requirementId": "req-hit-counter",
+        "status": "integration_needed",
+        "reason": "This component contains only static geometry, a Humanoid, and a Decal; no counter, touch listener, or RemoteEvent logic exists here. Hit counting and its HUD display are implemented by the separately owned punchServer/hudController tasks and are not part of this captured component's own behavior.",
+        "sourceHashes": [],
+        "nodeIndices": [
+          2
+        ]
+      }
+    ],
+    "permissionImpacts": [],
+    "integrationNotes": [
+      "Applied edit (removeSubtrees index 18) is corroborated by current evidence: sourceBodies is empty and no Script node appears past index 17, consistent with the claimed removal of the Health<1 clone/respawn loop.",
+      "Torso Decal (index 16, rbxassetid://406436910) remains an unverified media reference; its load/appearance/rights have not been checked and must be confirmed during native/media verification before acceptance.",
+      "Placement at approximately [0,3,12], Anchored/CanCollide state, and native confirmation that repeated hits produce no reset behavior are outstanding and belong to the targetDummySetup integration task, not this component.",
+      "req-hit-counter and req-hit-detection require the separately owned PunchServer component to add runtime touch/proximity or raycast listeners against this dummy's Parts; no such listener exists in this capture.",
+      "No removedCapabilities were listed for this evidence packet, so no permission-impact entries were required."
+    ],
+    "runtimeVerification": "not_performed"
+  },
+  "comparison": {
+    "passed": true,
+    "checkedProperties": 509,
+    "checkedAttributes": 0,
+    "checkedReferences": 0,
+    "unobservableProperties": [
+      "Humanoid.Health_XML",
+      "Humanoid.InternalBodyScale",
+      "Humanoid.InternalHeadScale",
+      "Model.ModelMeshCFrame",
+      "Model.ModelMeshData",
+      "Model.ModelMeshSize",
+      "Model.NeedsPivotMigration",
+      "Model.ScaleFactor",
+      "Model.WorldPivotData",
+      "Part.Color3uint8",
+      "Part.MaterialVariantSerialized",
+      "Part.formFactorRaw"
+    ],
+    "ignoredIdentityProperties": [
+      "UniqueId",
+      "HistoryId"
+    ]
+  },
+  "xmlHash": "1cf4f304981601d449353abc43497ec7aca941c578ba436e19f22ea698dd0668",
+  "metadata": {
+    "needId": "TargetDummy",
+    "candidateId": "1245720733",
+    "inputHash": "54c477e793126e614580a2b47931b9ddc450b64510233606004dd5c1f4654b82",
+    "packetHash": "0e03b3d2b831d6eb6f6da5f1bff82d2831992343d25720f9941814b2aa5687ee",
+    "archiveHash": "d841757d9c0fc12cf61203295100180a0ed6f7caf7c9b01b6b74ff2223786f1e",
+    "conversionHash": "3a09ca538aea0c5affe0fdfe8a0c3164ba3d6636a50e689fb93f35bb30050cd3",
+    "destinationPath": "Workspace/Forge_25d036defb24/Assets/TargetDummy",
+    "rootName": "TargetDummy",
+    "runtimeVerification": "not_performed",
+    "placement": "worker_integration_required"
+  }
+}

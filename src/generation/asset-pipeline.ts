@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { groundedAssetRejection } from "./approved-reference-policy";
 import { isDeepStrictEqual } from "node:util";
 import { z } from "zod";
 import {
@@ -568,6 +569,19 @@ export async function runAssetPipeline(
     });
   };
   const escalate = async (reason: string) => {
+    if (
+      adapter.searchScope === "approved_references" &&
+      !run.needs.find((n) => n.id === current)!.required
+    ) {
+      await failNeed(reason);
+      await record("escalation_request", {
+        reason,
+        allowed: run.policy.allowEscalation,
+        executed: false,
+        buildMayContinue: true,
+      });
+      return;
+    }
     const entry = run.entries.find((e) => e.needId === current)!;
     entry.status = run.policy.allowEscalation
       ? "escalation_required"
@@ -637,847 +651,946 @@ export async function runAssetPipeline(
       needIds: run.needs.map((n) => n.id),
       needExecutionOrder: executionNeeds.map((n) => n.id),
     });
-    for (const need of executionNeeds) {
+    needsLoop: for (const need of executionNeeds) {
       current = need.id;
       active();
       const entry = run.entries.find((e) => e.needId === need.id)!;
-      let searches = 0,
-        query = need.query.trim(),
-        candidates: AssetCandidate[] = [];
-      let sourcePhase: "component_audio" | "marketplace" = "marketplace";
-      const attempted = new Set<string>();
-      const executedQueries = new Set<string>();
-      const searchHistory: AssetSearchHistoryEntry[] = [];
-      const offeredIds = new Set<string>();
-      let completedInspections = 0;
-      const fallbackPolicy = () => {
-        if (need.required || !imageKinds.has(need.kind)) return undefined;
-        const blockingReason =
-          executedQueries.size < 2
-            ? "Optional visual fallback requires at least two distinct executed search queries."
-            : offeredIds.size > 0 && completedInspections === 0
-              ? "Optional visual fallback requires at least one completed native inspection because search candidates were offered."
-              : null;
-        return {
-          requiredDistinctSearchQueries: 2,
-          distinctSearchQueries: [...executedQueries],
-          offeredCandidateCount: offeredIds.size,
-          requiredCompletedInspections: offeredIds.size ? 1 : 0,
-          completedInspections,
-          blockingReason,
-        };
-      };
-      const rejected: { candidateId: string; reason: string }[] = [];
-      const candidateOperation = async <T>(
-        phase: "inspection" | "placed",
-        candidate: AssetCandidate,
-        invoke: () => Promise<T>,
-      ): Promise<T | undefined> => {
-        try {
-          return await invoke();
-        } catch (error) {
-          if (!(error instanceof AssetOperationError) || error.haltRequired)
-            throw error;
-          const reason = error.message;
-          await record("candidate_rejected", {
-            candidateId: candidate.id,
-            phase,
-            reason,
-            classification: error.classification,
-            effects: error.effects,
-            cleanupConfirmed: true,
-          });
-          rejected.push({ candidateId: candidate.id, reason });
-          return undefined;
-        }
-      };
-      const search = async () => {
-        sourcePhase = "marketplace";
-        searches++;
-        const result = await call(
-          "search",
-          { need, query, searchNumber: searches },
-          () => adapter.search(need, query, signal),
-          "adapter",
-        );
-        receiptsSchema.parse(result.receipts);
-        active();
-        executedQueries.add(query.trim().replace(/\s+/g, " ").toLowerCase());
-        candidates = [];
-        for (const raw of result.candidates.slice(0, 100)) {
-          const candidate = candidateSchema.parse(raw);
+      try {
+        let searches = 0,
+          query = need.query.trim(),
+          candidates: AssetCandidate[] = [];
+        let sourcePhase: "component_audio" | "marketplace" = "marketplace";
+        const attempted = new Set<string>();
+        const executedQueries = new Set<string>();
+        const searchHistory: AssetSearchHistoryEntry[] = [];
+        const offeredIds = new Set<string>();
+        let completedInspections = 0;
+        const fallbackPolicy = () => {
+          // A fixed approval pool cannot execute alternative searches. Failure leaves
+          // a requirement gap, never authorization for a procedural replacement.
           if (
-            candidate.kind === need.kind &&
-            !attempted.has(candidate.id) &&
-            !candidates.some((c) => c.id === candidate.id)
+            adapter.searchScope === "approved_references" ||
+            need.required ||
+            !imageKinds.has(need.kind)
           )
-            candidates.push(candidate);
-          if (candidates.length >= maxOfferedCandidates) break;
-        }
-        for (const candidate of candidates) offeredIds.add(candidate.id);
-        const completedSearch = {
-          searchNumber: searches,
-          query,
-          candidatesReturnedByAdapter: result.candidates.length,
-          candidatesOffered: candidates.length,
+            return undefined;
+          const blockingReason =
+            executedQueries.size < 2
+              ? "Optional visual fallback requires at least two distinct executed search queries."
+              : offeredIds.size > 0 && completedInspections === 0
+                ? "Optional visual fallback requires at least one completed native inspection because search candidates were offered."
+                : null;
+          return {
+            requiredDistinctSearchQueries: 2,
+            distinctSearchQueries: [...executedQueries],
+            offeredCandidateCount: offeredIds.size,
+            requiredCompletedInspections: offeredIds.size ? 1 : 0,
+            completedInspections,
+            blockingReason,
+          };
         };
-        searchHistory.push(completedSearch);
-        await record("search_candidates", {
-          ...completedSearch,
-          candidates,
-          candidatesReturned: result.candidates.length,
-          candidatesOffered: candidates.length,
-          searchesRemaining: run.policy.maxSearches - searches,
-        });
-      };
-      if (need.kind === "Audio" && adapter.discoverComponentAudio) {
-        for (const [retainedNeedId, retainedReference] of retainedComponents) {
-          active();
-          const retainedEntry = run.entries.find(
-            (item) => item.needId === retainedNeedId,
-          );
-          const component = componentReferenceSchema.parse(
-            retainedEntry?.component,
-          );
-          if (
-            retainedEntry?.status !== "passed" ||
-            retainedEntry.componentContextHash !== run.inputHash ||
-            component.inputHash !== run.inputHash ||
-            component.needId !== retainedNeedId ||
-            component.candidateId !== retainedEntry.selected?.id ||
-            !isDeepStrictEqual(component, retainedReference)
-          )
-            throw new PipelineHalt(
-              "Embedded audio discovery requires an unchanged current-run retained component",
-            );
-          const found = await call(
-            "component_audio_discovery",
-            { needId: need.id, component },
-            () =>
-              adapter.discoverComponentAudio!(
-                need,
-                structuredClone(component),
-                signal,
-              ),
+        const rejected: { candidateId: string; reason: string }[] = [];
+        const candidateOperation = async <T>(
+          phase: "inspection" | "placed",
+          candidate: AssetCandidate,
+          invoke: () => Promise<T>,
+        ): Promise<T | undefined> => {
+          try {
+            return await invoke();
+          } catch (error) {
+            if (!(error instanceof AssetOperationError) || error.haltRequired)
+              throw error;
+            const reason = error.message;
+            await record("candidate_rejected", {
+              candidateId: candidate.id,
+              phase,
+              reason,
+              classification: error.classification,
+              effects: error.effects,
+              cleanupConfirmed: true,
+            });
+            rejected.push({ candidateId: candidate.id, reason });
+            return undefined;
+          }
+        };
+        const search = async () => {
+          sourcePhase = "marketplace";
+          searches++;
+          const result = await call(
+            "search",
+            { need, query, searchNumber: searches },
+            () => adapter.search(need, query, signal),
             "adapter",
           );
-          receiptsSchema.parse(found.receipts);
+          receiptsSchema.parse(result.receipts);
           active();
-          const offered = z
-            .array(componentAudioCandidateSchema)
-            .max(maxOfferedCandidates)
-            .parse(found.candidates);
-          for (const candidate of offered) {
-            const origin = candidate.componentOrigin;
+          executedQueries.add(query.trim().replace(/\s+/g, " ").toLowerCase());
+          candidates = [];
+          for (const raw of result.candidates.slice(0, 100)) {
+            const candidate = candidateSchema.parse(raw);
             if (
-              origin.needId !== component.needId ||
-              origin.candidateId !== component.candidateId ||
-              origin.recordHash !== component.recordHash ||
-              origin.packetHash !== component.packetHash ||
-              origin.archiveHash !== component.archiveHash
+              candidate.kind === need.kind &&
+              !attempted.has(candidate.id) &&
+              !candidates.some((c) => c.id === candidate.id)
             )
-              throw new PipelineHalt(
-                "Embedded audio candidate origin differs from the retained component reference",
-              );
-          }
-          for (const candidate of offered) {
-            if (!candidates.some((item) => item.id === candidate.id))
               candidates.push(candidate);
             if (candidates.length >= maxOfferedCandidates) break;
           }
-          if (candidates.length >= maxOfferedCandidates) break;
-        }
-        if (candidates.length) {
-          sourcePhase = "component_audio";
-          await record("component_audio_candidates", {
-            candidates,
+          for (const candidate of candidates) offeredIds.add(candidate.id);
+          const completedSearch = {
+            searchNumber: searches,
+            query,
+            candidatesReturnedByAdapter: result.candidates.length,
             candidatesOffered: candidates.length,
-            searchesRemaining: run.policy.maxSearches,
+          };
+          searchHistory.push(completedSearch);
+          await record("search_candidates", {
+            ...completedSearch,
+            candidates,
+            candidatesReturned: result.candidates.length,
+            candidatesOffered: candidates.length,
+            searchesRemaining: run.policy.maxSearches - searches,
           });
-        }
-      }
-      if (!candidates.length) await search();
-      while (entry.attempts < run.policy.maxCandidates) {
-        active();
-        const decisionContext = {
-          need,
-          candidates,
-          rejected,
-          searches,
-          searchHistory: structuredClone(searchHistory),
-          attempts: entry.attempts,
-          policy: run.policy,
-          sourcePhase,
-          searchesRemaining: run.policy.maxSearches - searches,
-          candidatesRemaining: run.policy.maxCandidates - entry.attempts,
-          inspectionAttemptsRemaining:
-            run.policy.maxCandidates - entry.attempts,
-          offeredCandidateCount: candidates.length,
-          fallbackPolicy: fallbackPolicy(),
-          allowedActions: [
-            ...(candidates.length ? ["select"] : []),
-            ...(searches < run.policy.maxSearches ? ["retry"] : []),
-            ...(!fallbackPolicy()?.blockingReason ? ["reject"] : []),
-            "escalate",
-          ],
-          instruction:
-            assetDecisionInstructions +
-            (sourcePhase === "component_audio"
-              ? " These audio candidates were discovered in retained current-run Marketplace components. Match them to the requested experience; their references are not listening or playback evidence. Select authorizes the normal audition and verification process. If they are unsuitable, retry with a relevant query to search Marketplace; no Marketplace search budget has been consumed by embedded discovery."
-              : ""),
         };
-        const decision = assetDecisionSchema.parse(
-          await call(
-            "decision",
-            {
-              needId: need.id,
-              route: run.policy.workerRoute,
-              searches,
-              attempts: entry.attempts,
-            },
-            () => model.decide(decisionContext, signal),
-            "model",
-          ),
-        );
-        active();
-        validateAssetDecision(decision, decisionContext);
-        if (decision.action === "escalate") {
-          await escalate(decision.reason);
-          return run;
-        }
-        if (decision.action === "reject") {
-          if (fallbackPolicy())
-            await record("visual_fallback_eligible", fallbackPolicy());
-          await failNeed(decision.reason);
-          break;
-        }
-        if (decision.action === "retry") {
-          if (!decision.query?.trim())
-            throw new PipelineHalt("Retry decision requires a nonblank query");
-          if (searches >= run.policy.maxSearches) {
-            await failNeed("Search budget exhausted: " + decision.reason);
-            break;
+        if (need.kind === "Audio" && adapter.discoverComponentAudio) {
+          for (const [
+            retainedNeedId,
+            retainedReference,
+          ] of retainedComponents) {
+            active();
+            const retainedEntry = run.entries.find(
+              (item) => item.needId === retainedNeedId,
+            );
+            const component = componentReferenceSchema.parse(
+              retainedEntry?.component,
+            );
+            if (
+              retainedEntry?.status !== "passed" ||
+              retainedEntry.componentContextHash !== run.inputHash ||
+              component.inputHash !== run.inputHash ||
+              component.needId !== retainedNeedId ||
+              component.candidateId !== retainedEntry.selected?.id ||
+              !isDeepStrictEqual(component, retainedReference)
+            )
+              throw new PipelineHalt(
+                "Embedded audio discovery requires an unchanged current-run retained component",
+              );
+            const found = await call(
+              "component_audio_discovery",
+              { needId: need.id, component },
+              () =>
+                adapter.discoverComponentAudio!(
+                  need,
+                  structuredClone(component),
+                  signal,
+                ),
+              "adapter",
+            );
+            receiptsSchema.parse(found.receipts);
+            active();
+            const offered = z
+              .array(componentAudioCandidateSchema)
+              .max(maxOfferedCandidates)
+              .parse(found.candidates);
+            for (const candidate of offered) {
+              const origin = candidate.componentOrigin;
+              if (
+                origin.needId !== component.needId ||
+                origin.candidateId !== component.candidateId ||
+                origin.recordHash !== component.recordHash ||
+                origin.packetHash !== component.packetHash ||
+                origin.archiveHash !== component.archiveHash
+              )
+                throw new PipelineHalt(
+                  "Embedded audio candidate origin differs from the retained component reference",
+                );
+            }
+            for (const candidate of offered) {
+              if (!candidates.some((item) => item.id === candidate.id))
+                candidates.push(candidate);
+              if (candidates.length >= maxOfferedCandidates) break;
+            }
+            if (candidates.length >= maxOfferedCandidates) break;
           }
-          query = decision.query.trim();
-          await search();
+          if (candidates.length) {
+            sourcePhase = "component_audio";
+            await record("component_audio_candidates", {
+              candidates,
+              candidatesOffered: candidates.length,
+              searchesRemaining: run.policy.maxSearches,
+            });
+          }
+        }
+        if (!candidates.length) await search();
+        if (
+          !candidates.length &&
+          adapter.searchScope === "approved_references"
+        ) {
+          await failNeed(
+            "No approved asset is bound to this requirement. " +
+              (need.required
+                ? "Review asset choices before building."
+                : "Optional decoration omitted. Core requirements remain in scope."),
+          );
           continue;
         }
-        const candidate = candidates.find((c) => c.id === decision.candidateId);
-        if (!candidate || attempted.has(candidate.id))
-          throw new PipelineHalt(
-            "Model selected an unoffered or already attempted candidate ID",
-          );
-        attempted.add(candidate.id);
-        candidates = candidates.filter((c) => c.id !== candidate.id);
-        entry.attempts++;
-        await record("candidate_selected", {
-          candidate,
-          reason: decision.reason,
-          attempt: entry.attempts,
-        });
-        const inspection = await candidateOperation(
-          "inspection",
-          candidate,
-          () =>
-            call(
-              "inspect",
-              { needId: need.id, candidate, attempt: entry.attempts },
-              () =>
-                adapter.inspect(
-                  need,
-                  candidate,
-                  `${run.runId}:${need.id}:${entry.attempts}`,
-                  signal,
-                ),
-              "adapter",
-              (result) => {
-                if (result && typeof result.token === "string" && result.token)
-                  owned = result;
-                else
-                  throw Error(
-                    "Inspection returned no owned token; native import outcome is unresolved",
-                  );
-              },
-            ),
-        );
-        if (!inspection) continue;
-        active();
-        if (
-          !owned ||
-          inspection.candidate.id !== candidate.id ||
-          inspection.candidate.kind !== need.kind ||
-          inspection.candidate.source !== candidate.source ||
-          (candidate.source === "creator_store_component" &&
-            !isDeepStrictEqual(
-              inspection.candidate.componentOrigin,
-              candidate.componentOrigin,
-            ))
-        )
-          throw new PipelineHalt(
-            "Inspection did not return the selected candidate and an owned token",
-          );
-        receiptsSchema.parse(inspection.receipts);
-        completedInspections++;
-        if (inspection.capabilityBlock !== undefined) {
-          const block = capabilityBlockSchema.parse(inspection.capabilityBlock);
-          await record("capability_blocked", {
-            candidateId: candidate.id,
-            ...block,
-            proceduralFallbackAllowed: false,
-          });
-          if (
-            block.kind === "interactive_asset_requires_review" &&
-            adapter.prepareComponentReview &&
-            model.reviewComponent
-          ) {
-            const prepared = await call(
-              "component_prepare",
+        while (entry.attempts < run.policy.maxCandidates) {
+          active();
+          const decisionContext = {
+            need,
+            candidates,
+            rejected,
+            searches,
+            searchHistory: structuredClone(searchHistory),
+            attempts: entry.attempts,
+            policy: run.policy,
+            sourcePhase,
+            searchesRemaining: run.policy.maxSearches - searches,
+            candidatesRemaining: run.policy.maxCandidates - entry.attempts,
+            inspectionAttemptsRemaining:
+              run.policy.maxCandidates - entry.attempts,
+            offeredCandidateCount: candidates.length,
+            fallbackPolicy: fallbackPolicy(),
+            allowedActions: [
+              ...(candidates.length ? ["select"] : []),
+              ...(adapter.searchScope !== "approved_references" &&
+              searches < run.policy.maxSearches
+                ? ["retry"]
+                : []),
+              ...(!fallbackPolicy()?.blockingReason ? ["reject"] : []),
+              "escalate",
+            ],
+            instruction:
+              assetDecisionInstructions +
+              (sourcePhase === "component_audio"
+                ? " These audio candidates were discovered in retained current-run Marketplace components. Match them to the requested experience; their references are not listening or playback evidence. Select authorizes the normal audition and verification process. If they are unsuitable, retry with a relevant query to search Marketplace; no Marketplace search budget has been consumed by embedded discovery."
+                : ""),
+          };
+          const decision = assetDecisionSchema.parse(
+            await call(
+              "decision",
               {
-                token: inspection.token,
-                candidateId: candidate.id,
-                inputHash: run.inputHash,
-                policy:
-                  "retain_original_then_capture_restricted_derivative_for_review_only",
+                needId: need.id,
+                route: run.policy.workerRoute,
+                searches,
+                attempts: entry.attempts,
               },
-              () =>
-                adapter.prepareComponentReview!(
-                  inspection,
-                  run.inputHash,
-                  signal,
-                ),
-              "adapter",
-              (result) => {
-                receiptsSchema.parse(result.receipts);
-                if (
-                  result.evidence.token !== inspection.token ||
-                  result.evidence.candidateId !== candidate.id ||
-                  result.evidence.inputHash !== run.inputHash
-                )
-                  throw Error(
-                    "Prepared component identity differs from selected asset or game context",
-                  );
-              },
-            );
-            const requirementIds = [
-              ...new Set([
-                need.requirementId,
-                ...(need.intent?.relatedRequirementIds ?? []),
-              ]),
-            ];
-            let context: {
-              need: AssetNeed;
-              evidence: typeof prepared.evidence;
-              requirementIds: string[];
-              stage: ComponentStageContext;
-              preservation?: ComponentPreservationContext;
-              adaptation: {
-                attempt: number;
-                maxAttempts: 2;
-                remainingAttempts: number;
-              };
-            } = {
-              need,
-              evidence: prepared.evidence,
-              requirementIds,
-              stage: componentStageContext(
-                run,
-                need,
-                candidate,
-                retainedEntries,
-              ),
-              adaptation: {
-                attempt: 1,
-                maxAttempts: maxComponentAdaptations,
-                remainingAttempts: maxComponentAdaptations - 1,
-              },
-            };
-            let review = await call(
-              "component_review",
-              {
-                candidateId: candidate.id,
-                packetHash: prepared.evidence.packetHash,
-                inputHash: run.inputHash,
-                requirementIds,
-                stage: context.stage,
-                adaptation: context.adaptation,
-              },
-              async () =>
-                validateComponentReview(
-                  await model.reviewComponent!(
-                    structuredClone(context),
-                    signal,
-                  ),
-                  prepared.evidence,
-                  requirementIds,
-                ),
+              () => model.decide(decisionContext, signal),
               "model",
+            ),
+          );
+          active();
+          validateAssetDecision(decision, decisionContext);
+          if (decision.action === "escalate") {
+            await escalate(decision.reason);
+            if (!need.required && adapter.searchScope === "approved_references")
+              continue needsLoop;
+            return run;
+          }
+          if (decision.action === "reject") {
+            if (fallbackPolicy())
+              await record("visual_fallback_eligible", fallbackPolicy());
+            await failNeed(decision.reason);
+            break;
+          }
+          if (decision.action === "retry") {
+            if (!decision.query?.trim())
+              throw new PipelineHalt(
+                "Retry decision requires a nonblank query",
+              );
+            if (searches >= run.policy.maxSearches) {
+              await failNeed("Search budget exhausted: " + decision.reason);
+              break;
+            }
+            query = decision.query.trim();
+            await search();
+            continue;
+          }
+          const candidate = candidates.find(
+            (c) => c.id === decision.candidateId,
+          );
+          if (!candidate || attempted.has(candidate.id))
+            throw new PipelineHalt(
+              "Model selected an unoffered or already attempted candidate ID",
             );
-            const appliedSteps: {
-              plan: ComponentAdaptation;
-              evidence: typeof prepared.evidence;
-            }[] = [];
-            while (
-              adapter.adaptComponent &&
-              model.adaptComponent &&
-              (appliedSteps.length === 0
-                ? review.disposition !== "integration_candidate" ||
-                  review.sources.some((source) => source.reuse === "adapt")
-                : appliedSteps.length < maxComponentAdaptations &&
-                  review.disposition === "needs_more_evidence")
-            ) {
-              context.adaptation = {
-                attempt: appliedSteps.length + 1,
-                maxAttempts: maxComponentAdaptations,
-                remainingAttempts:
-                  maxComponentAdaptations - appliedSteps.length - 1,
-              };
-              context.stage = componentStageContext(
-                run,
-                need,
-                candidate,
-                retainedEntries,
-              );
-              const decision = componentAdaptationDecisionSchema.parse(
-                await call(
-                  "component_adaptation_decision",
-                  {
-                    candidateId: candidate.id,
-                    packetHash: context.evidence.packetHash,
-                    inputHash: run.inputHash,
-                    stage: context.stage,
-                    adaptation: context.adaptation,
-                  },
-                  () =>
-                    model.adaptComponent!(
-                      structuredClone({ ...context, review }),
-                      signal,
-                    ),
-                  "model",
-                ),
-              );
-              active();
-              if (decision.action === "reject") {
-                review = {
-                  ...review,
-                  disposition: "unsuitable",
-                  reason: decision.reason,
-                };
-                break;
-              } else {
-                const plan = validateComponentAdaptation(
-                  decision.plan,
-                  context.evidence,
-                );
-                const beforeAdaptation = structuredClone(context.evidence);
-                const adapted = await call(
-                  "component_adapt",
-                  {
-                    candidateId: candidate.id,
-                    packetHash: context.evidence.packetHash,
-                    inputHash: run.inputHash,
-                    plan,
-                    adaptation: context.adaptation,
-                  },
-                  () =>
-                    adapter.adaptComponent!(
-                      inspection,
-                      structuredClone(beforeAdaptation),
-                      structuredClone(plan),
-                      signal,
-                    ),
-                  "adapter",
-                  (result) => {
-                    receiptsSchema.parse(result.receipts);
-                    if (
-                      result.evidence.token !== inspection.token ||
-                      result.evidence.candidateId !== candidate.id ||
-                      result.evidence.inputHash !== run.inputHash ||
-                      result.evidence.packetHash === context.evidence.packetHash
-                    )
-                      throw Error(
-                        "Adapted component identity differs from selected asset/context or was not recaptured",
-                      );
-                  },
-                );
-                active();
-                appliedSteps.push({
-                  plan: structuredClone(plan),
-                  evidence: structuredClone(adapted.evidence),
-                });
-                context = {
-                  ...context,
-                  stage: componentStageContext(
-                    run,
+          attempted.add(candidate.id);
+          candidates = candidates.filter((c) => c.id !== candidate.id);
+          entry.attempts++;
+          await record("candidate_selected", {
+            candidate,
+            reason: decision.reason,
+            attempt: entry.attempts,
+          });
+          const inspection = await candidateOperation(
+            "inspection",
+            candidate,
+            () =>
+              call(
+                "inspect",
+                { needId: need.id, candidate, attempt: entry.attempts },
+                () =>
+                  adapter.inspect(
                     need,
                     candidate,
-                    retainedEntries,
+                    `${run.runId}:${need.id}:${entry.attempts}`,
+                    signal,
                   ),
-                  evidence: adapted.evidence,
-                  preservation: componentPreservationChainContext(
-                    prepared.evidence,
-                    appliedSteps,
-                  ),
-                };
-                review = await call(
-                  "component_adapted_review",
-                  {
-                    candidateId: candidate.id,
-                    packetHash: context.evidence.packetHash,
-                    inputHash: run.inputHash,
-                    requirementIds,
-                    stage: context.stage,
-                    adaptation: context.adaptation,
-                    preservation: context.preservation,
-                  },
-                  async () =>
-                    validateComponentReview(
-                      await model.reviewComponent!(
-                        structuredClone(context),
-                        signal,
-                      ),
-                      context.evidence,
-                      requirementIds,
-                    ),
-                  "model",
-                );
-              }
-            }
+                "adapter",
+                (result) => {
+                  if (
+                    result &&
+                    typeof result.token === "string" &&
+                    result.token
+                  )
+                    owned = result;
+                  else
+                    throw Error(
+                      "Inspection returned no owned token; native import outcome is unresolved",
+                    );
+                },
+              ),
+          );
+          if (!inspection) continue;
+          active();
+          if (
+            !owned ||
+            inspection.candidate.id !== candidate.id ||
+            inspection.candidate.kind !== need.kind ||
+            inspection.candidate.source !== candidate.source ||
+            (candidate.source === "creator_store_component" &&
+              !isDeepStrictEqual(
+                inspection.candidate.componentOrigin,
+                candidate.componentOrigin,
+              ))
+          )
+            throw new PipelineHalt(
+              "Inspection did not return the selected candidate and an owned token",
+            );
+          receiptsSchema.parse(inspection.receipts);
+          completedInspections++;
+          if (inspection.capabilityBlock !== undefined) {
+            const block = capabilityBlockSchema.parse(
+              inspection.capabilityBlock,
+            );
+            await record("capability_blocked", {
+              candidateId: candidate.id,
+              ...block,
+              proceduralFallbackAllowed: false,
+            });
             if (
-              review.disposition === "integration_candidate" &&
-              adapter.prepareComponentIntegration
+              block.kind === "interactive_asset_requires_review" &&
+              adapter.prepareComponentReview &&
+              model.reviewComponent
             ) {
-              const preparedIntegration = await call(
-                "component_integration_prepare",
+              const prepared = await call(
+                "component_prepare",
                 {
+                  token: inspection.token,
                   candidateId: candidate.id,
-                  packetHash: context.evidence.packetHash,
                   inputHash: run.inputHash,
+                  policy:
+                    "retain_original_then_capture_restricted_derivative_for_review_only",
                 },
                 () =>
-                  adapter.prepareComponentIntegration!(
-                    need,
+                  adapter.prepareComponentReview!(
                     inspection,
-                    context.evidence,
-                    review,
+                    run.inputHash,
                     signal,
                   ),
                 "adapter",
                 (result) => {
                   receiptsSchema.parse(result.receipts);
-                  const ref = componentReferenceSchema.parse(result.component);
                   if (
-                    ref.needId !== need.id ||
-                    ref.candidateId !== candidate.id ||
-                    ref.inputHash !== run.inputHash ||
-                    ref.packetHash !== context.evidence.packetHash ||
-                    ref.archiveHash !== context.evidence.derivativeHash
+                    result.evidence.token !== inspection.token ||
+                    result.evidence.candidateId !== candidate.id ||
+                    result.evidence.inputHash !== run.inputHash
                   )
                     throw Error(
-                      "Integration reference differs from reviewed need/component",
+                      "Prepared component identity differs from selected asset or game context",
                     );
                 },
               );
-              const retainedBundle = bundleSchema.parse(
-                preparedIntegration.bundle,
+              const requirementIds = [
+                ...new Set([
+                  need.requirementId,
+                  ...(need.intent?.relatedRequirementIds ?? []),
+                ]),
+              ];
+              let context: {
+                need: AssetNeed;
+                evidence: typeof prepared.evidence;
+                requirementIds: string[];
+                stage: ComponentStageContext;
+                preservation?: ComponentPreservationContext;
+                adaptation: {
+                  attempt: number;
+                  maxAttempts: 2;
+                  remainingAttempts: number;
+                };
+              } = {
+                need,
+                evidence: prepared.evidence,
+                requirementIds,
+                stage: componentStageContext(
+                  run,
+                  need,
+                  candidate,
+                  retainedEntries,
+                ),
+                adaptation: {
+                  attempt: 1,
+                  maxAttempts: maxComponentAdaptations,
+                  remainingAttempts: maxComponentAdaptations - 1,
+                },
+              };
+              let review = await call(
+                "component_review",
+                {
+                  candidateId: candidate.id,
+                  packetHash: prepared.evidence.packetHash,
+                  inputHash: run.inputHash,
+                  requirementIds,
+                  stage: context.stage,
+                  adaptation: context.adaptation,
+                },
+                async () =>
+                  validateComponentReview(
+                    await model.reviewComponent!(
+                      structuredClone(context),
+                      signal,
+                    ),
+                    prepared.evidence,
+                    requirementIds,
+                  ),
+                "model",
+              );
+              const appliedSteps: {
+                plan: ComponentAdaptation;
+                evidence: typeof prepared.evidence;
+              }[] = [];
+              while (
+                adapter.adaptComponent &&
+                model.adaptComponent &&
+                (appliedSteps.length === 0
+                  ? review.disposition !== "integration_candidate" ||
+                    review.sources.some((source) => source.reuse === "adapt")
+                  : appliedSteps.length < maxComponentAdaptations &&
+                    review.disposition === "needs_more_evidence")
+              ) {
+                context.adaptation = {
+                  attempt: appliedSteps.length + 1,
+                  maxAttempts: maxComponentAdaptations,
+                  remainingAttempts:
+                    maxComponentAdaptations - appliedSteps.length - 1,
+                };
+                context.stage = componentStageContext(
+                  run,
+                  need,
+                  candidate,
+                  retainedEntries,
+                );
+                const decision = componentAdaptationDecisionSchema.parse(
+                  await call(
+                    "component_adaptation_decision",
+                    {
+                      candidateId: candidate.id,
+                      packetHash: context.evidence.packetHash,
+                      inputHash: run.inputHash,
+                      stage: context.stage,
+                      adaptation: context.adaptation,
+                    },
+                    () =>
+                      model.adaptComponent!(
+                        structuredClone({ ...context, review }),
+                        signal,
+                      ),
+                    "model",
+                  ),
+                );
+                active();
+                if (decision.action === "reject") {
+                  review = {
+                    ...review,
+                    disposition: "unsuitable",
+                    reason: decision.reason,
+                  };
+                  break;
+                } else {
+                  const plan = validateComponentAdaptation(
+                    decision.plan,
+                    context.evidence,
+                  );
+                  const beforeAdaptation = structuredClone(context.evidence);
+                  const adapted = await call(
+                    "component_adapt",
+                    {
+                      candidateId: candidate.id,
+                      packetHash: context.evidence.packetHash,
+                      inputHash: run.inputHash,
+                      plan,
+                      adaptation: context.adaptation,
+                    },
+                    () =>
+                      adapter.adaptComponent!(
+                        inspection,
+                        structuredClone(beforeAdaptation),
+                        structuredClone(plan),
+                        signal,
+                      ),
+                    "adapter",
+                    (result) => {
+                      receiptsSchema.parse(result.receipts);
+                      if (
+                        result.evidence.token !== inspection.token ||
+                        result.evidence.candidateId !== candidate.id ||
+                        result.evidence.inputHash !== run.inputHash ||
+                        result.evidence.packetHash ===
+                          context.evidence.packetHash
+                      )
+                        throw Error(
+                          "Adapted component identity differs from selected asset/context or was not recaptured",
+                        );
+                    },
+                  );
+                  active();
+                  appliedSteps.push({
+                    plan: structuredClone(plan),
+                    evidence: structuredClone(adapted.evidence),
+                  });
+                  context = {
+                    ...context,
+                    stage: componentStageContext(
+                      run,
+                      need,
+                      candidate,
+                      retainedEntries,
+                    ),
+                    evidence: adapted.evidence,
+                    preservation: componentPreservationChainContext(
+                      prepared.evidence,
+                      appliedSteps,
+                    ),
+                  };
+                  review = await call(
+                    "component_adapted_review",
+                    {
+                      candidateId: candidate.id,
+                      packetHash: context.evidence.packetHash,
+                      inputHash: run.inputHash,
+                      requirementIds,
+                      stage: context.stage,
+                      adaptation: context.adaptation,
+                      preservation: context.preservation,
+                    },
+                    async () =>
+                      validateComponentReview(
+                        await model.reviewComponent!(
+                          structuredClone(context),
+                          signal,
+                        ),
+                        context.evidence,
+                        requirementIds,
+                      ),
+                    "model",
+                  );
+                }
+              }
+              if (
+                review.disposition === "integration_candidate" &&
+                adapter.prepareComponentIntegration
+              ) {
+                const preparedIntegration = await call(
+                  "component_integration_prepare",
+                  {
+                    candidateId: candidate.id,
+                    packetHash: context.evidence.packetHash,
+                    inputHash: run.inputHash,
+                  },
+                  () =>
+                    adapter.prepareComponentIntegration!(
+                      need,
+                      inspection,
+                      context.evidence,
+                      review,
+                      signal,
+                    ),
+                  "adapter",
+                  (result) => {
+                    receiptsSchema.parse(result.receipts);
+                    const ref = componentReferenceSchema.parse(
+                      result.component,
+                    );
+                    if (
+                      ref.needId !== need.id ||
+                      ref.candidateId !== candidate.id ||
+                      ref.inputHash !== run.inputHash ||
+                      ref.packetHash !== context.evidence.packetHash ||
+                      ref.archiveHash !== context.evidence.derivativeHash
+                    )
+                      throw Error(
+                        "Integration reference differs from reviewed need/component",
+                      );
+                  },
+                );
+                const retainedBundle = bundleSchema.parse(
+                  preparedIntegration.bundle,
+                );
+                if (
+                  retainedBundle.files.length ||
+                  retainedBundle.scene.length ||
+                  retainedBundle.assets.length !== 1 ||
+                  retainedBundle.assets[0].id !== need.id ||
+                  retainedBundle.assets[0].assetId !== candidate.id ||
+                  retainedBundle.assets[0].status !== "retrieved"
+                )
+                  throw new PipelineHalt(
+                    "Component preparation returned an unrelated generated bundle",
+                  );
+                await cleanup(
+                  "Verified component export retained; release quarantine before game integration",
+                );
+                active();
+                entry.component = preparedIntegration.component;
+                entry.componentContextHash = run.inputHash;
+                entry.bundle = retainedBundle;
+                entry.selected = candidate;
+                entry.status = "passed";
+                entry.reason =
+                  "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified.";
+                await record("component_prepared", {
+                  component: entry.component,
+                  stillPresentInStudio: false,
+                  runtimeVerification: "not_performed",
+                  placement: "worker_integration_required",
+                });
+                retainedComponents.set(
+                  need.id,
+                  structuredClone(
+                    componentReferenceSchema.parse(entry.component),
+                  ),
+                );
+                break;
+              }
+              await cleanup(
+                "Component source review complete; execution and integration remain unavailable",
+              );
+              if (review.disposition === "unsuitable") {
+                const reason =
+                  "Component review rejected this candidate: " + review.reason;
+                await record("candidate_rejected", {
+                  candidateId: candidate.id,
+                  phase: "component_review",
+                  packetHash: context.evidence.packetHash,
+                  reason,
+                  classification: "candidate_rejected",
+                  effects: "none",
+                  cleanupConfirmed: true,
+                });
+                rejected.push({ candidateId: candidate.id, reason });
+                continue;
+              }
+              await escalate(
+                "Component source review recorded (" +
+                  review.disposition +
+                  "): " +
+                  review.reason +
+                  ". Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
               );
               if (
-                retainedBundle.files.length ||
-                retainedBundle.scene.length ||
-                retainedBundle.assets.length !== 1 ||
-                retainedBundle.assets[0].id !== need.id ||
-                retainedBundle.assets[0].assetId !== candidate.id ||
-                retainedBundle.assets[0].status !== "retrieved"
+                !need.required &&
+                adapter.searchScope === "approved_references"
               )
-                throw new PipelineHalt(
-                  "Component preparation returned an unrelated generated bundle",
-                );
-              await cleanup(
-                "Verified component export retained; release quarantine before game integration",
-              );
-              active();
-              entry.component = preparedIntegration.component;
-              entry.componentContextHash = run.inputHash;
-              entry.bundle = retainedBundle;
-              entry.selected = candidate;
-              entry.status = "passed";
-              entry.reason =
-                "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified.";
-              await record("component_prepared", {
-                component: entry.component,
-                stillPresentInStudio: false,
-                runtimeVerification: "not_performed",
-                placement: "worker_integration_required",
-              });
-              retainedComponents.set(
-                need.id,
-                structuredClone(
-                  componentReferenceSchema.parse(entry.component),
-                ),
-              );
-              break;
+                continue needsLoop;
+              return run;
             }
-            await cleanup(
-              "Component source review complete; execution and integration remain unavailable",
-            );
-            if (review.disposition === "unsuitable") {
-              const reason =
-                "Component review rejected this candidate: " + review.reason;
-              await record("candidate_rejected", {
-                candidateId: candidate.id,
-                phase: "component_review",
-                packetHash: context.evidence.packetHash,
-                reason,
-                classification: "candidate_rejected",
-                effects: "none",
-                cleanupConfirmed: true,
-              });
-              rejected.push({ candidateId: candidate.id, reason });
-              continue;
-            }
-            await escalate(
-              "Component source review recorded (" +
-                review.disposition +
-                "): " +
-                review.reason +
-                ". Complete dependency verification and supported native integration are still required; procedural fallback is not authorized.",
-            );
+            await cleanup("Capability review required: " + block.reason);
+            await escalate("Asset reuse capability blocked: " + block.reason);
+            if (!need.required && adapter.searchScope === "approved_references")
+              continue needsLoop;
             return run;
           }
-          await cleanup("Capability review required: " + block.reason);
-          await escalate("Asset reuse capability blocked: " + block.reason);
-          return run;
-        }
-        let reason = !inspection.safe
-          ? "Inspection is unsafe: " + inspection.reasons.join("; ")
-          : !functional(need, inspection.functional, need.kind !== "Audio")
-            ? "Inspection lacks loaded, script-free native functional evidence"
-            : !imagePresent(need, inspection.image)
-              ? "Inspection lacks an actual image for visual evaluation"
-              : "";
-        if (!reason && need.kind === "Audio" && !inspection.audio) {
-          await cleanup("Audio semantic/listening evaluation is unavailable");
-          if (need.required) {
-            await escalate(
-              "Audio playback does not establish audible semantic fit; listening capability requires actual bound audio evidence",
+          let reason = !inspection.safe
+            ? "Inspection is unsafe: " + inspection.reasons.join("; ")
+            : !functional(need, inspection.functional, need.kind !== "Audio")
+              ? "Inspection lacks loaded, script-free native functional evidence"
+              : !imagePresent(need, inspection.image)
+                ? "Inspection lacks an actual image for visual evaluation"
+                : "";
+          if (!reason && need.kind === "Audio" && !inspection.audio) {
+            await cleanup("Audio semantic/listening evaluation is unavailable");
+            if (need.required) {
+              await escalate(
+                "Audio playback does not establish audible semantic fit; listening capability requires actual bound audio evidence",
+              );
+              return run;
+            }
+            await failNeed(
+              "Optional audio omitted: playback cannot establish audible semantic fit without listening evidence",
             );
-            return run;
+            break;
           }
-          await failNeed(
-            "Optional audio omitted: playback cannot establish audible semantic fit without listening evidence",
-          );
-          break;
-        }
-        if (!reason && need.kind === "Audio") {
-          try {
-            validateBoundAudio(
-              inspection.audio!,
-              inspection.receipts,
-              candidate.id,
-              inspection.token,
-            );
-          } catch (error) {
-            reason = "Inspection audio evidence rejected: " + String(error);
-          }
-        }
-        if (!reason) {
-          const evaluation = assetEvaluationSchema.parse(
-            await call(
-              "inspection_evaluation",
-              {
-                candidateId: candidate.id,
-                image: inspection.image,
-                audio: audioSummary(
-                  need.kind === "Audio" ? inspection.audio : undefined,
-                ),
-                route: run.policy.evaluatorRoute,
-              },
-              () =>
-                model.evaluate(
-                  {
-                    phase: "inspection",
-                    need,
-                    candidate,
-                    inspection: {
-                      path: inspection.path,
-                      safe: inspection.safe,
-                      reasons: inspection.reasons,
-                      functional: inspection.functional,
-                      snapshot: observationSummary(inspection.snapshot),
-                      audio: audioSummary(
-                        need.kind === "Audio" ? inspection.audio : undefined,
-                      ),
-                    },
-                  },
-                  inspection.image,
-                  signal,
-                  need.kind === "Audio" ? inspection.audio : undefined,
-                ),
-              "model",
-            ),
-          );
-          active();
-          if (
-            !evaluation.accepted ||
-            (need.kind === "Audio"
-              ? evaluation.audioFit !== true
-              : !evaluation.visualFit) ||
-            !evaluation.functionalFit
-          )
-            reason =
-              "Inspection evaluator rejected candidate: " + evaluation.reason;
-        }
-        if (reason) {
-          await record("candidate_rejected", {
-            candidateId: candidate.id,
-            phase: "inspection",
-            reason,
-          });
-          await cleanup(reason);
-          rejected.push({ candidateId: candidate.id, reason });
-          continue;
-        }
-        const placed = await candidateOperation("placed", candidate, () =>
-          call(
-            "place",
-            {
-              needId: need.id,
-              candidateId: candidate.id,
-              token: inspection.token,
-            },
-            () => adapter.place(need, inspection, signal),
-            "adapter",
-          ),
-        );
-        if (!placed) continue;
-        active();
-        receiptsSchema.parse(placed.receipts);
-        reason = !placed.passed
-          ? "Native placement verification failed: " + placed.reasons.join("; ")
-          : !functional(need, placed.functional)
-            ? "Placed asset lacks loaded, script-free native functional evidence"
-            : !imagePresent(need, placed.image)
-              ? "Placed asset lacks an actual image for evaluation"
-              : "";
-        if (!reason && need.kind === "Audio") {
-          if (!placed.audio)
-            reason =
-              "Placed asset lacks actual audio evidence; listening verification remains unavailable";
-          else
+          if (!reason && need.kind === "Audio") {
             try {
               validateBoundAudio(
-                placed.audio,
-                placed.receipts,
+                inspection.audio!,
+                inspection.receipts,
                 candidate.id,
                 inspection.token,
-                inspection.audio,
               );
             } catch (error) {
-              reason = "Placement audio evidence rejected: " + String(error);
+              reason = "Inspection audio evidence rejected: " + String(error);
             }
-        }
-        if (!reason) {
-          const evaluation = assetEvaluationSchema.parse(
-            await call(
-              "placement_evaluation",
-              {
-                candidateId: candidate.id,
-                image: placed.image,
-                audio: audioSummary(
-                  need.kind === "Audio" ? placed.audio : undefined,
-                ),
-                route: run.policy.evaluatorRoute,
-              },
-              () =>
-                model.evaluate(
-                  {
-                    phase: "placed",
-                    need,
-                    candidate,
-                    verification: {
-                      passed: placed.passed,
-                      reasons: placed.reasons,
-                      functional: placed.functional,
-                      snapshot: observationSummary(placed.snapshot),
-                      geometry: geometrySummary(placed.bundle?.scene),
-                      audio: audioSummary(
-                        need.kind === "Audio" ? placed.audio : undefined,
-                      ),
+          }
+          if (!reason) {
+            const evaluation = assetEvaluationSchema.parse(
+              await call(
+                "inspection_evaluation",
+                {
+                  candidateId: candidate.id,
+                  image: inspection.image,
+                  audio: audioSummary(
+                    need.kind === "Audio" ? inspection.audio : undefined,
+                  ),
+                  route: run.policy.evaluatorRoute,
+                },
+                () =>
+                  model.evaluate(
+                    {
+                      phase: "inspection",
+                      need,
+                      candidate,
+                      inspection: {
+                        path: inspection.path,
+                        safe: inspection.safe,
+                        reasons: inspection.reasons,
+                        functional: inspection.functional,
+                        snapshot: observationSummary(inspection.snapshot),
+                        audio: audioSummary(
+                          need.kind === "Audio" ? inspection.audio : undefined,
+                        ),
+                      },
                     },
-                  },
-                  placed.image,
-                  signal,
-                  need.kind === "Audio" ? placed.audio : undefined,
-                ),
-              "model",
+                    inspection.image,
+                    signal,
+                    need.kind === "Audio" ? inspection.audio : undefined,
+                  ),
+                "model",
+              ),
+            );
+            active();
+            if (
+              !evaluation.accepted ||
+              (need.kind === "Audio"
+                ? evaluation.audioFit !== true
+                : !evaluation.visualFit) ||
+              !evaluation.functionalFit
+            ) {
+              if (
+                adapter.searchScope === "approved_references" &&
+                !groundedAssetRejection(
+                  evaluation,
+                  (run.inputContext?.gameContext as any)?.userSources ?? [],
+                  inspection.reasons,
+                )
+              )
+                await record("approval_limitation", {
+                  candidateId: candidate.id,
+                  phase: "inspection",
+                  reason: evaluation.reason,
+                });
+              else
+                reason =
+                  "Inspection evaluator rejected candidate: " +
+                  evaluation.reason;
+            }
+          }
+          if (reason) {
+            await record("candidate_rejected", {
+              candidateId: candidate.id,
+              phase: "inspection",
+              reason,
+            });
+            await cleanup(reason);
+            rejected.push({ candidateId: candidate.id, reason });
+            continue;
+          }
+          const placed = await candidateOperation("placed", candidate, () =>
+            call(
+              "place",
+              {
+                needId: need.id,
+                candidateId: candidate.id,
+                token: inspection.token,
+              },
+              () => adapter.place(need, inspection, signal),
+              "adapter",
             ),
           );
+          if (!placed) continue;
           active();
+          receiptsSchema.parse(placed.receipts);
+          reason = !placed.passed
+            ? "Native placement verification failed: " +
+              placed.reasons.join("; ")
+            : !functional(need, placed.functional)
+              ? "Placed asset lacks loaded, script-free native functional evidence"
+              : !imagePresent(need, placed.image)
+                ? "Placed asset lacks an actual image for evaluation"
+                : "";
+          if (!reason && need.kind === "Audio") {
+            if (!placed.audio)
+              reason =
+                "Placed asset lacks actual audio evidence; listening verification remains unavailable";
+            else
+              try {
+                validateBoundAudio(
+                  placed.audio,
+                  placed.receipts,
+                  candidate.id,
+                  inspection.token,
+                  inspection.audio,
+                );
+              } catch (error) {
+                reason = "Placement audio evidence rejected: " + String(error);
+              }
+          }
+          if (!reason) {
+            const evaluation = assetEvaluationSchema.parse(
+              await call(
+                "placement_evaluation",
+                {
+                  candidateId: candidate.id,
+                  image: placed.image,
+                  audio: audioSummary(
+                    need.kind === "Audio" ? placed.audio : undefined,
+                  ),
+                  route: run.policy.evaluatorRoute,
+                },
+                () =>
+                  model.evaluate(
+                    {
+                      phase: "placed",
+                      need,
+                      candidate,
+                      verification: {
+                        passed: placed.passed,
+                        reasons: placed.reasons,
+                        functional: placed.functional,
+                        snapshot: observationSummary(placed.snapshot),
+                        geometry: geometrySummary(placed.bundle?.scene),
+                        audio: audioSummary(
+                          need.kind === "Audio" ? placed.audio : undefined,
+                        ),
+                      },
+                    },
+                    placed.image,
+                    signal,
+                    need.kind === "Audio" ? placed.audio : undefined,
+                  ),
+                "model",
+              ),
+            );
+            active();
+            if (
+              !evaluation.accepted ||
+              (need.kind === "Audio"
+                ? evaluation.audioFit !== true
+                : !evaluation.visualFit) ||
+              !evaluation.functionalFit
+            ) {
+              if (
+                adapter.searchScope === "approved_references" &&
+                !groundedAssetRejection(
+                  evaluation,
+                  (run.inputContext?.gameContext as any)?.userSources ?? [],
+                  placed.reasons,
+                )
+              )
+                await record("approval_limitation", {
+                  candidateId: candidate.id,
+                  phase: "placed",
+                  reason: evaluation.reason,
+                });
+              else
+                reason =
+                  "Placed-asset evaluator rejected candidate: " +
+                  evaluation.reason;
+            }
+          }
+          if (reason) {
+            await record("candidate_rejected", {
+              candidateId: candidate.id,
+              phase: "placed",
+              reason,
+            });
+            await cleanup(reason);
+            rejected.push({ candidateId: candidate.id, reason });
+            continue;
+          }
+          const verifiedBundle = bundleSchema.parse(placed.bundle);
           if (
-            !evaluation.accepted ||
-            (need.kind === "Audio"
-              ? evaluation.audioFit !== true
-              : !evaluation.visualFit) ||
-            !evaluation.functionalFit
+            !verifiedBundle.scene.length ||
+            verifiedBundle.files.length ||
+            verifiedBundle.scene.some((node) =>
+              ["Script", "LocalScript", "ModuleScript"].includes(
+                node.className,
+              ),
+            )
           )
-            reason =
-              "Placed-asset evaluator rejected candidate: " + evaluation.reason;
-        }
-        if (reason) {
-          await record("candidate_rejected", {
-            candidateId: candidate.id,
-            phase: "placed",
-            reason,
-          });
-          await cleanup(reason);
-          rejected.push({ candidateId: candidate.id, reason });
-          continue;
-        }
-        const verifiedBundle = bundleSchema.parse(placed.bundle);
-        if (
-          !verifiedBundle.scene.length ||
-          verifiedBundle.files.length ||
-          verifiedBundle.scene.some((node) =>
-            ["Script", "LocalScript", "ModuleScript"].includes(node.className),
-          )
-        )
-          throw new PipelineHalt(
-            "Asset export must contain scene objects and no executable scripts",
+            throw new PipelineHalt(
+              "Asset export must contain scene objects and no executable scripts",
+            );
+          // The whole-game plugin owns the final namespace. Retain the verified export,
+          // then release only this adapter-owned temporary import before claiming success.
+          await cleanup(
+            "Verified export retained; release temporary imports before the whole-game apply",
           );
-        // The whole-game plugin owns the final namespace. Retain the verified export,
-        // then release only this adapter-owned temporary import before claiming success.
-        await cleanup(
-          "Verified export retained; release temporary imports before the whole-game apply",
-        );
-        active();
-        await record("asset_released", {
-          candidateId: candidate.id,
-          bundleHash: sha(JSON.stringify(verifiedBundle)),
-          finalGameVerification: "pending",
-          stillPresentInStudio: false,
-        });
-        entry.bundle = verifiedBundle;
-        entry.status = "passed";
-        entry.selected = candidate;
-        entry.reason =
-          "Temporary inspection and placement verified by both evaluator observations, then owned imports released; exported bundle retained. Final whole-game verification remains pending.";
-        await record("need_passed", {
-          candidate,
-          bundleHash: sha(JSON.stringify(entry.bundle)),
-          attempts: entry.attempts,
-        });
-        owned = undefined;
-        break;
-      }
-      if (entry.status === "pending" && fallbackPolicy()?.blockingReason) {
-        const reason = fallbackPolicy()!.blockingReason!;
-        await record("visual_fallback_blocked", fallbackPolicy());
-        await escalate(reason);
-        return run;
-      }
-      if (entry.status === "pending") {
-        if (fallbackPolicy())
-          await record("visual_fallback_eligible", fallbackPolicy());
-        await failNeed("Candidate attempt budget exhausted");
+          active();
+          await record("asset_released", {
+            candidateId: candidate.id,
+            bundleHash: sha(JSON.stringify(verifiedBundle)),
+            finalGameVerification: "pending",
+            stillPresentInStudio: false,
+          });
+          entry.bundle = verifiedBundle;
+          entry.status = "passed";
+          entry.selected = candidate;
+          entry.reason =
+            "Temporary inspection and placement verified by both evaluator observations, then owned imports released; exported bundle retained. Final whole-game verification remains pending.";
+          await record("need_passed", {
+            candidate,
+            bundleHash: sha(JSON.stringify(entry.bundle)),
+            attempts: entry.attempts,
+          });
+          owned = undefined;
+          break;
+        }
+        if (entry.status === "pending" && fallbackPolicy()?.blockingReason) {
+          const reason = fallbackPolicy()!.blockingReason!;
+          await record("visual_fallback_blocked", fallbackPolicy());
+          await escalate(reason);
+          if (!need.required && adapter.searchScope === "approved_references")
+            continue needsLoop;
+          return run;
+        }
+        if (entry.status === "pending") {
+          if (fallbackPolicy())
+            await record("visual_fallback_eligible", fallbackPolicy());
+          await failNeed("Candidate attempt budget exhausted");
+        }
+      } catch (error) {
+        // A settled acquisition failure leaves a gap. Cancellation, uncertain
+        // native effects and failed durable logging still halt the entire run.
+        if (
+          need.required ||
+          adapter.searchScope !== "approved_references" ||
+          signal.aborted ||
+          error instanceof PersistenceHalt ||
+          (error instanceof PipelineHalt && error.unsafeToClean)
+        )
+          throw error;
+        if (owned) await cleanup("Acquisition failed: " + String(error));
+        await failNeed(String(error));
       }
     }
     active();

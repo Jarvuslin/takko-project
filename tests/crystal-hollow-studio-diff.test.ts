@@ -245,7 +245,10 @@ print("PASS generated rollback " .. mode)
       const file = path.join(directory, "rollback.luau");
       fs.writeFileSync(file, testSource);
       const output = execFileSync(
-        path.resolve("research/tools/luau/luau.exe"),
+        path.resolve(
+          process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+          "luau" + (process.platform === "win32" ? ".exe" : ""),
+        ),
         [file],
         { encoding: "utf8", windowsHide: true, timeout: 10000 },
       );
@@ -253,7 +256,10 @@ print("PASS generated rollback " .. mode)
       const generated = path.join(directory, "diff.luau");
       fs.writeFileSync(generated, full);
       execFileSync(
-        path.resolve("research/tools/luau/luau-compile.exe"),
+        path.resolve(
+          process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+          "luau-compile" + (process.platform === "win32" ? ".exe" : ""),
+        ),
         ["--null", generated],
         { windowsHide: true, timeout: 10000 },
       );
@@ -273,14 +279,27 @@ it.each(["setter-equivalent", "changed-color", "changed-unspecified"])(
   "executes preflight with exact setter canonicalization and pristine defaults (%s)",
   (mode) => {
     const before = fixture();
-    before.scene[1].properties = { Color: { type: "Color3", value: [0.2, 0.23, 0.29] } };
+    before.scene[1].properties = {
+      Color: { type: "Color3", value: [0.2, 0.23, 0.29] },
+    };
     const after = structuredClone(before);
-    after.scene[1].properties.Color = { type: "Color3", value: [0.5, 0.6, 0.7] };
+    after.scene[1].properties.Color = {
+      type: "Color3",
+      value: [0.5, 0.6, 0.7],
+    };
     after.scene[1].properties.Transparency = 0.25;
     const full = createCrystalHollowSceneDiff(before, after).lua;
-    const helpers = full.slice(full.indexOf("local function defaultFor"), full.indexOf("local preflightOk"));
-    const preflight = full.slice(full.indexOf("  for _, change in ipairs(changes) do"), full.indexOf("  if next(replacements) then"));
-    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "takko-diff-test-"));
+    const helpers = full.slice(
+      full.indexOf("local function defaultFor"),
+      full.indexOf("local preflightOk"),
+    );
+    const preflight = full.slice(
+      full.indexOf("  for _, change in ipairs(changes) do"),
+      full.indexOf("  if next(replacements) then"),
+    );
+    const directory = fs.mkdtempSync(
+      path.join(os.tmpdir(), "takko-diff-test-"),
+    );
     try {
       const source = `
 local mode = "${mode}"
@@ -337,26 +356,57 @@ print("PASS canonical preflight " .. mode)
 `;
       const file = path.join(directory, "canonical.luau");
       fs.writeFileSync(file, source);
-      const output = execFileSync(path.resolve("research/tools/luau/luau.exe"), [file], {encoding:"utf8",windowsHide:true,timeout:10000});
+      const output = execFileSync(
+        path.resolve(
+          process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+          "luau" + (process.platform === "win32" ? ".exe" : ""),
+        ),
+        [file],
+        { encoding: "utf8", windowsHide: true, timeout: 10000 },
+      );
       expect(output).toContain("PASS canonical preflight " + mode);
     } finally {
       const target = path.resolve(directory);
-      if (!target.startsWith(path.resolve(os.tmpdir()) + path.sep) || !path.basename(target).startsWith("takko-diff-test-")) throw Error("Unexpected cleanup path");
-      fs.rmSync(target, {recursive:true,force:true});
+      if (
+        !target.startsWith(path.resolve(os.tmpdir()) + path.sep) ||
+        !path.basename(target).startsWith("takko-diff-test-")
+      )
+        throw Error("Unexpected cleanup path");
+      fs.rmSync(target, { recursive: true, force: true });
     }
   },
 );
 
-it.each(["strict-abort", "optin-applies", "optin-rollback", "recording-api-fails"])(
+it.each([
+  "strict-abort",
+  "optin-applies",
+  "optin-rollback",
+  "recording-api-fails",
+])(
   "executes the explicit recording policy without claiming independent undo (%s)",
   (mode) => {
-    const before = fixture(), after = fixture();
+    const before = fixture(),
+      after = fixture();
     after.scene[1].properties.Transparency = 0.5;
-    const full = createCrystalHollowSceneDiff(before, after, mode === "strict-abort" ? {} : {requireOwnUndoRecording:false}).lua;
-    expect(full).toContain("local requireOwnUndoRecording = " + (mode === "strict-abort" ? "true" : "false"));
-    const execution = full.slice(full.indexOf('local history = game:GetService("ChangeHistoryService")'));
-    const helper = full.slice(full.indexOf("local function canonicalExpected"),full.indexOf("local function decode"));
-    const directory = fs.mkdtempSync(path.join(os.tmpdir(), "takko-diff-test-"));
+    const full = createCrystalHollowSceneDiff(
+      before,
+      after,
+      mode === "strict-abort" ? {} : { requireOwnUndoRecording: false },
+    ).lua;
+    expect(full).toContain(
+      "local requireOwnUndoRecording = " +
+        (mode === "strict-abort" ? "true" : "false"),
+    );
+    const execution = full.slice(
+      full.indexOf('local history = game:GetService("ChangeHistoryService")'),
+    );
+    const helper = full.slice(
+      full.indexOf("local function canonicalExpected"),
+      full.indexOf("local function decode"),
+    );
+    const directory = fs.mkdtempSync(
+      path.join(os.tmpdir(), "takko-diff-test-"),
+    );
     try {
       const source = `
 local mode = "${mode}"
@@ -401,14 +451,25 @@ else
 end
 print("PASS undo policy " .. mode)
 `;
-      const file = path.join(directory,"recording.luau");
-      fs.writeFileSync(file,source);
-      const output = execFileSync(path.resolve("research/tools/luau/luau.exe"),[file],{encoding:"utf8",windowsHide:true,timeout:10000});
+      const file = path.join(directory, "recording.luau");
+      fs.writeFileSync(file, source);
+      const output = execFileSync(
+        path.resolve(
+          process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
+          "luau" + (process.platform === "win32" ? ".exe" : ""),
+        ),
+        [file],
+        { encoding: "utf8", windowsHide: true, timeout: 10000 },
+      );
       expect(output).toContain("PASS undo policy " + mode);
     } finally {
       const target = path.resolve(directory);
-      if (!target.startsWith(path.resolve(os.tmpdir()) + path.sep) || !path.basename(target).startsWith("takko-diff-test-")) throw Error("Unexpected cleanup path");
-      fs.rmSync(target,{recursive:true,force:true});
+      if (
+        !target.startsWith(path.resolve(os.tmpdir()) + path.sep) ||
+        !path.basename(target).startsWith("takko-diff-test-")
+      )
+        throw Error("Unexpected cleanup path");
+      fs.rmSync(target, { recursive: true, force: true });
     }
   },
 );

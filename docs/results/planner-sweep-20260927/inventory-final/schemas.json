@@ -1,0 +1,833 @@
+{
+  "planner": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "architectureProposal": {
+        "description": "Propose the game runtime systems and their event/state connections. This is a proposed architecture, not the build-task dependency DAG. Include server authority for gameplay rules. User acceptance is required before it becomes a saved architecture contract.",
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "maxItems": 24,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "purpose": {
+                  "type": "string",
+                  "minLength": 5,
+                  "maxLength": 600
+                },
+                "authority": {
+                  "type": "string",
+                  "enum": [
+                    "server",
+                    "client",
+                    "shared"
+                  ]
+                },
+                "x": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4000
+                },
+                "y": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 4000
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "purpose",
+                "authority",
+                "x",
+                "y"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "edges": {
+            "maxItems": 48,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+                },
+                "from": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+                },
+                "to": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+                },
+                "event": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "effect": {
+                  "type": "string",
+                  "minLength": 5,
+                  "maxLength": 600
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "event",
+                    "state"
+                  ]
+                }
+              },
+              "required": [
+                "id",
+                "from",
+                "to",
+                "event",
+                "effect",
+                "kind"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "nodes",
+          "edges"
+        ],
+        "additionalProperties": false
+      },
+      "assetNeeds": {
+        "maxItems": 16,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+            },
+            "requirementId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "role": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "Model",
+                "MeshPart",
+                "Audio",
+                "Animation",
+                "Image"
+              ]
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "constraints": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "intent": {
+              "type": "object",
+              "properties": {
+                "experienceRole": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "description": "Why this asset matters to the requested player experience, beyond its appearance."
+                },
+                "interaction": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "description": "Player action, response and completion/reward timing; say explicitly when decorative or noninteractive."
+                },
+                "reusableFeatures": {
+                  "minItems": 1,
+                  "maxItems": 8,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 300
+                  },
+                  "description": "Existing geometry, behavior, animation or media to look for and inspect before authoring missing integration."
+                },
+                "relatedRequirementIds": {
+                  "minItems": 1,
+                  "maxItems": 40,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "description": "Actual requirement IDs grounding this purpose, including the asset's primary requirementId."
+                }
+              },
+              "required": [
+                "experienceRole",
+                "interaction",
+                "reusableFeatures",
+                "relatedRequirementIds"
+              ],
+              "additionalProperties": false
+            },
+            "required": {
+              "type": "boolean",
+              "description": "Set required explicitly. true means successful acquisition is mandatory and failure blocks generation; it does not merely require a Marketplace search. false permits unsuccessful optional visual/course sourcing to follow the existing bounded fallback policy after discovery and inspection. It never waives required audio, gameplay behavior, native verification, or capability gaps. Use the property required, not default."
+            },
+            "position": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "maxSize": {
+              "default": 12,
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            }
+          },
+          "required": [
+            "id",
+            "requirementId",
+            "role",
+            "kind",
+            "query",
+            "constraints",
+            "intent",
+            "required",
+            "position"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "assetStrategy": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 3000
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "summary": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 12000
+      },
+      "visualDirection": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 12000
+      },
+      "requirements": {
+        "minItems": 1,
+        "maxItems": 40,
+        "type": "array",
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12000
+                },
+                "sourceId": {
+                  "type": "string",
+                  "enum": [
+                    "request",
+                    "proposal:mechanics",
+                    "proposal:theme",
+                    "proposal:environment"
+                  ]
+                },
+                "sourceQuote": {
+                  "default": "",
+                  "type": "string",
+                  "maxLength": 3000
+                },
+                "origin": {
+                  "type": "string",
+                  "const": "user"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "mechanic",
+                    "world",
+                    "ui",
+                    "animation",
+                    "audio",
+                    "network",
+                    "lifecycle",
+                    "presentation"
+                  ]
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "required",
+                    "optional"
+                  ]
+                },
+                "acceptance": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12000
+                }
+              },
+              "required": [
+                "id",
+                "description",
+                "sourceId",
+                "origin",
+                "category",
+                "priority",
+                "acceptance"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12000
+                },
+                "sourceId": {
+                  "type": "string",
+                  "enum": [
+                    "request",
+                    "proposal:mechanics",
+                    "proposal:theme",
+                    "proposal:environment"
+                  ]
+                },
+                "sourceQuote": {
+                  "default": "",
+                  "type": "string",
+                  "maxLength": 3000
+                },
+                "origin": {
+                  "type": "string",
+                  "const": "inferred"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "mechanic",
+                    "world",
+                    "ui",
+                    "animation",
+                    "audio",
+                    "network",
+                    "lifecycle",
+                    "presentation"
+                  ]
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "required",
+                    "optional"
+                  ]
+                },
+                "acceptance": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 12000
+                }
+              },
+              "required": [
+                "id",
+                "description",
+                "origin",
+                "category",
+                "priority",
+                "acceptance"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "questions": {
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            },
+            "prompt": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000
+            },
+            "selection": {
+              "type": "string",
+              "enum": [
+                "single",
+                "multiple",
+                "text"
+              ]
+            },
+            "optional": {
+              "type": "boolean"
+            },
+            "options": {
+              "maxItems": 5,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 200
+              }
+            }
+          },
+          "required": [
+            "id",
+            "prompt",
+            "options"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "tasks": {
+        "minItems": 1,
+        "maxItems": 64,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "proposalSections": {
+              "description": "Approved document section dependencies, NOT requirement category labels. Only mechanics, theme, environment, assets are legal. UI, animation, audio, network and lifecycle are categories, never section names. A HUD behavior depends on mechanics, its styling on theme, and its placement on environment. An animation asset depends on assets and its trigger on mechanics. Include only actual dependencies.",
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "mechanics",
+                  "theme",
+                  "environment",
+                  "assets"
+                ]
+              }
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 12000
+            },
+            "requirements": {
+              "minItems": 1,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+              }
+            },
+            "dependsOn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+              }
+            },
+            "files": {
+              "maxItems": 8,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 240,
+                "pattern": "\\.luau$",
+                "description": "A script path ending in .luau, .server.luau or .client.luau; never a scene object path"
+              },
+              "description": "Owned script paths; use an empty array for scene-only tasks or discovery-dependent tasks whose necessary integration scripts are not yet known. After inspection, declare only necessary integration scripts with exclusive ownership."
+            }
+          },
+          "required": [
+            "id",
+            "title",
+            "requirements",
+            "dependsOn",
+            "files"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "referenceDecisions": {
+        "maxItems": 20,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mechanicId": {
+              "type": "string",
+              "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "include",
+                "adapt",
+                "omit"
+              ]
+            },
+            "requirementIds": {
+              "maxItems": 40,
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-zA-Z][a-zA-Z0-9_-]{0,63}$"
+              }
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1500
+            },
+            "userSourceId": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "userQuote": {
+              "type": "string",
+              "maxLength": 3000
+            }
+          },
+          "required": [
+            "mechanicId",
+            "action",
+            "requirementIds",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "title",
+      "summary",
+      "visualDirection",
+      "requirements",
+      "questions",
+      "tasks"
+    ],
+    "additionalProperties": false
+  },
+  "proposal": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      },
+      "assetNeeds": {
+        "maxItems": 16,
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$"
+            },
+            "requirementId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 64
+            },
+            "role": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "Model",
+                "MeshPart",
+                "Audio",
+                "Animation",
+                "Image"
+              ]
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "constraints": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "intent": {
+              "type": "object",
+              "properties": {
+                "experienceRole": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "description": "Why this asset matters to the requested player experience, beyond its appearance."
+                },
+                "interaction": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000,
+                  "description": "Player action, response and completion/reward timing; say explicitly when decorative or noninteractive."
+                },
+                "reusableFeatures": {
+                  "minItems": 1,
+                  "maxItems": 8,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 300
+                  },
+                  "description": "Existing geometry, behavior, animation or media to look for and inspect before authoring missing integration."
+                },
+                "relatedRequirementIds": {
+                  "minItems": 1,
+                  "maxItems": 40,
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "description": "Actual requirement IDs grounding this purpose, including the asset's primary requirementId."
+                }
+              },
+              "required": [
+                "experienceRole",
+                "interaction",
+                "reusableFeatures",
+                "relatedRequirementIds"
+              ],
+              "additionalProperties": false
+            },
+            "required": {
+              "default": true,
+              "type": "boolean"
+            },
+            "position": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                {
+                  "type": "number",
+                  "minimum": -10000,
+                  "maximum": 10000
+                }
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "maxSize": {
+              "default": 12,
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 200
+            }
+          },
+          "required": [
+            "id",
+            "requirementId",
+            "role",
+            "kind",
+            "query",
+            "constraints",
+            "position"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "mechanics": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "assumptions": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "unresolved": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          }
+        },
+        "required": [
+          "text",
+          "assumptions",
+          "unresolved"
+        ],
+        "additionalProperties": false
+      },
+      "theme": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "assumptions": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "unresolved": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          }
+        },
+        "required": [
+          "text",
+          "assumptions",
+          "unresolved"
+        ],
+        "additionalProperties": false
+      },
+      "environment": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 6000
+          },
+          "assumptions": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          },
+          "unresolved": {
+            "maxItems": 12,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 600
+            }
+          }
+        },
+        "required": [
+          "text",
+          "assumptions",
+          "unresolved"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "required": [
+      "title",
+      "mechanics",
+      "theme",
+      "environment"
+    ],
+    "additionalProperties": false
+  }
+}

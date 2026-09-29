@@ -1,0 +1,15 @@
+src/generation/questions.ts 138ms
+src/generation/proposal-questions.ts 32ms
+src/generation/proposal.ts 111ms
+src/generation/scope-questions.ts 35ms
+src/generation/concept.ts 57ms
+src/generation/engine.ts 687ms
+src/generation/schema.ts 98ms
+src/server/app.ts 193ms
+src/web/QuestionModal.tsx 48ms
+src/web/Proposal.tsx 23ms
+src/web/Clarifications.tsx 68ms
+src/web/Conversation.tsx 83ms
+src/web/App.tsx 268ms
+tests/proposal-questions.test.ts 60ms
+tests/browser/proposal-questions.spec.ts 19ms

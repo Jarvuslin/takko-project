@@ -1,0 +1,14 @@
+✔ reserves UTF-8 bytes plus overhead and the entire output cap (1.5438ms)
+✔ permits one dispatch and rejects the same stage even with a paid receipt (0.8866ms)
+✔ blocks any new spend after an unknown charge (0.37ms)
+✔ enforces cumulative reservations even when actual earlier charges are lower (0.2557ms)
+✔ rejects a different model and unexpected payloads (1.5289ms)
+✔ requires a monetary receipt and refuses charges exceeding the reservation (0.5841ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.4451

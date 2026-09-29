@@ -1,0 +1,153 @@
+Three small fixes, then run. Do not refactor anything else.
+
+## Where run 12 got to
+
+Furthest yet. Selection worked, inspection passed, planning nearly completed.
+
+  Attempt 1: architecture VALID. Two invalid proposalSections enums
+             ("animation" on t_client_input, "ui" on t_hud).
+  Attempt 2: fixed both enums correctly, then introduced edge e8 from
+             hit_counter_state to hit_counter_state. Attempts exhausted. Terminal.
+
+The model understood the game fine. Both failures were mechanical constraint violations
+across a ~28k-token structured output, not reasoning failures. Cost $0.455918, of which
+$0.377584 was the two planning calls.
+
+## FIX 1. Enforce the schema on the planner instead of describing it
+
+This is the important one, and the code already exists.
+
+providers.ts:241 already builds:
+
+    body.response_format = {
+      type: "json_schema",
+      json_schema: { name: outputContract.name, strict: true,
+                     schema: anthropicOutputSchema(outputContract.schema) },
+    };
+
+It is gated on profile.structuredOutput === "anthropic" plus an OpenRouter
+anthropic/<model> route, and it is currently reachable only for the concept phase and
+per-task builder calls. The implementation planner does not use it.
+
+With strict: true, attempt 1's failure is STRUCTURALLY IMPOSSIBLE. The provider cannot
+emit "animation" for an enum that does not contain it. That entire error class is
+removed deterministically, not made less likely.
+
+CONDITIONAL. Do this offline and free BEFORE anything else:
+  1. Run anthropicOutputSchema() against the implementation-planner output contract.
+  2. If the transform produces a valid strict schema, wire strict output to the planner
+     and add a regression proving an out-of-enum proposalSections value is rejected by
+     the contract rather than by post-hoc validation.
+  3. If the transform CANNOT represent the planner schema (union handling, nesting
+     depth, all-properties-required limits are the usual blockers), STOP on this fix,
+     record exactly why with the failing construct, and proceed with fixes 2 and 3 only.
+
+Do not force the schema to fit by weakening it. Do not remove fields to make the
+transform succeed.
+
+GENRE NEUTRALITY, explicitly. This adds ZERO new constraints. It only enforces the nine
+enums that already exist:
+
+    origin            user | inferred
+    category          mechanic | world | ui | animation | audio | network |
+                      lifecycle | presentation
+    priority          required | optional
+    proposalSections  mechanics | theme | environment | assets
+    kind (script)     Script | LocalScript | ModuleScript
+    kind (asset)      animation | audio | image | mesh | model
+    type              Vector3 | Color3 | CFrame | UDim2 | UDim | Vector2
+    status            implemented | blocked
+    mode              server | client
+
+These are filing labels, not game content. They apply identically to a racing game, a
+tycoon, an obby or a farming sim. All genre-specific content stays free text:
+requirement descriptions, task titles, architecture node names, asset queries. If any
+part of this work would introduce a genre-specific value or special-case the word
+"fighting", do not do it and report instead.
+
+## FIX 2. Raise the correction budget
+
+engine.ts:396 already validates executionPolicy.maxAttempts as min(1).max(6). The
+harness ran with 2, so the planner got one correction on a 28k-token output. Raise it to
+4 for this run.
+
+This is a policy value, not product code, and it is the first change that improves the
+odds at EVERY gate rather than the one that happened to fire. Budget impact: each
+planning correction was about $0.19, so worst case adds roughly $0.38.
+
+## FIX 3. Make the architecture error locate the problem
+
+architecture.ts:52 collapses three distinct failures into one message and names no edge:
+
+    if (!nodes.has(edge.from) || !nodes.has(edge.to) || edge.from === edge.to)
+      message: "Connect two different systems that exist in this architecture."
+
+The model was told "something is wrong with your edges" across a graph with eight of
+them. Split the cases and name the offending edge:
+
+    "Edge e8 connects hit_counter_state to itself. Internal lifecycle behaviour belongs
+     on the system, not as an edge. Remove it."
+    "Edge e4 references system 'foo', which does not exist in this architecture."
+
+Apply the same principle to any validator that reports a violation without naming the
+offending element. Do NOT otherwise refactor validators, and do NOT change the
+self-edge rule itself. That rule is CORRECT. We are fixing recoverability, not the rule.
+
+## Verify before spending
+
+Failing tests first from preserved real output, per the AGENTS.md fixture rule. Use
+planner-output-1.json and planner-output-2.json from docs/results/demo-export-20260927.
+
+  - the preserved self-edge produces an error naming edge e8 and the self-reference
+  - if fix 1 landed: an out-of-enum proposalSections value is rejected by the output
+    contract, and a regression proves it
+  - full npm run check, all stages, REAL counts
+  - all three scripts/replay-post-plan.ts cases still pass at $0
+
+If any of that is red, stop and report. Do not dispatch paid calls.
+
+## Then run
+
+ONE paid run, cap $8. Refresh and record the balance; it was $15.207449868 at
+2026-09-27T05:20:34.205Z. Confirm the planner profile is an OpenRouter anthropic/<model>
+route if fix 1 landed, since strict output requires it.
+
+Same unchanged positive-only brief:
+
+  "A fighting game where the player punches a stationary target dummy. Include a
+   punching animation, a punch/hit sound when the player hits the dummy, and an
+   on-screen counter that increments on each successful hit."
+
+Let Jev select automatically. Manual fallback only if nothing passes, as before.
+
+DELIVERY is GET /api/projects/:id/export producing a .rbxlx saved into the run evidence
+directory. NOT bridge apply. Do not modify place 122588481889475. Do not stop for a
+delivery-mechanism question.
+
+SUCCESS BAR: files generated, they compile, a .rbxlx exists, cost recorded per phase.
+Quality is NOT the bar. Twelve runs, zero files.
+
+ACCEPTABLE, do not stop: raw-only animation with a visible publishing limitation, an
+incomplete-inspection limitation, an asset failing acquisition with the build continuing
+and the gap reported, a crude or partly broken game.
+
+STOP only for: a genuinely new gate, the $8 cap, or an actual safety finding.
+
+## Do not do
+
+Model swap. Relevance gate redesign. Clarifying questions in selection. Confidence
+threshold. Streaming, progress UI, cost display, in-thread failure recovery.
+EditableMesh. Vision scoring. Place binding. Native-component bridge delivery. The
+duplicate relevance pass ($0.010424, 33 repeated calls from the proposal hash changing) —
+record it, leave it. Anything not in fixes 1 to 3.
+
+## After
+
+Report under docs/. Dated section at the top of continuation.md with PIDs, ports,
+refreshed balance, per-phase costs, whether fix 1 was viable and why, selection results,
+limitation-carrying requirements, OpenCode session stats, compile results, and the exact
+.rbxlx path.
+
+If the generated code is bad, SAY SO AND KEEP IT. That is the first real quality signal
+in twelve runs. Do not restart the user's app. No second paid run without new
+authorization.

@@ -1,4 +1,5 @@
 import type { Bundle, PropertyValue } from "./schema";
+import { recordedTemplate, type WorldDecision } from "./world-policy";
 import { instancePath, roots } from "./validation";
 import {
   mergeNativeComponentXml,
@@ -25,6 +26,8 @@ function property(
       "Texture",
       "MeshId",
       "TextureID",
+      "SkyboxBk", "SkyboxDn", "SkyboxFt", "SkyboxLf", "SkyboxRt", "SkyboxUp",
+      "MoonTextureId", "SunTextureId",
     ].includes(name)
       ? `<Content name="${n}"><url>${xml(v)}</url></Content>`
       : `<string name="${n}">${xml(v)}</string>`;
@@ -64,6 +67,7 @@ export function exportBundle(
   b: Bundle,
   scope: string,
   components: NativeComponentXml[] = [],
+  world?: WorldDecision,
 ) {
   type Node = {
     name: string;
@@ -99,6 +103,12 @@ export function exportBundle(
     return n;
   };
   for (const r of roots) ensure(r + "/" + scope);
+  for (const item of recordedTemplate({world})?.nodes ?? []) {
+    const n = ensure(item.path);
+    n.className = item.className;
+    n.props = item.properties;
+  }
+  if (world?.kind === "baseplate_template") ensure("Workspace/Terrain").className = "Terrain";
   for (const item of b.scene) {
     const n = ensure(item.path);
     n.className = item.className;

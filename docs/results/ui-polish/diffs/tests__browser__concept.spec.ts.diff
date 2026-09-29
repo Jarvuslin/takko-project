@@ -1,0 +1,35 @@
+diff --git "a/.forge\\ui-polish-before\\tests\\browser\\concept.spec.ts" "b/tests\\browser\\concept.spec.ts"
+index 4ad81c6..d1f70ac 100644
+--- "a/.forge\\ui-polish-before\\tests\\browser\\concept.spec.ts"
++++ "b/tests\\browser\\concept.spec.ts"
+@@ -70,15 +70,17 @@ test("concept choices, explicit delegation, reload and planning handoff", async
+     card.getByRole("button", { name: "Use this concept & plan" }),
+   ).toHaveCount(0);
+   await card
+-    .getByRole("button", { name: "A relaxed search", exact: true })
++    .getByRole("radio", { name: "A relaxed search", exact: true })
+     .click();
+-  await expect(card.getByLabel("Your answer")).toHaveValue("A relaxed search");
++  await expect(
++    card.getByRole("radio", { name: "A relaxed search", exact: true }),
++  ).toBeChecked();
+   await card
+     .getByRole("button", { name: "Choose for me", exact: true })
+     .click();
+-  await expect(card.getByLabel("Your answer")).toHaveValue(
+-    "Choose a sensible default for me.",
+-  );
++  await expect(
++    card.getByRole("button", { name: "Choose for me", exact: true }),
++  ).toHaveAttribute("aria-pressed", "true");
+   expect(calls.map((c) => c.action)).toEqual(["concept"]);
+   await card.screenshot({
+     path: `docs/results/concept-choices-${info.project.name}.png`,
+@@ -123,6 +125,7 @@ test("custom answers are retained and edited requests cannot use a stale concept
+   await page
+     .getByRole("button", { name: "Shape my idea", exact: true })
+     .click();
++  await page.getByRole("button", { name: "Other…", exact: true }).click();
+   await page.getByLabel("Your answer").fill("Friends carry pets together");
+   await page
+     .getByRole("button", { name: "Update my concept", exact: true })

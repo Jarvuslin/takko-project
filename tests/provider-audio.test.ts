@@ -29,7 +29,8 @@ function profile(provider: Profile["provider"]): Profile {
     id: "00000000-0000-4000-8000-000000000001",
     name: "Offline configured route",
     provider,
-    model: "configured-model-not-assumed-audio-capable",
+    model:
+      provider === "gemini" ? "gemini-2.5-flash" : "google/gemini-2.5-flash",
     baseUrl:
       provider === "gemini"
         ? "https://generativelanguage.googleapis.com/v1beta"
@@ -82,6 +83,36 @@ const body = (mock: ReturnType<typeof transport>) =>
   JSON.parse(mock.mock.calls[0][1]!.body as string);
 
 describe("provider audio transport (offline mocks)", () => {
+  it.each(["anthropic/claude-sonnet-5", "unknown-audio-model"])(
+    "refuses unverified model %s before dispatch",
+    async (model) => {
+      const mock = transport(routerResponse);
+      await expect(
+        complete(
+          { ...profile("openrouter"), model },
+          "key",
+          "system",
+          "user",
+          signal,
+          mock,
+          undefined,
+          false,
+          wav(),
+        ),
+      ).rejects.toThrow(/audio input/i);
+      expect(mock).not.toHaveBeenCalled();
+    },
+  );
+  it("records a definite HTTP 404 refusal as zero cost instead of an unknown hold", async () => {
+    const mock = transport({ error: { message: "No endpoints found" } }, 404);
+    await expect(
+      complete(profile("openrouter"), "key", "system", "user", signal, mock),
+    ).rejects.toMatchObject({
+      retryable: false,
+      completion: { costMicros: 0, inputTokens: 0, outputTokens: 0 },
+    });
+    expect(mock).toHaveBeenCalledTimes(1);
+  });
   it("sends Gemini inline WAV bytes separately from text and preserves total usage without double counting audio", async () => {
     const mock = transport(geminiResponse),
       audio = wav();
@@ -97,7 +128,7 @@ describe("provider audio transport (offline mocks)", () => {
       audio,
     );
     expect(mock.mock.calls[0][0]).toBe(
-      "https://generativelanguage.googleapis.com/v1beta/models/configured-model-not-assumed-audio-capable:generateContent",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
     );
     expect(body(mock).contents[0].parts).toEqual([
       { inlineData: { mimeType: "audio/wav", data: audio.data } },
@@ -111,6 +142,7 @@ describe("provider audio transport (offline mocks)", () => {
       text: '{"accepted":true}',
       inputTokens: 100,
       outputTokens: 15,
+      reasoningTokens: 3,
     });
     expect(mock.mock.calls[0][1]).toMatchObject({
       signal,
@@ -145,7 +177,7 @@ describe("provider audio transport (offline mocks)", () => {
       costMicros: 321,
     });
     expect(body(mock)).toMatchObject({
-      model: "configured-model-not-assumed-audio-capable",
+      model: "google/gemini-2.5-flash",
       response_format: { type: "json_object" },
     });
   });

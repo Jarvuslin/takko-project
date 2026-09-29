@@ -1,0 +1,116 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/storage-resilience.test.ts (7 tests | 6 failed) 55ms
+   × boots and recovers healthy projects while preserving unreadable record {"request":" 16ms
+   × boots and recovers healthy projects while preserving unreadable record {"request":""} 8ms
+   × boots and recovers healthy projects while preserving unreadable record {"request":"abc"} 6ms
+   × boots and recovers healthy projects while preserving unreadable record {} 5ms
+   × boots and recovers healthy projects while preserving unreadable record null 5ms
+   × lists healthy assets beside malformed content, invalid IDs and a disappearing file 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/storage-resilience.test.ts > boots and recovers healthy projects while preserving unreadable record {"request":"
+SyntaxError: Unterminated string in JSON at position 12 (line 1 column 13)
+ ❯ GenerationStore.get src/generation/store.ts:69:20
+     67|     const file = this.file(id);
+     68|     if (!fs.existsSync(file)) throw Error("Project not found");
+     69|     const p = JSON.parse(fs.readFileSync(file, "utf8"));
+       |                    ^
+     70|     if (p.schemaVersion === 2) return p;
+     71|     // Preserve the rejected template project intact before migrating …
+ ❯ src/generation/store.ts:88:24
+ ❯ GenerationStore.list src/generation/store.ts:88:8
+ ❯ GenerationStore.recover src/generation/store.ts:92:26
+ ❯ new Engine src/generation/engine.ts:300:11
+ ❯ createApp src/server/app.ts:58:18
+ ❯ tests/storage-resilience.test.ts:32:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/storage-resilience.test.ts > boots and recovers healthy projects while preserving unreadable record {"request":""}
+ FAIL  tests/storage-resilience.test.ts > boots and recovers healthy projects while preserving unreadable record {"request":"abc"}
+ FAIL  tests/storage-resilience.test.ts > boots and recovers healthy projects while preserving unreadable record {}
+ZodError: [
+  {
+    "origin": "string",
+    "code": "too_small",
+    "minimum": 5,
+    "inclusive": true,
+    "path": [],
+    "message": "Too small: expected string to have >=5 characters"
+  }
+]
+ ❯ newProject src/generation/store.ts:7:49
+      5| import type { Project } from "./schema";
+      6| export function newProject(request: string, budgetMicros: number): Pro…
+      7|   request = z.string().trim().min(5).max(12000).parse(request);
+       |                                                 ^
+      8|   const id = randomUUID();
+      9|   return {
+ ❯ GenerationStore.get src/generation/store.ts:74:18
+ ❯ src/generation/store.ts:88:24
+ ❯ GenerationStore.list src/generation/store.ts:88:8
+ ❯ GenerationStore.recover src/generation/store.ts:92:26
+ ❯ new Engine src/generation/engine.ts:300:11
+ ❯ createApp src/server/app.ts:58:18
+ ❯ tests/storage-resilience.test.ts:32:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/storage-resilience.test.ts > boots and recovers healthy projects while preserving unreadable record null
+TypeError: Cannot read properties of null (reading 'schemaVersion')
+ ❯ GenerationStore.get src/generation/store.ts:70:11
+     68|     if (!fs.existsSync(file)) throw Error("Project not found");
+     69|     const p = JSON.parse(fs.readFileSync(file, "utf8"));
+     70|     if (p.schemaVersion === 2) return p;
+       |           ^
+     71|     // Preserve the rejected template project intact before migrating …
+     72|     if (!fs.existsSync(file + ".legacy"))
+ ❯ src/generation/store.ts:88:24
+ ❯ GenerationStore.list src/generation/store.ts:88:8
+ ❯ GenerationStore.recover src/generation/store.ts:92:26
+ ❯ new Engine src/generation/engine.ts:300:11
+ ❯ createApp src/server/app.ts:58:18
+ ❯ tests/storage-resilience.test.ts:32:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/storage-resilience.test.ts > lists healthy assets beside malformed content, invalid IDs and a disappearing file
+ZodError: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "regex",
+    "pattern": "/^[1-9]\\d{0,15}$/",
+    "path": [],
+    "message": "Invalid string: must match pattern /^[1-9]\\d{0,15}$/"
+  },
+  {
+    "code": "custom",
+    "path": [],
+    "message": "Invalid input"
+  }
+]
+ ❯ AssetLibrary.file src/marketplace/library.ts:47:52
+     45|   }
+     46|   private file(id: string) {
+     47|     return path.join(this.directory, assetIdSchema.parse(id) + ".json"…
+       |                                                    ^
+     48|   }
+     49|   private read(id: string): Record | undefined {
+ ❯ AssetLibrary.read src/marketplace/library.ts:50:23
+ ❯ AssetLibrary.get src/marketplace/library.ts:71:25
+ ❯ src/marketplace/library.ts:78:24
+ ❯ AssetLibrary.list src/marketplace/library.ts:78:8
+ ❯ tests/storage-resilience.test.ts:67:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 1 passed (7)
+   Start at  13:50:11
+   Duration  1.49s (transform 55%, import 37%, tests 6%, worker 3%)
+

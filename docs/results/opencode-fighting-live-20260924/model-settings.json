@@ -1,0 +1,89 @@
+{
+  "profiles": [
+    {
+      "id": "72d540d6-c2ef-4d7d-b07b-9bc6311adff1",
+      "name": "Anthropic: Claude Sonnet 5",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "anthropic/claude-sonnet-5",
+      "inputRate": 2,
+      "outputRate": 10,
+      "pricingSource": "catalog",
+      "maxOutputTokens": 32768,
+      "requestTimeoutMs": 600000,
+      "jsonMode": true,
+      "hasKey": true
+    },
+    {
+      "id": "5025351d-7412-43d8-8b81-913cc0bb6bd5",
+      "name": "Jev non-coding decisions",
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "model": "typesafe/jev-1.13",
+      "inputRate": 0.042,
+      "outputRate": 0,
+      "pricingSource": "catalog",
+      "maxOutputTokens": 32768,
+      "requestTimeoutMs": 600000,
+      "jsonMode": true,
+      "hasKey": true
+    }
+  ],
+  "routes": {
+    "planner": [
+      "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+    ],
+    "builder": [
+      "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+    ],
+    "reviewer": [
+      "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+    ],
+    "decisions": [
+      "5025351d-7412-43d8-8b81-913cc0bb6bd5"
+    ],
+    "repair": [
+      "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+    ]
+  },
+  "budgetMicros": 100000000,
+  "generationBudgetMicros": 100000000,
+  "repairLimit": 2,
+  "presets": [
+    {
+      "routes": {
+        "planner": [
+          "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+        ],
+        "builder": [
+          "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+        ],
+        "reviewer": [
+          "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+        ],
+        "decisions": [
+          "5025351d-7412-43d8-8b81-913cc0bb6bd5"
+        ],
+        "repair": [
+          "72d540d6-c2ef-4d7d-b07b-9bc6311adff1"
+        ]
+      },
+      "budgetMicros": 100000000,
+      "generationBudgetMicros": 100000000,
+      "repairLimit": 2,
+      "id": "00000000-0000-4000-8000-000000000001",
+      "name": "My first preset",
+      "icon": "taco"
+    }
+  ],
+  "activePresetId": "00000000-0000-4000-8000-000000000001",
+  "credentialStorage": "windows-encrypted",
+  "connections": [
+    {
+      "provider": "openrouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "hasKey": true,
+      "validated": false
+    }
+  ]
+}

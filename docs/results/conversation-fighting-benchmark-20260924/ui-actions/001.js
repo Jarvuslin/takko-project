@@ -1,0 +1,13 @@
+const status = await api('/status');
+const models = await api('/models');
+fs.writeFileSync(path.join(output, 'initial-status.json'), JSON.stringify(status, null, 2));
+fs.writeFileSync(path.join(output, 'model-settings.json'), JSON.stringify(models, null, 2));
+await page.screenshot({path:path.join(output,'01-welcome.png'),fullPage:true});
+const prompt = 'want a fighting game with punching animation, vfx, sfx, target dummy, hit counter for everytime you hit the dummy';
+fs.writeFileSync(path.join(output,'prompt.txt'),prompt);
+await page.getByLabel('Game idea').fill(prompt);
+mark('Submit the user fighting-game benchmark through the normal UI. No asset IDs or implementation supplied.');
+await page.getByRole('button',{name:'Create project',exact:true}).click();
+await page.waitForTimeout(1500);
+await page.screenshot({path:path.join(output,'02-submitted.png'),fullPage:true});
+return {url:page.url(),text:await page.locator('body').innerText()};

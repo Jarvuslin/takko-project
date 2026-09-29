@@ -1,4 +1,4 @@
-import { afterEach, it, expect } from "vitest";
+import { afterEach, it, expect, vi } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -40,11 +40,110 @@ async function setup(options: { pluginPath?: string } = {}) {
   };
 }
 afterEach(async () => {
+  vi.restoreAllMocks();
   for (const server of servers.splice(0)) {
     await new Promise<void>((r) => server.close(() => r()));
   }
   for (const dir of dirs.splice(0))
     fs.rmSync(dir, { recursive: true, force: true });
+});
+it("persists bounded UI preferences across service instances and rejects foreign writes", async () => {
+  const { api, dir } = await setup();
+  expect(await (await api("/ui-preferences")).json()).toEqual({});
+  expect(
+    (await api("/ui-preferences", "PUT", { agentWidth: 512 })).status,
+  ).toBe(200);
+  const { UiPreferences } = await import("../src/generation/ui-preferences");
+  const reopened = new UiPreferences(path.join(dir, "configuration"));
+  expect(reopened.read()).toEqual({ agentWidth: 512 });
+  for (const invalid of [
+    { agentWidth: 319 },
+    { agentWidth: 641 },
+    { agentWidth: "500" },
+    { agentWidth: 400.5 },
+    { unknown: true },
+  ]) {
+    expect((await api("/ui-preferences", "PUT", invalid)).status).toBe(400);
+  }
+  expect(
+    (
+      await api(
+        "/ui-preferences",
+        "PUT",
+        { agentWidth: 320 },
+        { Origin: "https://example.com" },
+      )
+    ).status,
+  ).toBe(403);
+  expect(reopened.read()).toEqual({ agentWidth: 512 });
+});
+it("returns a sanitized 500 for a missing plugin file", async () => {
+  const { api } = await setup({
+    pluginPath: path.join(os.tmpdir(), randomUUID(), "private-path.luau"),
+  });
+  const response = await api("/studio/plugin");
+  expect(response.status).toBe(500);
+  expect(await response.json()).toEqual({
+    error: "Internal server error. Please try again.",
+  });
+});
+
+it("reports malformed JSON and oversized bodies as request errors without echoing them", async () => {
+  const { api } = await setup();
+  const response = await api("/status");
+  const base = new URL(response.url).origin;
+  for (const [body, status, message] of [
+    ['{"private":"', 400, "Invalid JSON request body."],
+    [
+      JSON.stringify({ private: "x".repeat(2 * 1024 * 1024) }),
+      413,
+      "Request body is too large.",
+    ],
+  ] as const) {
+    const bad = await fetch(base + "/api/projects", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+    expect(bad.status).toBe(status);
+    expect(await bad.json()).toEqual({ error: message });
+  }
+});
+
+it.each([
+  "build cache exploded",
+  "already broken",
+  "not found internally",
+  "untyped failure",
+])(
+  "does not classify unexpected faults by their prose: %s",
+  async (message) => {
+    const { api, app } = await setup();
+    vi.spyOn(app.locals.config, "public").mockImplementation(() => {
+      throw message === "untyped failure" ? message : Error(message);
+    });
+    const response = await api("/models");
+    expect(response.status).toBe(500);
+    expect(await response.json()).toEqual({
+      error: "Internal server error. Please try again.",
+    });
+  },
+);
+
+it("distinguishes invalid requests, missing projects, conflicts and corrupt stored configuration", async () => {
+  const { api, dir } = await setup();
+  expect((await api("/projects/not-an-id")).status).toBe(400);
+  expect((await api("/projects/" + randomUUID())).status).toBe(404);
+  const p = await (
+    await api("/projects", "POST", { request: "A conflict fixture" })
+  ).json();
+  expect(
+    (await api(`/projects/${p.id}/approve`, "POST", { revision: 99 })).status,
+  ).toBe(409);
+  fs.writeFileSync(path.join(dir, "configuration", "models.json"), "{}");
+  const response = await api("/models");
+  expect(response.status).toBe(500);
+  expect((await response.json()).error).toContain("Saved model configuration");
 });
 it("exports native components through HTTP and rejects stale or tampered component evidence", async () => {
   const { app, api, dir } = await setup();
@@ -179,7 +278,7 @@ it("persists multi-genre projects and runs the actual async model pipeline throu
   await api("/projects/" + project.id + "/build", "POST", { revision: 1 });
   await app.locals.engine.wait(project.id);
   project = await (await api("/projects/" + project.id)).json();
-  expect(project.stage).toBe("ready_to_test");
+  expect(project.stage, project.error).toBe("ready_to_test");
   const exported = await api("/projects/" + project.id + "/export");
   expect(exported.ok).toBe(true);
   expect(await exported.text()).toContain("Harvest");
@@ -429,6 +528,10 @@ it("does not simulate a model or Studio connection when unconfigured", async () 
   const { api } = await setup();
   expect(await (await api("/status")).json()).toEqual({
     mode: "multi-model",
+    concepts: true,
+    proposals: true,
+    assetChoices: true,
+    studioConnectionGate: true,
     configured: false,
     studios: [],
   });

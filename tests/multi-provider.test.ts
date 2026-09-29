@@ -239,7 +239,12 @@ describe("native provider protocols", () => {
         new AbortController().signal,
         transport,
       );
-      expect(r).toEqual({ text: "{}", inputTokens: 2, outputTokens: 3 });
+      expect(r).toEqual({
+        text: "{}",
+        inputTokens: 2,
+        outputTokens: 3,
+        ...(kind === "gemini" ? { reasoningTokens: 1 } : {}),
+      });
       expect(JSON.stringify(sent)).not.toContain("secret");
       if (kind === "openai") {
         expect(target).toMatch(/\/responses$/);

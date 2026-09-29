@@ -1,0 +1,25 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/model-preview-evidence.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/model-preview-evidence.test.ts [ tests/model-preview-evidence.test.ts ]
+Error: Cannot find module '../src/web/preview/model-scene' imported from D:/RobloxProjects/Roblox Gen/tests/model-preview-evidence.test.ts
+ ❯ tests/model-preview-evidence.test.ts:4:1
+      2| import { expect, it } from "vitest";
+      3| import * as THREE from "three";
+      4| import { createModelScene } from "../src/web/preview/model-scene";
+       | ^
+      5| import { modelPreviewSchema } from "../src/marketplace/preview";
+      6|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  14:22:36
+   Duration  165ms (worker 96%, environment 4%)
+

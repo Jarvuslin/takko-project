@@ -1,0 +1,657 @@
+{
+  "architectureProposal": {
+    "nodes": [
+      {
+        "id": "InputController",
+        "name": "Attack Input Controller",
+        "purpose": "Captures the player's attack input (click/tap) and requests an attack attempt from the server; does not itself decide hit/miss.",
+        "authority": "client",
+        "x": 200,
+        "y": 100
+      },
+      {
+        "id": "CombatService",
+        "name": "Combat Service",
+        "purpose": "Server-authoritative validation of attack cooldown, attacker health/state, and distance/facing to the dummy's hit reference point; decides hit or miss.",
+        "authority": "server",
+        "x": 600,
+        "y": 100
+      },
+      {
+        "id": "AnimationBroadcast",
+        "name": "Punch Animation Broadcaster",
+        "purpose": "Replicates the validated punch using the R15 Punching Animations clip to all clients so every player sees the attacker's swing on their Animator.",
+        "authority": "server",
+        "x": 950,
+        "y": 100
+      },
+      {
+        "id": "DummyTarget",
+        "name": "Practice Dummy Target",
+        "purpose": "Stationary, indestructible practice dummy model exposing a hit-detection reference point; has no health, no defeat condition, never attacks back.",
+        "authority": "shared",
+        "x": 600,
+        "y": 350
+      },
+      {
+        "id": "HitEffects",
+        "name": "Hit Effects Controller",
+        "purpose": "On a confirmed hit, spawns the cartoon impact VFX and plays the punch impact SFX at the contact position on clients.",
+        "authority": "client",
+        "x": 950,
+        "y": 350
+      },
+      {
+        "id": "HitCounterService",
+        "name": "Hit Counter Service",
+        "purpose": "Tracks confirmed hits per player in server memory keyed by UserId, persists across that player's respawns, resets only on server/session restart.",
+        "authority": "server",
+        "x": 600,
+        "y": 550
+      },
+      {
+        "id": "HitCounterHUD",
+        "name": "Hit Counter HUD",
+        "purpose": "Persistent ScreenGui showing the player's current hit count; rebinds on CharacterAdded and updates live from server counter events.",
+        "authority": "client",
+        "x": 950,
+        "y": 550
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "from": "InputController",
+        "to": "CombatService",
+        "event": "RequestAttack",
+        "effect": "Client signals an attack attempt; server checks cooldown and character state before proceeding.",
+        "kind": "event"
+      },
+      {
+        "id": "e2",
+        "from": "CombatService",
+        "to": "AnimationBroadcast",
+        "event": "AttackValidated",
+        "effect": "A validated attack triggers animation replication for the attacking character to all clients.",
+        "kind": "event"
+      },
+      {
+        "id": "e3",
+        "from": "AnimationBroadcast",
+        "to": "InputController",
+        "event": "PlayAttackAnimation",
+        "effect": "All clients, including the attacker, play the R15 punching clip on the attacker's Animator.",
+        "kind": "event"
+      },
+      {
+        "id": "e4",
+        "from": "CombatService",
+        "to": "DummyTarget",
+        "event": "CheckHitTarget",
+        "effect": "Server checks attacker distance/facing against the dummy's hit reference point to determine hit or miss.",
+        "kind": "state"
+      },
+      {
+        "id": "e5",
+        "from": "CombatService",
+        "to": "HitEffects",
+        "event": "HitConfirmed",
+        "effect": "On a confirmed hit, server sends the hit position so clients spawn impact VFX and play SFX there.",
+        "kind": "event"
+      },
+      {
+        "id": "e6",
+        "from": "CombatService",
+        "to": "HitCounterService",
+        "event": "HitConfirmed",
+        "effect": "On a confirmed hit, server increments that player's stored hit counter state.",
+        "kind": "event"
+      },
+      {
+        "id": "e7",
+        "from": "HitCounterService",
+        "to": "HitCounterHUD",
+        "event": "CounterUpdated",
+        "effect": "Server pushes the updated hit count to the owning player's HUD, including after CharacterAdded so respawns keep the same count.",
+        "kind": "event"
+      }
+    ]
+  },
+  "assetNeeds": [
+    {
+      "id": "arena_backdrop_search",
+      "requirementId": "arena_boundary",
+      "role": "Decorative stylized boundary/backdrop dressing for the practice arena perimeter",
+      "kind": "Model",
+      "query": "cartoon arena backdrop",
+      "constraints": "Bright, stylized, cartoonish color palette; usable as a perimeter backdrop; must not contain gameplay scripts, health, combat or retaliation behavior; sized to enclose the arena footprint without blocking the sightline from spawn to the pedestal.",
+      "intent": {
+        "experienceRole": "Reinforces the requested bright, cartoonish practice-arena tone the player sees immediately from spawn, making the space feel like an authored fighting-game stage rather than a bare floor.",
+        "interaction": "Decorative only; players do not interact with it directly, it just frames the arena visually.",
+        "reusableFeatures": [
+          "Existing stylized geometry/materials for an arena, ring or stage backdrop",
+          "Any built-in ambient trim, banners or lighting details that fit the cartoonish theme"
+        ],
+        "relatedRequirementIds": [
+          "arena_boundary",
+          "arena_theme"
+        ]
+      },
+      "required": false,
+      "position": [
+        0,
+        0,
+        -40
+      ],
+      "maxSize": 60
+    },
+    {
+      "id": "arena_pedestal_search",
+      "requirementId": "arena_pedestal",
+      "role": "Raised, spotlit stage/pedestal prop for the dummy placement",
+      "kind": "Model",
+      "query": "stage pedestal spotlight",
+      "constraints": "Must be a raised platform with a clear flat top able to hold a standing character-sized dummy; stylized/cartoonish; no embedded scripts controlling gameplay, health, or combat; may include an attached light fixture usable as a spotlight.",
+      "intent": {
+        "experienceRole": "Gives the training dummy an authored, clearly signposted stage the player is drawn toward from spawn, establishing the arena's visual focal point.",
+        "interaction": "Decorative structural prop; the player walks up to it but the pedestal itself has no interactive behavior—the dummy placed on top is what the player later punches.",
+        "reusableFeatures": [
+          "Existing raised platform geometry with a flat top sized for a standing character",
+          "Any embedded spotlight or light fixture matching a stylized stage look"
+        ],
+        "relatedRequirementIds": [
+          "arena_pedestal",
+          "arena_theme"
+        ]
+      },
+      "required": false,
+      "position": [
+        0,
+        1,
+        0
+      ],
+      "maxSize": 20
+    },
+    {
+      "id": "hud_icon_search",
+      "requirementId": "hud_visual_theme",
+      "role": "Small fist/glove icon image displayed beside the HUD hit counter numeral",
+      "kind": "Image",
+      "query": "fist glove icon",
+      "constraints": "Bold, simple, cartoonish icon readable at small HUD size; ideally transparent background; must be a standalone image usable in an ImageLabel; no embedded gameplay scripts or behavior expected.",
+      "intent": {
+        "experienceRole": "Reinforces the fighting-game HUD identity at a glance, pairing the numeral with a recognizable combat icon consistent with the arena's cartoonish tone.",
+        "interaction": "Purely decorative; a static icon displayed beside the hit counter number, never clicked or otherwise interactive.",
+        "reusableFeatures": [
+          "Existing icon image asset with a clean, transparent background suitable for direct ImageLabel use without further editing"
+        ],
+        "relatedRequirementIds": [
+          "hud_visual_theme",
+          "hud_client_display"
+        ]
+      },
+      "required": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "maxSize": 2
+    }
+  ],
+  "assetStrategy": "Reuse all four approved, inspected Marketplace assets rather than rebuilding equivalents: import Training Dummy (1245720733) as-is for the stationary target, inspecting its included script to confirm it is decorative/idle-only and does not fight back or apply damage; import R15 Punching Animations (12061946559) and extract the specific clip at key 1/1/18/1 for the server-driven Animator playback, inspecting its embedded script only to locate the animation asset id (no unrelated tool logic should be kept if present); import 'Hit vfx m1 boxing' (86089736228455) and trigger its existing effect nodes at the confirmed hit position rather than authoring new particles; import 'Punch Impact 1' (132504023010884) and play it via a Sound/AudioPlayer at the hit position, verifying native load/playback before acceptance. Any embedded script behavior in the dummy or animation pack that conflicts with 'stationary, no health, no combat' or with server-authoritative hit validation must be reported as an inspection gap rather than silently kept or silently replaced.",
+  "title": "Fist Fighting Practice Arena",
+  "summary": "Bright, stylized single-arena experience for an R15 character to practice punches on a stationary training dummy. On spawn the player is on a sunlit, cartoon-colored arena floor with a raised, spotlit pedestal a few studs ahead holding the practice dummy (Training Dummy asset 1245720733). The player walks up, presses the attack input, and the server-validated punch plays the Auevi R15 Punching Animations clip (asset 12061946559, clip key 1/1/18/1) on the attacker for all clients to see. When the swing lands on the dummy's hit reference point within range, the server confirms the hit, the cartoon 'Hit vfx m1 boxing' effect (86089736228455) spawns at the contact point, the 'Punch Impact 1' sound (132504023010884) plays there, and a HUD hit counter increments by exactly one. Misses play the animation with no VFX/SFX/counter change. The dummy is anchored, has no health, never retaliates, and cannot be defeated. The hit counter is server-held per player (keyed by UserId), survives respawns, and only resets when the server session restarts — no reset button is provided. This is a small, focused combat-feedback loop, not a multi-enemy fighting game.",
+  "visualDirection": "Cartoon arena palette: warm sandy-yellow floor mat with bold white boundary stripes, sky-blue accent walls or low barriers, and saturated primary-color trim (red/blue) on the dummy's pedestal to draw the eye immediately from spawn. Spawn faces the pedestal directly; a single warm spotlight (SpotLight/PointLight) highlights the dummy so it reads as the obvious interaction target. The dummy stands on a rounded, chunky pedestal with slightly oversized proportions to match a stylized, non-realistic tone. Impact feedback is exaggerated and readable: the cartoon VFX pack's burst/star shapes at the fist-contact point, paired with the punch SFX, both firing only on confirmed hits. HUD: a single rounded top-corner counter panel with a bold numeral and a small fist/glove icon, high-contrast against the sky backdrop, always visible and unobtrusive elsewhere. No clutter beyond the arena, pedestal, dummy, and HUD — keep the scene legible and small in scope.",
+  "requirements": [
+    {
+      "id": "arena_ground",
+      "description": "Create a walkable, brightly colored, stylized ground surface for the practice arena that safely supports the spawn point, pedestal and player movement.",
+      "sourceId": "request",
+      "sourceQuote": "Use a bright, stylized practice arena with cartoonish impact VFX and SFX.",
+      "origin": "user",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "A single anchored, collidable ground Part/Model exists under Workspace/Forge_c7540d7b8984/World, large enough to contain the pedestal and a walkable perimeter, and uses a vivid, cartoonish color/material rather than a plain gray default."
+    },
+    {
+      "id": "arena_boundary",
+      "description": "Enclose the arena's play space with boundary walls or a backdrop so players cannot walk or fall off the edge of the stylized arena.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "Anchored, collidable boundary geometry (walls and/or backdrop parts) surrounds the perimeter of the ground under Workspace/Forge_c7540d7b8984/World, preventing players from leaving the arena footprint, and visually matches the bright cartoonish theme."
+    },
+    {
+      "id": "arena_pedestal",
+      "description": "Build a raised, spotlit pedestal inside the arena, facing the player's spawn point, sized to later hold the practice dummy on its flat top.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "A raised pedestal structure exists under Workspace/Forge_c7540d7b8984/World, elevated above the ground with a flat top able to hold a standing character-sized model, is lit by a SpotLight or PointLight, and its front faces the spawn location's forward direction."
+    },
+    {
+      "id": "arena_spawn",
+      "description": "Provide a safe, collidable player spawn point positioned so players face the pedestal at a reasonable distance from where the dummy will be placed.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "A SpawnLocation instance exists under Workspace/Forge_c7540d7b8984/World, is anchored, collidable, not forcefield-only, and oriented so a spawning player faces toward the pedestal."
+    },
+    {
+      "id": "arena_theme",
+      "description": "Establish a bright, stylized, cartoonish visual theme across the arena's ground, boundary and pedestal through a coordinated vivid color palette and matching Lighting/Atmosphere settings.",
+      "sourceId": "request",
+      "sourceQuote": "Use a bright, stylized practice arena with cartoonish impact VFX and SFX.",
+      "origin": "user",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "Ground, boundary and pedestal share a coordinated bright, saturated color palette and materials; Lighting/Atmosphere properties under this namespace's scope produce a clearly stylized, cartoonish look rather than a dim or photorealistic default."
+    },
+    {
+      "id": "dummy_import",
+      "description": "Import the selected Marketplace Training Dummy asset (1245720733) into the arena, inspect its full hierarchy and its one embedded script, and ensure the resulting instance is anchored/stationary, has no health or damage-taking system, and never attacks back. Disable or remove any embedded logic that would deal damage, retaliate, or otherwise deviate from a passive target.",
+      "sourceId": "request",
+      "sourceQuote": "The practice dummy is stationary, indestructible, does not fight back and has no health or defeat condition.",
+      "origin": "user",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "A Training Dummy model exists under Workspace/Forge_c7540d7b8984/World with every BasePart Anchored=true and CanCollide set appropriately for a solid target; the model's embedded script (scriptCount 1 per inspection) has been read and either verified inert/safe or disabled/removed so it cannot reduce Health, play retaliation animations, or move the dummy; the dummy never initiates an attack against the player."
+    },
+    {
+      "id": "dummy_placement",
+      "description": "Place the imported dummy standing upright on the flat top of the arena's pedestal, oriented so it faces the direction the player faces when spawning, matching the bright stylized theme already established by the arena.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "world",
+      "priority": "required",
+      "acceptance": "The dummy model's pivot/feet rest flush on the pedestal's flat top surface with no floating gap or clipping into the pedestal geometry, and its forward facing matches the spawn point's forward direction so a spawning player sees the dummy squarely ahead."
+    },
+    {
+      "id": "dummy_hitpoint",
+      "description": "Expose exactly one clearly named BasePart or Attachment on the dummy as the single canonical hit-detection reference point that CombatService will measure distance and facing against, per the shared contract for this experience. No other health, damage-taking, or retaliation logic may be attached to the dummy or this reference point.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Exactly one BasePart or Attachment (e.g. named HitTarget) exists on the dummy at a consistent body location such as the torso, is reachable via a stable relative path under Workspace/Forge_c7540d7b8984/World, and inspection confirms no script attaches health, damage-taking, or attack-back behavior to the dummy or this point."
+    },
+    {
+      "id": "combat_asset_inspection",
+      "description": "Inspect the Marketplace R15 Punching Animations asset (12061946559) hierarchy, its one embedded script, and confirm clip key 1/1/18/1 resolves to a playable R15 punch Animation usable by an Animator, verifying it is safe to integrate (no unrelated gameplay logic) before CombatService references it.",
+      "sourceId": "request",
+      "sourceQuote": "Use R15 characters and the punching animation clip in the selected Marketplace R15 Punching Animations pack by Auevi (model 12061946559).",
+      "origin": "user",
+      "category": "animation",
+      "priority": "required",
+      "acceptance": "Inspection confirms the asset's embedded script content and locates the Animation instance/asset id corresponding to clip key 1/1/18/1; the clip is verified to natively play on an R15 Animator before CombatService references it, and any embedded script content unrelated to animation playback is identified and excluded from runtime use."
+    },
+    {
+      "id": "combat_remote_contract",
+      "description": "Create the RequestAttack, PlayAttackAnimation and HitConfirmed RemoteEvents under ReplicatedStorage within this namespace, matching the shared contract payloads exactly (RequestAttack: no payload; PlayAttackAnimation: {attacker: Player}; HitConfirmed: {position: Vector3}).",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "RemoteEvent instances named RequestAttack, PlayAttackAnimation and HitConfirmed exist under ReplicatedStorage/Forge_c7540d7b8984, and CombatService is the only server system that fires PlayAttackAnimation/HitConfirmed, using the exact payload shapes specified in the shared contract."
+    },
+    {
+      "id": "combat_attack_validation",
+      "description": "On RequestAttack, the server validates the requesting player's character is alive/present, enforces a server-held attack cooldown/rate limit independent of client timing, and silently ignores requests that fail these checks without granting an attack.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Rapid-fire RequestAttack calls from one client are throttled server-side to at most one accepted attack per cooldown window; requests from a dead or missing character are rejected; no client-supplied timing or payload data is trusted for these checks."
+    },
+    {
+      "id": "combat_hit_detection",
+      "description": "On each validated attack, the server measures the attacking character's distance and facing to the dummy's exposed canonical hit reference point (BasePart/Attachment) and decides hit or miss using server-side geometry only, never trusting any client-reported result.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Standing within the defined melee range and facing the dummy's hit reference point yields a confirmed hit; standing out of range or facing away yields a miss; the decision is computed entirely from server-side character and dummy positions, never from a client message."
+    },
+    {
+      "id": "combat_animation_playback",
+      "description": "On every validated attack request, hit or miss, the server broadcasts PlayAttackAnimation with the attacking player so all clients play the inspected R15 punch clip (asset 12061946559, clip key 1/1/18/1) on that character's Animator, keeping every player's swing visually synchronized.",
+      "sourceId": "request",
+      "sourceQuote": "I want a simple fighting game with fist fighting animations from the Marketplace",
+      "origin": "user",
+      "category": "animation",
+      "priority": "required",
+      "acceptance": "When any player attacks, every connected client (including the attacker) sees the same R15 punch animation play on the attacker's character via its Animator, regardless of hit or miss outcome, sourced from the verified Marketplace clip."
+    },
+    {
+      "id": "combat_hit_broadcast",
+      "description": "Only when the server confirms a hit, it broadcasts HitConfirmed with the contact point Vector3 to all clients for VFX/SFX spawning; misses never fire HitConfirmed, and this payload is never used as the basis for scoring.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "HitConfirmed fires exactly once per confirmed hit with a contact position at the dummy's hit reference point; it never fires on a miss; no client-side code uses this event to update the hit counter."
+    },
+    {
+      "id": "combat_counter_hook",
+      "description": "At the single point where CombatService confirms a hit on the server, it invokes the shared per-player Hit Counter Service exactly once to register that hit for the attacking player's UserId, forming the sole call site that can increase a player's count.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "Tracing CombatService's server code shows exactly one call site, inside the confirmed-hit branch, that registers a hit for the attacking player's UserId; no other code path in CombatService can trigger this registration, and misses never reach it."
+    },
+    {
+      "id": "effects_vfx_inspection",
+      "description": "Import and statically inspect the 'Hit vfx m1 boxing' Marketplace model (86089736228455): document its ParticleEmitters/Beams/Attachments/effect parts, confirm it contains no unrelated scripts or gameplay logic, and verify it is a self-contained, clonable visual effect suitable for spawning at a hit position.",
+      "sourceId": "request",
+      "sourceQuote": "Use a bright, stylized practice arena with cartoonish impact VFX and SFX.",
+      "origin": "user",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "Asset 86089736228455 is resolved and its hierarchy inspected; the effect-producing parts (ParticleEmitters/Beams/etc.) and their emit/lifetime behavior are identified; no embedded script controls gameplay, health, or combat; the model is confirmed usable as a template to clone at a runtime position."
+    },
+    {
+      "id": "effects_sfx_inspection",
+      "description": "Resolve and inspect the 'Punch Impact 1' Marketplace sound asset (132504023010884) to confirm it is a valid, loadable Sound with a usable SoundId before it is referenced by the client effects script.",
+      "sourceId": "request",
+      "sourceQuote": "cartoonish impact VFX and SFX",
+      "origin": "user",
+      "category": "audio",
+      "priority": "required",
+      "acceptance": "Asset 132504023010884 resolves to a playable Sound/SoundId; native loading is verified to complete without error prior to being wired into HitConfirmed playback; provenance of the asset id is preserved unchanged."
+    },
+    {
+      "id": "effects_hitconfirmed_client_listener",
+      "description": "A client-only LocalScript subscribes to the existing ReplicatedStorage HitConfirmed RemoteEvent and treats it as the sole trigger for impact VFX/SFX; it never fabricates or predicts a hit locally and never feeds this event into any scoring logic.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "A LocalScript under StarterPlayerScripts connects to HitConfirmed.OnClientEvent exactly once for its lifecycle; effect spawning code only runs inside that handler, receiving the server-provided {position: Vector3} payload, and no client code writes to the hit counter or infers hits independently."
+    },
+    {
+      "id": "effects_vfx_spawn",
+      "description": "On receiving HitConfirmed, spawn a clone of the inspected cartoonish VFX effect positioned at the payload's contact point on every client so the impact reads as an exaggerated, stylized burst matching the arena's tone.",
+      "sourceId": "request",
+      "sourceQuote": "cartoonish impact VFX and SFX",
+      "origin": "user",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "Each confirmed hit produces a clone of the inspected VFX model positioned at the HitConfirmed payload position on every connected client; its particle/beam effects visibly emit; the effect does not appear on misses since HitConfirmed is never sent for a miss."
+    },
+    {
+      "id": "effects_sfx_spawn",
+      "description": "On receiving HitConfirmed, play the verified 'Punch Impact 1' sound at (or attached near) the reported contact point on every client, synchronized with the VFX burst.",
+      "sourceId": "request",
+      "sourceQuote": "cartoonish impact VFX and SFX",
+      "origin": "user",
+      "category": "audio",
+      "priority": "required",
+      "acceptance": "Each confirmed hit plays a Sound using the verified SoundId, audibly positioned at the contact point for every connected client; the sound does not play on misses; native playback is verified before acceptance."
+    },
+    {
+      "id": "effects_cleanup_lifecycle",
+      "description": "Transient VFX clones and one-shot Sound instances spawned per hit are automatically destroyed shortly after their effect/audio duration completes, so repeated hits across a multiplayer session never accumulate leftover instances under the namespace.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "lifecycle",
+      "priority": "required",
+      "acceptance": "Every spawned VFX clone and Sound instance is removed (e.g. via Debris:AddItem or a scheduled Destroy) within a bounded time after playing; triggering many hits in sequence, including from multiple players, leaves no orphaned effect or sound instances lingering in the scene."
+    },
+    {
+      "id": "hud_service_state",
+      "description": "Implement a server-side HitCounterService module that keeps a table indexed by Player.UserId tracking each player's confirmed hit count. The count is incremented only by CombatService's single hit-confirmation call site, persists across that player's respawns within the current server session, is cleared when the player leaves, and is never written to DataStore.",
+      "sourceId": "request",
+      "sourceQuote": "The hit counter increases once per confirmed punch on the dummy, stays unchanged on misses, persists across respawns, and resets only for a new play session. No reset button is needed.",
+      "origin": "user",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "A ModuleScript exposes functions to register a hit for a Player and to read a Player's current count, backed by a table keyed by UserId; simulating a hit-register call followed by a simulated respawn (new Character, same UserId) shows the count unchanged; simulating PlayerRemoving clears that UserId's entry; no DataStore call exists anywhere in the module."
+    },
+    {
+      "id": "hud_service_hook",
+      "description": "The server fires the existing CounterUpdated RemoteEvent to the owning client only: once whenever HitCounterService registers a hit for that player, and again whenever that player's CharacterAdded fires, so the HUD can resynchronize its displayed count after every respawn.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "Registering a hit for a player results in exactly one CounterUpdated FireClient call to that player's client carrying {count:number} equal to the new total; a subsequent CharacterAdded for that same player fires CounterUpdated again to that same client with the current stored count; other players never receive another player's CounterUpdated event."
+    },
+    {
+      "id": "hud_no_reset_control",
+      "description": "No UI control, RemoteEvent, keybind or admin command exists anywhere in the HUD or counter service that can reset, decrement or otherwise clear a player's hit count mid-session; the only ways the count changes are hit registration and full clearing on PlayerRemoving.",
+      "sourceId": "request",
+      "sourceQuote": "No reset button is needed.",
+      "origin": "user",
+      "category": "mechanic",
+      "priority": "required",
+      "acceptance": "Inspecting the HUD client script and HitCounterService/broadcast server scripts shows no exposed reset function, RemoteEvent, GUI button or input binding capable of lowering or clearing a live player's count; the only mutation paths are the single hit-registration call and the PlayerRemoving cleanup."
+    },
+    {
+      "id": "hud_client_display",
+      "description": "Create a persistent client HUD (ScreenGui with ResetOnSpawn=false semantics, controlled from StarterPlayerScripts) showing a rounded top-corner panel with a bold numeral for the current hit count, always visible during play and unobtrusive elsewhere on screen.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "ui",
+      "priority": "required",
+      "acceptance": "A ScreenGui containing a rounded top-corner Frame with a TextLabel numeral exists in PlayerGui at runtime, persists across character respawn without duplicating itself (no duplicate ScreenGui or stale numeral left behind after a respawn), and remains visible throughout the play session without blocking other gameplay UI."
+    },
+    {
+      "id": "hud_client_live_update",
+      "description": "The client HUD subscribes to CounterUpdated on the owning client and updates its displayed numeral to match the received count every time the event fires, rebinding its CharacterAdded-driven state cleanly (disconnecting any prior connection first) so no duplicate or stale subscriptions accumulate across respawns.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "ui",
+      "priority": "required",
+      "acceptance": "Firing CounterUpdated with an incremented count updates the visible numeral to that exact value within the same frame cycle; triggering multiple CharacterAdded events in sequence for the same client leaves exactly one active CounterUpdated connection and one correct numeral, with no leftover connections from prior characters."
+    },
+    {
+      "id": "hud_visual_theme",
+      "description": "Style the HUD panel to match the arena's bright cartoonish theme: rounded corners, a bold high-contrast numeral, and a small fist/glove icon beside the count, positioned in a top corner so it reads clearly against the sky-toned backdrop without cluttering the screen.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "The HUD Frame uses a UICorner for rounded edges, a bold/high-contrast font and color for the numeral against its background, and includes an ImageLabel icon (fist/glove) beside the numeral; the panel occupies a single top corner of the screen and does not overlap or obscure other HUD elements."
+    }
+  ],
+  "questions": [],
+  "tasks": [
+    {
+      "id": "arena_build_ground_boundary",
+      "title": "Build stylized arena ground and boundary enclosure",
+      "requirements": [
+        "arena_ground",
+        "arena_boundary"
+      ],
+      "dependsOn": [],
+      "files": []
+    },
+    {
+      "id": "arena_build_pedestal_spawn",
+      "title": "Build spotlit pedestal and player spawn point",
+      "requirements": [
+        "arena_pedestal",
+        "arena_spawn"
+      ],
+      "dependsOn": [
+        "arena_build_ground_boundary"
+      ],
+      "files": []
+    },
+    {
+      "id": "arena_theme_lighting",
+      "title": "Apply coordinated bright cartoonish theme and lighting",
+      "requirements": [
+        "arena_theme"
+      ],
+      "dependsOn": [
+        "arena_build_ground_boundary",
+        "arena_build_pedestal_spawn"
+      ],
+      "files": []
+    },
+    {
+      "id": "dummy_integrate",
+      "title": "Import, inspect, place and safety-configure the Training Dummy",
+      "requirements": [
+        "dummy_import",
+        "dummy_placement",
+        "dummy_hitpoint"
+      ],
+      "dependsOn": [
+        "arena_build_pedestal_spawn"
+      ],
+      "files": []
+    },
+    {
+      "id": "combat_inspect_animation",
+      "title": "Inspect R15 Punching Animations asset and verify clip 1/1/18/1",
+      "requirements": [
+        "combat_asset_inspection"
+      ],
+      "dependsOn": [],
+      "files": []
+    },
+    {
+      "id": "combat_remote_setup",
+      "title": "Establish combat RemoteEvent contract in ReplicatedStorage",
+      "requirements": [
+        "combat_remote_contract"
+      ],
+      "dependsOn": [],
+      "files": []
+    },
+    {
+      "id": "combat_service_server",
+      "title": "Implement server-authoritative CombatService: validation, hit detection, animation/hit broadcasts, counter hook",
+      "requirements": [
+        "combat_attack_validation",
+        "combat_hit_detection",
+        "combat_animation_playback",
+        "combat_hit_broadcast",
+        "combat_counter_hook"
+      ],
+      "dependsOn": [
+        "combat_inspect_animation",
+        "combat_remote_setup",
+        "dummy_integrate"
+      ],
+      "files": [
+        "ServerScriptService/Forge_c7540d7b8984/CombatService.server.luau"
+      ]
+    },
+    {
+      "id": "effects_inspect_assets",
+      "title": "Inspect Hit VFX model and Punch Impact SFX assets",
+      "requirements": [
+        "effects_vfx_inspection",
+        "effects_sfx_inspection"
+      ],
+      "dependsOn": [],
+      "files": []
+    },
+    {
+      "id": "effects_client_playback",
+      "title": "Implement client-side HitConfirmed VFX/SFX spawn with cleanup",
+      "requirements": [
+        "effects_hitconfirmed_client_listener",
+        "effects_vfx_spawn",
+        "effects_sfx_spawn",
+        "effects_cleanup_lifecycle"
+      ],
+      "dependsOn": [
+        "effects_inspect_assets",
+        "combat_remote_setup",
+        "combat_service_server"
+      ],
+      "files": [
+        "StarterPlayer/StarterPlayerScripts/Forge_c7540d7b8984/HitEffectsClient.client.luau"
+      ]
+    },
+    {
+      "id": "hud_counter_service_build",
+      "title": "Implement server-side HitCounterService module and per-player CounterUpdated broadcast",
+      "requirements": [
+        "hud_service_state",
+        "hud_service_hook",
+        "hud_no_reset_control"
+      ],
+      "dependsOn": [
+        "combat_service_server"
+      ],
+      "files": [
+        "ServerScriptService/Forge_c7540d7b8984/HitCounterService.module.luau",
+        "ServerScriptService/Forge_c7540d7b8984/HitCounterBroadcast.server.luau"
+      ]
+    },
+    {
+      "id": "hud_client_ui_build",
+      "title": "Build persistent client HUD with live counter updates and cartoonish styling",
+      "requirements": [
+        "hud_client_display",
+        "hud_client_live_update",
+        "hud_visual_theme"
+      ],
+      "dependsOn": [
+        "hud_counter_service_build"
+      ],
+      "files": [
+        "StarterPlayer/StarterPlayerScripts/Forge_c7540d7b8984/HitCounterHUD.client.luau"
+      ]
+    }
+  ],
+  "referenceDecisions": [
+    {
+      "mechanicId": "dummy_training_dummy_asset",
+      "action": "include",
+      "requirementIds": [
+        "dummy_import",
+        "dummy_placement",
+        "dummy_hitpoint"
+      ],
+      "reason": "User approved the Training Dummy Marketplace model (1245720733) as the practice target. Static inspection recorded one embedded script (scriptCount 1); it must be read during integration and disabled or removed if it adds health, damage-taking, or retaliation before the dummy can be accepted as the passive, indestructible target described in the request.",
+      "userSourceId": "request",
+      "userQuote": "The practice dummy is stationary, indestructible, does not fight back and has no health or defeat condition."
+    },
+    {
+      "mechanicId": "combat_punching_animation_asset",
+      "action": "include",
+      "requirementIds": [
+        "combat_asset_inspection",
+        "combat_animation_playback"
+      ],
+      "reason": "User selected and approved the Auevi R15 Punching Animations pack (12061946559) for the fist-fighting animation, specifying clip key 1/1/18/1. It must be inspected for embedded script safety and clip resolution before CombatService plays it via each character's Animator.",
+      "userSourceId": "request",
+      "userQuote": "Use R15 characters and the punching animation clip in the selected Marketplace R15 Punching Animations pack by Auevi (model 12061946559)."
+    },
+    {
+      "mechanicId": "effects_hit_vfx_asset",
+      "action": "include",
+      "requirementIds": [
+        "effects_vfx_inspection",
+        "effects_vfx_spawn",
+        "effects_cleanup_lifecycle"
+      ],
+      "reason": "User approved the 'Hit vfx m1 boxing' Marketplace model (86089736228455) for cartoonish impact VFX on confirmed hits. Its particle/effect hierarchy must be inspected and preserved before cloning it at the hit contact point, with cleanup after each burst.",
+      "userSourceId": "request",
+      "userQuote": "Use a bright, stylized practice arena with cartoonish impact VFX and SFX."
+    },
+    {
+      "mechanicId": "effects_punch_impact_audio_asset",
+      "action": "include",
+      "requirementIds": [
+        "effects_sfx_inspection",
+        "effects_sfx_spawn",
+        "effects_cleanup_lifecycle"
+      ],
+      "reason": "User approved the 'Punch Impact 1' Marketplace sound (132504023010884) for SFX on confirmed hits. Native playback must be verified before wiring it into the HitConfirmed handler, with one-shot instances cleaned up afterward.",
+      "userSourceId": "request",
+      "userQuote": "cartoonish impact VFX and SFX"
+    }
+  ]
+}

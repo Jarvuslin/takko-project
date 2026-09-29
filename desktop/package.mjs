@@ -5,7 +5,7 @@ const electronVersion = JSON.parse(
 ).version;
 const paths = await packager({
   dir: "dist-desktop",
-  out: "release",
+  out: process.env.TAKKO_PACKAGE_OUT || "release",
   name: "Takko",
   electronVersion,
   platform: process.platform,

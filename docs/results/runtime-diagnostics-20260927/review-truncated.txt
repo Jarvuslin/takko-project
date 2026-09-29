@@ -1,0 +1,57 @@
+```json
+{
+  "issues": [
+    {
+      "requirementId": "target_dummy",
+      "severity": "error",
+      "message": "The retained Training Dummy component (Workspace/Forge_8a81efe9b8ed/Assets/dummy/dummy/Imported/Training Dummy) is never positioned or anchored anywhere in the delivered artifact. No PivotTo/CFrame assignment and no Anchored=true is applied to its parts, even though the dummy_placement task's own integration notes explicitly flagged this as required remaining work ('set Anchored=true and position/orient parts at approximately (0,3,15)'). Worse, the model's node list shows Part/Head/Torso instances with no Motor6D or Weld joints connecting them, so leaving them unanchored will cause the assembly to collapse under gravity into scattered parts rather than stand as a single upright, unmoving hitbox. PunchConfig.DummyModelPath/DummyHitPartNames assume the dummy sits near (0,3,15), but nothing in the scene enforces that, so hit-range checks and the room layout are built against an unverified assumption about where the dummy actually ends up. This fails the acceptance criterion that the dummy be anchored, upright and at ~(0,3,15) at all times."
+    },
+    {
+      "requirementId": "hit_sound",
+      "severity": "error",
+      "message": "The required 'punch/hit sound' feature is completely unimplemented: PunchValidator.server.luau contains only a comment explaining the sole reviewed audio candidate (126976659766267) was rejected for duration mismatch, and neither creates, references, nor plays any Sound instance on a confirmed hit. Per the asset gap instructions, a missing_dependency should still leave 'safe missing-asset handling' but the requirement itself (an audible hit cue) remains fully unmet -- misses and hits are currently indistinguishable by sound, and this is a required, not optional, feature of the requested experience. No further Marketplace search for an alternative short punch/impact sound is evidenced before abandonment."
+    },
+    {
+      "requirementId": "punch_animation",
+      "severity": "error",
+      "message": "PunchController.client.luau sets `Animation.AnimationId = \"rbxassetid://12061946559\"`, which is the ID of the retained Model asset itself, not an Animation/KeyframeSequence asset id. This directly contradicts the documented animationCapabilityContract for raw KeyframeSequences, which requires calling AssetService:RegisterKeyframeSequence(sequence) on the actual retained 'punching animation' KeyframeSequence (under Assets/punchAnim/punchAnim/Imported/'punching animation 1'/AnimSaves) and assigning the returned temporary id unchanged. The script never even references that KeyframeSequence instance, so the retained, approved punch clip (12061946559, clip 1/1/18/1) is completely disconnected from gameplay. Animator:LoadAnimation with this bogus id will fail to produce the intended animation (the pcall will very likely fail or load nothing meaningful), so pressing the attack input will not visibly play the punch clip as required."
+    },
+    {
+      "requirementId": "multiplayer_lifecycle",
+      "severity": "error",
+      "message": "HitCounterHUD.client.luau calls `setCount(0)` unconditionally immediately after obtaining `counterLabel`, regardless of whether `findExistingLabel()` returned an already-populated, reused label or a freshly built one. Combined with the runtime's documented behavior that 'a LocalScript directly under a StarterGui Folder restarts after respawn' (this script sits directly under StarterGui/Forge_8a81efe9b8ed, not inside the persistent ScreenGui itself), every character respawn will re-run this script, find the existing HUD, but still force the visible label back to 'Hits: 0' even though the player's server-tracked hitCount has not reset. It also reconnects `PunchRemotes.CounterUpdated.OnClientEvent` on every re-run without disconnecting the prior connection, accumulating duplicate listeners across repeated respawns. This breaks the required behavior that 'after respawning, the HUD shows exactly one counter label continuing to track hits correctly.'"
+    },
+    {
+      "requirementId": "punch_loop",
+      "severity": "warning",
+      "message": "The client->server remote wiring and server-side distance check are structurally reasonable, but the entire hit-confirmation loop is only correct if the dummy actually sits near the (0,3,15) position assumed by PunchConfig and the room layout. Since no placement/anchoring code was ever applied to the retained dummy component (see target_dummy), the validator's isWithinRange check may be comparing the player's position against wherever the unmodified imported dummy happens to sit (likely near the asset's original origin), not the intended practice-room location. Until the dummy is actually placed at (0,3,15) and anchored, the observable in-game behavior of 'approach the dummy at its stated position and punch it' cannot be relied upon to match the server's hit check."
+    },
+    {
+      "requirementId": "hit_counter_ui",
+      "severity": "warning",
+      "message": "Beyond the respawn-reset defect already flagged under multiplayer_lifecycle, the HUD's `setCount(0)` call is not gated on 'this is a brand-new HUD for a brand-new session' -- it should only run when `buildHud()` (not `findExistingLabel()`) created the label, e.g. `if not existingLabel then setCount(0) end` or by tracking the player's last known count via an attribute/value object as the presentation contract suggests, rather than assuming 0 every time the script executes."
+    },
+    {
+      "requirementId": "environment_room",
+      "severity": "warning",
+      "message": "The built room is 24x24 studs rather than the requested 'roughly 20x20 studs', and the SpawnLocation at (0,0.5,-3) sits near the room's south wall rather than 'near the center of the room' as required (the room's actual geometric center given Ground CFrame z=5 and wall extents z:-7.5..17.5 is closer to z=5, ~8 studs away from the chosen spawn). This is a minor deviation from the approved environment layout, not a functional blocker, but should be reconciled with the approved proposal's explicit spatial description."
+    },
+    {
+      "requirementId": "target_dummy",
+      "severity": "warning",
+      "message": "The artifact's own coverage entry for `target_dummy` (status 'blocked') cites the hit_sound asset-rejection reasoning verbatim as its detail text, rather than describing the dummy's actual placement/anchoring status. This is a bookkeeping/traceability error in the delivered coverage report: it obscures the real, separate defect (missing anchoring/positioning of the dummy model) behind an unrelated audio-asset explanation, and should be corrected so target_dummy's coverage accurately reflects its own implementation state."
+    }
+  ],
+  "tests": [
+    {
+      "id": "test_dummy_anchor_and_position",
+      "requirementId": "target_dummy",
+      "mode": "server",
+      "source": "return function(ctx)\n\tlocal ws = game:GetService(\"Workspace\")\n\tlocal ns = ws:WaitForChild(\"Forge_8a81efe9b8ed\", 5)\n\tassert(ns, \"namespace folder missing under Workspace\")\n\tlocal assetsRoot = ns:WaitForChild(\"Assets\", 5)\n\tassert(assetsRoot, \"Assets folder missing under namespace\")\n\tlocal dummyWrap = assetsRoot:WaitForChild(\"dummy\", 5)\n\tassert(dummyWrap, \"dummy asset wrapper missing\")\n\tlocal dummyRoot = dummyWrap:WaitForChild(\"dummy\", 5)\n\tassert(dummyRoot, \"dummy component root missing\")\n\tlocal imported = dummyRoot:WaitForChild(\"Imported\", 5)\n\tassert(imported, \"Imported folder missing in dummy component\")\n\tlocal dummyModel = imported:WaitForChild(\"Training Dummy\", 5)\n\tassert(dummyModel and dummyModel:IsA(\"Model\"), \"Training Dummy model missing\")\n\n\tlocal anchoredCount, totalParts = 0, 0\n\tfor _, inst in ipairs(dummyModel:GetDescendants()) do\n\t\tif inst:IsA(\"BasePart\") then\n\t\t\ttotalParts += 1\n\t\t\tif inst.Anchored then\n\t\t\t\tanchoredCount += 1\n\t\t\tend\n\t\tend\n\tend\n\tassert(totalParts > 0, \"Training Dummy has no BasePart descendants to check\")\n\tassert(anchoredCount == totalParts, string.format(\"Training Dummy is not fully anchored (%d/%d parts anchored); it has no rig joints and will collapse instead of remaining a stationary target\", anchoredCount, totalParts))\n\n\tlocal torso = dummyModel:FindFirstChild(\"Torso\")\n\tassert(torso and torso:IsA(\"BasePart\"), \"Training Dummy Torso hitbox part missing\")\n\tlocal expected = Vector3.new(0, 3, 15)\n\tlocal distance = (torso.Position - expected).Magnitude\n\tassert(distance <= 6, string.format(\"Training Dummy Torso is %.1f studs from the required ~(0,3,15) practice position\", distance))\nend\n"
+    },
+    {
+      "id": "test_environment_room_geometry",
+      "requirementId": "environment_room",
+      "mode": "server",
+      "source": "return function(ctx)\n\tlocal ws = game:GetService(\"Workspace\")\n\tlocal ns = ws:WaitForChild(\"Forge_8a81efe9b8ed\", 5)\n\tassert(ns, \"namespace folder missing\")\n\tlocal world = ns:WaitForChild(\"World\", 5)\n\tassert(world, \"World folder missing\")\n\n\tlocal ground = world:FindFirstChild(\"Ground\")\n\tassert(ground and ground:IsA(\"BasePart\"), \"Ground part missing\")\n\tassert(ground.Anchored, \"Ground must be anchored to be walkable\")\n\tassert(ground.CanCollide, \"Ground must be collidable\")\n\tassert(ground.Size.X >= 15 and ground.Size.Z >= 15, \"Practice room floor is too small\")\n\n\tlocal walls = world:FindFirstChild(\"Walls\")\n\tassert(walls, \"Walls folder missing\")\n\tfor _, name in ipairs({ \"North\", \"South\", \"East\", \"West\" }) do\n\t\tlocal wall = walls:FindFirstChild(name)\n\t\tassert(wall and wall:IsA(\"BasePart\") and wall.Anchored, name .. \" boundary wall missing or not anchored\")\n\tend\n\n\tlocal spawn = world:FindFirstChild(\"Spawn\")\n\tassert(spawn and spawn:IsA(\"SpawnLocation\"), \"SpawnLocation missing\")\n\tassert(spawn.Anchored and spawn.CanCollide, \"Spawn must be anchored and collidable\")\nend\n"
+    },

@@ -1,0 +1,30 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/approved-reference-continuation.test.ts (3 tests | 1 failed) 152ms
+   × the approved, safely inspected reference can be supplied without claiming a retained import or reacquiring 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/approved-reference-continuation.test.ts > the approved, safely inspected reference can be supplied without claiming a retained import or reacquiring
+AssertionError: expected 'failed' to be 'passed' // Object.is equality
+
+Expected: "passed"
+Received: "failed"
+
+ ❯ tests/approved-reference-continuation.test.ts:61:93
+     59|   const bundle = structuredClone(saved.artifact!);
+     60|   bundle.assets.push(reference);
+     61|   expect(validateBundle(bundle, saved).find(c => c.id === "asset:" + r…
+       |                                                                                             ^
+     62| });
+     63|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  19:19:02
+   Duration  864ms (transform 46%, import 33%, tests 21%, worker 1%)
+

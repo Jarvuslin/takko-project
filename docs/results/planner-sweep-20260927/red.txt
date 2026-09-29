@@ -1,0 +1,67 @@
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/planner-sweep.test.ts (5 tests | 3 failed) 268ms
+   × rejects the real seven-term proposal query at its authoring boundary and identifies the need 10ms
+   × explains the independent category and section vocabularies in the actual planner contract 25ms
+   × collects multiple need policy violations with their identities 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/planner-sweep.test.ts > rejects the real seven-term proposal query at its authoring boundary and identifies the need
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ tests/planner-sweep.test.ts:12:69
+     10| const read = (name: string) => JSON.parse(fs.readFileSync(base + name …
+     11| it("rejects the real seven-term proposal query at its authoring bounda…
+     12|   expect(() => proposalDraftSchema.parse(read("planner-output-0"))).to…
+       |                                                                     ^
+     13| });
+     14| it("explains the independent category and section vocabularies in the …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/planner-sweep.test.ts > explains the independent category and section vocabularies in the actual planner contract
+AssertionError: expected '{"requiredFieldsForEveryRequirement":…' to contain 'requirements[].category'
+
+Expected: "requirements[].category"
+Received: "{"requiredFieldsForEveryRequirement":["id","description","origin","category","priority","acceptance"],"description":"Every requirement MUST contain a nonempty description: a plain-language statement of the behavior or property to implement. Evidence fields sourceId/sourceQuote do not replace description; acceptance states how to check it.","userEvidence":"For origin=user, also include sourceId chosen from allowedUserSourceIds. sourceQuote is optional; omit it to let Takko copy the selected source. Do not guess or combine quotations.","inferredEvidence":"For origin=inferred, explain the inferred requirement in description without inventing user evidence.","proposalCoverage":"For each approved proposal source (proposal:mechanics, proposal:theme, proposal:environment), include at least one required user requirement with that exact sourceId and assign it to a task. Where existing approved content satisfies a section without new work, state that explicitly as a requirement owned by its existing task. Do not invent features or tasks merely to fill sections. Task proposalSections describe additional dependencies and cannot substitute for requirement provenance.","allowedUserSourceIds":["request","proposal:mechanics","proposal:theme","proposal:environment"]}"
+
+ ❯ tests/planner-sweep.test.ts:16:20
+     14| it("explains the independent category and section vocabularies in the …
+     15|   const contract = JSON.stringify(plannerRequirementContract(read("ter…
+     16|   expect(contract).toContain("requirements[].category");
+       |                    ^
+     17|   expect(contract).toContain("tasks[].proposalSections");
+     18|   expect(contract).toContain("ui");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/planner-sweep.test.ts > collects multiple need policy violations with their identities
+AssertionError: expected [Function] to throw error including 'dummyModel' but got 'Model discovery must start with a sho…'
+
+Expected: "dummyModel"
+Received: "Model discovery must start with a short subject query (at most four terms). Put descriptive constraints in constraints and search the complete reusable component before a replacement prop. The planner must choose the query; no substitute query is supplied."
+
+ ❯ tests/planner-sweep.test.ts:25:58
+     23|   spec.assetNeeds[1].query = spec.assetNeeds[0].query;
+     24|   spec.assetNeeds[1].kind = "Model";
+     25|   expect(() => validateMarketplaceDiscovery(spec, true)).toThrow(spec.…
+       |                                                          ^
+     26|   expect(() => validateMarketplaceDiscovery(spec, true)).toThrow(spec.…
+     27| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 2 passed (5)
+   Start at  12:14:37
+   Duration  938ms (transform 42%, tests 33%, import 24%, worker 1%)
+

@@ -1,0 +1,327 @@
+{
+  "at": "2026-09-27T04:37:28.302Z",
+  "beforeAllEntries": 3500,
+  "afterAllEntries": 3500,
+  "comparedRoots": [
+    "Workspace",
+    "ReplicatedStorage",
+    "ReplicatedFirst",
+    "ServerStorage",
+    "ServerScriptService",
+    "StarterPlayer",
+    "StarterGui",
+    "Lighting",
+    "SoundService",
+    "Teams"
+  ],
+  "comparedEntries": 23,
+  "unchanged": true,
+  "before": [
+    {
+      "className": "Lighting",
+      "path": "Lighting"
+    },
+    {
+      "className": "Atmosphere",
+      "path": "Lighting.Atmosphere"
+    },
+    {
+      "className": "BloomEffect",
+      "path": "Lighting.Bloom"
+    },
+    {
+      "className": "DepthOfFieldEffect",
+      "path": "Lighting.DepthOfField"
+    },
+    {
+      "className": "Sky",
+      "path": "Lighting.Sky"
+    },
+    {
+      "className": "SunRaysEffect",
+      "path": "Lighting.SunRays"
+    },
+    {
+      "className": "ReplicatedFirst",
+      "path": "ReplicatedFirst"
+    },
+    {
+      "className": "ReplicatedStorage",
+      "path": "ReplicatedStorage"
+    },
+    {
+      "className": "ServerScriptService",
+      "path": "ServerScriptService"
+    },
+    {
+      "className": "ServerStorage",
+      "path": "ServerStorage"
+    },
+    {
+      "className": "SoundService",
+      "path": "SoundService"
+    },
+    {
+      "className": "StarterGui",
+      "path": "StarterGui"
+    },
+    {
+      "className": "StarterPlayer",
+      "path": "StarterPlayer"
+    },
+    {
+      "className": "StarterCharacterScripts",
+      "path": "StarterPlayer.StarterCharacterScripts"
+    },
+    {
+      "className": "StarterPlayerScripts",
+      "path": "StarterPlayer.StarterPlayerScripts"
+    },
+    {
+      "className": "Teams",
+      "path": "Teams"
+    },
+    {
+      "className": "Workspace",
+      "path": "Workspace"
+    },
+    {
+      "path": "Workspace.Baseplate",
+      "className": "Part",
+      "cframe": [
+        0,
+        -8,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        2048,
+        16,
+        2048
+      ]
+    },
+    {
+      "className": "Texture",
+      "path": "Workspace.Baseplate.Texture"
+    },
+    {
+      "className": "Camera",
+      "path": "Workspace.Camera"
+    },
+    {
+      "path": "Workspace.SpawnLocation",
+      "className": "SpawnLocation",
+      "cframe": [
+        0,
+        0.5,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        12,
+        1,
+        12
+      ]
+    },
+    {
+      "className": "Decal",
+      "path": "Workspace.SpawnLocation.Decal"
+    },
+    {
+      "path": "Workspace.Terrain",
+      "className": "Terrain",
+      "cframe": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        2044,
+        252,
+        2044
+      ]
+    }
+  ],
+  "after": [
+    {
+      "className": "Lighting",
+      "path": "Lighting"
+    },
+    {
+      "className": "Atmosphere",
+      "path": "Lighting.Atmosphere"
+    },
+    {
+      "className": "BloomEffect",
+      "path": "Lighting.Bloom"
+    },
+    {
+      "className": "DepthOfFieldEffect",
+      "path": "Lighting.DepthOfField"
+    },
+    {
+      "className": "Sky",
+      "path": "Lighting.Sky"
+    },
+    {
+      "className": "SunRaysEffect",
+      "path": "Lighting.SunRays"
+    },
+    {
+      "className": "ReplicatedFirst",
+      "path": "ReplicatedFirst"
+    },
+    {
+      "className": "ReplicatedStorage",
+      "path": "ReplicatedStorage"
+    },
+    {
+      "className": "ServerScriptService",
+      "path": "ServerScriptService"
+    },
+    {
+      "className": "ServerStorage",
+      "path": "ServerStorage"
+    },
+    {
+      "className": "SoundService",
+      "path": "SoundService"
+    },
+    {
+      "className": "StarterGui",
+      "path": "StarterGui"
+    },
+    {
+      "className": "StarterPlayer",
+      "path": "StarterPlayer"
+    },
+    {
+      "className": "StarterCharacterScripts",
+      "path": "StarterPlayer.StarterCharacterScripts"
+    },
+    {
+      "className": "StarterPlayerScripts",
+      "path": "StarterPlayer.StarterPlayerScripts"
+    },
+    {
+      "className": "Teams",
+      "path": "Teams"
+    },
+    {
+      "className": "Workspace",
+      "path": "Workspace"
+    },
+    {
+      "path": "Workspace.Baseplate",
+      "className": "Part",
+      "cframe": [
+        0,
+        -8,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        2048,
+        16,
+        2048
+      ]
+    },
+    {
+      "className": "Texture",
+      "path": "Workspace.Baseplate.Texture"
+    },
+    {
+      "className": "Camera",
+      "path": "Workspace.Camera"
+    },
+    {
+      "path": "Workspace.SpawnLocation",
+      "className": "SpawnLocation",
+      "cframe": [
+        0,
+        0.5,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        12,
+        1,
+        12
+      ]
+    },
+    {
+      "className": "Decal",
+      "path": "Workspace.SpawnLocation.Decal"
+    },
+    {
+      "path": "Workspace.Terrain",
+      "className": "Terrain",
+      "cframe": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "anchored": true,
+      "size": [
+        2044,
+        252,
+        2044
+      ]
+    }
+  ]
+}

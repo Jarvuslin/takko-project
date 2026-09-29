@@ -104,7 +104,7 @@ print("PASS security preservation")
 `,
       );
       const executable = path.resolve(
-        "research/tools/luau",
+        process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
         process.platform === "win32" ? "luau.exe" : "luau",
       );
       expect(execFileSync(executable, [file], { encoding: "utf8" })).toContain(

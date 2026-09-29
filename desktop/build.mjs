@@ -28,6 +28,7 @@ for (const file of [
   "identity.mjs",
   "policy.mjs",
   "supervisor.mjs",
+  "service-environment.mjs",
   "status.html",
 ])
   await fs.copyFile(path.join(root, "desktop", file), path.join(output, file));

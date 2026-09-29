@@ -1,0 +1,110 @@
+Authorized: one paid live run, step 3 of docs/proposal-plan-binding-diagnosis.md.
+Cap $8. Do not exceed it and do not expand it. Remaining account funds were
+$16.976655630 at 2026-09-25T05:34:11.582Z, refresh and record the actual figure before
+dispatch.
+
+## Already verified, do not redo
+
+Your steps 1 and 2 were independently checked, not taken on trust:
+
+- validateImplementationPlan is wired as the validate callback at engine.ts:2881,
+  which is the correct layer, inside the correction loop.
+- proposalPlanFor derives coverage from requirement.sourceId plus origin "user" plus
+  task ownership at proposal.ts:239-256. Correct property, not a label proxy.
+- tests/post-plan-replay.test.ts 13/13 pass on an independent run.
+- Full npm run check re-run independently, exit 0, 1,566 tests across 101 files,
+  165 browser passes, 1 intentional skip.
+- Both preserved terminal-project.json files are byte-identical to their originals.
+- The real OpenCode executable genuinely ran. replay-post-plan.ts goes through
+  createOpenCodeBackend and preflight, and the trace records manifest x2,
+  task_context x20, submit_task x20, reaching ready_to_test.
+
+That last point is the first time the OpenCode path has ever executed. The structural
+half of the pipeline is proven. Go straight to the live run.
+
+## What this run is for
+
+The goal is NOT a good game. Eight runs have produced zero generated files. The bar is:
+
+  PRIMARY:   does any Luau file get generated, and does it compile
+  PRIMARY:   what does a run that reaches coding actually COST, per phase
+  SECONDARY: does the live model produce the proposal:theme source requirement on its
+             own, or does it need the correction, and what does that correction cost
+  SECONDARY: does the hit counter behaviour appear in the generated code
+
+Cost measurement is a first-class deliverable, not bookkeeping. You still have no
+number for what a successful generation costs, and that is a business-critical figure.
+Break the ledger down by phase: proposal, implementation plan, corrections, OpenCode
+coding exchanges, independent review. Record the OpenCode session stats too: inference
+exchanges used against the 48-request ceiling, and wall time against the 15-minute
+deadline.
+
+## The request
+
+Reuse the same minimal fighting brief so any divergence isolates to live model
+behaviour rather than a new plan shape. Suggested text, use close to verbatim:
+
+  "A fighting game where the player punches a stationary target dummy. Include a
+   punching animation, a punch/hit sound when the player hits the dummy, and an
+   on-screen counter that increments on each successful hit."
+
+IMPORTANT: do NOT put exclusion instructions naming asset-type keywords into the brief.
+Last run "Do not add VFX" caused assetSearches to regex-match VFX in the raw brief and
+create a spurious fourth discovery group. That defect is unfixed. Keep the brief
+positive-only. If scope needs constraining, do it through the proposal conversation,
+not by naming VFX, sound, animation or model in a negation.
+
+## Known-unfixed defects to expect, not to fix in this run
+
+1. Automatic asset selection will fail. decisions.ts:409 requires confidence >= 0.8 and
+   the best ever observed is 0.62 across eight batches on name-and-creator metadata.
+   Expect 0/3. Let Jev attempt first and record the raw choices and confidences exactly
+   as last time, then proceed with authorized manual picks and label the run assisted.
+   Do not change the threshold in this run. Changing it without improving the evidence
+   given to the selector only trades a false negative for a false positive.
+
+2. The VFX negation defect above. Avoid triggering it rather than fixing it here.
+
+Both remain open questions for a later turn. Do not bundle fixes into a benchmark run.
+
+## Stop conditions
+
+Do not auto-retry anything. If a new gate fires, stop and record:
+  - the exact error and its source location
+  - whether it ran INSIDE the correction callback or outside it
+  - whether it checks a structured property or a syntactic proxy
+  - whether the model self-corrected, and the cost if it did
+
+A new gate is still possible. The replay proved the paths those two saved outputs took
+with supplied receipts, and GATES.md inventoried 76 throw sites without executing them.
+A live plan will differ. That is expected and is information, not failure.
+
+If the $8 cap would be exceeded, stop and report rather than continuing.
+
+## Honesty requirements
+
+Stop at ready_to_test. Luau compiling is not a working game. A review passing is not a
+working game. Do not claim gameplay. Native Studio verification is separate, human
+verified and not part of npm run check.
+
+If files are generated but are bad, say they are bad and keep them. Bad generated code
+is a far better outcome than another pre-code failure, and it is the first real signal
+about model quality anyone will have had.
+
+Preserve every failure exactly as recorded. Do not modify anything under
+docs/results/opencode-fighting-live-20260924 or
+docs/results/opencode-minimal-fighting-20260925 or post-plan-replay-20260925.
+
+## After the run
+
+Write the report under docs/, append a dated section at the top of
+research/notes/continuation.md with PIDs, ports, refreshed balance, per-phase costs,
+what is paused and what must not be touched. Do not restart or kill the user's app.
+Do not resume any paused goal. Do not dispatch a second paid run without new
+authorization, regardless of how much of the $8 cap is unspent.
+
+Two notes on choices you should override if you disagree:
+
+The $8 cap is roughly half your remaining funds. It's deliberately generous because this run should actually reach coding, and a cap that kills it mid-generation would waste the money and teach you nothing. If you'd rather stay conservative, $5 still leaves real headroom over the $0.25–0.55 the planning-only runs cost.
+
+I told Astra not to fix the two known defects during this run. Bundling fixes into a benchmark makes the result unattributable, and both are separate work. If you'd rather get automatic selection working first, that's a legitimate different call — but it's its own turn, and it needs the selector's evidence improved, not just the threshold lowered.

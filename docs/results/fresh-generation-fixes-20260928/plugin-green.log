@@ -1,0 +1,19 @@
+
+> takko-studio@0.2.0 test:plugin
+> node scripts/test-plugin.mjs
+
+PASS one-click local pairing, supplied tokens and local-only endpoint validation
+PASS apply creates actual manifest objects and source, preserving unrelated content
+PASS test harness inserts server/client code and removes temporary instances
+PASS empty tests are rejected and failed harness setup is cleaned up
+PASS source edits and mismatched artifacts block replacement and stale test reports
+PASS source edits during yielding staging prevent replacement
+PASS failed staging preserves the existing project
+PASS forward references resolve to staged instances; missing references preserve the applied rig
+PASS authorized imported MeshPart is created through AssetService Content without assigning read-only MeshId
+PASS absent authorization, forged mesh IDs and noncanonical IDs are rejected before native allocation
+PASS native mesh allocation failure preserves the existing owned root and does not report success
+PASS yielding mesh allocation rechecks ownership and preserves concurrent texture edits
+PASS delivered work survives heartbeats, double clicks execute once, receipts retry, and stale commands cannot run
+PASS reconnect serializes with polling, commits connection state only on success, and preserves failed reconnect state
+COMPILES plugin and 8 injected sources. Studio APIs were mocked; no live Studio pass claimed.

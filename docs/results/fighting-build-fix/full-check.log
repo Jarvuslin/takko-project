@@ -1,0 +1,66 @@
+
+> takko-studio@0.2.0 check
+> npm test && npm run test:luau && npm run test:plugin && npm run test:guards && npm run build && npm run test:desktop && npm run test:production && npm run test:e2e
+
+
+> takko-studio@0.2.0 test
+> vitest run
+
+
+ RUN  v5.0.0 D:/RobloxProjects/Roblox Gen
+
+ ❯ tests/generation-engine.test.ts (51 tests | 1 failed) 7317ms
+   ❯ request-driven generation (51)
+     × corrects scene properties before checkpointing a task and preserves every model attempt 252ms
+ ❯ tests/generation-evaluation.test.ts (6 tests | 1 failed) 570ms
+   × preserves failed model artifacts and attempts then continues to another candidate 123ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/generation-engine.test.ts > request-driven generation > corrects scene properties before checkpointing a task and preserves every model attempt
+AssertionError: expected [ { phase: 'builder', …(3) }, …(3) ] to have a length of 2 but got 4
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ tests/generation-engine.test.ts:395:57
+    393|       .split("\n")
+    394|       .map((line) => JSON.parse(line));
+    395|     expect(traces.filter((t) => t.phase === "builder")).toHaveLength(2…
+       |                                                         ^
+    396|   });
+    397|   it("records unavailable asset execution as failure without manual re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/generation-evaluation.test.ts > preserves failed model artifacts and attempts then continues to another candidate
+AssertionError: expected [ …(4) ] to have a length of 2 but got 4
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ tests/generation-evaluation.test.ts:198:36
+    196|   );
+    197|   expect(trace).toContain("invalid");
+    198|   expect(trace.trim().split("\n")).toHaveLength(2);
+       |                                    ^
+    199| });
+    200| it("reserves request fees before network dispatch and records local bu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 91 passed (93)
+      Tests  2 failed | 1443 passed (1445)
+   Start at  14:28:40
+   Duration  53.54s (tests 79%, import 18%, transform 3%, worker 1%)
+
+    Isolate  93 workers spawned · ~135ms startup each (spawn + environment, per file)
+             at least ~6.15s faster with isolate: false — reuses workers across files instead of one per file
+

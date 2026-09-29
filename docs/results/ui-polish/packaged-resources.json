@@ -1,0 +1,167 @@
+{
+  "at": "2026-09-21T19:12:23.264Z",
+  "resources": "release\\takko-ui-polish-20260921-verified\\Takko-win32-x64\\resources\\app",
+  "metadataNormalization": "Electron Packager removes private flag",
+  "files": [
+    {
+      "file": "identity.mjs",
+      "build": "737e404df17873e3193929c29464222fab02941d498b7845a6697a8967364291",
+      "package": "737e404df17873e3193929c29464222fab02941d498b7845a6697a8967364291"
+    },
+    {
+      "file": "main.mjs",
+      "build": "a65ab61e8924d6791e9240a1dd39575780ab817356466763262c84cc595c98dc",
+      "package": "a65ab61e8924d6791e9240a1dd39575780ab817356466763262c84cc595c98dc"
+    },
+    {
+      "file": "package.json",
+      "build": "6b5ca09ad16e56549c51807b9ad13918bc196dc7e2e8f3ca0702625517f8f079",
+      "package": "5b9659825e38c8ff94915a9edca22f904fb7a27d3714a31258a27d3f8d96c15e"
+    },
+    {
+      "file": "plugin/Forge.plugin.luau",
+      "build": "2ac6bedc6f848e6efa42715496a43d637e9208dcd96971f689732f240f77e60d",
+      "package": "2ac6bedc6f848e6efa42715496a43d637e9208dcd96971f689732f240f77e60d"
+    },
+    {
+      "file": "policy.mjs",
+      "build": "3607b0cbdaf8279e2c79871cd78866bb6176a85c83454b0103eafb203655ad65",
+      "package": "3607b0cbdaf8279e2c79871cd78866bb6176a85c83454b0103eafb203655ad65"
+    },
+    {
+      "file": "service.cjs",
+      "build": "41bc5506939952017dd47de96f34f5fcfd4460988a28a556b0083c0d2ce1a8d4",
+      "package": "41bc5506939952017dd47de96f34f5fcfd4460988a28a556b0083c0d2ce1a8d4"
+    },
+    {
+      "file": "service.cjs.map",
+      "build": "bd5556051dca4094b3d2ea9b6c3e6b62ebfd7a63c3864a3a9d3b48d79c955024",
+      "package": "bd5556051dca4094b3d2ea9b6c3e6b62ebfd7a63c3864a3a9d3b48d79c955024"
+    },
+    {
+      "file": "status.html",
+      "build": "237160c8623a60e2442956e2b6d78427a85bb0b2bd9c16367442737d42a60d89",
+      "package": "237160c8623a60e2442956e2b6d78427a85bb0b2bd9c16367442737d42a60d89"
+    },
+    {
+      "file": "supervisor.mjs",
+      "build": "7e935ae05f3bbd2e59718393d50512f7662bd650bfb379e73cc292ebaea8429d",
+      "package": "7e935ae05f3bbd2e59718393d50512f7662bd650bfb379e73cc292ebaea8429d"
+    },
+    {
+      "file": "tools/audio-capture/TakkoAudioCapture.exe",
+      "build": "1a362e8b4ce18b8087578282b5ec4d9e7be31dcea8158fdaaa3409db4c40f2c5",
+      "package": "1a362e8b4ce18b8087578282b5ec4d9e7be31dcea8158fdaaa3409db4c40f2c5"
+    },
+    {
+      "file": "tools/luau/luau-compile.exe",
+      "build": "93aff82037113eed7201adbc144a79a2c38d08298ef72fe59397f2a3c1616db6",
+      "package": "93aff82037113eed7201adbc144a79a2c38d08298ef72fe59397f2a3c1616db6"
+    },
+    {
+      "file": "web/assets/AnimationGallery-Cfm9kGl5.js",
+      "build": "246aa219fcc0cef14b4c57e9cc9d855f9ee14ef48a27192d3e409368f4476be1",
+      "package": "246aa219fcc0cef14b4c57e9cc9d855f9ee14ef48a27192d3e409368f4476be1"
+    },
+    {
+      "file": "web/assets/AnimationPlayer-Dm5ITJPh.js",
+      "build": "86cc222d371847b94e18abff849af01621991cb8d2faa234b73dbfeacf421b93",
+      "package": "86cc222d371847b94e18abff849af01621991cb8d2faa234b73dbfeacf421b93"
+    },
+    {
+      "file": "web/assets/DesignLab-Clo1Y0WS.css",
+      "build": "9a642172e5cf19f1d70e8f40327d26357015746f1f85f30f53ff7f3925db8297",
+      "package": "9a642172e5cf19f1d70e8f40327d26357015746f1f85f30f53ff7f3925db8297"
+    },
+    {
+      "file": "web/assets/DesignLab-DqZU3F63.js",
+      "build": "706e3cf68c8158c4b3866e7c4afceb95a720463169d47acb860f4b832134b531",
+      "package": "706e3cf68c8158c4b3866e7c4afceb95a720463169d47acb860f4b832134b531"
+    },
+    {
+      "file": "web/assets/index-Bp83ZhAh.js",
+      "build": "17a27161a89c74c07569247594388b46431c6bc830f2e8f414ae9bc450263990",
+      "package": "17a27161a89c74c07569247594388b46431c6bc830f2e8f414ae9bc450263990"
+    },
+    {
+      "file": "web/assets/index-R55Hi5gR.css",
+      "build": "b29d61c1e7ac8053005051f3af081edd18bdc67b110c9af3c4466073e20b1569",
+      "package": "b29d61c1e7ac8053005051f3af081edd18bdc67b110c9af3c4466073e20b1569"
+    },
+    {
+      "file": "web/brands/claude.svg",
+      "build": "2d6fda79eb18ddccca35b799eeb3cece0dfabc22520ce3b10abd25668df9fa93",
+      "package": "2d6fda79eb18ddccca35b799eeb3cece0dfabc22520ce3b10abd25668df9fa93"
+    },
+    {
+      "file": "web/brands/deepseek.svg",
+      "build": "7a55a0a7391d116eba7d32807d6838478f9209f6034612941e74fbb14934e2ef",
+      "package": "7a55a0a7391d116eba7d32807d6838478f9209f6034612941e74fbb14934e2ef"
+    },
+    {
+      "file": "web/brands/googlegemini.svg",
+      "build": "a6228d8846040401e941a39ed17459785e8324dbb7b870ce84233c9b3e9863a0",
+      "package": "a6228d8846040401e941a39ed17459785e8324dbb7b870ce84233c9b3e9863a0"
+    },
+    {
+      "file": "web/brands/huggingface.svg",
+      "build": "aa81744034eecf4ac6b3fb7108dd71223965c7af3c534932391314563b150109",
+      "package": "aa81744034eecf4ac6b3fb7108dd71223965c7af3c534932391314563b150109"
+    },
+    {
+      "file": "web/brands/meta.svg",
+      "build": "e3e9db62f59dc477e5917687349b8aa9685b841d40300c1afad60ad85075cd2e",
+      "package": "e3e9db62f59dc477e5917687349b8aa9685b841d40300c1afad60ad85075cd2e"
+    },
+    {
+      "file": "web/brands/mistralai.svg",
+      "build": "88f00cf2e82e4d36bb4fdd0e913df200c6e7d6162ec627cc58cfdd6a4eb17d18",
+      "package": "88f00cf2e82e4d36bb4fdd0e913df200c6e7d6162ec627cc58cfdd6a4eb17d18"
+    },
+    {
+      "file": "web/brands/NOTICE.md",
+      "build": "b59235285d1a9d48cec8ad51d727da2fef239815838cf5e70d1818d273d8a852",
+      "package": "b59235285d1a9d48cec8ad51d727da2fef239815838cf5e70d1818d273d8a852"
+    },
+    {
+      "file": "web/brands/openai.svg",
+      "build": "2b4a04ddc2395b20d168694d3850ce2050a702c4a0cdeb4d8b31b9a970481a8c",
+      "package": "2b4a04ddc2395b20d168694d3850ce2050a702c4a0cdeb4d8b31b9a970481a8c"
+    },
+    {
+      "file": "web/brands/openrouter.svg",
+      "build": "9148696e3a06d23e8fe2b743ebd3ee1173354dbd7b58d33d1ca6a40ee0018d53",
+      "package": "9148696e3a06d23e8fe2b743ebd3ee1173354dbd7b58d33d1ca6a40ee0018d53"
+    },
+    {
+      "file": "web/brands/qwen.svg",
+      "build": "36854c60b26bfa5a0cc0d4123727c0ef559efba6f129c0dfa623f3c443fe3e5b",
+      "package": "36854c60b26bfa5a0cc0d4123727c0ef559efba6f129c0dfa623f3c443fe3e5b"
+    },
+    {
+      "file": "web/index.html",
+      "build": "397e2b459867c39f6cb1a934ce4a75308581c39e077c55c5fdec514e5955cdf2",
+      "package": "397e2b459867c39f6cb1a934ce4a75308581c39e077c55c5fdec514e5955cdf2"
+    },
+    {
+      "file": "web/takko.svg",
+      "build": "60dad36d5edea354efad7b240422a5c16de74792f40fe3af1b04f0ea6e5709ee",
+      "package": "60dad36d5edea354efad7b240422a5c16de74792f40fe3af1b04f0ea6e5709ee"
+    },
+    {
+      "file": "web/ui/arena.svg",
+      "build": "dbd7094a774571473e509ac185763e02962a0dbde6771cb4d9830a69d4234f80",
+      "package": "dbd7094a774571473e509ac185763e02962a0dbde6771cb4d9830a69d4234f80"
+    },
+    {
+      "file": "web/ui/obby.svg",
+      "build": "9182cc620a58c66377df81ab8f9c0fd2ead8abddf9c81dd9be611d3d77cde511",
+      "package": "9182cc620a58c66377df81ab8f9c0fd2ead8abddf9c81dd9be611d3d77cde511"
+    },
+    {
+      "file": "web/ui/portal.svg",
+      "build": "373f426fb6c3816f05e11407534e481a4ae78ee1d58295bbb81cd056f1d3e37a",
+      "package": "373f426fb6c3816f05e11407534e481a4ae78ee1d58295bbb81cd056f1d3e37a"
+    }
+  ]
+}

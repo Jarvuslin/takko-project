@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+const p='src/web/preview/TakkoViewport.tsx';let s=fs.readFileSync(p,'utf8');
+s=s.replace('    [speed, setSpeed] = useState(1),\n','').replace('{ playing, speed, time: 0 }','{ playing, time: 0 }').replace('  playback.current.speed = speed;\n','').replace('delta * playback.current.speed','delta');
+const a=s.indexOf('            <button\n              aria-label="Restart animation"');const b=s.indexOf('            <input',a);s=s.slice(0,a)+s.slice(b);
+const c=s.indexOf('            <select\n              aria-label="Playback speed"');const d=s.indexOf('            </select>',c);s=s.slice(0,c)+s.slice(d+'            </select>'.length);
+s=s.replace('        <button onClick={() => cameraActions.current?.frame()}>Frame</button>\n','');
+const e=s.indexOf('        <details>',s.indexOf('className="viewport-help"'));const f=s.indexOf('        </details>',e);s=s.slice(0,e)+s.slice(f+'        </details>'.length);
+s=s.replace('    canvas.tabIndex = 0;',`    canvas.tabIndex = 0;
+    canvas.title = 'Drag to orbit, scroll to zoom. Keyboard: left/right to orbit, +/- to zoom, Home to reset.';
+    const keydown = (event: KeyboardEvent) => {
+      if (!['ArrowLeft','ArrowRight','+','-','Home'].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === 'Home') cameraActions.current?.frame();
+      else if (event.key === '+' || event.key === '-') cameraActions.current?.zoom(event.key === '+' ? 0.85 : 1.15);
+      else cameraActions.current?.orbit(event.key === 'ArrowLeft' ? -0.3 : 0.3);
+    };
+    canvas.addEventListener('keydown', keydown);`);
+s=s.replace('      controls.dispose();',"      controls.dispose();\n      canvas.removeEventListener('keydown', keydown);");
+fs.writeFileSync(p,s);
+const t='tests/browser/chat-architecture.spec.ts';s=fs.readFileSync(t,'utf8');s=s.replace('  await page.getByText("Camera", { exact: true }).click();\n  await page.getByRole("button", { name: "Orbit right", exact: true }).click();','  await expect(page.getByText("Camera", { exact: true })).toHaveCount(0);\n  await expect(page.getByRole("button", { name: "Restart animation" })).toHaveCount(0);\n  await viewer.press("ArrowRight");');fs.writeFileSync(t,s);

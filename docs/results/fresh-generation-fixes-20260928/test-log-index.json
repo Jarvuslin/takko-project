@@ -1,0 +1,332 @@
+[
+  {
+    "file": "base-world-green.log",
+    "tests": [
+      "4 passed (4)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "base-world-red.log",
+    "tests": [
+      "4 ⎯⎯⎯⎯⎯⎯⎯",
+      "4 failed (4)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "check-final.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "check-first.log",
+    "tests": [
+      "1667 passed (1667)"
+    ],
+    "files": [
+      "120 passed (120)"
+    ]
+  },
+  {
+    "file": "cli-replay-1.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "cli-replay-2.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "cli-replay-final.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "clip-choice-green.log",
+    "tests": [
+      "2 passed | 33 skipped (35)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "clip-choice-red.log",
+    "tests": [
+      "2 ⎯⎯⎯⎯⎯⎯⎯",
+      "2 failed | 33 skipped (35)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "compatibility-3.log",
+    "tests": [
+      "40 passed (40)"
+    ],
+    "files": [
+      "2 passed (2)"
+    ]
+  },
+  {
+    "file": "compatibility-4.log",
+    "tests": [
+      "97 passed (97)"
+    ],
+    "files": [
+      "4 passed (4)"
+    ]
+  },
+  {
+    "file": "existing-focused-1.log",
+    "tests": [
+      "5 ⎯⎯⎯⎯⎯⎯⎯",
+      "5 failed | 161 passed (166)"
+    ],
+    "files": [
+      "3 failed | 4 passed (7)"
+    ]
+  },
+  {
+    "file": "existing-focused-2.log",
+    "tests": [
+      "3 ⎯⎯⎯⎯⎯⎯⎯",
+      "3 failed | 56 passed (59)"
+    ],
+    "files": [
+      "3 failed | 1 passed (4)"
+    ]
+  },
+  {
+    "file": "fresh-proposal-replays-final.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "fresh-proposal-replays-green.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "fresh-proposal-replays.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "new-focused.log",
+    "tests": [
+      "14 passed (14)"
+    ],
+    "files": [
+      "4 passed (4)"
+    ]
+  },
+  {
+    "file": "physics-analysis.log",
+    "tests": [
+      "2 passed (2)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "plugin-first.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "plugin-green.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "relevance-green.log",
+    "tests": [
+      "6 passed (6)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "relevance-red.log",
+    "tests": [
+      "2 ⎯⎯⎯⎯⎯⎯⎯",
+      "2 failed | 4 skipped (6)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "retained-delivery-green-2.log",
+    "tests": [
+      "1 ⎯⎯⎯⎯⎯⎯⎯",
+      "1 failed | 3 passed (4)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "retained-delivery-green-3.log",
+    "tests": [
+      "4 passed (4)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "retained-delivery-green.log",
+    "tests": [
+      "1 ⎯⎯⎯⎯⎯⎯⎯",
+      "1 failed | 3 passed (4)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "retained-delivery-initial.log",
+    "tests": [
+      "2 ⎯⎯⎯⎯⎯⎯⎯",
+      "2 failed | 2 passed (4)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "scope-answer-green.log",
+    "tests": [
+      "77 passed (77)"
+    ],
+    "files": [
+      "4 passed (4)"
+    ]
+  },
+  {
+    "file": "scope-answer-red.log",
+    "tests": [
+      "2 ⎯⎯⎯⎯⎯⎯⎯",
+      "2 failed | 4 passed (6)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "scope-approval-green.log",
+    "tests": [
+      "1 passed | 20 skipped (21)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "scope-approval-red.log",
+    "tests": [
+      "1 ⎯⎯⎯⎯⎯⎯⎯",
+      "1 failed | 20 skipped (21)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "scope-authority-green.log",
+    "tests": [
+      "45 passed (45)"
+    ],
+    "files": [
+      "3 passed (3)"
+    ]
+  },
+  {
+    "file": "scope-authority-red.log",
+    "tests": [
+      "1 ⎯⎯⎯⎯⎯⎯⎯",
+      "1 failed | 7 passed (8)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "scope-question-initial.log",
+    "tests": [
+      "2 passed (2)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "template-probe.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "types-2.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "types-3.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "types-initial.log",
+    "tests": [],
+    "files": []
+  },
+  {
+    "file": "unit-broad-first.log",
+    "tests": [
+      "43 ⎯⎯⎯⎯⎯⎯⎯",
+      "43 failed | 1622 passed (1665)"
+    ],
+    "files": [
+      "4 failed | 116 passed (120)"
+    ]
+  },
+  {
+    "file": "world-scene-green.log",
+    "tests": [
+      "2 passed (2)"
+    ],
+    "files": [
+      "1 passed (1)"
+    ]
+  },
+  {
+    "file": "world-scene-red-assertions.log",
+    "tests": [
+      "2 ⎯⎯⎯⎯⎯⎯⎯",
+      "2 failed (2)"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  },
+  {
+    "file": "world-scene-red.log",
+    "tests": [
+      "no tests"
+    ],
+    "files": [
+      "1 failed (1)"
+    ]
+  }
+]

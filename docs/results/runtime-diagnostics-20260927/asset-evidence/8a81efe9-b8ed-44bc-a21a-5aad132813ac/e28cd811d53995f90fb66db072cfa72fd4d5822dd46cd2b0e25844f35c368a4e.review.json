@@ -1,0 +1,474 @@
+{
+  "version": 1,
+  "kind": "takko-restricted-component-review",
+  "binding": {
+    "studioId": "ca13ff86-472b-4f75-82a8-b2300a2d1b76",
+    "scope": "Forge_8a81efe9b8ed",
+    "token": "3b57975d-efed-436b-9f82-b5fc2eeedb95",
+    "candidateId": "1245720733",
+    "inputHash": "f045402a399a7d1e3f764765d296439687a58129d9550c7e4f004da4befc5f1c"
+  },
+  "original": {
+    "archiveHash": "21262489534b7f14bbe9e8c8b548e3fc5373cc876e459c851f2982c7c87c7341",
+    "manifestHash": "ddbf85bb849c24946a916679a16fe1c1262e27d5b98a409237084b02e3fc3215"
+  },
+  "derivative": {
+    "archiveHash": "21262489534b7f14bbe9e8c8b548e3fc5373cc876e459c851f2982c7c87c7341",
+    "manifestHash": "ddbf85bb849c24946a916679a16fe1c1262e27d5b98a409237084b02e3fc3215"
+  },
+  "policy": "remove_only_capabilities_unavailable_to_current_thread",
+  "security": {
+    "currentCapabilities": [
+      "AccessOutsideWrite",
+      "Animation",
+      "AssetCreateUpdate",
+      "AssetManagement",
+      "AssetRead",
+      "AssetRequire",
+      "Audio",
+      "Avatar",
+      "AvatarAppearance",
+      "AvatarBehavior",
+      "Basic",
+      "CSG",
+      "CapabilityControl",
+      "Capture",
+      "Chat",
+      "Consequences",
+      "CreateInstances",
+      "DataStore",
+      "DynamicGeneration",
+      "Environment",
+      "Groups",
+      "Input",
+      "LegacySound",
+      "LoadOwnedAsset",
+      "LoadString",
+      "LoadUnownedAsset",
+      "Logging",
+      "Material",
+      "Monetization",
+      "Network",
+      "Physics",
+      "PlatformAvatarEditing",
+      "Players",
+      "PromptExternalPurchase",
+      "RemoteEvent",
+      "RunClientScript",
+      "RunServerScript",
+      "ScriptGlobals",
+      "SensitiveInput",
+      "ServerCommunication",
+      "Social",
+      "Teleport",
+      "UI",
+      "Unassigned"
+    ],
+    "instances": [
+      {
+        "index": 1,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 2,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 3,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 4,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 5,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 6,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 7,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 8,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 9,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 10,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 11,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 12,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 13,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 14,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 15,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 16,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 17,
+        "sandboxedBefore": false,
+        "sandboxedAfter": false,
+        "before": [],
+        "after": [],
+        "removed": []
+      },
+      {
+        "index": 18,
+        "sandboxedBefore": true,
+        "sandboxedAfter": true,
+        "before": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DataStore",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Network",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "ScriptGlobals",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "after": [
+          "AccessOutsideWrite",
+          "Animation",
+          "AssetCreateUpdate",
+          "AssetManagement",
+          "AssetRead",
+          "Audio",
+          "Avatar",
+          "AvatarAppearance",
+          "AvatarBehavior",
+          "Basic",
+          "CSG",
+          "Capture",
+          "Chat",
+          "Consequences",
+          "CreateInstances",
+          "DataStore",
+          "DynamicGeneration",
+          "Environment",
+          "Groups",
+          "Input",
+          "LegacySound",
+          "LoadOwnedAsset",
+          "Logging",
+          "Material",
+          "Monetization",
+          "Network",
+          "Physics",
+          "PlatformAvatarEditing",
+          "Players",
+          "PromptExternalPurchase",
+          "RemoteEvent",
+          "RunClientScript",
+          "RunServerScript",
+          "ScriptGlobals",
+          "SensitiveInput",
+          "ServerCommunication",
+          "Social",
+          "Teleport",
+          "UI"
+        ],
+        "removed": []
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "name": "Imported",
+      "className": "Model"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "name": "Training Dummy",
+      "className": "Model"
+    },
+    {
+      "index": 3,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 4,
+      "parentIndex": 3,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 5,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 6,
+      "parentIndex": 5,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 7,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 8,
+      "parentIndex": 7,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 9,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 10,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 11,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 12,
+      "parentIndex": 2,
+      "name": "Part",
+      "className": "Part"
+    },
+    {
+      "index": 13,
+      "parentIndex": 2,
+      "name": "Head",
+      "className": "Part"
+    },
+    {
+      "index": 14,
+      "parentIndex": 13,
+      "name": "Mesh",
+      "className": "SpecialMesh"
+    },
+    {
+      "index": 15,
+      "parentIndex": 2,
+      "name": "Torso",
+      "className": "Part"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "name": "Decal",
+      "className": "Decal"
+    },
+    {
+      "index": 17,
+      "parentIndex": 2,
+      "name": "Humanoid",
+      "className": "Humanoid"
+    },
+    {
+      "index": 18,
+      "parentIndex": 2,
+      "name": "Respawn",
+      "className": "Script"
+    }
+  ],
+  "contentReferences": [
+    {
+      "index": 4,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 4,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 6,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 6,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 8,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 8,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 14,
+      "property": "MeshId",
+      "value": ""
+    },
+    {
+      "index": 14,
+      "property": "TextureId",
+      "value": ""
+    },
+    {
+      "index": 16,
+      "property": "Texture",
+      "value": "rbxassetid://406436910"
+    }
+  ],
+  "configurationValues": [],
+  "sourceBodies": [
+    {
+      "sha256": "ff6eaa79105c5a5d371307eae24ceba13ad8106034c6119c384b7c751ba9f734",
+      "source": "robo=script.Parent:clone()\nwhile true do\n\twait(0)\n\tif script.Parent.Humanoid.Health<1 then\n\t\twait(1)\n\t\trobot=robo:clone()\n\t\trobot.Parent=script.Parent.Parent\n\t\trobot:makeJoints()\n\t\tscript.Parent:remove()\n\tend\nend\n\n\t\t\n\n\n\n\n\n",
+      "bindings": [
+        {
+          "index": 18,
+          "className": "Script",
+          "sourceBytes": 222,
+          "disabled": false,
+          "runContext": "Enum.RunContext.Legacy"
+        }
+      ]
+    }
+  ],
+  "sourceCount": 1,
+  "uniqueSourceBodies": 1,
+  "securityReview": "not_performed",
+  "dependencyReview": "not_performed",
+  "runtimeVerification": "not_performed",
+  "exportConversion": "not_performed",
+  "executed": false
+}

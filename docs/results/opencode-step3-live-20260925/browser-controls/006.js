@@ -1,0 +1,10 @@
+const id=new URL(page.url()).searchParams.get('project');
+const p=await api('/projects/'+id);
+if(p.jobId||!p.proposal||p.executionMode!=='opencode'||p.charges.reduce((n,c)=>n+c.chargedMicros,0)>=8000000)throw Error('Build precondition failed');
+fs.writeFileSync(path.join(output,'before-single-approval.json'),JSON.stringify(p,null,2));
+await page.screenshot({path:path.join(output,'04-approved-proposal.png'),fullPage:true});
+mark('Single Approve & build. Positive brief, assisted existing assets, one scope edit. Bounded planner correction allowed. No terminal retry, fallback or paid repair. Theme prose remained outside the edit classifier scope and is preserved as an observed limitation.');
+await page.getByRole('button',{name:'Approve & build',exact:true}).click();
+await page.waitForTimeout(700);
+await page.screenshot({path:path.join(output,'05-build-started.png'),fullPage:true});
+return {stage:(await api('/projects/'+id)).stage};
