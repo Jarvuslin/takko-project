@@ -344,6 +344,7 @@ export function Marketplace({
             groupId: picking.groupId,
             studioId: connection.studioId,
             query: searchQuery,
+            kind: searchKind,
             ...(cursor ? { cursor } : {}),
           })
         : nextTab === "search"
@@ -479,9 +480,12 @@ export function Marketplace({
           <div className="market-search-controls control-row">
             <select
               aria-label="Asset type"
-              disabled={!!picking}
               value={kind}
-              onChange={(e) => setKind(e.target.value as MarketplaceKind)}
+              onChange={(e) => {
+                const next = e.target.value as MarketplaceKind;
+                setKind(next);
+                void load("search", query, next);
+              }}
             >
               {["Model", "Animation", "MeshPart", "Audio", "Image"].map((k) => (
                 <option key={k}>{k}</option>

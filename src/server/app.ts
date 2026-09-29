@@ -482,14 +482,14 @@ export function createApp(
     res.status(201).json(engine.create(b.request, attachments));
   });
   app.use("/api/projects/:id", (req, _res, next) => {
-    if (req.method !== "GET" && req.method !== "HEAD")
+    if (req.method !== "GET" && req.method !== "HEAD" && req.path !== "/messages")
       bridge.assertProjectWritable(String(req.params.id));
     next();
   });
   app.get("/api/projects/:id", (req, res) =>
     res.json(store.get(req.params.id)),
   );
-  const discovery = discoveryRoutes(app, store, engine, assetLibrary);
+  discoveryRoutes(app, store, engine, assetLibrary);
   app.post("/api/projects/:id/platform",(req,res)=>{
     const b=z.object({revision:z.number().int().positive(),answer:z.string().trim().min(1).max(1200)}).strict().parse(req.body);
     res.json(engine.answerPlatform(req.params.id,b.revision,b.answer));
@@ -788,26 +788,6 @@ export function createApp(
       throw new ConflictError(
         "The proposal changed or work is running. Review the saved proposal before approving.",
       );
-    if (proposalQuestions(p).length && p.proposal?.approval?.hash !== b.hash)
-      throw new ConflictError(
-        "Answer the consequential gameplay questions before approving.",
-      );
-    if (p.assetDiscovery) {
-      p = await discovery.saveChoices(
-        p.id,
-        {
-          revision: p.revision,
-          discoveryId: p.assetDiscovery.id,
-          choices: p.assetDiscovery.choices ?? {},
-        },
-        true,
-      );
-      // Inspection is allowed to confirm shown references, never substitute changed content.
-      if (p.proposal!.hash !== b.hash)
-        throw new ConflictError(
-          "Inspection captured new asset content. Review the updated proposal before approving it.",
-        );
-    }
     res
       .status(202)
       .json(
@@ -831,6 +811,10 @@ export function createApp(
       );
     delete p.pendingProposalEdit;
     res.json(store.save(p));
+  });
+  app.post("/api/projects/:id/retry-message", (req, res) => {
+    const b = z.object({ revision: z.number().int() }).strict().parse(req.body);
+    res.status(202).json(engine.start(req.params.id, b.revision, "proposal-edit"));
   });
   for (const action of [
     "concept",

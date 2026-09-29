@@ -151,7 +151,8 @@ it("retains a legacy proposal for inspection but does not equate no questions wi
   const saved = await engine.wait(p.id);
   expect(saved.concept?.playerExperience).toBe(legacy.playerExperience);
   expect((saved.concept as any)?.readiness).toBe("needs_revision");
-  expect(() => engine.start(p.id, 1, "plan")).toThrow(/concept/i);
+  expect(() => engine.start(p.id, 1, "plan")).not.toThrow();
+  await engine.wait(p.id);
 });
 it("rejects an answered question with unchanged wording under a new ID", async () => {
   const proposal = conceptFixture();
@@ -201,7 +202,8 @@ it("requires a concrete decision for a delegated answer", async () => {
   const saved = await engine.wait(p.id);
   expect(saved.concept?.readiness).toBe("needs_revision");
   expect(saved.concept?.notices?.join(" ")).toContain("not been applied");
-  expect(() => engine.start(p.id, p.revision, "plan")).toThrow(/concept/i);
+  expect(() => engine.start(p.id, p.revision, "plan")).not.toThrow();
+  await engine.wait(p.id);
 });
 it.each([
   "unknown source",
@@ -228,7 +230,7 @@ it.each([
   expect(saved.stage).toBe("failed");
   expect(saved.concept).toBeNull();
 });
-it("keeps explicitly unresolved issues visible and blocks planning", async () => {
+it("keeps unresolved concept advice visible without a separate planning approval", async () => {
   const proposal = {
     ...conceptProposalFixture(false),
     unresolvedIssues: ["The core game direction still needs a choice."],
@@ -239,7 +241,8 @@ it("keeps explicitly unresolved issues visible and blocks planning", async () =>
   const saved = await engine.wait(p.id);
   expect(saved.concept?.readiness).toBe("needs_revision");
   expect(saved.concept?.notices).toContain(proposal.unresolvedIssues[0]);
-  expect(() => engine.start(p.id, 1, "plan")).toThrow(/concept/i);
+  expect(() => engine.start(p.id, 1, "plan")).not.toThrow();
+  await engine.wait(p.id);
 });
 it("does not require or call disabled backup profiles for a concept", async () => {
   const { engine, config, model, calls } = setup(conceptProposalFixture(false));

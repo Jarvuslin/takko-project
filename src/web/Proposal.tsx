@@ -1,4 +1,4 @@
-import { buildEstimate } from "./chat-state";
+import { buildEstimate, buildEstimateNote } from "./chat-state";
 import { useEffect, useState } from "react";
 import { QuestionModal } from "./QuestionModal";
 import type { Project } from "../generation/schema";
@@ -8,6 +8,7 @@ export function Proposal({
   disabled,
   approve,
   discard,
+  retryMessage,
   saveAnswers,
 }: {
   project: Project;
@@ -15,6 +16,7 @@ export function Proposal({
   disabled: boolean;
   approve: () => Promise<void>;
   discard: () => void;
+  retryMessage?: () => void;
   saveAnswers: (answers: Record<string, string>) => Promise<void>;
 }) {
   const proposal = project.proposal!;
@@ -130,6 +132,7 @@ export function Proposal({
       {project.pendingProposalEdit && (
         <div role="status">
           <p>Pending edit: {project.pendingProposalEdit.text}</p>
+          {!project.jobId && retryMessage && <button onClick={retryMessage}>Retry accepted message</button>}
           <button disabled={!!project.jobId} onClick={discard}>
             Discard pending edit
           </button>
@@ -194,9 +197,7 @@ export function Proposal({
               ? "Resolve the pending edit before building."
               : questions.length
                 ? "Answer the questions before building."
-                : buildEstimate(project) === null
-                  ? "Build estimate unavailable until task costs are known. Your spending cap still applies."
-                  : "Estimate uses previous builder calls. Review and repair may cost more."}
+                : buildEstimateNote(project)}
         </p>
       )}
     </section>

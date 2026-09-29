@@ -1,3 +1,4 @@
+import { stepRetry } from "../generation/retry";
 import type { Express } from "express";
 import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
@@ -15,7 +16,8 @@ import {
   type AssetDiscovery,
   type AssetOption,
 } from "./discovery";
-import { assetIdSchema } from "./types";
+import { assetIdSchema, marketplaceKindSchema, type MarketplaceKind } from "./types";
+import { skipProposalNeed, proposalNeed } from "./proposal-picks";
 import { revisionKey, type AssetLibrary } from "./library";
 import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
@@ -80,6 +82,8 @@ export function pickingRoutes(
       return await run();
     } finally {
       engine.assetOperations.delete(id);
+      const p = store.get(id);
+      if (!p.jobId && p.queuedMessages?.some(q => q.status === "queued")) void engine.applyQueuedChanges(id);
     }
   }
   function initialize(p: Project) {
@@ -204,6 +208,7 @@ export function pickingRoutes(
     return g;
   }
   function save(p: Project) {
+    if (p.assetDiscovery?.studioId) p.assetStudioId = p.assetDiscovery.studioId;
     // Approval receives the same references already shown in the reviewed card.
     // Derive attachments now so approval does not introduce a second hash change.
     const selected = new Map<
@@ -223,7 +228,8 @@ export function pickingRoutes(
       const entry = o.previewData?.pack?.entries.find(
         (e) => e.key === c.clipKey,
       );
-      const usage = `${g.label}${entry ? `: clip ${entry.name} (${entry.animationId ? "rbxassetid://" + entry.animationId : "embedded key " + entry.key}), ${entry.clip!.rig}` : ""}`;
+      const sound = proposalNeed(p, g.id)?.pick?.sound;
+      const usage = `${g.label}${sound ? `: sound ${sound.name} at ${sound.path}, rbxassetid://${sound.assetId}. Preview unavailable, playback requires Studio testing.` : ""}${entry ? `: clip ${entry.name} (${entry.animationId ? "rbxassetid://" + entry.animationId : "embedded key " + entry.key}), ${entry.clip!.rig}` : ""}`;
       selected.set(o.assetId, {
         assetId: o.assetId,
         contentHash: o.inspection.contentHash,
@@ -253,6 +259,8 @@ export function pickingRoutes(
       .strict()
       .parse(req.body);
     let p = current(req.params.id, b.revision);
+    // Rendering a failed checkpoint must not revalidate and invalidate its input.
+    if (stepRetry(p)) { res.json(p); return; }
     if (engine.assetOperations.has(p.id))
       throw new ConflictError("Wait for asset work to finish.");
     initialize(p);
@@ -282,13 +290,14 @@ export function pickingRoutes(
     studioId: string,
     query: string,
     cursor?: string,
+    kind?: MarketplaceKind,
   ) {
     const g = group(p, groupId),
       d = p.assetDiscovery!;
     const page = library.provider.searchPage
-      ? await library.provider.searchPage(studioId, query, g.kind, cursor)
+      ? await library.provider.searchPage(studioId, query, kind ?? g.kind, cursor)
       : {
-          assets: await library.provider.search(studioId, query, g.kind),
+          assets: await library.provider.search(studioId, query, kind ?? g.kind),
           nextCursor: undefined,
           total: undefined,
           filteredCount: 0,
@@ -354,6 +363,7 @@ export function pickingRoutes(
           .max(200)
           .refine((q) => !!q.trim()),
         cursor: z.string().max(4096).optional(),
+        kind: marketplaceKindSchema.optional(),
       })
       .strict()
       .parse(req.body);
@@ -365,6 +375,7 @@ export function pickingRoutes(
           b.studioId,
           b.query,
           b.cursor,
+          b.kind,
         ),
       ),
     );
@@ -386,7 +397,7 @@ export function pickingRoutes(
         );
       const inspected = (await library.inspect(studioId, option.assetId)).asset;
       if (
-        g.preview === "animation" &&
+        (g.preview === "animation" || g.preview === "audio") &&
         ["Animation", "Model"].includes(inspected.kind)
       )
         g.kind = inspected.kind;
@@ -405,6 +416,13 @@ export function pickingRoutes(
           "Static inspection did not return a result. Choose this asset again to retry.",
         );
       const snapshot = library.sourceSnapshot(option.assetId);
+      if (g.preview === "audio" && inspected.kind === "Model") {
+        option.previewData = { ...option.previewData, sounds: (snapshot?.nodes ?? []).flatMap(node => {
+          const match = node.className === "Sound" && node.soundId?.match(/^(?:rbxassetid:\/\/|https?:\/\/www\.roblox\.com\/asset\/?\?id=)([1-9]\d*)$/);
+          return match && assetIdSchema.safeParse(match[1]).success ? [{ path: node.name, name: node.name.split(".").at(-1)!, assetId: match[1] }] : [];
+        }) };
+        if (!option.previewData.sounds?.length) throw new RequestError("This model has no captured sound IDs. Choose another asset or Skip for now.");
+      }
       if (snapshot && inspected.inspection?.status !== "blocked") {
         store.save(p);
         await engine.reviewAttachedSources(p, g.id, snapshot, inspected.inspection!.contentHash);
@@ -518,6 +536,13 @@ export function pickingRoutes(
       }),
     );
   });
+  app.post("/api/projects/:id/asset-picks/skip", (req, res) => {
+    const b = base.extend({ groupId: z.string().max(80) }).strict().parse(req.body);
+    const p = current(req.params.id, b.revision);
+    if (!skipProposalNeed(p, b.groupId)) throw new RequestError("This need no longer exists. Return to chat.");
+    refreshProposal(p, ["assets"]);
+    res.json(store.save(p));
+  });
   app.post("/api/projects/:id/asset-picks/remove", (req, res) => {
     const b = base.extend({ groupId: z.string().max(80) }).strict().parse(req.body);
     const p = current(req.params.id, b.revision), g = group(p, b.groupId);
@@ -551,6 +576,17 @@ export function pickingRoutes(
       throw new ConflictError("Choose a playable clip from the selected pack.");
     c.clipKey = b.clipKey;
     delete c.error;
+    res.json(save(p));
+  });
+  app.post("/api/projects/:id/asset-picks/sound", (req, res) => {
+    const b = base.extend({ groupId: z.string().max(80), assetId: assetIdSchema, path: z.string().max(1024) }).strict().parse(req.body);
+    const p = current(req.params.id, b.revision), g = group(p, b.groupId);
+    const need = proposalNeed(p, b.groupId);
+    const choice = p.assetDiscovery?.choices?.[g.id];
+    const option = g.options.find(o => o.assetId === b.assetId);
+    const sound = option?.previewData?.sounds?.find(s => s.path === b.path);
+    if (!need?.pick || choice?.assetId !== b.assetId || !sound) throw new RequestError("Choose a captured sound from this asset.");
+    need.pick.sound = sound;
     res.json(save(p));
   });
   app.post("/api/projects/:id/asset-picks/estimate", async (req, res) => {

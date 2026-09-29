@@ -1,4 +1,5 @@
 import { approvedAssetLinks } from "./asset-binding";
+import { proposalNeed } from "./proposal-picks";
 import {
   AssetOperationError,
   type AssetAdapter,
@@ -9,7 +10,7 @@ import type { Project } from "../generation/schema";
 
 /** Acquire selected physical content before asking a worker to integrate it. */
 export function buildAssetNeeds(p: Project): AssetNeed[] {
-  const needs = structuredClone(p.spec?.assetNeeds ?? []);
+  const needs = structuredClone((p.spec?.assetNeeds ?? []).filter(n => !proposalNeed(p, n.id)?.pick?.skip));
   for (const need of needs) if (need.kind === "Animation" || need.kind === "Audio") need.deliveryRole = "source_data";
   for (const { need, option, group } of approvedAssetLinks(p)) {
     // A selected animation can be packaged in a Model. Import that container

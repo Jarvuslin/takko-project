@@ -453,7 +453,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
       z.tuple([
         z.boolean(),
         z.array(z.string()),
-        z.array(z.tuple([z.string(), z.string()])),
+        z.array(z.tuple([z.string(), z.string(), z.string().optional()])),
         z.array(z.tuple([z.string(), z.string()])),
       ]),
       value,
@@ -464,7 +464,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
       {
         complete: packed[0],
         issues: packed[1],
-        nodes: packed[2].map(([name, className]) => ({ name, className })),
+        nodes: packed[2].map(([name, className, soundId]) => ({ name, className, ...(soundId ? { soundId } : {}) })),
         scripts: packed[3].map(([name, source]) => ({ name, source })),
       },
       "inspection snapshot",
@@ -521,7 +521,7 @@ end
 local http=game:GetService("HttpService")
 local snapshot=http:JSONDecode(capture())
 local nodes,scripts={},{}
-for _,node in snapshot.nodes do table.insert(nodes,{node.name,node.className}) end
+for _,node in snapshot.nodes do table.insert(nodes,{node.name,node.className,node.soundId}) end
 for _,source in snapshot.scripts do table.insert(scripts,{source.name,source.source}) end
 local encoded=http:JSONEncode({snapshot.complete,snapshot.issues,nodes,scripts})
 assert(#encoded<=${MAX_TRANSFER_BYTES},"Asset inspection exceeds the transfer size limit")
@@ -552,6 +552,7 @@ local ok,err=pcall(function()
     for _,item in root:GetDescendants() do table.insert(objects,item) end
     for _,item in objects do
       local node={name=string.sub(item:GetFullName(),1,1024),className=item.ClassName}
+      if item:IsA("Sound") then node.soundId=string.sub(item.SoundId,1,2048) end
       reserve(node)
       table.insert(result.nodes,node)
       if item:IsA("BaseScript") then item.Enabled=false end

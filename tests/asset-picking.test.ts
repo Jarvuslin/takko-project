@@ -156,7 +156,7 @@ it("turns an interrupted saved check into a retryable problem on initialization"
   const f = await fixture();
   await f.search();
   const p = (await f.choose()).data;
-  p.assetDiscovery.choices.targetDummy.operation = "checking";
+  p.proposal.assetNeeds.find((n: any) => n.id === "targetDummy").pick.operation = "checking";
   f.app.locals.engine.store.save(p);
   const restored = (await f.command("asset-picks")).data;
   expect(pickStatus(restored, restored.assetDiscovery.groups[0])).toMatchObject({
@@ -170,7 +170,7 @@ it("approves the already reviewed references in one action and refuses incomplet
   let p = f.project();
   expect(
     (await f.command("approve-proposal", { hash: p.proposal!.hash })).status,
-  ).toBe(400);
+  ).toBe(409);
   await f.search();
   await f.choose();
   await f.search("punchAnimation", "punch animation");
@@ -308,7 +308,7 @@ it.each([true, false])(
     const result = await f.command("asset-picks/auto", {
       token: estimate.data.token,
     });
-    expect(result.status).toBe(200);
+    expect(result.status, JSON.stringify(result.data)).toBe(200);
     expect(f.state.calls).toBe(estimate.data.calls);
     expect(!!result.data.assetDiscovery.choices.targetDummy.assetId).toBe(
       relevant,

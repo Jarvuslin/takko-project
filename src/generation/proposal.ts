@@ -1,4 +1,5 @@
 import { structuredQuestionSchema } from "./questions";
+import { isDeepStrictEqual } from "node:util";
 import { createHash } from "node:crypto";
 import { z } from "zod";
 import { assetNeedSchema } from "./asset-contract";
@@ -8,6 +9,7 @@ import { assetNeedAuthoringIssues } from "./marketplace-policy";
 import { worldChoiceSchema } from "./world-policy";
 import { assetSearches } from "../marketplace/discovery";
 import { assetNeedForGroup } from "../marketplace/asset-binding";
+import { captureProposalPicks, needDefinition } from "../marketplace/proposal-picks";
 
 export const sectionId = z.enum(["mechanics", "theme", "environment"]);
 export type SectionId = z.infer<typeof sectionId>;
@@ -47,7 +49,9 @@ export const proposalPatchSchema = z
     summary: z.string().min(1).max(1200),
   })
   .strict();
-export type Proposal = z.infer<typeof proposalDraftSchema> & {
+export type Proposal = Omit<z.infer<typeof proposalDraftSchema>, "assetNeeds"> & {
+  assetNeeds?: (z.infer<typeof assetNeedSchema> & { pick?: import("../marketplace/proposal-picks").ProposalPick })[];
+  assetStateVersion?: 1;
   revision: number;
   hash: string;
   approval?: { hash: string; revision: number; at: string };
@@ -68,7 +72,7 @@ export function proposalHash(p: Project) {
           ...(q.assetNeeds ? [q.assetNeeds] : []),
         ],
         p.assetAttachments ?? [],
-        p.assetDiscovery?.choices ?? {},
+        ...(q?.assetStateVersion === 1 ? [] : [p.assetDiscovery?.choices ?? {},
         p.assetDiscovery?.groups.map((g) => [
           g.id,
           g.options
@@ -84,7 +88,7 @@ export function proposalHash(p: Project) {
                 (e) => e.key === p.assetDiscovery?.choices?.[g.id]?.clipKey,
               ),
             ]),
-        ]) ?? [],
+        ]) ?? []]),
         ...(p.world ? [p.world] : []),
         ...(p.platform ? [p.platform] : []),
         ...(p.rig ? [p.rig] : []),
@@ -95,6 +99,7 @@ export function proposalHash(p: Project) {
 }
 export function refreshProposal(p: Project, changed: Proposal["changed"] = []) {
   if (!p.proposal) return;
+  captureProposalPicks(p);
   const hash = proposalHash(p);
   if (hash !== p.proposal.hash) {
     p.proposal.approval = undefined;
@@ -153,7 +158,10 @@ export function applyProposalPatch(
   if (patch.assetNeeds) {
     if (!allowed.includes("mechanics"))
       throw new ConflictError("Asset slot changes require a mechanics edit.");
-    next.assetNeeds = patch.assetNeeds;
+    next.assetNeeds = patch.assetNeeds.map(n => {
+      const previous = q.assetNeeds?.find(old => old.id === n.id);
+      return previous && isDeepStrictEqual(needDefinition(previous), n) ? { ...n, pick: previous.pick } : n;
+    });
   }
   for (const change of patch.changes) next[change.id] = change.value;
   let nextDiscovery = p.assetDiscovery;
@@ -161,7 +169,7 @@ export function applyProposalPatch(
     const prior = p.assetDiscovery;
     const retained = new Map(prior.groups.flatMap(group => {
       const need = assetNeedForGroup({ spec: null, proposal: q }, group);
-      return need && patch.assetNeeds!.some(n => JSON.stringify(n) === JSON.stringify(need))
+      return need && patch.assetNeeds!.some(n => isDeepStrictEqual(n, needDefinition(need)))
         ? [[need.id, group] as const] : [];
     }));
     const groups = assetSearches({ ...p, spec: null, proposal: next }).map(search =>
@@ -180,7 +188,7 @@ export function applyProposalPatch(
   }
   p.proposal = next;
   if (patch.assetNeeds) {
-    const removed = (q.assetNeeds ?? []).filter(old => old.selectedAssetId && !patch.assetNeeds!.some(n => n.selectedAssetId === old.selectedAssetId)).map(n => n.selectedAssetId!);
+    const removed = (q.assetNeeds ?? []).filter(old => !next.assetNeeds?.some(n => n.id === old.id && isDeepStrictEqual(needDefinition(old), needDefinition(n)))).map(n => n.pick?.assetId ?? n.selectedAssetId).filter(Boolean);
     p.assetAttachments = p.assetAttachments?.filter(a => !removed.includes(a.assetId));
   }
   p.assetDiscovery = nextDiscovery;

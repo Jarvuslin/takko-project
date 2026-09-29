@@ -17,6 +17,7 @@ export type AssetOption = AssetMetadata & {
   previewData?: {
     pack?: AnimationPack;
     model?: ModelPreview;
+    sounds?: { path: string; name: string; assetId: string }[];
     notice?: string;
     revisionKey?: string;
   };

@@ -379,6 +379,8 @@ export type Project = {
     scopedPaths?: { files: string[]; scene: string[] };
   };
   staleImplementation?: boolean;
+  /** Read-only estimate from successful builds in this workspace. */
+  historicalBuildAverageMicros?: number;
   decisionAdvice?: {
     identity: string;
     task: string;

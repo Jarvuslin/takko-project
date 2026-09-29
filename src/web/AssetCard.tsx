@@ -1,4 +1,4 @@
-import { buildEstimate } from "./chat-state";
+import { buildEstimate, buildEstimateNote } from "./chat-state";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery } from "../marketplace/discovery";
@@ -59,6 +59,8 @@ export function AssetCard({
   choose,
   approve,
   connect,
+  openModels,
+  openBudget,
 }: {
   project: Project;
   disabled: boolean;
@@ -67,6 +69,8 @@ export function AssetCard({
   choose: (groupId: string) => void;
   approve: () => Promise<void>;
   connect: () => void;
+  openModels?: () => void;
+  openBudget?: () => void;
 }) {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
@@ -273,7 +277,16 @@ export function AssetCard({
               </p>
             )}
             {o && <ChosenGeometry key={o.assetId} option={o} />}
+            {g.preview === "audio" && o?.kind === "Model" && (
+              <div>
+                <p>Preview unavailable. Choose a captured sound to use it.</p>
+                {o.previewData?.sounds?.map(sound => <button key={sound.path} disabled={disabled || !!busy} aria-pressed={project.proposal?.assetNeeds?.find(n => n.id === g.id)?.pick?.sound?.path === sound.path}
+                  onClick={() => run(g.id, async () => update(await assetRequest<Project>(project.id, "asset-picks/sound", { revision: project.revision, groupId: g.id, assetId: o.assetId, path: sound.path })))}>Use sound {sound.name}</button>)}
+              </div>
+            )}
             <div className="need-actions">
+              <button disabled={disabled || !!busy} onClick={() => run(g.id, async () => update(await assetRequest<Project>(project.id, "asset-picks/skip", { revision: project.revision, groupId: g.id })))}>Skip for now</button>
+              {(c?.error || c?.reason?.includes("Nothing on this page")) && <button onClick={() => choose(g.id)}>Broader search</button>}
               {!o && <p>Attach one from the Marketplace and press Enter, or say 'choose for me'</p>}
               {o && <button aria-label={`Remove ${o.name}`} disabled={disabled || !!busy} onClick={() => run(g.id, async () => update(await assetRequest<Project>(project.id, "asset-picks/remove", { revision: project.revision, groupId: g.id })))}>×</button>}
               {s.state === "warning" && o && (
@@ -373,9 +386,12 @@ export function AssetCard({
         );
       })}
       {error && (
-        <p className="pick-note pick-problem" role="alert">
+        <div className="pick-note pick-problem" role="alert">
           {error}
-        </p>
+          {openModels && <button onClick={openModels}>Open Models</button>}
+          {openBudget && <button onClick={openBudget}>Review budget</button>}
+          <button onClick={() => setError("")}>Review asset choices</button>
+        </div>
       )}
       <div className="need-foot">
         <button
@@ -383,7 +399,6 @@ export function AssetCard({
           disabled={
             disabled ||
             !!busy ||
-            !groups.length ||
             !!missing.length ||
             !!buildBlocked
           }
@@ -397,7 +412,8 @@ export function AssetCard({
               `Choose or review: ${missing.map(assetLabel).join(", ")}.`}
           </p>
         )}
-        <small>{buildEstimate(project) !== null ? "Based on previous builder calls. Review and repair may cost more." : "Build estimate unavailable until task costs are known. Your spending cap still applies."}</small>
+        <small>{buildEstimateNote(project)}</small>
+        {!!project.clarificationQuestions?.length && <small>Approve &amp; build uses the proposed behavior or recommended option for unanswered choices.</small>}
       </div>
       {autoSheet && (
         <ClipSheet

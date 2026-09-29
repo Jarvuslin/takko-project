@@ -11,7 +11,6 @@ import {
   ClarificationDialog,
   type ClarificationQuestion,
 } from "./Clarifications";
-import { GameConcept, FirstPlaytest } from "./GameConcept";
 import { AssetCard, assetRequest } from "./AssetCard";
 import { PlatformChip } from "./PlatformChip";
 import { assetSearches } from "../marketplace/discovery";
@@ -184,6 +183,7 @@ export function App() {
   const [projectListLimit, setProjectListLimit] = useState(60);
   const requestRef = useRef<HTMLTextAreaElement>(null);
   const [followup, setFollowup] = useState("");
+  const [stopping, setStopping] = useState(false);
   const threadScroll = useRef<HTMLDivElement>(null);
   const followLatest = useRef(true);
   const messageSubmission = useRef<{ text: string; id: string } | null>(null);
@@ -250,23 +250,7 @@ export function App() {
     }
     savedBrief.current = project;
   }, [project]);
-  useEffect(() => {
-    if (
-      !project?.proposal ||
-      project.jobId ||
-      project.pendingProposalEdit ||
-      !messageSubmission.current
-    )
-      return;
-    const sent = project.conversation?.find(
-      (t) => t.id === messageSubmission.current?.id,
-    );
-    if (sent?.text === followup.trim()) {
-      setFollowup("");
-      sessionStorage.removeItem("takko-draft-" + project.id);
-      messageSubmission.current = null;
-    }
-  }, [project, followup]);
+  useEffect(() => { if (!project?.jobId) setStopping(false); }, [project?.id, project?.jobId]);
   const studioConnection = useStudioConnection(project?.id, connectionGate);
   const offlineMode = connectionGate && studioConnection.state === "offline";
   const needsConnection =
@@ -367,6 +351,7 @@ export function App() {
       await fn();
     } catch (e) {
       setError((e as Error).message);
+      setStopping(false);
     } finally {
       setBusy(false);
     }
@@ -403,6 +388,7 @@ export function App() {
   }
   async function action(name: string) {
     if (!project) return;
+    if (name === "cancel") setStopping(true);
     await work(async () => {
       setProject(
         await api<Project>("/projects/" + project.id + "/" + name, "POST", {
@@ -428,8 +414,8 @@ export function App() {
     !!(project.assetDiscovery?.groups.length || assetSearches(project).length);
   const assetDraft = useAssetAttachments(
     project?.id ?? "new",
-    project?.assetAttachments,
-    running,
+    undefined,
+    false,
     project
       ? async (asset, studioId) => {
           const next = await api<Project>(
@@ -452,21 +438,10 @@ export function App() {
   const assetInputs = assetDraft.attachments.map(
     ({ assetId, contentHash, usage }) => ({ assetId, contentHash, usage }),
   );
-  const assetsChanged =
-    JSON.stringify(assetInputs) !==
-    JSON.stringify(
-      (project?.assetAttachments ?? []).map(
-        ({ assetId, contentHash, usage }) => ({ assetId, contentHash, usage }),
-      ),
-    );
+  const assetsChanged = assetInputs.length > 0;
   const source =
     project?.artifact?.files.find((f) => f.path === file) ??
     project?.artifact?.files[0];
-  const conceptDirty =
-    !!project &&
-    (request !== project.request ||
-      assetsChanged ||
-      !sameAnswers(answers, project.answers));
   const changeAnswers = (next: Record<string, string>) => {
     setAnswers(next);
     if (project) {
@@ -480,69 +455,12 @@ export function App() {
       }
     }
   };
-  async function shapeIdea() {
-    if (!project) return;
-    await work(async () => {
-      const savedAnswers = Object.fromEntries(
-        Object.entries(answers).filter(([, value]) => value.trim()),
-      );
-      const p = conceptDirty
-        ? await api<Project>("/projects/" + project.id, "PATCH", {
-            revision: project.revision,
-            request,
-            answers: savedAnswers,
-            assetAttachments: assetInputs,
-          })
-        : project;
-      setProject(p);
-      setAnswers(p.answers);
-      setProject(
-        await api<Project>("/projects/" + p.id + "/concept", "POST", {
-          revision: p.revision,
-          ...(generationLimit !== undefined
-            ? { generationBudgetMicros: generationLimit }
-            : {}),
-        }),
-      );
-    });
-  }
   async function approvePickedProject() {
-    if (!project) return;
-    if (project.proposal) {
-      receiveAssetProject(
-        await api<Project>(`/projects/${project.id}/approve-proposal`, "POST", {
-          revision: project.revision,
-          hash: project.proposal.hash,
-          ...(generationLimit !== undefined
-            ? { generationBudgetMicros: generationLimit }
-            : {}),
-        }),
-      );
-    } else {
-      let p = await assetRequest<Project>(project.id, "approve-brief", {
-        revision: project.revision,
-      });
-      const choices = Object.fromEntries(
-        Object.entries(p.assetDiscovery?.choices ?? {}).map(([id, c]) => [
-          id,
-          {
-            assetId: c.assetId,
-            clipKey: c.clipKey,
-            skip: c.skip,
-            kept: c.kept,
-            acknowledgeInspectionLimitations:
-              c.acknowledgeInspectionLimitations,
-          },
-        ]),
-      );
-      p = await assetRequest<Project>(p.id, "approve-assets", {
-        revision: p.revision,
-        discoveryId: p.assetDiscovery!.id,
-        choices,
-      });
-      receiveAssetProject(p);
-      await planWithAssets(p);
-    }
+    if (!project?.proposal) return;
+    receiveAssetProject(await api<Project>(`/projects/${project.id}/approve-proposal`, "POST", {
+      revision: project.revision, hash: project.proposal.hash,
+      ...(generationLimit !== undefined ? { generationBudgetMicros: generationLimit } : {}),
+    }));
   }
   function receiveAssetProject(next: Project) {
     setProject((current) =>
@@ -550,41 +468,6 @@ export function App() {
         ? next
         : current,
     );
-    assetDraft.setAttachments(next.assetAttachments ?? []);
-  }
-  async function planWithAssets(p: Project) {
-    await work(async () => {
-      setProject(
-        await api<Project>(`/projects/${p.id}/plan`, "POST", {
-          revision: p.revision,
-          ...(generationLimit !== undefined
-            ? { generationBudgetMicros: generationLimit }
-            : {}),
-        }),
-      );
-    });
-  }
-  async function approveBrief() {
-    if (!project) return;
-    await work(async () => {
-      const p = conceptDirty
-        ? await api<Project>(`/projects/${project.id}`, "PATCH", {
-            revision: project.revision,
-            request,
-            answers: Object.fromEntries(
-              Object.entries(answers).filter(([, v]) => v.trim()),
-            ),
-            assetAttachments: assetInputs,
-          })
-        : project;
-      setProject(p);
-      setAnswers(p.answers);
-      setProject(
-        await api<Project>(`/projects/${p.id}/approve-brief`, "POST", {
-          revision: p.revision,
-        }),
-      );
-    });
   }
   return (
     <div
@@ -832,6 +715,9 @@ export function App() {
             {(error || pollError) && (
               <div role="alert" className="error-banner">
                 {error || pollError}
+                <button onClick={() => navigateSettings("models")}>Open Models</button>
+                <button onClick={() => setBudgetDialog(true)}>Review budget</button>
+                {project && <button onClick={() => { followupRef.current?.focus(); setError(""); }}>Edit in chat</button>}
                 <button
                   aria-label="Dismiss error"
                   onClick={() => {
@@ -1122,7 +1008,7 @@ export function App() {
                       <Icon name="clock" size={16} /> History
                     </button>
                   </div>
-                  <ChatStatus project={project} checkingAssets={assetDraft.inspecting} stop={() => action("cancel")} />
+                  <ChatStatus project={project} checkingAssets={assetDraft.inspecting} stopping={stopping} stop={() => action("cancel")} />
                   <PlatformChip
                     project={project}
                     update={(next) => {
@@ -1185,7 +1071,7 @@ export function App() {
                             </details>
                           </>
                         ) : (
-                          <p>{project.error}</p>
+                          <><p>{project.error}</p><button onClick={() => navigateSettings("models")}>Open Models</button><button onClick={() => setBudgetDialog(true)}>Review budget</button></>
                         )}
                         {project.failure && (
                           <details>
@@ -1222,6 +1108,7 @@ export function App() {
                               assetsInChat={hasAssetCard}
                               disabled={running || ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage)}
                               discard={() => action("discard-proposal-edit")}
+                              retryMessage={() => action("retry-message")}
                               saveAnswers={async (chosen) => {
                                 const next = await api<Project>(
                                   `/projects/${project.id}`,
@@ -1260,175 +1147,7 @@ export function App() {
                               }}
                             />
                           )}
-                          {!project.proposal && (
-                            <>
-                              {proposalsEnabled && (
-                                <button
-                                  disabled={running}
-                                  onClick={() => action("proposal")}
-                                >
-                                  Prepare persistent proposal
-                                </button>
-                              )}
-                              <details className="brief-editor">
-                                <summary>Edit original brief</summary>
-                                <div className="section-head">
-                                  <h2>Your request</h2>
-                                  <span className="muted">
-                                    Revision {project.revision}
-                                  </span>
-                                </div>
-                                <p className="muted">
-                                  Editing the original brief replaces the active
-                                  follow-up instructions. Your message history
-                                  stays saved.
-                                </p>
-                                <label
-                                  className="sr-only"
-                                  htmlFor="project-request"
-                                >
-                                  Project request
-                                </label>
-                                <textarea
-                                  id="project-request"
-                                  className="request-editor"
-                                  value={request}
-                                  disabled={running}
-                                  onChange={(e) => setRequest(e.target.value)}
-                                />
-                              </details>
-                              <div
-                                className={
-                                  "actions" +
-                                  (project.concept &&
-                                  request === project.request &&
-                                  !(
-                                    conceptDirty &&
-                                    !project.concept.questions.length
-                                  )
-                                    ? " is-context-idle"
-                                    : "")
-                                }
-                              >
-                                {conceptsEnabled &&
-                                  (!project.spec || project.concept) && (
-                                    <button
-                                      disabled={
-                                        running || request.trim().length < 5
-                                      }
-                                      onClick={shapeIdea}
-                                    >
-                                      {project.concept
-                                        ? request === project.request
-                                          ? "Update concept"
-                                          : "Update concept from request"
-                                        : "Shape my idea"}
-                                    </button>
-                                  )}
-                                {assetChoicesEnabled &&
-                                  (!project.concept || !!project.spec) && (
-                                    <button
-                                      className="primary"
-                                      disabled={
-                                        running ||
-                                        request.trim().length < 5 ||
-                                        (project.briefApprovedRevision ===
-                                          project.revision &&
-                                          !conceptDirty)
-                                      }
-                                      onClick={approveBrief}
-                                    >
-                                      {project.briefApprovedRevision ===
-                                        project.revision && !conceptDirty
-                                        ? "Brief approved"
-                                        : "Approve brief"}
-                                    </button>
-                                  )}
-                                {!project.concept &&
-                                  project.briefApprovedRevision !==
-                                    project.revision && (
-                                    <button
-                                      disabled={running}
-                                      onClick={() =>
-                                        work(async () => {
-                                          const p = await api<Project>(
-                                            "/projects/" + project.id,
-                                            "PATCH",
-                                            {
-                                              revision: project.revision,
-                                              request,
-                                              answers,
-                                            },
-                                          );
-                                          setProject(p);
-                                          setProject(
-                                            await api<Project>(
-                                              "/projects/" + p.id + "/plan",
-                                              "POST",
-                                              {
-                                                revision: p.revision,
-                                                ...(generationLimit !==
-                                                undefined
-                                                  ? {
-                                                      generationBudgetMicros:
-                                                        generationLimit,
-                                                    }
-                                                  : {}),
-                                              },
-                                            ),
-                                          );
-                                        })
-                                      }
-                                    >
-                                      {project.spec
-                                        ? "Update & replan"
-                                        : "Plan this game"}{" "}
-                                      <span>↗</span>
-                                    </button>
-                                  )}
-                                <button
-                                  className="text-button"
-                                  onClick={() => navigateSettings("models")}
-                                >
-                                  Configure models
-                                </button>
-                              </div>
-                              {conceptsEnabled &&
-                                !project.spec &&
-                                !project.concept && (
-                                  <p className="muted">
-                                    Shape your idea, then review the plan before
-                                    building. Uses your planner and generation
-                                    budget.
-                                  </p>
-                                )}
-                              {project.concept?.revision === project.revision &&
-                                (project.spec ? (
-                                  <FirstPlaytest
-                                    concept={project.concept}
-                                    openStudio={openStudioSetup}
-                                  />
-                                ) : (
-                                  <GameConcept
-                                    concept={project.concept}
-                                    answers={answers}
-                                    onAnswers={changeAnswers}
-                                    onRefine={shapeIdea}
-                                    onPlan={
-                                      assetChoicesEnabled
-                                        ? approveBrief
-                                        : () => action("plan")
-                                    }
-                                    approved={
-                                      project.briefApprovedRevision ===
-                                      project.revision
-                                    }
-                                    disabled={running || !conceptsEnabled}
-                                    dirty={conceptDirty}
-                                  />
-                                ))}
-                            </>
-                          )}
+                          {!project.proposal && <button disabled={running} onClick={() => action("proposal")}>Prepare proposal from saved conversation</button>}
                           {hasAssetCard &&
                             (!project.artifact || project.assetDiscovery) && (
                               <AssetCard
@@ -1436,9 +1155,7 @@ export function App() {
                                 project={project}
                                 disabled={running || assetDraft.inspecting}
                                 buildBlocked={
-                                  ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage) ? "Use the latest result card below, or send a change in chat." : project.pendingProposalEdit ? "Resolve the pending edit before building." : conceptDirty
-                                    ? "Save your brief changes before building."
-                                    : project.platform?.question
+                                  ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage) ? "Use the latest result card below, or send a change in chat." : project.pendingProposalEdit ? "Resolve the pending edit before building." : project.platform?.question
                                       ? "Choose the target platform before building."
                                       : project.clarificationQuestions?.length
                                         ? "Answer the project questions before building."
@@ -1451,6 +1168,8 @@ export function App() {
                                 }}
                                 approve={approvePickedProject}
                                 connect={openStudioSetup}
+                                  openModels={() => navigateSettings("models")}
+                                  openBudget={() => setBudgetDialog(true)}
                               />
                             )}
                           {!!project.events.length &&
@@ -1675,48 +1394,6 @@ export function App() {
                                   ))}
                                 </div>
                               </details>
-                              {!project.proposal && (
-                                <div className="actions">
-                                  <button
-                                    className="primary"
-                                    disabled={
-                                      running ||
-                                      conceptDirty ||
-                                      project.spec.questions.length > 0
-                                    }
-                                    onClick={() =>
-                                      work(async () => {
-                                        const p = await api<Project>(
-                                          "/projects/" +
-                                            project.id +
-                                            "/approve",
-                                          "POST",
-                                          { revision: project.revision },
-                                        );
-                                        setProject(p);
-                                      })
-                                    }
-                                  >
-                                    Approve specification
-                                  </button>
-                                  {project.approvedRevision ===
-                                    project.revision &&
-                                    !offlineMode &&
-                                    tab === "Brief" && (
-                                      <button
-                                        className="primary"
-                                        disabled={
-                                          running || request !== project.request
-                                        }
-                                        onClick={() => action("build")}
-                                      >
-                                        {project.artifact
-                                          ? "Rebuild"
-                                          : "Generate game"}
-                                      </button>
-                                    )}
-                                </div>
-                              )}
                             </>
                           )}
                         </section>
@@ -2216,9 +1893,7 @@ export function App() {
                       onSubmit={(e) => {
                         e.preventDefault();
                         if (
-                          (!followup.trim() && !assetsChanged) ||
-                          busy ||
-                          assetDraft.inspecting
+                          (!followup.trim() && !assetsChanged)
                         )
                           return;
                         work(async () => {
@@ -2243,28 +1918,25 @@ export function App() {
                               ]),
                               id: crypto.randomUUID(),
                             };
+                          const submission = messageSubmission.current;
                           const revised = await api<Project>(
                             "/projects/" + project.id + "/messages",
                             "POST",
                             {
                               revision: project.revision,
-                              id: messageSubmission.current.id,
+                              id: submission.id,
                               text,
                               answers: savedAnswers,
                               assetAttachments: assetInputs,
                             },
                           );
-                          if (revised.queuedMessages?.some(q => q.id === messageSubmission.current?.id)) {
-                            messageSubmission.current = null;
-                            setFollowup(current => {
-                              if (current.trim() !== followup.trim()) return current;
-                              sessionStorage.removeItem("takko-draft-" + project.id);
-                              return "";
-                            });
-                            setProject(revised);
-                            return;
-                          }
-                          if (!revised.proposal) messageSubmission.current = null;
+                          assetDraft.setAttachments(current => current.filter(a => !assetInputs.some(sent => sent.assetId === a.assetId && sent.usage === a.usage)));
+                          if (messageSubmission.current?.id === submission.id) messageSubmission.current = null;
+                          setFollowup(current => {
+                            if (current.trim() !== followup.trim()) return current;
+                            sessionStorage.removeItem("takko-draft-" + project.id);
+                            return "";
+                          });
                           setTab("Brief");
                           setProject(revised);
                           setRequest(revised.request);
@@ -2310,12 +1982,7 @@ export function App() {
                             !e.nativeEvent.isComposing
                           ) {
                             e.preventDefault();
-                            if (
-                              !busy &&
-                              !assetDraft.inspecting &&
-                              request === project.request
-                            )
-                              e.currentTarget.form?.requestSubmit();
+                            e.currentTarget.form?.requestSubmit();
                           }
                         }}
                         placeholder="What would you like to add or change?"
@@ -2335,7 +2002,7 @@ export function App() {
                         disabled={running || assetDraft.inspecting}
                       />
                       <div className="composer-footer">
-                        {project.jobId && <button type="button" aria-label="Stop build" onClick={() => action("cancel")}>Stop</button>}
+                          {project.jobId && <button type="button" aria-label="Stop build" disabled={stopping} onClick={() => action("cancel")}>{stopping ? "Stopping…" : "Stop"}</button>}
                         <button
                           type="button"
                           className="attach-button"
@@ -2375,20 +2042,15 @@ export function App() {
                           className="primary send-button"
                           aria-label="Send message and update plan"
                           disabled={
-                            busy ||
-                            assetDraft.inspecting ||
                             (!followup.trim() && !assetsChanged) ||
-                            followup.trim().length > 6000 ||
-                            request !== project.request
+                            followup.trim().length > 6000
                           }
                         >
                           <Icon name="arrow" />
                         </button>
                       </div>
                       <small className="composer-hint">
-                        {request !== project.request
-                          ? "Save your edited brief using the plan button before sending a follow-up. "
-                          : ""}
+                        {assetDraft.inspecting ? "Checking the new attachment. Your message is kept here." : ""}
                         {running
                           ? "Enter to queue · applied after this step · Stop keeps completed work"
                           : "Enter to send · Shift + Enter for a new line"}

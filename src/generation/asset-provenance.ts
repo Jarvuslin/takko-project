@@ -44,6 +44,8 @@ export function suppliedAssetReferences(p: Project): string {
       );
       if (entry?.animationId && ids.includes(choice.assetId))
         ids.push(entry.animationId);
+      const sound = p.proposal?.assetNeeds?.find(n => n.id === group.id)?.pick?.sound;
+      if (sound && ids.includes(choice.assetId) && option?.previewData?.sounds?.some(s => s.path === sound.path && s.assetId === sound.assetId)) ids.push(sound.assetId);
     }
   }
   return [

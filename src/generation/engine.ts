@@ -4,11 +4,13 @@ import {
   proposalQuestions,
   clearAnsweredQuestions,
 } from "./proposal-questions";
-import { questionInstructions, structuredQuestionSchema } from "./questions";
+import { questionInstructions, structuredQuestionSchema, optionAnswer } from "./questions";
 import { assessEvidenceOptions } from "../marketplace/relevance";
 import { appendTurn } from "./conversation";
 import { validateRetainedAnimations } from "./retained-animation";
 import { matchMessageAssets, normalizeNeeds } from "../marketplace/normalize-needs";
+import { skipTarget, skipProposalNeed, authoringProposal } from "../marketplace/proposal-picks";
+import { missingPicks, assetLabel } from "../marketplace/pick-status";
 import { physicalSourceLines } from "./component-review";
 import type { AssetSnapshot } from "../marketplace/types";
 import { recommendRig, requestedRig, rigQuestionId, rigInstructions } from "./rig-policy";
@@ -1090,7 +1092,7 @@ export class Engine {
     const hash = createHash("sha256")
       .update(JSON.stringify([change, attachments ?? null]))
       .digest("hex");
-    const receipt = p.submissions?.find((s) => s.id === key) ?? p.queuedMessages?.find(q => q.id === key);
+    const receipt = p.submissions?.find((s) => s.id === key) ?? p.queuedMessages?.find(q => q.id === key) ?? (p.pendingProposalEdit?.id === key ? { hash: p.pendingProposalEdit.submissionHash } : undefined);
     if (receipt) {
       if (receipt.hash !== hash)
         throw new ConflictError(
@@ -1106,16 +1108,25 @@ export class Engine {
       change.architecture === undefined
         ? undefined
         : architectureSchema.parse(change.architecture);
-    if (p.jobId && text) {
-      if (p.revision !== revision) throw new ConflictError("The conversation changed. Review it before sending.");
-      if ((p.queuedMessages ?? []).filter(q => q.status === "queued").reduce((n,q) => n + q.text.length, text.length) > 6000)
-        throw new ConflictError("The queued brief is full. Wait for this step to finish.");
-      queueReceipt(p, { id: key, hash, text, revision, jobId: p.jobId,
+    if ((p.jobId || p.pendingProposalEdit || this.assetOperations.has(p.id) || this.mutationBlocker?.(p.id) || p.assetPipeline?.requiresReconciliation || p.assetPipeline?.status === "interrupted") && text) {
+      queueReceipt(p, { id: key, hash, text, revision: p.revision, jobId: p.jobId ?? "asset-operation",
         at: new Date().toISOString(), status: "queued", answers: change.answers, attachments });
       return this.store.save(p);
     }
+    const skipped = text && skipTarget(p, text);
+    if (skipped) {
+      skipProposalNeed(p, skipped.id);
+      p.stage = "draft"; p.error = null; p.failure = null;
+      p.revision++;
+      refreshProposal(p, ["assets"]);
+      if (p.assetDiscovery) p.assetDiscovery.revision = p.revision;
+      appendTurn(p, "user", text!, { id: key });
+      appendTurn(p, "snapshot", `Skipped ${skipped.query} for now. You can add it again later.`);
+      (p.submissions ??= []).push({ id: key, hash });
+      return this.store.save(p);
+    }
     if (text && /\bchoose for me\b/i.test(text) && p.assetDiscovery) {
-      this.idle(p, revision);
+      this.idle(p, text ? p.revision : revision);
       const groups = p.assetDiscovery.groups;
       const named = groups.filter(g => text.toLowerCase().includes(g.query.toLowerCase()) || text.toLowerCase().includes(g.id.toLowerCase()));
       const missing = groups.filter(g => !p.assetDiscovery!.choices?.[g.id]?.assetId);
@@ -1134,15 +1145,13 @@ export class Engine {
           );
         return p;
       }
-      this.idle(p, revision);
+      this.idle(p, text ? p.revision : revision);
       if (
         attachments &&
         !isDeepStrictEqual(attachments, p.assetAttachments ?? [])
       )
       {
-        p.assetAttachments = attachments;
-        for (const [id, choice] of Object.entries(p.assetDiscovery?.choices ?? {})) if (choice.assetId && !attachments.some(a => a.assetId === choice.assetId)) delete p.assetDiscovery!.choices![id];
-        for (const n of p.proposal.assetNeeds ?? []) if (n.selectedAssetId && !attachments.some(a => a.assetId === n.selectedAssetId)) delete n.selectedAssetId;
+        p.assetAttachments = [...new Map([...(p.assetAttachments ?? []), ...attachments].map(a => [a.assetId, a])).values()];
         const questions = matchMessageAssets(p);
         normalizeNeeds(p);
         refreshProposal(p, ["assets"]);
@@ -1151,7 +1160,7 @@ export class Engine {
       p.pendingProposalEdit = {
         id: key,
         text,
-        baseRevision: revision,
+        baseRevision: p.revision,
         baseHash: proposalHash(p),
         submissionHash: hash,
         ...(change.answers
@@ -1162,8 +1171,14 @@ export class Engine {
             }
           : {}),
       };
+      if (!p.conversation?.some(t => t.id === key)) appendTurn(p, "user", text, { id: key, status: "accepted" });
       this.store.save(p);
-      return this.start(id, revision, "proposal-edit");
+      try { return this.start(id, p.revision, "proposal-edit"); }
+      catch (error) {
+        p.error = (error as Error).message;
+        appendTurn(p, "snapshot", `Message accepted. ${p.error}`);
+        return this.store.save(p);
+      }
     }
     if (!text && !architecture)
       throw new ConflictError("Describe a change or provide an architecture.");
@@ -1184,7 +1199,7 @@ export class Engine {
       architectureSemantics(architecture) ===
         architectureSemantics(p.architecture)
     ) {
-      this.idle(p, revision);
+      this.idle(p, text ? p.revision : revision);
       p.architecture = architecture;
       (p.submissions ??= []).push({ id: key, hash });
       appendTurn(
@@ -1384,7 +1399,8 @@ export class Engine {
           {
             kind: "question-options",
             request: p.request,
-            proposal: p.proposal,
+            proposal: authoringProposal(p),
+            assetSelections: p.proposal?.assetNeeds?.map(n => ({ id: n.id, pick: n.pick })),
             questions,
             instructions:
               questionInstructions +
@@ -1456,17 +1472,6 @@ export class Engine {
   approveProposal(id: string, revision: number, hash: string, budget?: number) {
     const p = this.store.get(id);
     this.idle(p, revision);
-    if (proposalQuestions(p).length && p.proposal?.approval?.hash !== hash)
-      throw new ConflictError(
-        "Answer the consequential gameplay questions before approving.",
-      );
-    if (p.world?.question)
-      throw new ConflictError(
-        "Resolve the world question before building: " + p.world.question,
-      );
-    if(p.platform?.question)throw new ConflictError("Resolve the platform question before building: "+p.platform.question);
-    const platformIssues=platformPlanningIssues(p,p.proposal);
-    if(platformIssues.length)throw new ConflictError(platformIssues.join("\n"));
     if (!p.proposal || p.proposal.hash !== hash || proposalHash(p) !== hash)
       throw new ConflictError(
         "The proposal changed. Review the saved version before approval.",
@@ -1475,28 +1480,27 @@ export class Engine {
       throw new ConflictError(
         "Finish or discard the pending proposal edit before building.",
       );
-    if (
-      p.proposal.approval?.hash !== hash &&
-      scopeQuestions(p.proposal.mechanics.assumptions, p).length
-    )
+    if (p.proposal.assetStateVersion === 1 && missingPicks(p).length)
       throw new ConflictError(
-        "Answer the consequential gameplay questions before approving: " +
-          scopeQuestions(p.proposal.mechanics.assumptions, p).join("\n"),
+        "Choose or skip: " + missingPicks(p).map(assetLabel).join(", "),
       );
-    if (
-      [p.proposal.mechanics, p.proposal.theme, p.proposal.environment].some(
-        (s) => s.unresolved.length,
-      )
-    )
-      throw new ConflictError(
-        "Resolve the dependencies shown in the proposal before building.",
-      );
-    if (!p.assetDiscovery?.approved)
-      throw new ConflictError(
-        "Asset recommendations are not inspected yet. Connect Marketplace or explicitly defer unresolved slots.",
-      );
+    const defaults = proposalQuestions(p);
+    for (const question of defaults) {
+      const option = question.options.find(o => o.id === "keep")?.id ?? question.recommendedOptionId;
+      p.answers[question.id] = optionAnswer(question, option);
+      (p.answerQuestions ??= {})[question.id] = question.source ?? question.prompt;
+    }
+    if (p.rig && !p.rig.selected) p.rig = requestedRig(p.answers[rigQuestionId] ?? recommendRig(p).recommended, p.rig);
+    if (defaults.length) {
+      clearAnsweredQuestions(p);
+      p.clarificationQuestions = [];
+      refreshProposal(p);
+      hash = p.proposal.hash;
+      appendTurn(p, "snapshot", "Using the displayed defaults for unanswered choices. Change them any time in chat.");
+    }
     if (p.artifact && p.proposalPlan?.hash !== hash) affectedTasks(p);
     p.proposal.approval = { hash, revision, at: new Date().toISOString() };
+    if (p.assetDiscovery) p.assetDiscovery.approved = true;
     this.store.save(p);
     return this.start(id, revision, "proposal-build", budget);
   }
@@ -1542,6 +1546,7 @@ export class Engine {
   }
   private queueBoundary(p: Project) {
     mergeQueuedMessages(p, this.store.get(p.id));
+    if (p.pendingProposalEdit) return;
     if (p.queuedMessages?.some(q => q.status === "queued"))
       throw new QueuedChangeBoundary("Saved current step. Applying queued changes before continuing.");
   }
@@ -1555,28 +1560,47 @@ export class Engine {
     if (turn) turn.status = "cancelled";
     return this.store.save(p);
   }
-  async applyQueuedChanges(id: string) {
+  async applyQueuedChanges(id: string): Promise<Project> {
     const p = this.store.get(id);
     if (p.jobId) throw new ConflictError("Wait for the current step.");
-    const messages = (p.queuedMessages ?? []).filter(q => ["queued", "held"].includes(q.status));
+    const waiting = (p.queuedMessages ?? []).filter(q => ["queued", "held"].includes(q.status));
+    const messages: typeof waiting = [];
+    let length = 0;
+    for (const message of waiting) {
+      if (length && length + message.text.length + 1 > 6000) break;
+      messages.push(message); length += message.text.length + 1;
+    }
     if (!messages.length) return p;
     if (messages.some(q => q.revision !== p.revision) || !p.proposal) {
       for (const q of messages) { q.status = "held"; q.reason = "The project context changed. Remove this queued change and send a new message after reviewing the current plan."; const turn = p.conversation?.find(t => t.id === q.id); if (turn) turn.status = "held"; }
       return this.store.save(p);
     }
+    if (p.pendingProposalEdit && p.pendingProposalEdit.text !== messages.map(q => q.text).join("\n")) {
+      // Finishing an older accepted edit does not apply messages queued after it.
+      this.start(id, p.revision, "proposal-edit");
+      await this.wait(id);
+      const result = this.store.get(id);
+      if (result.pendingProposalEdit) return result;
+      for (const q of result.queuedMessages ?? []) if (["queued", "held"].includes(q.status) && q.revision === p.revision) q.revision = result.revision;
+      this.store.save(result);
+      return this.applyQueuedChanges(id);
+    }
     for (const q of messages) { q.status = "applying"; const turn = p.conversation?.find(t => t.id === q.id); if (turn) turn.status = "applying"; }
     this.store.save(p);
     try {
       const text = messages.map(q => q.text).join("\n");
-      if (text.length > 6000) throw Error("Combine the queued changes into a message under 6000 characters.");
-      this.submitChange(id, p.revision, randomUUID(), { text, answers: messages.at(-1)?.answers }, messages.at(-1)?.attachments);
+      if (p.pendingProposalEdit) this.start(id, p.revision, "proposal-edit");
+      else this.submitChange(id, p.revision, randomUUID(), { text, answers: messages.at(-1)?.answers }, messages.flatMap(q => q.attachments ?? []));
       await this.wait(id);
       const result = this.store.get(id);
       const succeeded = !result.pendingProposalEdit && !["failed", "interrupted"].includes(result.stage);
       markQueued(result, succeeded ? "applied" : "held", succeeded ? "Applied to the plan. Review it before building." : "The edit did not finish. Your message and completed work are kept. Continue explicitly.", messages.map(q => q.id));
-      markQueued(result, "held", "The plan changed while this message waited. Review it before continuing.");
+      if (succeeded) for (const q of result.queuedMessages ?? []) {
+        if (q.status === "queued" && q.revision === p.revision) q.revision = result.revision;
+      }
       appendTurn(result, "snapshot", succeeded ? "Applied your queued changes to the plan. Review it before building." : "Queued changes are held. No automatic retry will run.");
-      return this.store.save(result);
+      this.store.save(result);
+      return succeeded && result.queuedMessages?.some(q => q.status === "queued") ? this.applyQueuedChanges(id) : result;
     } catch (error) {
       const result = this.store.get(id);
       markQueued(result, "held", (error as Error).message, messages.map(q => q.id));
@@ -1613,18 +1637,8 @@ export class Engine {
       throw new ConflictError(
         "Use Approve & build to resume the revised proposal. The retained artifact belongs to an earlier version and cannot be repaired or exported as this version.",
       );
-    if (
-      (proposing || kind === "proposal-build") &&
-      p.charges.some(
-        (c) =>
-          c.status === "error" &&
-          (c.billingSource === "reservation" ||
-            (c.inputTokens === null && c.outputTokens === null)),
-      )
-    )
-      throw new ConflictError(
-        "An earlier request has uncertain billing. Its conservative charge is retained. Reconcile it before another model call.",
-      );
+    // Failed calls already consume their conservative charge. Explicit retries
+    // use the same remaining cap and never erase or discount that charge.
     if (p.proposal && ["plan", "concept", "build"].includes(kind) && !(kind === "plan" && planningRetry(p)))
       throw new ConflictError(
         "Use Approve & build for the saved proposal. Edit individual sections through chat.",
@@ -1636,22 +1650,6 @@ export class Engine {
     if (p.artifact && p.staleImplementation && !p.proposal && !proposing)
       throw new ConflictError(
         "This saved build has no proposal dependency map. Existing work is retained. Prepare a proposal and review the dependency limitation before a new build.",
-      );
-    if (
-      kind === "plan" &&
-      p.briefApprovedRevision === p.revision &&
-      (!p.assetDiscovery?.approved || p.assetDiscovery.revision !== p.revision)
-    )
-      throw new ConflictError(
-        "Review and approve the asset choices first, including Find later for anything unresolved.",
-      );
-    if (
-      kind === "plan" &&
-      p.concept &&
-      (p.concept.revision !== p.revision || !conceptCanPlan(p.concept))
-    )
-      throw new ConflictError(
-        "Resolve the concept choices before planning this game.",
       );
     if (p.stage === "needs_input" && !planning)
       throw new ConflictError(
@@ -2580,19 +2578,42 @@ export class Engine {
     const choice = p.assetDiscovery!.choices![groupId];
     if (choice.sourceReview?.contentHash === contentHash) return;
     const settings = this.config.read();
-    if (snapshot.scripts.length && !settings.routes.decisions?.length) throw new ConflictError("Configure the decisions route to check the attached scripts automatically.");
+    
     const start = p.charges.length;
     const scripts: { name: string; action: "keep" | "disable" | "danger" }[] = [];
-    for (let offset = 0; offset < snapshot.scripts.length; offset += 1) {
-      const batch = snapshot.scripts.slice(offset, offset + 1);
-      const result = await this.nonCodingDecision(p, "attached-source-review", {
+    const completeSources = snapshot.scripts.map(s => ({ name: s.name, source: physicalSourceLines(s.source).join("") }));
+    const sourceRequest = (source: AssetSnapshot["scripts"][number]): DecisionRequest => ({
         evidenceKind: "complete_script_sources",
         state: { request: p.request, role: group.label, query: group.query, contentHash, complete: snapshot.complete, issues: snapshot.issues, nodes: snapshot.nodes,
           // Preserve the same complete physical source bodies used by component review.
           // One bounded question per call avoids repeating large criteria tables.
-          sources: snapshot.scripts.map(s => ({ name: s.name, source: physicalSourceLines(s.source).join("") })) },
-        questions: Object.fromEntries(batch.map((s, i) => [`script_${i}`, { type: "choice" as const, instructions: `Review actual source of ${s.name} in the full dependency context. Classify only for this asset's role. Ordinary respawn/damage/animation logic is allowed. Computed indexing alone is not danger.`, criteria: { keep: "Useful ordinary behavior for the stated role.", disable: "Unneeded for this role. Disable in the delivered copy.", danger: "Actual external/computed require, dynamic execution, environment tricks, HTTP, remote admin/backdoor, forced purchases or teleports." } }]))
-      }, settings, new Map(settings.profiles.map(m => [m.id, this.config.key(m.id)])), new AbortController().signal);
+          sources: completeSources },
+        questions: Object.fromEntries([source].map((s, i) => [`script_${i}`, { type: "choice" as const, instructions: `Review actual source of ${s.name} in the full dependency context. Classify only for this asset's role. Ordinary respawn/damage/animation logic is allowed. Computed indexing alone is not danger.`, criteria: { keep: "Useful ordinary behavior for the stated role.", disable: "Unneeded for this role. Disable in the delivered copy.", danger: "Actual external/computed require, dynamic execution, environment tricks, HTTP, remote admin/backdoor, forced purchases or teleports." } }]))
+      });
+    const requests = snapshot.scripts.map(sourceRequest);
+    const exceedsDecisionLimit = requests.some(request => {
+      try { decisionBody(request); return false; }
+      catch (error) { if ((error as Error).message.includes("input limit")) return true; throw error; }
+    });
+    // Large dependency sets use the coding reviewer with all evidence intact.
+    // Do not repeatedly submit an impossible Jev request or truncate sources.
+    if (exceedsDecisionLimit) {
+      const schema = z.object({ scripts: z.array(z.object({ name: z.string(), action: z.enum(["keep", "disable", "danger"]) }).strict()).max(100) }).strict();
+      const result = await this.call(p, "reviewer", {
+        kind: "attached-source-review", request: p.request, role: group.label,
+        contentHash, complete: snapshot.complete, issues: snapshot.issues, nodes: snapshot.nodes, sources: completeSources,
+        instructions: "Classify every supplied source exactly once as keep (useful ordinary behavior), disable (unneeded for this role), or danger (external/computed require, dynamic execution, HTTP, backdoor, purchases or teleports). Review the entire dependency context. Computed indexing alone is not danger. Return {scripts:[{name,action}]}. No source body has been omitted.",
+      }, schema, settings, new Map(settings.profiles.map(m => [m.id, this.config.key(m.id)])), new AbortController().signal, value => {
+        if (value.scripts.length !== snapshot.scripts.length || new Set(value.scripts.map(s => s.name)).size !== value.scripts.length || value.scripts.some(s => !snapshot.scripts.some(original => original.name === s.name))) throw Error("Review every supplied source exactly once.");
+      });
+      choice.sourceReview = { contentHash, scripts: result.scripts, costMicros: p.charges.slice(start).reduce((n,c) => n + c.chargedMicros, 0) };
+      this.store.save(p);
+      return;
+    }
+    if (snapshot.scripts.length && !settings.routes.decisions?.length) throw new ConflictError("Open Models and connect a decisions provider to check these scripts.");
+    for (let offset = 0; offset < snapshot.scripts.length; offset += 1) {
+      const batch = snapshot.scripts.slice(offset, offset + 1);
+      const result = await this.nonCodingDecision(p, "attached-source-review", requests[offset], settings, new Map(settings.profiles.map(m => [m.id, this.config.key(m.id)])), new AbortController().signal);
       for (const [i, s] of batch.entries()) {
         const answer = result?.answers[`script_${i}`];
         if (answer?.type !== "choice" || !["keep", "disable", "danger"].includes(answer.choice)) throw Error("The script review did not return a decision for every source.");
@@ -2629,7 +2650,7 @@ export class Engine {
             request: project.request,
             answers: project.answers,
             changes: project.briefChanges,
-            approval: project.assetDiscovery && {
+            approval: project.proposal?.assetStateVersion === 1 ? { hash: project.proposal.hash, picks: project.proposal.assetNeeds?.map(n => ({ id: n.id, pick: n.pick })) } : project.assetDiscovery && {
               id: project.assetDiscovery.id,
               revision: project.assetDiscovery.revision,
               approved: project.assetDiscovery.approved,
@@ -2951,7 +2972,8 @@ export class Engine {
           userSources: requirementSources(p),
           nonCodingAdvice: advice,
           designGuidance: generationDesignGuidance("planner", p),
-          proposal: p.proposal,
+          proposal: authoringProposal(p),
+          assetSelections: p.proposal?.assetNeeds?.map(n => ({ id: n.id, pick: n.pick })),
           answers: pending?.answers ?? p.answers,
           questions: p.spec?.questions ?? [],
           edit: pending,
@@ -3045,7 +3067,9 @@ export class Engine {
           p.answers = { ...p.answers, ...pending.answers };
         }
         (p.briefChanges ??= []).push({ id: pending.id, text: pending.text });
-        if (p.queuedMessages?.filter(q => q.status === "applying").map(q => q.text).join("\n") !== pending.text) appendTurn(p, "user", pending.text, { id: pending.id });
+        const receipt = p.conversation?.find(t => t.id === pending.id);
+        if (receipt) receipt.status = "applied";
+        else if (p.queuedMessages?.filter(q => q.status === "applying").map(q => q.text).join("\n") !== pending.text) appendTurn(p, "user", pending.text, { id: pending.id, status: "applied" });
         (p.submissions ??= []).push({
           id: pending.id,
           hash: pending.submissionHash,
@@ -3119,7 +3143,8 @@ export class Engine {
             {
               kind: "scoped-plan",
               existingProject: existingProjectContext(p),
-              proposal: p.proposal,
+              proposal: authoringProposal(p),
+              assetSelections: p.proposal?.assetNeeds?.map(n => ({ id: n.id, pick: n.pick })),
               spec: p.spec,
               affectedTaskIds: ids,
               instructions:

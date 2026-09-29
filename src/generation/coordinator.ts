@@ -110,7 +110,7 @@ export function coordinationInputHash(p: Project) {
         p.briefChanges,
         p.architecture,
         p.assetAttachments,
-        p.assetDiscovery,
+        p.proposal?.assetStateVersion === 1 ? p.proposal.assetNeeds : p.assetDiscovery,
         p.concept,
         p.research,
         ...(p.rig ? [p.rig] : []),

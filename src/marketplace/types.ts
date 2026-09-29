@@ -41,6 +41,7 @@ export const snapshotSchema = z
         .object({
           name: z.string().max(1024),
           className: z.string().max(100),
+          soundId: z.string().max(2048).optional(),
         })
         .strict(),
     ),

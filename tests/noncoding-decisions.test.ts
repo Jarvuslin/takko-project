@@ -654,7 +654,7 @@ describe("non-coding route through the real Engine", () => {
     await expect(f.engine.assessAssetChoices(f.p.id, 2)).rejects.toThrow(
       /changed/,
     );
-    f.p.assetDiscovery!.approved = true;
+    f.p.proposal!.approval = { hash: f.p.proposal!.hash, revision: f.p.revision, at: new Date().toISOString() };
     f.store.save(f.p);
     await expect(f.engine.assessAssetChoices(f.p.id, 1)).rejects.toThrow(
       /changed/,

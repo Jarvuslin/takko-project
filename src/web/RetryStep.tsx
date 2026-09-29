@@ -88,6 +88,8 @@ export function RetryStep({
           {(quote.estimatedMicros / 1e6).toFixed(2)}
         </button>
       )}
+      {!quote && <button onClick={openModels}>Open model settings</button>}
+      {project.charges.some(c => c.status === "error" && c.billingSource === "reservation") && <p>Unconfirmed calls retain their maximum estimated charge. Continue uses the remaining budget.</p>}
       <p className="muted">
         {quote
           ? "Historical estimate from the last call, not a guaranteed quote. The existing spending cap still applies."

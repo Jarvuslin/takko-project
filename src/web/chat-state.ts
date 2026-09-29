@@ -25,7 +25,7 @@ export function buildEstimate(p: Project) {
   const calls = p.charges.filter(
     (c) => c.phase === "builder" && c.status === "ok",
   );
-  if (!calls.length || !p.spec) return null;
+  if (!calls.length || !p.spec) return p.historicalBuildAverageMicros ?? null;
   const remaining = p.spec.tasks.filter(
     (t) => !p.completedBuildTasks?.includes(t.id),
   ).length;
@@ -35,4 +35,11 @@ export function buildEstimate(p: Project) {
           remaining,
       )
     : null;
+}
+
+export function buildEstimateNote(p: Project) {
+  if (p.charges.some(c => c.phase === "builder" && c.status === "ok") && p.spec) return "Based on previous builder calls. Review and repair may cost more.";
+  return p.historicalBuildAverageMicros !== undefined
+    ? "Historical average of previous builds in this workspace. Actual cost may differ."
+    : `No build history yet. Your $${((p.generation?.budgetMicros ?? p.budgetMicros) / 1e6).toFixed(2)} spending cap applies. This does not block building.`;
 }

@@ -4,8 +4,6 @@ import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import type { GenerationStore } from "../generation/store";
 import type { Engine } from "../generation/engine";
-import { conceptCanPlan } from "../generation/concept";
-import { appendTurn } from "../generation/conversation";
 import { ConflictError, RequestError } from "../errors";
 import { revisionKey, type AssetLibrary } from "./library";
 import { assetSearches, type AssetDiscovery } from "./discovery";
@@ -19,7 +17,6 @@ import { modelPreviewSchema } from "./preview";
 import { refreshProposal } from "../generation/proposal";
 import { assetNeedForGroup } from "./asset-binding";
 import { searchWithCoreNoun } from "./search-with-core-noun";
-import { pickStatus } from "./pick-status";
 
 // Search may expose only an update timestamp. Inspection can add a stronger
 // version identity without changing the content that was listed.
@@ -67,26 +64,6 @@ export function discoveryRoutes(
       pending.delete(id);
     }
   }
-  app.post("/api/projects/:id/approve-brief", (req, res) => {
-    const b = z.object({ revision }).strict().parse(req.body);
-    let p = current(req.params.id, b.revision);
-    if (p.concept) {
-      if (p.concept.revision !== p.revision || !conceptCanPlan(p.concept))
-        throw new ConflictError(
-          "Save your answers and update the brief before approving it.",
-        );
-      p = engine.acceptConcept(p.id, p.revision);
-    }
-    if (p.briefApprovedRevision !== p.revision) {
-      p.briefApprovedRevision = p.revision;
-      appendTurn(
-        p,
-        "user",
-        "Approved brief. Review Marketplace choices before planning.",
-      );
-    }
-    res.json(store.save(p));
-  });
   app.post("/api/projects/:id/asset-options", async (req, res) => {
     const b = z
       .object({
@@ -373,109 +350,11 @@ export function discoveryRoutes(
           current(assessed.id, b.revision, draft.id);
           refreshProposal(assessed, ["assets"]);
           store.save(assessed);
-          if (
-            draft.groups.length &&
-            draft.groups.every(
-              (g) =>
-                draft.choices?.[g.id]?.assetId || draft.choices?.[g.id]?.skip,
-            )
-          ) {
-            pending.delete(assessed.id);
-            try {
-              return await saveChoices(
-                assessed.id,
-                {
-                  revision: b.revision,
-                  discoveryId: draft.id,
-                  choices: draft.choices!,
-                },
-                true,
-              );
-            } catch (error) {
-              const retained = current(assessed.id, b.revision);
-              retained.assetDiscovery!.analysisError =
-                "Recommendations remain unresolved: " +
-                (error as Error).message;
-              return store.save(retained);
-            }
-          }
           return assessed;
         }
         return assessed;
       }),
     );
-  });
-  app.post("/api/projects/:id/defer-assets", (req, res) => {
-    const b = z.object({ revision }).strict().parse(req.body);
-    const p = current(req.params.id, b.revision);
-    if (pending.has(p.id))
-      throw new ConflictError("Wait for asset work to finish.");
-    if (!p.proposal && p.briefApprovedRevision !== p.revision)
-      throw new ConflictError("Approve the current brief first.");
-    const next = engine.revise(
-      p.id,
-      p.revision,
-      p.request,
-      p.answers,
-      (p.assetAttachments ?? []).filter(
-        (a) => !p.assetChoiceAttachmentIds?.includes(a.assetId),
-      ),
-    );
-    if (p.concept && conceptCanPlan(p.concept)) {
-      next.concept = { ...p.concept, revision: next.revision };
-      next.conceptAcceptedRevision = next.revision;
-    }
-    next.briefApprovedRevision = next.revision;
-    next.assetChoiceAttachmentIds = [];
-    const groups = assetSearches(p).map((g) => ({ ...g, options: [] }));
-    next.assetDiscovery = {
-      id: randomUUID(),
-      revision: next.revision,
-      studioId: "",
-      groups,
-      approved: true,
-      choices: Object.fromEntries(groups.map((g) => [g.id, { skip: true }])),
-    };
-    appendTurn(
-      next,
-      "user",
-      "Approved planning with asset discovery deferred. Requested assets remain in scope and unresolved.",
-    );
-    res.json(store.save(next));
-  });
-  app.post("/api/projects/:id/reopen-assets", (req, res) => {
-    const b = z.object({ revision }).strict().parse(req.body);
-    const p = current(req.params.id, b.revision);
-    if (pending.has(p.id))
-      throw new ConflictError("Wait for asset work to finish.");
-    if (!p.assetDiscovery?.approved)
-      throw new ConflictError("Asset choices are not approved yet.");
-    const next = engine.revise(
-      p.id,
-      p.revision,
-      p.request,
-      p.answers,
-      p.assetAttachments,
-    );
-    if (p.concept && conceptCanPlan(p.concept)) {
-      next.concept = { ...p.concept, revision: next.revision };
-      next.conceptAcceptedRevision = next.revision;
-    }
-    next.briefApprovedRevision = next.revision;
-    // Empty deferred reviews must perform a fresh search when Studio becomes available.
-    if (p.assetDiscovery.studioId)
-      next.assetDiscovery = {
-        ...p.assetDiscovery,
-        id: randomUUID(),
-        revision: next.revision,
-        approved: false,
-      };
-    appendTurn(
-      next,
-      "user",
-      "Reopened asset choices. Review and approve the updated choices before planning again.",
-    );
-    res.json(store.save(next));
   });
   app.post("/api/projects/:id/asset-preview", async (req, res) => {
     const b = z
@@ -569,207 +448,4 @@ export function discoveryRoutes(
       }),
     );
   });
-  const choiceInput = z
-    .object({
-      revision,
-      discoveryId: z.uuid(),
-      choices: z.record(
-        z.string().max(80),
-        z
-          .object({
-            assetId: assetIdSchema.optional(),
-            clipKey: z.string().max(1024).optional(),
-            skip: z.boolean().optional(),
-            acknowledgeInspectionLimitations: z.boolean().optional(),
-            kept: z.boolean().optional(),
-          })
-          .strict(),
-      ),
-    })
-    .strict();
-  async function saveChoices(
-    id: string,
-    b: z.infer<typeof choiceInput>,
-    approveOnly = false,
-  ) {
-    return exclusive(id, async () => {
-      const p = current(id, b.revision, b.discoveryId);
-      if (!p.proposal && p.briefApprovedRevision !== p.revision)
-        throw new ConflictError("Approve the current brief first.");
-      const discovery = structuredClone(p.assetDiscovery!);
-      for (const [id, choice] of Object.entries(b.choices)) {
-        const saved = p.assetDiscovery?.choices?.[id];
-        if (saved?.assetId === choice.assetId && saved?.sourceReview) Object.assign(choice, { sourceReview: saved.sourceReview });
-      }
-      if (discovery.approved && !p.proposal)
-        throw new ConflictError("These choices are already approved.");
-      if (
-        Object.keys(b.choices).length !== discovery.groups.length ||
-        discovery.groups.some((g) => !b.choices[g.id])
-      )
-        throw new RequestError(
-          "Choose an option or Find later for every asset group.",
-        );
-      const selected = new Map<
-        string,
-        {
-          assetId: string;
-          contentHash: string;
-          usage: string;
-          acknowledgeInspectionLimitations?: boolean;
-        }
-      >();
-      const receipts: string[] = [];
-      for (const group of discovery.groups) {
-        const choice = b.choices[group.id];
-        if(choice.assetId && p.excludedAssetIds?.includes(choice.assetId)) throw new ConflictError("This asset is excluded for this project run.");
-        if (choice.skip) {
-          if (choice.assetId || choice.clipKey)
-            throw new RequestError("A skipped group cannot select an asset.");
-          receipts.push(group.label + ": find later");
-          continue;
-        }
-        const option = group.options.find((a) => a.assetId === choice.assetId);
-        if (!option)
-          throw new RequestError(
-            "Choose an asset from the current search results.",
-          );
-        const entry = choice.clipKey
-          ? option.previewData?.pack?.entries.find(
-              (e) =>
-                e.key === choice.clipKey && animationTier(e) !== "unusable",
-            )
-          : undefined;
-        if (group.preview === "animation" && !entry)
-          throw new RequestError(
-            "Preview and choose a playable animation clip first, or choose Find later.",
-          );
-        const inspected = (
-          await library.inspect(discovery.studioId, option.assetId)
-        ).asset;
-        if (
-          inspected.kind !== option.kind ||
-          (p.proposal && !sameListedContent(option, inspected)) ||
-          (option.previewData?.revisionKey &&
-            option.previewData.revisionKey !== revisionKey(inspected) &&
-            (group.preview === "animation" ||
-              !sameListedContent(option, inspected)))
-        )
-          throw new ConflictError(
-            "The asset changed since preview. Preview it again before approving.",
-          );
-        if (
-          inspected.inspection?.status === "limited" &&
-          (!option.previewData || !choice.acknowledgeInspectionLimitations)
-        )
-          throw new RequestError(
-            "Inspection coverage is incomplete. Preview this asset and acknowledge its coverage limitation before choosing it.",
-          );
-        if (
-          inspected.inspection?.status !== "no_issues_found" &&
-          inspected.inspection?.status !== "limited" &&
-          inspected.inspection?.status !== "review_required"
-        )
-          throw new RequestError(
-            `${option.name} needs a source review. Choose another option or Find later.`,
-          );
-        if (
-          entry &&
-          option.previewData?.pack?.revisionKey !==
-            (inspected.versionId
-              ? "version:" + inspected.versionId
-              : inspected.updated
-                ? "updated:" + inspected.updated
-                : "")
-        )
-          throw new ConflictError(
-            "The animation changed since preview. Preview it again before approving.",
-          );
-        // Commit richer metadata only with the entire validated selection.
-        option.versionId = inspected.versionId;
-        option.updated = inspected.updated;
-        option.inspection = inspected.inspection;
-        option.isFree = inspected.isFree ?? option.isFree ?? true;
-        const reviewed = { ...p, assetDiscovery: { ...discovery, choices: b.choices } };
-        const readiness = pickStatus(reviewed, group);
-        if (!readiness.canBuild)
-          throw new RequestError(`${group.label}: ${readiness.reason ?? readiness.label}`);
-        const usage = `${group.label}${entry ? `: clip ${entry.name} (${entry.animationId ? "rbxassetid://" + entry.animationId : "embedded key " + entry.key}), ${entry.clip!.rig}` : ""}`;
-        const previous = selected.get(option.assetId);
-        selected.set(option.assetId, {
-          assetId: option.assetId,
-          contentHash: inspected.inspection.contentHash,
-          acknowledgeInspectionLimitations:
-            choice.acknowledgeInspectionLimitations,
-          usage: [previous?.usage, usage]
-            .filter(Boolean)
-            .join(". ")
-            .slice(0, 500),
-        });
-        receipts.push(usage + " · " + option.name + " #" + option.assetId);
-      }
-      const retained = (p.assetAttachments ?? []).filter(
-        (a) =>
-          !selected.has(a.assetId) &&
-          !p.assetChoiceAttachmentIds?.includes(a.assetId),
-      );
-      if (retained.length + selected.size > 8)
-        throw new RequestError(
-          "This project supports eight attached assets. Remove an attachment or reuse an animation pack.",
-        );
-      const attachments = [
-        ...retained,
-        ...library.attachments([...selected.values()]),
-      ];
-      current(p.id, b.revision, b.discoveryId);
-      pending.delete(p.id);
-      const next = approveOnly
-        ? p
-        : engine.revise(p.id, p.revision, p.request, p.answers, attachments);
-      if (approveOnly) next.assetAttachments = attachments;
-      if (next.proposal)
-        next.proposal.changed = [
-          ...new Set([...(p.proposal?.changed ?? []), "assets" as const]),
-        ];
-      // Asset selection changes references, not the already approved game direction.
-      if (p.concept && conceptCanPlan(p.concept)) {
-        next.concept = { ...p.concept, revision: next.revision };
-        next.conceptAcceptedRevision = next.revision;
-      }
-      next.briefApprovedRevision = next.revision;
-      next.assetDiscovery = {
-        ...discovery,
-        revision: next.revision,
-        approved: true,
-        choices: b.choices,
-        pinned: p.proposal
-          ? [
-              ...new Set([
-                ...(discovery.pinned ?? []),
-                ...Object.keys(b.choices).filter(
-                  (id) =>
-                    JSON.stringify(b.choices[id]) !==
-                    JSON.stringify(discovery.choices?.[id]),
-                ),
-              ]),
-            ]
-          : discovery.pinned,
-      };
-      next.assetStudioId = discovery.studioId;
-      next.assetChoiceAttachmentIds = [...selected.keys()];
-      refreshProposal(next, ["assets"]);
-      appendTurn(
-        next,
-        "user",
-        (p.proposal
-          ? "Saved inspected asset recommendations. "
-          : "Approved asset choices. ") + receipts.join(". "),
-      );
-      return store.save(next);
-    });
-  }
-  app.post("/api/projects/:id/approve-assets", async (req, res) => {
-    res.json(await saveChoices(req.params.id, choiceInput.parse(req.body)));
-  });
-  return { saveChoices };
 }

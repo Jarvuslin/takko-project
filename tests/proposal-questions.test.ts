@@ -15,17 +15,21 @@ import { proposalQuestions } from "../src/generation/proposal-questions";
 import { refreshProposal } from "../src/generation/proposal";
 import { createApp } from "../src/server/app";
 import { profile } from "./generation-fixtures";
+import { migrateAssetNeeds } from "../src/generation/retry";
 const dirs: string[] = [];
 afterEach(() =>
   dirs.splice(0).forEach((d) => fs.rmSync(d, { recursive: true, force: true })),
 );
-const real = () =>
-  JSON.parse(
+const real = () => {
+  const p = JSON.parse(
     fs.readFileSync(
       "docs/results/question-modal-20260928/live-project-before.json",
       "utf8",
     ),
   ) as Project;
+  migrateAssetNeeds(p);
+  return p;
+};
 it("falls back safely when a legacy dependency cannot offer keep or has a maximum-length prompt", () => {
   const p = real(),
     source = "x".repeat(600);
@@ -285,7 +289,7 @@ it("all keep answers clear the blocking questions, retain spending and survive r
   store.save(reloaded);
   expect(() =>
     engine.approveProposal(p.id, reloaded.revision, reloaded.proposal!.hash),
-  ).toThrow(/Asset recommendations/);
+  ).toThrow(/Choose or skip/);
 });
 it("a single explicit options-only planner call preserves real proposal content, assets and cumulative budget", async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "takko-question-options-"));

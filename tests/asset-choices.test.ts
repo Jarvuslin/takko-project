@@ -10,14 +10,6 @@ import {
   modelPreviewSchema,
 } from "../src/marketplace/preview";
 import { StudioMarketplace } from "../src/marketplace/studio";
-import { gameContext } from "../src/generation/game-context";
-import { suppliedAssetReferences } from "../src/generation/asset-provenance";
-import {
-  approvedAssetAdapter,
-  buildAssetNeeds,
-} from "../src/marketplace/approved-adapter";
-import { conceptProposalFixture } from "./concept.fixture";
-import { assessConcept } from "../src/generation/concept";
 import { refreshProposal, proposalHash } from "../src/generation/proposal";
 const studioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
 const brief =
@@ -156,10 +148,6 @@ async function fixture(request = brief) {
     p = (await command("asset-options", { studioId })).data;
     return p;
   };
-  const approveBrief = async () => {
-    p = (await command("approve-brief")).data;
-    return p;
-  };
   const preview = async (groupId: string, assetId = "101") => {
     p = (
       await command("asset-preview", {
@@ -170,10 +158,6 @@ async function fixture(request = brief) {
     ).data;
     return p;
   };
-  const choices = () =>
-    Object.fromEntries(
-      p.assetDiscovery.groups.map((g: any) => [g.id, { skip: true }]),
-    );
   return {
     app,
     provider,
@@ -181,55 +165,11 @@ async function fixture(request = brief) {
     command,
     search,
     preview,
-    approveBrief,
-    choices,
     project: () => p,
     directory,
   };
 }
-it("offers the preserved raw-only mapped pack for Studio asset choices", async () => {
-  const f = await fixture();
-  const real = JSON.parse(
-    fs.readFileSync(
-      "docs/results/opencode-step3-live-20260925/terminal-project.json",
-      "utf8",
-    ),
-  );
-  const group = real.assetDiscovery.groups.find(
-    (g: any) => g.preview === "animation",
-  );
-  const pack = group.options.find((o: any) => o.previewData?.pack).previewData
-    .pack;
-  f.provider.animations.mockImplementation(async (_s, m) => ({
-    ...structuredClone(pack),
-    assetId: m.assetId,
-    revisionKey: "updated:v1",
-  }));
-  const result = await f.search();
-  const animationGroups = result.assetDiscovery.groups.filter(
-    (g: any) => g.preview === "animation",
-  );
-  expect(animationGroups.length).toBeGreaterThan(0);
-  expect(animationGroups.every((g: any) => g.options.length > 0)).toBe(true);
-  expect(animationGroups.every((g: any) => !g.error)).toBe(true);
-  await f.approveBrief();
-  const chosen = animationGroups[0];
-  const approved = await f.command("approve-assets", {
-    discoveryId: result.assetDiscovery.id,
-    choices: {
-      ...f.choices(),
-      [chosen.id]: {
-        assetId: chosen.options[0].assetId,
-        clipKey: pack.entries[0].key,
-        kept: true,
-      },
-    },
-  });
-  expect(approved.status).toBe(200);
-  expect(approved.data.assetDiscovery.choices[chosen.id].clipKey).toBe(
-    pack.entries[0].key,
-  );
-});
+
 
 it("filters run exclusions before inspecting or recommending actual preserved animation candidates",async()=>{
   for(const run of ["opencode-step3-live-20260925","opencode-fighting-live-20260924"]) {
@@ -243,7 +183,7 @@ it("filters run exclusions before inspecting or recommending actual preserved an
     const p=JSON.parse(fs.readFileSync(file,"utf8"));
     p.excludedAssetIds=[option.assetId];
     fs.writeFileSync(file,JSON.stringify(p));
-    await f.approveBrief();
+    
     const result=await f.search();
     expect(result.assetDiscovery.groups.flatMap((g:any)=>g.options).some((o:any)=>o.assetId===option.assetId)).toBe(false);
     expect(f.provider.animations).not.toHaveBeenCalled();
@@ -346,168 +286,12 @@ it("keeps inspected recommendations available without defaulting an embedded cli
   expect(p.proposal.hash).toBe(proposalHash(p));
   expect(f.provider.snapshot).toHaveBeenCalled();
 });
-it("replaces one approved recommendation, preserving other choices and pinning the override", async () => {
-  const f = await fixture();
-  f.app.locals.engine.store.save(proposalProject(f.project()));
-  const searched = await f.search();
-  const selected={...searched.assetDiscovery.choices};
-  for(const group of searched.assetDiscovery.groups) if(group.preview==="animation") {
-    const option=group.options.find((o:any)=>o.previewData?.pack?.entries.length);
-    selected[group.id]={assetId:option.assetId,clipKey:option.previewData.pack.entries[0].key};
-  }
-  const accepted=await f.command("approve-assets",{discoveryId:searched.assetDiscovery.id,choices:Object.fromEntries(Object.entries(selected).map(([id,c]:[string,any])=>[id,{...c,kept:true}]))});
-  expect(accepted.status).toBe(200);
-  const p=accepted.data;
-  p.proposal.approval = {
-    hash: p.proposal.hash,
-    revision: p.revision,
-    at: new Date().toISOString(),
-  };
-  p.artifact = {
-    files: [
-      {
-        path: `ServerScriptService/${p.scope}/old.server.luau`,
-        kind: "Script",
-        source: "print('retained')",
-      },
-    ],
-    scene: [],
-    coverage: [],
-    assets: [],
-  };
-  p.completedBuildTasks = ["original"];
-  f.app.locals.engine.store.save(p);
-  const choices = { ...p.assetDiscovery.choices, dummy: { assetId: "102" } };
-  const r = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices,
-    revision:p.revision,
-  });
-  expect(r.status).toBe(200);
-  expect(r.data.assetDiscovery.choices).toEqual(choices);
-  expect(r.data.assetDiscovery.pinned).toEqual(expect.arrayContaining(["dummy"]));
-  for(const id of p.assetDiscovery.pinned??[]) expect(r.data.assetDiscovery.pinned).toContain(id);
-  expect(r.data.proposal.mechanics).toEqual(p.proposal.mechanics);
-  expect(r.data.proposal.theme).toEqual(p.proposal.theme);
-  expect(r.data.proposal.approval).toBeUndefined();
-  expect(r.data.artifact).toEqual(p.artifact);
-  expect(r.data.completedBuildTasks).toEqual(p.completedBuildTasks);
-  const refreshed = await f.post(`projects/${p.id}/asset-options`, {
-    revision: r.data.revision,
-    studioId,
-    groupId: "dummy",
-    query: "different dummy",
-  });
-  expect(refreshed.status).toBe(200);
-  expect(refreshed.data.assetDiscovery.choices.dummy.assetId).toBe("102");
-});
-it("rejects changed content at exact proposal approval and retains the prior proposal", async () => {
-  const f = await fixture("A practice dummy");
-  f.app.locals.engine.store.save(proposalProject(f.project()));
-  const p = await f.search();
-  f.provider.metadata.mockImplementation(async (_s, id) => ({
-    assetId: id,
-    name: "Changed",
-    kind: "Model",
-    creatorName: "Fixture",
-    updated: "v2",
-  }));
-  const r = await f.command("approve-proposal", { hash: p.proposal.hash });
-  expect(r.status).toBe(409);
-  const saved = f.app.locals.engine.store.get(p.id);
-  expect(saved.proposal).toEqual(p.proposal);
-  expect(saved.assetAttachments).toEqual(p.assetAttachments);
-  expect(saved.proposal.approval).toBeUndefined();
-});
-it("retains the proposal if a replacement inspection fails", async () => {
-  const f = await fixture("A practice dummy");
-  f.app.locals.engine.store.save(proposalProject(f.project()));
-  const p = await f.search();
-  f.provider.snapshot.mockRejectedValueOnce(Error("Inspection failed"));
-  const r = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices: { dummy: { assetId: "102" } },
-  });
-  expect(r.status).toBeGreaterThanOrEqual(400);
-  expect(f.app.locals.engine.store.get(p.id).proposal).toEqual(p.proposal);
-  expect(f.app.locals.engine.store.get(p.id).assetDiscovery.choices).toEqual(
-    p.assetDiscovery.choices,
-  );
-});
-it("binds richer inspected version metadata to automatic recommendations for any game", async () => {
-  const f = await fixture("A fishing pond with a dock");
-  f.provider.metadata.mockImplementation(async (_s, id) => ({
-    assetId: id,
-    name: "Dock",
-    kind: "Model",
-    creatorName: "Fixture",
-    updated: "v1",
-    versionId: "9001",
-  }));
-  f.app.locals.engine.store.save(proposalProject(f.project()));
-  const p = await f.search();
-  expect(p.assetDiscovery.approved).toBe(true);
-  expect(p.assetAttachments[0].revisionKey).toBe("version:9001");
-  const g = p.assetDiscovery.groups[0];
-  expect(
-    g.options.find(
-      (o: any) => o.assetId === p.assetDiscovery.choices[g.id].assetId,
-    ).versionId,
-  ).toBe("9001");
-  expect(p.proposal.hash).toBe(proposalHash(p));
-});
-it("saves an unpreviewed selection when inspection adds a version without changing its listed timestamp", async () => {
-  const f = await fixture("A fishing pond with a dock");
-  const p = await f.search();
-  f.app.locals.engine.store.save(proposalProject(p));
-  f.provider.metadata.mockImplementation(async (_s, id) => ({
-    assetId: id,
-    name: "Dock",
-    kind: "Model",
-    creatorName: "Fixture",
-    updated: "v1",
-    versionId: "9001",
-  }));
-  const groupId = p.assetDiscovery.groups[0].id;
-  const r = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices: { ...f.choices(), [groupId]: { assetId: "101" } },
-  });
-  expect(r.status).toBe(200);
-  expect(r.data.assetDiscovery.groups[0].options[0].versionId).toBe("9001");
-  expect(r.data.assetAttachments[0].revisionKey).toBe("version:9001");
-  expect(r.data.proposal.mechanics).toEqual(p.proposal.mechanics);
-  expect(r.data.proposal.hash).toBe(proposalHash(r.data));
-});
-it("refreshes displayed identity after an explicit preview and still rejects a later version change", async () => {
-  const f = await fixture("A fishing pond with a dock");
-  const p = await f.search();
-  f.app.locals.engine.store.save(proposalProject(p));
-  let versionId = "9001";
-  f.provider.metadata.mockImplementation(async (_s, id) => ({
-    assetId: id,
-    name: "Dock",
-    kind: "Model",
-    creatorName: "Fixture",
-    updated: "v1",
-    versionId,
-  }));
-  const groupId = p.assetDiscovery.groups[0].id;
-  const previewed = await f.preview(groupId);
-  expect(previewed.assetDiscovery.groups[0].options[0].versionId).toBe("9001");
-  versionId = "9002";
-  const r = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices: { ...f.choices(), [groupId]: { assetId: "101" } },
-  });
-  expect(r.status).toBe(409);
-  expect(f.app.locals.engine.store.get(p.id).proposal).toEqual(
-    previewed.proposal,
-  );
-  expect(f.app.locals.engine.store.get(p.id).assetDiscovery).toEqual(
-    previewed.assetDiscovery,
-  );
-});
+
+
+
+
+
+
 it("appends real provider pages, retains candidates and rejects stale or mismatched cursors", async () => {
   const f = await fixture("A practice dummy");
   const page = vi.fn(
@@ -618,109 +402,14 @@ describe("brief asset review", () => {
       ).status,
     ).toBe(409);
   });
-  it("requires explicit brief approval and complete choices", async () => {
-    const f = await fixture();
-    const p = await f.search();
-    expect(
-      (
-        await f.command("approve-assets", {
-          discoveryId: p.assetDiscovery.id,
-          choices: f.choices(),
-        })
-      ).status,
-    ).toBe(409);
-    await f.approveBrief();
-    expect(
-      (
-        await f.command("approve-assets", {
-          discoveryId: p.assetDiscovery.id,
-          choices: {},
-        })
-      ).status,
-    ).toBe(400);
-    expect((await f.command("plan")).data.error).toContain("asset choices");
-    expect(f.provider.snapshot).not.toHaveBeenCalled();
-  });
-  it("previews a real clip, persists inspected choices and sends exact references to the planner", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = await f.preview("combat");
-    const choices = {
-      ...f.choices(),
-      combat: { assetId: "101", clipKey: "punch", kept: true },
-      walk: { skip: true },
-    };
-    const result = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices,
-    });
-    expect(result.status).toBe(200);
-    const next = result.data;
-    expect(next.revision).toBe(2);
-    expect(next.briefApprovedRevision).toBe(2);
-    expect(next.assetAttachments[0].usage).toContain("rbxassetid://333");
-    expect(next.assetDiscovery.approved).toBe(true);
-    expect(suppliedAssetReferences(next)).toContain("333");
-    const stale = structuredClone(next);
-    stale.revision++;
-    expect(suppliedAssetReferences(stale)).not.toContain("333");
-    expect(
-      gameContext(next).assetChoices?.groups.find(
-        (g) => g.role === "Walk animation",
-      )?.choice,
-    ).toEqual({ skip: true });
-    expect(next.charges).toEqual([]);
-    expect(next.jobId).toBeNull();
-    expect(
-      JSON.parse(
-        fs.readFileSync(path.join(f.directory, next.id + ".json"), "utf8"),
-      ).assetDiscovery.approved,
-    ).toBe(true);
-  });
-  it("does not approve unseen clips or arbitrary asset IDs", async () => {
-    const f = await fixture();
-    const p = await f.search();
-    await f.approveBrief();
-    for (const choice of [
-      { assetId: "999" },
-      { assetId: "101", clipKey: "invented" },
-    ]) {
-      expect(
-        (
-          await f.command("approve-assets", {
-            discoveryId: p.assetDiscovery.id,
-            choices: { ...f.choices(), combat: choice },
-          })
-        ).status,
-      ).toBe(400);
-    }
-    expect(f.provider.snapshot).not.toHaveBeenCalled();
-  });
-  it("fails closed for unsafe sources without partially saving selections", async () => {
-    const f = await fixture();
-    const p = await f.search();
-    await f.approveBrief();
-    f.provider.snapshot.mockResolvedValueOnce({
-      nodes: [],
-      scripts: [{ name: "Bad", source: 'loadstring("bad")()' }],
-      complete: true,
-      issues: [],
-    } as any);
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), dummy: { assetId: "101" } },
-    });
-    expect(r.status).toBe(400);
-    expect(r.data.error).toContain("source review");
-    expect(
-      f.app.locals.engine.store.get(p.id).assetAttachments,
-    ).toBeUndefined();
-  });
+  
+  
+  
+  
   it("invalidates approval and retains the original options on changed briefs", async () => {
     const f = await fixture();
     const p = await f.search();
-    await f.approveBrief();
+    
     const next = f.app.locals.engine.revise(
       p.id,
       p.revision,
@@ -729,31 +418,10 @@ describe("brief asset review", () => {
     );
     expect(next.assetDiscovery).toEqual({...p.assetDiscovery,revision:next.revision,approved:false});
     expect(next.briefApprovedRevision).toBeUndefined();
-    expect((await f.command("approve-brief")).status).toBe(409);
+    
   });
-  it("preserves the accepted concept while attaching assets without another clarification loop", async () => {
-    const f = await fixture("Pet rescue with animation");
-    let p = f.project();
-    p.concept = assessConcept(conceptProposalFixture(false), p);
-    f.app.locals.engine.store.save(p);
-    await f.search();
-    await f.approveBrief();
-    p = f.project();
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: f.choices(),
-    });
-    expect(r.status).toBe(200);
-    expect(r.data.concept.revision).toBe(2);
-    expect(r.data.conceptAcceptedRevision).toBe(2);
-  });
-  it("does not approve unresolved concepts", async () => {
-    const f = await fixture();
-    const p = f.project();
-    p.concept = assessConcept(conceptProposalFixture(true), p);
-    f.app.locals.engine.store.save(p);
-    expect((await f.command("approve-brief")).status).toBe(409);
-  });
+  
+  
   it("saves geometry previews and errors honestly without attaching assets", async () => {
     const f = await fixture();
     await f.search();
@@ -812,59 +480,9 @@ describe("brief asset review", () => {
       "Asset work is running",
     );
   });
-  it("rejects animation version changes after preview", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = await f.preview("combat");
-    f.provider.metadata.mockResolvedValueOnce({
-      assetId: "101",
-      name: "Changed",
-      kind: "Model",
-      creatorName: "Fixture",
-      updated: "v2",
-    });
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
-    });
-    expect(r.status).toBe(409);
-    expect(f.app.locals.engine.store.get(p.id).revision).toBe(1);
-  });
-  it("supports explicitly deferring discovery without claiming any asset was found", async () => {
-    const f = await fixture();
-    expect((await f.command("defer-assets")).status).toBe(409);
-    await f.approveBrief();
-    const r = await f.command("defer-assets");
-    expect(r.status).toBe(200);
-    expect(r.data.assetDiscovery.approved).toBe(true);
-    expect(
-      r.data.assetDiscovery.groups.every((g: any) => g.options.length === 0),
-    ).toBe(true);
-    expect(r.data.assetDiscovery.choices.combat).toEqual({ skip: true });
-    expect(f.provider.search).not.toHaveBeenCalled();
-    expect(r.data.charges).toEqual([]);
-  });
-  it("only treats the chosen clip as provided, not every previewed animation", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = await f.preview("combat");
-    p.assetDiscovery.groups[1].options[0].previewData.pack.entries.push({
-      key: "other",
-      name: "Other",
-      animationId: "999999",
-      clip,
-    });
-    f.app.locals.engine.store.save(p);
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
-    });
-    expect(r.status).toBe(200);
-    expect(suppliedAssetReferences(r.data)).toContain("333");
-    expect(suppliedAssetReferences(r.data)).not.toContain("999999");
-  });
+  
+  
+  
   it("bounds preview data and never parents loaded assets into the place", () => {
     const source = modelPreviewLuau("123");
     expect(source).toContain("root:Destroy()");
@@ -876,155 +494,9 @@ describe("brief asset review", () => {
         .success,
     ).toBe(true);
   });
-  it("offers only approved references to the build and blocks silent replacements", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = await f.preview("combat");
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
-    });
-    const native = {
-      search: vi.fn(),
-      inspect: vi.fn(async () => "inspected"),
-      discoverComponentAudio: vi.fn(),
-      identity: "fixture",
-    };
-    const adapter = approvedAssetAdapter(native as any, r.data);
-    const results = await adapter.search(
-      { kind: "Model", role: "combat" } as any,
-      "other models",
-      new AbortController().signal,
-    );
-    expect(results.candidates.map((c) => c.id)).toEqual(["101"]);
-    expect(native.search).not.toHaveBeenCalled();
-    expect(adapter.discoverComponentAudio).toBeUndefined();
-    await expect(
-      adapter.search(
-        { kind: "Audio", role: "impact" } as any,
-        "impact",
-        new AbortController().signal,
-      ),
-    ).rejects.toThrow("No approved asset");
-    expect(() =>
-      adapter.inspect(
-        {} as any,
-        { id: "999", kind: "Model" } as any,
-        "attempt",
-        new AbortController().signal,
-      ),
-    ).toThrow("not approved");
-    await adapter.inspect(
-      { kind: "Model", role: "combat" } as any,
-      results.candidates[0],
-      "attempt",
-      new AbortController().signal,
-    );
-    expect(native.inspect).toHaveBeenCalledTimes(1);
-  });
-  it("does not offer approved combat models for an unrelated optional backdrop", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = await f.preview("combat");
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: { ...f.choices(), combat: { assetId: "101", clipKey: "punch", kept: true } },
-    });
-    const native = { identity: "fixture", search: vi.fn(), inspect: vi.fn() };
-    const adapter = approvedAssetAdapter(native as any, r.data);
-    const signal = new AbortController().signal;
-    const backdrop = {
-      kind: "Model",
-      role: "Arena backdrop",
-      requirementId: "walls",
-      query: "cartoon arena",
-      constraints: "Decoration",
-      required: false,
-    } as any;
-    expect(
-      (await adapter.search(backdrop, "cartoon arena", signal)).candidates,
-    ).toEqual([]);
-    expect(
-      (await adapter.search(backdrop, "boxing stage", signal)).candidates,
-    ).toEqual([]);
-    expect(native.search).not.toHaveBeenCalled();
-    expect(() =>
-      adapter.inspect(
-        backdrop,
-        { id: "101", kind: "Model" } as any,
-        "attempt",
-        signal,
-      ),
-    ).toThrow("not approved for");
-    r.data.spec = {
-      requirements: [
-        {
-          id: "punch",
-          description: "The player visibly swings an arm when punching",
-          acceptance: "Visible swing",
-        },
-      ],
-      assetNeeds: [
-        {
-          id: "punchMotion",
-          requirementId: "punch",
-          role: "Fighting animation",
-          kind: "Animation",
-          query: "punch animation",
-          constraints: "A visible arm swing",
-          required: true,
-          position: [0, 3, 0],
-          maxSize: 12,
-        },
-      ],
-    };
-    const linked = approvedAssetAdapter(native as any, r.data);
-    expect(
-      (
-        await linked.search(
-          {
-            ...backdrop,
-            id: "punchMotion",
-            requirementId: "punch",
-            required: true,
-          },
-          "punch",
-          signal,
-        )
-      ).candidates.map((c) => c.id),
-    ).toEqual(["101"]);
-    expect(buildAssetNeeds(r.data)).toEqual([
-      expect.objectContaining({
-        requirementId: "punch",
-        kind: "Model",
-        id: "punchMotion",
-        required: false,
-      }),
-    ]);
-    r.data.spec.requirements = [];
-    expect(() => buildAssetNeeds(r.data)).toThrow("linked requirement");
-  });
-  it("reopens choices without typing and invalidates the previous plan", async () => {
-    const f = await fixture();
-    await f.search();
-    await f.approveBrief();
-    const p = f.project();
-    const r = await f.command("approve-assets", {
-      discoveryId: p.assetDiscovery.id,
-      choices: f.choices(),
-    });
-    const reopened = await f.post(`projects/${p.id}/reopen-assets`, {
-      revision: r.data.revision,
-    });
-    expect(reopened.status).toBe(200);
-    expect(reopened.data.revision).toBe(3);
-    expect(reopened.data.assetDiscovery.approved).toBe(false);
-    expect(reopened.data.briefApprovedRevision).toBe(3);
-    expect(reopened.data.spec).toBeNull();
-    expect(reopened.data.approvedRevision).toBeNull();
-  });
+  
+  
+  
 });
 
 it("retains captured options while a clip choice is pending when discovery preceded the proposal", async () => {
@@ -1040,42 +512,4 @@ it("retains captured options while a clip choice is pending when discovery prece
   expect(f.provider.search.mock.calls.length).toBe(calls);
 });
 
-it("retains a previewed coverage-limited selection only with acknowledgement", async () => {
-  const f = await fixture("A target dummy");
-  f.provider.snapshot.mockResolvedValue(
-    JSON.parse(
-      fs.readFileSync(
-        "docs/results/opencode-motion-live-20260926/inspection-evidence/14056318312.json",
-        "utf8",
-      ),
-    ).snapshot,
-  );
-  f.app.locals.engine.store.save(proposalProject(f.project()));
-  let p = await f.search();
-  expect(p.assetDiscovery.approved).not.toBe(true);
-  expect(
-    p.assetDiscovery.groups[0].options[0].inspectionLimitations.length,
-  ).toBeGreaterThan(0);
-  p = await f.preview(p.assetDiscovery.groups[0].id);
-  const choices = { [p.assetDiscovery.groups[0].id]: { assetId: "101" } };
-  const denied = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices,
-  });
-  expect(denied.status).toBe(400);
-  expect(denied.data.error).toContain("coverage");
-  const accepted = await f.command("approve-assets", {
-    discoveryId: p.assetDiscovery.id,
-    choices: {
-      [p.assetDiscovery.groups[0].id]: {
-        assetId: "101",
-        acknowledgeInspectionLimitations: true,
-        kept: true,
-      },
-    },
-  });
-  expect(accepted.status).toBe(200);
-  expect(
-    accepted.data.assetAttachments[0].inspectionLimitations.length,
-  ).toBeGreaterThan(0);
-});
+

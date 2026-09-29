@@ -1,5 +1,6 @@
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery } from "./discovery";
+import { proposalNeed } from "./proposal-picks";
 
 export type PickState =
   "empty" | "finding" | "checking" | "ready" | "warning" | "problem";
@@ -45,8 +46,8 @@ export function pickStatus(
   if (choice?.skip)
     return status(
       "warning",
-      "This asset was deferred in the saved project.",
-      !!project.assetDiscovery?.approved,
+      "Skipped for now by you.",
+      true,
     );
   if (!choice?.assetId) return status("empty", choice?.reason);
   if (project.excludedAssetIds?.includes(choice.assetId))
@@ -112,7 +113,7 @@ export function pickStatus(
       "Choose a playable clip from this animation pack.",
     );
   if (clip?.clip?.rig && project.rig?.selected && clip.clip.rig !== project.rig.selected) return status("warning", `This animation is ${clip.clip.rig}, but the game uses ${project.rig.selected}. Choose a matching animation or change the project rig.`, true);
-  if (need?.kind === "Audio" && option.kind === "Model") return status("warning", "This is a model containing audio. Choose the sound within it for playback.", true);
+  if (need?.kind === "Audio" && option.kind === "Model" && !proposalNeed(project, group.id)?.pick?.sound) return status("problem", "Choose a sound from this model or Skip for now. Preview is optional.");
   if (warnings.length && !choice.kept) return status("warning", warnings.join(" ") + " Choose a closer match if needed.", true);
   return status(
     "ready",

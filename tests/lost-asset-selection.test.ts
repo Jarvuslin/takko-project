@@ -13,6 +13,7 @@ it("recovers the real live saved listing after the old search removed it from th
     path.join(f.app.locals.assetLibrary.directory, "108353927891814.json"),
   );
   const p = f.project();
+  delete p.proposal!.assetStateVersion;
   p.assetDiscovery = structuredClone(
     liveDiscovery,
   ) as Project["assetDiscovery"];
@@ -52,6 +53,7 @@ afterEach(async () => {
 it("replaces c8550a5b's saved Spider-Man without resurrecting it after search, reload or revision", async () => {
   f = await pickerFixture();
   const p = f.project();
+  delete p.proposal!.assetStateVersion;
   p.assetDiscovery = structuredClone(recorded.assetDiscovery);
   p.answers = structuredClone(recorded.answers);
   p.answerQuestions = structuredClone(recorded.answerQuestions);

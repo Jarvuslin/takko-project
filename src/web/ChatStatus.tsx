@@ -40,10 +40,12 @@ export function ChatStatus({
   project,
   stop,
   checkingAssets = false,
+  stopping = false,
 }: {
   project: Project;
   stop: () => void;
   checkingAssets?: boolean;
+  stopping?: boolean;
 }) {
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
@@ -51,7 +53,7 @@ export function ChatStatus({
     const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
   }, [project.jobId]);
-  const state = checkingAssets ? "Checking assets" : chatState(project);
+  const state = stopping && project.jobId ? "Stopping…" : checkingAssets ? "Checking assets" : chatState(project);
   const tasks = project.spec?.tasks ?? [];
   const done = tasks.filter((t) =>
     project.completedBuildTasks?.includes(t.id),
@@ -80,7 +82,7 @@ export function ChatStatus({
             project.charges.reduce((n, c) => n + c.chargedMicros, 0) / 1e6
           ).toFixed(2)}
         </small>
-        {project.jobId && <button onClick={stop}>Stop</button>}
+        {project.jobId && <button disabled={stopping} onClick={stop}>{stopping ? "Stopping…" : "Stop"}</button>}
       </div>
       {state === "Building" && (
         <>

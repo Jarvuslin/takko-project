@@ -92,6 +92,7 @@ export function newProject(request: string, budgetMicros: number): Project {
   };
 }
 export class GenerationStore {
+  private historyAverage: number | null | undefined;
   private unreadable = new Set<string>();
   checkpoint(p: Project) {
     const folder = path.join(this.directory, "history");
@@ -120,13 +121,22 @@ export class GenerationStore {
     return path.join(this.directory, z.uuid().parse(id) + ".json");
   }
   save(p: Project) {
+    this.historyAverage = undefined;
+    if (p.proposal?.assetStateVersion !== 1) migrateAssetNeeds(p);
     const file = this.file(p.id);
     const previous = fs.existsSync(file)
       ? (JSON.parse(fs.readFileSync(file, "utf8")) as Project)
       : undefined;
     mergeQueuedMessages(p, previous);
     recordConversation(p, previous);
-    fs.writeFileSync(file + ".tmp", JSON.stringify(p, null, 2));
+    const persisted = structuredClone(p);
+    delete persisted.historicalBuildAverageMicros;
+    if (persisted.proposal?.assetStateVersion === 1 && persisted.assetDiscovery) {
+      delete persisted.assetDiscovery.choices;
+      delete persisted.assetDiscovery.approved;
+      delete persisted.assetDiscovery.pinned;
+    }
+    fs.writeFileSync(file + ".tmp", JSON.stringify(persisted, null, 2));
     fs.renameSync(file + ".tmp", file);
     return p;
   }
@@ -139,6 +149,7 @@ export class GenerationStore {
         storedProject.parse(p);
         if (p.id !== id) throw Error("Project identity mismatch");
         migrateAssetNeeds(p);
+        p.historicalBuildAverageMicros = this.historicalBuildAverage();
         return p;
       }
       if (
@@ -196,6 +207,20 @@ export class GenerationStore {
         }
       })
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }
+  historicalBuildAverage(): number | undefined {
+    if (this.historyAverage !== undefined) return this.historyAverage ?? undefined;
+    const costs: number[] = [];
+    for (const name of fs.readdirSync(this.directory)) {
+      if (!name.endsWith(".json") || !z.uuid().safeParse(name.slice(0, -5)).success) continue;
+      try {
+        const p = JSON.parse(fs.readFileSync(path.join(this.directory, name), "utf8"));
+        const calls = (p.charges ?? []).filter((c: Project["charges"][number]) => c.phase === "builder" && c.status === "ok" && Number.isFinite(c.chargedMicros));
+        if (calls.length) costs.push(calls.reduce((sum: number, c: Project["charges"][number]) => sum + c.chargedMicros, 0));
+      } catch { /* An unreadable project cannot supply a price sample. */ }
+    }
+    this.historyAverage = costs.length ? Math.ceil(costs.reduce((a, b) => a + b, 0) / costs.length) : null;
+    return this.historyAverage ?? undefined;
   }
   recover() {
     for (const p of this.list()) {

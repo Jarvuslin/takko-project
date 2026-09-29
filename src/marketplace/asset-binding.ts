@@ -52,7 +52,8 @@ export function assetNeedForGroup(
 ): AssetNeed | undefined {
   const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds ?? [];
   if (group.assetNeedId) {
-    const need = needs.find((n) => n.id === group.assetNeedId);
+    const matches = needs.filter(n => n.id === group.assetNeedId || n.id.endsWith("_" + group.assetNeedId));
+    const need = matches.length === 1 ? matches[0] : undefined;
     if (!need || !compatibleSearchKind(group, need))
       throw Error(
         "Approved asset need link is stale or incompatible: " + group.label,

@@ -84,13 +84,13 @@ function attachProposal(p: Project) {
   refreshProposal(p);
   return p;
 }
-it("cannot approve the preserved unanswered gameplay exclusions as incidental defaults", () => {
+it("names unresolved assets before applying unanswered defaults", () => {
   const {engine,store}=setup();
   const real:Project=JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/terminal-project.json","utf8"));
   real.jobId=null;
   real.proposal!.approval=undefined;
   store.save(real);
-  expect(()=>engine.approveProposal(real.id,real.revision,real.proposal!.hash)).toThrow(/gameplay|mechanic/i);
+  expect(()=>engine.approveProposal(real.id,real.revision,real.proposal!.hash)).toThrow(/Choose or skip/i);
 });
 const servers: Server[] = [];
 afterEach(async () => {
@@ -553,7 +553,7 @@ it("re-edits through OpenCode approval/build, retaining the published artifact o
   expect(p.proposal!.approval!.hash).toBe(proposalHash(p));
   expect(p.generation).toEqual(original.generation);
 });
-it("blocks edits and approval during native apply and unknown native outcomes", async () => {
+it("queues messages and blocks approval during native apply and unknown native outcomes", async () => {
   const f = await built();
   const bridge = f.app.locals.bridge;
   const session = bridge.connect("Fixture", {
@@ -570,7 +570,7 @@ it("blocks edits and approval during native apply and unknown native outcomes", 
         text: "Change theme",
       })
     ).status,
-  ).toBe(409);
+  ).toBe(200);
   expect(
     (
       await f.post(`/projects/${f.p.id}/approve-proposal`, {
@@ -593,7 +593,7 @@ it("blocks edits and approval during native apply and unknown native outcomes", 
         text: "Change theme",
       })
     ).status,
-  ).toBe(409);
+  ).toBe(200);
 });
 it("repeated edits cannot reopen the original spending boundary", async () => {
   const f = await prepared();

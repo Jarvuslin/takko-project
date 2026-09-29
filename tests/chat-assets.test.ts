@@ -60,7 +60,7 @@ it("applies a straw dummy planner change and clears the old pick while preservin
 it("automatically reviews ordinary sources through mocked decisions, accounts cost, and removes a pick durably", async () => {
   const f = await pickerFixture(); fixtures.push(f); f.state.scripts = 1;
   await f.search(); const p = (await f.choose()).data;
-  expect(pickStatus(p, p.assetDiscovery.groups[0]).state).toBe("ready");
+  expect(pickStatus(p, p.assetDiscovery.groups[0]).state, JSON.stringify(p.assetDiscovery.choices)).toBe("ready");
   expect(p.assetDiscovery.choices.targetDummy.sourceReview.scripts[0].action).toBe("keep");
   expect(p.charges).toHaveLength(1);
   expect((await f.command("asset-picks/remove", { groupId: "targetDummy" })).status).toBe(200);

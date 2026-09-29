@@ -131,7 +131,7 @@ export async function pickerFixture() {
         draft.assetNeeds = draft.assetNeeds?.map(n => n.id === "targetDummy" ? { ...n, query: "straw dummy", selectedAssetId: undefined } : n);
       }
       return Response.json({
-        choices: [{ message: { content: JSON.stringify(context.kind === "proposal-edit" ? { baseRevision: context.edit.baseRevision, baseHash: context.edit.baseHash, changes: [{ id: "mechanics", value: { ...draft.mechanics, text: draft.mechanics.text + " Updated from chat." } }], assetNeeds: draft.assetNeeds, summary: "Using the attached asset for its matching need." } : draft) } }],
+        choices: [{ message: { content: JSON.stringify(context.kind === "proposal-edit" ? { baseRevision: context.edit.baseRevision, baseHash: context.edit.baseHash, changes: [{ id: /arena|floor/i.test(context.edit.text) ? "environment" : "mechanics", value: { ...(/arena|floor/i.test(context.edit.text) ? draft.environment : draft.mechanics), text: (/arena|floor/i.test(context.edit.text) ? draft.environment.text : draft.mechanics.text) + " Updated from chat." } }], ...(/arena|floor/i.test(context.edit.text) ? {} : { assetNeeds: draft.assetNeeds }), summary: "Using the attached asset for its matching need." } : draft) } }],
         usage: { prompt_tokens: 100, completion_tokens: 100, cost: 0 },
       });
     }

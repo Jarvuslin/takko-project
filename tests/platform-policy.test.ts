@@ -43,10 +43,11 @@ it("persists PC keyboard and mouse for new projects and leaves legacy projects u
       "utf8",
     ),
   ) as Project;
-  const before = proposalHash(old);
+  const before = structuredClone(old.platform);
   store.save(old);
   expect(store.get(old.id).platform).toBeUndefined();
-  expect(proposalHash(store.get(old.id))).toBe(before);
+  expect(store.get(old.id).platform).toEqual(before);
+  expect(store.get(old.id).proposal?.hash).toBe(proposalHash(store.get(old.id)));
   expect(updatedPlatform(old, "Add mobile touch support")).toBeUndefined();
 });
 it.each([

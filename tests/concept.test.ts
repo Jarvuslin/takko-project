@@ -343,7 +343,8 @@ it("accepts the saved live clarification without spending a correction attempt o
   });
   expect(calls).toHaveLength(1);
   expect(p.charges).toHaveLength(1);
-  expect(() => engine.start(p.id, p.revision, "plan")).toThrow(/concept/i);
+  expect(() => engine.start(p.id, p.revision, "plan")).not.toThrow();
+  await engine.wait(p.id);
   expect(p.concept?.playerExperience).toBe(liveConcept.playerExperience);
   for (const field of ["playerExperience", "visualDirection"])
     expect(

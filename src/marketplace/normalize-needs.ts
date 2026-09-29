@@ -1,6 +1,7 @@
 import type { Project } from "../generation/schema";
 import { assetSearches, type AssetDiscovery, type AssetOption } from "./discovery";
 import { assetNeedForGroup, similarity } from "./asset-binding";
+import { projectProposalPicks } from "./proposal-picks";
 
 export function matchMessageAssets(p: Project) {
   const needs = p.proposal?.assetNeeds ?? p.spec?.assetNeeds ?? [];
@@ -18,6 +19,11 @@ export function matchMessageAssets(p: Project) {
 
 /** Canonical rows are keyed by needs, never by searches or attachment IDs. */
 export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption | undefined) {
+  if (p.proposal?.assetStateVersion === 1) {
+    const before = JSON.stringify(p.assetDiscovery);
+    projectProposalPicks(p);
+    return before !== JSON.stringify(p.assetDiscovery);
+  }
   const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds;
   if (!needs?.length || !p.assetDiscovery) return false;
   const prior = p.assetDiscovery;

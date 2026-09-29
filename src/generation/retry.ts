@@ -1,27 +1,16 @@
 import type { Project } from "./schema";
 import { coordinationInputHash } from "./coordinator";
-import { normalizeNeeds } from "../marketplace/normalize-needs";
 import { proposalHash } from "./proposal";
+import { importProposalPicks, projectProposalPicks } from "../marketplace/proposal-picks";
 
 /** Read migration only. Preserve checkpoints only when their original input still matches. */
 export function migrateAssetNeeds(p: Project) {
-  // Do not re-key accepted legacy acquisition records whose hashes bind their rows.
-  // The failed pre-plan proposal and projects with duplicate rows need migration.
-  const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds;
-  if (
-    p.spec ||
-    !p.proposal?.assetNeeds?.some((n) => n.selectedAssetId) ||
-    !needs?.length
-  )
-    return;
-  if (
-    p.assetDiscovery?.groups.length === needs.length &&
-    p.assetDiscovery.groups.every((g) => needs.some((n) => n.id === g.id))
-  )
-    return;
+  if (!p.proposal?.assetNeeds) return;
+  if (p.proposal.assetStateVersion === 1) { projectProposalPicks(p); return; }
   const reusable = p.coordination?.inputHash === coordinationInputHash(p);
   const approved = p.proposal?.approval?.hash === p.proposal?.hash;
-  if (!normalizeNeeds(p)) return;
+  importProposalPicks(p);
+  projectProposalPicks(p);
   if (p.proposal) {
     const old = p.proposal.hash;
     p.proposal.hash = proposalHash(p);
@@ -87,11 +76,10 @@ export function stepRetry(p: Project) {
   const task = spec.tasks.find((t) => !completed.includes(t.id));
   const phase = p.failure?.phase ?? (task ? "builder" : "reviewer");
   const last = p.charges.filter((c) => c.phase === phase).at(-1);
-  if (!last) return;
   return {
     step: task?.title ?? `${phase} checks`,
-    estimatedMicros: last.chargedMicros,
-    reservationMicros: last.reservedMicros,
+    estimatedMicros: last?.chargedMicros ?? p.historicalBuildAverageMicros ?? 0,
+    reservationMicros: last?.reservedMicros ?? 0,
     completed: completed.length,
     kept: `${completed.length} completed tasks and saved files`,
     kind: p.proposal
