@@ -9,6 +9,7 @@ import { validateRetainedAnimations } from "./retained-animation";
 import { matchMessageAssets, normalizeNeeds } from "../marketplace/normalize-needs";
 import { physicalSourceLines } from "./component-review";
 import type { AssetSnapshot } from "../marketplace/types";
+import { recommendRig, requestedRig, rigQuestionId, rigInstructions } from "./rig-policy";
 import { approvedReferenceInstructions } from "./approved-reference-policy";
 import {
   approvedClipContext,
@@ -1130,6 +1131,7 @@ export class Engine {
       )
       {
         p.assetAttachments = attachments;
+        for (const [id, choice] of Object.entries(p.assetDiscovery?.choices ?? {})) if (choice.assetId && !attachments.some(a => a.assetId === choice.assetId)) delete p.assetDiscovery!.choices![id];
         for (const n of p.proposal.assetNeeds ?? []) if (n.selectedAssetId && !attachments.some(a => a.assetId === n.selectedAssetId)) delete n.selectedAssetId;
         const questions = matchMessageAssets(p);
         normalizeNeeds(p);
@@ -1259,8 +1261,8 @@ export class Engine {
       if (!chosen.length) throw new ConflictError("Choose an answer first.");
       const changes = chosen.filter(
         (q) =>
-          next[q.id] !== "Keep these limits" ||
-          !q.options.some((o) => o.id === "keep"),
+          q.id !== rigQuestionId && (next[q.id] !== "Keep these limits" ||
+          !q.options.some((o) => o.id === "keep")),
       );
       if (changes.length)
         return this.submitChange(id, revision, randomUUID(), {
@@ -1271,6 +1273,7 @@ export class Engine {
         });
       this.store.checkpoint(p);
       p.answers = next;
+      if (p.rig) p.rig = requestedRig(next[rigQuestionId] ?? "", p.rig);
       p.platform = updatedPlatform(p,undefined,next);
       p.answerQuestions = {
         ...p.answerQuestions,
@@ -2040,6 +2043,7 @@ export class Engine {
       callPolicy?.allowFallbacks !== false;
     const systemPrefix =
       (callPolicy?.system ?? principle) +
+      "\n" + rigInstructions(p) +
       "\n" + (typeof (context as Record<string,unknown>).platformInstructions==="string"?(context as Record<string,unknown>).platformInstructions:platformInstructions(p)) +
       "\nReturn a JSON data instance that conforms to OUTPUT SCHEMA. Do not return the schema or copy its metadata into response objects (for example root $schema, a properties map, or a default annotation). Output only fields declared for that object; a schema keyword is an output field only when explicitly declared in that object's properties." +
       "\nPHASE: " +
@@ -2827,6 +2831,7 @@ export class Engine {
       const baseRevision = p.revision,
         operation = p.jobId;
       const pending = p.pendingProposalEdit;
+      const nextRig = kind === "proposal" ? recommendRig(p) : p.rig && pending ? requestedRig(pending.answers?.[rigQuestionId] ?? pending.text, p.rig) : p.rig;
       if (kind === "proposal-edit" && (!pending || !p.proposal))
         throw Error("No pending proposal edit.");
       if (kind === "proposal" && p.proposal)
@@ -2864,6 +2869,8 @@ export class Engine {
           existingProject: existingProjectContext(p),
           gameContext: gameContext(p, undefined, true),
           conversation: p.conversation,
+          rig: nextRig,
+          rigInstructions: rigInstructions({ rig: nextRig }),
           assetChangeInstructions: "Messages can attach assets, replace a need (use a straw dummy instead), reject the last pick (not that one), or change its description (cartoon punch). Update only the affected need's kind/query/constraints, preserve other needs, clear selectedAssetId when the pick no longer fits. Ask which need when ambiguous. Never ask again for an attached or answered item.",
           selectedAssetInstructions: "User-selected attachments are already chosen. Bind each to its intended assetNeed with selectedAssetId copied exactly from gameContext.selectedAssets, preserving the user's usage. Do not replace or re-search them. Static inspection is not gameplay verification.",
           platform: nextPlatform,
@@ -2994,6 +3001,7 @@ export class Engine {
       questionProposalScope(p.proposal!, p);
       if (nextWorld) p.world = nextWorld;
       if (nextPlatform) p.platform = nextPlatform;
+      if (nextRig) p.rig = nextRig;
       if (
         p.world?.question &&
         !p.proposal!.environment.unresolved.includes(p.world.question)

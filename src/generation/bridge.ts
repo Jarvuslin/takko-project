@@ -362,6 +362,7 @@ export class Bridge {
       scope: p.scope,
       bundle: p.artifact,
       baseWorld: recordedTemplate(p),
+      rig: p.rig?.selected,
       importedMeshIds: [
         ...new Set(
           retrievedBundles(p).flatMap((b) =>

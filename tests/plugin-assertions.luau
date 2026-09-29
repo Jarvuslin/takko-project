@@ -201,5 +201,14 @@ assert(game:GetService('Lighting').ClockTime==7,'Follow-up reset lighting withou
 baseplate.Parent=workspace
 print('PASS shared verified base world bootstrap and existing world preservation')
 
+local rigOp={scope='Forge_rig',artifactHash='rig-r6',revision=1,rig='R6',bundle={files={},scene={}}}
+exports.apply(rigOp)
+local rigCharacter=game:GetService('StarterPlayer'):FindFirstChild('StarterCharacter')
+assert(rigCharacter and rigCharacter:FindFirstChild('Humanoid').RigType=='R6','Studio push must create chosen R6 rig')
+rigOp.rig='R15';rigOp.artifactHash='rig-r15'
+exports.apply(rigOp)
+assert(game:GetService('StarterPlayer'):FindFirstChild('StarterCharacter'):FindFirstChild('Humanoid').RigType=='R15','Studio push must update owned rig')
+assert(rigCharacter._destroyed,'Old owned rig must be cleaned up')
+print('PASS selected rig push and owned replacement')
 for _,text in captured do print('SOURCE_BEGIN');print(text);print('SOURCE_END') end
 

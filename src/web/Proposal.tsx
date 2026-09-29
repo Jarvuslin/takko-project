@@ -17,7 +17,8 @@ export function Proposal({
   saveAnswers: (answers: Record<string, string>) => Promise<void>;
 }) {
   const proposal = project.proposal!;
-  const questions = project.clarificationQuestions ?? [];
+  const questions = (project.clarificationQuestions ?? []).filter(q => q.id !== "character_rig");
+  const rigQuestion = project.clarificationQuestions?.find(q => q.id === "character_rig");
   const signature = questions.map((q) => q.id).join(",");
   const [open, setOpen] = useState(questions.length > 0);
   const [approving, setApproving] = useState(false);
@@ -34,6 +35,8 @@ export function Proposal({
   return (
     <section className="generation-card" aria-label="Game proposal">
       <h2>{proposal.title}</h2>
+      {rigQuestion && <section aria-label="Character rig"><p>{rigQuestion.prompt}</p><p>{rigQuestion.recommendationReason}</p>{rigQuestion.options.map(o => <button key={o.id} disabled={disabled} onClick={() => saveAnswers({ character_rig: o.label })}>{o.label}{o.id === rigQuestion.recommendedOptionId ? " · Recommended" : ""}</button>)}</section>}
+      {project.rig?.selected && <p>✓ Rig: {project.rig.selected}</p>}
       {!!questions.length && (
         <button onClick={() => setOpen(true)}>
           {questions.length} questions need answers

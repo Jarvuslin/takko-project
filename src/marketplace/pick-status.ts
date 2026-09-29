@@ -110,6 +110,8 @@ export function pickStatus(
       "problem",
       "Choose a playable clip from this animation pack.",
     );
+  if (clip?.clip?.rig && project.rig?.selected && clip.clip.rig !== project.rig.selected) return status("warning", `This animation is ${clip.clip.rig}, but the game uses ${project.rig.selected}. Choose a matching animation or change the project rig.`, true);
+  if (need?.kind === "Audio" && option.kind === "Model") return status("warning", "This is a model containing audio. Choose the sound within it for playback.", true);
   if (warnings.length && !choice.kept) return status("warning", warnings.join(" ") + " Choose a closer match if needed.", true);
   return status(
     "ready",

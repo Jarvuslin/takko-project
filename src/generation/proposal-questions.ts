@@ -1,4 +1,5 @@
 import type { Project } from "./schema";
+import { rigQuestion } from "./rig-policy";
 import { scopeQuestions, scopeQuestionId, isScopeQuestionAnswered } from "./scope-questions";
 import {
   fallbackQuestion,
@@ -20,7 +21,7 @@ export function proposalQuestions(p: Project): StructuredQuestion[] {
       ),
     ]),
   ];
-  return sources
+  const questions = sources
     .filter((source) => !isScopeQuestionAnswered(source, p))
     .map((source) => {
       const id = scopeQuestionId(source);
@@ -48,6 +49,8 @@ export function proposalQuestions(p: Project): StructuredQuestion[] {
       }
       return fallbackQuestion(id, source, scope.includes(source));
     });
+  const rig = rigQuestion(p);
+  return rig ? [rig, ...questions] : questions;
 }
 export function clearAnsweredQuestions(p: Project) {
   if (!p.proposal) return;

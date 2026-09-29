@@ -876,6 +876,7 @@ export function createApp(
           (c) => c.xml,
         ),
         p.world,
+        p.rig,
       ),
     );
   });

@@ -128,7 +128,7 @@ export async function pickerFixture() {
         )?.assetId,
       }));
       return Response.json({
-        choices: [{ message: { content: JSON.stringify(draft) } }],
+        choices: [{ message: { content: JSON.stringify(context.kind === "proposal-edit" ? { baseRevision: context.edit.baseRevision, baseHash: context.edit.baseHash, changes: [{ id: "mechanics", value: { ...draft.mechanics, text: draft.mechanics.text + " Updated from chat." } }], assetNeeds: draft.assetNeeds, summary: "Using the attached asset for its matching need." } : draft) } }],
         usage: { prompt_tokens: 100, completion_tokens: 100, cost: 0 },
       });
     }

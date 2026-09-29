@@ -113,6 +113,7 @@ export function coordinationInputHash(p: Project) {
         p.assetDiscovery,
         p.concept,
         p.research,
+        ...(p.rig ? [p.rig] : []),
       ]),
     )
     .digest("hex");

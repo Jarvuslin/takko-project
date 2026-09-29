@@ -42,7 +42,7 @@ export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption 
     const matching = selected ? prior.groups.filter(g => prior.choices?.[g.id]?.assetId === selected) : sources;
     const chosen = matching.find(g => prior.choices?.[g.id]?.clipKey) ?? matching.find(g => prior.choices?.[g.id]);
     const choice = chosen ? { ...prior.choices![chosen.id] } : selected ? { assetId: selected, reason: "Detected from your message" } : undefined;
-    const options = [...new Map([...sources, ...matching].flatMap(g => g.options).map(o => [o.assetId, o])).values()];
+    const options = [...new Map([...sources, ...matching, ...(chosen ? [chosen] : [])].flatMap(g => g.options).map(o => [o.assetId, o])).values()];
     if (choice?.assetId && !options.some(o => o.assetId === choice.assetId)) {
       const cached = lookup?.(choice.assetId);
       if (cached) options.push(cached);

@@ -68,6 +68,7 @@ export function exportBundle(
   scope: string,
   components: NativeComponentXml[] = [],
   world?: WorldDecision,
+  rig?: import("./rig-policy").RigDecision,
 ) {
   type Node = {
     name: string;
@@ -103,6 +104,12 @@ export function exportBundle(
     return n;
   };
   for (const r of roots) ensure(r + "/" + scope);
+  // Roblox's serialized GameSettingsAvatar uses GameAvatarType (R6=0, R15=1).
+  // https://create.roblox.com/docs/reference/engine/enums/GameAvatarType
+  // Official Studio API dump, setup.rbxcdn.com/versionQTStudio + -API-Dump.json:
+  // StarterPlayer.GameSettingsAvatar CanLoad/CanSave=true, RobloxScriptSecurity.
+  // Plugins use documented StarterCharacter instead of writing this protected property.
+  if (rig?.selected) ensure("StarterPlayer").props.GameSettingsAvatar = { type: "Enum", enum: "GameAvatarType", value: rig.selected === "R6" ? 0 : 1 };
   for (const item of recordedTemplate({world})?.nodes ?? []) {
     const n = ensure(item.path);
     n.className = item.className;

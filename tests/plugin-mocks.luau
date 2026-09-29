@@ -8,6 +8,8 @@ end
 function methods:GetDescendants() local out={} for _,child in self._children do table.insert(out,child);for _,desc in child:GetDescendants() do table.insert(out,desc) end end return out end
 function methods:FindFirstChild(name) for _,child in self._children do if child.Name==name then return child end end return nil end
 function methods:GetFullName() return self.Parent and self.Parent:GetFullName()..'.'..self.Name or self.Name end
+function methods:SetAttribute(name,value) self._attributes=self._attributes or {};self._attributes[name]=value end
+function methods:GetAttribute(name) return self._attributes and self._attributes[name] end
 function methods:IsA(class) return self.ClassName==class or class=='LuaSourceContainer' and (self.ClassName=='Script' or self.ClassName=='LocalScript' or self.ClassName=='ModuleScript') or class=='BasePart' and (self.ClassName=='Part' or self.ClassName=='MeshPart') end
 function methods:Destroy() for _,child in table.clone(self._children) do child:Destroy() end;detach(self);self._props.Parent=nil;self._destroyed=true end
 local meshIdSetterAttempts=0
@@ -43,6 +45,14 @@ local playerScripts=Instance.new('StarterPlayerScripts');playerScripts.Parent=ga
 local function constructor(...) return table.concat({...},',') end
 local Vector3={new=constructor};local Vector2={new=constructor};local Color3={new=constructor,fromRGB=constructor};local CFrame={new=constructor};local UDim={new=constructor};local UDim2={new=constructor,fromScale=constructor}
 local Enum={InitialDockState={Right=1},Font={SourceSans=1},FinishRecordingOperation={Cancel=0,Commit=1}}
+Enum.HumanoidRigType={R6="R6",R15="R15"}
+local rigCalls={}
+game:GetService('Players').CreateHumanoidModelFromDescriptionAsync=function(_,description,rig)
+ table.insert(rigCalls,rig)
+ local character=Instance.new('Model')
+ local humanoid=Instance.new('Humanoid');humanoid.RigType=rig;humanoid.Parent=character
+ return character
+end
 Enum.Material={GetEnumItems=function() return {{Value=256,Name="Plastic"}} end}
 local DockWidgetPluginGuiInfo={new=function() return {} end}
 local plugin={CreateToolbar=function() return {CreateButton=function() return Instance.new('Button') end} end,CreateDockWidgetPluginGui=function() return Instance.new('Widget') end,Unloading=event()}

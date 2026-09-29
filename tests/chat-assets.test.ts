@@ -4,7 +4,7 @@ import type { Project } from "../src/generation/schema";
 import { matchMessageAssets, normalizeNeeds } from "../src/marketplace/normalize-needs";
 import { applyProposalPatch, proposalHash } from "../src/generation/proposal";
 import { inspectSnapshot } from "../src/marketplace/inspection";
-import { pickerFixture } from "./asset-picking-fixture";
+import { pickerFixture, pickerStudio } from "./asset-picking-fixture";
 import { pickStatus } from "../src/marketplace/pick-status";
 const saved = (): Project => JSON.parse(fs.readFileSync("tests/fixtures/chat-recovery/failed-project.json", "utf8"));
 const fixtures: Awaited<ReturnType<typeof pickerFixture>>[] = [];
@@ -19,6 +19,15 @@ it("fills a missing need from a later message by type and name", () => {
   p.assetAttachments = p.assetAttachments!.filter(a => a.assetId === "16583762");
   expect(matchMessageAssets(p)).toEqual([]);
   expect(need.selectedAssetId).toBe("16583762");
+});
+it("accepts a later attachment through the actual message API and planner patch", async () => {
+  const f = await pickerFixture(); fixtures.push(f);
+  const inspection = await fetch(`${f.origin}/api/marketplace/inspect`, { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ studioId: pickerStudio, reference: f.sound.assetId }) }).then(r => r.json());
+  const sent = await f.command("messages", { id: crypto.randomUUID(), text: "Use this for the hit sound", assetAttachments: [{ assetId: f.sound.assetId, contentHash: inspection.asset.inspection.contentHash, usage: "hitSound" }] });
+  expect(sent.status).toBe(200);
+  const p: Project = await f.app.locals.engine.wait(f.project().id);
+  expect(p.error).toBeNull();
+  expect(p.proposal?.assetNeeds?.find(n => n.id === "hitSound")?.selectedAssetId).toBe(f.sound.assetId);
 });
 it("applies a straw dummy planner change and clears the old pick while preserving other needs", () => {
   const p = saved(); normalizeNeeds(p); p.proposal!.hash = proposalHash(p);

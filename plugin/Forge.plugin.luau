@@ -105,6 +105,13 @@ local function apply(op)
  local foundation = {}
  local lightingBefore = {}
  local lighting = game:GetService("Lighting")
+ local starterPlayer = game:GetService("StarterPlayer")
+ local oldCharacter = starterPlayer:FindFirstChild("StarterCharacter")
+ local stagedCharacter
+ if op.rig then
+  assert(op.rig=="R6" or op.rig=="R15", "Invalid project rig")
+  assert(not oldCharacter or oldCharacter:GetAttribute("ForgeRigScope")==op.scope and baselines.StarterCharacter==signature(oldCharacter), "An existing StarterCharacter is not owned or was edited. Preserve it before applying this project's rig.")
+ end
  -- Existing places retain their own baseplate and lighting. Bootstrap only a missing foundation.
  local createFoundation = op.baseWorld and not workspace:FindFirstChild("Baseplate") and not applied[op.scope] and not workspace:FindFirstChild(op.scope)
  for prefix, parent in roots do
@@ -141,6 +148,19 @@ local function apply(op)
   obj.Name=name;obj.Parent=parent;nodes[p]=obj;return obj
  end
  local ok, err = pcall(function()
+  if op.rig then
+   -- Creator Docs: StarterPlayer/StarterCharacter is used for all spawning players.
+   -- https://create.roblox.com/docs/reference/engine/classes/StarterPlayer
+   -- https://create.roblox.com/docs/reference/engine/classes/Players#CreateHumanoidModelFromDescriptionAsync
+   -- GameSettingsAvatar is RobloxScriptSecurity, so plugins cannot write it.
+   local description=Instance.new("HumanoidDescription")
+   local created, result=pcall(function() return game:GetService("Players"):CreateHumanoidModelFromDescriptionAsync(description,Enum.HumanoidRigType[op.rig]) end)
+   description:Destroy()
+   assert(created,result)
+   stagedCharacter=result
+   stagedCharacter.Name="StarterCharacter"
+   stagedCharacter:SetAttribute("ForgeRigScope",op.scope)
+  end
   if createFoundation then
    assert(op.baseWorld.version==1, "Unsupported base world contract")
    for _,item in op.baseWorld.nodes do
@@ -170,19 +190,25 @@ local function apply(op)
    end
   end
  end)
- if not ok then for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error(err) end
+ if not ok then if stagedCharacter then stagedCharacter:Destroy() end;for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error(err) end
  -- Source and mesh staging can yield. Recheck ownership immediately before replacing roots.
  for prefix,parent in roots do
   local existing=parent:FindFirstChild(op.scope)
   if existing~=old[prefix] or existing and (dirty[prefix.."/"..op.scope] or baselines[prefix.."/"..op.scope]~=signature(existing)) then
    for _,root in staged do root:Destroy() end
    for _,f in foundation do f.object:Destroy() end
+   if stagedCharacter then stagedCharacter:Destroy() end
    error("Owned objects changed during staging. Preserve your edits and retry with a new Takko project.")
   end
  end
  local recording=History:TryBeginRecording("ForgeApply", "Apply Takko generation")
- if not recording then for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error("Could not begin Studio undo recording") end
+ if not recording then if stagedCharacter then stagedCharacter:Destroy() end;for _,root in staged do root:Destroy() end;for _,f in foundation do f.object:Destroy() end;error("Could not begin Studio undo recording") end
  local swapped, swapError=pcall(function()
+  if stagedCharacter then
+   assert(starterPlayer:FindFirstChild("StarterCharacter")==oldCharacter, "StarterCharacter changed during staging")
+   if oldCharacter then assert(baselines.StarterCharacter==signature(oldCharacter), "StarterCharacter was edited during staging");oldCharacter.Parent=nil end
+   stagedCharacter.Parent=starterPlayer
+  end
   for prefix,parent in roots do if old[prefix] then old[prefix].Parent=nil end;staged[prefix].Parent=parent end
   for _,f in foundation do assert(not f.parent:FindFirstChild(f.object.Name), "Base world changed during staging");f.object.Parent=f.parent end
   if createFoundation then
@@ -190,6 +216,7 @@ local function apply(op)
   end
  end)
  if not swapped then
+  if stagedCharacter then stagedCharacter:Destroy();if oldCharacter then oldCharacter.Parent=starterPlayer end end
   for _,f in foundation do f.object:Destroy() end
   for name,v in lightingBefore do lighting[name]=v end
   for prefix,parent in roots do staged[prefix]:Destroy();if old[prefix] then old[prefix].Parent=parent end end
@@ -197,6 +224,7 @@ local function apply(op)
   error(swapError)
  end
  for _,root in old do root:Destroy() end
+ if stagedCharacter then if oldCharacter then oldCharacter:Destroy() end;baselines.StarterCharacter=signature(stagedCharacter) end
  History:FinishRecording(recording,Enum.FinishRecordingOperation.Commit)
  for prefix,root in staged do baselines[prefix.."/"..op.scope]=signature(root);watch(prefix,root) end
  applied[op.scope]=op.artifactHash
