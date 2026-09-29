@@ -32,6 +32,7 @@ test("four selected assets leave the conversation and send controls usable in a 
     route.fulfill({ json: p }),
   );
   await page.goto("/?project=" + p.id);
+  await expect(page.getByText("Studio is not connected. Animation clips need the Takko plugin.", { exact: false })).toBeVisible();
   await expect(
     page.getByLabel("Use for Hit effect", { exact: true }),
   ).toHaveValue("Hit effect");

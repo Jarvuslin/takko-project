@@ -808,7 +808,7 @@ export function App() {
           </div>
         </header>
         {!studios.length && (
-          <p className="pick-note" role="status">
+          <p className="pick-note studio-required-notice" role="status">
             Studio is not connected. Animation clips need the Takko plugin.
             Open Studio, enable its MCP connection, and connect the Takko plugin to this app.
           </p>

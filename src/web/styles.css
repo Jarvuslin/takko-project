@@ -4165,17 +4165,27 @@ code {
 }
 .app.minimal.editor main,
 .app.minimal.editor:not(.sidebar-expanded) main {
+  display: flex;
+  flex-direction: column;
   height: var(--size-37);
   min-height: 0;
   overflow: hidden;
 }
 .app.minimal.editor .integrated-workspace {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(var(--size-295), var(--ratio-18));
   max-width: none;
   width: var(--ratio-1);
-  height: calc(var(--size-37) - var(--size-25));
+  height: auto;
   margin: 0;
+}
+.studio-required-notice {
+  flex-shrink: 0;
+}
+.app.minimal.editor .topbar {
+  flex-shrink: 0;
 }
 .minimal.editor .integrated-workspace .chat-panel {
   border-left: var(--size-9) solid var(--line);
@@ -5358,6 +5368,8 @@ code {
 }
 .app.minimal.workspace-native .chat-composer {
   padding: var(--radius-control);
+  display: flex;
+  flex-direction: column;
   flex-shrink: 1;
   border-radius: var(--radius-composer);
   background: var(--raised);
@@ -5368,9 +5380,16 @@ code {
 }
 
 .app.minimal.workspace-native .chat-composer .asset-attachments {
+  flex: 1 1 auto;
+  min-height: 0;
   max-height: var(--size-246);
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+.app.minimal.workspace-native
+  .chat-composer
+  :is(textarea, .composer-footer, .composer-hint) {
+  flex-shrink: 0;
 }
 
 .app.minimal.workspace-native .chat-composer textarea {
