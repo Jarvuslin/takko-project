@@ -1,5 +1,5 @@
 import { proposalQuestions } from "../generation/proposal-questions";
-import { planningRetry } from "../generation/retry";
+import { stepRetry } from "../generation/retry";
 import express from "express";
 import { z } from "zod";
 import path from "node:path";
@@ -743,12 +743,21 @@ export function createApp(
       ),
     );
   });
-  app.get("/api/projects/:id/retry-quote", (req, res) => res.json(planningRetry(store.get(req.params.id)) ?? null));
+  app.post("/api/projects/:id/queued-messages/:messageId/cancel", (req, res) => {
+    const { revision } = z.object({ revision: z.number().int() }).strict().parse(req.body);
+    res.json(engine.cancelQueuedMessage(req.params.id, revision, z.uuid().parse(req.params.messageId)));
+  });
+  app.post("/api/projects/:id/queued-messages/continue", async (req, res) => {
+    const { revision } = z.object({ revision: z.number().int() }).strict().parse(req.body);
+    if (store.get(req.params.id).revision !== revision) throw new ConflictError("The project changed. Review it first.");
+    res.json(await engine.applyQueuedChanges(req.params.id));
+  });
+  app.get("/api/projects/:id/retry-quote", (req, res) => res.json(stepRetry(store.get(req.params.id)) ?? null));
   app.post("/api/projects/:id/retry-step", (req, res) => {
     const { revision } = z.object({ revision: z.number().int() }).strict().parse(req.body);
     const p = store.get(req.params.id);
-    if (p.revision !== revision || !planningRetry(p)) throw new ConflictError("The failed step changed. Review the project before retrying.");
-    res.status(202).json(engine.start(p.id, revision, "plan"));
+    if (p.revision !== revision || !stepRetry(p)) throw new ConflictError("The failed step changed. Review the project before retrying.");
+    res.status(202).json(engine.start(p.id, revision, stepRetry(p)!.kind));
   });
   app.post("/api/projects/:id/approve", (req, res) =>
     res.json(

@@ -1,3 +1,4 @@
+import { mergeQueuedMessages, markQueued } from "./message-queue";
 import { recordConversation } from "./conversation";
 import fs from "node:fs";
 import path from "node:path";
@@ -123,6 +124,7 @@ export class GenerationStore {
     const previous = fs.existsSync(file)
       ? (JSON.parse(fs.readFileSync(file, "utf8")) as Project)
       : undefined;
+    mergeQueuedMessages(p, previous);
     recordConversation(p, previous);
     fs.writeFileSync(file + ".tmp", JSON.stringify(p, null, 2));
     fs.renameSync(file + ".tmp", file);
@@ -196,8 +198,13 @@ export class GenerationStore {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   }
   recover() {
-    for (const p of this.list())
+    for (const p of this.list()) {
+      if (!p.jobId && p.queuedMessages?.some(q => ["queued", "applying"].includes(q.status))) {
+        markQueued(p, "held", "Server restarted between steps. Review and continue explicitly.");
+        this.save(p);
+      }
       if (p.jobId) {
+        markQueued(p, "held", "Server restarted. Review and continue explicitly. No message was replayed.");
         retainFailedImplementation(p);
         for (const run of p.opencodeRuns ?? []) {
           if (run.status !== "running") continue;
@@ -263,5 +270,6 @@ export class GenerationStore {
           "The server restarted during generation. Any unresolved reservation remains charged conservatively.";
         this.save(p);
       }
+    }
   }
 }

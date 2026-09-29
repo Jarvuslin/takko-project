@@ -404,6 +404,7 @@ export type Project = {
   conversation?: import("./conversation").ConversationTurn[];
   briefChanges?: import("./conversation").BriefChange[];
   architecture?: import("./architecture").GameArchitecture;
+  queuedMessages?: import("./message-queue").QueuedMessage[];
   submissions?: { id: string; hash: string }[];
   conceptAcceptedRevision?: number;
   animationClips?: import("./animation").SavedAnimation[];

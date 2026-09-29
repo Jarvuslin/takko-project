@@ -144,6 +144,8 @@ export function Conversation({
                   })}
                 </small>
               </div>
+              {turn.status && ["queued", "applying", "applied", "held", "cancelled"].includes(turn.status) && <small className="queue-tag">{turn.status === "queued" ? "Queued · after this step" : turn.status === "applied" ? "Applied" : turn.status === "applying" ? "Applying to plan…" : turn.status === "cancelled" ? "Cancelled" : "Held · needs you"}</small>}
+              {["queued", "held"].includes(turn.status ?? "") && <button onClick={async () => { try { update(await settingsApi<Project>(`/projects/${project.id}/queued-messages/${turn.id}/cancel`, "POST", { revision: project.revision })); } catch (e) { setError((e as Error).message); } }}>Remove queued change</button>}
               {turn.clarifications?.length ? (
                 <div className="saved-clarifications">
                   <strong>Clarifications</strong>
@@ -157,7 +159,7 @@ export function Conversation({
                   </dl>
                   <button
                     type="button"
-                    disabled={!!project.jobId}
+                    disabled={!!project.jobId || turn.id !== turns.at(-1)?.id}
                     onClick={() =>
                       editAnswers(
                         turn.clarifications!.map(({ id, prompt }) => ({

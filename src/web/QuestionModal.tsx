@@ -10,6 +10,7 @@ export function QuestionModal({
   open,
   close,
   free = false,
+  inline = false,
 }: {
   questions: StructuredQuestion[];
   disabled: boolean;
@@ -17,6 +18,7 @@ export function QuestionModal({
   open: boolean;
   close: () => void;
   free?: boolean;
+  inline?: boolean;
 }) {
   const [step, setStep] = useState(0),
     [values, setValues] = useState<Record<string, string>>({});
@@ -29,14 +31,15 @@ export function QuestionModal({
     setError("");
   }, [signature]);
   if (!open || !questions.length) return null;
-  const review = step >= questions.length,
+  const review = !inline && step >= questions.length,
     q = questions[Math.min(step, questions.length - 1)];
   const valid = questions.every((q) => !!values[q.id]?.trim());
   const paid =
     !free &&
     questions.some((q) => values[q.id] && values[q.id] !== "Keep these limits");
+  const Wrapper = inline ? InlineQuestion : SettingsDialog;
   return (
-    <SettingsDialog
+    <Wrapper
       title={
         review
           ? "Review your answers"
@@ -47,10 +50,20 @@ export function QuestionModal({
       busy={saving}
       scrollBody
     >
+      {inline && step > 0 && (
+        <div className="answer-receipt">
+          {questions.slice(0, step).map((question) => (
+            <p key={question.id}>
+              ✓ {question.id === "character_rig" ? "Rig" : question.prompt}:{" "}
+              {values[question.id]}
+            </p>
+          ))}
+        </div>
+      )}
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-          if (!review) {
+          if (!review && !(inline && step === questions.length - 1)) {
             setStep(step + 1);
             return;
           }
@@ -192,11 +205,32 @@ export function QuestionModal({
               : review
                 ? "Submit answers"
                 : step === questions.length - 1
-                  ? "Review answers"
+                  ? inline
+                    ? "Save answer"
+                    : "Review answers"
                   : "Next"}
           </button>
         </footer>
       </form>
-    </SettingsDialog>
+    </Wrapper>
+  );
+}
+
+function InlineQuestion({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+  description?: string;
+  close: () => void;
+  busy?: boolean;
+  scrollBody?: boolean;
+}) {
+  return (
+    <section className="inline-question" aria-label="Current question">
+      <small>{title}</small>
+      {children}
+    </section>
   );
 }

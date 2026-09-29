@@ -283,7 +283,7 @@ test("builds an approved non-combat project through a real HTTP provider adapter
     ).toHaveCount(0);
     await page.getByRole("button", { name: "Generate game" }).click();
     await expect(
-      page.getByText("ready to test", { exact: true }),
+      page.getByRole("region", { name: "Chat status" }).getByText("Ready to test", { exact: true }),
     ).toBeVisible();
     await page
       .getByRole("button", { name: "Source details", exact: true })

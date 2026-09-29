@@ -1,3 +1,4 @@
+import { buildEstimate } from "./chat-state";
 import { useEffect, useState } from "react";
 import { QuestionModal } from "./QuestionModal";
 import type { Project } from "../generation/schema";
@@ -17,8 +18,9 @@ export function Proposal({
   saveAnswers: (answers: Record<string, string>) => Promise<void>;
 }) {
   const proposal = project.proposal!;
-  const questions = (project.clarificationQuestions ?? []).filter(q => q.id !== "character_rig");
-  const rigQuestion = project.clarificationQuestions?.find(q => q.id === "character_rig");
+  const questions = (project.clarificationQuestions ?? []).filter(
+    (q) => !project.answers[q.id],
+  );
   const signature = questions.map((q) => q.id).join(",");
   const [open, setOpen] = useState(questions.length > 0);
   const [approving, setApproving] = useState(false);
@@ -35,7 +37,6 @@ export function Proposal({
   return (
     <section className="generation-card" aria-label="Game proposal">
       <h2>{proposal.title}</h2>
-      {rigQuestion && <section aria-label="Character rig"><p>{rigQuestion.prompt}</p><p>{rigQuestion.recommendationReason}</p>{rigQuestion.options.map(o => <button key={o.id} disabled={disabled} onClick={() => saveAnswers({ character_rig: o.label })}>{o.label}{o.id === rigQuestion.recommendedOptionId ? " · Recommended" : ""}</button>)}</section>}
       {project.rig?.selected && <p>✓ Rig: {project.rig.selected}</p>}
       {!!questions.length && (
         <button onClick={() => setOpen(true)}>
@@ -43,6 +44,7 @@ export function Proposal({
         </button>
       )}
       <QuestionModal
+        inline
         key={project.id}
         questions={questions}
         open={open}
@@ -69,24 +71,11 @@ export function Proposal({
           . {project.world.question}
         </p>
       )}
-      {(["mechanics", "theme", "environment"] as const).map((id) => (
-        <section key={id}>
-          <h3>
-            {id === "environment"
-              ? "Environment & layout"
-              : id[0].toUpperCase() + id.slice(1)}
-          </h3>
-          <p style={{ whiteSpace: "pre-wrap" }}>{proposal[id].text}</p>
-          {!!proposal[id].assumptions.length && (
-            <p className="muted">
-              Assumptions: {proposal[id].assumptions.join(" ")}
-            </p>
-          )}
-          {!!proposal[id].unresolved.length && (
-            <p role="status">Unresolved: {proposal[id].unresolved.join(" ")}</p>
-          )}
-        </section>
-      ))}
+      <ul className="plain-plan">
+        {(["mechanics", "theme", "environment"] as const).map((id) => (
+          <li key={id}>{proposal[id].text}</li>
+        ))}
+      </ul>
       <h3>Marketplace assets</h3>
       {!assetsInChat && (
         <>
@@ -141,7 +130,7 @@ export function Proposal({
       {project.pendingProposalEdit && (
         <div role="status">
           <p>Pending edit: {project.pendingProposalEdit.text}</p>
-          <button disabled={disabled} onClick={discard}>
+          <button disabled={!!project.jobId} onClick={discard}>
             Discard pending edit
           </button>
         </div>
@@ -194,8 +183,21 @@ export function Proposal({
             ? `Answer ${questions.length} questions first`
             : approving
               ? "Checking build approval…"
-              : "Approve & build"}
+              : `Approve & build${buildEstimate(project) !== null ? ` · about $${(buildEstimate(project)! / 1e6).toFixed(2)}` : ""}`}
         </button>
+      )}
+      {!assetsInChat && (
+        <p className="muted">
+          {disabled
+            ? "Wait for the current work to finish."
+            : project.pendingProposalEdit
+              ? "Resolve the pending edit before building."
+              : questions.length
+                ? "Answer the questions before building."
+                : buildEstimate(project) === null
+                  ? "Build estimate unavailable until task costs are known. Your spending cap still applies."
+                  : "Estimate uses previous builder calls. Review and repair may cost more."}
+        </p>
       )}
     </section>
   );

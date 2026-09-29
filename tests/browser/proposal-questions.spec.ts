@@ -40,7 +40,7 @@ test("unanswered proposal questions pause automatic Marketplace work even with a
     return r.fulfill({ json: action === "studio-operations" ? [] : p });
   });
   await page.goto(`/?project=${p.id}`);
-  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.getByRole("region", { name: "Current question", exact: true })).toBeVisible();
   await expect.poll(() => connectionChecks).toBeGreaterThan(0);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("region",{name:"Assets for this game",exact:true})).toBeVisible();
@@ -48,7 +48,7 @@ test("unanswered proposal questions pause automatic Marketplace work even with a
   expect(searches).toBe(0);
 });
 
-test("real saved proposal questions support review, Other, closing, keyboard and free answers", async ({
+test("real saved proposal questions support sequential inline choices, Other and free answers", async ({
   page,
 }, info) => {
   const p = JSON.parse(
@@ -107,7 +107,7 @@ test("real saved proposal questions support review, Other, closing, keyboard and
     await r.fulfill({ json: p });
   });
   await page.goto(`/?project=${p.id}`);
-  const dialog = page.getByRole("dialog");
+  const dialog = page.getByRole("region", { name: "Current question", exact: true });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("radio")).toHaveCount(4);
   await expect(dialog.getByText("· Recommended", { exact: true })).toHaveCount(
@@ -117,59 +117,25 @@ test("real saved proposal questions support review, Other, closing, keyboard and
     path: `test-artifacts/question-modal-20260928/modal-${info.project.name}.png`,
     fullPage: true,
   });
-  await page.keyboard.press("Escape");
-  await expect(dialog).toHaveCount(0);
-  const gate = page.getByRole("button", {
-    name: `Answer ${questions.length} questions first`,
-  });
-  await expect(gate).toBeVisible();
-  await gate.click();
-  await expect(dialog).toBeVisible();
   expect(approvals).toBe(0);
-  const close = dialog.getByRole("button", {
-    name: "Close dialog",
-    exact: true,
-  });
-  await close.focus();
-  await page.keyboard.press("Shift+Tab");
-  expect(
-    await dialog.evaluate((el) => el.contains(document.activeElement)),
-  ).toBe(true);
   await dialog.getByRole("radio", { name: "Other", exact: true }).check();
-  await dialog
-    .getByLabel("Your answer")
-    .fill("A distinct choice that should survive closing.");
-  await page.keyboard.press("Escape");
-  await page
-    .getByRole("button", { name: `${questions.length} questions need answers` })
-    .click();
-  await expect(dialog.getByLabel("Your answer")).toHaveValue(
-    "A distinct choice that should survive closing.",
-  );
+  await dialog.getByLabel("Your answer").fill("A distinct choice typed inline.");
+  await expect(dialog.getByLabel("Your answer")).toHaveValue("A distinct choice typed inline.");
   for (let i = 0; i < questions.length; i++) {
-    await expect(dialog).toHaveAccessibleName(
-      `Question ${i + 1} of ${questions.length}`,
-    );
+    await expect(dialog).toContainText(`Question ${i + 1} of ${questions.length}`);
+    if (i === 1) {
+      await dialog.getByRole("button", { name: "Back", exact: true }).click();
+      await expect(dialog.getByRole("radio").first()).toBeChecked();
+      await dialog.getByRole("button", { name: "Next", exact: true }).click();
+    }
     await dialog.getByRole("radio").first().check();
     await dialog
       .getByRole("button", {
-        name: i === questions.length - 1 ? "Review answers" : "Next",
+        name: i === questions.length - 1 ? "Save answer" : "Next",
         exact: true,
       })
       .click();
   }
-  await expect(dialog).toHaveAccessibleName("Review your answers");
-  await expect(dialog).toContainText("without a model call");
-  await dialog.getByRole("button", { name: "Back", exact: true }).click();
-  await expect(dialog).toHaveAccessibleName(
-    `Question ${questions.length} of ${questions.length}`,
-  );
-  await dialog
-    .getByRole("button", { name: "Review answers", exact: true })
-    .click();
-  await dialog
-    .getByRole("button", { name: "Submit answers", exact: true })
-    .click();
   await expect(dialog).toHaveCount(0);
   await expect(
     page.getByRole("button", { name: "Approve & build", exact: true }),

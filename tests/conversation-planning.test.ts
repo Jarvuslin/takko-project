@@ -1,4 +1,4 @@
-import { afterEach, expect, it } from "vitest";
+import { afterEach, expect, it, vi } from "vitest";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -400,7 +400,7 @@ it("rejects stale revision and hash patches atomically", () => {
     expect(p).toEqual(before);
   }
 });
-it("binds approval to exact content and blocks concurrent edits while building", async () => {
+it("binds approval to exact content and queues concurrent messages while building", async () => {
   const f = await prepared();
   f.control.delay = 30;
   expect(
@@ -427,7 +427,7 @@ it("binds approval to exact content and blocks concurrent edits while building",
         text: "Change theme to snow",
       })
     ).status,
-  ).toBe(409);
+  ).toBe(200);
   await f.engine.wait(f.p.id);
 });
 it("runs one approval through planning and coordination, then rebuilds only theme and transitive HUD consumers", async () => {
@@ -495,10 +495,7 @@ it("preserves the prior artifact on a failed incremental build and resumes compl
   );
   f.control.failTask = "";
   const start = f.calls.length;
-  await f.post(`/projects/${p.id}/approve-proposal`, {
-    revision: p.revision,
-    hash: p.proposal!.hash,
-  });
+  expect((await f.post(`/projects/${p.id}/retry-step`, { revision: p.revision })).status).toBe(202);
   p = await f.engine.wait(p.id);
   expect(p.error).toBeNull();
   expect(p.stage).toBe("ready_to_test");
@@ -825,4 +822,56 @@ it("retains unknown-cost reservations across interruption recovery", () => {
   expect(loaded.generation).toEqual(p.generation);
   expect(loaded.charges.at(-1)!.chargedMicros).toBe(9876);
   expect(loaded.reservedMicros).toBe(0);
+});
+
+it("durably applies a queued change after the current worker, retaining its output and cap", async () => {
+  const f = await prepared();
+  f.control.delay = 80;
+  await f.post(`/projects/${f.p.id}/approve-proposal`, { revision: f.p.revision, hash: f.p.proposal!.hash });
+  const finished = f.engine.wait(f.p.id);
+  await vi.waitFor(() => expect(f.calls.some(c => c.task)).toBe(true));
+  const before = f.store.get(f.p.id);
+  const id = randomUUID();
+  const body = { revision: before.revision, id, text: "Change only the theme to winter" };
+  const queued = await f.post(`/projects/${f.p.id}/messages`, body);
+  expect(queued.data.queuedMessages[0].status).toBe("queued");
+  expect((await f.post(`/projects/${f.p.id}/messages`, body)).status).toBe(200);
+  expect((await f.post(`/projects/${f.p.id}/messages`, { ...body, text: "Something else" })).status).toBe(409);
+  await finished;
+  const p = f.store.get(f.p.id);
+  expect(p.queuedMessages).toHaveLength(1);
+  expect(p.queuedMessages![0].status, p.error ?? JSON.stringify(p.queuedMessages)).toBe("applied");
+  expect(p.completedBuildTasks).toContain("core_core");
+  expect(p.artifact!.files.length).toBeGreaterThan(0);
+  expect(p.proposal!.theme.text).toContain("winter");
+  expect(p.stage).toBe("draft");
+  expect(p.generation!.budgetMicros).toBe(before.generation!.budgetMicros);
+  expect(f.calls.filter(c => c.kind === "proposal-edit")).toHaveLength(1);
+  expect(f.calls.find(c => c.kind === "proposal-edit").conversation.some((t: any) => t.id === id)).toBe(true);
+});
+it("Stop holds queued changes without a planner retry", async () => {
+  const f = await prepared(); f.control.delay = 100;
+  await f.post(`/projects/${f.p.id}/approve-proposal`, { revision: f.p.revision, hash: f.p.proposal!.hash });
+  const finished = f.engine.wait(f.p.id);
+  await vi.waitFor(() => expect(f.calls.some(c => c.task)).toBe(true));
+  const p = f.store.get(f.p.id);
+  f.engine.submitChange(p.id, p.revision, randomUUID(), { text: "Change only the theme to winter" });
+  f.engine.cancel(p.id); await finished;
+  expect(f.store.get(p.id).queuedMessages![0].status).toBe("held");
+  expect(f.calls.filter(c => c.kind === "proposal-edit")).toHaveLength(0);
+});
+
+it("exhausted queue allowance holds the message without a paid dispatch or automatic retry", async () => {
+  const f = await prepared();
+  const p = f.store.get(f.p.id);
+  p.generation!.budgetMicros = 1000;
+  p.generation!.chargeStart = 0;
+  p.charges[0].chargedMicros = 1000;
+  p.queuedMessages = [{ id: randomUUID(), hash: "offline", text: "Change only theme to winter", revision: p.revision, jobId: randomUUID(), at: new Date().toISOString(), status: "held" }];
+  f.store.save(p);
+  const before = f.calls.length;
+  const result = await f.engine.applyQueuedChanges(p.id);
+  expect(result.queuedMessages![0].status).toBe("held");
+  expect(f.calls).toHaveLength(before);
+  expect(result.generation!.budgetMicros).toBe(1000);
 });

@@ -116,9 +116,10 @@ test("shows a concise generation failure with expandable diagnostics", async ({
     route.fulfill({ json: fixture }),
   );
   await page.goto("/?project=" + p.id);
-  const alert = page.getByRole("alert");
+  const alert = page.getByRole("region", { name: "Failed", exact: true });
   await expect(alert).toContainText("Could not complete Cookie scene");
-  await alert.getByText("Generation diagnostics", { exact: true }).click();
+  await expect(alert.locator("pre")).toBeHidden();
+  await alert.getByText("Technical details", { exact: true }).click();
   await expect(alert.locator("pre")).toBeVisible();
   await expect(alert.locator("pre")).toContainText("CookieShape");
 });

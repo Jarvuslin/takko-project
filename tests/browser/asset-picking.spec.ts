@@ -46,11 +46,12 @@ test("the inline rig choice recommends the captured animation rig and saves a re
   await f.command("asset-picks/clip", { groupId: group.id, assetId: f.animation.assetId, clipKey: clip.key });
   const p = f.project(); p.rig = recommendRig(p); f.app.locals.engine.store.save(p);
   await page.reload();
-  const question = page.getByRole("region", { name: "Character rig", exact: true });
+  const question = page.getByRole("region", { name: "Current question", exact: true });
   await expect(question).toContainText("animation");
   await question.scrollIntoViewIfNeeded();
   await page.screenshot({ path: "test-artifacts/chat-parts-1-3/real-rig-question.png", fullPage: true });
-  await question.getByRole("button", { name: `${clip.clip.rig} · Recommended`, exact: true }).click();
+  await question.getByRole("radio", { name: new RegExp(`^${clip.clip.rig} `) }).check();
+  await question.getByRole("button", { name: "Save answer", exact: true }).click();
   await expect(page.getByText(`✓ Rig: ${clip.clip.rig}`, { exact: true })).toBeVisible();
   expect(f.project().rig?.selected).toBe(clip.clip.rig);
 });
@@ -408,4 +409,42 @@ test("long real asset names stay bounded and result actions align", async ({
   await page.screenshot({
     path: "test-artifacts/takko-refresh/long-name-desktop.png",
   });
+});
+
+test("a build message survives reload and becomes Applied through the persisted queue API", async ({ page }) => {
+  const p = f.project(); p.jobId = crypto.randomUUID(); p.stage = "generating";
+  f.app.locals.engine.store.save(p);
+  await page.reload();
+  await page.getByLabel("Message", { exact: true }).fill("Make it louder");
+  await page.getByLabel("Message", { exact: true }).press("Enter");
+  await expect(page.getByText("Queued · after this step", { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText("Queued · after this step", { exact: true })).toBeVisible();
+  const boundary = f.project(); boundary.jobId = null; f.app.locals.engine.store.save(boundary);
+  await f.app.locals.engine.applyQueuedChanges(p.id);
+  await expect(page.getByText("Applied", { exact: true })).toBeVisible();
+  expect(f.state.plannerContexts.at(-1).conversation.some((t: any) => t.text === "Make it louder")).toBe(true);
+});
+
+test("Enter attaches a missing sound and later natural language reaches the same planner conversation", async ({ page }) => {
+  await page.getByRole("button", { name: "Browse Marketplace assets", exact: true }).click();
+  const panel = page.getByRole("complementary", { name: "Marketplace", exact: true });
+  await panel.getByLabel("Search Marketplace", { exact: true }).fill("hit sound");
+  await panel.getByRole("button", { name: "Search assets", exact: true }).click();
+  // The Marketplace search kind is selected explicitly so the real fixture provider returns audio.
+  await panel.getByLabel("Asset type", { exact: true }).selectOption("Audio");
+  await panel.getByRole("button", { name: "Search assets", exact: true }).click();
+  await panel.locator(".market-card").first().getByRole("button", { name: "Add to chat", exact: true }).click();
+  await page.getByRole("button", { name: "Close Marketplace", exact: true }).click();
+  await page.getByLabel("Message", { exact: true }).press("Enter");
+  await expect.poll(() => f.state.plannerContexts.length).toBeGreaterThan(0);
+  await expect.poll(() => f.project().jobId).toBeNull();
+  await expect(page.getByRole("region", { name: "Chat status" })).toHaveAttribute("data-state", "Needs you");
+  await expect(row(page, "Hit sound")).toContainText(f.sound.name);
+  await page.getByLabel("Message", { exact: true }).fill("Use a straw dummy instead");
+  await page.getByLabel("Message", { exact: true }).press("Enter");
+  await expect.poll(() => f.state.plannerContexts.length).toBe(2);
+  expect(f.state.plannerContexts.at(-1).edit.text).toBe("Use a straw dummy instead");
+  await expect.poll(() => f.project().proposal?.assetNeeds?.find(n => n.id === "targetDummy")?.query).toBe("straw dummy");
+  expect(f.state.plannerContexts.at(-1).conversation.length).toBeGreaterThan(1);
 });

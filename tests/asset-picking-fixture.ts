@@ -125,8 +125,11 @@ export async function pickerFixture() {
         ...n,
         selectedAssetId: context.gameContext?.selectedAssets?.assets.find(
           (a: any) => a.usage === n.id,
-        )?.assetId,
+        )?.assetId ?? context.proposal?.assetNeeds?.find((need: any) => need.id === n.id)?.selectedAssetId,
       }));
+      if (/straw dummy/i.test(context.edit?.text ?? "")) {
+        draft.assetNeeds = draft.assetNeeds?.map(n => n.id === "targetDummy" ? { ...n, query: "straw dummy", selectedAssetId: undefined } : n);
+      }
       return Response.json({
         choices: [{ message: { content: JSON.stringify(context.kind === "proposal-edit" ? { baseRevision: context.edit.baseRevision, baseHash: context.edit.baseHash, changes: [{ id: "mechanics", value: { ...draft.mechanics, text: draft.mechanics.text + " Updated from chat." } }], assetNeeds: draft.assetNeeds, summary: "Using the attached asset for its matching need." } : draft) } }],
         usage: { prompt_tokens: 100, completion_tokens: 100, cost: 0 },

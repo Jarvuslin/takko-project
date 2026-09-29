@@ -1,3 +1,4 @@
+import { buildEstimate } from "./chat-state";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery } from "../marketplace/discovery";
@@ -388,14 +389,15 @@ export function AssetCard({
           }
           onClick={() => run("approve", approve)}
         >
-          Approve &amp; build
+          Approve &amp; build{buildEstimate(project) !== null ? ` · about $${(buildEstimate(project)! / 1e6).toFixed(2)}` : ""}
         </button>
-        {(missing.length > 0 || buildBlocked) && (
+        {(missing.length > 0 || buildBlocked || disabled) && (
           <p>
-            {buildBlocked ??
+            {disabled ? "Wait for the current work to finish." : buildBlocked ??
               `Choose or review: ${missing.map(assetLabel).join(", ")}.`}
           </p>
         )}
+        <small>{buildEstimate(project) !== null ? "Based on previous builder calls. Review and repair may cost more." : "Build estimate unavailable until task costs are known. Your spending cap still applies."}</small>
       </div>
       {autoSheet && (
         <ClipSheet

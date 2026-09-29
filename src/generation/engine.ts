@@ -1,3 +1,5 @@
+import { planningRetry } from "./retry";
+import { QueuedChangeBoundary, mergeQueuedMessages, markQueued, queueReceipt } from "./message-queue";
 import {
   proposalQuestions,
   clearAnsweredQuestions,
@@ -1088,7 +1090,7 @@ export class Engine {
     const hash = createHash("sha256")
       .update(JSON.stringify([change, attachments ?? null]))
       .digest("hex");
-    const receipt = p.submissions?.find((s) => s.id === key);
+    const receipt = p.submissions?.find((s) => s.id === key) ?? p.queuedMessages?.find(q => q.id === key);
     if (receipt) {
       if (receipt.hash !== hash)
         throw new ConflictError(
@@ -1104,6 +1106,14 @@ export class Engine {
       change.architecture === undefined
         ? undefined
         : architectureSchema.parse(change.architecture);
+    if (p.jobId && text) {
+      if (p.revision !== revision) throw new ConflictError("The conversation changed. Review it before sending.");
+      if ((p.queuedMessages ?? []).filter(q => q.status === "queued").reduce((n,q) => n + q.text.length, text.length) > 6000)
+        throw new ConflictError("The queued brief is full. Wait for this step to finish.");
+      queueReceipt(p, { id: key, hash, text, revision, jobId: p.jobId,
+        at: new Date().toISOString(), status: "queued", answers: change.answers, attachments });
+      return this.store.save(p);
+    }
     if (text && /\bchoose for me\b/i.test(text) && p.assetDiscovery) {
       this.idle(p, revision);
       const groups = p.assetDiscovery.groups;
@@ -1530,6 +1540,50 @@ export class Engine {
     this.jobs.get(id)?.controller.abort();
     return this.store.get(id);
   }
+  private queueBoundary(p: Project) {
+    mergeQueuedMessages(p, this.store.get(p.id));
+    if (p.queuedMessages?.some(q => q.status === "queued"))
+      throw new QueuedChangeBoundary("Saved current step. Applying queued changes before continuing.");
+  }
+  cancelQueuedMessage(id: string, revision: number, messageId: string) {
+    const p = this.store.get(id);
+    if (p.revision !== revision) throw new ConflictError("The conversation changed. Review it first.");
+    const q = p.queuedMessages?.find(q => q.id === messageId);
+    if (!q || !["queued", "held", "cancelled"].includes(q.status)) throw new ConflictError("This message is already being applied.");
+    q.status = "cancelled";
+    const turn = p.conversation?.find(t => t.id === q.id);
+    if (turn) turn.status = "cancelled";
+    return this.store.save(p);
+  }
+  async applyQueuedChanges(id: string) {
+    const p = this.store.get(id);
+    if (p.jobId) throw new ConflictError("Wait for the current step.");
+    const messages = (p.queuedMessages ?? []).filter(q => ["queued", "held"].includes(q.status));
+    if (!messages.length) return p;
+    if (messages.some(q => q.revision !== p.revision) || !p.proposal) {
+      for (const q of messages) { q.status = "held"; q.reason = "The project context changed. Remove this queued change and send a new message after reviewing the current plan."; const turn = p.conversation?.find(t => t.id === q.id); if (turn) turn.status = "held"; }
+      return this.store.save(p);
+    }
+    for (const q of messages) { q.status = "applying"; const turn = p.conversation?.find(t => t.id === q.id); if (turn) turn.status = "applying"; }
+    this.store.save(p);
+    try {
+      const text = messages.map(q => q.text).join("\n");
+      if (text.length > 6000) throw Error("Combine the queued changes into a message under 6000 characters.");
+      this.submitChange(id, p.revision, randomUUID(), { text, answers: messages.at(-1)?.answers }, messages.at(-1)?.attachments);
+      await this.wait(id);
+      const result = this.store.get(id);
+      const succeeded = !result.pendingProposalEdit && !["failed", "interrupted"].includes(result.stage);
+      markQueued(result, succeeded ? "applied" : "held", succeeded ? "Applied to the plan. Review it before building." : "The edit did not finish. Your message and completed work are kept. Continue explicitly.", messages.map(q => q.id));
+      markQueued(result, "held", "The plan changed while this message waited. Review it before continuing.");
+      appendTurn(result, "snapshot", succeeded ? "Applied your queued changes to the plan. Review it before building." : "Queued changes are held. No automatic retry will run.");
+      return this.store.save(result);
+    } catch (error) {
+      const result = this.store.get(id);
+      markQueued(result, "held", (error as Error).message, messages.map(q => q.id));
+      appendTurn(result, "snapshot", "Queued changes are held: " + (error as Error).message);
+      return this.store.save(result);
+    }
+  }
   async wait(id: string) {
     await this.jobs.get(id)?.promise;
     return this.store.get(id);
@@ -1571,7 +1625,7 @@ export class Engine {
       throw new ConflictError(
         "An earlier request has uncertain billing. Its conservative charge is retained. Reconcile it before another model call.",
       );
-    if (p.proposal && ["plan", "concept", "build"].includes(kind))
+    if (p.proposal && ["plan", "concept", "build"].includes(kind) && !(kind === "plan" && planningRetry(p)))
       throw new ConflictError(
         "Use Approve & build for the saved proposal. Edit individual sections through chat.",
       );
@@ -1808,6 +1862,7 @@ export class Engine {
     const keys = new Map(
       settings.profiles.map((x) => [x.id, this.config.key(x.id)]),
     );
+    let queuedBoundary = false;
     const promise = this.run(
       p,
       resume ? "resume" : kind,
@@ -1816,6 +1871,12 @@ export class Engine {
       controller.signal,
     )
       .catch((e) => {
+        if (e instanceof QueuedChangeBoundary) {
+          queuedBoundary = true;
+          p.stage = "interrupted";
+          p.error = null;
+          return;
+        }
         p.stage = controller.signal.aborted ? "interrupted" : "failed";
         if (e instanceof GenerationFailure) p.failure = e.diagnostic;
         if (e instanceof AssetPipelineFailure)
@@ -1845,7 +1906,7 @@ export class Engine {
             ? "Model output did not satisfy the generation contract."
             : (e as Error).message;
       })
-      .finally(() => {
+      .finally(async () => {
         if (p.implementationBackup) {
           if (!["ready_to_test", "verified"].includes(p.stage)) {
             retainFailedImplementation(p);
@@ -1855,6 +1916,13 @@ export class Engine {
         p.jobId = null;
         this.store.save(p);
         this.jobs.delete(id);
+        const current = this.store.get(id);
+        if (current.queuedMessages?.some(q => q.status === "queued") && !current.queuedMessages.some(q => q.status === "applying")) {
+          if (controller.signal.aborted || (!queuedBoundary && ["failed", "interrupted"].includes(p.stage))) {
+            markQueued(current, "held", "Work stopped. Review and continue explicitly.");
+            this.store.save(current);
+          } else await this.applyQueuedChanges(id);
+        }
       });
     this.jobs.set(id, { controller, promise });
     return p;
@@ -1967,6 +2035,9 @@ export class Engine {
       outputSchema?: z.ZodType;
     },
   ): Promise<T> {
+    this.queueBoundary(p);
+    if (phase === "planner" && context && typeof context === "object")
+      context = { ...context, conversation: p.conversation ?? [] };
     if (p.executionMode === "opencode" && phase === "repair" && !assetCall) {
       if (currentVisualFeedback(p))
         throw Error(
@@ -2974,7 +3045,7 @@ export class Engine {
           p.answers = { ...p.answers, ...pending.answers };
         }
         (p.briefChanges ??= []).push({ id: pending.id, text: pending.text });
-        appendTurn(p, "user", pending.text, { id: pending.id });
+        if (p.queuedMessages?.filter(q => q.status === "applying").map(q => q.text).join("\n") !== pending.text) appendTurn(p, "user", pending.text, { id: pending.id });
         (p.submissions ??= []).push({
           id: pending.id,
           hash: pending.submissionHash,
@@ -3796,6 +3867,7 @@ export class Engine {
                   await validatePatch(task, patch, toolSignal);
                   this.assertOpenCodeCurrent(p, toolSignal);
                   commitPatch(task, patch);
+                  this.queueBoundary(p);
                   return {
                     saved: task.id,
                     completedBuildTasks: p.completedBuildTasks,

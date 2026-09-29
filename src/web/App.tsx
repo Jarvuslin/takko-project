@@ -1,3 +1,4 @@
+import { ChatStatus, PresetPill, LiveChecklist } from "./ChatStatus";
 // Tokens first: every other sheet reads from this one.
 import { RetryStep } from "./RetryStep";
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -290,8 +291,12 @@ export function App() {
   }, [offlineMode]);
   useEffect(() => {
     const el = threadScroll.current;
-    if (el && followLatest.current) el.scrollTop = el.scrollHeight;
-  }, [project?.conversation?.length, project?.conversation?.at(-1)?.text]);
+    if (!el) return;
+    const needsUser = !project?.jobId && (project?.clarificationQuestions?.length || ["failed", "interrupted", "ready_to_test"].includes(project?.stage ?? ""));
+    const target = needsUser ? el.querySelector<HTMLElement>(".inline-question, .chat-end-card") : null;
+    if (target) el.scrollTop += target.getBoundingClientRect().top - el.getBoundingClientRect().top;
+    else if (followLatest.current) el.scrollTop = el.scrollHeight;
+  }, [project?.conversation?.length, project?.conversation?.at(-1)?.text, project?.stage, project?.clarificationQuestions?.length]);
   useEffect(() => {
     if (project?.jobId) setGenerationLimit(undefined);
   }, [project?.jobId]);
@@ -840,6 +845,7 @@ export function App() {
             )}
             {!project ? (
               <div className="welcome">
+                <div className="new-chat-status"><strong>New game</strong><PresetPill open={() => navigateSettings("models")} /><section className="chat-status" aria-label="Chat status" data-state={assetDraft.inspecting ? "Checking assets" : busy ? "Working" : "Ready"}>{assetDraft.inspecting ? "Checking assets" : busy ? "Working" : "Ready"} · $0.00</section></div>
                 <TakkoMark className="welcome-mark" />
                 <h1>What do you want to build?</h1>
                 <p className="welcome-description">
@@ -1092,21 +1098,8 @@ export function App() {
                   )}
                   <div className="chat-heading">
                     <TakkoMark />
-                    <strong>Takko</strong>
-                    <div className="chat-budget">
-                      <span className="spend">
-                        {money(
-                          project.charges.reduce(
-                            (a, c) => a + c.chargedMicros,
-                            0,
-                          ),
-                        )}{" "}
-                        / {money(project.budgetMicros)}
-                      </span>
-                    </div>
-                    <span className="stage">
-                      {project.stage.replaceAll("_", " ")}
-                    </span>
+                    <strong className="bounded-name" title={project.name}>{project.name}</strong>
+                    <PresetPill project={project} open={() => navigateSettings("models")} />
 
                     <button
                       onClick={() =>
@@ -1129,6 +1122,7 @@ export function App() {
                       <Icon name="clock" size={16} /> History
                     </button>
                   </div>
+                  <ChatStatus project={project} checkingAssets={assetDraft.inspecting} stop={() => action("cancel")} />
                   <PlatformChip
                     project={project}
                     update={(next) => {
@@ -1139,7 +1133,14 @@ export function App() {
                   />
                   <div
                     className="chat-thread-scroll"
-                    ref={threadScroll}
+                    ref={el => {
+                      threadScroll.current = el;
+                      if (el && followLatest.current) requestAnimationFrame(() => {
+                        const target = el.querySelector<HTMLElement>(!project.jobId && project.clarificationQuestions?.length ? ".inline-question" : ".chat-end-card");
+                        if (target) el.scrollTop += target.getBoundingClientRect().top - el.getBoundingClientRect().top;
+                        else el.scrollTop = el.scrollHeight;
+                      });
+                    }}
                     onScroll={(e) => {
                       const el = e.currentTarget;
                       followLatest.current =
@@ -1165,7 +1166,7 @@ export function App() {
                         }}
                       />
                     }
-                    {project.error && (
+                    {project.error && !["failed", "interrupted"].includes(project.stage) && (
                       <div role="alert" className="notice failure">
                         {/Output truncated/i.test(project.error) ? (
                           <>
@@ -1198,16 +1199,7 @@ export function App() {
                         )}
                       </div>
                     )}
-                    {project.jobId && (
-                      <div className="job" role="status" aria-live="polite">
-                        <span className="spinner" />
-                        <span>
-                          {project.events.at(-1)?.message ??
-                            "Starting generation…"}
-                        </span>
-                        <button onClick={() => action("cancel")}>Cancel</button>
-                      </div>
-                    )}
+                    <LiveChecklist project={project} />
                     {
                       <div className="brief-layout">
                         <section>
@@ -1223,12 +1215,12 @@ export function App() {
                               }
                             />
                           )}
-                          <RetryStep project={project} retry={() => action("retry-step")} />
+                          {!project.jobId && project.queuedMessages?.some(q => q.status === "held") && <section className="generation-card"><strong>Queued changes are held</strong><p>{project.queuedMessages.find(q => q.status === "held")?.reason}</p><button onClick={() => action("queued-messages/continue")}>Continue queued changes · paid planner edit within your cap</button></section>}
                           {project.proposal && (
                             <Proposal
                               project={project}
                               assetsInChat={hasAssetCard}
-                              disabled={running}
+                              disabled={running || ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage)}
                               discard={() => action("discard-proposal-edit")}
                               saveAnswers={async (chosen) => {
                                 const next = await api<Project>(
@@ -1444,7 +1436,7 @@ export function App() {
                                 project={project}
                                 disabled={running || assetDraft.inspecting}
                                 buildBlocked={
-                                  conceptDirty
+                                  ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage) ? "Use the latest result card below, or send a change in chat." : project.pendingProposalEdit ? "Resolve the pending edit before building." : conceptDirty
                                     ? "Save your brief changes before building."
                                     : project.platform?.question
                                       ? "Choose the target platform before building."
@@ -2214,6 +2206,7 @@ export function App() {
                         </div>
                       </SettingsDialog>
                     )}
+                    <RetryStep project={project} retry={() => action("retry-step")} openModels={() => navigateSettings("models")} />
                   </div>
                   {
                     <form
@@ -2224,7 +2217,7 @@ export function App() {
                         e.preventDefault();
                         if (
                           (!followup.trim() && !assetsChanged) ||
-                          running ||
+                          busy ||
                           assetDraft.inspecting
                         )
                           return;
@@ -2261,8 +2254,17 @@ export function App() {
                               assetAttachments: assetInputs,
                             },
                           );
-                          if (!revised.proposal)
+                          if (revised.queuedMessages?.some(q => q.id === messageSubmission.current?.id)) {
                             messageSubmission.current = null;
+                            setFollowup(current => {
+                              if (current.trim() !== followup.trim()) return current;
+                              sessionStorage.removeItem("takko-draft-" + project.id);
+                              return "";
+                            });
+                            setProject(revised);
+                            return;
+                          }
+                          if (!revised.proposal) messageSubmission.current = null;
                           setTab("Brief");
                           setProject(revised);
                           setRequest(revised.request);
@@ -2309,7 +2311,7 @@ export function App() {
                           ) {
                             e.preventDefault();
                             if (
-                              !running &&
+                              !busy &&
                               !assetDraft.inspecting &&
                               request === project.request
                             )
@@ -2326,13 +2328,14 @@ export function App() {
                           );
                         }}
                         maxLength={6000}
-                        disabled={running}
+                        disabled={false}
                       />
                       <AssetAttachments
                         draft={assetDraft}
                         disabled={running || assetDraft.inspecting}
                       />
                       <div className="composer-footer">
+                        {project.jobId && <button type="button" aria-label="Stop build" onClick={() => action("cancel")}>Stop</button>}
                         <button
                           type="button"
                           className="attach-button"
@@ -2372,7 +2375,7 @@ export function App() {
                           className="primary send-button"
                           aria-label="Send message and update plan"
                           disabled={
-                            running ||
+                            busy ||
                             assetDraft.inspecting ||
                             (!followup.trim() && !assetsChanged) ||
                             followup.trim().length > 6000 ||
@@ -2387,7 +2390,7 @@ export function App() {
                           ? "Save your edited brief using the plan button before sending a follow-up. "
                           : ""}
                         {running
-                          ? "Takko is working. You can cancel above."
+                          ? "Enter to queue · applied after this step · Stop keeps completed work"
                           : "Enter to send · Shift + Enter for a new line"}
                       </small>
                     </form>
