@@ -1,0 +1,488 @@
+<title>Takko Chat Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --ground:#17181b; --window:#1d1f23; --panel:#232529; --card:#2a2c31; --card-hi:#31343a;
+  --bubble:#4f535c; --line:rgba(255,255,255,.08); --line-hi:rgba(255,255,255,.16);
+  --text:#f3f4f6; --muted:#a4a8b2; --faint:#767a84;
+  --lime:#dcf542; --lime-ink:#1d1f23; --lime-soft:rgba(220,245,66,.12);
+  --ok:#5ad08a; --ok-bg:rgba(90,208,138,.12); --warn:#f2b441; --warn-bg:rgba(242,180,65,.12);
+  --bad:#f47a7a; --bad-bg:rgba(244,122,122,.12); --busy:#8fb3ff; --busy-bg:rgba(143,179,255,.12);
+  --sans:"Geist",ui-sans-serif,system-ui,"Segoe UI",sans-serif; --mono:"Geist Mono",ui-monospace,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{background:var(--ground)}
+body{color:var(--text);font:15px/1.55 var(--sans);padding-inline:20px;padding-block:28px 56px}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;display:grid;gap:22px}
+.intro{display:grid;gap:10px;max-width:780px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+h1{font-size:30px;line-height:1.15;margin:0;font-weight:700;text-wrap:balance;letter-spacing:-.01em}
+.intro p{margin:0;color:var(--muted)}
+.jump{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.jump span{font:500 12px/1 var(--mono);color:var(--faint);margin-right:4px}
+.jump button{background:transparent;border:1px solid var(--line-hi);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted)}
+.jump button[aria-current="true"]{background:var(--lime-soft);border-color:var(--lime);color:var(--text)}
+
+/* shared bits */
+.pill{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);padding:5px 9px 5px 7px;border-radius:999px;white-space:nowrap}
+.pill svg{width:14px;height:14px;flex:none}
+.p-empty{background:rgba(255,255,255,.06);color:var(--muted)}
+.p-busy{background:var(--busy-bg);color:var(--busy)}
+.p-ok{background:var(--ok-bg);color:var(--ok)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-bad{background:var(--bad-bg);color:var(--bad)}
+.spin{animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.spin,.new{animation:none!important}*{transition:none!important}}
+.btn{border:1px solid var(--line-hi);background:rgba(255,255,255,.04);border-radius:9px;padding:7px 12px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;min-height:34px;transition:background .15s,border-color .15s}
+.btn:hover:not(:disabled){background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.24)}
+.btn svg{width:15px;height:15px}
+.btn.ghost{border-color:transparent;color:var(--muted)}
+.btn.danger{color:var(--bad);border-color:rgba(244,122,122,.35)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.primary{background:var(--lime);color:var(--lime-ink);border:0;border-radius:10px;padding:11px 14px;font-weight:600;font-size:14px;transition:opacity .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.primary:disabled{opacity:.35;cursor:not-allowed}
+.primary svg{width:16px;height:16px}
+.full{width:100%}
+
+/* app */
+.app{display:grid;grid-template-columns:minmax(0,1fr) 440px;grid-template-rows:minmax(0,1fr);height:820px;background:var(--window);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage{position:relative;min-width:0;overflow:hidden;background:radial-gradient(circle,rgba(255,255,255,.07) 1px,transparent 1.2px) 0 0/22px 22px,var(--window)}
+.map-top{position:absolute;top:14px;left:14px;right:14px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:13px;color:var(--muted);white-space:nowrap}
+.chip b{color:var(--text);font-weight:600}
+.graph{position:absolute;inset:60px 20px 20px;display:grid;place-items:center}
+.nodes{display:flex;flex-wrap:wrap;gap:18px 26px;justify-content:center;max-width:520px}
+.node{display:grid;justify-items:center;gap:7px;width:110px;text-align:center;font-size:12.5px;color:var(--muted);transition:opacity .3s}
+.node.off{opacity:.25}
+.hex{width:56px;height:56px;border-radius:15px;background:var(--card);border:1px solid var(--line-hi);display:grid;place-items:center;position:relative}
+.hex svg{width:24px;height:24px;color:var(--lime)}
+.node.done .hex::after{content:"";position:absolute;right:-5px;top:-5px;width:16px;height:16px;border-radius:50%;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1f23' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5 10 16.5 18 8'/%3E%3C/svg%3E") center/11px no-repeat}
+.empty-map{color:var(--faint);font-size:13.5px;text-align:center;max-width:280px}
+
+/* chat panel */
+.chat{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;min-height:0;overflow:hidden;background:var(--panel);border-left:1px solid var(--line);min-width:0}
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.chat-head h2{font-size:15px;margin:0;font-weight:600}
+.preset{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:999px;padding:6px 11px;white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis}
+.preset i{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
+
+/* status strip: always says what's happening */
+.strip{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);min-height:52px;font-size:13.5px}
+.strip .state{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.strip .state b{font-weight:600;white-space:nowrap}
+.strip .state span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.strip.idle .dot{background:var(--faint)}
+.strip.busy{background:linear-gradient(90deg,var(--busy-bg),transparent)}
+.strip.busy .dot{background:var(--busy);box-shadow:0 0 0 4px rgba(143,179,255,.18)}
+.strip.you{background:linear-gradient(90deg,var(--lime-soft),transparent)}
+.strip.you .dot{background:var(--lime);box-shadow:0 0 0 4px rgba(220,245,66,.18)}
+.strip.ok{background:linear-gradient(90deg,var(--ok-bg),transparent)}
+.strip.ok .dot{background:var(--ok)}
+.strip.bad{background:linear-gradient(90deg,var(--bad-bg),transparent)}
+.strip.bad .dot{background:var(--bad)}
+.strip .meta{font:500 12px/1 var(--mono);color:var(--muted);white-space:nowrap}
+.progress{height:3px;background:rgba(255,255,255,.06);grid-column:1/-1}
+.progress span{display:block;height:100%;background:var(--busy);transition:width .4s}
+
+.msgs{overflow:auto;min-height:0;padding:16px 16px 20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.msgs>*{min-width:0;flex:none}
+.new{animation:rise .25s ease-out}
+.me{align-self:flex-end;max-width:88%;background:var(--bubble);border:1px solid var(--line-hi);border-radius:16px;padding:10px 12px;font-size:14px;display:grid;gap:8px}
+.bot{display:grid;gap:8px;font-size:14px}
+.brand{display:flex;align-items:center;gap:7px;font:700 12px/1 var(--sans);letter-spacing:.08em}
+.brand i{width:16px;height:16px;border-radius:5px;background:var(--lime);display:block}
+.bot p{margin:0;color:#dfe1e6}
+.bot ul{margin:0;padding-left:18px;color:#dfe1e6;display:grid;gap:3px}
+.receipt{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:2px 0}
+.receipt svg{width:14px;height:14px;color:var(--ok);flex:none}
+.receipt b{color:var(--text);font-weight:500}
+.thinking{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.thinking div{display:flex;gap:8px;align-items:center}
+.thinking svg{width:14px;height:14px;flex:none}
+.thinking .done svg{color:var(--ok)}
+.thinking .now{color:var(--text)}
+.thinking .now svg{color:var(--busy)}
+
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.card.focus{border-color:rgba(220,245,66,.45);box-shadow:0 0 0 3px rgba(220,245,66,.07)}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.card-head h3{font-size:14px;margin:0;font-weight:600}
+.count{font:500 12px/1 var(--mono);color:var(--muted);white-space:nowrap}
+.card-body{padding:12px 14px;display:grid;gap:10px}
+.card-foot{padding:12px 14px;border-top:1px solid var(--line);display:grid;gap:8px}
+.hint{font-size:12.5px;color:var(--muted);text-align:center}
+
+/* question */
+.q-title{font-size:15px;font-weight:600;margin:0}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:18px 1fr;gap:10px;text-align:left;background:rgba(0,0,0,.16);border:1px solid var(--line);border-radius:10px;padding:10px 12px;transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--line-hi)}
+.opt[aria-checked="true"]{border-color:var(--lime);background:var(--lime-soft)}
+.radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--faint);margin-top:2px}
+.opt[aria-checked="true"] .radio{border-color:var(--lime);background:radial-gradient(circle,var(--lime) 45%,transparent 50%)}
+.opt b{font-weight:600;font-size:14px}
+.rec{font:500 11px/1 var(--mono);color:var(--lime);background:var(--lime-soft);border-radius:5px;padding:3px 6px;margin-left:6px;vertical-align:1px}
+.opt small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.other{width:100%;background:var(--window);border:1px solid var(--line-hi);border-radius:8px;padding:8px 10px;margin-top:8px}
+.q-nav{display:flex;justify-content:space-between;align-items:center;gap:8px}
+
+/* asset rows */
+.row{padding:12px 14px;display:grid;gap:9px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.row-name{font-weight:600;font-size:14px}
+.row-why{color:var(--faint);font-size:12.5px}
+.pick{display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.18);border-radius:9px;padding:7px;min-width:0}
+.pick>div:not(.thumb){min-width:0;flex:1}
+.thumb{width:40px;height:40px;border-radius:7px;background:#34373d center/cover;flex:none;display:grid;place-items:center;color:var(--muted)}
+.thumb svg{width:18px;height:18px}
+.pick-name{font-size:13px;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick-sub{font:400 11.5px/1.3 var(--mono);color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x{width:28px;height:28px;border-radius:7px;border:0;background:transparent;color:var(--faint);display:grid;place-items:center;flex:none}
+.x:hover{background:rgba(255,255,255,.08);color:var(--text)}
+.x svg{width:14px;height:14px}
+.note{font-size:12.5px;line-height:1.45;border-radius:8px;padding:7px 10px}
+.note.ok{background:var(--ok-bg);color:#a6e8c0}
+.note.busy{background:var(--busy-bg);color:#bcd0ff}
+.note.warn{background:var(--warn-bg);color:#f6cf82}
+.bar{height:3px;background:rgba(255,255,255,.06)}
+.bar span{display:block;height:100%;background:var(--ok);transition:width .3s}
+.cost-line{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+.cost-line b{color:var(--text);font-weight:500;font-family:var(--mono)}
+
+/* run card */
+.steps{display:grid;gap:2px}
+.step{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;padding:7px 0;font-size:13.5px;color:var(--faint)}
+.step svg{width:16px;height:16px}
+.step.done{color:var(--muted)}
+.step.done svg{color:var(--ok)}
+.step.now{color:var(--text)}
+.step.now svg{color:var(--busy)}
+.step.fail{color:var(--bad)}
+.step small{font:400 11.5px/1 var(--mono);color:var(--faint)}
+.result{display:grid;gap:10px}
+.result h4{margin:0;font-size:16px;display:flex;align-items:center;gap:8px}
+.result h4 svg{width:18px;height:18px}
+.result.good h4{color:var(--ok)}
+.result.bad h4{color:var(--bad)}
+.result.stop h4{color:var(--warn)}
+.result p{margin:0;color:#dfe1e6;font-size:13.5px}
+.checklist{margin:0;padding-left:18px;color:var(--muted);font-size:13px;display:grid;gap:3px}
+.sugs{display:grid;gap:6px}
+.sug{text-align:left;background:transparent;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13px;color:#dfe1e6}
+.sug:hover{border-color:var(--line-hi)}
+
+/* composer */
+.composer{margin:0 14px 14px;background:var(--card);border:1px solid var(--line-hi);border-radius:20px;padding:10px 10px 10px 14px;display:grid;gap:8px}
+.composer.locked{border-color:var(--line)}
+.attach{display:flex;flex-wrap:wrap;gap:6px}
+.att{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:8px;padding:3px 3px 3px 4px;max-width:100%;font-size:12.5px}
+.att .thumb{width:22px;height:22px;border-radius:5px}
+.att span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.att .x{width:22px;height:22px}
+.composer textarea{background:none;border:0;resize:none;min-height:44px;max-height:120px;font-size:14px;line-height:1.45;outline:none;width:100%}
+.composer textarea::placeholder{color:var(--faint)}
+.c-foot{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.c-left{display:flex;align-items:center;gap:6px;min-width:0}
+.plus{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-hi);background:transparent;display:grid;place-items:center;color:var(--muted);flex:none}
+.plus svg{width:15px;height:15px}
+.lock-msg{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.send{width:36px;height:36px;border-radius:10px;border:0;background:var(--lime);display:grid;place-items:center;color:var(--lime-ink);flex:none}
+.send:disabled{opacity:.35;cursor:not-allowed}
+.send svg{width:16px;height:16px}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.rules section{display:grid;gap:8px;align-content:start}
+.rules h2{font-size:16px;margin:0;font-weight:600}
+.rules ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:5px;font-size:14px}
+.rules li b{color:var(--text);font-weight:600}
+
+@media (max-width:980px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
+  .stage{height:360px;order:2;border-top:1px solid var(--line)}
+  .chat{border-left:0;height:820px}
+}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Design proposal · 29 Sep 2026</span>
+    <h1>One chat, from prompt to playable</h1>
+    <p>Everything happens in the chat panel. The strip under the header always says what Takko is doing and whether it needs you. Only the newest card asks for anything, and answered cards shrink to one-line receipts. Built from your real run: the three assets you attached and your prompt. Click through it, or jump to a moment.</p>
+    <div class="jump" id="jump"><span>Jump to</span></div>
+  </header>
+
+  <div class="app">
+    <div class="stage" id="stage"></div>
+    <aside class="chat" aria-label="Chat">
+      <div class="chat-head"><h2>Dummy Strike</h2><button class="preset" type="button" title="Open Models"><i></i>My first preset · Sonnet 5 · $8 cap</button></div>
+      <div id="strip"></div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <div id="composer"></div>
+    </aside>
+  </div>
+
+  <div class="rules">
+    <section>
+      <h2>Always know what's happening</h2>
+      <ul>
+        <li><b>The status strip</b> under the header has one of six states: Ready, Working, Needs you, Building, Ready to test, Stopped or failed.</li>
+        <li><b>Building</b> shows the current step, step N of M, money spent, time, and a Stop button in the same place every time.</li>
+        <li>The map on the left fills in as steps finish.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>One thing to do at a time</h2>
+      <ul>
+        <li>Only the newest card has live buttons. Older cards shrink to receipts like "Rig: R6".</li>
+        <li>The chat scrolls to the card that needs you. The composer sits under the messages and never covers them.</li>
+        <li>No silent grey buttons. A disabled button always says why, right under it.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Questions in the chat</h2>
+      <ul>
+        <li>Asked inline, one at a time, up to three choices plus Other, one marked Recommended with its reason.</li>
+        <li>Rig is asked when it matters. Your attached animation is R6, so R6 is recommended and the game is set to R6 avatars.</li>
+        <li>Answers you already gave, or assets you already attached, are never asked for again.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Assets check themselves</h2>
+      <ul>
+        <li>Attached assets fill the rows straight away. The cheap model reviews scripts and fit on its own, and the result shows as one line.</li>
+        <li>Anything can be removed with ✕. Swapping is Change on the row.</li>
+        <li>Red only for real danger (backdoors, remote code). Everything else is handled or explained.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<script id="thumbs" type="application/json">{"112770048":"data:image/webp;base64,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","1245720733":"data:image/webp;base64,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","15008746676":"data:image/webp;base64,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","96359585058783":"data:image/webp;base64,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"}</script>
+<script>
+(()=>{
+const T=JSON.parse(document.getElementById('thumbs').textContent);
+const PROMPT="A fighting game where the player punches a stationary target dummy. Include a punching animation, a punch/hit sound when the player hits the dummy, and an on-screen counter that increments on each successful hit.";
+const I={
+ check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg>',
+ spin:'<svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>',
+ dot:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="6"/></svg>',
+ x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+ warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 20H3z"/><path d="M12 10v4M12 17.2v.1"/></svg>',
+ up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+ plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+ stop:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>',
+ play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+ down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>',
+ audio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6L8 10z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>',
+ retry:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.6"/><path d="M4 4v5h5"/></svg>',
+ node:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 12h6M12 9v6"/></svg>'
+};
+const ASSETS=[
+ {id:112770048,name:'Target Dummy (Respawns)',creator:'PlasticManAlex',need:'dummy'},
+ {id:15008746676,name:'r6 fight animation!!!!!!!!!!!!!!',creator:'poxloksl',need:'anim'},
+ {id:96359585058783,name:'victim impact punch hit sfx attack',creator:'Unknown',need:'sound',audio:true}
+];
+const NEEDS=[
+ {key:'dummy',label:'Target dummy',why:'The stationary target the player punches',ready:'3 scripts kept: respawn and damage logic. Reviewed by the cheap checker.'},
+ {key:'anim',label:'Punch animation',why:'Plays on the player when they punch',ready:'R6 clip "infinity punches". Matches your R6 rig.'},
+ {key:'sound',label:'Hit sound',why:'Plays when a punch lands',ready:'Audio, no scripts.'}
+];
+const QUESTIONS=[
+ {id:'rig',title:'Which character rig should players use?',opts:[
+   {id:'r6',label:'R6',desc:'Classic 6-part body. Your attached punch animation is R6.',rec:'matches your animation'},
+   {id:'r15',label:'R15',desc:'15-part body with smoother motion. Your R6 animation would not play on it.'}],receipt:'Rig'},
+ {id:'input',title:'How does the player punch?',opts:[
+   {id:'lmb',label:'Left click',desc:'Click to punch. Standard for PC fighting games.',rec:'PC default'},
+   {id:'f',label:'F key',desc:'Keeps the mouse free for the camera.'}],receipt:'Punch input'}
+];
+const STEPS=[['Plan systems and contracts',.32],['Scene, rig and dummy',.31],['Punch input and animation',.33],['Server hit check',.28],['Hit sound and HUD counter',.36],['Build scripts',1.42],['Review',.30]];
+const MAP=['Baseplate','R6 player','Dummy','Punch','Hit check','Sound','Counter'];
+
+let S; let timers=[];
+function fresh(){return {stage:'compose',attached:ASSETS.map(a=>a.id),text:PROMPT,sent:false,think:0,q:0,answers:{},other:{},rows:{},built:0,spent:0,elapsed:0,result:null,failAt:null}}
+const later=(f,ms)=>timers.push(setTimeout(()=>{f();render()},ms));
+const clear=()=>{timers.forEach(clearTimeout);timers=[]};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const asset=id=>ASSETS.find(a=>a.id==id);
+const thumb=(a,cls='thumb')=>a.audio||!T[a.id]?`<div class="${cls}">${I.audio}</div>`:`<div class="${cls}" style="background-image:url('${T[a.id]}')" role="img" aria-label="${esc(a.name)}"></div>`;
+const money=v=>'$'+v.toFixed(2);
+const clock=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+
+/* ---------- flow ---------- */
+function send(){
+  if(!S.text.trim())return;
+  S.sent=true;S.stage='working';S.think=0;render();
+  later(()=>S.think=1,700);later(()=>S.think=2,1500);
+  later(()=>{S.stage='questions';S.spent=.06},2300);
+}
+function answer(q,opt){S.answers[q]=opt;render()}
+function nextQ(){
+  if(S.q<QUESTIONS.length-1){S.q++;return render()}
+  S.stage='planning';S.think=0;render();
+  later(()=>{S.stage='assets';S.spent=.09;validate()},1400);
+}
+function validate(){
+  NEEDS.forEach((n,i)=>{const a=ASSETS.find(x=>x.need===n.key&&S.attached.includes(x.id));S.rows[n.key]=a?{asset:a.id,status:'checking'}:{status:'empty'};
+    if(a)later(()=>{S.rows[n.key].status='ready';S.spent=+(S.spent+.004).toFixed(3)},900+i*650)});
+  render();
+}
+function build(){
+  S.stage='building';S.built=0;S.elapsed=0;render();
+  const tick=()=>{S.elapsed+=4;if(S.stage==='building')later(tick,400)};later(tick,400);
+  STEPS.forEach((s,i)=>later(()=>{if(S.stage!=='building')return;S.built=i+1;S.spent=+(S.spent+s[1]).toFixed(2);
+    if(S.failAt===i){S.stage='failed';S.built=i;return}
+    if(i===STEPS.length-1){S.stage='done'}},1500*(i+1)));
+}
+function stop(){clear();S.stage='stopped';render()}
+
+/* ---------- pieces ---------- */
+function strip(){
+  const n=Object.values(S.rows).filter(r=>r.status==='ready').length;
+  const map={
+   compose:['idle','Ready','Attach assets and describe your game',''],
+   working:['busy','Working','Reading your request and checking 3 assets',money(S.spent)],
+   questions:['you','Needs you',`Answer ${QUESTIONS.length-Object.keys(S.answers).length||1} question${QUESTIONS.length-Object.keys(S.answers).length===1?'':'s'}`,money(S.spent)],
+   planning:['busy','Working','Updating the plan with your answers',money(S.spent)],
+   assets:n<NEEDS.length?['busy','Checking assets',`${n} of ${NEEDS.length} ready`,money(S.spent)]:['you','Needs you','Approve the build',money(S.spent)],
+   building:['busy','Building',`${STEPS[Math.min(S.built,STEPS.length-1)][0]} · step ${Math.min(S.built+1,STEPS.length)} of ${STEPS.length}`,`${money(S.spent)} · ${clock(S.elapsed)}`],
+   done:['ok','Ready to test','Export and open in Studio',`${money(S.spent)} of $8`],
+   failed:['bad','Build failed','At "'+STEPS[S.built][0]+'". Nothing more was spent.',money(S.spent)],
+   stopped:['bad','Stopped',`After ${S.built} of ${STEPS.length} steps. Finished steps are kept.`,money(S.spent)]
+  }[S.stage];
+  const bar=S.stage==='building'?`<div class="progress"><span style="width:${S.built/STEPS.length*100}%"></span></div>`:'';
+  const stopBtn=S.stage==='building'?`<button class="btn danger" data-act="stop" type="button">${I.stop}Stop</button>`:'';
+  return `<div class="strip ${map[0]}" role="status"><div class="state"><i class="dot"></i><b>${map[1]}</b><span>${esc(map[2])}</span></div>${map[3]?`<span class="meta">${map[3]}</span>`:''}${stopBtn}</div>${bar}`;
+}
+function composer(){
+  const locked=['working','planning','building'].includes(S.stage);
+  const chips=S.stage==='compose'?S.attached.map(id=>{const a=asset(id);return `<span class="att">${thumb(a)}<span title="${esc(a.name)}">${esc(a.name)}</span><button class="x" data-act="detach" data-id="${id}" type="button" aria-label="Remove ${esc(a.name)}">${I.x}</button></span>`}).join(''):'';
+  const msg=locked?`<span class="lock-msg">${S.stage==='building'?'You can ask for changes when the build finishes.':'Takko is working. You can type your next message.'}</span>`:'<span class="lock-msg">Drop Marketplace assets here</span>';
+  return `<div class="composer ${locked?'locked':''}">${chips?`<div class="attach">${chips}</div>`:''}
+   <textarea id="msg" rows="2" placeholder="${S.stage==='compose'?'Describe your game…':'Ask for a change…'}" aria-label="Message">${S.stage==='compose'?esc(S.text):''}</textarea>
+   <div class="c-foot"><div class="c-left"><button class="plus" type="button" aria-label="Attach from Marketplace">${I.plus}</button>${msg}</div>
+   <button class="send" data-act="send" type="button" aria-label="Send" ${S.stage==='compose'?'':'disabled'}>${I.up}</button></div></div>`;
+}
+function userMsg(){
+  return `<div class="me">${esc(PROMPT)}<div class="attach">${S.attached.map(id=>{const a=asset(id);return `<span class="att">${thumb(a)}<span title="${esc(a.name)}">${esc(a.name)}</span></span>`}).join('')}</div></div>`;
+}
+function thinking(lines,upto){
+  return `<div class="thinking">${lines.map((l,i)=>`<div class="${i<upto?'done':i===upto?'now':''}">${i<upto?I.check:i===upto?I.spin:I.dot}${l}</div>`).join('')}</div>`;
+}
+function questionCard(){
+  const q=QUESTIONS[S.q],sel=S.answers[q.id];
+  const opts=q.opts.map(o=>`<button class="opt" role="radio" aria-checked="${sel===o.id}" data-act="answer" data-q="${q.id}" data-o="${o.id}" type="button"><span class="radio"></span><span><b>${o.label}</b>${o.rec?`<span class="rec">Recommended · ${o.rec}</span>`:''}<small>${o.desc}</small></span></button>`).join('');
+  const other=`<button class="opt" role="radio" aria-checked="${sel==='other'}" data-act="answer" data-q="${q.id}" data-o="other" type="button"><span class="radio"></span><span><b>Other</b><small>Type your own answer</small>${sel==='other'?`<input class="other" id="other-${q.id}" placeholder="Your answer" value="${esc(S.other[q.id]||'')}">`:''}</span></button>`;
+  return `<div class="card focus new"><div class="card-head"><h3>Question ${S.q+1} of ${QUESTIONS.length}</h3><span class="count">free</span></div>
+   <div class="card-body"><p class="q-title">${q.title}</p><div class="opts" role="radiogroup" aria-label="${q.title}">${opts}${other}</div></div>
+   <div class="card-foot"><div class="q-nav"><button class="btn ghost" data-act="back" type="button" ${S.q?'':'disabled'}>Back</button><button class="primary" data-act="next" type="button" ${sel?'':'disabled'}>${S.q<QUESTIONS.length-1?'Next':'Done'}</button></div>
+   ${sel?'':'<div class="hint">Pick an option to continue</div>'}</div></div>`;
+}
+function receipts(){
+  return QUESTIONS.filter(q=>S.answers[q.id]).map(q=>{const o=q.opts.find(x=>x.id===S.answers[q.id]);return `<div class="receipt">${I.check}${q.receipt}: <b>${o?o.label:esc(S.other[q.id]||'Other')}</b></div>`}).join('');
+}
+function assetCard(active){
+  const rows=NEEDS.map(n=>{const r=S.rows[n.key]||{status:'empty'};const a=r.asset&&asset(r.asset);
+    const pill=r.status==='ready'?`<span class="pill p-ok">${I.check}Ready</span>`:r.status==='checking'?`<span class="pill p-busy">${I.spin}Checking</span>`:`<span class="pill p-empty">${I.dot}Not chosen</span>`;
+    const pick=a?`<div class="pick">${thumb(a)}<div><div class="pick-name" title="${esc(a.name)}">${esc(a.name)}</div><div class="pick-sub">${esc(a.creator)} · #${a.id}</div></div>${active?`<button class="x" data-act="clear" data-need="${n.key}" type="button" aria-label="Clear ${n.label}">${I.x}</button>`:''}</div>`:'';
+    const note=r.status==='ready'?`<div class="note ok">${n.ready}</div>`:r.status==='checking'?`<div class="note busy">Reviewing scripts and fit with the cheap checker…</div>`:'';
+    const acts=active&&!a?`<div><button class="btn" type="button" data-act="reattach" data-need="${n.key}">Choose asset</button> <button class="btn ghost" type="button" data-act="reattach" data-need="${n.key}">Choose for me</button></div>`:'';
+    return `<div class="row"><div class="row-top"><div><div class="row-name">${n.label}</div><div class="row-why">${n.why}</div></div>${pill}</div>${pick}${note}${acts}</div>`}).join('');
+  const ready=NEEDS.filter(n=>(S.rows[n.key]||{}).status==='ready').length,missing=NEEDS.filter(n=>(S.rows[n.key]||{}).status!=='ready');
+  const foot=active?`<div class="card-foot"><div class="cost-line"><span>Estimated build</span><b>about $3.50 · cap $8</b></div>
+     <button class="primary full" data-act="build" type="button" ${missing.length?'disabled':''}>${I.play}Approve &amp; build</button>
+     <div class="hint">${missing.length?(missing.some(n=>(S.rows[n.key]||{}).status==='checking')?'Checking your assets…':'Still needed: '+missing.map(n=>n.label).join(', ')):'Everything checked. Building starts right away and shows progress above.'}</div></div>`:'';
+  return `<div class="card ${active?'focus':''}"><div class="card-head"><h3>Assets for this game</h3><span class="count">${ready} of ${NEEDS.length} ready</span></div><div class="bar"><span style="width:${ready/NEEDS.length*100}%"></span></div>${rows}${foot}</div>`;
+}
+function runCard(){
+  const steps=STEPS.map((s,i)=>{const st=S.stage==='failed'&&i===S.built?'fail':i<S.built?'done':i===S.built&&S.stage==='building'?'now':'';
+    return `<div class="step ${st}">${st==='done'?I.check:st==='now'?I.spin:st==='fail'?I.x:I.dot}<span>${s[0]}</span><small>${i<S.built?money(s[1]):''}</small></div>`}).join('');
+  return `<div class="card ${S.stage==='building'?'focus':''}"><div class="card-head"><h3>Build</h3><span class="count">${Math.min(S.built,STEPS.length)} of ${STEPS.length} steps</span></div><div class="card-body"><div class="steps">${steps}</div></div></div>`;
+}
+function resultCard(){
+  if(S.stage==='done')return `<div class="card focus new"><div class="card-body result good"><h4>${I.check}Ready to test</h4>
+    <p>Dummy Strike built in ${STEPS.length} steps for ${money(S.spent)} of your $8. R6 avatars, left click to punch, built on the baseplate.</p>
+    <button class="primary full" type="button">${I.down}Export .rbxlx</button>
+    <ul class="checklist"><li>Open the file in Studio and press Play.</li><li>Walk up to the dummy and left click.</li><li>The counter should go up and the hit sound play on each hit.</li></ul>
+    <div class="sugs"><button class="sug" type="button">Add a 3-hit combo with separate animations</button><button class="sug" type="button">Make the dummy flash red when hit</button></div></div></div>`;
+  if(S.stage==='failed')return `<div class="card focus new"><div class="card-body result bad"><h4>${I.x}Build failed at "${STEPS[S.built][0]}"</h4>
+    <p>Takko listed the same dummy twice and rejected its own plan. This was a Takko bug, not your picks. ${S.built} finished step${S.built===1?' is':'s are'} kept.</p>
+    <button class="primary full" data-act="retry" type="button">${I.retry}Retry from this step · about $0.40</button>
+    <button class="btn ghost" type="button">Show technical details</button></div></div>`;
+  if(S.stage==='stopped')return `<div class="card focus new"><div class="card-body result stop"><h4>${I.stop}Stopped</h4>
+    <p>You stopped the build after ${S.built} of ${STEPS.length} steps. Those steps are kept and nothing more is being spent.</p>
+    <button class="primary full" data-act="retry" type="button">${I.retry}Continue from "${STEPS[Math.min(S.built,STEPS.length-1)][0]}"</button></div></div>`;
+  return '';
+}
+function messages(){
+  if(!S.sent)return `<div class="bot"><div class="brand"><i></i>TAKKO</div><p>Describe your game. Drag assets from the Marketplace into the box below to use them.</p></div>`;
+  const out=[userMsg()];
+  const atQ=S.stage==='questions',afterQ=!['compose','working','questions'].includes(S.stage);
+  out.push(`<div class="bot"><div class="brand"><i></i>TAKKO</div>${S.stage==='working'?thinking(['Reading your request','Checking your 3 attached assets','Drafting the plan'],S.think):`<p>Your 3 assets are in. Two quick choices before I plan the build.</p>`}</div>`);
+  if(atQ)out.push(receipts()?`<div class="bot">${receipts()}</div>`:'',questionCard());
+  if(afterQ){
+    out.push(`<div class="bot">${receipts()}</div>`);
+    out.push(`<div class="bot"><div class="brand"><i></i>TAKKO</div>${S.stage==='planning'?thinking(['Applying your answers','Setting R6 avatars'],1):`<p>Here's the plan:</p><ul><li>One target dummy on the baseplate, a few studs from spawn.</li><li>R6 avatars. Left click plays your punch animation.</li><li>A hit plays your sound and adds 1 to an on-screen counter.</li><li>PC only, keyboard and mouse.</li></ul>`}</div>`);
+    if(S.stage!=='planning')out.push(assetCard(S.stage==='assets'));
+  }
+  if(['building','done','failed','stopped'].includes(S.stage))out.push(runCard());
+  out.push(resultCard());
+  return out.join('');
+}
+function stage(){
+  const on=S.stage==='building'||['done','failed','stopped'].includes(S.stage);
+  const nodes=MAP.map((m,i)=>{const done=S.stage==='done'||(on&&i<S.built);return `<div class="node ${on||S.stage==='done'?'':'off'} ${done?'done':''}"><div class="hex">${I.node}</div>${m}</div>`}).join('');
+  const top=`<div class="map-top"><span class="chip"><b>Dummy Strike</b> · ${S.stage==='done'?'ready to test':'draft'}</span><span class="chip">PC · keyboard and mouse</span>${S.answers.rig?`<span class="chip">Rig · ${S.answers.rig==='r6'?'R6':S.answers.rig==='r15'?'R15':'custom'}</span>`:''}<span class="chip">World · Baseplate</span></div>`;
+  return top+`<div class="graph">${on||S.stage==='done'?`<div class="nodes">${nodes}</div>`:`<p class="empty-map">The game map fills in here as the build finishes each part.</p>`}</div>`;
+}
+const JUMPS=[['compose','Start'],['questions','Questions'],['assets','Assets'],['building','Building'],['done','Done'],['failed','Failed'],['stopped','Stopped']];
+function jumpTo(k){clear();S=fresh();S.sent=k!=='compose';
+  if(['questions','assets','building','done','failed','stopped'].includes(k)){S.spent=.06;}
+  if(['assets','building','done','failed','stopped'].includes(k)){S.answers={rig:'r6',input:'lmb'};S.q=1;S.spent=.09;NEEDS.forEach(n=>{const a=ASSETS.find(x=>x.need===n.key);S.rows[n.key]={asset:a.id,status:'ready'}})}
+  S.stage=k;
+  if(k==='building'){S.stage='assets';build();return}
+  if(k==='done'){S.built=STEPS.length;S.spent=3.41;S.elapsed=412}
+  if(k==='failed'){S.built=4;S.spent=1.19;S.elapsed=508}
+  if(k==='stopped'){S.built=2;S.spent=0.72;S.elapsed=180}
+  render();
+}
+function render(){
+  document.getElementById('strip').innerHTML=strip();
+  const m=document.getElementById('msgs');m.innerHTML=messages();
+  document.getElementById('composer').innerHTML=composer();
+  document.getElementById('stage').innerHTML=stage();
+  document.getElementById('jump').innerHTML='<span>Jump to</span>'+JUMPS.map(([k,l])=>`<button type="button" data-jump="${k}" aria-current="${S.stage===k||(k==='building'&&S.stage==='building')}">${l}</button>`).join('');
+  const focus=m.querySelector('.card.focus');requestAnimationFrame(()=>{m.scrollTop=focus?focus.offsetTop-m.offsetTop-40:m.scrollHeight});
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.jump)return jumpTo(d.jump);
+  switch(d.act){
+    case 'send':S.text=document.getElementById('msg').value;return send();
+    case 'detach':S.attached=S.attached.filter(x=>x!=d.id);return render();
+    case 'answer':answer(d.q,d.o);if(d.o==='other')setTimeout(()=>document.getElementById('other-'+d.q)?.focus());return;
+    case 'next':return nextQ();
+    case 'back':S.q=Math.max(0,S.q-1);return render();
+    case 'clear':S.rows[d.need]={status:'empty'};return render();
+    case 'reattach':{const a=ASSETS.find(x=>x.need===d.need);S.rows[d.need]={asset:a.id,status:'checking'};render();later(()=>S.rows[d.need].status='ready',900);return}
+    case 'build':return build();
+    case 'stop':return stop();
+    case 'retry':{const from=S.built;S.stage='building';S.elapsed=0;render();const tick=()=>{S.elapsed+=4;if(S.stage==='building')later(tick,400)};later(tick,400);
+      STEPS.slice(from).forEach((s,j)=>later(()=>{if(S.stage!=='building')return;S.built=from+j+1;S.spent=+(S.spent+s[1]).toFixed(2);if(S.built===STEPS.length)S.stage='done'},1400*(j+1)));return}
+  }
+});
+document.addEventListener('input',e=>{if(e.target.classList.contains('other')){const q=e.target.id.slice(6);S.other[q]=e.target.value}});
+S=fresh();render();
+})();
+</script>
