@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import type { Profile, Project, Settings } from "../generation/schema";
 import { Icon } from "./Icons";
-import "./settings-workspace.css";
 
 export type SettingsPage = "models" | "presets" | "routing" | "budget";
 export type PublicSettings = Omit<Settings, "profiles"> & {

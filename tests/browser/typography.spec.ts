@@ -12,11 +12,23 @@ async function expectTextFits(locator: Locator): Promise<void> {
 }
 
 async function fontsReady(page: Page): Promise<void> {
-  await page.evaluate(() => document.fonts.ready);
-  await expect(page.locator("body")).toHaveCSS("font-family", /Segoe UI/);
+  await page.evaluate(async () => {
+    await Promise.all([
+      document.fonts.load('14px "Geist"'),
+      document.fonts.load('12px "Geist Mono"'),
+    ]);
+    await document.fonts.ready;
+  });
+  expect(await page.evaluate(() => document.fonts.check('14px "Geist"'))).toBe(
+    true,
+  );
+  expect(
+    await page.evaluate(() => document.fonts.check('12px "Geist Mono"')),
+  ).toBe(true);
+  await expect(page.locator("body")).toHaveCSS("font-family", /Geist/);
 }
 
-test("system typography requires no external fonts and fits the minimal responsive layout", async ({
+test("bundled typography requires no external fonts and fits the minimal responsive layout", async ({
   page,
 }, testInfo) => {
   const externalFonts: string[] = [];
@@ -32,17 +44,11 @@ test("system typography requires no external fonts and fits the minimal responsi
   await fontsReady(page);
   expect(externalFonts).toEqual([]);
   await expect(page.locator(".welcome h1")).toHaveCSS("font-weight", "600");
-  await expect(page.locator(".welcome h1")).toHaveCSS(
-    "font-family",
-    /Segoe UI/,
-  );
-  await expect(page.getByLabel("Game idea")).toHaveCSS(
-    "font-family",
-    /Segoe UI/,
-  );
+  await expect(page.locator(".welcome h1")).toHaveCSS("font-family", /Geist/);
+  await expect(page.getByLabel("Game idea")).toHaveCSS("font-family", /Geist/);
   await expect(page.getByRole("button", { name: "Create project" })).toHaveCSS(
     "font-family",
-    /Segoe UI/,
+    /Geist/,
   );
 
   const widths =
@@ -88,10 +94,10 @@ test("workspace typography keeps prose readable and controls usable", async ({
   await page.getByText("Edit original brief", { exact: true }).click();
   await expect(page.getByRole("heading", { name: "Your request" })).toHaveCSS(
     "font-family",
-    /Segoe UI/,
+    /Geist/,
   );
   const prose = page.locator(".spec-summary p");
-  await expect(prose).toHaveCSS("font-family", /Segoe UI/);
+  await expect(prose).toHaveCSS("font-family", /Geist/);
   expect(
     await prose.evaluate((element) =>
       parseFloat(getComputedStyle(element).fontSize),
@@ -104,7 +110,9 @@ test("workspace typography keeps prose readable and controls usable", async ({
     .getByLabel("Message", { exact: true })
     .fill("Let players sell harvested crops together.");
   await expectTextFits(page.locator(".chat-composer"));
-  await page.getByRole("button", { name: "Source details", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Source details", exact: true })
+    .click();
   await expect(
     page.getByRole("heading", { name: "The generated project" }),
   ).toBeVisible();

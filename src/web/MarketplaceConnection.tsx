@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import "./marketplace-connection.css";
 
 export function useMarketplaceConnection(initial = "", offline = false) {
   const [studios, setStudios] = useState<{ id: string; name: string }[]>([]);

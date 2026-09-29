@@ -17,7 +17,7 @@ export async function focusFlow(page: Page, origin = "") {
     "solid",
   );
   expect(await input.evaluate((e) => getComputedStyle(e).outlineColor)).toBe(
-    "rgb(156, 187, 201)",
+    "rgb(220, 245, 66)",
   );
 }
 export async function questionFlow(
@@ -210,3 +210,4 @@ export async function browseFlow(
   expect(f.errors).toEqual([]);
   await page.keyboard.press("Escape");
 }
+

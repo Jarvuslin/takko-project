@@ -1,5 +1,4 @@
 // Tokens first: every other sheet reads from this one.
-import "./tokens.css";
 import { useEffect, useState, useRef, useCallback } from "react";
 import type { Project } from "../generation/schema";
 import { AssetExecution } from "./AssetExecution";
@@ -18,13 +17,6 @@ import {
   StudioConnectionScreen,
   useStudioConnection,
 } from "./StudioConnection";
-import "./styles.css";
-import "./grok-theme.css";
-import "./conversation.css";
-import "./workspace-native.css";
-import "./ui-polish.css";
-import "./studio-connection.css";
-import "./marketplace-polish.css";
 import { StudioConversation } from "./StudioConversation";
 import { Conversation } from "./Conversation";
 import { ArchitectureEditor } from "./ArchitectureEditor";
@@ -1054,6 +1046,17 @@ export function App() {
                   <div className="chat-heading">
                     <TakkoMark />
                     <strong>Takko</strong>
+                    <div className="chat-budget">
+                      <span className="spend">
+                        {money(
+                          project.charges.reduce(
+                            (a, c) => a + c.chargedMicros,
+                            0,
+                          ),
+                        )}{" "}
+                        / {money(project.budgetMicros)}
+                      </span>
+                    </div>
                     <span className="stage">
                       {project.stage.replaceAll("_", " ")}
                     </span>
@@ -1088,17 +1091,7 @@ export function App() {
                         el.scrollHeight - el.scrollTop - el.clientHeight < 70;
                     }}
                   >
-                    <div className="chat-budget">
-                      <span className="spend">
-                        {money(
-                          project.charges.reduce(
-                            (a, c) => a + c.chargedMicros,
-                            0,
-                          ),
-                        )}{" "}
-                        / {money(project.budgetMicros)}
-                      </span>
-                    </div>
+
                     {
                       <Conversation
                         key={project.id}

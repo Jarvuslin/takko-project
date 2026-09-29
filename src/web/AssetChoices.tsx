@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery } from "../marketplace/discovery";
 import { SettingsDialog } from "./SettingsWorkspace";
-import "./asset-choices.css";
 import { AssetPreviewDialog } from "./AssetPreviewDialog";
 import { AssetVotes } from "./AssetVotes";
 import {

@@ -1,3 +1,4 @@
+import { TakkoMark } from "./Icons";
 import type { ClarificationQuestion } from "./Clarifications";
 import { clarificationReceipt } from "./clarification-receipt";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
@@ -133,6 +134,7 @@ export function Conversation({
               data-turn-id={turn.id}
             >
               <div className="turn-byline">
+                {turn.kind !== "user" && <TakkoMark />}
                 <strong>{turn.kind === "user" ? "You" : "Takko"}</strong>
                 <small>
                   r{turn.revision} ·{" "}

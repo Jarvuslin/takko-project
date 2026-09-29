@@ -1,10 +1,9 @@
-// Tokens first: every other sheet reads from this one.
 import "./tokens.css";
+import "./styles.css";
+// Tokens first: every other sheet reads from this one.
 import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
-import "./styles.css";
-import './focus.css';
 import { installFocusModality } from './focus-modality';
 installFocusModality();
 const DesignLab = lazy(() => import("./design-lab/DesignLab"));

@@ -1,7 +1,6 @@
 import { Clarifications, answerComplete } from "./Clarifications";
 import type { GameConcept as Concept } from "../generation/concept";
 import { conceptCanPlan } from "../generation/concept";
-import "./game-concept.css";
 
 export function GameConcept({
   concept,

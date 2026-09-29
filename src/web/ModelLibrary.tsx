@@ -8,7 +8,6 @@ import {
   type SettingsPage,
 } from "./SettingsWorkspace";
 import { Icon } from "./Icons";
-import "./model-library.css";
 
 const providers = {
   openrouter: {
