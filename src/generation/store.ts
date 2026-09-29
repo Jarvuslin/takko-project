@@ -7,6 +7,7 @@ import type { Project } from "./schema";
 import { RequestError, StoredDataError } from "../errors";
 import { initialWorld } from "./world-policy";
 import { initialPlatform } from "./platform-policy";
+import { migrateAssetNeeds } from "./retry";
 
 /** Keep the last published artifact visible while preserving resumable candidate work. */
 export function retainFailedImplementation(p: Project) {
@@ -135,6 +136,7 @@ export class GenerationStore {
       if (p?.schemaVersion === 2) {
         storedProject.parse(p);
         if (p.id !== id) throw Error("Project identity mismatch");
+        migrateAssetNeeds(p);
         return p;
       }
       if (

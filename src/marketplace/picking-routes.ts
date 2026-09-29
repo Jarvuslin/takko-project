@@ -21,6 +21,7 @@ import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
 import { pickStatus } from "./pick-status";
 import { modelPreviewSchema } from "./preview";
+import { normalizeNeeds } from "./normalize-needs";
 
 /** Free browsing and durable picks. Only a current, explicit quote dispatches inference. */
 export function pickingRoutes(
@@ -90,6 +91,7 @@ export function pickingRoutes(
         groups: assetSearches(p).map((g) => ({ ...g, options: [] })),
         choices: {},
       };
+    normalizeNeeds(p, id => library.get(id));
     const d = p.assetDiscovery;
     d.revision = p.revision;
     // Reuse inspected composer attachments. Binding is explicit planner output,
@@ -104,6 +106,7 @@ export function pickingRoutes(
       );
       if (
         !targets.length &&
+        !(p.spec?.assetNeeds ?? p.proposal?.assetNeeds)?.length &&
         !Object.values(d.choices ?? {}).some((c) => c.assetId === a.assetId)
       ) {
         const id = `attached_${a.assetId}`;

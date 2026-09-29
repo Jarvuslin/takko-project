@@ -1,4 +1,5 @@
 // Tokens first: every other sheet reads from this one.
+import { RetryStep } from "./RetryStep";
 import { useEffect, useState, useRef, useCallback } from "react";
 import type { Project } from "../generation/schema";
 import { AssetExecution } from "./AssetExecution";
@@ -1222,6 +1223,7 @@ export function App() {
                               }
                             />
                           )}
+                          <RetryStep project={project} retry={() => action("retry-step")} />
                           {project.proposal && (
                             <Proposal
                               project={project}

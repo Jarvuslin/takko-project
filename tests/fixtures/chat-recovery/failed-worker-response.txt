@@ -1,0 +1,121 @@
+```json
+{
+  "requirements": [
+    {
+      "id": "hitFeedback_soundAudition",
+      "description": "Audition the selected 'Punch Sounds' pack (assetId 16583762) and select one clean, punchy impact clip; deliver the chosen clip to ReplicatedStorage under the namespace as source audio data for playback by HitFeedbackService.",
+      "sourceId": "proposal:mechanics",
+      "sourceQuote": "the punch/hit sound plays, and an on-screen counter GUI increments by one",
+      "origin": "user",
+      "category": "audio",
+      "priority": "required",
+      "acceptance": "Native asset pipeline inspection confirms a Sound instance sourced from asset 16583762 exists under ReplicatedStorage/Forge_07a88f8e1e51/Combat with a verified, native-playback-tested SoundId; the specific clip chosen is identified in code comments or asset metadata."
+    },
+    {
+      "id": "hitFeedback_hitSoundPlayback",
+      "description": "HitFeedbackService plays the selected punch/hit sound through a Sound instance parented at/near the placed Target Dummy, triggered synchronously each time a hit is credited via the serverValidation area's hit-credited hand-off signal, so the impact audio is spatially tied to the hit and never fired for a rejected punch attempt.",
+      "sourceId": "proposal:mechanics",
+      "sourceQuote": "the punch/hit sound plays, and an on-screen counter GUI increments by one",
+      "origin": "user",
+      "category": "audio",
+      "priority": "required",
+      "acceptance": "Native testing shows that each time PunchCounterState's hit-credited signal fires, HitFeedbackService plays the Sound parented at the dummy's position exactly once, with no duplicate or missed playback across at least one dummy respawn cycle, and no playback on rejected/out-of-range punch attempts."
+    },
+    {
+      "id": "hitFeedback_punchResultFire",
+      "description": "Immediately after triggering the hit sound, HitFeedbackService fires the PunchResult RemoteEvent (from foundation's CombatRemotes module) to the attacking player with payload {hit:true, count} using the authoritative count supplied by PunchCounterState, so the client's HUD receives synchronized hit confirmation.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "network",
+      "priority": "required",
+      "acceptance": "Native inspection confirms HitFeedbackService calls PunchResult:FireClient(player, {hit = true, count = n}) exactly once per credited hit using PunchCounterState's current count, and never fires PunchResult for an unvalidated or rejected punch attempt."
+    },
+    {
+      "id": "hitFeedback_hudLiveUpdate",
+      "description": "PunchCounterHUDController listens to PunchResult.OnClientEvent on the local player and updates the displayed counter number in the persistent top-center HUD immediately upon receiving a hit result, so the visible count reflects the player's validated hits in real time.",
+      "sourceId": "proposal:environment",
+      "sourceQuote": "watches the counter tick from 0 to 1, then repeats punches to keep increasing the counter",
+      "origin": "user",
+      "category": "ui",
+      "priority": "required",
+      "acceptance": "Native testing shows that after a server-validated hit fires PunchResult, the HUD label text updates to the received count value within the same event tick, with no manual refresh or polling required, and shows no update for a PunchResult with hit=false if one were ever sent."
+    },
+    {
+      "id": "hitFeedback_hudRebindOnRespawn",
+      "description": "PunchCounterHUDController disconnects any previous PunchResult connection and rebinds cleanly on every CharacterAdded (initial spawn and respawn), reading the existing counter label created by foundation's HUD scaffold rather than creating a second ScreenGui or label, so no duplicate HUD instance or stale connection accumulates after a respawn.",
+      "sourceQuote": "",
+      "origin": "inferred",
+      "category": "lifecycle",
+      "priority": "required",
+      "acceptance": "Native testing across at least one respawn shows exactly one active PunchResult connection remains for the HUD after CharacterAdded fires again, only a single counter label/ScreenGui instance exists in PlayerGui, and the displayed count continues updating correctly after respawn."
+    },
+    {
+      "id": "hitFeedback_hudThemeStyling",
+      "description": "The live HUD counter display is styled to match the approved minimalist, functional training-gym theme: a bold, high-contrast sans-serif numeral with a small 'Punches' label, using a neutral color palette consistent with the existing sky/lighting, with no added decorative UI elements that would distract from the punch-and-count loop. This styling is applied when PunchCounterHUDController wires and updates the label text/appearance on top of foundation's structural scaffold.",
+      "sourceId": "proposal:theme",
+      "sourceQuote": "clean HUD typography for the punch counter, a neutral color palette matching the existing sky/lighting, and no added scenery that would distract from the punch-and-count loop",
+      "origin": "user",
+      "category": "presentation",
+      "priority": "required",
+      "acceptance": "Native visual inspection of the wired HUD counter shows a bold sans-serif numeral with a small 'Punches' label, high-contrast neutral coloring against the default sky/lighting background, and no added decorative graphics, matching the approved theme description."
+    }
+  ],
+  "tasks": [
+    {
+      "proposalSections": ["mechanics", "assets"],
+      "id": "hitFeedback_hitFeedbackServiceTask",
+      "title": "Hit Sound and PunchResult Feedback",
+      "requirements": ["hitFeedback_soundAudition", "hitFeedback_hitSoundPlayback", "hitFeedback_punchResultFire"],
+      "dependsOn": ["serverValidation_hitValidatorTask", "foundation_combatRemotesTask", "foundation_dummyPlacementTask"],
+      "files": ["ServerScriptService/Forge_07a88f8e1e51/Combat/HitFeedbackService.server.luau"]
+    },
+    {
+      "proposalSections": ["environment", "theme", "mechanics"],
+      "id": "hitFeedback_hudControllerTask",
+      "title": "Live HUD Counter Wiring",
+      "requirements": ["hitFeedback_hudLiveUpdate", "hitFeedback_hudRebindOnRespawn", "hitFeedback_hudThemeStyling"],
+      "dependsOn": ["foundation_hudScaffoldTask", "foundation_combatRemotesTask", "hitFeedback_hitFeedbackServiceTask"],
+      "files": ["StarterPlayer/StarterPlayerScripts/Forge_07a88f8e1e51/PunchCounterHUDController.client.luau"]
+    }
+  ],
+  "assetNeeds": [
+    {
+      "id": "hitFeedback_PunchHitSound",
+      "requirementId": "hitFeedback_soundAudition",
+      "role": "Supplies the punch/hit sound effect played at the moment a validated punch lands on the dummy, synchronized with the counter increment.",
+      "selectedAssetId": "16583762",
+      "kind": "Audio",
+      "deliveryRole": "source_data",
+      "query": "punch sound",
+      "constraints": "Selected 'Punch Sounds' pack (16583762) contains multiple clips; audition and select one clean, punchy impact sound via native playback before use; deliver the chosen clip to ReplicatedStorage under the namespace and play it through a Sound instance positioned at the dummy so impact audio is spatially tied to the hit; do not invent a replacement sound if auditioning is inconclusive.",
+      "intent": {
+        "experienceRole": "Reinforces hit feedback alongside the animation and counter, completing the moment-to-moment feel of a successful punch in the training-loop experience.",
+        "interaction": "Plays exactly when a punch registers a validated hit on the dummy, synchronized with the counter increment and PunchResult delivery; purely feedback, not player-controlled.",
+        "reusableFeatures": ["individual sound clips available to audition and pick from within the pack", "any existing script in the pack that plays sounds, for reference on triggering logic only"],
+        "relatedRequirementIds": ["hitFeedback_soundAudition", "hitFeedback_hitSoundPlayback", "hitFeedback_punchResultFire"]
+      },
+      "required": true,
+      "position": [0, 0, -12],
+      "maxSize": 1
+    }
+  ],
+  "referenceDecisions": [
+    {
+      "mechanicId": "punchHitSoundPack",
+      "action": "include",
+      "requirementIds": ["hitFeedback_soundAudition", "hitFeedback_hitSoundPlayback"],
+      "reason": "User approved the 'Punch Sounds' pack (16583762) as the source for punch/hit audio; this area auditions and selects a single clip from that pack rather than sourcing a different sound or inventing procedural audio.",
+      "userSourceId": "proposal:mechanics",
+      "userQuote": "the punch/hit sound plays, and an on-screen counter GUI increments by one"
+    },
+    {
+      "mechanicId": "trainingDummyAlternate",
+      "action": "omit",
+      "requirementIds": ["foundation_dummyPlacement"],
+      "reason": "Reaffirming the foundation area's decision: the alternate 'Training Dummy' candidate (assetId 1245720733, group 'Practice dummy') is not used anywhere in this plan, including by this area's hit-feedback and counter wiring, which target only the placed 'Target Dummy (Respawns)' (assetId 112770048, group 'Target Dummy (Respawns)') via foundation_TargetDummy. This avoids two approved asset groups resolving to the same asset need.",
+      "userSourceId": "answer:scope_1df2d66c9451",
+      "userQuote": "Keep these limits"
+    }
+  ]
+}
+```

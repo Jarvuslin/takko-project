@@ -1,6 +1,7 @@
 import type { Project } from "../generation/schema";
 import type { AssetNeed } from "../generation/asset-contract";
 import type { AssetSearch } from "./discovery";
+import { normalizeNeeds } from "./normalize-needs";
 
 // Compare host roles/search intent, never uploader names or required catalog numbers.
 function words(text: string): Set<string> {
@@ -39,7 +40,8 @@ export function compatibleSearchKind(group: AssetSearch, need: AssetNeed) {
     group.kind === need.kind ||
     (group.kind === "Model" &&
       group.preview === "animation" &&
-      need.kind === "Animation")
+      need.kind === "Animation") ||
+    (group.kind === "Model" && group.preview === "audio" && need.kind === "Audio")
   );
 }
 
@@ -78,6 +80,8 @@ export function assetNeedForGroup(
 }
 
 export function approvedAssetLinks(p: Project) {
+  p = { ...p };
+  normalizeNeeds(p);
   const review = p.assetDiscovery;
   if (!review?.approved || review.revision !== p.revision) return [];
   const used = new Set<string>();
@@ -137,10 +141,7 @@ export function approvedAssetLinks(p: Project) {
         "Approved asset kind is incompatible with its linked need: " +
           group.label,
       );
-    if (used.has(need.id))
-      throw Error(
-        "Multiple approved groups link to the same asset need: " + need.id,
-      );
+    if (used.has(need.id)) return [];
     used.add(need.id);
     return [{ group, choice, option, need }];
   });

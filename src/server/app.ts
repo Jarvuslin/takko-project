@@ -1,4 +1,5 @@
 import { proposalQuestions } from "../generation/proposal-questions";
+import { planningRetry } from "../generation/retry";
 import express from "express";
 import { z } from "zod";
 import path from "node:path";
@@ -741,6 +742,13 @@ export function createApp(
         attachments,
       ),
     );
+  });
+  app.get("/api/projects/:id/retry-quote", (req, res) => res.json(planningRetry(store.get(req.params.id)) ?? null));
+  app.post("/api/projects/:id/retry-step", (req, res) => {
+    const { revision } = z.object({ revision: z.number().int() }).strict().parse(req.body);
+    const p = store.get(req.params.id);
+    if (p.revision !== revision || !planningRetry(p)) throw new ConflictError("The failed step changed. Review the project before retrying.");
+    res.status(202).json(engine.start(p.id, revision, "plan"));
   });
   app.post("/api/projects/:id/approve", (req, res) =>
     res.json(
