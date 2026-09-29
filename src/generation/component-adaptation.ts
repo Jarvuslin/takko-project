@@ -14,7 +14,7 @@ import {
   loadComponentReviewEvidence,
   type ComponentReviewEvidence,
 } from "./component-review";
-import builtins from "./roblox-builtin-assets.json";
+import builtins from "./roblox-builtin-assets.json" with { type: "json" };
 import { assertNoRuntimeSourceWrites } from "./runtime-source-check";
 
 const hash = (x: string | Buffer) =>

@@ -99,6 +99,7 @@ export function pickStatus(
   const clip = option.previewData?.pack?.entries.find(
     (e) => e.key === choice.clipKey && e.clip,
   );
+  if (warnings.length && !inspection) return status("warning", warnings.join(" ") + " Current inspection is still needed.", false);
   // Warnings remain visible on old choices, including the saved irrelevant dummy.
   if (!inspection || option.isFree !== true)
     return status(
@@ -115,7 +116,7 @@ export function pickStatus(
   if (warnings.length && !choice.kept) return status("warning", warnings.join(" ") + " Choose a closer match if needed.", true);
   return status(
     "ready",
-    choice.sourceReview ? `${choice.sourceReview.scripts.filter(s => s.action === "keep").length} scripts kept for this role. ${choice.sourceReview.scripts.filter(s => s.action === "disable").map(s => `${s.name}: disabled in delivered copy`).join(" ")} Validation $${(choice.sourceReview.costMicros / 1e6).toFixed(4)}.` : choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason,
+    choice.sourceReview ? `${choice.reason ?? ""} ${choice.sourceReview.scripts.filter(s => s.action === "keep").length} scripts kept for this role. ${choice.sourceReview.scripts.filter(s => s.action === "disable").map(s => `${s.name}: disabled in delivered copy`).join(" ")} Validation $${(choice.sourceReview.costMicros / 1e6).toFixed(4)}.` : choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason,
   );
 }
 

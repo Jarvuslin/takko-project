@@ -292,6 +292,7 @@ async function prepared(opencode = false) {
   ).toBe(202);
   let p = await f.engine.wait(f.p.id);
   expect(p.error).toBeNull();
+  if (p.rig && !p.rig.selected) p = f.engine.revise(p.id, p.revision, p.request, { ...p.answers, character_rig: "R15" });
   p.assetDiscovery = {
     id: randomUUID(),
     revision: p.revision,
@@ -667,6 +668,7 @@ it("takes the saved legacy fixture through proposal and message APIs, then repor
   p = await f.engine.wait(p.id);
   expect(p.proposal).toBeDefined();
   expect(p.artifact).toEqual(legacyProject.artifact);
+  if (p.rig && !p.rig.selected) p = f.engine.revise(p.id, p.revision, p.request, { ...p.answers, character_rig: "R15" });
   await f.post(`/projects/${p.id}/messages`, {
     revision: p.revision,
     id: randomUUID(),

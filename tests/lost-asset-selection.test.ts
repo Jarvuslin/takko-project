@@ -28,7 +28,7 @@ it("recovers the real live saved listing after the old search removed it from th
   const saved = f.project();
   expect(saved.assetDiscovery!.choices).toEqual(before);
   expect(pickStatus(saved, saved.assetDiscovery!.groups[0]).state).toBe(
-    "warning",
+    "checking",
   );
   expect(f.state.inspections).toEqual([]);
   expect(f.state.calls).toBe(0);

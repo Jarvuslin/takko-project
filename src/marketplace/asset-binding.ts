@@ -81,7 +81,8 @@ export function assetNeedForGroup(
 
 export function approvedAssetLinks(p: Project) {
   p = { ...p };
-  normalizeNeeds(p);
+  const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds ?? [];
+  if ((p.assetDiscovery?.groups.length ?? 0) > needs.length || p.assetDiscovery?.groups.some(g => g.assetNeedId && p.proposal?.assetNeeds?.some(n => n.id === g.assetNeedId) && !needs.some(n => n.id === g.assetNeedId))) normalizeNeeds(p);
   const review = p.assetDiscovery;
   if (!review?.approved || review.revision !== p.revision) return [];
   const used = new Set<string>();

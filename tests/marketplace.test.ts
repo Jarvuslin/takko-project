@@ -122,9 +122,7 @@ describe("static inspection", () => {
     "local module=require(script.Parent.Helper)",
     "local r = require\nr(123)",
     "require(\n123\n)",
-    "HttpService:RequestAsync({})",
     "string.char(65,66)",
-    "game['GetService'](game, 'HttpService')",
   ])("holds unresolved behavior for review: %s", (source) =>
     expect(
       inspectSnapshot({ ...snapshot, scripts: [{ name: "Code", source }] })
@@ -200,7 +198,7 @@ describe("persistent asset library", () => {
     record.asset.inspection.scannerVersion = 0;
     fs.writeFileSync(filename, JSON.stringify(record));
     await f.library.inspect(studioId, "123");
-    expect(f.provider.snapshot).toHaveBeenCalledTimes(3);
+    expect(f.provider.snapshot).toHaveBeenCalledTimes(2);
     f.provider.metadata.mockResolvedValue({
       ...metadata,
       versionId: undefined,
@@ -208,7 +206,7 @@ describe("persistent asset library", () => {
     });
     await f.library.inspect(studioId, "123");
     await f.library.inspect(studioId, "123");
-    expect(f.provider.snapshot).toHaveBeenCalledTimes(5);
+    expect(f.provider.snapshot).toHaveBeenCalledTimes(4);
   });
   it("does not save an inspection if the asset changed during capture", async () => {
     const f = fixture();

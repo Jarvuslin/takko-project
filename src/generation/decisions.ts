@@ -43,6 +43,7 @@ const questionSchema = z.discriminatedUnion("type", [
     .strict(),
 ]);
 export type DecisionRequest = {
+  evidenceKind?: "complete_script_sources";
   state: unknown;
   questions: Record<string, z.infer<typeof questionSchema>>;
 };
@@ -103,7 +104,11 @@ export function decisionBody(request: DecisionRequest) {
       max_price: { prompt: JEV_INPUT_RATE, completion: 0 },
     },
   });
-  if (Buffer.byteLength(body) > 16384)
+  // Source review needs the complete captured scripts. Jev allows 32K tokens for
+  // state + longest question, 64K total. A 32,000-byte body is a conservative bound.
+  // https://openrouter.ai/blog/tutorials/jev-vs-llm-when-to-use-each/
+  // The existing 64K-token reservation remains unchanged.
+  if (Buffer.byteLength(body) > (request.evidenceKind === "complete_script_sources" ? 32000 : 16384))
     throw new DispatchDenied(
       "This analysis exceeds Jev's input limit. The complete request remains available to the planner.",
     );

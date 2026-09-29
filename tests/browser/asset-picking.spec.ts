@@ -6,6 +6,7 @@ const { pickerFixture } = (await tsImport(
   import.meta.url,
 )) as typeof import("../asset-picking-fixture");
 import { pickStatus } from "../../src/marketplace/pick-status";
+import { recommendRig } from "../../src/generation/rig-policy";
 let f: Awaited<ReturnType<typeof pickerFixture>>;
 test.beforeEach(async ({ page }) => {
   f = await pickerFixture();
@@ -35,6 +36,36 @@ const card = (page: Page) =>
   page.getByRole("region", { name: "Assets for this game", exact: true });
 const row = (page: Page, name = "Target dummy") =>
   card(page).getByRole("region", { name, exact: true });
+
+test("the inline rig choice recommends the captured animation rig and saves a receipt", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await f.search("punchAnimation", "punch animation");
+  const chosen = (await f.choose(f.animation.assetId, "punchAnimation")).data;
+  const group = chosen.assetDiscovery.groups.find((g: any) => g.id === "punchAnimation");
+  const clip = group.options[0].previewData.pack.entries.find((e: any) => e.clip);
+  await f.command("asset-picks/clip", { groupId: group.id, assetId: f.animation.assetId, clipKey: clip.key });
+  const p = f.project(); p.rig = recommendRig(p); f.app.locals.engine.store.save(p);
+  await page.reload();
+  const question = page.getByRole("region", { name: "Character rig", exact: true });
+  await expect(question).toContainText("animation");
+  await question.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "test-artifacts/chat-parts-1-3/real-rig-question.png", fullPage: true });
+  await question.getByRole("button", { name: `${clip.clip.rig} · Recommended`, exact: true }).click();
+  await expect(page.getByText(`✓ Rig: ${clip.clip.rig}`, { exact: true })).toBeVisible();
+  expect(f.project().rig?.selected).toBe(clip.clip.rig);
+});
+
+test("removing a detected pick stays removed after reload", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await f.search(); await f.choose(); await page.reload();
+  await expect(row(page)).toContainText(f.dummies[1].name);
+  await row(page).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: "test-artifacts/chat-parts-1-3/real-asset-needs.png", fullPage: true });
+  await row(page).getByRole("button", { name: `Remove ${f.dummies[1].name}`, exact: true }).click();
+  await expect(row(page)).toContainText("Attach one from the Marketplace and press Enter");
+  await page.reload();
+  expect(f.project().assetDiscovery?.choices?.targetDummy?.assetId).toBeUndefined();
+});
 
 test("a Marketplace card dropped onto a need assigns and verifies that exact listing without a row search", async ({
   page,
@@ -230,7 +261,7 @@ test("excluded listings are visible and Escape returns to chat", async ({
   ).toBeFocused();
 });
 
-test("checking, amber Keep it, and disconnected red recovery keep the build gated", async ({
+test("automatic source review becomes green and disconnected recovery keeps the build gated", async ({
   page,
 }) => {
   f.state.scripts = 1;
@@ -248,7 +279,7 @@ test("checking, amber Keep it, and disconnected red recovery keep the build gate
     page.locator(".marketplace-picking").getByText("Checking", { exact: true }),
   ).toBeVisible();
   done();
-  await expect(row(page)).toContainText("Check this pick");
+  await expect(row(page)).toContainText("1 scripts kept");
   expect(
     await row(page).evaluate((e) => {
       const bounds = e.getBoundingClientRect();
@@ -256,8 +287,7 @@ test("checking, amber Keep it, and disconnected red recovery keep the build gate
       return pill.right <= bounds.right && e.scrollWidth <= e.clientWidth;
     }),
   ).toBe(true);
-  await row(page).getByRole("button", { name: "Keep it", exact: true }).click();
-  await expect(row(page)).toContainText("Kept by you");
+  await expect(row(page)).toContainText("Validation $");
   f.state.connected = false;
   await row(page).getByRole("button", { name: "Change", exact: true }).click();
   await page

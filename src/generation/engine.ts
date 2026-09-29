@@ -2512,12 +2512,14 @@ export class Engine {
     if (snapshot.scripts.length && !settings.routes.decisions?.length) throw new ConflictError("Configure the decisions route to check the attached scripts automatically.");
     const start = p.charges.length;
     const scripts: { name: string; action: "keep" | "disable" | "danger" }[] = [];
-    for (let offset = 0; offset < snapshot.scripts.length; offset += 16) {
-      const batch = snapshot.scripts.slice(offset, offset + 16);
+    for (let offset = 0; offset < snapshot.scripts.length; offset += 1) {
+      const batch = snapshot.scripts.slice(offset, offset + 1);
       const result = await this.nonCodingDecision(p, "attached-source-review", {
+        evidenceKind: "complete_script_sources",
         state: { request: p.request, role: group.label, query: group.query, contentHash, complete: snapshot.complete, issues: snapshot.issues, nodes: snapshot.nodes,
-          // Same physical source presentation as componentReviewModelEvidence. Never replace sources with script counts.
-          sources: snapshot.scripts.map(s => ({ name: s.name, numberedSource: physicalSourceLines(s.source).map((line, i) => `${i + 1}: ${line}`).join("") })) },
+          // Preserve the same complete physical source bodies used by component review.
+          // One bounded question per call avoids repeating large criteria tables.
+          sources: snapshot.scripts.map(s => ({ name: s.name, source: physicalSourceLines(s.source).join("") })) },
         questions: Object.fromEntries(batch.map((s, i) => [`script_${i}`, { type: "choice" as const, instructions: `Review actual source of ${s.name} in the full dependency context. Classify only for this asset's role. Ordinary respawn/damage/animation logic is allowed. Computed indexing alone is not danger.`, criteria: { keep: "Useful ordinary behavior for the stated role.", disable: "Unneeded for this role. Disable in the delivered copy.", danger: "Actual external/computed require, dynamic execution, environment tricks, HTTP, remote admin/backdoor, forced purchases or teleports." } }]))
       }, settings, new Map(settings.profiles.map(m => [m.id, this.config.key(m.id)])), new AbortController().signal);
       for (const [i, s] of batch.entries()) {
@@ -3250,6 +3252,7 @@ export class Engine {
               bundle,
             ).map((c) => c.xml),
             p.world,
+            p.rig,
           ),
           bundle.files,
           p.scope,

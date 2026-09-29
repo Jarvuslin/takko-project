@@ -5,6 +5,11 @@ import { proposalHash } from "./proposal";
 
 /** Read migration only. Preserve checkpoints only when their original input still matches. */
 export function migrateAssetNeeds(p: Project) {
+  // Do not re-key accepted legacy acquisition records whose hashes bind their rows.
+  // The failed pre-plan proposal and projects with duplicate rows need migration.
+  const needs = p.spec?.assetNeeds ?? p.proposal?.assetNeeds;
+  if (p.spec || !p.proposal?.assetNeeds?.some(n => n.selectedAssetId) || !needs?.length) return;
+  if (p.assetDiscovery?.groups.length === needs.length && p.assetDiscovery.groups.every(g => needs.some(n => n.id === g.id))) return;
   const reusable = p.coordination?.inputHash === coordinationInputHash(p);
   const approved = p.proposal?.approval?.hash === p.proposal?.hash;
   if (!normalizeNeeds(p)) return;

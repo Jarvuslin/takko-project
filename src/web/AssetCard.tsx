@@ -151,7 +151,7 @@ export function AssetCard({
           {groups.length - missing.length} of {groups.length} ready
         </span>
       </div>
-      <p>I found {groups.filter(g => project.assetAttachments?.some(a => a.assetId === project.assetDiscovery?.choices?.[g.id]?.assetId)).length} of the {groups.length} assets this game needs in your message.</p>
+      <p>I found {groups.filter(g => project.assetDiscovery?.choices?.[g.id]?.fromMessage).length} of the {groups.length} assets this game needs in your message.</p>
       <div
         className="need-progress"
         role="progressbar"
@@ -252,8 +252,9 @@ export function AssetCard({
                   <Icon name="cube" size={24} />
                 )}
                 <div>
+                  {c?.fromMessage && <small>Detected from your message:</small>}
                   <strong className="bounded-name" title={o.name}>
-                    Detected from your message: {o.name}
+                    {o.name}
                   </strong>
                   <small>
                     {o.creatorName} · #{o.assetId}

@@ -1,4 +1,4 @@
-import snapshot from "./roblox-capabilities.json";
+import snapshot from "./roblox-capabilities.json" with { type: "json" };
 type Property = { type: string; engineType: string; enum?: string };
 export const capabilities = snapshot as {
   studioVersion: string;

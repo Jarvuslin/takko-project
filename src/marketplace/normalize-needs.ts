@@ -30,7 +30,7 @@ export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption 
   }
   const choices: NonNullable<AssetDiscovery["choices"]> = {};
   const pinned: string[] = [];
-  const groups = assetSearches(p).map(row => {
+  const groups = assetSearches({ ...p, spec: p.spec ? { ...p.spec, assetNeeds: needs.map(n => ({ ...n, required: true })) } : null, proposal: p.proposal ? { ...p.proposal, assetNeeds: needs.map(n => ({ ...n, required: true })) } : undefined }).map(row => {
     const need = needs.find(n => n.id === row.id)!;
     const sources = prior.groups.filter(g => {
       if (g.assetNeedId === need.id || g.id === need.id) return true;
@@ -41,7 +41,8 @@ export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption 
       n.id === need.id || need.id.endsWith("_" + n.id))?.selectedAssetId;
     const matching = selected ? prior.groups.filter(g => prior.choices?.[g.id]?.assetId === selected) : sources;
     const chosen = matching.find(g => prior.choices?.[g.id]?.clipKey) ?? matching.find(g => prior.choices?.[g.id]);
-    const choice = chosen ? { ...prior.choices![chosen.id] } : selected ? { assetId: selected, reason: "Detected from your message" } : undefined;
+    const choice: NonNullable<AssetDiscovery["choices"]>[string] | undefined = chosen ? { ...prior.choices![chosen.id] } : selected ? { assetId: selected, reason: "Detected from your message" } : undefined;
+    if (choice && selected && choice.fromMessage === undefined) choice.fromMessage = true;
     const options = [...new Map([...sources, ...matching, ...(chosen ? [chosen] : [])].flatMap(g => g.options).map(o => [o.assetId, o])).values()];
     if (choice?.assetId && !options.some(o => o.assetId === choice.assetId)) {
       const cached = lookup?.(choice.assetId);

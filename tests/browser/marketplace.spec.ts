@@ -216,7 +216,7 @@ test("Marketplace supports saved assets, inspected drag/drop and chat attachment
     .getByRole("button", { name: "Browse Marketplace assets", exact: true })
     .click();
   await panel.getByRole("button", { name: "Saved", exact: true }).click();
-  await card.getByRole("button", { name: "Add", exact: true }).click();
+  await card.getByRole("button", { name: "Add to chat", exact: true }).click();
   await expect(
     page
       .getByRole("group", { name: "Attached assets", exact: true })

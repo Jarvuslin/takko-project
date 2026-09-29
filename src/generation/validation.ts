@@ -18,7 +18,7 @@ import {
 import { scenePropertyError } from "./capabilities";
 import { sequenceAssetIssues } from "./scope-questions";
 import { platformPlanningIssues } from "./platform-policy";
-import builtins from "./roblox-builtin-assets.json";
+import builtins from "./roblox-builtin-assets.json" with { type: "json" };
 const builtinAssets: Record<string, string> = builtins.assets;
 export const roots = [
   "Workspace",

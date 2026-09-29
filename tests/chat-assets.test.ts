@@ -1,4 +1,7 @@
 import fs from "node:fs";
+import { createHash } from "node:crypto";
+import { exportBundle } from "../src/generation/export";
+import { disableReviewedScripts } from "../src/generation/component-xml";
 import { afterEach, expect, it } from "vitest";
 import type { Project } from "../src/generation/schema";
 import { matchMessageAssets, normalizeNeeds } from "../src/marketplace/normalize-needs";
@@ -13,6 +16,21 @@ it("detects the three selected attachments in the saved project without duplicat
   const p = saved(); normalizeNeeds(p);
   expect(p.assetDiscovery!.groups).toHaveLength(3);
   expect(Object.values(p.assetDiscovery!.choices!).map(c => c.assetId)).toEqual(p.proposal!.assetNeeds!.map(n => n.selectedAssetId));
+});
+it("reviews the saved dummy's actual three source bodies and reports green without a computed-access block", async () => {
+  const f = await pickerFixture(); fixtures.push(f);
+  const p = saved(); normalizeNeeds(p);
+  const cache = JSON.parse(fs.readFileSync("tests/fixtures/chat-recovery/dummy-cache.json", "utf8"));
+  const inspection = inspectSnapshot(cache.snapshot);
+  expect(inspection.status).not.toBe("blocked");
+  expect(inspection.scriptCount).toBe(3);
+  const group = p.assetDiscovery!.groups.find(g => g.id === "TargetDummy")!;
+  group.options.find(o => o.assetId === "112770048")!.inspection = inspection;
+  f.app.locals.engine.store.save(p);
+  await f.app.locals.engine.reviewAttachedSources(p, group.id, cache.snapshot, inspection.contentHash);
+  expect(pickStatus(p, group)).toMatchObject({ state: "ready", canBuild: true });
+  expect(pickStatus(p, group).reason).toContain("3 scripts kept");
+  expect(p.assetDiscovery!.choices![group.id].sourceReview?.scripts.map(s => s.name)).toEqual(cache.snapshot.scripts.map((s: {name:string}) => s.name));
 });
 it("fills a missing need from a later message by type and name", () => {
   const p = saved(); const need = p.proposal!.assetNeeds![2]; delete need.selectedAssetId;
@@ -54,4 +72,13 @@ it.each(["require(12345)", "require(id + 5)", "loadstring(code)()", "HttpService
 });
 it("does not block ordinary indexed properties", () => {
   expect(inspectSnapshot({ complete: true, issues: [], nodes: [{name:"Respawn",className:"Script"}], scripts: [{name:"Respawn",source:'local health = script.Parent["Humanoid"].Health'}] }).status).toBe("no_issues_found");
+});
+it("disables only unneeded script sources in the delivered XML and retains the original", () => {
+  const xml = exportBundle({ files: [{ path: "ServerScriptService/Forge_fixture/Extra.server.luau", kind: "Script", source: "print('unneeded')" }, { path: "ServerScriptService/Forge_fixture/Respawn.server.luau", kind: "Script", source: "print('respawn')" }], scene: [], assets: [], coverage: [] } as any, "Forge_fixture");
+  const original = { destinationPath: "ServerScriptService/Forge_fixture", xml, sha256: createHash("sha256").update(xml).digest("hex") };
+  const delivered = disableReviewedScripts(original, ["Extra"]);
+  expect(delivered.xml).toContain('<bool name="Disabled">true</bool>');
+  expect(delivered.xml).not.toContain("unneeded");
+  expect(delivered.xml).toContain("respawn");
+  expect(original.xml).toBe(xml);
 });

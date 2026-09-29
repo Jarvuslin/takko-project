@@ -503,6 +503,7 @@ export function pickingRoutes(
         if (need) need.selectedAssetId = b.assetId;
         (d.choices ??= {})[g.id] = {
           assetId: b.assetId,
+          fromMessage: false,
           operation: "checking",
           ...(previous?.assetId === b.assetId && previous.clipKey
             ? { clipKey: previous.clipKey }
@@ -657,7 +658,7 @@ export function pickingRoutes(
         g.options = options.filter(
           (o) => !p.excludedAssetIds?.includes(o.assetId),
         );
-        (d.choices ??= {})[g.id] = { operation: "finding" };
+        (d.choices ??= {})[g.id] = { operation: "finding", fromMessage: false };
         d.approved = false;
         save(p);
         let assessed: Project;
