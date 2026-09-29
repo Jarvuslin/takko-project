@@ -49,7 +49,7 @@ export const assetNeedSchema = z
     kind: z.enum(["Model", "MeshPart", "Audio", "Animation", "Image"]),
     deliveryRole: z.enum(["visible_prop", "source_data"]).optional().describe("Use source_data for packs/libraries retained only as animation, audio or other source data. They are delivered to ReplicatedStorage, not rendered in Workspace."),
     sequence: z.object({id:z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/),step:z.number().int().min(1).max(16),total:z.number().int().min(2).max(16)}).strict().optional().describe("For a chosen animated action sequence, one separate Animation need per step with the same sequence id and total. Each step gets its own user-selected clip."),
-    query: z.string().min(1).max(200),
+    query: z.string().min(1).max(200).describe("1-3 broad Creator Store keywords naming the object or media, such as training dummy, punch sound or punch animation. Keep detailed requirements in role and constraints."),
     constraints: z.string().min(1).max(2000),
     intent: assetIntentSchema.optional(),
     required: z.boolean().default(true),

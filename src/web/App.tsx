@@ -12,6 +12,7 @@ import {
 } from "./Clarifications";
 import { GameConcept, FirstPlaytest } from "./GameConcept";
 import { AssetChoices } from "./AssetChoices";
+import { sameAnswers } from "./brief-draft";
 import { Proposal } from "./Proposal";
 import {
   StudioConnectionScreen,
@@ -228,6 +229,30 @@ export function App() {
     >([]),
     [pairing, setPairing] = useState(""),
     [studioMessage, setStudioMessage] = useState("");
+  const savedBrief = useRef<Project | null>(null);
+  useEffect(() => {
+    if (!project) {
+      savedBrief.current = null;
+      return;
+    }
+    const previous = savedBrief.current;
+    if (previous?.id === project.id && project.revision > previous.revision) {
+      // Compare with the last saved baseline, not the incoming server values.
+      if (
+        request === previous.request &&
+        sameAnswers(answers, previous.answers)
+      ) {
+        setRequest(project.request);
+        setAnswers(project.answers);
+        try {
+          sessionStorage.removeItem("takko-answers-" + project.id);
+        } catch {
+          /* The in-memory brief still follows the saved revision. */
+        }
+      }
+    }
+    savedBrief.current = project;
+  }, [project]);
   useEffect(() => {
     if (
       !project?.proposal ||
@@ -429,7 +454,7 @@ export function App() {
     !!project &&
     (request !== project.request ||
       assetsChanged ||
-      JSON.stringify(answers) !== JSON.stringify(project.answers));
+      !sameAnswers(answers, project.answers));
   const changeAnswers = (next: Record<string, string>) => {
     setAnswers(next);
     if (project) {
@@ -1369,6 +1394,13 @@ export function App() {
                                 key={project.id + ":" + project.revision}
                                 project={project}
                                 offline={offlineMode}
+                                searchBlockedReason={
+                                  running
+                                    ? "Wait for generation to finish before searching."
+                                    : assetDraft.inspecting
+                                      ? "Wait for the current asset inspection to finish."
+                                      : undefined
+                                }
                                 blockedReason={
                                   running
                                     ? "Wait for generation to finish before finding assets."

@@ -1,34 +1,35 @@
 # Current state
 
-Updated 2026-09-29. This file is the live handoff. REPLACE its contents at the end of each task. Do not append history. Keep it under about 5 KB. The full log up to 2026-09-29 is in `archive/continuation-2026-09-13-to-2026-09-29.md`. Read that only when you need a specific past detail.
+Updated 2026-09-29. This is the live handoff. Replace its contents after each task and keep it under about 5 KB. History through 2026-09-29 is in `archive/continuation-2026-09-13-to-2026-09-29.md`.
 
 ## Live now
 
-- **Port 4340, PID 42308** runs `.forge/scope-answer-recovery-host.mjs` on store `.forge/world-policy-live-20260928`. It serves project **c8550a5b-5b9f-4b79-8a25-b7ee0827618c** ("Dummy Strike"), revision 5, draft. Do not restart or rerun the recovery helper without the user's permission. Its `live-attempt.json` enforces one attempt.
-- The project is **waiting for the user**. They pick the punch animation, review the dummy and sound, and press Approve & build themselves. The attack style is single punch. No blocking questions remain. Pack 12061946559 is excluded.
-- Known UI bug on that page: a false "You have unsaved brief changes" banner can disable asset search after server-side answer changes (App.tsx `conceptDirty`). Reloading the page should clear it. A proper fix is not implemented yet.
-- No other Takko ports (4318, 4319, 4320, 4324, 4335, 4336) were listening at the last check. Verify before assuming.
-- Studio: the user's Studio sessions are theirs. Ask before touching them. Scratch places under `.forge/visual-scratch-20260928/` and `.forge/fresh-fixes-scratch/` are for visual checks only.
+- **Port 4340, PID 42308** still runs `.forge/scope-answer-recovery-host.mjs` using `.forge/world-policy-live-20260928`. Project **c8550a5b-5b9f-4b79-8a25-b7ee0827618c** (Dummy Strike) is revision 5, draft, with no active job. Never rerun this one-time recovery helper.
+- The asset-search fix is implemented. The replacement `.forge/asset-search-host.ts` / `.mjs` is prepared but **restart requires explicit user permission**. It loads the existing store without recovery edits, enables free manual group searches and keeps automatic recommendations paused. Existing build approval, budget, profile and attempt restrictions remain.
+- Before an approved restart, run `node .forge/asset-search-preservation.mjs capture`. Start the prepared host on 4340 only after stopping the confirmed old PID with permission. Then run `node .forge/asset-search-preservation.mjs verify`. Do not claim restart survival before that comparison passes.
+- Read-only checks confirmed five answers, selected dummy 108353927891814, selected sound 133175949071305, asset discovery, attachments, revision and ledger all match disk. Punch animation remains unselected. The user chooses it, reviews assets and presses Approve & build themselves. Single punch is the saved attack style. Pack 12061946559 stays excluded.
+- After the full check, no other Takko ports (4318, 4319, 4320, 4324, 4335, 4336) were listening. The isolated test server stopped. Recheck listeners.
+- Studio sessions belong to the user. None were changed in this task. Scratch places under `.forge/visual-scratch-20260928/` and `.forge/fresh-fixes-scratch/` remain visual checks only.
 
 ## Money
 
-- Project c8550a5b has an **$8 cumulative cap**. Spent $0.385091 on the ledger, retained reservation $0.002688, **remaining $7.612221**.
-- Last reconciled 2026-09-29T00:26:25Z: key $15.240844430, account $16.748365904.
-- The build itself is authorized only when the user presses Approve & build, within that cap, with no automatic retries or repair resumes. Anything else paid needs new explicit approval.
+- Project c8550a5b has an **$8 cumulative cap**. Ledger spend $0.385091, retained reservation $0.002688, **remaining $7.612221**.
+- Last provider reconciliation: 2026-09-29T00:26:25Z. Key $15.240844430, account $16.748365904. No new balance check or paid call in the asset-search task. Task cost $0.
+- A build is authorized only when the user presses Approve & build within that cap. No automatic retry or repair resume. Any other paid run needs explicit authorization.
 
 ## Paused
 
 - Every older generation goal and project, including 8a81efe9-b8ed-44bc-a21a-5aad132813ac. Do not edit it or its evidence.
-- Deny-dispatch flags in `docs/results/question-modal-20260928/live/` and `docs/results/single-punch-recovery-20260928/` stay in place.
+- Deny-dispatch flags in `docs/results/question-modal-20260928/live/` and `docs/results/single-punch-recovery-20260928/` remain.
 
-## Next up (not started)
+## Next up
 
-1. The user tests the build export in Studio. No hand-editing of generated output.
-2. Fix the false unsaved-changes banner and make asset search queries broad and editable. The prompt is in the user's hands.
-3. A visual reskin of the window and chat to Lemonade's feel, looks only. See `research/30-lemonade-flow-walkthrough.md`. The prompt is in the user's hands.
+1. Obtain restart permission for 4340, load the prepared asset-search host, verify answers and choices survived, and update this handoff and `docs/asset-search-brief-sync.md`.
+2. The user picks assets, approves the build and tests its export in Studio. No hand-editing of generated output.
+3. The separately requested visual reskin remains unstarted. See `research/30-lemonade-flow-walkthrough.md`. Looks only, same flow.
 
 ## Recent decisions
 
-- 2026-09-29: all work was committed as `eb046db` on branch `codex/marketplace-asset-library`. Screen recordings, traces and npm caches in `docs/results/` are gitignored and stay on disk. `npm run check` now writes its outputs to `test-artifacts/` (gitignored), not `docs/results/`.
-- Fresh projects start from the captured Baseplate template world. Builders must not add lights or change Lighting unless a requirement asks for it.
-- Takko stays marketplace-first for assets. The UI reskin changes looks only, not the flow.
+- Asset search: incoming revisions sync untouched request/answers against the previous saved baseline. Key order is ignored. Actual local drafts remain. Manual group searches bypass brief dirtiness and model assessment. Queries are editable above smaller descriptions. Planner queries use 1-3 broad object/media keywords. Sparse listing matches also search a core word. This free heuristic does not prove semantic relevance.
+- Focused verification: 49 unit/API tests plus 8 proposal tests, and 22 desktop/mobile browser tests passed. Initial browser run had 18 passes and 2 selected-label failures, then passed after correction. First full check stopped at 1 outdated fallback assertion (1,714 passed, 1 failed). Corrected. Final full check passed: 1,715 Vitest, 181 browser with 1 existing mobile skip, 14 desktop, 6 Luau, 15 plugin mocks, 6 guards, build/CSS/production smoke. See `docs/asset-search-brief-sync.md`.
+- Fresh projects use the captured Baseplate template. Builders must not add lights or change Lighting without a requirement. Takko remains marketplace-first. Existing Forge identifiers stay unchanged.

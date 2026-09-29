@@ -253,7 +253,8 @@ for (const invalid of [false, true])
           body: JSON.stringify({ revision: next.revision, studioId: next.assetDiscovery!.studioId }),
         });
         expect(discovery.status).toBe(200);
-        expect(searches).toEqual(next.proposal!.assetNeeds!.filter(n => n.kind === "Animation").map(n => n.query));
+        // Both preserved punch slots return no listings, so each also tries the core noun.
+        expect(searches).toEqual(["punch attack animation", "punch", "punch attack animation", "punch"]);
         const discovered = await discovery.json();
         expect(discovered.assetDiscovery.groups.map((g: any) => g.id)).toEqual(next.assetDiscovery!.groups.map(g => g.id));
         expect(calls).toBe(1);

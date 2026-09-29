@@ -6,6 +6,14 @@ import {
 import { generationDesignGuidance } from "../src/generation/design-guidance";
 import { specification } from "./generation-fixtures";
 import type { AssetNeed } from "../src/generation/asset-contract";
+import { assetNeedSchema } from "../src/generation/asset-contract";
+
+it("guides broad object keywords and core noun fallback for every asset kind", () => {
+  expect(assetNeedSchema.shape.query.description).toContain("1-3 broad Creator Store keywords");
+  const guidance = generationDesignGuidance("planner", { spec: null }).instructions.join(" ");
+  expect(guidance).toContain("training dummy, punch sound or punch animation");
+  expect(guidance).toContain("core noun on its own");
+});
 
 function plan(kind: AssetNeed["kind"] = "Model", query = "interactive object") {
   const spec = specification("Build a simple interaction", "Scope");

@@ -22,6 +22,32 @@ import { refreshProposal, proposalHash } from "../src/generation/proposal";
 const studioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
 const brief =
   "I want a combat game with basic fighting and a target dummy to practice with. I want animation for fighting, sprinting walking as well as sfx and vfx";
+
+it("manual query searches return options without invoking model assessment", async () => {
+  const f = await fixture();
+  const p = await f.search();
+  proposalProject(p);
+  p.assetDiscovery.choices = { sound: { assetId: "201" } };
+  p.assetDiscovery.pinned = ["sound"];
+  f.app.locals.engine.store.save(p);
+  const untouched = structuredClone(p.assetDiscovery.groups.slice(1));
+  const originalSearch = f.provider.search.getMockImplementation()!;
+  f.provider.search.mockImplementation(async (studio, query, kind) =>
+    query === "training dummy" ? [] : originalSearch(studio, query, kind));
+  const assess = vi.spyOn(f.app.locals.engine, "assessAssetChoices");
+  const result = await f.command("asset-options", {
+    studioId, groupId: p.assetDiscovery.groups[0].id, query: "training dummy",
+  });
+  expect(result.status).toBe(200);
+  expect(result.data.assetDiscovery.groups[0].options).toHaveLength(4);
+  expect(assess).not.toHaveBeenCalled();
+  expect(f.provider.search).toHaveBeenLastCalledWith(studioId, "dummy", "Model");
+  expect(result.data.assetDiscovery.groups.slice(1)).toEqual(untouched);
+  expect(result.data.assetDiscovery.choices).toEqual(p.assetDiscovery.choices);
+  expect(result.data.answers).toEqual(p.answers);
+  expect(result.data.charges).toEqual(p.charges);
+  expect(result.data.proposal.hash).toBe(proposalHash(result.data));
+});
 const clip = {
   version: 1 as const,
   name: "Punch",

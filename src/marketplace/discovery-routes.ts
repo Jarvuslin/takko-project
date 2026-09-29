@@ -18,6 +18,7 @@ import {
 import { modelPreviewSchema } from "./preview";
 import { refreshProposal } from "../generation/proposal";
 import { assetNeedForGroup } from "./asset-binding";
+import { searchWithCoreNoun } from "./search-with-core-noun";
 
 // Search may expose only an update timestamp. Inspection can add a stronger
 // version identity without changing the content that was listed.
@@ -179,22 +180,24 @@ export function discoveryRoutes(
           delete group.error;
           delete group.relevance;
           try {
-            const page = library.provider.searchPage
+            const fetchPage = async (query: string, cursor?: string) => library.provider.searchPage
               ? await library.provider.searchPage(
                   b.studioId,
-                  group.query,
+                  query,
                   group.kind,
-                  b.cursor,
+                  cursor,
                 )
               : {
                   assets: await library.provider.search(
                     b.studioId,
-                    group.query,
+                    query,
                     group.kind,
                   ),
                   nextCursor: undefined,
                   total: undefined,
                 };
+            const page = await searchWithCoreNoun(group, fetchPage, b.cursor, p.excludedAssetIds);
+            if (page.fallbackError) group.error = page.fallbackError;
             const seen = new Set(group.options.map((a) => a.assetId));
             let captured = 0;
             for (const a of rankByVotes(page.assets)) {
@@ -288,7 +291,10 @@ export function discoveryRoutes(
         }
         const latest = current(p.id, b.revision);
         latest.assetDiscovery = discovery;
+        if (b.groupId) refreshProposal(latest, ["assets"]);
         store.save(latest);
+        // User-entered queries only browse listings. They never dispatch paid assessment.
+        if (b.groupId) return latest;
         const assessed = await engine.assessAssetChoices(
           latest.id,
           b.revision,

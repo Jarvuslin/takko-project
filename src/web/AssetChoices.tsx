@@ -28,6 +28,7 @@ export function AssetChoices({
   connect,
   offline = false,
   blockedReason,
+  searchBlockedReason,
 }: {
   project: Project;
   disabled: boolean;
@@ -36,6 +37,7 @@ export function AssetChoices({
   connect: () => void;
   offline?: boolean;
   blockedReason?: string;
+  searchBlockedReason?: string;
 }) {
   const savedReview =
     project.assetDiscovery?.revision === project.revision
@@ -101,8 +103,13 @@ export function AssetChoices({
       /* Keep in-memory choices. */
     }
   }
-  async function run(label: string, action: () => Promise<void>) {
-    if (lock.current || disabled) return;
+  async function run(
+    label: string,
+    action: () => Promise<void>,
+    manualSearch = false,
+  ) {
+    if (lock.current || (manualSearch ? !!searchBlockedReason : disabled))
+      return;
     lock.current = true;
     setBusy(label);
     setError("");
@@ -117,33 +124,40 @@ export function AssetChoices({
   }
   async function search(groupId?: string, refresh = false, cursor?: string) {
     if (!connection.connected) return;
-    await run("Searching Creator Store…", async () => {
-      const p = await request<Project>(`projects/${project.id}/asset-options`, {
-        revision: project.revision,
-        studioId,
-        ...(cursor ? { cursor, discoveryId: review!.id } : {}),
-        ...(refresh ? { refresh: true } : {}),
-        ...(groupId
-          ? {
-              groupId,
-              query:
-                (!cursor ? queries[groupId] : undefined) ??
-                review?.groups.find((g) => g.id === groupId)?.query,
-            }
-          : {}),
-      });
-      if (live.current) {
-        if (refresh || (review && review.studioId !== studioId)) {
-          setChoices({});
-          sessionStorage.removeItem(
-            `takko-asset-choices-${project.id}-${project.revision}`,
-          );
+    await run(
+      "Searching Creator Store…",
+      async () => {
+        const p = await request<Project>(
+          `projects/${project.id}/asset-options`,
+          {
+            revision: project.revision,
+            studioId,
+            ...(cursor ? { cursor, discoveryId: review!.id } : {}),
+            ...(refresh ? { refresh: true } : {}),
+            ...(groupId
+              ? {
+                  groupId,
+                  query:
+                    (!cursor ? queries[groupId] : undefined) ??
+                    review?.groups.find((g) => g.id === groupId)?.query,
+                }
+              : {}),
+          },
+        );
+        if (live.current) {
+          if (refresh || (review && review.studioId !== studioId)) {
+            setChoices({});
+            sessionStorage.removeItem(
+              `takko-asset-choices-${project.id}-${project.revision}`,
+            );
+          }
+          if (groupId && !cursor) choose(groupId, {});
+          update(p);
+          if (p.proposal) setChoices(p.assetDiscovery?.choices ?? {});
         }
-        if (groupId && !cursor) choose(groupId, {});
-        update(p);
-        if (p.proposal) setChoices(p.assetDiscovery?.choices ?? {});
-      }
-    });
+      },
+      !!groupId,
+    );
   }
   useEffect(() => {
     const key = `${connection.checked}:${studioId}:${project.id}:${project.revision}`;
@@ -350,10 +364,18 @@ export function AssetChoices({
               {groups.map((g) => (
                 <button
                   key={g.id}
+                  aria-label={
+                    g.label +
+                    (choices[g.id]?.assetId
+                      ? " ✓"
+                      : choices[g.id]?.skip
+                        ? " · Later"
+                        : "")
+                  }
                   aria-pressed={visibleGroup?.id === g.id}
                   onClick={() => setGroupId(g.id)}
                 >
-                  {g.label}
+                  {g.query}
                   {choices[g.id]?.assetId
                     ? " ✓"
                     : choices[g.id]?.skip
@@ -368,7 +390,7 @@ export function AssetChoices({
                 key={g.id}
                 aria-label={g.label}
               >
-                <h3>{g.label}</h3>
+                <h3>{g.query}</h3>
                 {!review?.approved && (
                   <form
                     className="asset-choice-search control-row"
@@ -387,7 +409,7 @@ export function AssetChoices({
                     />
                     <button
                       disabled={
-                        disabled ||
+                        !!searchBlockedReason ||
                         !!busy ||
                         !connection.connected ||
                         !(queries[g.id] ?? g.query).trim()
@@ -397,6 +419,16 @@ export function AssetChoices({
                     </button>
                   </form>
                 )}
+                <small className="muted">{g.label}</small>
+                {!review?.approved &&
+                  (searchBlockedReason || busy || !connection.connected || !(queries[g.id] ?? g.query).trim()) && (
+                    <p role="status">
+                      {searchBlockedReason ||
+                        busy ||
+                        connection.error ||
+                        (!connection.connected ? "Connect Studio to search the Creator Store." : "Enter search words to find assets.")}
+                    </p>
+                  )}
                 {g.error && <p role="alert">{g.error}</p>}
                 {review?.analysisError && (
                   <p role="alert">{review.analysisError}</p>
