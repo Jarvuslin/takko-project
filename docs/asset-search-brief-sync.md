@@ -1,6 +1,6 @@
 # Asset search and saved brief sync
 
-Implemented 2026-09-29. Port 4340 still needs an approved restart to load the server fix.
+Implemented and live on port 4340 after the user-approved restart at 2026-09-29T03:16:22Z.
 
 The tab compares its request and answers with the previous saved baseline when a newer revision arrives. Untouched fields follow the saved project. Genuine local brief drafts remain. Answer comparison ignores key order.
 
@@ -21,10 +21,14 @@ Browser and provider fixtures are offline mocks. They do not establish live Crea
 
 ## Live rollout
 
-Port 4340 currently belongs to PID 42308 and `.forge/scope-answer-recovery-host.mjs`. That host rejects all manual searches. Its one-time recovery must not be rerun.
+Port 4340 now belongs to PID 26772 and `.forge/asset-search-host.mjs`. The previous host, PID 42308, rejected all manual searches. It was stopped with explicit user permission. Its one-time recovery was not rerun.
 
-Prepared `.forge/asset-search-host.ts` and its bundled `.mjs` replacement. It loads the same `.forge/world-policy-live-20260928` store without a recovery mutation. Automatic recommendations remain paused. Manual searches use the fixed free endpoint. Existing $8 cap, profile restrictions, excluded pack, single-attempt policy and user build-approval gate remain.
+Started `.forge/asset-search-host.ts` via its bundled `.mjs` replacement. It loads the same `.forge/world-policy-live-20260928` store without a recovery mutation. Automatic recommendations remain paused. Manual searches use the fixed free endpoint. Existing $8 cap, profile restrictions, excluded pack, single-attempt policy and user build-approval gate remain.
 
 Read-only comparison confirmed the live request, five answers, discovery, selected dummy 108353927891814, selected sound 133175949071305, attachments, revision 5 and budget ledger match disk. Punch animation is still awaiting user selection.
 
-Restart is pending the user's explicit permission. Immediately before restarting, run `.forge/asset-search-preservation.mjs capture`. After the new host starts, run the same script with `verify` to compare answers, choices, proposal, attachments, revision and budget. Do not claim restart survival until that comparison passes.
+The capture/verify comparison passed immediately after restart and again after the live browser check. Request, five answers, question context, revision, stage, choices, discovery, attachments, proposal, budget, all 552 charge entries and reservation were unchanged.
+
+A headless browser opened the real project on 4340 and confirmed the query was editable, Search again was enabled, Studio was connected and the false unsaved banner was absent. Screenshot: `test-artifacts/asset-search-live.png`. No live search was submitted or selection changed during this read-only check. Search-result behavior was verified by the focused API and browser tests above.
+
+No source changed after the successful full check, so it was not rerun for the deployment and documentation update.

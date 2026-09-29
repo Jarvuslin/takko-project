@@ -4,10 +4,10 @@ Updated 2026-09-29. This is the live handoff. Replace its contents after each ta
 
 ## Live now
 
-- **Port 4340, PID 42308** still runs `.forge/scope-answer-recovery-host.mjs` using `.forge/world-policy-live-20260928`. Project **c8550a5b-5b9f-4b79-8a25-b7ee0827618c** (Dummy Strike) is revision 5, draft, with no active job. Never rerun this one-time recovery helper.
-- The asset-search fix is implemented. The replacement `.forge/asset-search-host.ts` / `.mjs` is prepared but **restart requires explicit user permission**. It loads the existing store without recovery edits, enables free manual group searches and keeps automatic recommendations paused. Existing build approval, budget, profile and attempt restrictions remain.
-- Before an approved restart, run `node .forge/asset-search-preservation.mjs capture`. Start the prepared host on 4340 only after stopping the confirmed old PID with permission. Then run `node .forge/asset-search-preservation.mjs verify`. Do not claim restart survival before that comparison passes.
-- Read-only checks confirmed five answers, selected dummy 108353927891814, selected sound 133175949071305, asset discovery, attachments, revision and ledger all match disk. Punch animation remains unselected. The user chooses it, reviews assets and presses Approve & build themselves. Single punch is the saved attack style. Pack 12061946559 stays excluded.
+- **Port 4340, PID 26772** runs `.forge/asset-search-host.mjs` using `.forge/world-policy-live-20260928`. Project **c8550a5b-5b9f-4b79-8a25-b7ee0827618c** (Dummy Strike) is revision 5, draft, with no active job. The old one-time scope-answer recovery helper must never be rerun.
+- The asset-search fix is live after the user-approved restart at 2026-09-29T03:16:22Z. The replacement `.forge/asset-search-host.ts` / `.mjs` loads the existing store without recovery edits, enables free manual group searches and keeps automatic recommendations paused. Existing build approval, budget, profile and attempt restrictions remain. Future restarts still require permission.
+- Restart preservation passed using `.forge/asset-search-preservation.mjs`: request, all five answers and question context, discovery and choices, attachments, proposal, revision and budget/charges are identical before and after. The live browser shows an editable query, enabled Search again button and no false unsaved banner. Screenshot: `test-artifacts/asset-search-live.png`.
+- Post-restart checks confirmed five answers, selected dummy 108353927891814, selected sound 133175949071305, asset discovery, attachments, revision and ledger all match disk. Punch animation remains unselected. The user chooses it, reviews assets and presses Approve & build themselves. Single punch is the saved attack style. Pack 12061946559 stays excluded.
 - After the full check, no other Takko ports (4318, 4319, 4320, 4324, 4335, 4336) were listening. The isolated test server stopped. Recheck listeners.
 - Studio sessions belong to the user. None were changed in this task. Scratch places under `.forge/visual-scratch-20260928/` and `.forge/fresh-fixes-scratch/` remain visual checks only.
 
@@ -24,9 +24,8 @@ Updated 2026-09-29. This is the live handoff. Replace its contents after each ta
 
 ## Next up
 
-1. Obtain restart permission for 4340, load the prepared asset-search host, verify answers and choices survived, and update this handoff and `docs/asset-search-brief-sync.md`.
-2. The user picks assets, approves the build and tests its export in Studio. No hand-editing of generated output.
-3. The separately requested visual reskin remains unstarted. See `research/30-lemonade-flow-walkthrough.md`. Looks only, same flow.
+1. The user picks assets, approves the build and tests its export in Studio. No hand-editing of generated output.
+2. The separately requested visual reskin remains unstarted. See `research/30-lemonade-flow-walkthrough.md`. Looks only, same flow.
 
 ## Recent decisions
 
