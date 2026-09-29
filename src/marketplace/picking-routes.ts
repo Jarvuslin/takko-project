@@ -99,9 +99,19 @@ export function pickingRoutes(
         c.error =
           "The previous asset check was interrupted. Choose the asset again to retry.";
       }
-      const selected = g.options.find(
+      let selected = g.options.find(
         (o) => o.assetId === d.choices?.[g.id]?.assetId,
       );
+      // Legacy searches replaced the entire result page, including a saved pick.
+      // Recover its actual cached listing without changing the choice or searching.
+      if (!selected && c?.assetId) {
+        const cached = library.get(c.assetId);
+        if (cached) {
+          const { liked: _liked, saved: _saved, ...option } = cached;
+          selected = option;
+          g.options.push(selected);
+        }
+      }
       if (selected && !selected.inspection) {
         const saved = library.get(selected.assetId);
         if (

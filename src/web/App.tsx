@@ -413,6 +413,12 @@ export function App() {
   const hasAssetCard =
     assetChoicesEnabled &&
     !!project &&
+    !!(
+      project.proposal ||
+      project.spec ||
+      project.assetDiscovery ||
+      project.briefApprovedRevision !== undefined
+    ) &&
     !!(project.assetDiscovery?.groups.length || assetSearches(project).length);
   const assetDraft = useAssetAttachments(
     project?.id ?? "new",

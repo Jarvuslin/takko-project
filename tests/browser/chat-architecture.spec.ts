@@ -224,11 +224,13 @@ test("actual imported keyframes move the inline rig and survive refresh", async 
     exact: true,
   });
   await scrub.fill("0");
+  await viewer.scrollIntoViewIfNeeded();
   await expect(viewer).toHaveAttribute("data-time", "0.000");
   const first = await viewer.evaluate((el) =>
     (el as HTMLCanvasElement).toDataURL(),
   );
   await scrub.fill("0.5");
+  await viewer.scrollIntoViewIfNeeded();
   await expect(viewer).toHaveAttribute("data-time", "0.500");
   const second = await viewer.evaluate((el) =>
     (el as HTMLCanvasElement).toDataURL(),

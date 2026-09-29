@@ -184,5 +184,6 @@ export async function assetChoiceFixture(page: Page, origin = "") {
     },
   );
   await page.goto(origin + "/?project=" + p.id);
+  await page.getByRole("button", { name: "Approve brief", exact: true }).click();
   return { calls, errors, project: () => p };
 }

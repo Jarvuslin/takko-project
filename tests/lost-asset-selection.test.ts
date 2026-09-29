@@ -4,6 +4,35 @@ import { pickerFixture } from "./asset-picking-fixture";
 import { GenerationStore } from "../src/generation/store";
 import { pickStatus } from "../src/marketplace/pick-status";
 import type { Project } from "../src/generation/schema";
+import path from "node:path";
+import liveDiscovery from "./fixtures/asset-picking/live-searched-discovery.json";
+it("recovers the real live saved listing after the old search removed it from the result page", async () => {
+  f = await pickerFixture();
+  fs.copyFileSync(
+    "tests/fixtures/asset-picking/saved-spiderman-library.json",
+    path.join(f.app.locals.assetLibrary.directory, "108353927891814.json"),
+  );
+  const p = f.project();
+  p.assetDiscovery = structuredClone(
+    liveDiscovery,
+  ) as Project["assetDiscovery"];
+  const before = structuredClone(p.assetDiscovery!.choices);
+  expect(
+    p.assetDiscovery!.groups[0].options.some(
+      (o) => o.assetId === before!.targetDummy.assetId,
+    ),
+  ).toBe(false);
+  f.app.locals.engine.store.save(p);
+  const result = await f.command("asset-picks");
+  expect(result.status).toBe(200);
+  const saved = f.project();
+  expect(saved.assetDiscovery!.choices).toEqual(before);
+  expect(pickStatus(saved, saved.assetDiscovery!.groups[0]).state).toBe(
+    "warning",
+  );
+  expect(f.state.inspections).toEqual([]);
+  expect(f.state.calls).toBe(0);
+});
 const recorded = JSON.parse(
   fs.readFileSync(
     "docs/results/scope-answer-reuse-20260929/live-after.json",

@@ -40,6 +40,10 @@ test("card and Marketplace persist each real listing and clip through reload and
   page,
 }, info) => {
   await expect(card(page)).toContainText("0 of 3 ready");
+  await expect(row(page).locator(".need-purpose")).toHaveCSS(
+    "text-wrap-mode",
+    "nowrap",
+  );
   await expect(
     card(page).getByRole("button", { name: "Approve & build", exact: true }),
   ).toBeDisabled();
@@ -156,6 +160,13 @@ test("checking, amber Keep it, and disconnected red recovery keep the build gate
   ).toBeVisible();
   done();
   await expect(row(page)).toContainText("Check this pick");
+  expect(
+    await row(page).evaluate((e) => {
+      const bounds = e.getBoundingClientRect();
+      const pill = e.querySelector(".pick-pill")!.getBoundingClientRect();
+      return pill.right <= bounds.right && e.scrollWidth <= e.clientWidth;
+    }),
+  ).toBe(true);
   await row(page).getByRole("button", { name: "Keep it", exact: true }).click();
   await expect(row(page)).toContainText("Kept by you");
   f.state.connected = false;
@@ -182,9 +193,19 @@ for (const relevant of [true, false])
       .click();
     await expect(row(page)).toContainText("Estimated maximum");
     expect(f.state.calls).toBe(0);
+    let release!: () => void;
+    const pending = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await page.route("**/asset-picks/auto", async (route) => {
+      await pending;
+      await route.fallback();
+    });
     await row(page)
       .getByRole("button", { name: /Choose for me ·/ })
       .click();
+    await expect(row(page)).toContainText("Finding a match");
+    release();
     await expect.poll(() => f.state.calls).toBeGreaterThan(0);
     if (relevant) await expect(row(page)).toContainText("Best relevant match");
     else

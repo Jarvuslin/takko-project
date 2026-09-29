@@ -6245,7 +6245,7 @@ code {
 .minimal :is(h1, h2, h3) {
   text-wrap: balance;
 }
-.minimal :is(p, dd) {
+.minimal :is(p, dd):not(.need-purpose) {
   text-wrap: pretty;
 }
 .minimal :is(small, time, .status-pill, .spend) {
@@ -6305,6 +6305,7 @@ code {
 }
 .workspace-native .chat-thread-scroll {
   overscroll-behavior: contain;
+  min-height: min(var(--size-32), var(--ratio-19));
   scrollbar-gutter: stable;
   padding-bottom: var(--space-4);
 }
@@ -6490,6 +6491,7 @@ code {
 }
 .app.minimal.workspace-native .chat-composer {
   padding: var(--radius-control);
+  flex-shrink: 1;
   border-radius: var(--radius-composer);
   background: var(--raised);
   min-height: 0;
@@ -7550,7 +7552,7 @@ html[data-focus-modality="keyboard"]
   gap: var(--radius-control);
   padding: var(--space-3) var(--text-md);
 }
-.need-head h2 {
+.minimal .need-head h2 {
   margin: 0;
   font-size: var(--text-md);
   font-weight: 600;
@@ -7572,6 +7574,8 @@ html[data-focus-modality="keyboard"]
 .need-row {
   padding: var(--space-3) var(--text-md);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   gap: var(--pick-content-gap);
   border-top: var(--size-9) solid var(--line);
 }
@@ -7587,6 +7591,7 @@ html[data-focus-modality="keyboard"]
 }
 .need-row-top > div {
   min-width: 0;
+  flex: 1;
 }
 .need-purpose {
   white-space: nowrap;
@@ -7598,6 +7603,7 @@ html[data-focus-modality="keyboard"]
   line-height: 1.45;
 }
 .pick-pill {
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: var(--size-41);
