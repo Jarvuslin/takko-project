@@ -162,7 +162,6 @@ export function createApp(
       concepts: true,
       proposals: true,
       assetChoices: true,
-      assetPicking: true,
       studioConnectionGate: true,
       configured: config.read().profiles.length > 0,
       studios: bridge.list(),
@@ -490,6 +489,10 @@ export function createApp(
     res.json(store.get(req.params.id)),
   );
   const discovery = discoveryRoutes(app, store, engine, assetLibrary);
+  app.post("/api/projects/:id/platform",(req,res)=>{
+    const b=z.object({revision:z.number().int().positive(),answer:z.string().trim().min(1).max(1200)}).strict().parse(req.body);
+    res.json(engine.answerPlatform(req.params.id,b.revision,b.answer));
+  });
   pickingRoutes(app, store, engine, assetLibrary);
   app.get("/api/projects/:id/conversation", (req, res) => {
     const p = store.get(req.params.id);

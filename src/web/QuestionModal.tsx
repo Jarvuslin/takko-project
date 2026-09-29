@@ -9,12 +9,14 @@ export function QuestionModal({
   save,
   open,
   close,
+  free = false,
 }: {
   questions: StructuredQuestion[];
   disabled: boolean;
   save: (answers: Record<string, string>) => Promise<void>;
   open: boolean;
   close: () => void;
+  free?: boolean;
 }) {
   const [step, setStep] = useState(0),
     [values, setValues] = useState<Record<string, string>>({});
@@ -30,9 +32,9 @@ export function QuestionModal({
   const review = step >= questions.length,
     q = questions[Math.min(step, questions.length - 1)];
   const valid = questions.every((q) => !!values[q.id]?.trim());
-  const paid = questions.some(
-    (q) => values[q.id] && values[q.id] !== "Keep these limits",
-  );
+  const paid =
+    !free &&
+    questions.some((q) => values[q.id] && values[q.id] !== "Keep these limits");
   return (
     <SettingsDialog
       title={
@@ -153,9 +155,15 @@ export function QuestionModal({
           </fieldset>
         )}
         <p className="muted">
-          Keeping the proposed behavior is free. Scope changes require a paid
-          planner edit within this project's existing spending cap. A failed
-          edit keeps the previous proposal.
+          {free ? (
+            "Your platform choice is saved without a model call."
+          ) : (
+            <>
+              Keeping the proposed behavior is free. Scope changes require a
+              paid planner edit within this project's existing spending cap. A
+              failed edit keeps the previous proposal.
+            </>
+          )}
         </p>
         {review && (
           <p>

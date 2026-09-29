@@ -11,6 +11,7 @@ import {
 } from "./Clarifications";
 import { GameConcept, FirstPlaytest } from "./GameConcept";
 import { AssetCard, assetRequest } from "./AssetCard";
+import { PlatformChip } from "./PlatformChip";
 import { assetSearches } from "../marketplace/discovery";
 import { sameAnswers } from "./brief-draft";
 import { Proposal } from "./Proposal";
@@ -1126,6 +1127,14 @@ export function App() {
                       <Icon name="clock" size={16} /> History
                     </button>
                   </div>
+                  <PlatformChip
+                    project={project}
+                    update={(next) => {
+                      receiveAssetProject(next);
+                      setAnswers(next.answers);
+                    }}
+                    disabled={running}
+                  />
                   <div
                     className="chat-thread-scroll"
                     ref={threadScroll}
@@ -1434,9 +1443,11 @@ export function App() {
                                 buildBlocked={
                                   conceptDirty
                                     ? "Save your brief changes before building."
-                                    : project.clarificationQuestions?.length
-                                      ? "Answer the project questions before building."
-                                      : undefined
+                                    : project.platform?.question
+                                      ? "Choose the target platform before building."
+                                      : project.clarificationQuestions?.length
+                                        ? "Answer the project questions before building."
+                                        : undefined
                                 }
                                 update={receiveAssetProject}
                                 choose={(id) => {

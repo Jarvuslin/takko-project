@@ -31,3 +31,11 @@ Part 1 browser run: 180 passed, one outdated focus-color assertion failed, one e
 Part 2 focused server checks: 91 passed across four files. Updated UI coverage: 30 passed and two build-button failures, then the corrected complete picking sequence passed all 10 desktop/mobile cases. The other migrated browser cases passed in the preceding runs. Earlier failed runs remain in `test-artifacts/takko-refresh/`; setup, origin proxy, duplicate listing names, layout and draft synchronization failures were corrected. CSS has zero errors and 266 warnings, including the separate design lab. Full end-to-end check and final counts will be recorded after the platform part.
 
 All fixture provider/model calls are offline mocks. These tests do not establish native Studio gameplay, publishing rights, or a working generated game. The live project has not been changed by these tests. Task cost: $0.
+
+## PC default
+
+New projects record a PC keyboard/mouse decision. Explicit mobile/touch, console/gamepad and VR requests record their requested targets. Ambiguous wording opens a free platform question with an Other answer. A project chip shows the saved choice. Existing projects without that field are unchanged, including c8550a5b and its saved click/tap answer.
+
+Planner and builder context includes the decision. The real c8550a5b planner output is a regression fixture: its click/tap and mobile/console additions fail for a fresh PC project. PC source checks reject touch/gamepad enums and handlers and ContextActionService bindings whose touch-button flag is not literal false. Checks run inside builder submission/correction and final validation. An offline engine test observes the invalid response, correction feedback, and accepted second response. This bounded source check cannot prove absence of dynamically assembled bindings.
+
+Part 3 focused checks passed 11. Part 4 focused checks passed 192 across seven files, and all 14 desktop/mobile picking/platform cases passed. The initial platform-focused run had 86 passes and one old synthetic producer using Tap where the new default requires Click. That producer was corrected without changing the test's purpose. Full `npm run check` remains the final step.

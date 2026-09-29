@@ -7831,3 +7831,20 @@ html[data-focus-modality="keyboard"]
     flex-wrap: wrap;
   }
 }
+.platform-decision {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0 var(--space-4) var(--space-2);
+}
+.platform-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-2xs);
+  color: var(--muted);
+  border: var(--size-9) solid var(--line);
+  border-radius: var(--radius-control);
+  padding: var(--space-1) var(--space-2);
+}

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { baseWorld } from "./base-world";
 import type { Project } from "./schema";
+import { platformInstructions } from "./platform-policy";
 
 export const worldChoiceSchema = z.object({
   kind: z.enum(["baseplate_template", "none", "custom"]),
@@ -46,7 +47,7 @@ export function proposedWorld(p: Project, choice?: z.infer<typeof worldChoiceSch
 }
 export function existingProjectContext(p: Project) {
   const original=p.implementationBackup?.artifact ?? p.artifact;
-  return structuredClone({world:p.world??null,worldInstructions,
+  return structuredClone({world:p.world??null,worldInstructions,platform:p.platform??null,platformInstructions:platformInstructions(p),
     existingScene:original?.scene??[],
     existingFiles:original?.files??[],
     currentScene:p.artifact?.scene??[],

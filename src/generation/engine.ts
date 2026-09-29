@@ -139,6 +139,8 @@ import {
 } from "./component-integration";
 import { exportBundle } from "./export";
 import { checkWorldScene } from "./world-scene-check";
+import { checkInputBindings } from "./input-binding-check";
+import { platformInstructions,platformPlanningIssues,updatedPlatform,requestedPlatform,platformQuestionId } from "./platform-policy";
 import { existingProjectContext, proposedWorld } from "./world-policy";
 import {
   questionProposalScope,
@@ -1249,6 +1251,7 @@ export class Engine {
         });
       this.store.checkpoint(p);
       p.answers = next;
+      p.platform = updatedPlatform(p,undefined,next);
       p.answerQuestions = {
         ...p.answerQuestions,
         ...Object.fromEntries(chosen.map((q) => [q.id, q.source ?? q.prompt])),
@@ -1283,6 +1286,7 @@ export class Engine {
     this.store.checkpoint(p);
     if (nextRequest !== p.request) p.conceptQuestions = undefined;
     if (nextRequest !== p.request) p.briefChanges = [];
+    p.platform = updatedPlatform(p,nextRequest!==p.request?nextRequest:undefined,nextAnswers);
     p.request = nextRequest;
     if (attachments) p.assetAttachments = structuredClone(attachments);
     p.answers = nextAnswers;
@@ -1427,6 +1431,9 @@ export class Engine {
       throw new ConflictError(
         "Resolve the world question before building: " + p.world.question,
       );
+    if(p.platform?.question)throw new ConflictError("Resolve the platform question before building: "+p.platform.question);
+    const platformIssues=platformPlanningIssues(p,p.proposal);
+    if(platformIssues.length)throw new ConflictError(platformIssues.join("\n"));
     if (!p.proposal || p.proposal.hash !== hash || proposalHash(p) !== hash)
       throw new ConflictError(
         "The proposal changed. Review the saved version before approval.",
@@ -1463,6 +1470,7 @@ export class Engine {
   approve(id: string, revision: number) {
     const p = this.store.get(id);
     this.idle(p, revision);
+    if(p.platform?.question)throw new ConflictError("Choose the target platform before approving the plan.");
     if (!p.spec) throw new ConflictError("Plan the request before approval");
     if (p.staleImplementation || p.proposal)
       throw new ConflictError(
@@ -1479,6 +1487,20 @@ export class Engine {
     p.spec = validateSpec(p.spec, p);
     validateReferenceDecisions(p.spec, p);
     p.approvedRevision = p.revision;
+    return this.store.save(p);
+  }
+  answerPlatform(id:string,revision:number,answer:string) {
+    const p=this.store.get(id);this.idle(p,revision);
+    if(!p.platform?.question)throw new ConflictError("There is no pending platform question.");
+    const next=requestedPlatform(answer,p.platform);
+    if(next.question)throw new ConflictError("Specify PC keyboard and mouse, mobile touch, console gamepad, VR, or a combination.");
+    this.store.checkpoint(p);
+    p.answers[platformQuestionId]=answer;
+    p.answerQuestions={...p.answerQuestions,[platformQuestionId]:p.platform.question};
+    if(p.proposal) for(const section of [p.proposal.mechanics,p.proposal.theme,p.proposal.environment])section.unresolved=section.unresolved.filter(q=>q!==p.platform!.question);
+    p.platform=next;p.revision++;p.approvedRevision=null;p.staleImplementation=!!p.artifact;
+    if(p.assetDiscovery){p.assetDiscovery.revision=p.revision;p.assetDiscovery.approved=false;}
+    refreshProposal(p,["mechanics"]);
     return this.store.save(p);
   }
   cancel(id: string) {
@@ -1998,6 +2020,7 @@ export class Engine {
       callPolicy?.allowFallbacks !== false;
     const systemPrefix =
       (callPolicy?.system ?? principle) +
+      "\n" + (typeof (context as Record<string,unknown>).platformInstructions==="string"?(context as Record<string,unknown>).platformInstructions:platformInstructions(p)) +
       "\nReturn a JSON data instance that conforms to OUTPUT SCHEMA. Do not return the schema or copy its metadata into response objects (for example root $schema, a properties map, or a default annotation). Output only fields declared for that object; a schema keyword is an output field only when explicitly declared in that object's properties." +
       "\nPHASE: " +
       phase;
@@ -2763,6 +2786,7 @@ export class Engine {
       if (kind === "proposal" && p.proposal)
         throw Error("Use a targeted message to edit the saved proposal.");
       const allowed = pending ? editScope(pending.text) : [];
+      const nextPlatform=updatedPlatform(p,pending?.text,pending?.answers??p.answers);
       const decisionRequest = briefDecisionRequest(
         pending
           ? {
@@ -2792,6 +2816,8 @@ export class Engine {
           kind,
           request: p.request,
           existingProject: existingProjectContext(p),
+          platform: nextPlatform,
+          platformInstructions: platformInstructions({platform:nextPlatform}),
           userSources: requirementSources(p),
           nonCodingAdvice: advice,
           designGuidance: generationDesignGuidance("planner", p),
@@ -2822,6 +2848,8 @@ export class Engine {
               }
             : p;
           proposedWorld(candidate, value.world);
+          const platformIssues=platformPlanningIssues({...candidate,platform:nextPlatform},pending?value.changes:value);
+          if(platformIssues.length)throw Error(platformIssues.join("\n"));
           const issues = sequenceAssetIssues(
             value.assetNeeds ?? (pending ? p.proposal?.assetNeeds : []) ?? [],
             candidate,
@@ -2902,6 +2930,7 @@ export class Engine {
       clearAnsweredQuestions(p);
       questionProposalScope(p.proposal!, p);
       if (nextWorld) p.world = nextWorld;
+      if (nextPlatform) p.platform = nextPlatform;
       if (
         p.world?.question &&
         !p.proposal!.environment.unresolved.includes(p.world.question)
@@ -3190,6 +3219,7 @@ export class Engine {
       const failures = [
         ...instancePathChecks(bundle),
         ...checkWorldScene(bundle, p),
+        ...checkInputBindings(bundle, p),
         ...physics,
       ].filter((c) => c.status === "failed");
       if (failures.length)
@@ -3198,6 +3228,7 @@ export class Engine {
     const common = () => ({
       existingProject: existingProjectContext(p),
       worldSceneChecks: p.artifact ? checkWorldScene(p.artifact, p) : [],
+      inputBindingChecks: p.artifact ? checkInputBindings(p.artifact,p) : [],
       retainedPhysicsChecks: p.artifact
         ? checkRetainedPhysics(
             p,
@@ -3773,6 +3804,7 @@ export class Engine {
       p.checks = [
         ...instancePathChecks(p.artifact!),
         ...checkWorldScene(p.artifact!, p),
+        ...checkInputBindings(p.artifact!, p),
         ...checkRetainedPhysics(
           p,
           path.join(this.store.directory, "asset-evidence", p.id),

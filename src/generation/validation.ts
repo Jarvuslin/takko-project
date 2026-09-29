@@ -17,6 +17,7 @@ import {
 } from "./asset-provenance";
 import { scenePropertyError } from "./capabilities";
 import { sequenceAssetIssues } from "./scope-questions";
+import { platformPlanningIssues } from "./platform-policy";
 import builtins from "./roblox-builtin-assets.json";
 const builtinAssets: Record<string, string> = builtins.assets;
 export const roots = [
@@ -47,7 +48,7 @@ export function validateSpec(
 ) {
   const bound = bindRequirementSources(s, p);
   s = bound.spec;
-  const errors: string[] = [...bound.errors, ...sequenceAssetIssues(s.assetNeeds??[],p)];
+  const errors: string[] = [...bound.errors, ...sequenceAssetIssues(s.assetNeeds??[],p),...platformPlanningIssues(p,s)];
   for (const source of options.partial
     ? []
     : architectureSources(p.architecture)) {

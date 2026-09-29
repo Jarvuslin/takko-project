@@ -57,7 +57,7 @@ export function generationSpecification(scope: string): Spec {
       requirement(
         "hud",
         "ui",
-        "Readable live HUD and keyboard/touch controls",
+        "Readable live HUD and keyboard/mouse controls",
         "At join and after updates or respawn, exactly one HUD displays actual Carry/5 and Coins. E/Collect and Q/Sell send only action strings through the declared Action RemoteEvent.",
       ),
     ],

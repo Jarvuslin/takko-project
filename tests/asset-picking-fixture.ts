@@ -147,6 +147,7 @@ export async function pickerFixture() {
   });
   engine.config.connect(decision, "offline-fixture-key");
   const p: Project = engine.create(recordedBrief.request);
+  delete p.platform; // This fixture reproduces the existing pre-platform project.
   const { revision, hash, changed, ...draft } = recordedBrief.proposal;
   p.proposal = {
     ...proposalDraftSchema.parse(draft),

@@ -6,6 +6,7 @@ import { z } from "zod";
 import type { Project } from "./schema";
 import { RequestError, StoredDataError } from "../errors";
 import { initialWorld } from "./world-policy";
+import { initialPlatform } from "./platform-policy";
 
 /** Keep the last published artifact visible while preserving resumable candidate work. */
 export function retainFailedImplementation(p: Project) {
@@ -65,6 +66,7 @@ export function newProject(request: string, budgetMicros: number): Project {
   return {
     schemaVersion: 2,
     world: initialWorld(),
+    platform: initialPlatform(request),
     id,
     name: request.slice(0, 64),
     request,

@@ -337,6 +337,7 @@ export type Project = {
   clarificationQuestions?: import("./questions").StructuredQuestion[];
   /** Absent on legacy projects. Never infer a template while loading/exporting. */
   world?: import("./world-policy").WorldDecision;
+  platform?: import("./platform-policy").PlatformDecision;
   /** User-owned exclusions for this project/run, never a global catalog blacklist. */
   excludedAssetIds?: string[];
   assetPipelineHistory?: AssetPipelineRun[];

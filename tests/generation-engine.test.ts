@@ -339,7 +339,7 @@ describe("request-driven generation", () => {
         expect(input).toContain("needs intent");
         spec.assetNeeds[0].intent = {
           experienceRole: "Satisfying tactile feedback",
-          interaction: "Tap then squash and recover",
+          interaction: "Click then squash and recover",
           reusableFeatures: ["Squash behavior"],
           relatedRequirementIds: ["core"],
         };

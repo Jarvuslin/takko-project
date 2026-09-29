@@ -86,6 +86,7 @@ export function proposalHash(p: Project) {
             ]),
         ]) ?? [],
         ...(p.world ? [p.world] : []),
+        ...(p.platform ? [p.platform] : []),
         ...(p.excludedAssetIds?.length ? [p.excludedAssetIds] : []),
       ]),
     )
