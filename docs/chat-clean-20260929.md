@@ -22,7 +22,7 @@ ConflictError construction lines fell from **124 to 101**, using the same source
 
 Deleted GameConcept.tsx, the hidden brief/concept controls, discovery saveChoices and approve-brief/approve-assets/defer-assets/reopen-assets endpoints, composer request-equality guards and attachment repopulation, duplicate persisted approval state, and discovery approval checks for skipped needs. Legacy read/migration shapes remain for existing files and adapters. They are not another chat approval step.
 
-Final source line totals and full verification counts are recorded below after the final run.
+Across src, the implementation diff from the committed design removes 1,060 lines and adds 453, a net reduction of 607. This includes the 171-line GameConcept component and 324 lines from discovery-routes. Git line totals include rewrites, not only whole deleted functions.
 
 ## Desktop journeys and exploration
 
@@ -38,7 +38,7 @@ The suite launches the actual Electron application with an isolated temporary us
 
 The exploratory journey tries odd-order skips and selection, type changes, interrupted browsing, multiline input, reload and two desktop sizes. It checks composer separation and horizontal overflow. The final pass has zero new entries. [All exploration and failure records](results/chat-clean-20260929/exploratory-log.md) are retained. Final screenshots and raw test output are generated under test-artifacts and are gitignored.
 
-Visible feedback assertions default to one second in Electron. Long-running build completion and worker polling use explicit longer deadlines. A renderer monitor records visible alerts that lack an enabled recovery control in their containing card. These are the exercised journeys, not exhaustive proof of every possible network or native error.
+Visible feedback assertions default to one second in Electron. Long-running build completion and worker polling use explicit longer deadlines. A renderer monitor records alerts that lack an enabled recovery control in their containing card for at least one second. Startup/reload readiness has a separate deadline. These are the exercised journeys, not exhaustive proof of every possible network or native error.
 
 ## Review and limits
 
@@ -49,3 +49,34 @@ Skills used: choose-skill, code-showcase-systematic-debugging, test-driven-devel
 No native Studio session occurred. Mock screenshots, synthetic audio and passing Luau checks do not prove spawning, animation, sound permissions, playback or gameplay. Live Jev judgment and external providers were not exercised. No existing Takko application was restarted. No real project, credentials or paused goal was changed. No plugin installation was changed.
 
 Cost: **$0 paid inference**. Mock usage receipts are synthetic. No provider balance query.
+
+## Delivery
+
+New unsigned bundle: release/takko-chat-clean-20260929/Takko-win32-x64.
+
+Start shortcut: release/takko-chat-clean-20260929/Start Takko Clean.lnk. Its target and --user-data-dir argument were read back after creation. The bundled Forge.plugin.luau exists.
+
+The shortcut uses .forge/chat-clean-20260929. The directory was newly created and contains zero items. No projects, caches, settings, keys or encrypted vault were copied. The delivered shortcut has not been launched, preserving the empty workspace. Electron verification used separate disposable workspaces. Existing releases remain intact.
+
+Implementation commits: cc85057 (map), 99ff25b (design), 74cf23b (implementation), c3380cc (Electron journeys and review fixes), f29fd1f (queue receipt/detail cleanup), 3a226e6 (browser coverage and review record). No push.
+
+## Final verification
+
+Final npm run check completed successfully on 2026-09-30 UTC. No stages skipped. The earlier full attempt failed in browser tests and is retained in the exploratory log. The final run used the corrected source and fixtures.
+
+| Stage | Result |
+| --- | --- |
+| Build and TypeScript | Passed |
+| Vitest | 1,782 passed in 136 files |
+| Luau | Six offline combat scenarios passed, generated sample compiled |
+| Plugin mocks | 16 groups passed, plugin and eight injected sources compiled |
+| Guards | Six expected-outcome cases matched |
+| CSS | Zero errors, 274 existing warnings |
+| Desktop Node tests | 14 passed |
+| Production smoke | HTML, bundle, API and unknown-route checks passed |
+| Desktop browser | 106 passed |
+| Electron | Seven journeys and one exploratory pass, 8 passed |
+
+The package command also passed. The Vite bundle-size warning remains. Raw final output: test-artifacts/chat-clean-check-final.log. First full attempt: test-artifacts/chat-clean-check.log. Package output: test-artifacts/chat-clean-package.log. No paid calls, no native Studio session.
+
+Final liveness check, 2026-09-30T00:35 UTC: none of 4318, 4319, 4324, 4335, 4336, 4340 or 62514 was listening. Previously recorded PIDs 3232 and 44976 were absent. No existing Takko process was stopped by this task. The delivered workspace still contained zero items.

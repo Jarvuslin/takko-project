@@ -29,3 +29,7 @@ Deleted UI paths, replaced by proposal question tests and the seven Electron jou
 - tests/browser/workflow.spec.ts: builds an approved non-combat project through a real HTTP provider adapter
 
 - surgical-ux: legacy concept Question dialog flow. Inline proposal Back/Other/save coverage remains in proposal-questions.spec.ts. Historical reproduction helpers remain unchanged.
+
+Additional removed endpoint assertions:
+
+- rejects changed content at exact proposal approval and retains the prior proposal

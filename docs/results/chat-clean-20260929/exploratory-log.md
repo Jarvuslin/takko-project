@@ -59,3 +59,11 @@ All providers and Studio actions are mocked. No paid calls or user projects.
 - Focused browser rerun: eight passed, one long-question locator failed. The textarea retained its content, but an exact implicit-label locator changed after filling. Switched to its accessible textbox role. The long-question test then passed.
 - Tightening every Electron expectation to one second first caused eight setup failures. Project loading was incorrectly treated as click feedback. Setup/reload now wait for readiness separately. Click feedback still defaults to one second.
 - Next Electron pass: six passed, two failed. New-project planning completion needed a separate deadline after the immediate conversation response. The alert monitor also counted temporarily disabled sound controls during initialization. It now records a missing recovery control only if sustained for one second.
+
+## Complete strict Electron pass
+
+All seven journeys and the exploratory pass passed together, 8/8, with the final feedback and alert checks. The exploratory pass produced zero new entries. Screenshots at 1280x800 and 1920x1080 were also visually inspected. The composer is separated from the scrollable conversation. Ready-to-test remains explicitly distinct from native gameplay verification.
+
+## Final full check
+
+Final npm run check passed. 1,782 unit tests in 136 files, six Luau scenarios, 16 plugin groups plus compilation, six guards, 14 desktop tests, production smoke, 106 browser tests, and all eight Electron tests. CSS had 274 existing warnings and zero errors. No stages skipped. The final exploratory pass again had zero new entries. Cost remained $0. The earlier failures above are not replaced by this success.
