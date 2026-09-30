@@ -1,6 +1,6 @@
 # Claw Code harness evaluation
 
-2026-09-19. [Detailed evaluation and implementation priorities](../docs/claw-code-evaluation.md).
+2026-09-19. [Detailed evaluation and implementation priorities](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/claw-code-evaluation.md).
 
 Useful ideas for Takko are request fingerprint and size diagnostics, explicit provider capabilities, task verification contracts, bounded tool feedback inside difficult repairs, and correlated attempt records. Takko already has stable context ordering, cache-read usage, scoped tasks, protected acceptance scenarios, budget reservations and recovery records. Recommendations extend those mechanisms.
 

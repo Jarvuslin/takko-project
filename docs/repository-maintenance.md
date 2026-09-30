@@ -1,37 +1,31 @@
 # Repository maintenance
 
-The private repository is https://github.com/Jarvuslin/takko-project.
+Keep source, tests, dependency locks, build tools, research findings and real regression evidence in Git. Keep builds, runtime workspaces, credentials, downloaded third-party evidence and routine test output out of Git.
 
-## What belongs in Git
+## Documentation
 
-Keep application source, desktop/native/plugin source, tests, recipes, build scripts, dependency locks, research findings and regression evidence. Historical benchmark artifacts are not all disposable: current tests replay archived model responses and component manifests.
+Start with `README.md`, `docs/README.md` and `research/notes/continuation.md`. Update an existing topical document when possible. Update `docs/cleanup.md` for repository maintenance results. Do not create a new implementation report, plan, handoff and state snapshot for every small task. Substantial distinct work may justify one concise report.
 
-Keep dependencies, generated builds, local project data, API credentials, downloaded research evidence and third-party extraction derivatives local. `.gitignore` covers these paths. The Superbullet architecture reports are included; extracted/deobfuscated application code is excluded.
+Git retains superseded reports. Before removing tracked files, commit outstanding work, inspect references from code and tests, and preserve any unique factual findings in current documents or an explicitly identified historical commit. The pre-cleanup report set is at `4622b0f`. Read a removed report with `git show 4622b0f:docs/<filename>.md`.
 
-## Cleanup on 2026-09-16
+## App and workspace
 
-Five obsolete Forge/Takko desktop bundles and the previous disposable browser-test reports were moved out of the workspace to `D:\RobloxProjects\Takko-cleanup-archive-20260916`. Approximately 1.98 GB was removed from the project folder, but remains recoverable in that archive. This does not reclaim disk space. The current `release/Takko-win32-x64` bundle, installed dependencies, saved projects, research originals and benchmark evidence were retained.
+The only retained bundle is `release/takko-chat-clean-20260929/Takko-win32-x64`. Its existing shortcut selects `.forge/chat-clean-20260929`. `%APPDATA%/Forge Desktop` and all other project-bearing workspaces remain intact.
 
-Recursive deletion was blocked by automatic approval review, so cleanup used a reversible archive. Automated verification regenerates its own ignored reports and build directories.
+Do not create a dated user-facing app or an empty delivery workspace for each task. The intended stable workspace is `%APPDATA%/Forge Desktop`, but migration must first reconcile projects/settings and validate encrypted-key access. Cleanup did not perform that migration. Until it is implemented, preserve the active bundle and workspace. App replacement requires explicit restart approval while running.
 
-One regression helper was copied from ignored `.forge/component-repair-route-probe.ts` into versioned `scripts/component-repair-route-probe.ts`; its test import and self-hash path now use the versioned location. The archived original remains unchanged. Luau setup now provisions both current and legacy test tool locations from the same hash-verified download.
+Packaging currently refuses to overwrite an existing bundle. Do not work around that by making another permanent dated delivery. Future update work must stage a build, validate it and replace the stable delivery only when safe. Test-only temporary workspaces must be isolated, clearly disposable and removed by their owner after use.
 
-## Fresh Windows setup
+## Evidence and disk cleanup
 
-```powershell
-npm ci
-./scripts/setup-luau.ps1
-npx playwright install chromium
-$env:LUAU_BIN_DIR = '.forge/tools/luau'
-npm run check
-```
+- Never create `.forge/evidence-backup-*`, `*-check-before` or whole evidence-tree copies. Git is the backup for tracked files.
+- Keep paid-run receipts, original failures, native observations, regression inputs and third-party originals. Do not delete a directory merely because its name says scratch or before.
+- Remove inactive generated bundles only after checking live executable paths and confirming no user data is inside.
+- Remove duplicate untracked evidence only after comparing it with a retained original. Keep unmatched files for review.
+- Keep all projects, settings, vaults and uncertain exports until ownership and recovery are understood. Never inspect or copy a plaintext key.
+- Put regenerable check output under ignored `test-artifacts/`. Existing test workspaces under `.forge/e2e-projects` are test-owned.
+- Do not delete diagnostic scripts solely because `package.json` does not call them. Tests import some directly, and native investigations use others.
 
-These checks do not spend model credits or establish Studio gameplay success. Native integration, paid model trials and full-game acceptance have separate evidence and budgets.
+## Checks
 
-## Initial publication verification
-
-`npm run check` passed in the working folder and in a separate checkout exported from the Git index: 1,224 unit/API tests, 10 desktop tests and 36 browser tests, plus Luau, plugin, guard, build and production smoke stages. The separate checkout shared the installed `node_modules` through a directory junction, but bootstrapped both Luau locations using the setup script and had no local project data or ignored helper scripts. This checks repository completeness, not a fresh dependency installation.
-
-The staged-file audit found no matching provider/GitHub/Google credentials, private keys or Roblox cookie markers. All included historical evidence compared byte-for-byte with its local original. This pattern scan is not a guarantee that every possible secret format is detectable.
-
-For deeply nested Windows clones, enable Git long paths for the clone (`git -c core.longpaths=true clone ...`) or choose a short destination path. The temporary verification checkout required that Git option.
+Fresh Windows setup is in the root README. Run focused checks during implementation and `npm run check` once at the end. These are offline checks, not native gameplay verification. Record failures as well as reruns. No model spending, app restart or Studio session is implied by a cleanup request.

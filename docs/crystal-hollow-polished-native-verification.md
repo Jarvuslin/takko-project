@@ -40,7 +40,7 @@ These interactions used the real generated input handlers. No currency, inventor
 - Initial preflight correctly stopped on Roblox's stored color quantization; a temporary Part confirmed setter canonicalization. A tested correction compares engine-setter values and still rejects genuinely changed properties.
 - Studio's TryBeginRecording returned nil without an error. Strict mode aborted unchanged. An explicitly selected mode then applied the scoped update with checked rollback and preserved original exports, reporting ownUndoRecorded=false. No capability or permission settings changed.
 
-The full product check passed 218 unit/API tests, 10 desktop tests and 34 browser tests plus all other required stages. Later scene-updater-only changes passed 21 targeted tests, TypeScript checks and emitted Luau compilation. See [art implementation](crystal-hollow-visual-polish.md).
+The full product check passed 218 unit/API tests, 10 desktop tests and 34 browser tests plus all other required stages. Later scene-updater-only changes passed 21 targeted tests, TypeScript checks and emitted Luau compilation. See [art implementation](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/crystal-hollow-visual-polish.md).
 
 ## Remaining limits
 

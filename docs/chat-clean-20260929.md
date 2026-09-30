@@ -14,11 +14,11 @@ Takko now saves each asset pick on its proposal need, accepts chat edits while w
 - Migration skipped projects with a spec and hashes included mutable derived discovery state. Canonical migration collapses equivalent picks, keeps real worker checkpoints when input identity matches, and invalidates approval on conflicts. Retry initialization does not re-inspect and invalidate valid saved work.
 - Estimate display required task history. It now uses historical builder averages when available, labelled historical. An empty history leaves the cap visible and does not block approval.
 
-Before and after state diagrams and saved-state mapping: [flow-map](flow-map.md), [flow-redesign](flow-redesign.md).
+Before and after state diagrams and saved-state mapping: [flow-map](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/flow-map.md), [flow-redesign](flow-redesign.md).
 
 ## Removal and gates
 
-ConflictError construction lines fell from **124 to 101**, using the same source-line count. This is not a count of independent UI gates. Runtime validation, billing caps, concurrent mutation checks and native-effect reconciliation remain. [Baseline inventory](flow-gate-inventory.md) and [remaining inventory](flow-gate-inventory-after.md) contain source contexts.
+ConflictError construction lines fell from **124 to 101**, using the same source-line count. This is not a count of independent UI gates. Runtime validation, billing caps, concurrent mutation checks and native-effect reconciliation remain. [Baseline inventory](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/flow-gate-inventory.md) and [remaining inventory](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/flow-gate-inventory-after.md) contain source contexts.
 
 Deleted GameConcept.tsx, the hidden brief/concept controls, discovery saveChoices and approve-brief/approve-assets/defer-assets/reopen-assets endpoints, composer request-equality guards and attachment repopulation, duplicate persisted approval state, and discovery approval checks for skipped needs. Legacy read/migration shapes remain for existing files and adapters. They are not another chat approval step.
 

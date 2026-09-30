@@ -16,7 +16,7 @@ This builds the existing UI and bundled service, then opens Takko. A development
 npm run desktop:package
 ```
 
-Creates an **unsigned application directory** in `release/Takko-win32-x64` on this Windows host. Open `Takko.exe` inside that directory. This is not an installer, signed release or automatic-update deployment. Keep the whole directory together. Packaging intentionally refuses to overwrite an existing output directory; move a previous local bundle aside explicitly before producing another at the same version.
+Creates an **unsigned application directory** in `release/Takko-win32-x64` on this Windows host. This is a build output, not the currently retained delivery. See `research/notes/continuation.md` for the app to open. Packaging refuses to overwrite existing output and does not implement updates. Stable delivery replacement is pending. Do not create another dated user-facing bundle to work around this limitation.
 
 Versions are pinned in the lockfile: Electron 44.3.0, esbuild 0.28.2 and Electron Packager 20.3.0. The service is bundled as CommonJS; runtime code does not depend on the repository's `node_modules`, Vite or TSX. Static web and plugin resources are copied into the application directory. Existing locally installed Luau compiler is copied if present; otherwise compilation continues to report a missing prerequisite, never a fabricated pass.
 
@@ -61,4 +61,4 @@ Verified in this implementation pass: all nine desktop tests passed, the separat
 
 Models now validates a provider before browsing its catalog or adding a model. One connection serves all models at that provider and endpoint. Windows stores connections in `%APPDATA%/Forge Desktop/provider-keys.dpapi`, encrypted for the current Windows account. Reopening Takko restores keys without putting them in browser storage or project JSON. Replace key validates the replacement before saving. Disconnect removes the provider key and keeps model profiles. A failed unlock does not fall back to plaintext. Other platforms remain explicitly session-only.
 
-A dated package can be built with `TAKKO_PACKAGE_OUT` pointing to a new directory under `release`, then updating the desktop shortcut to that package. This leaves existing packages available for rollback. Do not overwrite a running app.
+`TAKKO_PACKAGE_OUT` remains available for isolated packaging tests. Do not use it to accumulate dated user-facing deliveries. Keep the current shortcut, bundle and workspace until a verified update/migration is ready. Never overwrite a running app.

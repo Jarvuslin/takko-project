@@ -13,6 +13,10 @@ Read `README.md` for what the product does. Read `research/notes/continuation.md
 - **Focused tests while working, one full check at the end.** Run the test files you touched as you go. Run `npm run check` once before you report. Rerun it only if source changed after it passed.
 - **No evidence ceremony.** `npm run check` writes its outputs to `test-artifacts/` (gitignored) and no longer touches `docs/results/`. Git history is the backup. Do not hash, back up, archive or restore the evidence tree before or after running tests.
 - **Keep the task small.** Do the one thing asked. If you find something else that needs fixing, write it under "Next up" in `continuation.md` instead of fixing it now.
+- **Keep one delivery.** Do not create dated user-facing bundles or fresh delivery workspaces per task. Preserve the current app and workspace recorded in `continuation.md`. The stable-workspace migration is pending. Do not implement it by copying keys or resetting projects.
+- **Keep documentation current.** Start with `docs/README.md`. Update an existing topical report instead of adding separate plan, implementation, handoff and state documents. Historical reports are recoverable from Git at `4622b0f`.
+- **No duplicate evidence trees.** Do not create `.forge/evidence-backup-*`, `*-check-before` or whole-tree evidence copies. Routine check output belongs in ignored `test-artifacts/`. Remove test-owned temporary workspaces after use.
+- **Safe cleanup.** Commit before deleting tracked files. Check code/test references. For untracked files, delete only known regenerable output or byte-identical duplicates with retained originals. Keep uncertain files and ask before deleting them. Preserve project/settings directories and encrypted vaults. See `docs/repository-maintenance.md`.
 
 ## Naming
 
@@ -38,7 +42,7 @@ Every implementation gets a test. Run `npm run check` before claiming anything w
 
 Build fixtures from actual producer contracts or preserved real outputs. Never hand-place a value solely because the implementation needs it to pass. For integration bugs, reproduce the well-formed production input that fails, not only missing or empty input. Downstream tests must consume the producing API's actual result instead of fabricating an equivalent result.
 
-`npm run check` chains vitest, `test:luau`, `test:plugin`, `test:guards`, `build` (tsc --noEmit plus vite), `test:desktop`, `test:production`, `test:e2e`. Native Studio verification is separate and is never part of it.
+`npm run check` chains `build` (tsc --noEmit plus vite), vitest, `test:luau`, `test:plugin`, `test:guards`, `lint:css`, `test:desktop`, `test:production`, `test:e2e` and `test:electron`. Native Studio verification is separate and is never part of it.
 
 If you run a subset, name the exact stages you ran and the ones you skipped. Never describe a partial run as a full check. Report real counts, not estimates. Offline tests use mocks and are not Studio integration tests or measurements of production behavior.
 
@@ -76,7 +80,7 @@ Vitest workers have crashed on Windows before. A crashed worker followed by a cl
 
 When you finish substantial work:
 
-1. Write a short report under `docs/`: what changed, how it was verified, what the verification does **not** establish, exact test counts, cost.
+1. Update the relevant short report under `docs/`: what changed, how it was verified, what the verification does **not** establish, exact test counts, cost. Create one new report only for a distinct substantial topic, not for each phase or retry.
 2. **Rewrite** `research/notes/continuation.md` so it describes the current state: live PIDs and ports, budget, what is paused, next up, recent decisions. Replace outdated lines, do not append a new section. Keep it under about 5 KB.
 3. Update the `Latest:` line at the top of `research/README.md` if the work was research.
 4. Commit.

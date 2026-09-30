@@ -1,6 +1,6 @@
 # Scene references and Studio verification — 2026-09-13
 
-**Follow-up, 2026-09-14:** Save now closes the Models dialog, additional generation/export defects are fixed, and the locally repaired user maze passed 13 solo and three multiplayer Studio scenarios. See [the follow-up report](maze-generation-and-studio-repair.md). The remaining-verification section below describes the earlier checkpoint, not the current repaired game.
+**Follow-up, 2026-09-14:** Save now closes the Models dialog, additional generation/export defects are fixed, and the locally repaired user maze passed 13 solo and three multiplayer Studio scenarios. See [the follow-up report](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/maze-generation-and-studio-repair.md). The remaining-verification section below describes the earlier checkpoint, not the current repaired game.
 
 The reported `scene.14..17.className` and `Part0`/`Part1` failures exposed a missing representation for character rigs. Forge accepted Parts but excluded Humanoid/joint classes and instance-valued properties. A valid rig could not pass the contract, and neither the XML exporter nor the plugin could resolve its links.
 

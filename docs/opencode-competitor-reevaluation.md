@@ -29,7 +29,7 @@ OpenCode was 35.8% cheaper and about 2.7 times slower in that small trial. It us
 
 This session copied the preserved evidence into a new results directory, reran all six saved Luau evaluations, and reconciled all 20 historical provider receipts. All six evaluations passed. No inference was replayed. The historical $0.039994 total is not new spending. The 92 non-verification files in the copy match the originals byte-for-byte. The verifier wrote only to the new copy. [Replay verification](../research/results/opencode-reevaluation-20260924/agent-effectiveness-v1/verification.json).
 
-Takko also already tested a lossless context reorder, recording a 14.6% cost reduction in another small pilot. Do not present stable-prefix ordering as an unimplemented new discovery. That existing result does not solve the current excessive planning output. [Prior context experiment](takko-context-and-media-fixes.md).
+Takko also already tested a lossless context reorder, recording a 14.6% cost reduction in another small pilot. Do not present stable-prefix ordering as an unimplemented new discovery. That existing result does not solve the current excessive planning output. [Prior context experiment](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/takko-context-and-media-fixes.md).
 
 ## What to borrow, in priority order
 
@@ -99,7 +99,7 @@ BloxBot's broker forwards native tools, and its normal chat supplies the selecte
 
 An agent may run checks and propose repairs. It must not rewrite protected acceptance criteria or label its own successful tool return as verified gameplay. Keep observed input, scene state, logs, media playback and result identity separate from model statements. A failed edit leaves the previous proposal and artifact intact.
 
-Sources: [OpenCode snapshots](https://github.com/anomalyco/opencode/blob/014614d35b397775e5d397a490fc72368c894ec2/packages/opencode/src/snapshot/index.ts#L71), [BloxBot source comparison](bloxbot-source-comparison.md), [Takko plugin](<D:/RobloxProjects/Roblox Gen/plugin/Forge.plugin.luau:94>).
+Sources: [OpenCode snapshots](https://github.com/anomalyco/opencode/blob/014614d35b397775e5d397a490fc72368c894ec2/packages/opencode/src/snapshot/index.ts#L71), [BloxBot source comparison](https://github.com/Jarvuslin/takko-project/blob/4622b0f/docs/bloxbot-source-comparison.md), [Takko plugin](<D:/RobloxProjects/Roblox Gen/plugin/Forge.plugin.luau:94>).
 
 ## Changes to prioritize and changes to avoid
 
