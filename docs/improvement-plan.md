@@ -15,7 +15,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 - [x] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
 - [x] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test staged migration and stable package output. Commit phase 4. Cutover remains gated on restart approval.
 - [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
-- [ ] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
+- [x] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
 - [ ] Request approval for one capped dummy/punch/counter run, then a separately authorized Studio test. No automatic paid retry or resumption of paused projects.
 
 ## Verification record
@@ -29,6 +29,8 @@ Initial focused checks caught a legacy mock that returned no files for a task wi
 The no-code threshold is the smaller of $0.50 and one quarter of the generation allowance. It is checked before the next request after settled spend reaches the threshold. A single in-flight call can cross it, but still requires the existing conservative project/generation reservation. Explicit continuation starts a new observation window without erasing charges or expanding caps.
 
 Offline checks do not establish live Sonnet behavior, animation playback, physical assembly or a playable exported place. The rate-based estimate and paid acceptance remain pending.
+
+Final replay strengthening added two tests that drive the saved inputs through the current approval API and direct engine boundary. `6e6ffc7f` approves and writes code. `07a88f8e` correctly returns 409: its historical dummy and sound picks lack current source-review records, and the sound model has no selected contained sound. Its pick identities were not lost. A separate isolated replay at the already-approved engine boundary writes code with those same picks and retains historical charges. That lower-level replay does not establish current UI eligibility. Resolve the real asset checks before retrying that project, never fabricate review records. Six direct-build tests passed. The initially failing API assumption remains recorded in `test-artifacts/improvement-saved-engine.log`.
 
 Phase 2: 64 focused tests in seven files passed, plus two new Electron journeys against the direct backend. The journeys preserve replacement and contained-sound choices through approval, and Stop/Continue preserves the same picks. Desktop build/typecheck passed. Native providers and Studio are doubled. The initial anchored test filter selected no tests, then the corrected filter ran both journeys. The full suite remains pending.
 
@@ -58,3 +60,29 @@ Phase 4: 11 focused migration/provider-connection tests and TypeScript checking 
 `npm run desktop:package` now stages in `.forge/update-stage/app` by default and refuses overwriting an existing bundle. The intended one installed app is `release/Takko-win32-x64/Takko.exe`, with default `%APPDATA%/Forge Desktop` data and no workspace-switch shortcut argument.
 
 Cutover procedure, pending approval: close the current Takko normally, verify both source and stage fingerprints with `npx tsx scripts/stage-workspace.ts --verify`, and restage if anything changed. Preserve original AppData as an explicit rollback sibling before installing the staged workspace. Install the staged app at the stable release path and retarget the Desktop shortcut. Launch once and verify all seven projects, active preset and encrypted connection restoration, then close and relaunch to verify persistence. Keep the previous working delivery and source workspaces until that passes. Never resume a project or call a paid provider during migration verification. Studio stays open. No cutover has happened yet.
+
+Two fresh Configuration instances opened the actual staged vault successfully. Both restored the active `son` preset, `anthropic/claude-sonnet-5.5`, five profiles, three presets and an available key. No credential was printed. A final fingerprint check found the stage and source inputs unchanged. This verifies storage reopening, not provider authentication or the not-yet-approved app relaunch.
+
+The unsigned Windows x64 candidate was packaged successfully at `.forge/update-stage/app/Takko-win32-x64`. Packaging did not launch it or replace the running delivery.
+
+The first full check passed build, then stopped with 1,785 unit passes and nine failures across two historical replay files. Their shared fixture unintentionally selected the new direct default while asserting legacy planning behavior. Explicit `directBuild: false` restored that intended coverage. All 17 tests in those two files passed afterward. The original failure log is retained at `test-artifacts/improvement-full-check.log`. Full rerun results follow below when complete.
+
+## Paid acceptance estimate, not authorization
+
+Checked 2026-09-30T04:16Z. The actual active `son` preset routes planner, builder, reviewer and repair to `anthropic/claude-sonnet-5.5` on OpenRouter, with 8,192 maximum output tokens per request. Stored rates agree with the [current OpenRouter catalog](https://openrouter.ai/api/v1/models): $2/M input, $10/M output, $0.20/M cache reads, $2.50/M five-minute cache writes and $4/M one-hour writes. No new provider-balance query or inference was made.
+
+Rather than reuse a dollar quote, reprice the last 30-call coding segment in saved project `8a81efe9`, from 2026-09-27T23:37:52Z to 23:49:24Z. It used 1,454,721 input tokens, of which 1,202,979 were cached, and 68,426 output tokens. The following review used 77,832 input and 14,854 output tokens. That was Sonnet 5 on the older pipeline and produced a broken game. Its token volume is an estimation reference, not proof of Sonnet 5.5 cost or quality. Some old requests exceeded today's 8,192 output limit, so exact replay is not assumed.
+
+| Scenario | Calculation | Estimated USD |
+| --- | --- | ---: |
+| Build, same cache hits | (251,742 × 2 + 1,202,979 × 0.20 + 68,426 × 10) / 1,000,000 | 1.428340 |
+| Build, charge every uncached input as a five-minute cache write | (251,742 × 2.50 + 1,202,979 × 0.20 + 68,426 × 10) / 1,000,000 | 1.554211 |
+| Review allowance, no cache discount | (77,832 × 2 + 14,854 × 10) / 1,000,000 | 0.304204 |
+| Combined with comparable caching | 1.428340–1.554211 + 0.304204 | **1.732544–1.858415** |
+| Combined, no caching | (1,454,721 × 2 + 68,426 × 10) / 1,000,000 + 0.304204 | **3.897906** |
+
+These scenarios assume no one-hour cache writes, web-search charges, automatic paid retries or extra repair loop. Reasoning tokens are included in billed output rather than treated as free. Cache behavior and call count are not guaranteed. Reusing a saved approved proposal avoids another proposal fee. New direct planning itself makes zero paid planning-worker calls.
+
+Proposed first acceptance: one new isolated project seeded from the saved approved dummy/punch/counter inputs and exact saved picks, Sonnet 5.5, **$2.50 additional-spend cap**, repairLimit 0, no automatic retry or continuation. Expect roughly **$1.75–$1.90 only with comparable caching**. Without it, the historical workload would need about $3.90 and this trial must stop at its cap instead. Preserve the original failed project. Reconcile every call and record exported hierarchy, assembly/path checks and failures. A real Studio gameplay test is separately authorized.
+
+Request admission also requires conservative reservations, not just estimated cost. At current rates the OpenCode gateway reserves `((request UTF-8 bytes + 1,024) × 2 + 8,192 × 10) / 1,000,000` dollars. For a 400,000-byte request this is **$0.883968**. If settled spend plus that reservation exceeds the cap, dispatch stops even if expected cached cost is lower. The no-code guard pauses before the next request after $0.50 settled spend without saved code. An already admitted call can cross that threshold, bounded by its reservation and the overall cap. No promise that $2.50 completes the game.

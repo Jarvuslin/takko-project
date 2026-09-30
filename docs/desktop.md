@@ -16,7 +16,7 @@ This builds the existing UI and bundled service, then opens Takko. A development
 npm run desktop:package
 ```
 
-Creates an **unsigned application directory** in `release/Takko-win32-x64` on this Windows host. This is a build output, not the currently retained delivery. See `research/notes/continuation.md` for the app to open. Packaging refuses to overwrite existing output and does not implement updates. Stable delivery replacement is pending. Do not create another dated user-facing bundle to work around this limitation.
+Creates an **unsigned application directory** in `.forge/update-stage/app/Takko-win32-x64` on this Windows host. Packaging refuses to overwrite existing output. After approved shutdown, install that candidate at the single stable path `release/Takko-win32-x64`, retaining the previous working delivery for rollback. See `research/notes/continuation.md` for the app currently running. Initial workspace cutover is staged but not yet applied. Do not create another dated user-facing bundle.
 
 Versions are pinned in the lockfile: Electron 44.3.0, esbuild 0.28.2 and Electron Packager 20.3.0. The service is bundled as CommonJS; runtime code does not depend on the repository's `node_modules`, Vite or TSX. Static web and plugin resources are copied into the application directory. Existing locally installed Luau compiler is copied if present; otherwise compilation continues to report a missing prerequisite, never a fabricated pass.
 
@@ -33,6 +33,8 @@ Versions are pinned in the lockfile: Electron 44.3.0, esbuild 0.28.2 and Electro
 `desktop/supervisor.mjs` manages starting, ready, failed, stopping and stopped states. A child reports its port through private process messaging with a fresh nonce. The window never adopts a service by polling an occupied port. A startup deadline handles hung launches. Explicit **Service → Retry service** handles recovery without silently restarting a worker and discarding session-only keys.
 
 Shutdown sends an authenticated process message, closes the service's listener and idle HTTP sockets, then enforces a termination deadline against only the owned process. A heartbeat lease also stops a service whose desktop owner disappears. Interrupted generation is subject to the backend's existing persisted recovery behavior; this is not a promise of resuming an in-flight model request.
+
+The service tracks StudioMCP children it actually starts and closes them on normal exit and shutdown, including lease expiry. It does not kill processes by name. Forced OS termination cannot execute those exit hooks. The source server also closes owned children on SIGINT/SIGTERM.
 
 The renderer has no Node integration, preload API or renderer-to-main IPC. Context isolation, sandboxing, same-origin navigation/network restrictions, blocked popups/webviews, denied permissions and a restrictive CSP are configured. The backend retains its existing origin and Studio pairing checks. The loopback API is not an OS sandbox against another process running as the same user.
 

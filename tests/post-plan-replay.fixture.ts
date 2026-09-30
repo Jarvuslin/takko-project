@@ -409,6 +409,8 @@ export async function replayPostPlan(
     }),
     {
       opencode: backend,
+      // These saved runs exercise the retained multi-worker planning path.
+      directBuild: false,
       maxAttempts: options.maxAttempts ?? 2,
       allowFallbacks: false,
     },

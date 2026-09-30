@@ -8,10 +8,52 @@ import { buildAssetNeeds } from "../src/marketplace/approved-adapter";
 import { approvedAssetLinks } from "../src/marketplace/asset-binding";
 import { GenerationStore } from "../src/generation/store";
 import { bindProposalPlan } from "../src/generation/proposal";
+import { chatJourneyFixture } from "./chat-journey-fixture";
+import { pickStatus } from "../src/marketplace/pick-status";
 
 const dirs: string[] = [];
 afterEach(() => dirs.splice(0).forEach(d => fs.rmSync(d, { recursive: true, force: true })));
 const saved = (id: string): Project => JSON.parse(fs.readFileSync(`tests/fixtures/direct-build/${id}.json`, "utf8"));
+
+for (const id of ["6e6ffc7f", "07a88f8e"]) it(`replays approval eligibility and the direct engine boundary for failed ${id}`, async () => {
+  const f = await chatJourneyFixture(true);
+  try {
+    const engine = f.app.locals.engine;
+    const raw = saved(id);
+    engine.store.save(raw);
+    const migrated: Project = engine.store.get(raw.id);
+    const picks = structuredClone(migrated.proposal!.assetNeeds!.map(n => n.pick));
+    const response = await fetch(`${f.origin}/api/projects/${raw.id}/approve-proposal`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ revision: migrated.revision, hash: migrated.proposal!.hash }),
+    });
+    const body = await response.json();
+    if (id === "07a88f8e") {
+      // This historical selection predates source review and contained-sound
+      // selection. The public API must not pretend those checks happened.
+      expect(response.status).toBe(409);
+      expect(body.error).toMatch(/Choose or skip/);
+      const statuses = migrated.assetDiscovery!.groups.map(g => pickStatus(migrated, g));
+      expect(statuses.filter(s => !s.canBuild).map(s => s.reason)).toEqual([
+        expect.stringMatching(/actual script sources/), expect.stringMatching(/actual script sources/),
+      ]);
+      expect(f.control.buildCalls).toBe(0);
+      // Separately replay the engine's already-approved boundary, with the
+      // original picks unchanged and native/model effects doubled. This is
+      // not evidence that the historical project is currently UI-buildable.
+      migrated.proposal!.approval = { hash: migrated.proposal!.hash, revision: migrated.revision, at: new Date().toISOString() };
+      engine.store.save(migrated);
+      engine.start(raw.id, migrated.revision, "proposal-build");
+    } else expect(response.status, JSON.stringify(body)).toBe(202);
+    const result: Project = await engine.wait(raw.id);
+    expect(result.artifact?.files.length, result.error ?? "").toBeGreaterThan(0);
+    expect(f.control.buildCalls).toBe(1);
+    expect(result.coordination).toBeUndefined();
+    expect(result.proposal!.assetNeeds!.map(n => n.pick)).toEqual(picks);
+    expect(result.charges.slice(0, raw.charges.length)).toEqual(raw.charges);
+    expect(f.control.contexts.some(c => c.coordination?.step)).toBe(false);
+  } finally { await f.close(); }
+});
 
 for (const id of ["6e6ffc7f", "07a88f8e"]) it(`builds a valid contract from the actual failed ${id} input without re-planning or rebinding picks`, () => {
   const raw = saved(id);
