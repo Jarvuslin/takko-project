@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "seed": 202609301,
+  "algorithm": "mulberry32, consume one draw for query and one for rank per slot in declared order",
+  "freeze": "Record G3 production commit before executing any holdout search",
+  "search": "StudioMarketplace.search, Creator Store free results, production filtering, first page",
+  "rank": "floor(random*min(5,results.length))",
+  "duplicates": "Record duplicate without replacement. Do not draw another candidate for failed, inaccessible or duplicate results.",
+  "minimumDistinct": 20,
+  "minimumAnimations": 6,
+  "knownDevelopmentIds": ["10161087974", "15008746676", "112770048", "6125989440", "16583762"],
+  "knownIdsRule": "Remove listed development IDs before rank selection, record every exclusion",
+  "strata": [
+    {"role":"character","slots":3,"queries":["npc","robot npc","villager","monster"]},
+    {"role":"static_target","slots":2,"queries":["punching bag","training target","archery target"]},
+    {"role":"tool","slots":3,"queries":["sword tool","flashlight tool","hammer tool","magic wand tool"]},
+    {"role":"prop","slots":3,"queries":["wooden door","park bench","stone bridge","treasure chest"]},
+    {"role":"vfx","slots":3,"queries":["fire particles","magic effect","spark particles","smoke effect"]},
+    {"role":"sound","slots":2,"queries":["door sound","bell sound","sword sound"]},
+    {"role":"mesh","slots":2,"queries":["rock mesh","tree mesh","barrel mesh"]},
+    {"role":"image","slots":2,"queries":["arrow decal","warning sign","wood texture"]},
+    {"role":"animation","slots":12,"queries":["R6 punch animation","R15 punch animation","R6 sword swing animation","R15 sword swing animation","R6 combo animation","R15 combo animation","R6 idle animation","R15 idle animation","R6 run animation","R15 run animation","R6 dance animation","R15 dance animation"]}
+  ],
+  "paidPair": "Use same PRNG after all slot draws, choose one passing attack animation excluding 15008746676 then one passing static target; no redraw",
+  "missingCoverage": "Report unmet gate and do not run G5. Do not cherry-pick replacements."
+}
