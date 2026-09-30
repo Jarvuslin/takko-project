@@ -1,27 +1,28 @@
 # Current state
 
-Updated 2026-09-30. G1 asset generalization implemented. G2-G4 next, followed by conditional G5. User approved tightened protocol and implementation. Report: docs/results/generalization/RESULTS.md. Protocol e1d5bb3. No holdout results seen yet. Release A complete at c5f5775, historical evidence in docs/results/trial-failure-diagnosis/PLAN.md.
+Updated 2026-09-30T22:54:57.838Z. Approved asset-generalization task ended no-go for paid probes/full trial. G1 74eea22, G2 9eafa75, G3 production freeze a90b67f, G4 evidence 0822ea6. Reports: docs/results/generalization/RESULTS.md and docs/results/trial-probes/RESULTS.md. No production change after holdout exposure. Only a stale Electron test was corrected afterward.
 
 ## Live now
 
-- Installed Takko main PID 33012 still exists. Recorded service 32828 and port 56794 are no longer alive/listening. Observed children 18472, 42256, 27200 had no listening sockets. Do not recover, restart, install or replace the app. Canonical data stays in %APPDATA%/Forge Desktop.
-- Only TrialReviewInspection.rbxlx is authorized, PID 45860 / Studio id 360d3ed1-0d29-4942-96ed-1bb8e5faea62. Original Place1 was saved and closed by user. Edit capture allowed throughout, Play only G4/G5. Never publish or save over. Latest development census: Edit, zero scripts/scopes, two Workspace children. Detached imports destroyed, no imported scripts executed.
-- Staged Release A remains .forge/update-stage/app/Takko-win32-x64, not installed or updated by G1. Preserve rollback, legacy-delivery, appdata migration copies, uncertain exports and vaults.
+- Takko main PID 33012 remains alive. Former service PID 32828 and port 56794 are absent. None of 4318, 4319, 4324, 4335, 4336, 56794 was listening at the final read-only check. Do not recover, restart, install or replace the app without approval. Canonical data is %APPDATA%/Forge Desktop.
+- Only approved TrialReviewInspection.rbxlx was inspected, PID 45860 / Studio id 360d3ed1-0d29-4942-96ed-1bb8e5faea62. Original Place1 was user-saved/closed. Final native census: Edit, zero scripts, zero owned scopes, two Workspace children. Imports detached/destroyed, no asset scripts executed. No Play, publish or save-over occurred. No native test service was started. Owned SDK clients closed.
+- Staged Release A remains .forge/update-stage/app/Takko-win32-x64, not installed or repackaged. Preserve rollback, legacy-delivery, migration copies, uncertain exports and encrypted vaults. Release A historical report remains docs/results/trial-failure-diagnosis/PLAN.md.
 
-## Implementation and verification
+## Result and verification
 
-- G1 supports nine intended roles with version 2 native facts and visible persisted user correction. Correction invalidates approval. NPC-shaped mesh correctly blocks as character. Production image search fixed to Decal category and actual native content capture.
-- G1 passed 38 unit tests in four files, build/typecheck and one browser test. Development captures and native fault controls under tests/fixtures/generalization/development. Failures preserved. One full check due at task end.
-- G2 next: general R6/R15 timing proposals, source/confidence, explicit user acceptance, no forced noncombat attacks. G3 general reference, G4 frozen unseen sweep. Missing coverage also stops G5. Never swap failed samples or claim exposed holdout remains unseen after tuning.
-- Release A full check: 1841 unit/144 files, 6 Luau, 16 plugin plus 8 injected compilations, 6 guards, CSS 0 errors/274 warnings, 15 desktop, production smoke, 106 browser, 10 Electron. D1 separately 20 tests. Historical replay is scripted structural evidence, not gameplay or generation proof.
-- A1 protected review funds, native synthetic budget stress refused coding before transport and preserved checkpoint. Actual cost $0.
+- Nine explicit asset roles with native capture v2, visible persisted corrections and approval invalidation. General R6/R15 timing proposals carry evidence/confidence. Attack timings require user acceptance. Looping/noncombat clips are not forced into attacks. Reference contract supports 1-to-N, with 36 offline contract tests. It is guidance, not injected game code.
+- Frozen seed 202609301, 32 draws, 195 development exclusions, 28 distinct assets. No replacements. 27 independent structural comparisons: 20 ready, 2 blocked, 5 unknown, zero structural false passes/false blocks. Four role/content mismatches all withheld. Four duplicates and one pack capture error retained.
+- Only five assets had readable clip data (37 clips), all R15. No bound labeled clips or usable attack proposals. No three native playback checks were possible. G4 gates unmet, so G5 did not run. These are structural results, not proof of arbitrary asset/game compatibility.
+- One full check attempt: build, 1876 unit/148 files, 6 Luau, 16 plugin plus plugin/8 injected compilations, 6 guards, CSS 0 errors/274 warnings, 15 desktop, production smoke and 107 browser passed. Electron was 9/10 due stale rig/timing steps. Corrected test passed focused rerun, all ten cases have passing results. Full invocation itself exited 1 and is not called clean. Earlier correction failure retained. Final typecheck passed. No production changes, no second full check.
 
 ## Money and authorization
 
-Current task $0, no inference or balance refresh. Last actual balance 2026-09-30T04:51:05.474Z: $12.61069673 remaining, $17.38930327 usage, $30 limit.
+Task spend $0, zero inference/balance requests, no vault access. Last actual balance remains 2026-09-30T04:51:05.474Z: $12.61069673 remaining, $17.38930327 usage, $30 limit. Not a current balance measurement.
 
-G1-G4 must cost $0. G5 conditional on all G4 gates: P-Review $1.25 and P-Build $1.75 nontransferable caps, no retries. Read-only balance refresh first. Isolated .forge/trial-probes with existing in-memory DPAPI, no vault copy or live app changes. Record every request/reservation/receipt and reconcile UTC costs. Stop if access violates these constraints. Full $7.50 trial, live shutdown and installation not authorized.
+Conditional P-Review $1.25 and P-Build $1.75 caps remain unspent. G4 did not satisfy their preconditions. No retries, transfers or reservations. No measured full-build projection exists, and $7.50 is not validated. Full trial, live shutdown, installation and publication remain unauthorized.
 
-## Paused and next
+## Next up and paused
 
-Complete G2-G4 and conditional G5, one full check at end, commit each phase. Stop after reporting and committing. Scoped attack probes do not establish arbitrary game generation. All older goals including 8a81efe9 remain paused. Preserve deny-dispatch flags, unmatched workspaces and encrypted vaults.
+Fix bound metadata for published Animation references (poses currently lack matching authored labels/markers/loop facts). Add bounded selected-clip inspection for oversized packs, natural positive marker fixtures, and timing-count editing. Preserve this exposed holdout as diagnostic evidence. A changed implementation needs a fresh preregistered sample with explicit rig/interaction strata and native playback coverage before paid eligibility. Do not substitute known-good original picks to force a pass.
+
+Task stopped after reporting/committing. All older goals including 8a81efe9 remain paused. Preserve deny-dispatch flags, unmatched workspaces and vaults. Do not resume a paid generation on your own.

@@ -1,6 +1,6 @@
 # Asset generalization
 
-Status: approved implementation in progress. G1-G4 cost $0. G5 is conditional on all G4 safety and playback gates, with nontransferable caps of $1.25 review and $1.75 coding, no retry. No full game trial, live-app restart, installation or publication is authorized. Only TrialReviewInspection is authorized for capture, with Play allowed in G4/G5 only.
+Status: no-go for paid probes or the full trial. G1-G3 changes are implemented, but G4 exposed missing animation coverage and producer gaps. G1-G4 cost $0. G5 was withheld under the approved gate, with both $1.25/$1.75 caps unspent. No full game trial, live-app restart, installation or publication is authorized. Only TrialReviewInspection is authorized for capture, with Play allowed in G4/G5 only.
 
 ## Verified starting findings
 
@@ -23,7 +23,7 @@ Report observed scoped costs separately from whole-game extrapolation. Two probe
 
 ## Progress and evidence
 
-Implementation not yet complete. No held-out search results examined. No paid calls. Original failure records and Release A reports remain unchanged.
+The development record below precedes the frozen G4 holdout. Current outcome: G4 unmet gates, G5 withheld. Original failures and Release A evidence remain unchanged.
 
 G1 implemented: nine explicit roles, persisted user correction, version 2 native facts and approval invalidation. Actual development captures correctly block a robot NPC listing containing only a mesh. Fixed production Image search to use Decal and capture actual content identity. Security inspection remains independent. Native sword fault controls remove its Handle and then change RequiresHandle. Development data is excluded from holdout validation.
 
@@ -78,4 +78,13 @@ Before another paid run, preregister a fresh, larger sample with separate R6/R15
 
 Retired within measured scope: the three-role-only restriction, hidden role assignment, security-only target readiness, R6-only timing implementation, and 13-segment-only contract testing. Remaining: published timing metadata, large-pack coverage and latency, custom rigs, semantic relevance, real hit/hold/resume behavior, server networking, rendering/audio permissions, and generated-code quality. R15 motion proposals remain low confidence and need explicit human acceptance. The timing UI edits existing boundaries and does not yet add/remove proposed segments.
 
-Cost so far: $0, no provider inference and no balance refresh. Without P-Review/P-Build measurements there is no measured full-build cost projection and no evidence that $7.50 is sufficient. A scoped attack system would not establish arbitrary game generation even if those probes passed. Full repository check is running separately and will be recorded when complete.
+Cost so far: $0, no provider inference and no balance refresh. Without P-Review/P-Build measurements there is no measured full-build cost projection and no evidence that $7.50 is sufficient. A scoped attack system would not establish arbitrary game generation even if those probes passed. Repository verification is recorded below.
+
+
+## Final repository verification
+
+One full npm run check attempt ran all stages. Build/typecheck passed, followed by 1,876 unit tests in 148 files, 6 offline Luau scenarios, 16 plugin scenarios plus plugin/8 injected-source compilations, 6 guard cases, CSS 0 errors/274 warnings, 15 desktop tests, production smoke and 107 browser tests. Electron initially passed 9 of 10. The remaining journey retained the old R6 rig choice and omitted the new timing acceptance step. Its first correction exposed the rig mismatch, which was fixed in the test. The final focused rerun passed that one test with the actual R15 choice and explicit timing acceptance. All ten Electron cases now have passing results, but the single full-check invocation itself exited with one failure. It is not reported as a clean full-check run.
+
+No production code changed after a90b67f or after holdout exposure. The final correction touched only the Electron test. Final typecheck passed. Logs: test-artifacts/generalization-full-check.log, generalization-electron-correction.log, generalization-electron-correction-2.log and generalization-final-types.log. Both failed Electron traces remain in their original test-artifacts directories. Earlier development worker crashes and type/fixture failures remain recorded. No extra full check was run.
+
+These automated tests include mocks and do not establish native gameplay. Native G4 completed Edit inspections only. G5 has a separate zero-call record in ../trial-probes/RESULTS.md. Live Takko main PID 33012 remains running, its previously recorded service/port are absent, and neither was restarted. No installation or staged-package replacement was performed.

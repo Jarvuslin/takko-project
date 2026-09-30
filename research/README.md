@@ -1,6 +1,6 @@
 # Research
 
-Latest: [Planning overhead and direct build](31-planning-overhead-and-direct-build.md) diagnoses the two latest paid runs dying before code and proposes one coding session after proposal approval. This is a recommendation, not an implemented fix.
+Latest: [Asset generalization holdout](../docs/results/generalization/RESULTS.md) records nine-role native checks, reviewed animation timings and a frozen 28-asset holdout. Missing animation coverage blocked paid probes. Cost $0, full trial remains no-go.
 
 ## Start here
 

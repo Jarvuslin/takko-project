@@ -95,7 +95,10 @@ test("a: three attached assets, rig, build and an applied queued follow-up", asy
   await expect(card()).toContainText("3 of the 3 assets", { timeout: 10000 });
   const question = page.getByRole("region", { name: "Current question", exact: true });
   while (await question.isVisible()) {
-    await question.getByRole("radio").first().check();
+    // This journey now consumes the actual R15 punch capture, not the old R6 climb clip.
+    const matchingRig = question.getByRole("radio", { name: /^R15\b/ });
+    if (await matchingRig.count()) await matchingRig.check();
+    else await question.getByRole("radio").first().check();
     await question.getByRole("button", { name: /^(Next|Save answers?|Save & update proposal)$/ }).click();
     await page.waitForTimeout(150);
   }
@@ -103,6 +106,10 @@ test("a: three attached assets, rig, build and an applied queued follow-up", asy
   if (await clipButton.count()) await clipButton.first().click();
   const sheet = page.getByRole("dialog");
   if (await sheet.isVisible()) { await sheet.locator(".clip-options button:not([disabled])").first().click(); await sheet.getByRole("button", { name: "Use this clip", exact: true }).click(); }
+  await expect(card().getByRole("button", { name: "Approve & build", exact: true })).toBeDisabled();
+  expect(f.control.buildCalls).toBe(0);
+  await row("Punch animation").getByRole("button", { name: "Accept attack timings", exact: true }).click();
+  await expect(card().getByRole("button", { name: "Approve & build", exact: true })).toBeEnabled();
   f.control.buildDelay = 1800;
   await card().getByRole("button", { name: "Approve & build", exact: true }).click();
   await expect(page.getByRole("button", { name: "Stop build" })).toBeVisible({ timeout: 1000 });
