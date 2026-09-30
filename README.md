@@ -12,7 +12,7 @@ Takko is a local, desktop-only app that turns a Roblox game request and selected
 - [Cleanup and maintenance rules](docs/repository-maintenance.md)
 - [Research evidence](research/README.md)
 
-The running bundle is `release/takko-chat-clean-20260929/Takko-win32-x64/Takko.exe`. Its shortcut selects `.forge/chat-clean-20260929`. A seven-project consolidation is staged in `.forge/update-stage/workspace`, with its encrypted vault verified by reopening. Cutover to `release/Takko-win32-x64/Takko.exe` and `%APPDATA%/Forge Desktop` requires approved shutdown and a fresh migration check. Use the current-state file before touching a running app.
+The installed app is `release/Takko-win32-x64/Takko.exe`. The Desktop Takko shortcut opens it with the default `%APPDATA%/Forge Desktop` workspace. Seven projects, five profiles, three presets and the encrypted provider connection survived two launches after consolidation. See the current-state file for live PIDs and the retained rollback directories.
 
 ## Development
 

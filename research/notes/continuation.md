@@ -1,16 +1,14 @@
 # Current state
 
-Updated 2026-09-30 UTC. Improvements implemented and packaged, cutover awaits restart approval. Report, ordered plan, replay limits and cost calculation: `docs/improvement-plan.md`. Cleanup report: `docs/cleanup.md`.
+Updated 2026-09-30 UTC. User approved cutover and one $2.50 Sonnet 5.5 trial. Cutover completed, paid trial preflight next. Report, ordered plan, replay limits and cost calculation: `docs/improvement-plan.md`. Cleanup report: `docs/cleanup.md`.
 
 ## Live now
 
-- Running Takko remains `release/takko-chat-clean-20260929/Takko-win32-x64/Takko.exe`, main PID 29192, service PID 45400, port 64119. Workspace `.forge/chat-clean-20260929`. Rechecked 2026-09-30T04:20Z. No restart or replacement occurred.
-- Desktop `C:/Users/7474g/OneDrive/Desktop/Takko.lnk` still targets that app and workspace.
+- Active Takko: `release/Takko-win32-x64/Takko.exe`, main PID 30136, service PID 7240, port 50523. Workspace `%APPDATA%/Forge Desktop`. Verified two corrected launches with all seven projects, five profiles, three presets and restored encrypted connection.
+- Desktop `C:/Users/7474g/OneDrive/Desktop/Takko.lnk` targets the stable app with no workspace argument.
 - Studio PID 45456 remains open. No native Studio session or mutations performed.
 - StudioMCP PIDs 36712, 32628, 43536, 34804 belong through live cmd parents to Codex PID 14540. PIDs 42064 and 22076 belong to Claude PID 44624. Creation-time ancestry excludes PID reuse. None is a confirmed Takko orphan and none was ended.
-- Candidate `.forge/update-stage/app/Takko-win32-x64` contains the new service and pinned OpenCode binary. It has not been launched. Future stable app path: `release/Takko-win32-x64/Takko.exe`.
-- Staged data `.forge/update-stage/workspace`: seven projects, five profiles, three presets, one DPAPI connection, zero key conflicts. Two fresh Configuration instances restored the active son/Sonnet 5.5 profile and key. No credential printed. Original AppData, chat-clean and fresh-desktop remain untouched.
-- Cutover destination is `%APPDATA%/Forge Desktop`. First obtain restart approval, close Takko normally, run `npx tsx scripts/stage-workspace.ts --verify`, restage if changed, retain original AppData as an explicit rollback, install workspace and app, retarget shortcut without a workspace argument, and verify two launches. Do not run paid calls or resume projects during migration checks.
+- Cutover initially nested the stage under an incompletely relocated AppData directory. First launch showed four old projects, so it was stopped before inference. Same-volume Directory.Move corrected placement. Source recovery copies remain at `%APPDATA%/Forge Desktop.pre-migration` and `%APPDATA%/Forge Desktop.cutover-hold`, plus unchanged chat-clean/fresh workspaces. No credentials printed. The incorrectly placed first candidate required terminating its owned main process after normal close failed, its service exited on lease expiry. Subsequent corrected launch closed normally.
 
 ## Implementation and verification
 
@@ -25,7 +23,7 @@ Updated 2026-09-30 UTC. Improvements implemented and packaged, cutover awaits re
 ## Money
 
 - This task: $0 paid inference. Public pricing fetched, no provider-balance query.
-- Active preset son uses `anthropic/claude-sonnet-5.5` via OpenRouter, $2/M input and $10/M output, maximum output 8192. Current cache read $0.20/M, five-minute write $2.50/M. Repriced historical build/review: $1.73–$1.86 with comparable caching, $3.90 without it. Proposed new acceptance cap $2.50, repairLimit 0, no automatic retry. NOT AUTHORIZED.
+- Active preset son uses `anthropic/claude-sonnet-5.5` via OpenRouter, $2/M input and $10/M output, maximum output 8192. Current cache read $0.20/M, five-minute write $2.50/M. Repriced historical build/review: $1.73–$1.86 with comparable caching, $3.90 without it. Proposed new acceptance cap $2.50, repairLimit 0, no automatic retry. Authorized by user "both approved" for one new trial only. No retry/continuation or native gameplay test authorized.
 - 6e6ffc7f: $8 cap, $1.352410 spent, zero reservations, $6.647590 remaining. 07a88f8e: $8 cap, $1.188610 spent, zero reservations, $6.811390 remaining. Historical failures retained.
 - Last provider reconciliation 2026-09-29T00:26:25Z: key $15.240844430, account $16.748365904. Historical, not refreshed.
 
@@ -37,5 +35,5 @@ Updated 2026-09-30 UTC. Improvements implemented and packaged, cutover awaits re
 
 ## Next up
 
-1. Obtain restart/cutover approval and perform the staged update with two-launch persistence verification.
-2. After cutover, obtain separate approval for the capped paid acceptance, then native Studio gameplay verification. Never infer paid approval from restart approval.
+1. Run the approved new-project Sonnet 5.5 trial with $2.50 cap, repairLimit 0 and per-call reconciliation.
+2. Report the trial before any retry. Native Studio gameplay verification remains separate.
