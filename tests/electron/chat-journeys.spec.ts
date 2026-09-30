@@ -16,15 +16,20 @@ test.beforeEach(async () => {
   await page.waitForURL(/127\.0\.0\.1/);
   await page.addInitScript(() => {
     (window as any).actionlessAlerts = [];
+    const pending = new Map<string, number>();
     setInterval(() => {
+      const visible = new Set<string>();
       for (const alert of document.querySelectorAll<HTMLElement>('[role="alert"]')) {
         if (!alert.innerText.trim() || !alert.getClientRects().length) continue;
         const region = alert.closest('section, article, [role="region"], .error-banner') ?? alert.parentElement;
         if (!region?.querySelector('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled])')) {
+          visible.add(alert.innerText);
+          if (!pending.has(alert.innerText)) pending.set(alert.innerText, Date.now());
           const messages = (window as any).actionlessAlerts as string[];
-          if (!messages.includes(alert.innerText)) messages.push(alert.innerText);
+          if (Date.now() - pending.get(alert.innerText)! >= 1000 && !messages.includes(alert.innerText)) messages.push(alert.innerText);
         }
       }
+      for (const text of pending.keys()) if (!visible.has(text)) pending.delete(text);
     }, 50);
   });
   await page.route("**/api/**", async route => {
@@ -35,7 +40,7 @@ test.beforeEach(async () => {
     await route.fulfill({ response });
   });
   await page.goto(new URL("/?project=" + f.project().id, page.url()).href);
-  await expect(card()).toBeVisible();
+  await expect(card()).toBeVisible({ timeout: 10000 });
 });
 test.afterEach(async ({}, info) => {
   if (page && !page.isClosed()) {
@@ -47,6 +52,7 @@ test.afterEach(async ({}, info) => {
   await app?.close();
   await f?.close();
 });
+async function reload() { await page.reload(); await expect(card()).toBeVisible({ timeout: 10000 }); }
 async function clean() {
   await expect(page.getByText(/Save asset replacements|unsaved brief|save (?:your|the) brief|exceeds Jev's input limit|Multiple approved groups/)).toHaveCount(0);
   await expect(page.locator(".chat-composer .asset-attachment")).toHaveCount(0);
@@ -83,7 +89,8 @@ test("a: three attached assets, rig, build and an applied queued follow-up", asy
     await page.getByLabel(`Use for ${name}`, { exact: true }).fill(usage);
   }
   await page.getByRole("button", { name: "Create project", exact: true }).click();
-  await expect(card()).toContainText("3 of the 3 assets");
+  await expect(page.getByRole("region", { name: "Project conversation", exact: true })).toBeVisible();
+  await expect(card()).toContainText("3 of the 3 assets", { timeout: 10000 });
   const question = page.getByRole("region", { name: "Current question", exact: true });
   while (await question.isVisible()) {
     await question.getByRole("radio").first().check();
@@ -105,7 +112,7 @@ test("b: no relevant sound, chat skip, build", async () => {
   await chooseJourneyAssets(f, true);
   await f.command("asset-picks/remove", { groupId: "hitSound" });
   f.state.relevant = false;
-  await page.reload();
+  await reload();
   await row("Hit sound").getByRole("button", { name: "Choose for me", exact: true }).click();
   await expect(row("Hit sound")).toContainText("Estimated maximum", { timeout: 1000 });
   await row("Hit sound").getByRole("button", { name: /Choose for me ·/ }).click();
@@ -120,14 +127,14 @@ test("c: choose a Sound inside a Model without a preview, then build", async () 
   const original = f.provider.snapshot;
   f.provider.snapshot = async (...args: Parameters<typeof original>) => ({ ...await original(...args), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] });
   await f.choose(f.dummies[2].assetId, "hitSound");
-  await page.reload();
+  await reload();
   await row("Hit sound").getByRole("button", { name: "Use sound Hit", exact: true }).click();
   await expect(row("Hit sound")).toContainText("Ready", { timeout: 1000 });
   await build();
   expect(f.control.contexts.some(c => c.gameContext?.assetChoices?.groups.some((g: any) => g.choice?.sound?.assetId === f.sound.assetId))).toBe(true);
 });
 test("d: a straw dummy edit changes the need and allows a replacement", async () => {
-  await chooseJourneyAssets(f); await page.reload();
+  await chooseJourneyAssets(f); await reload();
   await send("Use a straw dummy instead");
   await expect.poll(() => f.project().proposal?.assetNeeds?.[0].query, { timeout: 30000 }).toBe("straw dummy");
   await row("Target dummy").getByRole("button", { name: "Choose asset", exact: true }).click();
@@ -137,7 +144,7 @@ test("d: a straw dummy edit changes the need and allows a replacement", async ()
   await clean();
 });
 test("e: Stop mid-build and Continue", async () => {
-  await chooseJourneyAssets(f); f.control.buildDelay = 2500; await page.reload();
+  await chooseJourneyAssets(f); f.control.buildDelay = 2500; await reload();
   await card().getByRole("button", { name: "Approve & build", exact: true }).click();
   await expect.poll(() => f.control.buildCalls, { timeout: 30000 }).toBeGreaterThan(0);
   await page.getByRole("button", { name: "Stop build" }).click();
@@ -169,7 +176,7 @@ test("f: recorded failed worker checkpoints migrate and Retry resumes the missin
   expect(result.error).toBeNull();
 });
 test("g: sending while working keeps the message and shows Queued", async () => {
-  await chooseJourneyAssets(f); f.control.buildDelay = 2500; await page.reload();
+  await chooseJourneyAssets(f); f.control.buildDelay = 2500; await reload();
   await card().getByRole("button", { name: "Approve & build", exact: true }).click();
   await expect.poll(() => f.control.buildCalls, { timeout: 30000 }).toBeGreaterThan(0);
   await send("Add a visible combo counter");
@@ -194,7 +201,7 @@ test("exploratory: odd-order picks, interrupted browsing, multiline chat and des
   await message.fill("First line"); await message.press("Shift+Enter"); await message.type("Second line");
   await expect(message).toHaveValue("First line\nSecond line");
   await message.fill("");
-  await page.reload();
+  await reload();
   await expect(row("Hit sound")).toContainText("Skipped");
   await expect(row("Punch animation")).toContainText("Skipped");
   await row("Target dummy").getByRole("button", { name: "Choose asset", exact: true }).click();

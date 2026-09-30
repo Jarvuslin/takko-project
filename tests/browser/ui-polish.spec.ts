@@ -1,5 +1,4 @@
 import { test, expect } from "./workspace-fixture";
-import AxeBuilder from "@axe-core/playwright";
 import { polishFixture } from "./ui-polish-fixture";
 
 

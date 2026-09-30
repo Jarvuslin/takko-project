@@ -2,7 +2,7 @@ import { test, expect } from "./workspace-fixture";
 import { randomUUID } from "node:crypto";
 test.use({ video: "on" });
 
-test("four selected assets leave the conversation and send controls usable in a short window", async ({
+test("four saved assets stay out of the composer and leave short-window chat usable", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 844, height: 575 });
@@ -35,7 +35,7 @@ test("four selected assets leave the conversation and send controls usable in a 
   await expect(page.getByText("Studio is not connected. Animation clips need the Takko plugin.", { exact: false })).toBeVisible();
   await expect(
     page.getByLabel("Use for Hit effect", { exact: true }),
-  ).toHaveValue("Hit effect");
+  ).toHaveCount(0);
   const thread = page.locator(".chat-thread-scroll");
   expect((await thread.boundingBox())!.height).toBeGreaterThanOrEqual(140);
   const send = page.getByRole("button", {
@@ -44,10 +44,10 @@ test("four selected assets leave the conversation and send controls usable in a 
   const bounds = (await send.boundingBox())!;
   expect(bounds.y + bounds.height).toBeLessThanOrEqual(575);
   await page
-    .getByLabel("Use for Hit effect", { exact: true })
+    .getByLabel("Message", { exact: true })
     .fill("Keep its burst");
   await expect(
-    page.getByLabel("Use for Hit effect", { exact: true }),
+    page.getByLabel("Message", { exact: true }),
   ).toBeInViewport();
 });
 

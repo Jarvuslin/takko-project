@@ -1,7 +1,5 @@
 import { test, expect } from "./workspace-fixture";
 import AxeBuilder from "@axe-core/playwright";
-import { createServer } from "node:http";
-import { fakeTransport, profile } from "../generation-fixtures";
 
 test("model dialog traps keyboard focus and restores its launcher", async ({
   page,

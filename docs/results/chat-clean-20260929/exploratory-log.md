@@ -44,3 +44,18 @@ All providers and Studio actions are mocked. No paid calls or user projects.
 - The old suite tried to click deleted brief/concept approval controls. Updated saved-project fixtures and request assertions for conversation/proposal UI. Retired assertions for deleted actions are listed separately.
 - Initial adapted-fixture type checks rejected widened JSON types. Parsed the preserved draft through proposalDraftSchema. Added Node's required JSON import attribute.
 - Found and removed two residual AssetCard blockers for unanswered platform/clarification questions. The server adopts displayed proposal defaults on approval.
+
+## Broad check and final audit
+
+- First full check attempt: build/typecheck, 1,782 unit tests in 136 files, six Luau scenarios, 16 plugin groups, six guards, CSS (274 warnings, zero errors), 14 desktop tests and production smoke passed. Browser stage: 98 passed, nine failed. Electron stage was not reached.
+- One browser failure exposed duplicated Applied user turns. A regression reproduced two turns for one queued message. The internal batch now retains the original receipt only. Focused rerun: 44 passed across chat-flow-redesign, chat-recovery and conversation-planning.
+- Other failures were old behavior assertions: composer repopulation, restoring accepted messages into the composer, required question approval, deleted concept dialog, and a fixture race with automatic asset initialization. Updated the tests to the intended flow. Long question coverage now uses the inline proposal contract.
+- Final source audit removed the last legacy Generate game button and approve-the-brief hint in Build details. Busy mutation errors now explicitly offer chat queueing.
+- Electron visible-state expectations now default to one second. Long-running worker/build completion uses explicit deadlines. A renderer monitor retains visible alerts without an enabled recovery control in their enclosing card.
+- Reviewer rechecked c3380cc..f29fd1f and found no new actionable issue. No tests or source edits were performed by the reviewer.
+
+## Final harness checks
+
+- Focused browser rerun: eight passed, one long-question locator failed. The textarea retained its content, but an exact implicit-label locator changed after filling. Switched to its accessible textbox role. The long-question test then passed.
+- Tightening every Electron expectation to one second first caused eight setup failures. Project loading was incorrectly treated as click feedback. Setup/reload now wait for readiness separately. Click feedback still defaults to one second.
+- Next Electron pass: six passed, two failed. New-project planning completion needed a separate deadline after the immediate conversation response. The alert monitor also counted temporarily disabled sound controls during initialization. It now records a missing recovery control only if sustained for one second.

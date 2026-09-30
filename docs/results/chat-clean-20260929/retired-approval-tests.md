@@ -27,3 +27,5 @@ Deleted UI paths, replaced by proposal question tests and the seven Electron jou
 - tests/browser/ui-polish.spec.ts: dialog custom input, focus loop, Escape and restored draft work without submission
 - tests/browser/ui-polish.spec.ts: focused decisions retain choices, support multiple and skip, and save a compact receipt
 - tests/browser/workflow.spec.ts: builds an approved non-combat project through a real HTTP provider adapter
+
+- surgical-ux: legacy concept Question dialog flow. Inline proposal Back/Other/save coverage remains in proposal-questions.spec.ts. Historical reproduction helpers remain unchanged.
