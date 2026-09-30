@@ -232,6 +232,7 @@ test("card and Marketplace persist each real listing and clip through reload and
   await sheet
     .getByRole("button", { name: "Use this clip", exact: true })
     .click();
+  await row(page, "Punch animation").getByRole("button", {name:"Accept attack timings",exact:true}).click();
   await expect(row(page, "Punch animation")).toContainText("Ready");
   await row(page, "Hit sound")
     .getByRole("button", { name: "Choose asset", exact: true })

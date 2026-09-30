@@ -1,3 +1,4 @@
+import { assetRoleEvidence } from "../src/marketplace/role-evidence";
 import { pickerFixture, pickerStudio } from "./asset-picking-fixture";
 import { fakeTransport, fixtureReview, specification, profile } from "./generation-fixtures";
 import type { Project } from "../src/generation/schema";
@@ -95,6 +96,9 @@ export async function chooseJourneyAssets(f: Awaited<ReturnType<typeof chatJourn
   const p = f.project(), g = p.assetDiscovery!.groups.find(g => g.id === "punchAnimation")!;
   const entry = g.options.find(o => o.assetId === f.animation.assetId)!.previewData!.pack!.entries.find(e => e.clip)!;
   await f.command("asset-picks/clip", { groupId: g.id, assetId: f.animation.assetId, clipKey: entry.key });
+  const chosen=f.project(),group=chosen.assetDiscovery!.groups.find(x=>x.id===g.id)!;
+  const timing=(assetRoleEvidence(chosen,group).details as any).timing;
+  if(timing?.segments.length) await f.command("asset-picks/timing",{groupId:g.id,assetId:f.animation.assetId,decision:{key:timing.key,source:"user",segments:timing.segments.map(({start,hit,end}:any)=>({start,hit,end}))}});
   if (skipSound) await f.command("asset-picks/skip", { groupId: "hitSound" });
   else { await f.search("hitSound", "hit sound"); await f.choose(f.sound.assetId, "hitSound"); }
   return f.project();

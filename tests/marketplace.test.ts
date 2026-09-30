@@ -18,7 +18,7 @@ import {
 import { StudioMarketplace, inspectionLuau } from "../src/marketplace/studio";
 import { createApp } from "../src/server/app";
 import { gameContext } from "../src/generation/game-context";
-import capturedTarget from "./fixtures/asset-roles/10161087974.json";
+import capturedTarget from "./fixtures/generalization/development/10161087974.json";
 import { nativeRolesSchema } from "../src/marketplace/role-capture";
 
 const studioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";

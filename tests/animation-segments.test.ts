@@ -16,7 +16,7 @@ const load = (name: string) =>
   );
 const r15 = load("animation-R15-punch-animation"),
   r6 = load("animation-R6-idle-animation");
-const cases = r15.animations.entries
+const cases: {clip: ReturnType<typeof animationClipSchema.parse>; seq: ReturnType<typeof nativeRolesSchema.parse>["sequences"][number]}[] = r15.animations.entries
   .filter((e: any) => e.clip)
   .map((e: any) => ({
     clip: animationClipSchema.parse(e.clip),

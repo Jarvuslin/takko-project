@@ -24,7 +24,7 @@ it("requires explicit user timing acceptance and rejects stale or invalid edits 
   projectProposalPicks(p);
   const g = p.assetDiscovery!.groups.find((g) => g.id === need.id)!;
   const inspection = inspectSnapshot(snapshotSchema.parse(capture.snapshot));
-  inspection.nativeRevisionKey = revisionKey(capture.metadata);
+  inspection.nativeRevisionKey = revisionKey({...capture.metadata,kind:"Model"});
   g.options = [
     {
       ...capture.metadata,

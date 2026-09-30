@@ -19,6 +19,7 @@ export const animationCapabilityContract = {
     limitation:
       "Mapped raw KeyframeSequences are usable for Studio testing. Implement their Studio playback using the selected captured sequence. Publishing remains a recorded limitation because Takko does not publish animations. Do not reject Studio integration solely for lacking a published ID and do not replace the selection.",
   },
+  attackContract: "Use accepted user timing decisions only for the requested attack interaction. Support 1 to N segments through the same path: one click per segment, at most one buffered edge, bounded grace/reset, skipped-frame hit crossing clamped to the current segment, and death cancellation. The server owns nonce, order, timing, range, facing, line of sight and one hit per segment per target. Configure these gameplay policies explicitly. Both permitted Animation IDs and Studio-registered raw clips use the same Animator track hold/resume controls. Provide a testable interface. Reference contract tests are guidance, not game source to inject. Timings and offline tests do not prove native playback or gameplay.",
   evidenceRule:
     "Only evaluate properties for which evidence is supplied. Missing identity, capture mapping, runtime or permission evidence is unresolved, not proof of incompatibility. Do not invent acceptance standards. Preview poses prove readable content, not gameplay or publication rights.",
 } as const;

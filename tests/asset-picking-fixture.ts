@@ -18,11 +18,11 @@ import { JEV_MODEL } from "../src/generation/decisions";
 import type { Project } from "../src/generation/schema";
 import recordedPage from "./fixtures/creator-store/target-dummy-v2-20260929.json";
 import recordedBrief from "./fixtures/asset-picking/real-proposal.json";
-import recordedAnimation from "./fixtures/asset-picking/real-animation-pack.json";
+
 import recordedSound from "./fixtures/asset-picking/real-sound.json";
 import nativeTarget from "./fixtures/generalization/development/10161087974.json";
-import nativeAnimation from "./fixtures/generalization/development/6125989440.json";
-import nativeClimb from "./fixtures/asset-roles/6125989440-climb.json";
+import nativeAnimation from "./fixtures/generalization/development/animation-R15-punch-animation.json";
+
 import { nativeRolesSchema } from "../src/marketplace/role-capture";
 
 export const pickerStudio = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
@@ -49,7 +49,7 @@ export async function pickerFixture() {
       votes: a.votes,
       isFree: true,
     });
-  const animation = metadata(recordedAnimation),
+  const animation = metadata(nativeAnimation.metadata),
     sound = metadata(recordedSound);
   const catalog = new Map(
     [...dummies, animation, sound].map((a) => [a.assetId, a]),
@@ -106,11 +106,7 @@ export async function pickerFixture() {
     },
     animations: async (_s: string, m: AssetMetadata) => {
       state.captures.push(m.assetId);
-      const pack = structuredClone(recordedAnimation.previewData.pack);
-      // Refresh the selected published clip through the real native producer.
-      pack.entries = pack.entries.filter(e => e.key === "1/20/1/1");
-      pack.entries[0].clip = nativeClimb.clip;
-      return animationPackSchema.parse(pack);
+      return animationPackSchema.parse(nativeAnimation.animations);
     },
   };
   const transport: typeof fetch = async (_url, init) => {
@@ -199,7 +195,7 @@ export async function pickerFixture() {
   engine.config.connect(decision, "offline-fixture-key");
   engine.config.setKey(coding.id, "offline-fixture-key");
   const p: Project = engine.create(recordedBrief.request);
-  p.rig = { selected: "R6", recommended: "R6", reason: "Explicit route-test choice matching the captured clip." };
+  p.rig = { selected: "R15", recommended: "R15", reason: "Explicit route-test choice matching the captured clip." };
   delete p.platform; // This fixture reproduces the existing pre-platform project.
   const { revision, hash, changed, ...draft } = recordedBrief.proposal;
   p.proposal = {
@@ -268,3 +264,4 @@ export async function pickerFixture() {
     },
   };
 }
+
