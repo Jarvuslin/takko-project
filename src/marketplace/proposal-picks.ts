@@ -29,7 +29,7 @@ export function approvedProposalContext(p: Project) {
   if (!p.proposal) return undefined;
   return { ...p.proposal, assetNeeds: p.proposal.assetNeeds?.map(n => {
     const { pick, ...definition } = n;
-    return { ...definition, ...(pick ? { pick: { assetId: pick.assetId, clipKey: pick.clipKey, skip: pick.skip, sound: pick.sound } } : {}) };
+    return { ...definition, ...(pick ? { pick: { assetId: pick.assetId, clipKey: pick.clipKey, skip: pick.skip, sound: pick.sound, roleOverride: pick.roleOverride } } : {}) };
   }) };
 }
 
@@ -87,7 +87,7 @@ export function projectProposalPicks(p: Project) {
       ...prior, id: n.id, assetNeedId: n.id, label: prior?.label ?? n.role,
       query: prior?.query ?? n.query, needQuery: n.query,
       kind: option?.kind ?? (n.kind === "Animation" ? "Model" as const : n.kind),
-      preview: previewForRole(n),
+      preview: previewForRole({ ...n, assetRole: n.pick?.roleOverride ?? n.assetRole }),
       options,
     };
   });

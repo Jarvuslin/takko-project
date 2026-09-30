@@ -85,7 +85,7 @@ export class CreatorStore {
   ): Promise<SearchPage> {
     const url = "https://apis.roblox.com/toolbox-service/v2/assets:search";
     const body = JSON.stringify({
-      searchCategoryType: kind === "Animation" ? "Model" : kind,
+      searchCategoryType: kind === "Animation" ? "Model" : kind === "Image" ? "Decal" : kind,
       query,
       maxPageSize: 50,
       searchView: "Core",

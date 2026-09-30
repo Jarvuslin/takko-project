@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { assetRoleSchema } from "../marketplace/asset-roles";
 import type { Bundle, Profile } from "./schema";
 import type { StudioAudioEvidence } from "./audio-evidence";
 import type {
@@ -46,6 +47,7 @@ export const assetNeedSchema = z
     id: z.string().regex(/^[A-Za-z][A-Za-z0-9_-]{0,63}$/),
     requirementId: z.string().min(1).max(64),
     role: z.string().min(1).max(1000),
+    assetRole: assetRoleSchema.optional().describe("Intended use of this asset in the requested game. Native evidence validates this intent. The user can correct it in the picker."),
     selectedAssetId: z.string().regex(/^\d+$/).optional().describe("When this need uses a user-selected attachment, copy its exact assetId from gameContext.selectedAssets. Never invent an ID or search for a replacement."),
     kind: z.enum(["Model", "MeshPart", "Audio", "Animation", "Image"]),
     deliveryRole: z.enum(["visible_prop", "source_data"]).optional().describe("Use source_data for packs/libraries retained only as animation, audio or other source data. They are delivered to ReplicatedStorage, not rendered in Workspace."),

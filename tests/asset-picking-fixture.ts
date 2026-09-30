@@ -20,8 +20,8 @@ import recordedPage from "./fixtures/creator-store/target-dummy-v2-20260929.json
 import recordedBrief from "./fixtures/asset-picking/real-proposal.json";
 import recordedAnimation from "./fixtures/asset-picking/real-animation-pack.json";
 import recordedSound from "./fixtures/asset-picking/real-sound.json";
-import nativeTarget from "./fixtures/asset-roles/10161087974.json";
-import nativeAnimation from "./fixtures/asset-roles/6125989440.json";
+import nativeTarget from "./fixtures/generalization/development/10161087974.json";
+import nativeAnimation from "./fixtures/generalization/development/6125989440.json";
 import nativeClimb from "./fixtures/asset-roles/6125989440-climb.json";
 import { nativeRolesSchema } from "../src/marketplace/role-capture";
 

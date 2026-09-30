@@ -128,9 +128,9 @@ it("removes contradicted legacy asset facts, invalidates approval and preserves 
   expect(p.proposal!.hash).toBe(firstHash);
   expect(gameContext(p).assetRoleEvidence).toEqual(gameContext(p, undefined, true).assetRoleEvidence);
 });
-it("keeps unsupported roles unresolved", async () => {
+it("keeps newly supported roles unresolved until their native facts are captured", async () => {
   const p = await capturedProject();
   p.proposal!.assetNeeds![0].query = "magic particles";
   p.proposal!.assetNeeds![0].role = "decorative effect";
-  expect(pickStatus(p, p.assetDiscovery!.groups[0])).toMatchObject({ canBuild: false, reason: expect.stringContaining("not available") });
+  expect(pickStatus(p, p.assetDiscovery!.groups[0])).toMatchObject({ canBuild: false, reason: expect.stringContaining("capture") });
 });

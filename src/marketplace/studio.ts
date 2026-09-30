@@ -394,7 +394,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
   async snapshot(studioId: string, metadata: AssetMetadata) {
     const id = assetIdSchema.parse(metadata.assetId);
     // Media types have no executable script containers. No autoplay or Studio insertion.
-    if (["Audio", "Image", "Animation"].includes(metadata.kind))
+    if (["Audio", "Animation"].includes(metadata.kind))
       return snapshotSchema.parse({
         nodes: [
           {

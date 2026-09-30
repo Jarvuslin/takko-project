@@ -1,6 +1,16 @@
 import { describe, it, expect, vi } from "vitest";
 import { CreatorStore } from "../src/marketplace/creator-store";
 import recorded from "./fixtures/creator-store/target-dummy-v2-20260929.json";
+import decals from "./fixtures/generalization/development/image-search-response.json";
+it("maps image intent to the actual Creator Store Decal category", async()=>{
+  const transport=vi.fn(async(_url:unknown,init:any)=>{
+    expect(JSON.parse(init.body).searchCategoryType).toBe("Decal");
+    return Response.json(decals.response);
+  });
+  const page=await new CreatorStore(transport).search("arrow","Image");
+  expect(page.assets.length).toBeGreaterThan(0);
+  expect(page.assets.every(a=>a.kind==="Image")).toBe(true);
+});
 describe("Creator Store website search", () => {
   it("replays the recorded target dummy v2 response in website order", async () => {
     const transport = vi.fn(async () => Response.json(recorded));

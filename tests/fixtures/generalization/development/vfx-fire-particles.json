@@ -1,0 +1,286 @@
+{
+  "role": "vfx",
+  "query": "fire particles",
+  "kind": "Model",
+  "at": "2026-09-30T22:11:03.028Z",
+  "partition": "development_not_holdout",
+  "results": [
+    {
+      "assetId": "6961173623",
+      "name": "Fire particles",
+      "kind": "Model",
+      "creatorName": "FireBIaze_Alt",
+      "updated": ""
+    },
+    {
+      "assetId": "126470813643435",
+      "name": "Fire Particle VFX Pack Flames Sparks Effects",
+      "kind": "Model",
+      "creatorName": "Plikbyt9947",
+      "updated": ""
+    },
+    {
+      "assetId": "10034870671",
+      "name": "Low Poly Fire Particle",
+      "kind": "Model",
+      "creatorName": "supernoob12325",
+      "updated": ""
+    },
+    {
+      "assetId": "132363817590965",
+      "name": "✨ Spark FX Realistic Fire Particles Smoke Glow",
+      "kind": "Model",
+      "creatorName": "XzEchoMAGlitch4APixe",
+      "updated": ""
+    },
+    {
+      "assetId": "96505301256833",
+      "name": "💥 Realistic Muzzle Flash Gun Effect Fire Particle",
+      "kind": "Model",
+      "creatorName": "BeastkDBlizzardJ1365",
+      "updated": ""
+    },
+    {
+      "assetId": "119811883341156",
+      "name": "Particle effects pack explosion fire smoke",
+      "kind": "Model",
+      "creatorName": "metrolovescat3",
+      "updated": ""
+    },
+    {
+      "assetId": "12136850996",
+      "name": "\"Realistic\" Fire VFX (+ metal impact particle uhh)",
+      "kind": "Model",
+      "creatorName": "o_oYouSussy",
+      "updated": ""
+    },
+    {
+      "assetId": "119882984838018",
+      "name": "Low Poly Fire Particle Model Mesh VFX",
+      "kind": "Model",
+      "creatorName": "Jonex4908",
+      "updated": ""
+    },
+    {
+      "assetId": "137591533187798",
+      "name": "✨ Sparks FX Fire Realistic Flame Particle",
+      "kind": "Model",
+      "creatorName": "SilverKdFrostbiteJ16",
+      "updated": ""
+    },
+    {
+      "assetId": "95903078811235",
+      "name": "Old ROBLOX Fire Particle Effect",
+      "kind": "Model",
+      "creatorName": "Tazoo101",
+      "updated": ""
+    },
+    {
+      "assetId": "84028092218076",
+      "name": "Fire Particle Effect Bonfire Campfire Burning",
+      "kind": "Model",
+      "creatorName": "Bl0ck950R0cket",
+      "updated": ""
+    },
+    {
+      "assetId": "70878052777772",
+      "name": "Fire & Smoke Particles",
+      "kind": "Model",
+      "creatorName": "BIack_Iced",
+      "updated": ""
+    },
+    {
+      "assetId": "137977585885961",
+      "name": "Vfx Effects Particles Explosions Fire Smoke Pack",
+      "kind": "Model",
+      "creatorName": "le0_y2015",
+      "updated": ""
+    },
+    {
+      "assetId": "11861523849",
+      "name": "Flipbook Particle Minecraft Fire",
+      "kind": "Model",
+      "creatorName": "avasvision",
+      "updated": ""
+    },
+    {
+      "assetId": "248756428",
+      "name": "[FbI] Realistic Fire Particle Emitter",
+      "kind": "Model",
+      "creatorName": "bluscript",
+      "updated": ""
+    },
+    {
+      "assetId": "75711257143982",
+      "name": "💥 Realistic Muzzle Flash Gun Effect Fire Particle",
+      "kind": "Model",
+      "creatorName": "RiftiAThornW167559",
+      "updated": ""
+    },
+    {
+      "assetId": "139960030422410",
+      "name": "Cool Lava Particles Jump Disaster Fire Lava Rock",
+      "kind": "Model",
+      "creatorName": "NightOrCha0s8180154",
+      "updated": ""
+    },
+    {
+      "assetId": "73215069757802",
+      "name": "🔥 Low-Poly Fire Particles FX Ember Flame VFX",
+      "kind": "Model",
+      "creatorName": "LuckyFire4868",
+      "updated": ""
+    },
+    {
+      "assetId": "122014917188022",
+      "name": "Smoke Particle Effect VFX Fire Smoke",
+      "kind": "Model",
+      "creatorName": "Slowg6545",
+      "updated": ""
+    },
+    {
+      "assetId": "70773478833488",
+      "name": "🔥 Low Poly Fire Particle VFX Effect Flame Smoke",
+      "kind": "Model",
+      "creatorName": "XzEchogBFox6BShift3r",
+      "updated": ""
+    }
+  ],
+  "metadata": {
+    "assetId": "6961173623",
+    "name": "Fire particles",
+    "kind": "Model",
+    "creatorName": "FireBIaze_Alt",
+    "updated": "2021-06-16T10:05:54.757Z",
+    "versionId": "8586854760"
+  },
+  "snapshot": {
+    "nodes": [
+      {
+        "name": "FIRE",
+        "className": "Part"
+      },
+      {
+        "name": "FIRE.FireLight",
+        "className": "PointLight"
+      },
+      {
+        "name": "FIRE.FireLight.Fire_Effect",
+        "className": "Script"
+      },
+      {
+        "name": "FIRE.Fire",
+        "className": "ParticleEmitter"
+      },
+      {
+        "name": "FIRE.Fire",
+        "className": "ParticleEmitter"
+      },
+      {
+        "name": "FIRE.Smoke",
+        "className": "ParticleEmitter"
+      },
+      {
+        "name": "FIRE.Play",
+        "className": "Script"
+      },
+      {
+        "name": "FIRE.Sound",
+        "className": "Sound",
+        "soundId": "rbxassetid://435195821"
+      }
+    ],
+    "scripts": [
+      {
+        "name": "FIRE.FireLight.Fire_Effect",
+        "source": "while true do\n\tscript.Parent.Range = script.Parent.Range + 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range + 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range + 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range - 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range - 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range + 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range - 1\n\twait(.001)\n\tscript.Parent.Range = script.Parent.Range - 1\n\twait(.001)\nend"
+      },
+      {
+        "name": "FIRE.Play",
+        "source": "Brick = script.Parent\r\nSound = Brick.Sound\r\n\r\nfunction onClicked()\r\nSound:Play()\r\nend\r\n\r\nscript.Parent.ClickDetector.MouseClick:connect(onClicked)\r\n"
+      }
+    ],
+    "complete": true,
+    "nativeRoles": {
+      "version": 2,
+      "classes": {
+        "PointLight": 1,
+        "Script": 2,
+        "ParticleEmitter": 3,
+        "Part": 1,
+        "Sound": 1
+      },
+      "parts": [
+        {
+          "path": "FIRE",
+          "key": "1",
+          "name": "FIRE",
+          "className": "Part",
+          "size": [
+            12.300005912780762,
+            1,
+            8.38000202178955
+          ],
+          "cframe": [
+            -688.1306762695312,
+            -3.590188980102539,
+            -1668.20751953125,
+            -1,
+            0,
+            1.4551915228366852e-11,
+            0,
+            1,
+            1.403413563139111e-7,
+            1.4551915228366852e-11,
+            8.317614685893204e-8,
+            -1.0000001192092896
+          ],
+          "anchored": true,
+          "canCollide": true,
+          "canQuery": true
+        }
+      ],
+      "humanoids": [],
+      "sequences": [],
+      "animations": [],
+      "sounds": [
+        {
+          "path": "FIRE.Sound",
+          "key": "1/6",
+          "name": "Sound",
+          "soundId": "rbxassetid://435195821"
+        }
+      ],
+      "tools": [],
+      "effects": [
+        {
+          "path": "FIRE.Fire",
+          "key": "1/2",
+          "name": "Fire",
+          "className": "ParticleEmitter",
+          "enabled": true,
+          "texture": "http://www.roblox.com/asset/?id=248625108"
+        },
+        {
+          "path": "FIRE.Fire",
+          "key": "1/3",
+          "name": "Fire",
+          "className": "ParticleEmitter",
+          "enabled": true,
+          "texture": "http://www.roblox.com/asset/?id=248625108"
+        },
+        {
+          "path": "FIRE.Smoke",
+          "key": "1/4",
+          "name": "Smoke",
+          "className": "ParticleEmitter",
+          "enabled": true,
+          "texture": "http://www.roblox.com/asset/?id=297744035"
+        }
+      ],
+      "meshes": [],
+      "images": []
+    },
+    "issues": []
+  }
+}

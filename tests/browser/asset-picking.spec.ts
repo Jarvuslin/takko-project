@@ -36,6 +36,14 @@ const card = (page: Page) =>
   page.getByRole("region", { name: "Assets for this game", exact: true });
 const row = (page: Page, name = "Target dummy") =>
   card(page).getByRole("region", { name, exact: true });
+test("a visible asset role correction persists and rechecks native structure",async({page})=>{
+  await f.search(); await f.choose(); await page.reload();
+  const role=row(page).getByRole("combobox",{name:/Asset role/});
+  await expect(role).toHaveValue("static_target");
+  await role.selectOption("tool");
+  await expect(row(page)).toContainText("No Tool was captured");
+  await page.reload(); await expect(row(page).getByRole("combobox",{name:/Asset role/})).toHaveValue("tool");
+});
 
 test("the inline rig choice recommends the captured animation rig and saves a receipt", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });

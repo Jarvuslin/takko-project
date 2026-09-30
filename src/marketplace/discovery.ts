@@ -67,6 +67,7 @@ export type AssetDiscovery = {
     string,
     {
       assetId?: string;
+      roleOverride?: import("./asset-roles").SupportedAssetRole;
       clipKey?: string;
       skip?: boolean;
       acknowledgeInspectionLimitations?: boolean;

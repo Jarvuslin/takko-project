@@ -24,3 +24,7 @@ Report observed scoped costs separately from whole-game extrapolation. Two probe
 ## Progress and evidence
 
 Implementation not yet complete. No held-out search results examined. No paid calls. Original failure records and Release A reports remain unchanged.
+
+G1 implemented: nine explicit roles, persisted user correction, version 2 native facts and approval invalidation. Actual development captures correctly block a robot NPC listing containing only a mesh. Fixed production Image search to use Decal and capture actual content identity. Security inspection remains independent. Native sword fault controls remove its Handle and then change RequiresHandle. Development data is excluded from holdout validation.
+
+G1 validation: 38 unit tests across four files, build/typecheck and one focused browser test passed. Earlier failures retained, including Image search 400 and native MCP table serialization. Full check deferred until task end. Cleanup: Edit, zero scripts/scopes, two Workspace children. No Play, imported scripts or paid inference. Cost $0.

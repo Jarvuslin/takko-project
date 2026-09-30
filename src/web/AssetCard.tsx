@@ -11,6 +11,8 @@ import {
 } from "../marketplace/animations";
 import { useMarketplaceConnection } from "./MarketplaceConnection";
 import { parseAssetReference } from "../marketplace/types";
+import { assetRoleEvidence } from "../marketplace/role-evidence";
+import { assetRoleLabels, assetRoleSchema } from "../marketplace/asset-roles";
 
 export async function assetRequest<T>(
   projectId: string,
@@ -277,6 +279,14 @@ export function AssetCard({
               </p>
             )}
             {o && <ChosenGeometry key={o.assetId} option={o} />}
+            {o && <label>Asset role
+              <select aria-label={`Asset role for ${g.label}`} disabled={disabled || !!busy}
+                value={assetRoleEvidence(project,g).role}
+                onChange={e => run(g.id,async()=>update(await assetRequest<Project>(project.id,"asset-picks/role",{revision:project.revision,groupId:g.id,assetId:o.assetId,role:e.target.value})))}>
+                <option value="unsupported" disabled>Unknown, choose intended use</option>
+                {assetRoleSchema.options.map(role=><option key={role} value={role}>{assetRoleLabels[role]}</option>)}
+              </select>
+            </label>}
             {g.preview === "audio" && o?.kind === "Model" && (
               <div>
                 <p>Preview unavailable. Choose a captured sound to use it.</p>

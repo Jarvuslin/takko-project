@@ -11,6 +11,24 @@ async function fixture() {
 afterEach(async () => {
   for (const f of fixtures.splice(0)) await f.close();
 });
+it("persists a user role correction, changes proposal identity and rejects stale selected-asset commands",async()=>{
+  const f=await fixture();
+  await f.search();
+  const before=(await f.choose()).data;
+  const response=await fetch(`${f.origin}/api/projects/${before.id}/asset-picks/role`,{
+    method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({revision:before.revision,groupId:"targetDummy",assetId:f.dummies[1].assetId,role:"prop"})
+  });
+  expect(response.status).toBe(200);
+  const after=await response.json();
+  expect(after.proposal.hash).not.toBe(before.proposal.hash);
+  expect(after.proposal.approval).toBeUndefined();
+  expect(after.proposal.assetNeeds.find((n:any)=>n.id==="targetDummy").pick.roleOverride).toBe("prop");
+  expect(new GenerationStore(f.directory).get(after.id).proposal?.assetNeeds?.find(n=>n.id==="targetDummy")?.pick?.roleOverride).toBe("prop");
+  const stale=await fetch(`${f.origin}/api/projects/${before.id}/asset-picks/role`,{
+    method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({revision:before.revision,groupId:"targetDummy",assetId:"1",role:"tool"})
+  });
+  expect(stale.status).toBe(409);
+});
 it("prefills explicitly bound composer attachments using actual inspection output without searches or repeat snapshots", async () => {
   const f = await fixture();
   const result = await fetch(`${f.origin}/api/marketplace/inspect`, {

@@ -23,6 +23,7 @@ import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
 import { pickStatus } from "./pick-status";
 import { assetRoleEvidence, previewForRole } from "./role-evidence";
+import { assetRoleSchema } from "./asset-roles";
 import { modelPreviewSchema } from "./preview";
 import { matchMessageAssets, normalizeNeeds } from "./normalize-needs";
 
@@ -553,6 +554,16 @@ export function pickingRoutes(
     p.assetDiscovery!.approved = false;
     refreshProposal(p, ["assets"]);
     res.json(store.save(p));
+  });
+  app.post("/api/projects/:id/asset-picks/role", (req, res) => {
+    const b = base.extend({ groupId:z.string().max(80), assetId:assetIdSchema, role:assetRoleSchema }).strict().parse(req.body);
+    const p=current(req.params.id,b.revision), g=group(p,b.groupId), c=p.assetDiscovery?.choices?.[g.id];
+    if(engine.assetOperations.has(p.id)) throw new ConflictError("Wait for the asset check to finish.");
+    if(c?.assetId!==b.assetId) throw new ConflictError("Choose a current asset before correcting its role.");
+    c.roleOverride=b.role;
+    g.preview=previewForRole({kind:g.kind,query:g.query,role:g.label,assetRole:b.role});
+    p.assetDiscovery!.approved=false;
+    res.json(save(p));
   });
   app.post("/api/projects/:id/asset-picks/clip", (req, res) => {
     const b = base
