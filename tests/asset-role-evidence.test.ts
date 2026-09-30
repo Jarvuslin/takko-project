@@ -45,6 +45,8 @@ async function capturedProject() {
       const pack = animationPackSchema.parse({ assetId: asset.assetId, name: asset.name, revisionKey: revisionKey(asset), entries: [{ key: sequence.key, name: sequence.name, clip: infinity.clip }] });
       option.previewData = { pack, revisionKey: revisionKey(asset) };
       choice.clipKey = sequence.key;
+      const timing=(assetRoleEvidence(p,group).details as any).timing;
+      if(timing?.segments.length) choice.timingDecision={key:timing.key,segments:timing.segments.map(({start,hit,end}:any)=>({start,hit,end})),source:"user"};
     }
   }
   return p;

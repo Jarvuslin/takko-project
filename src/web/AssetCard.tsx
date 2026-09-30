@@ -1,3 +1,4 @@
+import { AttackTiming } from "./AttackTiming";
 import { buildEstimate, buildEstimateNote } from "./chat-state";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { Project } from "../generation/schema";
@@ -279,6 +280,7 @@ export function AssetCard({
               </p>
             )}
             {o && <ChosenGeometry key={o.assetId} option={o} />}
+            <AttackTiming project={project} group={g} update={update} disabled={disabled || !!busy}/>
             {o && <label>Asset role
               <select aria-label={`Asset role for ${g.label}`} disabled={disabled || !!busy}
                 value={assetRoleEvidence(project,g).role}

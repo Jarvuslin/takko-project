@@ -183,7 +183,7 @@ it("turns an interrupted saved check into a retryable problem on initialization"
   expect(restored.assetDiscovery.choices.targetDummy.error).toContain("interrupted");
 });
 
-it("approves the already reviewed references in one action and refuses incomplete choices", async () => {
+it("refuses incomplete choices and an attack clip without accepted timing", async () => {
   const f = await fixture();
   let p = f.project();
   expect(
@@ -204,15 +204,15 @@ it("approves the already reviewed references in one action and refuses incomplet
   await f.search("hitSound", "punch hit sound");
   await f.choose(f.sound.assetId, "hitSound");
   p = f.project();
-  expect(p.assetAttachments).toHaveLength(3);
+  expect(p.assetAttachments).toHaveLength(2);
   const start = vi
     .spyOn(f.app.locals.engine, "start")
     .mockImplementation(() => f.project());
   const approved = await f.command("approve-proposal", {
     hash: p.proposal!.hash,
   });
-  expect(approved.status).toBe(202);
-  expect(start).toHaveBeenCalledOnce();
+  expect(approved.status).toBe(409);
+  expect(start).not.toHaveBeenCalled();
   expect(f.state.calls).toBe(0);
 });
 it("browses exact queries in source order without inspections, captures or model calls", async () => {
@@ -327,7 +327,7 @@ it("captures only the chosen animation and persists an actual producer clip key"
       p,
       p.assetDiscovery.groups.find((g: any) => g.id === "punchAnimation"),
     ).state,
-  ).toBe("ready");
+  ).toBe("problem");
 });
 it.each([true, false])(
   "Choose for me requires an estimate and only picks a relevant result (%s)",

@@ -16,13 +16,18 @@ import {
   type AssetDiscovery,
   type AssetOption,
 } from "./discovery";
-import { assetIdSchema, marketplaceKindSchema, type MarketplaceKind } from "./types";
+import {
+  assetIdSchema,
+  marketplaceKindSchema,
+  type MarketplaceKind,
+} from "./types";
 import { skipProposalNeed, proposalNeed } from "./proposal-picks";
 import { revisionKey, type AssetLibrary } from "./library";
 import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
 import { pickStatus } from "./pick-status";
 import { assetRoleEvidence, previewForRole } from "./role-evidence";
+import { timingDecisionSchema, validSegments } from "./animation-segments";
 import { assetRoleSchema } from "./asset-roles";
 import { modelPreviewSchema } from "./preview";
 import { matchMessageAssets, normalizeNeeds } from "./normalize-needs";
@@ -85,7 +90,8 @@ export function pickingRoutes(
     } finally {
       engine.assetOperations.delete(id);
       const p = store.get(id);
-      if (!p.jobId && p.queuedMessages?.some(q => q.status === "queued")) void engine.applyQueuedChanges(id);
+      if (!p.jobId && p.queuedMessages?.some((q) => q.status === "queued"))
+        void engine.applyQueuedChanges(id);
     }
   }
   function initialize(p: Project) {
@@ -98,7 +104,7 @@ export function pickingRoutes(
         groups: assetSearches(p).map((g) => ({ ...g, options: [] })),
         choices: {},
       };
-    normalizeNeeds(p, id => library.get(id));
+    normalizeNeeds(p, (id) => library.get(id));
     const d = p.assetDiscovery;
     d.revision = p.revision;
     // Reuse inspected composer attachments. Binding is explicit planner output,
@@ -124,7 +130,11 @@ export function pickingRoutes(
             label: a.usage || a.name,
             query: a.name,
             kind: a.kind,
-            preview: previewForRole({ kind: a.kind, query: a.name, role: a.usage ?? "" }),
+            preview: previewForRole({
+              kind: a.kind,
+              query: a.name,
+              role: a.usage ?? "",
+            }),
             options: [],
           };
           d.groups.push(row);
@@ -255,7 +265,10 @@ export function pickingRoutes(
       .parse(req.body);
     let p = current(req.params.id, b.revision);
     // Rendering a failed checkpoint must not revalidate and invalidate its input.
-    if (stepRetry(p)) { res.json(p); return; }
+    if (stepRetry(p)) {
+      res.json(p);
+      return;
+    }
     if (engine.assetOperations.has(p.id))
       throw new ConflictError("Wait for asset work to finish.");
     initialize(p);
@@ -264,12 +277,7 @@ export function pickingRoutes(
         for (const g of p.assetDiscovery!.groups) {
           const c = p.assetDiscovery!.choices?.[g.id];
           const o = g.options.find((o) => o.assetId === c?.assetId);
-          if (
-            b.studioId &&
-            c?.assetId &&
-            !c.error &&
-            o
-          ) {
+          if (b.studioId && c?.assetId && !c.error && o) {
             p = await verify(p, g, o, b.studioId);
           }
         }
@@ -289,9 +297,18 @@ export function pickingRoutes(
     const g = group(p, groupId),
       d = p.assetDiscovery!;
     const page = library.provider.searchPage
-      ? await library.provider.searchPage(studioId, query, kind ?? g.kind, cursor)
+      ? await library.provider.searchPage(
+          studioId,
+          query,
+          kind ?? g.kind,
+          cursor,
+        )
       : {
-          assets: await library.provider.search(studioId, query, kind ?? g.kind),
+          assets: await library.provider.search(
+            studioId,
+            query,
+            kind ?? g.kind,
+          ),
           nextCursor: undefined,
           total: undefined,
           filteredCount: 0,
@@ -414,17 +431,40 @@ export function pickingRoutes(
         );
       const snapshot = library.sourceSnapshot(option.assetId);
       if (g.preview === "audio" && inspected.kind === "Model") {
-        option.previewData = { ...option.previewData, sounds: (snapshot?.nodes ?? []).flatMap(node => {
-          const match = node.className === "Sound" && node.soundId?.match(/^(?:rbxassetid:\/\/|https?:\/\/www\.roblox\.com\/asset\/?\?id=)([1-9]\d*)$/);
-          return match && assetIdSchema.safeParse(match[1]).success ? [{ path: node.name, name: node.name.split(".").at(-1)!, assetId: match[1] }] : [];
-        }) };
-        if (!option.previewData.sounds?.length) throw new RequestError("This model has no captured sound IDs. Choose another asset or Skip for now.");
+        option.previewData = {
+          ...option.previewData,
+          sounds: (snapshot?.nodes ?? []).flatMap((node) => {
+            const match =
+              node.className === "Sound" &&
+              node.soundId?.match(
+                /^(?:rbxassetid:\/\/|https?:\/\/www\.roblox\.com\/asset\/?\?id=)([1-9]\d*)$/,
+              );
+            return match && assetIdSchema.safeParse(match[1]).success
+              ? [
+                  {
+                    path: node.name,
+                    name: node.name.split(".").at(-1)!,
+                    assetId: match[1],
+                  },
+                ]
+              : [];
+          }),
+        };
+        if (!option.previewData.sounds?.length)
+          throw new RequestError(
+            "This model has no captured sound IDs. Choose another asset or Skip for now.",
+          );
       }
-      if (g.preview === "animation" && (!option.previewData?.pack ||
+      if (
+        g.preview === "animation" &&
+        (!option.previewData?.pack ||
           option.previewData.pack.revisionKey !== revisionKey(inspected) ||
           previousHash !== inspected.inspection.contentHash ||
-          option.previewData.pack.entries.some(e => e.clip && !e.clip.sourcePoseDigest) ||
-          assetRoleEvidence(p, g).recapture)) {
+          option.previewData.pack.entries.some(
+            (e) => e.clip && !e.clip.sourcePoseDigest,
+          ) ||
+          assetRoleEvidence(p, g).recapture)
+      ) {
         if (!library.provider.animations)
           throw new RequestError(
             "This Studio connection cannot capture animation clips. Reconnect Studio and try again.",
@@ -451,7 +491,12 @@ export function pickingRoutes(
           ...option.previewData,
           revisionKey: revisionKey(inspected),
         };
-        if (g.preview === "model" && library.provider.preview && (!option.previewData.model || previousHash !== inspected.inspection.contentHash)) {
+        if (
+          g.preview === "model" &&
+          library.provider.preview &&
+          (!option.previewData.model ||
+            previousHash !== inspected.inspection.contentHash)
+        ) {
           try {
             option.previewData.model = modelPreviewSchema.parse(
               await library.provider.preview(studioId, inspected),
@@ -463,7 +508,12 @@ export function pickingRoutes(
       }
       if (snapshot && inspected.inspection?.status !== "blocked") {
         store.save(p);
-        await engine.reviewAttachedSources(p, g.id, snapshot, inspected.inspection!.contentHash);
+        await engine.reviewAttachedSources(
+          p,
+          g.id,
+          snapshot,
+          inspected.inspection!.contentHash,
+        );
       }
       d.studioId = studioId;
       if (keep) {
@@ -518,7 +568,9 @@ export function pickingRoutes(
             "Choose an asset from the current Marketplace results.",
           );
         const previous = d.choices?.[g.id];
-        const need = (p.spec?.assetNeeds ?? p.proposal?.assetNeeds)?.find(n => n.id === g.id);
+        const need = (p.spec?.assetNeeds ?? p.proposal?.assetNeeds)?.find(
+          (n) => n.id === g.id,
+        );
         if (need) need.selectedAssetId = b.assetId;
         (d.choices ??= {})[g.id] = {
           assetId: b.assetId,
@@ -538,31 +590,64 @@ export function pickingRoutes(
     );
   });
   app.post("/api/projects/:id/asset-picks/skip", (req, res) => {
-    const b = base.extend({ groupId: z.string().max(80) }).strict().parse(req.body);
+    const b = base
+      .extend({ groupId: z.string().max(80) })
+      .strict()
+      .parse(req.body);
     const p = current(req.params.id, b.revision);
-    if (!skipProposalNeed(p, b.groupId)) throw new RequestError("This need no longer exists. Return to chat.");
+    if (!skipProposalNeed(p, b.groupId))
+      throw new RequestError("This need no longer exists. Return to chat.");
     refreshProposal(p, ["assets"]);
     res.json(store.save(p));
   });
   app.post("/api/projects/:id/asset-picks/remove", (req, res) => {
-    const b = base.extend({ groupId: z.string().max(80) }).strict().parse(req.body);
-    const p = current(req.params.id, b.revision), g = group(p, b.groupId);
+    const b = base
+      .extend({ groupId: z.string().max(80) })
+      .strict()
+      .parse(req.body);
+    const p = current(req.params.id, b.revision),
+      g = group(p, b.groupId);
     const assetId = p.assetDiscovery!.choices?.[g.id]?.assetId;
     delete p.assetDiscovery!.choices?.[g.id];
-    for (const n of [...(p.proposal?.assetNeeds ?? []), ...(p.spec?.assetNeeds ?? [])]) if (n.id === g.id || n.selectedAssetId === assetId) delete n.selectedAssetId;
-    p.assetAttachments = p.assetAttachments?.filter(a => a.assetId !== assetId);
+    for (const n of [
+      ...(p.proposal?.assetNeeds ?? []),
+      ...(p.spec?.assetNeeds ?? []),
+    ])
+      if (n.id === g.id || n.selectedAssetId === assetId)
+        delete n.selectedAssetId;
+    p.assetAttachments = p.assetAttachments?.filter(
+      (a) => a.assetId !== assetId,
+    );
     p.assetDiscovery!.approved = false;
     refreshProposal(p, ["assets"]);
     res.json(store.save(p));
   });
   app.post("/api/projects/:id/asset-picks/role", (req, res) => {
-    const b = base.extend({ groupId:z.string().max(80), assetId:assetIdSchema, role:assetRoleSchema }).strict().parse(req.body);
-    const p=current(req.params.id,b.revision), g=group(p,b.groupId), c=p.assetDiscovery?.choices?.[g.id];
-    if(engine.assetOperations.has(p.id)) throw new ConflictError("Wait for the asset check to finish.");
-    if(c?.assetId!==b.assetId) throw new ConflictError("Choose a current asset before correcting its role.");
-    c.roleOverride=b.role;
-    g.preview=previewForRole({kind:g.kind,query:g.query,role:g.label,assetRole:b.role});
-    p.assetDiscovery!.approved=false;
+    const b = base
+      .extend({
+        groupId: z.string().max(80),
+        assetId: assetIdSchema,
+        role: assetRoleSchema,
+      })
+      .strict()
+      .parse(req.body);
+    const p = current(req.params.id, b.revision),
+      g = group(p, b.groupId),
+      c = p.assetDiscovery?.choices?.[g.id];
+    if (engine.assetOperations.has(p.id))
+      throw new ConflictError("Wait for the asset check to finish.");
+    if (c?.assetId !== b.assetId)
+      throw new ConflictError(
+        "Choose a current asset before correcting its role.",
+      );
+    c.roleOverride = b.role;
+    g.preview = previewForRole({
+      kind: g.kind,
+      query: g.query,
+      role: g.label,
+      assetRole: b.role,
+    });
+    p.assetDiscovery!.approved = false;
     res.json(save(p));
   });
   app.post("/api/projects/:id/asset-picks/clip", (req, res) => {
@@ -589,14 +674,58 @@ export function pickingRoutes(
     delete c.error;
     res.json(save(p));
   });
+  app.post("/api/projects/:id/asset-picks/timing", (req, res) => {
+    const b = base
+      .extend({
+        groupId: z.string().max(80),
+        assetId: assetIdSchema,
+        decision: timingDecisionSchema,
+      })
+      .strict()
+      .parse(req.body);
+    const p = current(req.params.id, b.revision),
+      g = group(p, b.groupId),
+      c = p.assetDiscovery?.choices?.[g.id];
+    if (engine.assetOperations.has(p.id))
+      throw new ConflictError("Wait for the asset check.");
+    const o = g.options.find((o) => o.assetId === c?.assetId),
+      clip = o?.previewData?.pack?.entries.find(
+        (e) => e.key === c?.clipKey,
+      )?.clip;
+    const evidence = assetRoleEvidence(p, g),
+      details = evidence.details as
+        { timing?: { key: string; segments: unknown[] } } | undefined;
+    if (
+      c?.assetId !== b.assetId ||
+      !clip ||
+      !details?.timing?.segments.length ||
+      details.timing.key !== b.decision.key ||
+      !validSegments(b.decision.segments, clip.duration)
+    )
+      throw new ConflictError(
+        "Timing evidence changed or segment bounds are invalid. Review this clip again.",
+      );
+    c.timingDecision = b.decision;
+    p.assetDiscovery!.approved = false;
+    res.json(save(p));
+  });
   app.post("/api/projects/:id/asset-picks/sound", (req, res) => {
-    const b = base.extend({ groupId: z.string().max(80), assetId: assetIdSchema, path: z.string().max(1024) }).strict().parse(req.body);
-    const p = current(req.params.id, b.revision), g = group(p, b.groupId);
+    const b = base
+      .extend({
+        groupId: z.string().max(80),
+        assetId: assetIdSchema,
+        path: z.string().max(1024),
+      })
+      .strict()
+      .parse(req.body);
+    const p = current(req.params.id, b.revision),
+      g = group(p, b.groupId);
     const need = proposalNeed(p, b.groupId);
     const choice = p.assetDiscovery?.choices?.[g.id];
-    const option = g.options.find(o => o.assetId === b.assetId);
-    const sound = option?.previewData?.sounds?.find(s => s.path === b.path);
-    if (!need?.pick || choice?.assetId !== b.assetId || !sound) throw new RequestError("Choose a captured sound from this asset.");
+    const option = g.options.find((o) => o.assetId === b.assetId);
+    const sound = option?.previewData?.sounds?.find((s) => s.path === b.path);
+    if (!need?.pick || choice?.assetId !== b.assetId || !sound)
+      throw new RequestError("Choose a captured sound from this asset.");
     need.pick.sound = sound;
     res.json(save(p));
   });

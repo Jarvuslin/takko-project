@@ -68,6 +68,7 @@ export type AssetDiscovery = {
     {
       assetId?: string;
       roleOverride?: import("./asset-roles").SupportedAssetRole;
+      timingDecision?: import("./animation-segments").TimingDecision;
       clipKey?: string;
       skip?: boolean;
       acknowledgeInspectionLimitations?: boolean;

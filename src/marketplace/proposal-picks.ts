@@ -29,7 +29,7 @@ export function approvedProposalContext(p: Project) {
   if (!p.proposal) return undefined;
   return { ...p.proposal, assetNeeds: p.proposal.assetNeeds?.map(n => {
     const { pick, ...definition } = n;
-    return { ...definition, ...(pick ? { pick: { assetId: pick.assetId, clipKey: pick.clipKey, skip: pick.skip, sound: pick.sound, roleOverride: pick.roleOverride } } : {}) };
+    return { ...definition, ...(pick ? { pick: { assetId: pick.assetId, clipKey: pick.clipKey, skip: pick.skip, sound: pick.sound, roleOverride: pick.roleOverride, timingDecision: pick.timingDecision } } : {}) };
   }) };
 }
 
