@@ -89,8 +89,7 @@ test("workspace typography keeps prose readable and controls usable", async ({
   );
   await page.goto("/?project=" + created.id);
   await fontsReady(page);
-  await page.getByText("Edit original brief", { exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Your request" })).toHaveCSS(
+  await expect(page.locator(".chat-heading").first()).toHaveCSS(
     "font-family",
     /Geist/,
   );
@@ -103,7 +102,7 @@ test("workspace typography keeps prose readable and controls usable", async ({
   ).toBeGreaterThanOrEqual(14);
   await expectTextFits(page.locator(".chat-heading"));
   await expectTextFits(page.locator(".canvas-heading"));
-  await expectTextFits(page.getByLabel("Project request"));
+  await expectTextFits(page.getByLabel("Message", { exact: true }));
   await page
     .getByLabel("Message", { exact: true })
     .fill("Let players sell harvested crops together.");

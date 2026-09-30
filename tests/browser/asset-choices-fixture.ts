@@ -1,12 +1,19 @@
+import { proposalDraftSchema } from "../../src/generation/proposal";
 import type { Page } from "@playwright/test";
 import { newProject } from "../../src/generation/store";
 import { assetSearches } from "../../src/marketplace/discovery";
 import { specification } from "../generation-fixtures";
+import recorded from "../fixtures/asset-picking/real-proposal.json" with { type: "json" };
+const { hash, revision, changed, ...recordedDraft } = recorded.proposal;
+const savedProposal = { ...proposalDraftSchema.parse(recordedDraft), hash, revision };
+import { refreshProposal } from "../../src/generation/proposal";
 export const assetChoiceBrief =
   "I want a combat game with basic fighting and a target dummy to practice with. I want animation for fighting, sprinting walking as well as sfx and vfx";
 export const studioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
 export async function assetChoiceFixture(page: Page, origin = "") {
   let p = newProject(assetChoiceBrief, 2e6);
+  p.proposal = { ...structuredClone(savedProposal), assetNeeds: undefined, changed: [], revision: p.revision };
+  refreshProposal(p);
   const calls: string[] = [];
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -184,6 +191,5 @@ export async function assetChoiceFixture(page: Page, origin = "") {
     },
   );
   await page.goto(origin + "/?project=" + p.id);
-  await page.getByRole("button", { name: "Approve brief", exact: true }).click();
   return { calls, errors, project: () => p };
 }

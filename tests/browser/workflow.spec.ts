@@ -31,7 +31,7 @@ test("project selection survives refresh and detail controls support keyboard ac
   await page.getByRole("button", { name: "Create project" }).click();
   await expect(page).toHaveURL(/project=/);
   await page.reload();
-  await expect(page.getByLabel("Project request")).toHaveValue(
+  await expect(page.locator(".chat-thread-scroll")).toContainText(
     "A small puzzle game",
   );
   const build = page.getByRole("button", {
@@ -117,7 +117,7 @@ test("welcomes multiple game ideas without generating a preset or claiming a con
   await expect(page.getByLabel("Game idea")).toHaveValue(/farming/);
   await page.getByRole("button", { name: "Create project" }).click();
   await expect(page.getByLabel("Project request")).toHaveValue(/farming/);
-  await page.getByRole("button", { name: "Plan this game" }).click();
+  await page.getByRole("button", { name: "Prepare proposal from saved conversation" }).click();
   await expect(page.getByRole("alert")).toContainText("Configure");
   await page
     .getByRole("button", { name: "Studio details", exact: true })
@@ -222,114 +222,7 @@ test("welcome and model settings pass accessibility checks and fit the viewport"
       .violations,
   ).toEqual([]);
 });
-test("builds an approved non-combat project through a real HTTP provider adapter", async ({
-  page,
-}, testInfo) => {
-  const transport = fakeTransport({ question: true });
-  const server = createServer(async (req, res) => {
-    let body = "";
-    for await (const chunk of req) body += chunk;
-    const response = await transport("http://fixture", {
-      method: "POST",
-      body,
-    });
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(await response.text());
-  });
-  await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
-  const model = {
-    ...profile(),
-    baseUrl:
-      "http://127.0.0.1:" + (server.address() as { port: number }).port + "/v1",
-  };
-  try {
-    await page.request.put("/api/models", {
-      data: {
-        profiles: [model],
-        routes: {
-          planner: [model.id],
-          builder: [model.id],
-          reviewer: [model.id],
-          repair: [model.id],
-        },
-        budgetMicros: 2e6,
-        repairLimit: 1,
-      },
-    });
-    await page.goto("/");
-    await page.getByLabel("Game idea").fill("Build a farming game");
-    await page.getByRole("button", { name: "Create project" }).click();
-    await page.getByRole("button", { name: "Plan this game" }).click();
-    await expect(
-      page.getByRole("button", { name: "Approve specification" }),
-    ).toBeDisabled();
-    await page.getByRole("radio", { name: "Desktop", exact: true }).click();
-    await page
-      .getByRole("button", { name: "Save answers & update plan" })
-      .click();
-    await expect(
-      page.getByRole("button", { name: "Approve specification" }),
-    ).toBeEnabled();
-    await expect(
-      page.getByText("From your clarification", { exact: false }),
-    ).toBeVisible();
-    await page.screenshot({
-      path: `test-artifacts/forge-v2-brief-${testInfo.project.name}.png`,
-      fullPage: true,
-    });
-    await page.getByRole("button", { name: "Approve specification" }).click();
-    await expect(
-      page.getByRole("dialog", { name: "Build details" }),
-    ).toHaveCount(0);
-    await page.getByRole("button", { name: "Generate game" }).click();
-    await expect(
-      page.getByRole("region", { name: "Chat status" }).getByText("Ready to test", { exact: true }),
-    ).toBeVisible();
-    await page
-      .getByRole("button", { name: "Source details", exact: true })
-      .click();
-    const sourceCode = page
-      .getByRole("dialog", { name: "Source details" })
-      .locator("code");
-    await expect(sourceCode).toContainText("Harvest");
-    await expect(sourceCode).not.toContainText("CombatCore");
-    await expect(
-      page.getByRole("link", { name: "Download place" }),
-    ).toBeVisible();
-    const projectId = new URL(page.url()).searchParams.get("project");
-    await page.route("**/api/projects/" + projectId, async (route) => {
-      const response = await route.fetch();
-      const project = await response.json();
-      await route.fulfill({
-        response,
-        json: {
-          ...project,
-          stage: "failed",
-          checks: [],
-          error: "Builder stopped before final validation",
-        },
-      });
-    });
-    await page.reload();
-    await page
-      .getByRole("button", { name: "Source details", exact: true })
-      .click();
-    await expect(
-      page.getByRole("link", { name: "Download place" }),
-    ).toHaveCount(0);
-  } finally {
-    await page.request.put("/api/models", {
-      data: {
-        profiles: [],
-        routes: { planner: [], builder: [], reviewer: [], repair: [] },
-        budgetMicros: 2e6,
-        repairLimit: 1,
-      },
-    });
-    server.closeAllConnections();
-    await new Promise<void>((r) => server.close(() => r()));
-  }
-});
+
 import { mockProviderConnections, connectFixture } from "./provider-fixture";
 test.beforeEach(async ({ page }) => {
   await mockProviderConnections(page);

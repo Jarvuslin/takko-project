@@ -52,18 +52,15 @@ test("asset card is accessible and empty browsing never approves the game", asyn
   expect(f.project().assetDiscovery?.approved).not.toBe(true);
   expect(f.calls).not.toContain("plan");
 });
-test("dirty brief blocks building while manual search remains available", async ({
+test("chat replaces the hidden brief editor while manual search remains available", async ({
   page,
 }) => {
   const f = await assetChoiceFixture(page);
   await expect(page.locator(".need-card")).toBeVisible();
-  await page.getByText("Edit original brief", { exact: true }).click();
-  await page
-    .getByLabel("Project request", { exact: true })
-    .fill("A fishing game with a pond and fish models");
-  await expect(page.locator(".need-card")).toContainText(
-    "Save your brief changes before building.",
-  );
+  await expect(page.getByText("Edit original brief", { exact: true })).toHaveCount(0);
+  await page.getByLabel("Message", { exact: true }).fill("A fishing game with a pond and fish models");
+  await expect(page.getByRole("button", { name: "Send message and update plan" })).toBeEnabled();
+  await expect(page.locator(".need-card")).not.toContainText("Save your brief");
   await expect(
     page.getByRole("button", { name: "Approve & build", exact: true }),
   ).toBeDisabled();

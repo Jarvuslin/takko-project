@@ -92,7 +92,7 @@ test("recent cards open saved projects and project search only filters navigatio
   await expect(recent.getByRole("button")).toHaveCount(2);
 
   await recent.getByRole("button", { name: /Satellite Gardens/ }).click();
-  await expect(page.getByLabel("Project request")).toHaveValue(a.request);
+  await expect(page.locator(".conversation-timeline")).toContainText(a.request);
   await expect(page).toHaveURL(new RegExp(a.id));
 
   await page

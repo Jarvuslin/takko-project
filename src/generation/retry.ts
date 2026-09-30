@@ -9,8 +9,16 @@ export function migrateAssetNeeds(p: Project) {
   if (p.proposal.assetStateVersion === 1) { projectProposalPicks(p); return; }
   const reusable = p.coordination?.inputHash === coordinationInputHash(p);
   const approved = p.proposal?.approval?.hash === p.proposal?.hash;
-  importProposalPicks(p);
+  const imported = importProposalPicks(p);
   projectProposalPicks(p);
+  if (imported?.conflict) {
+    p.proposal.approval = undefined;
+    p.approvedRevision = null;
+    p.staleImplementation = !!p.spec;
+    p.proposal.hash = proposalHash(p);
+    projectProposalPicks(p);
+    return;
+  }
   if (p.proposal) {
     const old = p.proposal.hash;
     p.proposal.hash = proposalHash(p);

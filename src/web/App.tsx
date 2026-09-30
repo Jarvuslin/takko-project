@@ -1155,11 +1155,7 @@ export function App() {
                                 project={project}
                                 disabled={running || assetDraft.inspecting}
                                 buildBlocked={
-                                  ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage) ? "Use the latest result card below, or send a change in chat." : project.pendingProposalEdit ? "Resolve the pending edit before building." : project.platform?.question
-                                      ? "Choose the target platform before building."
-                                      : project.clarificationQuestions?.length
-                                        ? "Answer the project questions before building."
-                                        : undefined
+                                  ["failed", "interrupted", "ready_to_test", "verified"].includes(project.stage) ? "Use the latest result card below, or send a change in chat." : project.pendingProposalEdit ? "Resolve the pending edit before building." : undefined
                                 }
                                 update={receiveAssetProject}
                                 choose={(id) => {

@@ -26,6 +26,7 @@ export function authoringProposal(p: Project) {
 /** One-time import. Conflicting legacy choices are left for the user to resolve. */
 export function importProposalPicks(p: Project) {
   if (!p.proposal?.assetNeeds || p.proposal.assetStateVersion === 1) return;
+  let conflict = false;
   for (const n of p.proposal.assetNeeds) {
     const groups = p.assetDiscovery?.groups.filter(g =>
       g.id === n.id || g.assetNeedId === n.id || g.assetNeedId?.endsWith("_" + n.id) ||
@@ -38,10 +39,14 @@ export function importProposalPicks(p: Project) {
     const identities = new Set(candidates.map(c => JSON.stringify([c.assetId, c.skip])));
     const clips = new Set(candidates.flatMap(c => c.clipKey ? [c.clipKey] : []));
     if (identities.size === 1 && clips.size <= 1) n.pick = structuredClone(candidates.find(c => c.clipKey) ?? candidates[0]);
-    else if (identities.size > 1 || clips.size > 1) n.pick = { error: "Saved picks conflict. Choose an asset or Skip for now." };
+    else if (identities.size > 1 || clips.size > 1) {
+      conflict = true;
+      n.pick = { error: "Saved picks conflict. Choose an asset or Skip for now." };
+    }
     else if (n.selectedAssetId) n.pick = { assetId: n.selectedAssetId, fromMessage: true };
   }
   p.proposal.assetStateVersion = 1;
+  return { conflict };
 }
 
 /** Translate a selection command's working view into its owning proposal need. */

@@ -20,3 +20,10 @@ These tests exercised deleted endpoints. Per-need safety coverage is in asset-pi
 - does not offer approved combat models for an unrelated optional backdrop
 - reopens choices without typing and invalidates the previous plan
 - retains a previewed coverage-limited selection only with acknowledgement
+
+Deleted UI paths, replaced by proposal question tests and the seven Electron journeys:
+
+- tests/browser/ui-polish.spec.ts: one simple decision stays inline and custom answers remain available
+- tests/browser/ui-polish.spec.ts: dialog custom input, focus loop, Escape and restored draft work without submission
+- tests/browser/ui-polish.spec.ts: focused decisions retain choices, support multiple and skip, and save a compact receipt
+- tests/browser/workflow.spec.ts: builds an approved non-combat project through a real HTTP provider adapter

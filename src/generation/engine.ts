@@ -1486,7 +1486,7 @@ export class Engine {
       );
     const defaults = proposalQuestions(p);
     for (const question of defaults) {
-      const option = question.options.find(o => o.id === "keep")?.id ?? question.recommendedOptionId;
+      const option = question.recommendedOptionId;
       p.answers[question.id] = optionAnswer(question, option);
       (p.answerQuestions ??= {})[question.id] = question.source ?? question.prompt;
     }
@@ -1915,6 +1915,12 @@ export class Engine {
         this.store.save(p);
         this.jobs.delete(id);
         const current = this.store.get(id);
+        if (kind === "proposal-edit" && !controller.signal.aborted && !current.pendingProposalEdit && !["failed", "interrupted"].includes(current.stage)) {
+          for (const queued of current.queuedMessages ?? []) {
+            if (queued.status === "queued" && queued.revision === revision) queued.revision = current.revision;
+          }
+          this.store.save(current);
+        }
         if (current.queuedMessages?.some(q => q.status === "queued") && !current.queuedMessages.some(q => q.status === "applying")) {
           if (controller.signal.aborted || (!queuedBoundary && ["failed", "interrupted"].includes(p.stage))) {
             markQueued(current, "held", "Work stopped. Review and continue explicitly.");

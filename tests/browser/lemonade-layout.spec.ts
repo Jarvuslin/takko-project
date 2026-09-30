@@ -299,7 +299,7 @@ test("sending a follow-up preserves the original request and updates the plan on
   await page
     .getByRole("button", { name: "Send message and update plan" })
     .click();
-  await expect(page.getByLabel("Project request")).toHaveValue(
+  await expect(page.locator(".conversation-timeline")).toContainText(
     "A cooperative farming game",
   );
   await expect(page.getByLabel("Message", { exact: true })).toBeEmpty();

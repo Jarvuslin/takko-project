@@ -70,9 +70,7 @@ test("server answer changes under an open tab do not block asset search", async 
   f.project().request = "Updated saved combat brief with a dummy and animation";
   f.project().revision++;
   f.project().assetDiscovery = undefined;
-  await expect(page.getByLabel("Project request")).toHaveValue(
-    f.project().request,
-  );
+  await expect(page.getByLabel("Message", { exact: true })).toBeEditable();
   await page
     .getByRole("button", { name: "Choose asset", exact: true })
     .first()
@@ -96,8 +94,7 @@ test("own query returns results while real local brief edits survive a server re
 }) => {
   const f = await assetChoiceFixture(page);
   await expect.poll(() => f.calls.includes("asset-picks")).toBe(true);
-  await page.getByText("Edit original brief", { exact: true }).click();
-  const request = page.getByLabel("Project request");
+  const request = page.getByLabel("Message", { exact: true });
   await request.fill("My unsaved local request");
   f.project().answers = { attack: "single punch" };
   f.project().revision++;
@@ -114,9 +111,7 @@ test("own query returns results while real local brief edits survive a server re
     name: "Marketplace",
     exact: true,
   });
-  await expect(page.locator(".need-card")).toContainText(
-    "Save your brief changes before building.",
-  );
+  await expect(page.locator(".need-card")).not.toContainText("Save your brief");
   await dialog.getByLabel("Search Marketplace").fill("dummy");
   const response = page.waitForResponse(
     (r) =>
@@ -163,16 +158,13 @@ test("answer key order is clean and actual answer drafts survive incoming revisi
     );
   }, f.project());
   await page.reload();
-  await page.getByText("Edit original brief", { exact: true }).click();
   f.project().revision++;
   f.project().assetDiscovery!.revision = f.project().revision;
   await expect(
     page.getByText(`Revision ${f.project().revision}`, { exact: true }),
   ).toBeVisible();
-  await page
-    .getByRole("button", { name: "Approve brief", exact: true })
-    .click();
-  await expect.poll(() => f.project().answers.attack).toBe("kick");
+  await expect(page.getByLabel("Message", { exact: true })).toBeEditable();
+  expect(f.calls).not.toContain("approve-brief");
 });
 
 test("truncation recovery opens Models without dispatching another generation", async ({

@@ -4,7 +4,10 @@ import { pickerFixture, pickerStudio } from "./asset-picking-fixture";
 import { pickStatus } from "../src/marketplace/pick-status";
 import { snapshotSchema } from "../src/marketplace/types";
 import fs from "node:fs";
-import { migrateAssetNeeds } from "../src/generation/retry";
+import { migrateAssetNeeds, stepRetry } from "../src/generation/retry";
+import { coordinationInputHash } from "../src/generation/coordinator";
+import { proposalQuestions } from "../src/generation/proposal-questions";
+import { optionAnswer } from "../src/generation/questions";
 import type { Project } from "../src/generation/schema";
 import { refreshProposal } from "../src/generation/proposal";
 
@@ -171,12 +174,37 @@ it("one approval uses the displayed defaults for unanswered proposal questions",
   const f = await fixture();
   for (const id of ["targetDummy", "punchAnimation", "hitSound"]) await f.command("asset-picks/skip", { groupId: id });
   const p = f.project(); p.answers = {}; p.answerQuestions = {};
+  const question = proposalQuestions(p).find(q => q.options.some(o => o.id === "keep"))!;
+  expect(question).toBeDefined();
+  question.recommendedOptionId = question.options.find(o => o.id !== "keep")!.id;
+  p.proposal!.questions = [question];
   refreshProposal(p); f.app.locals.engine.store.save(p);
   const response = await f.command("approve-proposal", { hash: p.proposal!.hash });
   expect(response.status).toBe(202);
   f.app.locals.engine.cancel(p.id);
   await f.app.locals.engine.wait(p.id);
   expect(Object.keys(f.project().answers).length).toBeGreaterThan(0);
+  expect(f.project().answers[question.id]).toBe(optionAnswer(question, question.recommendedOptionId));
+});
+
+it("does not approve or reuse conflicting legacy selections during migration", () => {
+  const p: Project = JSON.parse(fs.readFileSync("tests/fixtures/chat-recovery/failed-project.json", "utf8"));
+  const need = p.proposal!.assetNeeds!.find(n => n.selectedAssetId)!;
+  const group = p.assetDiscovery!.groups.find(g => p.assetDiscovery!.choices?.[g.id]?.assetId === need.selectedAssetId)!;
+  const duplicate = structuredClone(group);
+  duplicate.id = "conflicting-legacy-group";
+  duplicate.assetNeedId = need.id;
+  p.assetDiscovery!.groups.push(duplicate);
+  p.assetDiscovery!.choices![duplicate.id] = { skip: true, reason: "Skipped by user" };
+  p.coordination!.inputHash = coordinationInputHash(p);
+  expect(stepRetry(p)).toBeDefined();
+  const workers = structuredClone(p.coordination!.areas);
+  migrateAssetNeeds(p);
+  expect(p.proposal!.assetNeeds!.some(n => n.pick?.error?.includes("conflict"))).toBe(true);
+  expect(p.proposal!.approval).toBeUndefined();
+  expect(stepRetry(p)).toBeUndefined();
+  expect(p.coordination!.inputHash).not.toBe(coordinationInputHash(p));
+  expect(p.coordination!.areas).toEqual(workers);
 });
 
 it("applies multiple accepted messages in bounded batches without asking the user to combine them", async () => {
@@ -190,6 +218,24 @@ it("applies multiple accepted messages in bounded batches without asking the use
   f.app.locals.engine.assetOperations.delete(f.project().id);
   const result: Project = await f.app.locals.engine.applyQueuedChanges(f.project().id);
   expect(result.queuedMessages?.filter(q => ids.includes(q.id)).map(q => q.status), JSON.stringify({error:result.error,queue:result.queuedMessages?.map(q=>({status:q.status,reason:q.reason}))})).toEqual(["applied", "applied"]);
+});
+
+it("applies a message queued behind an active proposal edit to the resulting revision", async () => {
+  const f = await fixture();
+  const original = f.app.locals.engine.transport;
+  let release!: () => void;
+  const delayed = new Promise<void>(resolve => { release = resolve; });
+  let first = true;
+  f.app.locals.engine.transport = async (url: any, init: any) => {
+    if (JSON.parse(init.body).messages && first) { first = false; await delayed; }
+    return original(url, init);
+  };
+  await f.command("messages", { id: randomUUID(), text: "Make combat faster" });
+  const id = randomUUID();
+  await f.command("messages", { id, text: "Use a straw dummy instead" });
+  release();
+  const result: Project = await f.app.locals.engine.wait(f.project().id);
+  expect(result.queuedMessages?.find(q => q.id === id)?.status).toBe("applied");
 });
 
 
