@@ -14,7 +14,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 - [x] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
 - [x] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
 - [x] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test staged migration and stable package output. Commit phase 4. Cutover remains gated on restart approval.
-- [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
+- [x] Run the full offline check and record exact results and remaining native limitations. A failed legacy-fixture run required a full rerun.
 - [x] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
 - [ ] Request approval for one capped dummy/punch/counter run, then a separately authorized Studio test. No automatic paid retry or resumption of paused projects.
 
@@ -65,7 +65,11 @@ Two fresh Configuration instances opened the actual staged vault successfully. B
 
 The unsigned Windows x64 candidate was packaged successfully at `.forge/update-stage/app/Takko-win32-x64`. Packaging did not launch it or replace the running delivery.
 
-The first full check passed build, then stopped with 1,785 unit passes and nine failures across two historical replay files. Their shared fixture unintentionally selected the new direct default while asserting legacy planning behavior. Explicit `directBuild: false` restored that intended coverage. All 17 tests in those two files passed afterward. The original failure log is retained at `test-artifacts/improvement-full-check.log`. Full rerun results follow below when complete.
+The first full check passed build, then stopped with 1,785 unit passes and nine failures across two historical replay files. Their shared fixture unintentionally selected the new direct default while asserting legacy planning behavior. Explicit `directBuild: false` restored that intended coverage. All 17 tests in those two files passed afterward. The original failure log is retained at `test-artifacts/improvement-full-check.log`.
+
+Final full `npm run check` rerun passed: build/typecheck, **1,794 unit tests in 138 files**, **six Luau scenarios**, **16 plugin groups**, **six guard cases**, CSS lint (**274 warnings, zero errors**), **14 desktop tests**, production smoke, **106 browser tests** and **10 Electron journeys**. No stages were skipped. Log: `test-artifacts/improvement-full-check-rerun.log`. The two stronger saved-input engine replays were added after this run's unit stage and passed in a separate six-test direct-build run, followed by another successful TypeScript check. They are not included in the 1,794 count. No application source changed after the full rerun began. Packaging succeeded. Paid inference cost: **$0**.
+
+Live Takko, Studio and the six externally owned StudioMCP processes remained untouched. The full check used isolated test services and doubles. No native Studio verification was performed, so no probe/import cleanup or Studio mode change was needed. The staged candidate is ready for approved cutover, not a claim of successful real-model generation or gameplay.
 
 ## Paid acceptance estimate, not authorization
 
