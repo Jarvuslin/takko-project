@@ -11,7 +11,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 
 - [x] Reproduce both saved planning failures and validate a compact contract derived from the actual approved proposal and selected assets.
 - [x] Start one direct coding session, recover tool-envelope mistakes through validation feedback and pause further requests after the no-code spending threshold. Commit phase 1.
-- [ ] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
+- [x] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
 - [ ] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
 - [ ] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test reversible migration and stable staged updates. Do not switch a running app until restart approval. Commit phase 4.
 - [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
@@ -29,3 +29,5 @@ Initial focused checks caught a legacy mock that returned no files for a task wi
 The no-code threshold is the smaller of $0.50 and one quarter of the generation allowance. It is checked before the next request after settled spend reaches the threshold. A single in-flight call can cross it, but still requires the existing conservative project/generation reservation. Explicit continuation starts a new observation window without erasing charges or expanding caps.
 
 Offline checks do not establish live Sonnet behavior, animation playback, physical assembly or a playable exported place. The rate-based estimate and paid acceptance remain pending.
+
+Phase 2: 64 focused tests in seven files passed, plus two new Electron journeys against the direct backend. The journeys preserve replacement and contained-sound choices through approval, and Stop/Continue preserves the same picks. Desktop build/typecheck passed. Native providers and Studio are doubled. The initial anchored test filter selected no tests, then the corrected filter ran both journeys. The full suite remains pending.

@@ -7,8 +7,8 @@ const { chatJourneyFixture, chooseJourneyAssets } = await tsImport("../chat-jour
 let f: Awaited<ReturnType<typeof chatJourneyFixture>>, app: ElectronApplication, page: Page;
 const card = () => page.getByRole("region", { name: "Assets for this game", exact: true });
 const row = (name: string) => card().getByRole("region", { name, exact: true });
-test.beforeEach(async () => {
-  f = await chatJourneyFixture();
+test.beforeEach(async ({}, info) => {
+  f = await chatJourneyFixture(info.title.startsWith("direct:"));
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), "takko-electron-journey-"));
   const env = Object.fromEntries(Object.entries(process.env).filter((entry): entry is [string,string] => entry[1] !== undefined)); delete env.ELECTRON_RUN_AS_NODE;
   app = await _electron.launch({ args: [path.resolve("dist-desktop"), "--user-data-dir=" + directory], env });
@@ -132,6 +132,36 @@ test("c: choose a Sound inside a Model without a preview, then build", async () 
   await expect(row("Hit sound")).toContainText("Ready", { timeout: 1000 });
   await build();
   expect(f.control.contexts.some(c => c.gameContext?.assetChoices?.groups.some((g: any) => g.choice?.sound?.assetId === f.sound.assetId))).toBe(true);
+});
+test("direct: replacement and a contained Sound survive approval into the coding session", async () => {
+  await chooseJourneyAssets(f, true);
+  const original = f.provider.snapshot;
+  f.provider.snapshot = async (...args: Parameters<typeof original>) => ({ ...await original(...args), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] });
+  await f.choose(f.dummies[2].assetId, "hitSound");
+  await f.choose(f.dummies[3].assetId, "targetDummy");
+  await reload();
+  await row("Hit sound").getByRole("button", { name: "Use sound Hit", exact: true }).click();
+  const choices = structuredClone(f.project().proposal!.assetNeeds!.map(n => [n.id, n.pick]));
+  await build();
+  expect(f.project().proposal!.assetNeeds!.map(n => [n.id, n.pick])).toEqual(choices);
+  expect(f.project().completedBuildTasks).toEqual(["implementation"]);
+  expect(f.control.contexts.some(c => c.coordination)).toBe(false);
+  expect(f.control.contexts.some(c => c.gameContext?.assetChoices?.groups.some((g: any) => g.choice?.sound?.assetId === f.sound.assetId))).toBe(true);
+});
+test("direct: Stop retains picks and Continue resumes the same approved build", async () => {
+  await chooseJourneyAssets(f, true);
+  const choices = structuredClone(f.project().proposal!.assetNeeds!.map(n => [n.id, n.pick]));
+  f.control.buildDelay = 2500; await reload();
+  await card().getByRole("button", { name: "Approve & build", exact: true }).click();
+  await expect.poll(() => f.control.buildCalls, { timeout: 30000 }).toBeGreaterThan(0);
+  await page.getByRole("button", { name: "Stop build" }).click();
+  await expect(page.getByRole("region", { name: "Stopped", exact: true })).toBeVisible({ timeout: 5000 });
+  f.control.buildDelay = 500;
+  await page.getByRole("button", { name: /^Continue ·/ }).click();
+  await expect(page.getByRole("region", { name: "Ready to test", exact: true })).toBeVisible({ timeout: 30000 });
+  expect(f.project().proposal!.assetNeeds!.map(n => [n.id, n.pick])).toEqual(choices);
+  expect(f.control.contexts.some(c => c.coordination)).toBe(false);
+  await clean();
 });
 test("d: a straw dummy edit changes the need and allows a replacement", async () => {
   await chooseJourneyAssets(f); await reload();

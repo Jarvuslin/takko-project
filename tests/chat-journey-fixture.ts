@@ -3,9 +3,10 @@ import { fakeTransport, fixtureReview, specification, profile } from "./generati
 import type { Project } from "../src/generation/schema";
 import type { AssetAdapter, AssetCandidate } from "../src/generation/asset-contract";
 import { inspectPcmWav, type StudioAudioEvidence } from "../src/generation/audio-evidence";
+import type { OpenCodeJob } from "../src/generation/opencode-runtime";
 
 /** External provider and native adapter doubles. Engine, API, persistence and UI remain real. */
-export async function chatJourneyFixture() {
+export async function chatJourneyFixture(directBuild = false) {
   const f = await pickerFixture();
   const engine = f.app.locals.engine;
   const original = engine.transport;
@@ -41,11 +42,26 @@ export async function chatJourneyFixture() {
       control.buildCalls++;
       if (control.buildDelay) await new Promise(resolve => setTimeout(resolve, control.buildDelay));
       if (init.signal?.aborted) throw Error("Stopped offline builder");
-      output = { files: c.task.files.map((path: string) => ({ path, kind: "Script", source: 'local value = Instance.new("IntValue")\nvalue.Name = "OfflineFixture"\nvalue.Parent = script.Parent' })), scene: [], assets: [],
-        coverage: c.task.requirements.map((requirementId: string) => ({ requirementId, status: "implemented", detail: "Offline fixture implementation", files: c.task.files })) };
+      const owned = c.task.files.length ? c.task.files : [`ServerScriptService/${c.namespace}/Game.server.luau`];
+      output = { files: owned.map((path: string) => ({ path, kind: "Script", source: 'local value = Instance.new("IntValue")\nvalue.Name = "OfflineFixture"\nvalue.Parent = script.Parent' })), scene: [], assets: [],
+        coverage: c.task.requirements.map((requirementId: string) => ({ requirementId, status: "implemented", detail: "Offline fixture implementation", files: owned })) };
     } else if (/PHASE: reviewer/.test(body.messages[0].content)) output = { issues: [], tests: c.spec.requirements.map((r: any) => ({ ...fixtureReview.tests[0], id: r.id + "Test", requirementId: r.id })) };
     else return fallback(url, init);
     return Response.json({ choices: [{ finish_reason: "stop", message: { content: JSON.stringify(output) } }], usage: { prompt_tokens: 100, completion_tokens: 100, cost: 0 } });
+  };
+  if (directBuild) engine.executionPolicy.opencode = {
+    preflight() {},
+    async run(job: OpenCodeJob) {
+      const context = job.tools.find(t => t.name === "task_context")!;
+      const submit = job.tools.find(t => t.name === "submit_task")!;
+      for (const task of job.project.spec!.tasks) {
+        if (job.project.completedBuildTasks?.includes(task.id)) continue;
+        const produced = await context.execute(context.schema.parse({ taskId: task.id }));
+        const response = await engine.transport("http://offline.invalid", { signal: job.signal, body: JSON.stringify({ messages: [{ content: "PHASE: builder" }, { content: JSON.stringify(produced) }] }) });
+        const payload = await response.json();
+        await submit.execute(submit.schema.parse({ taskId: task.id, patch: JSON.parse(payload.choices[0].message.content) }), job.signal);
+      }
+    },
   };
   const image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=";
   let capture = 0;
