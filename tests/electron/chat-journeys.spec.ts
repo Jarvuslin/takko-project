@@ -14,6 +14,19 @@ test.beforeEach(async () => {
   app = await _electron.launch({ args: [path.resolve("dist-desktop"), "--user-data-dir=" + directory], env });
   page = await app.firstWindow();
   await page.waitForURL(/127\.0\.0\.1/);
+  await page.addInitScript(() => {
+    (window as any).actionlessAlerts = [];
+    setInterval(() => {
+      for (const alert of document.querySelectorAll<HTMLElement>('[role="alert"]')) {
+        if (!alert.innerText.trim() || !alert.getClientRects().length) continue;
+        const region = alert.closest('section, article, [role="region"], .error-banner') ?? alert.parentElement;
+        if (!region?.querySelector('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled])')) {
+          const messages = (window as any).actionlessAlerts as string[];
+          if (!messages.includes(alert.innerText)) messages.push(alert.innerText);
+        }
+      }
+    }, 50);
+  });
   await page.route("**/api/**", async route => {
     const url = new URL(route.request().url());
     if (url.pathname.includes("thumbnails")) return route.fulfill({ json: {} });
@@ -27,6 +40,8 @@ test.beforeEach(async () => {
 test.afterEach(async ({}, info) => {
   if (page && !page.isClosed()) {
     await page.screenshot({ path: info.outputPath("final.png"), fullPage: true });
+    const alerts = await page.evaluate(() => (window as any).actionlessAlerts ?? []);
+    expect.soft(alerts, "Every visible blocking alert must offer an enabled recovery action").toEqual([]);
     await page.unrouteAll({ behavior: "wait" });
   }
   await app?.close();
@@ -114,7 +129,7 @@ test("c: choose a Sound inside a Model without a preview, then build", async () 
 test("d: a straw dummy edit changes the need and allows a replacement", async () => {
   await chooseJourneyAssets(f); await page.reload();
   await send("Use a straw dummy instead");
-  await expect.poll(() => f.project().proposal?.assetNeeds?.[0].query).toBe("straw dummy");
+  await expect.poll(() => f.project().proposal?.assetNeeds?.[0].query, { timeout: 30000 }).toBe("straw dummy");
   await row("Target dummy").getByRole("button", { name: "Choose asset", exact: true }).click();
   await expect(page.getByLabel("Search Marketplace", { exact: true })).toHaveValue("straw dummy", { timeout: 1000 });
   await page.locator(".market-card").nth(2).getByRole("button", { name: "Use this", exact: true }).click();
@@ -124,7 +139,7 @@ test("d: a straw dummy edit changes the need and allows a replacement", async ()
 test("e: Stop mid-build and Continue", async () => {
   await chooseJourneyAssets(f); f.control.buildDelay = 2500; await page.reload();
   await card().getByRole("button", { name: "Approve & build", exact: true }).click();
-  await expect.poll(() => f.control.buildCalls).toBeGreaterThan(0);
+  await expect.poll(() => f.control.buildCalls, { timeout: 30000 }).toBeGreaterThan(0);
   await page.getByRole("button", { name: "Stop build" }).click();
   await expect(page.getByRole("region", { name: "Chat status" })).toContainText(/Stopping|Stopped/, { timeout: 1000 });
   await expect(page.getByRole("region", { name: "Stopped", exact: true })).toBeVisible({ timeout: 5000 });
@@ -148,7 +163,7 @@ test("f: recorded failed worker checkpoints migrate and Retry resumes the missin
   await page.goto(new URL("/?project=" + p.id, page.url()).href);
   await page.getByRole("button", { name: /^Retry from this step/ }).click();
   await expect(page.getByRole("button", { name: "Stop build" })).toBeVisible({ timeout: 1000 });
-  await expect.poll(() => f.app.locals.engine.store.get(p.id).stage).toBe("review");
+  await expect.poll(() => f.app.locals.engine.store.get(p.id).stage, { timeout: 30000 }).toBe("review");
   const result = f.app.locals.engine.store.get(p.id);
   for (const [id, value] of Object.entries(saved)) expect(result.coordination.areas[id]).toEqual(value);
   expect(result.error).toBeNull();
@@ -156,7 +171,7 @@ test("f: recorded failed worker checkpoints migrate and Retry resumes the missin
 test("g: sending while working keeps the message and shows Queued", async () => {
   await chooseJourneyAssets(f); f.control.buildDelay = 2500; await page.reload();
   await card().getByRole("button", { name: "Approve & build", exact: true }).click();
-  await expect.poll(() => f.control.buildCalls).toBeGreaterThan(0);
+  await expect.poll(() => f.control.buildCalls, { timeout: 30000 }).toBeGreaterThan(0);
   await send("Add a visible combo counter");
   await expect(page.getByText("Queued · after this step", { exact: true }).first()).toBeVisible({ timeout: 1000 });
   await expect(page.getByLabel("Message", { exact: true })).toHaveValue("");

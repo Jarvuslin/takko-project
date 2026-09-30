@@ -89,7 +89,7 @@ test("server answer changes under an open tab do not block asset search", async 
   ).toBeEnabled();
 });
 
-test("own query returns results while real local brief edits survive a server revision", async ({
+test("own query returns results while a composer message survives a server revision", async ({
   page,
 }) => {
   const f = await assetChoiceFixture(page);
@@ -99,8 +99,9 @@ test("own query returns results while real local brief edits survive a server re
   f.project().answers = { attack: "single punch" };
   f.project().revision++;
   f.project().assetDiscovery!.revision = f.project().revision;
+  f.project().proposal!.revision = f.project().revision;
   await expect(
-    page.getByText(`Revision ${f.project().revision}`, { exact: true }),
+    page.getByText(`Saved proposal · revision ${f.project().revision}`, { exact: true }),
   ).toBeVisible();
   await expect(request).toHaveValue("My unsaved local request");
   await page
@@ -130,7 +131,7 @@ test("own query returns results while real local brief edits survive a server re
     f.calls.filter((c) => ["concept", "plan", "build", "PATCH"].includes(c)),
   ).toEqual([]);
 });
-test("answer key order is clean and actual answer drafts survive incoming revisions", async ({
+test("legacy answer drafts do not restore hidden brief approval gates", async ({
   page,
 }) => {
   const f = await assetChoiceFixture(page);
@@ -160,8 +161,9 @@ test("answer key order is clean and actual answer drafts survive incoming revisi
   await page.reload();
   f.project().revision++;
   f.project().assetDiscovery!.revision = f.project().revision;
+  f.project().proposal!.revision = f.project().revision;
   await expect(
-    page.getByText(`Revision ${f.project().revision}`, { exact: true }),
+    page.getByText(`Saved proposal · revision ${f.project().revision}`, { exact: true }),
   ).toBeVisible();
   await expect(page.getByLabel("Message", { exact: true })).toBeEditable();
   expect(f.calls).not.toContain("approve-brief");

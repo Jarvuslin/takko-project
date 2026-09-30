@@ -3,7 +3,7 @@ import { test, expect } from "./workspace-fixture";
 import { proposalQuestions } from "../../src/generation/proposal-questions";
 import { structuredQuestionSchema } from "../../src/generation/questions";
 
-test("unanswered proposal questions pause automatic Marketplace work even with a connected Studio", async ({
+test("unanswered proposal questions offer displayed defaults without an extra approval gate", async ({
   page,
 }) => {
   const p = JSON.parse(
@@ -44,7 +44,8 @@ test("unanswered proposal questions pause automatic Marketplace work even with a
   await expect.poll(() => connectionChecks).toBeGreaterThan(0);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("region",{name:"Assets for this game",exact:true})).toBeVisible();
-  await expect(page.getByRole("button",{name:"Approve & build",exact:true})).toBeDisabled();
+  await expect(page.getByRole("button",{name:"Approve & build",exact:true})).toBeEnabled();
+  await expect(page.getByRole("region",{name:"Assets for this game",exact:true})).toContainText("recommended option for unanswered choices");
   expect(searches).toBe(0);
 });
 

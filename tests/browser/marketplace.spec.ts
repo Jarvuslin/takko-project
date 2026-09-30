@@ -1,100 +1,32 @@
 import { expect, test } from "./workspace-fixture";
 import AxeBuilder from "@axe-core/playwright";
 
-test("existing-project asset roles survive follow-up and reload without leaking into new chat", async ({
-  page,
-}) => {
-  const created = await page.request.post("/api/projects", {
-    data: { request: "Build a butter game" },
-  });
-  expect(created.ok()).toBe(true);
+test("saved attachments survive text follow-ups without returning to the composer", async ({ page }) => {
+  const created = await page.request.post("/api/projects", { data: { request: "Build a butter game" } });
   let project = await created.json();
-  project.assetAttachments = [
-    {
-      assetId: "123",
-      name: "Working Butter",
-      kind: "Model",
-      creatorName: "Test Creator",
-      contentHash: "a".repeat(64),
-      revisionKey: "version:456",
-      inspectedAt: new Date().toISOString(),
-      scannerVersion: 1,
-      scriptCount: 1,
-      usage: "Keep its animation",
-    },
-  ];
-  let planned = 0;
-  await page.route("**/api/projects/" + project.id, async (route) => {
-    if (route.request().method() === "PATCH") {
+  project.assetAttachments = [{ assetId: "123", name: "Working Butter", kind: "Model", creatorName: "Test Creator", contentHash: "a".repeat(64), revisionKey: "version:456", inspectedAt: new Date().toISOString(), scannerVersion: 1, scriptCount: 1, usage: "Keep its animation" }];
+  const saved = structuredClone(project.assetAttachments);
+  await page.route("**/api/projects/" + project.id + "**", async route => {
+    const action = new URL(route.request().url()).pathname.split("/")[4];
+    if (action === "studio-operations") return route.fulfill({ json: [] });
+    if (action === "messages") {
       const body = route.request().postDataJSON();
-      expect(body.assetAttachments[0].assetId).toBe("123");
-      project = {
-        ...project,
-        request: body.request,
-        revision: project.revision + 1,
-        assetAttachments: [
-          {
-            ...project.assetAttachments[0],
-            usage: body.assetAttachments[0].usage,
-          },
-        ],
-      };
+      expect(body.assetAttachments ?? []).toHaveLength(0);
+      project = { ...project, revision: project.revision + 1, conversation: [...project.conversation, { id: body.id, kind: "user", revision: project.revision + 1, at: new Date().toISOString(), text: body.text }] };
     }
     await route.fulfill({ json: project });
   });
-  await page.route(
-    "**/api/projects/" + project.id + "/messages",
-    async (route) => {
-      const body = route.request().postDataJSON();
-      expect(body.assetAttachments[0].assetId).toBe("123");
-      project = {
-        ...project,
-        revision: project.revision + 1,
-        assetAttachments: [
-          {
-            ...project.assetAttachments[0],
-            usage: body.assetAttachments[0].usage,
-          },
-        ],
-        conversation: [
-          ...project.conversation,
-          {
-            id: body.id,
-            kind: "user",
-            revision: project.revision + 1,
-            at: new Date().toISOString(),
-            text: body.text,
-          },
-        ],
-      };
-      await route.fulfill({ json: project });
-    },
-  );
-  await page.route("**/api/projects/" + project.id + "/plan", async (route) => {
-    planned++;
-    await route.fulfill({ json: project });
-  });
   await page.goto("/?project=" + project.id);
-  await expect(
-    page.getByLabel("Use for Working Butter", { exact: true }),
-  ).toHaveValue("Keep its animation");
-  await page
-    .getByLabel("Use for Working Butter", { exact: true })
-    .fill("Keep the animation and sound");
+  await expect(page.getByLabel("Use for Working Butter", { exact: true })).toHaveCount(0);
+  await page.getByLabel("Message", { exact: true }).fill("Keep the animation and add a sound");
   await page.getByLabel("Send message and update plan").click();
-  await expect.poll(() => planned).toBe(1);
-  await expect(page.getByLabel("Saved conversation")).toContainText(
-    "Use the updated asset attachments",
-  );
+  await expect(page.getByLabel("Saved conversation")).toContainText("Keep the animation and add a sound");
+  expect(project.assetAttachments).toEqual(saved);
   await page.reload();
-  await expect(
-    page.getByLabel("Use for Working Butter", { exact: true }),
-  ).toHaveValue("Keep the animation and sound");
+  await expect(page.getByLabel("Use for Working Butter", { exact: true })).toHaveCount(0);
   await page.getByRole("link", { name: "Takko home", exact: true }).click();
   await expect(page.getByLabel("Game idea")).toBeVisible();
-  await expect(
-    page.getByLabel("Use for Working Butter", { exact: true }),
-  ).toHaveCount(0);
+  await expect(page.getByLabel("Use for Working Butter", { exact: true })).toHaveCount(0);
 });
 
 test("Marketplace supports saved assets, inspected drag/drop and chat attachment context", async ({

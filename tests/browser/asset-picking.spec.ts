@@ -404,8 +404,7 @@ test("long real asset names stay bounded and result actions align", async ({
   });
   expect(contained).toBe(true);
   const attachment = page.locator(".asset-attachment strong");
-  await expect(attachment).toHaveAttribute("title", longest.name);
-  await expect(attachment).toHaveCSS("text-overflow", "ellipsis");
+  await expect(attachment).toHaveCount(0);
   await page.screenshot({
     path: "test-artifacts/takko-refresh/long-name-desktop.png",
   });

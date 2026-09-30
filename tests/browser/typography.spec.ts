@@ -114,7 +114,7 @@ test("workspace typography keeps prose readable and controls usable", async ({
     page.getByRole("heading", { name: "The generated project" }),
   ).toBeVisible();
   await page.keyboard.press("Escape");
-  await page.getByLabel("Project request").scrollIntoViewIfNeeded();
+  await page.getByLabel("Message", { exact: true }).scrollIntoViewIfNeeded();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

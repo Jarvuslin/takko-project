@@ -1432,21 +1432,6 @@ export function App() {
                                   </p>
                                 </div>
                                 <div className="actions">
-                                  {!project.proposal && (
-                                    <button
-                                      className="primary"
-                                      disabled={
-                                        running ||
-                                        project.approvedRevision !==
-                                          project.revision
-                                      }
-                                      onClick={() => action("build")}
-                                    >
-                                      {project.artifact
-                                        ? "Rebuild"
-                                        : "Generate game"}
-                                    </button>
-                                  )}
                                   {project.artifact && (
                                     <button
                                       disabled={running}
@@ -1480,9 +1465,7 @@ export function App() {
                                     ))
                                   ) : (
                                     <div className="empty-panel">
-                                      {project.approvedRevision
-                                        ? "Ready to generate your approved game."
-                                        : "Review and approve the brief before generation."}
+                                      No checks yet. Use the proposal's Approve &amp; build action in chat.
                                     </div>
                                   )}
                                 </div>

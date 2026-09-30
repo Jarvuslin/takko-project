@@ -236,6 +236,7 @@ it("applies a message queued behind an active proposal edit to the resulting rev
   release();
   const result: Project = await f.app.locals.engine.wait(f.project().id);
   expect(result.queuedMessages?.find(q => q.id === id)?.status).toBe("applied");
+  expect(result.conversation?.filter(t => t.kind === "user" && t.text === "Use a straw dummy instead")).toHaveLength(1);
 });
 
 

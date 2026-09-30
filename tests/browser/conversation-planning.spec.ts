@@ -197,7 +197,7 @@ test("persistent proposal exposes one build approval and preserves untouched sec
     page.getByRole("region", { name: "Game proposal" }),
   ).toContainText("Snowy winter");
 });
-test("a failed edit retains the visible proposal and unsent request", async ({
+test("a failed accepted edit retains the proposal and an explicit retry without restoring composer input", async ({
   page,
 }) => {
   await fixture(page, true);
@@ -210,7 +210,9 @@ test("a failed edit retains the visible proposal and unsent request", async ({
   await expect(
     page.getByRole("button", { name: "Discard pending edit" }),
   ).toBeVisible();
-  await expect(message).toHaveValue("Change theme to winter");
+  await expect(message).toHaveValue("");
+  await expect(page.getByRole("button", { name: "Retry accepted message", exact: true })).toBeVisible();
   await page.reload();
-  await expect(message).toHaveValue("Change theme to winter");
+  await expect(message).toHaveValue("");
+  await expect(page.getByRole("button", { name: "Retry accepted message", exact: true })).toBeVisible();
 });

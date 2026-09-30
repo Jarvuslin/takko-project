@@ -1062,7 +1062,7 @@ export class Engine {
   private idle(p: Project, revision: number) {
     if (this.assetOperations.has(p.id))
       throw new ConflictError(
-        "Asset work is running. Keep this change as a draft until it finishes.",
+        "Asset work is running. Wait for it to finish, or send your change in chat to queue it.",
       );
     const blocker = this.mutationBlocker?.(p.id);
     if (blocker) throw new ConflictError(blocker);
@@ -1108,6 +1108,7 @@ export class Engine {
       change.architecture === undefined
         ? undefined
         : architectureSchema.parse(change.architecture);
+    const queuedBatch = !!text && p.queuedMessages?.filter(q => q.status === "applying").map(q => q.text).join("\n") === text;
     if ((p.jobId || p.pendingProposalEdit || this.assetOperations.has(p.id) || this.mutationBlocker?.(p.id) || p.assetPipeline?.requiresReconciliation || p.assetPipeline?.status === "interrupted") && text) {
       queueReceipt(p, { id: key, hash, text, revision: p.revision, jobId: p.jobId ?? "asset-operation",
         at: new Date().toISOString(), status: "queued", answers: change.answers, attachments });
@@ -1120,7 +1121,7 @@ export class Engine {
       p.revision++;
       refreshProposal(p, ["assets"]);
       if (p.assetDiscovery) p.assetDiscovery.revision = p.revision;
-      appendTurn(p, "user", text!, { id: key });
+      if (!queuedBatch) appendTurn(p, "user", text!, { id: key });
       appendTurn(p, "snapshot", `Skipped ${skipped.query} for now. You can add it again later.`);
       (p.submissions ??= []).push({ id: key, hash });
       return this.store.save(p);
@@ -1131,7 +1132,7 @@ export class Engine {
       const named = groups.filter(g => text.toLowerCase().includes(g.query.toLowerCase()) || text.toLowerCase().includes(g.id.toLowerCase()));
       const missing = groups.filter(g => !p.assetDiscovery!.choices?.[g.id]?.assetId);
       const target = named.length === 1 ? named[0] : missing.length === 1 ? missing[0] : groups.length === 1 ? groups[0] : undefined;
-      appendTurn(p, "user", text, { id: key });
+      if (!queuedBatch) appendTurn(p, "user", text, { id: key });
       if (target) p.assetChoiceRequest = { id: key, groupId: target.id };
       appendTurn(p, "snapshot", target ? `I'll find a relevant ${target.query}. Review the cost below before choosing.` : `Which asset should I choose? ${groups.map(g => g.query).join(", ")}.`);
       (p.submissions ??= []).push({ id: key, hash });
@@ -1171,7 +1172,7 @@ export class Engine {
             }
           : {}),
       };
-      if (!p.conversation?.some(t => t.id === key)) appendTurn(p, "user", text, { id: key, status: "accepted" });
+      if (!queuedBatch && !p.conversation?.some(t => t.id === key)) appendTurn(p, "user", text, { id: key, status: "accepted" });
       this.store.save(p);
       try { return this.start(id, p.revision, "proposal-edit"); }
       catch (error) {

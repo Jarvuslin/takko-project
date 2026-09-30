@@ -116,7 +116,7 @@ test("welcomes multiple game ideas without generating a preset or claiming a con
     );
   await expect(page.getByLabel("Game idea")).toHaveValue(/farming/);
   await page.getByRole("button", { name: "Create project" }).click();
-  await expect(page.getByLabel("Project request")).toHaveValue(/farming/);
+  await expect(page.locator(".conversation-timeline")).toContainText(/farming/);
   await page.getByRole("button", { name: "Prepare proposal from saved conversation" }).click();
   await expect(page.getByRole("alert")).toContainText("Configure");
   await page
