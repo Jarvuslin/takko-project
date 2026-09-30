@@ -4,6 +4,7 @@ import { pickerFixture, pickerStudio } from "./asset-picking-fixture";
 import { pickStatus } from "../src/marketplace/pick-status";
 import { snapshotSchema } from "../src/marketplace/types";
 import fs from "node:fs";
+import soundContract from "./fixtures/asset-roles/native-sound-contract.json";
 import { migrateAssetNeeds, stepRetry } from "../src/generation/retry";
 import { coordinationInputHash } from "../src/generation/coordinator";
 import { proposalQuestions } from "../src/generation/proposal-questions";
@@ -67,6 +68,7 @@ it("selects a captured sound inside a Model without requiring a preview", async 
   const original = f.app.locals.assetLibrary.provider.snapshot;
   f.app.locals.assetLibrary.provider.snapshot = async (...args: Parameters<typeof original>) => snapshotSchema.parse({
     ...await original(...args),
+    nativeRoles: soundContract.nativeRoles,
     nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }],
   });
   await f.search("hitSound", "sound pack");
@@ -107,7 +109,8 @@ it("migrates recorded worker state and derived duplicates idempotently", () => {
 it("routes oversized complete source evidence to the configured reviewer", async () => {
   const f = await fixture();
   const source = "local ordinaryValue = 1\n".repeat(1600);
-  f.app.locals.assetLibrary.provider.snapshot = async () => snapshotSchema.parse({ nodes: [{ name: "Dummy.Script", className: "Script" }], scripts: [{ name: "Dummy.Script", source }], complete: true, issues: [] });
+  const snapshot = f.app.locals.assetLibrary.provider.snapshot;
+  f.app.locals.assetLibrary.provider.snapshot = async (...args: Parameters<typeof snapshot>) => snapshotSchema.parse({ ...await snapshot(...args), nodes: [{ name: "Dummy.Script", className: "Script" }], scripts: [{ name: "Dummy.Script", source }], complete: true, issues: [] });
   const original = f.app.locals.engine.transport;
   const seen: any[] = [];
   f.app.locals.engine.transport = async (url: any, init: any) => {

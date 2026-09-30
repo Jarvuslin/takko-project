@@ -18,6 +18,8 @@ import {
 import { StudioMarketplace, inspectionLuau } from "../src/marketplace/studio";
 import { createApp } from "../src/server/app";
 import { gameContext } from "../src/generation/game-context";
+import capturedTarget from "./fixtures/asset-roles/10161087974.json";
+import { nativeRolesSchema } from "../src/marketplace/role-capture";
 
 const studioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
 const metadata: AssetMetadata = {
@@ -29,6 +31,7 @@ const metadata: AssetMetadata = {
   versionId: "456",
 };
 const snapshot: AssetSnapshot = {
+  nativeRoles: nativeRolesSchema.parse(capturedTarget.snapshot.nativeRoles),
   nodes: [
     { name: "Butter", className: "Model" },
     { name: "Butter.Click", className: "Script" },
@@ -270,6 +273,7 @@ describe("Studio adapter", () => {
         [],
         large.nodes.map((n) => [n.name, n.className]),
         large.scripts.map((s) => [s.name, s.source]),
+        large.nativeRoles,
       ]),
     );
     const sha256 = createHash("sha256").update(bytes).digest("hex");
@@ -369,13 +373,15 @@ describe("Studio adapter", () => {
       fs.writeFileSync(
         filename,
         `
-local child={ClassName="Script",Enabled=true}
+local child={ClassName="Script",Name="Controller",Enabled=true}
+function child:GetChildren() return {} end
 function child:IsA(kind) return kind=="BaseScript" or kind=="LuaSourceContainer" end
 function child:GetFullName() return "Butter.Controller" end
 if ${unreadable} then
   setmetatable(child,{__index=function(_,key) if key=="Source" then error("Source denied") end end})
 else child.Source="error('Imported source must never execute')" end
-local root={ClassName="Model",destroyed=false}
+local root={ClassName="Model",Name="Butter",destroyed=false}
+function root:GetChildren() return {child} end
 function root:IsA() return false end
 function root:GetFullName() return "Butter" end
 function root:GetDescendants() return {child} end

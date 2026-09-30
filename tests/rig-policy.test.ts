@@ -21,7 +21,7 @@ it.each(["R6", "R15"] as const)("a stated %s rig skips the question and is seria
   const xml = exportBundle({ files: [], scene: [], assets: [], coverage: [] } as any, p.scope, [], p.world, p.rig);
   expect(xml).toContain(`<token name="GameSettingsAvatar">${rig === "R6" ? 0 : 1}</token>`);
 });
-it("warns without blocking when a selected animation rig differs", () => {
+it("blocks a historical mismatched animation whose native role capture is stale", () => {
   const p: Project = JSON.parse(fs.readFileSync("tests/fixtures/chat-recovery/failed-project.json", "utf8"));
   normalizeNeeds(p); p.rig = requestedRig("R15");
   const g = p.assetDiscovery!.groups.find(g => g.id === "PunchAnimation")!;
@@ -29,6 +29,6 @@ it("warns without blocking when a selected animation rig differs", () => {
   // This pack's captured producer clip is retained in the saved project.
   expect(option.previewData!.pack!.entries.find(e => e.key === "1/11/1")!.clip!.rig).toBe("R6");
   if (option.inspection?.scriptCount) p.assetDiscovery!.choices![g.id].sourceReview = { contentHash: option.inspection.contentHash, scripts: [], costMicros: 0 };
-  expect(pickStatus(p, g)).toMatchObject({ state: "warning", canBuild: true });
-  expect(pickStatus(p, g).reason).toContain("R15");
+  expect(pickStatus(p, g)).toMatchObject({ state: "problem", canBuild: false });
+  expect(pickStatus(p, g).reason).toContain("native inspection");
 });

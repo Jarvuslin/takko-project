@@ -137,6 +137,13 @@ local ok,result=pcall(function()
     end
   end
   assert(#tracks>0 and #tracks<=15,"Only standard R6/R15 body animations are supported")
+  local poseIdentity={}
+  for _,frame in frames do
+    for _,pose in frame:GetDescendants() do
+      if pose:IsA("Pose") then table.insert(poseIdentity,{frame.Time,pose:GetFullName(),{pose.CFrame:GetComponents()},pose.Weight,pose.EasingStyle.Name,pose.EasingDirection.Name}) end
+    end
+  end
+  local sourcePoseDigest=game:GetService("EncodingService"):ComputeStringHash(game:GetService("HttpService"):JSONEncode(poseIdentity),Enum.HashAlgorithm.Sha256):gsub(".",function(c) return string.format("%02x",string.byte(c)) end)
   table.sort(tracks,function(a,b) return a.joint<b.joint end)
   local description=own(Instance.new("HumanoidDescription"))
   local model=own(game:GetService("Players"):CreateHumanoidModelFromDescriptionAsync(description,Enum.HumanoidRigType[rig]))
@@ -161,9 +168,13 @@ local ok,result=pcall(function()
   local supported={}
   for _,part in nativeRig do supported[part.name]=true end
   for _,track in tracks do assert(supported[track.joint],"Custom joint '"..track.joint.."' is not supported by the R6/R15 body preview") end
-  return {version=1,name=string.sub(entry.name,1,80),rig=rig,duration=duration,tracks=tracks,nativeRig=nativeRig}
+  return {version=1,name=string.sub(entry.name,1,80),rig=rig,duration=duration,tracks=tracks,nativeRig=nativeRig,sourcePoseDigest=sourcePoseDigest}
 end)
-for _,root in roots do root:Destroy() end
+for _,root in roots do
+  if root:IsA("Sound") then root.PlayOnRemove=false end
+  for _,item in root:GetDescendants() do if item:IsA("Sound") then item.PlayOnRemove=false end end
+  root:Destroy()
+end
 for _,item in owned do item:Destroy() end
 assert(not game:GetService("RunService"):IsRunning(),"Studio mode changed during animation read")
 if not ok then return {captureError=string.sub(tostring(result),1,350)} end

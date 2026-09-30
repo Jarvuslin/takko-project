@@ -44,7 +44,7 @@ test("the inline rig choice recommends the captured animation rig and saves a re
   const group = chosen.assetDiscovery.groups.find((g: any) => g.id === "punchAnimation");
   const clip = group.options[0].previewData.pack.entries.find((e: any) => e.clip);
   await f.command("asset-picks/clip", { groupId: group.id, assetId: f.animation.assetId, clipKey: clip.key });
-  const p = f.project(); p.rig = recommendRig(p); f.app.locals.engine.store.save(p);
+  const p = f.project(); delete p.rig; p.rig = recommendRig(p); f.app.locals.engine.store.save(p);
   await page.reload();
   const question = page.getByRole("region", { name: "Current question", exact: true });
   await expect(question).toContainText("animation");

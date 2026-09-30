@@ -58,7 +58,7 @@ export function normalizeNeeds(p: Project, lookup?: (id: string) => AssetOption 
     if (selected || chosen && prior.pinned?.includes(chosen.id)) pinned.push(row.id);
     const option = options.find(o => o.assetId === choice?.assetId);
     const existing = sources.find(g => g.id === row.id);
-    return { ...row, ...existing, ...(option ? { kind: option.kind } : {}), options };
+    return { ...row, ...existing, preview: row.preview, ...(option ? { kind: option.kind } : {}), options };
   });
   const next = { ...prior, groups, choices, pinned };
   if (JSON.stringify(next) === JSON.stringify(prior)) return false;

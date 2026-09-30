@@ -11,7 +11,7 @@ import { assessEvidenceOptions } from "../marketplace/relevance";
 import { appendTurn } from "./conversation";
 import { validateRetainedAnimations } from "./retained-animation";
 import { matchMessageAssets, normalizeNeeds } from "../marketplace/normalize-needs";
-import { skipTarget, skipProposalNeed, authoringProposal } from "../marketplace/proposal-picks";
+import { skipTarget, skipProposalNeed, authoringProposal, approvedProposalContext } from "../marketplace/proposal-picks";
 import { missingPicks, assetLabel } from "../marketplace/pick-status";
 import { physicalSourceLines } from "./component-review";
 import type { AssetSnapshot } from "../marketplace/types";
@@ -1639,6 +1639,11 @@ export class Engine {
     const proposing = kind === "proposal" || kind === "proposal-edit";
     if (kind === "plan" && planningRetry(p) && p.proposal?.approval?.hash === proposalHash(p) && this.executionPolicy.opencode)
       kind = "proposal-build";
+    // Resuming a direct proposal must not reuse a stale selection approval.
+    // Legacy planned acquisition and retained-artifact repair validate their
+    // native component pipeline after startup.
+    if (kind === "proposal-build" && this.executionPolicy.directBuild !== false && missingPicks(p).length)
+      throw new ConflictError("Verify or skip asset picks before building: " + missingPicks(p).map(assetLabel).join(", "));
     // Old failed planning workers are history, not prerequisites for a first build.
     if (kind === "proposal-build" && !p.artifact && this.executionPolicy.opencode && this.executionPolicy.directBuild !== false)
       p.executionMode = "opencode";
@@ -3527,7 +3532,7 @@ export class Engine {
         "StarterPlayer/StarterPlayerScripts",
       ].map((r) => r + "/" + p.scope),
       spec: p.spec,
-      approvedProposal: p.proposal,
+      approvedProposal: approvedProposalContext(p),
       proposalInstruction: p.proposal
         ? "Implement exactly the approved mechanics, theme, environment/layout and chosen assets. Do not expand the scope. Every task MUST declare proposalSections from mechanics, theme, environment, assets, including indirect lighting, material, UI, rig and animation dependencies. Declare all transitive contracts using dependsOn. Preserve approvedProposal.assetNeeds IDs, requirementIds and constraints in the implementation plan, with corresponding owned requirements."
         : undefined,

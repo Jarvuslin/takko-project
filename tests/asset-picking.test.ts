@@ -258,6 +258,24 @@ it("keeps exclusions visible but refuses selection and records a disconnected St
     /Studio isn't connected/,
   );
 });
+it("refreshes saved metadata and invalidates an approval when the selected revision changes", async () => {
+  const f = await fixture();
+  await f.search();
+  await f.choose();
+  const p = f.project();
+  p.proposal!.approval = { hash: p.proposal!.hash, revision: p.revision, at: new Date().toISOString() };
+  f.app.locals.engine.store.save(p);
+  const listing = f.catalog.get(f.dummies[1].assetId)!;
+  // Fault-inject a later metadata revision, consuming the unchanged actual
+  // native fixture through the library's ordinary recapture path.
+  listing.versionId = "999999999";
+  const next = (await f.command("asset-picks", { studioId: pickerStudio })).data;
+  expect(f.state.inspections).toEqual([listing.assetId, listing.assetId]);
+  expect(next.proposal.approval).toBeUndefined();
+  expect(next.proposal.assetNeeds.find((n: any) => n.id === "targetDummy").pick.option.inspection.nativeRevisionKey).toBe("version:999999999");
+  expect(f.state.calls).toBe(0);
+});
+
 it("does not let Keep it bypass incomplete source capture", async () => {
   const f = await fixture();
   await f.search();

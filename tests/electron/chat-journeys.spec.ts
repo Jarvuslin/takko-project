@@ -3,6 +3,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { tsImport } from "tsx/esm/api";
+import soundContract from "../fixtures/asset-roles/native-sound-contract.json" with { type: "json" };
+import { nativeRolesSchema } from "../../src/marketplace/role-capture";
 const { chatJourneyFixture, chooseJourneyAssets } = await tsImport("../chat-journey-fixture.ts", import.meta.url) as typeof import("../chat-journey-fixture");
 let f: Awaited<ReturnType<typeof chatJourneyFixture>>, app: ElectronApplication, page: Page;
 const card = () => page.getByRole("region", { name: "Assets for this game", exact: true });
@@ -125,7 +127,7 @@ test("b: no relevant sound, chat skip, build", async () => {
 test("c: choose a Sound inside a Model without a preview, then build", async () => {
   await chooseJourneyAssets(f, true);
   const original = f.provider.snapshot;
-  f.provider.snapshot = async (...args: Parameters<typeof original>) => ({ ...await original(...args), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] });
+  f.provider.snapshot = async (...args: Parameters<typeof original>) => ({ ...await original(...args), nativeRoles: nativeRolesSchema.parse(soundContract.nativeRoles), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] });
   await f.choose(f.dummies[2].assetId, "hitSound");
   await reload();
   await row("Hit sound").getByRole("button", { name: "Use sound Hit", exact: true }).click();
@@ -136,7 +138,7 @@ test("c: choose a Sound inside a Model without a preview, then build", async () 
 test("direct: replacement and a contained Sound survive approval into the coding session", async () => {
   await chooseJourneyAssets(f, true);
   const original = f.provider.snapshot;
-  f.provider.snapshot = async (...args: Parameters<typeof original>) => ({ ...await original(...args), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] });
+  f.provider.snapshot = async (...args: Parameters<typeof original>) => args[1].assetId === f.dummies[2].assetId ? ({ ...await original(...args), nativeRoles: nativeRolesSchema.parse(soundContract.nativeRoles), nodes: [{ name: "SoundPack.Hit", className: "Sound", soundId: `rbxassetid://${f.sound.assetId}` }] }) : original(...args);
   await f.choose(f.dummies[2].assetId, "hitSound");
   await f.choose(f.dummies[3].assetId, "targetDummy");
   await reload();
@@ -146,6 +148,12 @@ test("direct: replacement and a contained Sound survive approval into the coding
   expect(f.project().proposal!.assetNeeds!.map(n => [n.id, n.pick])).toEqual(choices);
   expect(f.project().completedBuildTasks).toEqual(["implementation"]);
   expect(f.control.contexts.some(c => c.coordination)).toBe(false);
+  const prompts = f.control.contexts.filter(c => c.approvedProposal);
+  expect(prompts.length).toBeGreaterThan(0);
+  for (const context of prompts) {
+    expect(JSON.stringify(context.approvedProposal)).not.toContain('"tracks"');
+    expect(context.gameContext.assetRoleEvidence.selections.length).toBeGreaterThan(0);
+  }
   expect(f.control.contexts.some(c => c.gameContext?.assetChoices?.groups.some((g: any) => g.choice?.sound?.assetId === f.sound.assetId))).toBe(true);
 });
 test("direct: Stop retains picks and Continue resumes the same approved build", async () => {

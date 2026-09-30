@@ -1,6 +1,7 @@
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery, AssetOption } from "./discovery";
 import type { AssetNeed } from "../generation/asset-contract";
+import { previewForRole } from "./role-evidence";
 
 export type ProposalPick = NonNullable<AssetDiscovery["choices"]>[string] & {
   option?: AssetOption;
@@ -21,6 +22,15 @@ export function authoringProposal(p: Project) {
   if (!p.proposal) return undefined;
   const { assetStateVersion: _version, ...proposal } = p.proposal;
   return { ...proposal, assetNeeds: proposal.assetNeeds?.map(needDefinition) };
+}
+
+/** Prompt view keeps selection intent without repeating native pose/preview data. */
+export function approvedProposalContext(p: Project) {
+  if (!p.proposal) return undefined;
+  return { ...p.proposal, assetNeeds: p.proposal.assetNeeds?.map(n => {
+    const { pick, ...definition } = n;
+    return { ...definition, ...(pick ? { pick: { assetId: pick.assetId, clipKey: pick.clipKey, skip: pick.skip, sound: pick.sound } } : {}) };
+  }) };
 }
 
 /** One-time import. Conflicting legacy choices are left for the user to resolve. */
@@ -77,7 +87,7 @@ export function projectProposalPicks(p: Project) {
       ...prior, id: n.id, assetNeedId: n.id, label: prior?.label ?? n.role,
       query: prior?.query ?? n.query, needQuery: n.query,
       kind: option?.kind ?? (n.kind === "Animation" ? "Model" as const : n.kind),
-      preview: n.kind === "Animation" ? "animation" as const : n.kind === "Audio" ? "audio" as const : n.kind === "Image" ? "image" as const : "model" as const,
+      preview: previewForRole(n),
       options,
     };
   });

@@ -3,6 +3,7 @@ import type { AssetMetadata, MarketplaceKind } from "./types";
 import type { AnimationPack } from "./animations";
 import type { ModelPreview } from "./preview";
 import { z } from "zod";
+import { previewForRole } from "./role-evidence";
 
 // Legacy searches use a UUID. Proposal-owned views use the stable project UUID
 // prefixed by proposal-. Both are real producer contracts, not arbitrary IDs.
@@ -95,14 +96,7 @@ export function assetSearches(
         label: need.role,
         query: need.query,
         kind: need.kind === "Animation" ? "Model" : need.kind,
-        preview:
-          need.kind === "Animation"
-            ? "animation"
-            : need.kind === "Audio"
-              ? "audio"
-              : need.kind === "Image"
-                ? "image"
-                : "model",
+        preview: previewForRole(need),
       }));
   const text = [
     p.request,

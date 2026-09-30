@@ -17,7 +17,7 @@ it("detects the three selected attachments in the saved project without duplicat
   expect(p.assetDiscovery!.groups).toHaveLength(3);
   expect(Object.values(p.assetDiscovery!.choices!).map(c => c.assetId)).toEqual(p.proposal!.assetNeeds!.map(n => n.selectedAssetId));
 });
-it("reviews the saved dummy's actual three source bodies and reports green without a computed-access block", async () => {
+it("reviews the saved dummy's actual sources without treating old security evidence as role readiness", async () => {
   const f = await pickerFixture(); fixtures.push(f);
   const p = saved(); normalizeNeeds(p);
   const cache = JSON.parse(fs.readFileSync("tests/fixtures/chat-recovery/dummy-cache.json", "utf8"));
@@ -28,8 +28,9 @@ it("reviews the saved dummy's actual three source bodies and reports green witho
   group.options.find(o => o.assetId === "112770048")!.inspection = inspection;
   f.app.locals.engine.store.save(p);
   await f.app.locals.engine.reviewAttachedSources(p, group.id, cache.snapshot, inspection.contentHash);
-  expect(pickStatus(p, group)).toMatchObject({ state: "ready", canBuild: true });
-  expect(pickStatus(p, group).reason).toContain("3 scripts kept");
+  expect(pickStatus(p, group)).toMatchObject({ state: "problem", canBuild: false });
+  expect(pickStatus(p, group).reason).toContain("native inspection");
+  expect(p.assetDiscovery!.choices![group.id].sourceReview?.scripts.filter(s => s.action === "keep")).toHaveLength(3);
   expect(p.assetDiscovery!.choices![group.id].sourceReview?.scripts.map(s => s.name)).toEqual(cache.snapshot.scripts.map((s: {name:string}) => s.name));
 });
 it("fills a missing need from a later message by type and name", () => {

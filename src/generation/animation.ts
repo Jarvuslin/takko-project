@@ -37,6 +37,7 @@ export const animationClipSchema = z
     name: z.string().trim().min(1).max(80),
     rig: z.enum(["R6", "R15"]),
     duration: z.number().finite().min(0).max(30),
+    sourcePoseDigest: z.string().regex(/^[a-f0-9]{64}$/).optional(),
     nativeRig: z
       .array(
         z

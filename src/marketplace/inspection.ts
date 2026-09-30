@@ -102,6 +102,7 @@ export function inspectSnapshot(input: AssetSnapshot): Inspection {
       });
   }
   return {
+    ...(snapshot.nativeRoles ? { nativeRoles: snapshot.nativeRoles } : {}),
     scannerVersion: SCANNER_VERSION,
     contentHash: snapshotHash(snapshot),
     inspectedAt: new Date().toISOString(),

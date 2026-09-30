@@ -1,0 +1,32 @@
+{
+  "producer": "inspectionTransferLuau, native role capture version 1",
+  "studioId": "360d3ed1-0d29-4942-96ed-1bb8e5faea62",
+  "assetId": "16583762",
+  "snapshot": {
+    "complete": true,
+    "issues": [],
+    "nodes": [
+      {
+        "name": "Script",
+        "className": "Script"
+      }
+    ],
+    "scripts": [
+      {
+        "name": "Script",
+        "source": "local s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.2)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\n\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.9)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\nlocal s = Instance.new(\"Sound\")\r\n\r\ns.Name = \"Sound\"\r\ns.SoundId = \"04927082b45ab9f6862938c38c079838\"\r\ns.Volume = 5\r\ns.Looped = false\r\ns.archivable = false\r\n\r\ns.Parent = game.Workspace\r\n\r\n\r\ns:play()\r\nwait(0.1)\r\n\r\n\r\n\r\n"
+      }
+    ],
+    "nativeRoles": {
+      "classes": {
+        "Script": 1
+      },
+      "humanoids": [],
+      "version": 1,
+      "sequences": [],
+      "animations": [],
+      "sounds": [],
+      "parts": []
+    }
+  }
+}

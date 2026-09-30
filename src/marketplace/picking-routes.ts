@@ -22,6 +22,7 @@ import { revisionKey, type AssetLibrary } from "./library";
 import { animationPackSchema, studioAnimationPack } from "./animations";
 import { assessEvidenceOptions } from "./relevance";
 import { pickStatus } from "./pick-status";
+import { assetRoleEvidence, previewForRole } from "./role-evidence";
 import { modelPreviewSchema } from "./preview";
 import { matchMessageAssets, normalizeNeeds } from "./normalize-needs";
 
@@ -122,14 +123,7 @@ export function pickingRoutes(
             label: a.usage || a.name,
             query: a.name,
             kind: a.kind,
-            preview:
-              a.kind === "Animation"
-                ? "animation"
-                : a.kind === "Audio"
-                  ? "audio"
-                  : a.kind === "Image"
-                    ? "image"
-                    : "model",
+            preview: previewForRole({ kind: a.kind, query: a.name, role: a.usage ?? "" }),
             options: [],
           };
           d.groups.push(row);
@@ -273,8 +267,7 @@ export function pickingRoutes(
             b.studioId &&
             c?.assetId &&
             !c.error &&
-            o &&
-            (!c.sourceReview || g.preview === "animation" && !o.previewData?.pack)
+            o
           ) {
             p = await verify(p, g, o, b.studioId);
           }
@@ -395,6 +388,9 @@ export function pickingRoutes(
         throw new RequestError(
           "Studio isn't connected. Connect Studio, then choose this asset again.",
         );
+      const previousHash = option.inspection?.contentHash;
+      // Always check current metadata. The library reuses an unchanged native
+      // capture, while a changed revision invalidates cached clips and approval.
       const inspected = (await library.inspect(studioId, option.assetId)).asset;
       if (
         (g.preview === "animation" || g.preview === "audio") &&
@@ -423,11 +419,11 @@ export function pickingRoutes(
         }) };
         if (!option.previewData.sounds?.length) throw new RequestError("This model has no captured sound IDs. Choose another asset or Skip for now.");
       }
-      if (snapshot && inspected.inspection?.status !== "blocked") {
-        store.save(p);
-        await engine.reviewAttachedSources(p, g.id, snapshot, inspected.inspection!.contentHash);
-      }
-      if (g.preview === "animation") {
+      if (g.preview === "animation" && (!option.previewData?.pack ||
+          option.previewData.pack.revisionKey !== revisionKey(inspected) ||
+          previousHash !== inspected.inspection.contentHash ||
+          option.previewData.pack.entries.some(e => e.clip && !e.clip.sourcePoseDigest) ||
+          assetRoleEvidence(p, g).recapture)) {
         if (!library.provider.animations)
           throw new RequestError(
             "This Studio connection cannot capture animation clips. Reconnect Studio and try again.",
@@ -454,7 +450,7 @@ export function pickingRoutes(
           ...option.previewData,
           revisionKey: revisionKey(inspected),
         };
-        if (g.preview === "model" && library.provider.preview) {
+        if (g.preview === "model" && library.provider.preview && (!option.previewData.model || previousHash !== inspected.inspection.contentHash)) {
           try {
             option.previewData.model = modelPreviewSchema.parse(
               await library.provider.preview(studioId, inspected),
@@ -463,6 +459,10 @@ export function pickingRoutes(
             option.previewData.notice = (error as Error).message;
           }
         }
+      }
+      if (snapshot && inspected.inspection?.status !== "blocked") {
+        store.save(p);
+        await engine.reviewAttachedSources(p, g.id, snapshot, inspected.inspection!.contentHash);
       }
       d.studioId = studioId;
       if (keep) {

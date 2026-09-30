@@ -1,0 +1,405 @@
+{
+  "workspaceChildren": 2,
+  "assetId": "10161087974",
+  "cleanup": true,
+  "snapshot": {
+    "complete": true,
+    "issues": [],
+    "nodes": [
+      {
+        "name": "Straw Target Dummy",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Head",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Head.Bullseye",
+        "className": "UnionOperation"
+      },
+      {
+        "name": "Straw Target Dummy.Target Head.Straw head",
+        "className": "UnionOperation"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Straw",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Straw.Union",
+        "className": "UnionOperation"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Straw.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Straw.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Straw.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Torso.Wrappings",
+        "className": "UnionOperation"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood.Base",
+        "className": "Model"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood.Base.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood.Base.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood.Part",
+        "className": "Part"
+      },
+      {
+        "name": "Straw Target Dummy.Target Wood.Part",
+        "className": "Part"
+      }
+    ],
+    "scripts": [],
+    "nativeRoles": {
+      "classes": {
+        "Part": 7,
+        "UnionOperation": 4,
+        "Model": 6
+      },
+      "humanoids": [],
+      "version": 1,
+      "sequences": [],
+      "animations": [],
+      "sounds": [],
+      "parts": [
+        {
+          "path": "Straw Target Dummy.Target Head.Bullseye",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Bullseye",
+          "className": "UnionOperation",
+          "cframe": [
+            225.96914672851562,
+            -44.71944808959961,
+            12.485482215881348,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/1/1",
+          "size": [
+            0.8473567962646484,
+            0.8630146980285645,
+            0.8630218505859375
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Head.Straw head",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Straw head",
+          "className": "UnionOperation",
+          "cframe": [
+            225.98802185058594,
+            -44.695987701416016,
+            12.491616249084473,
+            -0.8268471956253052,
+            -0.4857999086380005,
+            -0.2834128439426422,
+            -0.5065751671791077,
+            0.8621958494186401,
+            0.000019252300262451172,
+            0.24434801936149597,
+            0.14358578622341156,
+            -0.958998441696167
+          ],
+          "key": "1/1/2",
+          "size": [
+            1.254781723022461,
+            1.3344593048095703,
+            1.3232231140136719
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Torso.Straw.Union",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Union",
+          "className": "UnionOperation",
+          "cframe": [
+            226.01278686523438,
+            -45.5588493347168,
+            12.472588539123535,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/2/1/1",
+          "size": [
+            0.6427116394042969,
+            0.09824132919311523,
+            2.4366683959960938
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Torso.Straw.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.0018310546875,
+            -47.15859603881836,
+            12.475823402404785,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/2/1/2",
+          "size": [
+            0.81751549243927,
+            1.1315494775772095,
+            1.6964302062988281
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Torso.Straw.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.0018310546875,
+            -45.97407913208008,
+            12.475823402404785,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/2/1/3",
+          "size": [
+            0.7287559509277344,
+            0.7815861701965332,
+            2.3058853149414062
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Torso.Straw.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.0018310546875,
+            -46.0882568359375,
+            12.475823402404785,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/2/1/4",
+          "size": [
+            1,
+            1.4211761951446533,
+            2
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Torso.Wrappings",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Wrappings",
+          "className": "UnionOperation",
+          "cframe": [
+            225.99807739257812,
+            -46.31557846069336,
+            12.463143348693848,
+            -0.9589983224868774,
+            0.016426214948296547,
+            -0.28293678164482117,
+            -0.000030076131224632263,
+            0.9983130693435669,
+            0.05806015059351921,
+            0.28341320157051086,
+            0.05568807199597359,
+            -0.9573800563812256
+          ],
+          "key": "1/2/2",
+          "size": [
+            1.0134649276733398,
+            2.0152409076690674,
+            2.0206298828125
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Wood.Base.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.01548767089844,
+            -49.53287887573242,
+            12.46492862701416,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/3/1/1",
+          "size": [
+            1,
+            0.125,
+            1.25
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Wood.Base.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.01548767089844,
+            -49.65787887573242,
+            12.46492862701416,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/3/1/2",
+          "size": [
+            1.5,
+            0.125,
+            1.75
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Wood.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.0018310546875,
+            -47.03641128540039,
+            12.475823402404785,
+            -0.00003707408905029297,
+            -0.9590242505073547,
+            -0.283324658870697,
+            -1.000000238418579,
+            0.000036716461181640625,
+            0.000005334615707397461,
+            0.000005334615707397461,
+            0.283324658870697,
+            -0.9590244293212891
+          ],
+          "key": "1/3/2",
+          "size": [
+            5.477046489715576,
+            0.48676300048828125,
+            0.48676300048828125
+          ]
+        },
+        {
+          "path": "Straw Target Dummy.Target Wood.Part",
+          "canQuery": true,
+          "canCollide": true,
+          "anchored": true,
+          "name": "Part",
+          "className": "Part",
+          "cframe": [
+            226.0018310546875,
+            -45.97407913208008,
+            12.475823402404785,
+            -0.9590075016021729,
+            0,
+            -0.28338056802749634,
+            0,
+            1,
+            0,
+            0.28338056802749634,
+            0,
+            -0.9590075016021729
+          ],
+          "key": "1/3/3",
+          "size": [
+            0.34235620498657227,
+            0.3012659549713135,
+            3.9508895874023438
+          ]
+        }
+      ]
+    }
+  },
+  "capturedAt": "2026-09-30 14:21:16 UTC",
+  "studioId": "360d3ed1-0d29-4942-96ed-1bb8e5faea62",
+  "producer": "src/marketplace/studio.ts inspectionTransferLuau, native role capture version 1"
+}

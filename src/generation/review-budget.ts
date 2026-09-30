@@ -1,6 +1,7 @@
 import { z } from "zod";
 import type { Profile, Project } from "./schema";
 import { gameContext } from "./game-context";
+import { approvedProposalContext } from "../marketplace/proposal-picks";
 
 export const finalReviewPolicySchema = z.object({
   maxOutputTokens: z.number().int().min(512).max(32768),
@@ -50,7 +51,7 @@ export function refreshReviewBudget(p: Project, inputBytes = 0) {
   // history and conversation logs are not final-review input.
   const context = {
     gameContext: gameContext(p), spec: p.spec, artifact: p.artifact,
-    approvedProposal: p.proposal, research: p.research, architecture: p.architecture,
+    approvedProposal: approvedProposalContext(p), research: p.research, architecture: p.architecture,
     assetPipeline: p.assetPipeline && {
       status: p.assetPipeline.status,
       entries: p.assetPipeline.entries.map(({ needId, status, selected, reason, bundle }) => ({ needId, status, selected, reason, bundle })),

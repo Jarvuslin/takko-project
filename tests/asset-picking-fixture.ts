@@ -20,6 +20,10 @@ import recordedPage from "./fixtures/creator-store/target-dummy-v2-20260929.json
 import recordedBrief from "./fixtures/asset-picking/real-proposal.json";
 import recordedAnimation from "./fixtures/asset-picking/real-animation-pack.json";
 import recordedSound from "./fixtures/asset-picking/real-sound.json";
+import nativeTarget from "./fixtures/asset-roles/10161087974.json";
+import nativeAnimation from "./fixtures/asset-roles/6125989440.json";
+import nativeClimb from "./fixtures/asset-roles/6125989440-climb.json";
+import { nativeRolesSchema } from "../src/marketplace/role-capture";
 
 export const pickerStudio = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
 export async function pickerFixture() {
@@ -82,6 +86,9 @@ export async function pickerFixture() {
       state.inspections.push(m.assetId);
       await state.delay;
       return {
+        // Route contract mock: reuse real native structural output. Catalog IDs
+        // and script fault injections below are not claims about those assets.
+        nativeRoles: nativeRolesSchema.parse((m.assetId === animation.assetId ? nativeAnimation : nativeTarget).snapshot.nativeRoles),
         nodes: [
           { name: "Offline contract fixture", className: "Part" },
           ...Array.from({ length: state.scripts }, (_, i) => ({
@@ -99,7 +106,11 @@ export async function pickerFixture() {
     },
     animations: async (_s: string, m: AssetMetadata) => {
       state.captures.push(m.assetId);
-      return animationPackSchema.parse(recordedAnimation.previewData.pack);
+      const pack = structuredClone(recordedAnimation.previewData.pack);
+      // Refresh the selected published clip through the real native producer.
+      pack.entries = pack.entries.filter(e => e.key === "1/20/1/1");
+      pack.entries[0].clip = nativeClimb.clip;
+      return animationPackSchema.parse(pack);
     },
   };
   const transport: typeof fetch = async (_url, init) => {
@@ -188,6 +199,7 @@ export async function pickerFixture() {
   engine.config.connect(decision, "offline-fixture-key");
   engine.config.setKey(coding.id, "offline-fixture-key");
   const p: Project = engine.create(recordedBrief.request);
+  p.rig = { selected: "R6", recommended: "R6", reason: "Explicit route-test choice matching the captured clip." };
   delete p.platform; // This fixture reproduces the existing pre-platform project.
   const { revision, hash, changed, ...draft } = recordedBrief.proposal;
   p.proposal = {

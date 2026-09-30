@@ -10,6 +10,7 @@ import { worldChoiceSchema } from "./world-policy";
 import { assetSearches } from "../marketplace/discovery";
 import { assetNeedForGroup } from "../marketplace/asset-binding";
 import { captureProposalPicks, needDefinition } from "../marketplace/proposal-picks";
+import { refreshAssetFacts } from "../marketplace/refresh-asset-facts";
 
 export const sectionId = z.enum(["mechanics", "theme", "environment"]);
 export type SectionId = z.infer<typeof sectionId>;
@@ -100,6 +101,7 @@ export function proposalHash(p: Project) {
 export function refreshProposal(p: Project, changed: Proposal["changed"] = []) {
   if (!p.proposal) return;
   captureProposalPicks(p);
+  refreshAssetFacts(p);
   const hash = proposalHash(p);
   if (hash !== p.proposal.hash) {
     p.proposal.approval = undefined;

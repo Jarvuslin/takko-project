@@ -27,6 +27,7 @@ import { animationClipSchema } from "../generation/animation";
 import { revisionKey } from "./library";
 import { modelPreviewLuau, modelPreviewSchema } from "./preview";
 import { CreatorStore } from "./creator-store";
+import { nativeRolesSchema, roleCaptureLuau } from "./role-capture";
 
 export function unpackMarketplace(raw: any): any {
   for (let i = 0; i < 8; i++) {
@@ -455,6 +456,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
         z.array(z.string()),
         z.array(z.tuple([z.string(), z.string(), z.string().optional()])),
         z.array(z.tuple([z.string(), z.string()])),
+        nativeRolesSchema.optional(),
       ]),
       value,
       "inspection snapshot",
@@ -466,6 +468,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
         issues: packed[1],
         nodes: packed[2].map(([name, className, soundId]) => ({ name, className, ...(soundId ? { soundId } : {}) })),
         scripts: packed[3].map(([name, source]) => ({ name, source })),
+        ...(packed[4] ? { nativeRoles: packed[4] } : {}),
       },
       "inspection snapshot",
     );
@@ -523,7 +526,7 @@ local snapshot=http:JSONDecode(capture())
 local nodes,scripts={},{}
 for _,node in snapshot.nodes do table.insert(nodes,{node.name,node.className,node.soundId}) end
 for _,source in snapshot.scripts do table.insert(scripts,{source.name,source.source}) end
-local encoded=http:JSONEncode({snapshot.complete,snapshot.issues,nodes,scripts})
+local encoded=http:JSONEncode({snapshot.complete,snapshot.issues,nodes,scripts,snapshot.nativeRoles})
 assert(#encoded<=${MAX_TRANSFER_BYTES},"Asset inspection exceeds the transfer size limit")
 local digest=game:GetService("EncodingService"):ComputeStringHash(encoded,Enum.HashAlgorithm.Sha256):gsub(".",function(c) return string.format("%02x",string.byte(c)) end)
 local chunk=string.sub(encoded,${offset + 1},${offset + CHUNK_BYTES})
@@ -538,8 +541,10 @@ export function inspectionLuau(id: string) {
 assert(not game:GetService("RunService"):IsRunning(),"Stop Play before inspecting")
 local roots=game:GetObjects("rbxassetid://${id}")
 local result={nodes={},scripts={},complete=true,issues={}}
+${roleCaptureLuau}
 local ok,err=pcall(function()
   assert(#roots>0,"Asset returned no objects")
+  result.nativeRoles=captureNativeRoles(roots)
   local bytes=0
   local transferBytes=4096
   local function reserve(value)
@@ -571,7 +576,12 @@ local ok,err=pcall(function()
     end
   end
 end)
-for _,root in roots do root:Destroy() end
+for _,root in roots do
+  -- Coverage limits can interrupt traversal before later Sounds were visited.
+  if root:IsA("Sound") then root.PlayOnRemove=false end
+  for _,item in root:GetDescendants() do if item:IsA("Sound") then item.PlayOnRemove=false end end
+  root:Destroy()
+end
 if not ok then result.complete=false;table.insert(result.issues,string.sub(tostring(err),1,300)) end
 assert(not game:GetService("RunService"):IsRunning(),"Studio mode changed during inspection")
 return game:GetService("HttpService"):JSONEncode(result)

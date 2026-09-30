@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { ROLE_CAPTURE_VERSION } from "./role-capture";
 import { RequestError, StoredDataError, UpstreamError } from "../errors";
 import { SCANNER_VERSION, inspectSnapshot, snapshotHash } from "./inspection";
 import {
@@ -88,7 +89,10 @@ export class AssetLibrary {
         throw Error("Invalid asset cache record.");
       if (record.snapshot) {
         snapshotSchema.parse(record.snapshot);
-        if (record.asset.inspection?.scannerVersion !== SCANNER_VERSION) record.asset.inspection = inspectSnapshot(record.snapshot);
+        if (record.asset.inspection?.scannerVersion !== SCANNER_VERSION) {
+          const nativeRevisionKey = record.asset.inspection?.nativeRevisionKey;
+          record.asset.inspection = { ...inspectSnapshot(record.snapshot), nativeRevisionKey };
+        }
       }
       return record;
     } catch (cause) {
@@ -182,7 +186,9 @@ export class AssetLibrary {
       key &&
       key === revisionKey(old.asset) &&
       old.asset.kind === metadata.kind &&
+      (!["Model", "MeshPart"].includes(metadata.kind) || old.snapshot.nativeRoles?.version === ROLE_CAPTURE_VERSION) &&
       old.asset.inspection.scannerVersion === SCANNER_VERSION &&
+      old.asset.inspection.nativeRevisionKey === key &&
       snapshotHash(old.snapshot) === old.asset.inspection.contentHash
     )
       return { asset: old.asset, cacheHit: true };
@@ -207,7 +213,7 @@ export class AssetLibrary {
       ...metadata,
       liked: preferences?.liked ?? false,
       saved: preferences?.saved ?? false,
-      inspection: inspectSnapshot(snapshot),
+      inspection: { ...inspectSnapshot(snapshot), nativeRevisionKey: key },
     };
     this.write({ asset, snapshot });
     return { asset, cacheHit: false };

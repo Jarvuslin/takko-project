@@ -1,5 +1,6 @@
 import { RequestError } from "../errors";
 import { z } from "zod";
+import { nativeRolesSchema, type NativeRoles } from "./role-capture";
 
 export const assetIdSchema = z
   .string()
@@ -56,6 +57,7 @@ export const snapshotSchema = z
       )
       .max(100),
     complete: z.boolean(),
+    nativeRoles: nativeRolesSchema.optional(),
     issues: z.array(z.string().max(300)).max(100),
   })
   .strict()
@@ -74,6 +76,8 @@ export type Finding = {
   message: string;
 };
 export type Inspection = {
+  nativeRoles?: NativeRoles;
+  nativeRevisionKey?: string;
   scannerVersion: number;
   contentHash: string;
   inspectedAt: string;

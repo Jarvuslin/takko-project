@@ -1,6 +1,6 @@
 import type { Project } from "../generation/schema";
 import type { AssetDiscovery } from "./discovery";
-import { proposalNeed } from "./proposal-picks";
+import { assetRoleEvidence } from "./role-evidence";
 
 export type PickState =
   "empty" | "finding" | "checking" | "ready" | "warning" | "problem";
@@ -97,9 +97,6 @@ export function pickStatus(
         : "",
     ...(inspection?.limitations ?? option.inspectionLimitations ?? []),
   ].filter(Boolean);
-  const clip = option.previewData?.pack?.entries.find(
-    (e) => e.key === choice.clipKey && e.clip,
-  );
   if (warnings.length && !inspection) return status("warning", warnings.join(" ") + " Current inspection is still needed.", false);
   // Warnings remain visible on old choices, including the saved irrelevant dummy.
   if (!inspection || option.isFree !== true)
@@ -107,17 +104,12 @@ export function pickStatus(
       "problem",
       "This saved pick needs current verification. Choose it again in Marketplace to check it.",
     );
-  if (group.preview === "animation" && !clip)
-    return status(
-      "problem",
-      "Choose a playable clip from this animation pack.",
-    );
-  if (clip?.clip?.rig && project.rig?.selected && clip.clip.rig !== project.rig.selected) return status("warning", `This animation is ${clip.clip.rig}, but the game uses ${project.rig.selected}. Choose a matching animation or change the project rig.`, true);
-  if (need?.kind === "Audio" && option.kind === "Model" && !proposalNeed(project, group.id)?.pick?.sound) return status("problem", "Choose a sound from this model or Skip for now. Preview is optional.");
+  const role = assetRoleEvidence(project, group);
+  if (role.status !== "ready") return status("problem", role.reason);
   if (warnings.length && !choice.kept) return status("warning", warnings.join(" ") + " Choose a closer match if needed.", true);
   return status(
     "ready",
-    choice.sourceReview ? `${choice.reason ?? ""} ${choice.sourceReview.scripts.filter(s => s.action === "keep").length} scripts kept for this role. ${choice.sourceReview.scripts.filter(s => s.action === "disable").map(s => `${s.name}: disabled in delivered copy`).join(" ")} Validation $${(choice.sourceReview.costMicros / 1e6).toFixed(4)}.` : choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason,
+    role.reason + " " + (choice.sourceReview ? `${choice.reason ?? ""} ${choice.sourceReview.scripts.filter(s => s.action === "keep").length} scripts kept for this role. ${choice.sourceReview.scripts.filter(s => s.action === "disable").map(s => `${s.name}: disabled in delivered copy`).join(" ")} Validation $${(choice.sourceReview.costMicros / 1e6).toFixed(4)}.` : choice.kept ? "Kept by you. " + warnings.join(" ") : choice.reason ?? ""),
   );
 }
 
