@@ -17,6 +17,7 @@ Read `README.md` for what the product does. Read `research/notes/continuation.md
 - **Keep documentation current.** Start with `docs/README.md`. Update an existing topical report instead of adding separate plan, implementation, handoff and state documents. Historical reports are recoverable from Git at `4622b0f`.
 - **No duplicate evidence trees.** Do not create `.forge/evidence-backup-*`, `*-check-before` or whole-tree evidence copies. Routine check output belongs in ignored `test-artifacts/`. Remove test-owned temporary workspaces after use.
 - **Safe cleanup.** Commit before deleting tracked files. Check code/test references. For untracked files, delete only known regenerable output or byte-identical duplicates with retained originals. Keep uncertain files and ask before deleting them. Preserve project/settings directories and encrypted vaults. See `docs/repository-maintenance.md`.
+- **Keep exports out of the source root.** Put new disposable exports in `.forge/exports/` or a user-selected destination. Keep historical exports until their ownership is resolved.
 
 ## Naming
 
