@@ -1,0 +1,62 @@
+{
+  "at": "2026-09-30T22:47:28.368Z",
+  "slots": 32,
+  "distinctSelected": 28,
+  "completedNativeComparisons": 27,
+  "duplicates": 4,
+  "errors": [
+    {
+      "slot": 29,
+      "error": "Error: AssistantCommand:8: Pack exceeds 100 animations"
+    }
+  ],
+  "ready": 20,
+  "blocked": 2,
+  "unknown": 5,
+  "falsePasses": [],
+  "falseBlocks": [],
+  "roleContentMismatches": [
+    6,
+    8,
+    30,
+    31
+  ],
+  "coverage": {
+    "roles": [
+      "character",
+      "static_target",
+      "tool",
+      "prop",
+      "vfx",
+      "sound",
+      "mesh",
+      "image",
+      "animation"
+    ],
+    "animationAssets": 5,
+    "playableClips": 37,
+    "rigs": [
+      "R15"
+    ],
+    "labeled": 0,
+    "unlabeled": 5,
+    "singleActionProposals": 0,
+    "multiActionProposals": 0,
+    "nonAttack": 19,
+    "markerProposals": 0
+  },
+  "playback": {
+    "results": [],
+    "gate": "unmet: fewer than three eligible attack clips or no sampled structural target"
+  },
+  "cost": 0,
+  "limits": "Independent structural inspection, not semantic correctness or broad Marketplace accuracy. Unknowns are abstentions. Role-content mismatches are requested-role selections lacking native structure, even when correctly blocked. Motion proposal counts do not establish authored hit semantics.",
+  "missingGates": [
+    "Fewer than six playable animation assets",
+    "Both rigs not covered",
+    "Labeled/unlabeled coverage missing",
+    "Single/multi/nonattack coverage missing",
+    "Three native playback passes missing"
+  ],
+  "g5AuthorizedToProceed": false
+}
