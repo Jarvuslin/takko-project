@@ -5,7 +5,8 @@ const electronVersion = JSON.parse(
 ).version;
 const paths = await packager({
   dir: "dist-desktop",
-  out: process.env.TAKKO_PACKAGE_OUT || "release",
+  // Stage first. Cutover of the one installed bundle requires the app to exit.
+  out: process.env.TAKKO_PACKAGE_OUT || ".forge/update-stage/app",
   name: "Takko",
   electronVersion,
   platform: process.platform,

@@ -13,7 +13,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 - [x] Start one direct coding session, recover tool-envelope mistakes through validation feedback and pause further requests after the no-code spending threshold. Commit phase 1.
 - [x] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
 - [x] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
-- [ ] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test reversible migration and stable staged updates. Do not switch a running app until restart approval. Commit phase 4.
+- [x] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test staged migration and stable package output. Commit phase 4. Cutover remains gated on restart approval.
 - [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
 - [ ] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
 - [ ] Request approval for one capped dummy/punch/counter run, then a separately authorized Studio test. No automatic paid retry or resumption of paused projects.
@@ -48,3 +48,13 @@ Read-only process ancestry inspection on 2026-09-30 UTC found no confirmed Takko
 | 22076 | 20780 | Claude, claude.exe PID 44624 |
 
 None was ended. These are live-owned integrations, not proven orphans. Ending any of them needs explicit approval and a fresh PID/start-time check. The initial attribution of these six processes to old Takko builds is not supported by this inventory.
+
+## Workspace migration
+
+Phase 4: 11 focused migration/provider-connection tests and TypeScript checking passed. Tests cover conflicting projects, preset/profile ID remapping, source overlap, source edits invalidating a stage, real Windows DPAPI encryption and key restoration through a fresh Configuration. The synthetic conflicting-key case retains the active connection without changing either source.
+
+`npx tsx scripts/stage-workspace.ts` staged seven distinct projects from active chat-clean (one), original AppData (five) and fresh-desktop (one). No source was changed. The staged vault reopened successfully with one encrypted connection and zero key conflicts. Active settings remain selected, other profiles/presets are retained. 191 cached-asset, preference or bridge conflicts retain the earlier source, with file paths recorded in the local migration receipt. Project/history/trace conflicts would stop staging. All original versions remain in their source workspaces.
+
+`npm run desktop:package` now stages in `.forge/update-stage/app` by default and refuses overwriting an existing bundle. The intended one installed app is `release/Takko-win32-x64/Takko.exe`, with default `%APPDATA%/Forge Desktop` data and no workspace-switch shortcut argument.
+
+Cutover procedure, pending approval: close the current Takko normally, verify both source and stage fingerprints with `npx tsx scripts/stage-workspace.ts --verify`, and restage if anything changed. Preserve original AppData as an explicit rollback sibling before installing the staged workspace. Install the staged app at the stable release path and retarget the Desktop shortcut. Launch once and verify all seven projects, active preset and encrypted connection restoration, then close and relaunch to verify persistence. Keep the previous working delivery and source workspaces until that passes. Never resume a project or call a paid provider during migration verification. Studio stays open. No cutover has happened yet.
