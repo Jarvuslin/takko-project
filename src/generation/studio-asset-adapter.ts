@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
 import { z } from "zod";
+import { assetDiscoveryIdSchema } from "../marketplace/discovery";
 import {
   assetNeedSchema,
   AssetOperationError,
@@ -820,9 +821,11 @@ export class StudioAssetAdapter implements AssetAdapter {
   ) {
     return this.exclusive(async () => {
       const need = assetNeedSchema.parse(needInput);
-      z.object({ discoveryId: z.uuid(), revision: z.number().int().positive() })
+      const parsed = z.object({ discoveryId: assetDiscoveryIdSchema, revision: z.number().int().positive() })
         .strict()
-        .parse(approval);
+        .safeParse(approval);
+      if (!parsed.success)
+        throw new StudioAssetError("Invalid approved discovery identity or revision", [], "none");
       if (
         !/^[1-9]\d*$/.test(candidate.id) ||
         candidate.kind !== need.kind ||

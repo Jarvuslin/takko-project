@@ -2,6 +2,14 @@ import type { Project } from "../generation/schema";
 import type { AssetMetadata, MarketplaceKind } from "./types";
 import type { AnimationPack } from "./animations";
 import type { ModelPreview } from "./preview";
+import { z } from "zod";
+
+// Legacy searches use a UUID. Proposal-owned views use the stable project UUID
+// prefixed by proposal-. Both are real producer contracts, not arbitrary IDs.
+export const assetDiscoveryIdSchema = z.string().refine(
+  value => z.uuid().safeParse(value.startsWith("proposal-") ? value.slice(9) : value).success,
+  "Expected an asset discovery UUID or proposal UUID",
+);
 
 export type AssetSearch = {
   id: string;

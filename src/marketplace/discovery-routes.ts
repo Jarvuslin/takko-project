@@ -6,7 +6,7 @@ import type { GenerationStore } from "../generation/store";
 import type { Engine } from "../generation/engine";
 import { ConflictError, RequestError } from "../errors";
 import { revisionKey, type AssetLibrary } from "./library";
-import { assetSearches, type AssetDiscovery } from "./discovery";
+import { assetSearches, assetDiscoveryIdSchema, type AssetDiscovery } from "./discovery";
 import { assetIdSchema, type AssetMetadata } from "./types";
 import {
   animationPackSchema,
@@ -73,7 +73,7 @@ export function discoveryRoutes(
         query: z.string().trim().min(1).max(200).optional(),
         refresh: z.boolean().optional(),
         cursor: z.string().min(1).max(4096).optional(),
-        discoveryId: z.uuid().optional(),
+        discoveryId: assetDiscoveryIdSchema.optional(),
       })
       .strict()
       .parse(req.body);
@@ -360,7 +360,7 @@ export function discoveryRoutes(
     const b = z
       .object({
         revision,
-        discoveryId: z.uuid(),
+        discoveryId: assetDiscoveryIdSchema,
         groupId: z.string().max(80),
         assetId: assetIdSchema,
       })

@@ -24,3 +24,7 @@ Provider balance delta: **$0**. Per-call actual charges and conservative reserva
 The source correction passed 100 focused tests across Studio adapter, asset choices and direct-build files. Full check results are recorded in the improvement report after completion. No second attempt was made. No real model behavior, export quality or gameplay was established.
 
 Studio state was checked before and after the attempt. It stayed in Edit mode. A read-only native check confirmed no trial namespace or temporary imports existed afterward. No existing scripts were modified, no Play session started and no test service remained. All MCP clients started by the task were closed. See `studio-cleanup.json`.
+
+## Installed correction
+
+After the recorded failure, the fix passed the full check: 1,797 unit tests/138 files, six Luau scenarios, 16 plugin groups, six guards, 14 desktop tests, production smoke, 106 browser tests, 10 Electron journeys and build/typecheck. CSS: 274 warnings, zero errors. The corrected bundle is installed at the stable app path and restored the same workspace on launch. No second generation attempt was dispatched.

@@ -16,7 +16,7 @@ This builds the existing UI and bundled service, then opens Takko. A development
 npm run desktop:package
 ```
 
-Creates an **unsigned application directory** in `.forge/update-stage/app/Takko-win32-x64` on this Windows host. Packaging refuses to overwrite existing output. After approved shutdown, install that candidate at the single stable path `release/Takko-win32-x64`, retaining the previous working delivery for rollback. See `research/notes/continuation.md` for the app currently running. Initial workspace cutover is staged but not yet applied. Do not create another dated user-facing bundle.
+Creates an **unsigned application directory** in `.forge/update-stage/app/Takko-win32-x64` on this Windows host. Packaging refuses to overwrite existing output. After approved shutdown, install that candidate at the single stable path `release/Takko-win32-x64`, retaining the previous working delivery for rollback. See `research/notes/continuation.md` for the app currently running. Initial cutover is complete with seven original projects and encrypted connection restoration verified across two launches. Do not create another dated user-facing bundle.
 
 Versions are pinned in the lockfile: Electron 44.3.0, esbuild 0.28.2 and Electron Packager 20.3.0. The service is bundled as CommonJS; runtime code does not depend on the repository's `node_modules`, Vite or TSX. Static web and plugin resources are copied into the application directory. Existing locally installed Luau compiler is copied if present; otherwise compilation continues to report a missing prerequisite, never a fabricated pass.
 

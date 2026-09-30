@@ -16,7 +16,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 - [x] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test staged migration and stable package output. Commit phase 4. Cutover remains gated on restart approval.
 - [x] Run the full offline check and record exact results and remaining native limitations. A failed legacy-fixture run required a full rerun.
 - [x] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
-- [ ] Request approval for one capped dummy/punch/counter run, then a separately authorized Studio test. No automatic paid retry or resumption of paused projects.
+- [x] Obtain approval for one capped dummy/punch/counter run and record its result. The attempt failed before inference. A retry and real Studio gameplay test remain separately authorized.
 
 ## Verification record
 
@@ -59,7 +59,7 @@ Phase 4: 11 focused migration/provider-connection tests and TypeScript checking 
 
 `npm run desktop:package` now stages in `.forge/update-stage/app` by default and refuses overwriting an existing bundle. The intended one installed app is `release/Takko-win32-x64/Takko.exe`, with default `%APPDATA%/Forge Desktop` data and no workspace-switch shortcut argument.
 
-Cutover procedure, pending approval: close the current Takko normally, verify both source and stage fingerprints with `npx tsx scripts/stage-workspace.ts --verify`, and restage if anything changed. Preserve original AppData as an explicit rollback sibling before installing the staged workspace. Install the staged app at the stable release path and retarget the Desktop shortcut. Launch once and verify all seven projects, active preset and encrypted connection restoration, then close and relaunch to verify persistence. Keep the previous working delivery and source workspaces until that passes. Never resume a project or call a paid provider during migration verification. Studio stays open. No cutover has happened yet.
+Cutover procedure approved and completed: close the current Takko normally, verify both source and stage fingerprints with `npx tsx scripts/stage-workspace.ts --verify`, and restage if anything changed. Preserve original AppData as an explicit rollback sibling before installing the staged workspace. Install the staged app at the stable release path and retarget the Desktop shortcut. Launch once and verify all seven projects, active preset and encrypted connection restoration, then close and relaunch to verify persistence. Keep the previous working delivery and source workspaces until that passes. Never resume a project or call a paid provider during migration verification. Studio stays open. The completed cutover and its corrected directory placement are recorded below.
 
 Two fresh Configuration instances opened the actual staged vault successfully. Both restored the active `son` preset, `anthropic/claude-sonnet-5.5`, five profiles, three presets and an available key. No credential was printed. A final fingerprint check found the stage and source inputs unchanged. This verifies storage reopening, not provider authentication or the not-yet-approved app relaunch.
 
@@ -71,7 +71,7 @@ Final full `npm run check` rerun passed: build/typecheck, **1,794 unit tests in 
 
 Live Takko, Studio and the six externally owned StudioMCP processes remained untouched. The full check used isolated test services and doubles. No native Studio verification was performed, so no probe/import cleanup or Studio mode change was needed. The staged candidate is ready for approved cutover, not a claim of successful real-model generation or gameplay.
 
-## Paid acceptance estimate, not authorization
+## Paid acceptance estimate and authorization
 
 Checked 2026-09-30T04:16Z. The actual active `son` preset routes planner, builder, reviewer and repair to `anthropic/claude-sonnet-5.5` on OpenRouter, with 8,192 maximum output tokens per request. Stored rates agree with the [current OpenRouter catalog](https://openrouter.ai/api/v1/models): $2/M input, $10/M output, $0.20/M cache reads, $2.50/M five-minute cache writes and $4/M one-hour writes. No new provider-balance query or inference was made.
 
@@ -96,3 +96,11 @@ Request admission also requires conservative reservations, not just estimated co
 User approved both cutover and the proposed $2.50 trial. Stable app installed at `release/Takko-win32-x64`, Desktop shortcut has no workspace switch, canonical workspace is `%APPDATA%/Forge Desktop`. Two corrected launches each exposed seven projects, five profiles, three presets, active son preset and restored connection through the real packaged API.
 
 Initial PowerShell relocation left old files at the canonical path and nested the stage beneath it. The first candidate therefore displayed four older projects. No inference ran. After stopping that owned candidate, same-volume Directory.Move put the verified stage at the canonical root. The first hidden candidate did not accept normal window close, so its owned main process was terminated and its service exited on lease expiry. The next corrected launch closed normally through its own window. Both partial original directories are retained as `Forge Desktop.pre-migration` and `Forge Desktop.cutover-hold`, alongside the unchanged repository source workspaces. No project or key was deleted. No app source changed, so the previously passed full check remains applicable.
+
+## Authorized trial and contract correction
+
+The approved attempt failed before any provider dispatch on a UUID-only discovery ID validator. Zero calls, $0 cost, $0 reservations, no files. Key balance was $12.61069673 before and after at 2026-09-30T04:51Z. Original failure, per-call empty receipt list and cleanup result are preserved in [RESULTS.md](results/direct-build-acceptance/RESULTS.md), commit `ef7ae8c`. The original source project remains unchanged. No automatic retry occurred.
+
+Proposal views produce proposal-prefixed UUIDs. The actual Studio binder and older discovery routes accepted only bare UUIDs. The focused correction shares the real ID contract, keeps malformed values rejected, and classifies rejected binding as no native effects. A new regression passes actual proposal producer output and selected candidates to the real Studio adapter. Previous adapter doubles missed this boundary. 100 focused tests passed. Full check passed: 1,797 unit tests in 138 files, six Luau scenarios, 16 plugin groups, six guard cases, 14 desktop tests, production smoke, 106 browser tests and 10 Electron journeys. Build/typecheck passed. CSS has 274 warnings and zero errors. No stages skipped. Log: `test-artifacts/discovery-contract-full-check.log`.
+
+The corrected bundle replaced the same stable app with the current workspace untouched. Latest launch restored eight projects (seven originals plus the failed trial), five profiles, three presets, active son preset and the encrypted connection. Trial remains failed with zero calls. Main PID 33012, service 32828, port 56794. The old installed bundle is retained at `.forge/update-rollback/Takko-win32-x64`. Automatic approval review blocked deletion of the older dated bundle without a detailed reason, so it was moved intact to `.forge/update-rollback/legacy-delivery`. Only the stable app is left under release, and no additional space was reclaimed.

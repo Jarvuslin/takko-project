@@ -11,6 +11,11 @@ import {
 } from "../src/generation/studio-asset-adapter";
 import type { AssetNeed } from "../src/generation/asset-contract";
 import type { Bundle } from "../src/generation/schema";
+import type { Project } from "../src/generation/schema";
+import { projectProposalPicks } from "../src/marketplace/proposal-picks";
+import { approvedAssetAdapter, buildAssetNeeds } from "../src/marketplace/approved-adapter";
+import { directBuildSpec } from "../src/generation/direct-build";
+import { assetDiscoveryIdSchema } from "../src/marketplace/discovery";
 import {
   expectedAdaptedInventory,
   loadComponentAdaptationChain,
@@ -273,6 +278,28 @@ async function inspect(f = setup(), input = need) {
   );
   return { ...f, inspection };
 }
+it("binds actual proposal discovery output to the real Studio adapter before native dispatch", async () => {
+  const p: Project = JSON.parse(fs.readFileSync("tests/fixtures/direct-build/6e6ffc7f.json", "utf8"));
+  // Exercise the real producer, including its fallback when there is no search.
+  delete p.assetDiscovery;
+  projectProposalPicks(p);
+  p.proposal!.approval = { hash: p.proposal!.hash, revision: p.revision, at: new Date().toISOString() };
+  p.assetDiscovery!.approved = true;
+  p.spec = directBuildSpec(p);
+  const f = setup();
+  const adapter = approvedAssetAdapter(f.adapter, p);
+  const need = buildAssetNeeds(p)[0];
+  const found = await adapter.search(need, need.query, signal());
+  expect(found.candidates.length).toBeGreaterThan(0);
+  expect(assetDiscoveryIdSchema.parse(p.assetDiscovery!.id)).toBe(p.assetDiscovery!.id);
+  await expect(f.adapter.bindApprovedReference(need, found.candidates[0], {
+    discoveryId: p.assetDiscovery!.id, revision: p.revision,
+  })).resolves.toBeUndefined();
+  await expect(f.adapter.bindApprovedReference(need, found.candidates[0], {
+    discoveryId: "proposal-not-a-uuid", revision: p.revision,
+  })).rejects.toMatchObject({ effects: "none" });
+  expect(f.client.calls).toEqual([]);
+});
 it("inspects an explicitly approved reference without pretending it came from a search", async () => {
   const f = setup();
   const candidate = {
