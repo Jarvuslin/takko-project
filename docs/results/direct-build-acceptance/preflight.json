@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-30T04:51:04.554Z",
+  "model": "anthropic/claude-sonnet-5.5",
+  "pricing": {
+    "prompt": "0.000002",
+    "completion": "0.00001",
+    "web_search": "0.01",
+    "input_cache_read": "0.0000002",
+    "input_cache_write": "0.0000025",
+    "input_cache_write_1h": "0.000004"
+  },
+  "maxOutputTokens": 8192,
+  "capMicros": 2500000,
+  "balance": {
+    "at": "2026-09-30T04:51:04.493Z",
+    "limit": 30,
+    "remaining": 12.61069673,
+    "usage": 17.38930327
+  },
+  "studioState": "- Current Studio Mode: Edit\n- Available DataModels: Edit\n- Focused DataModel in the viewport: Edit",
+  "sourceId": "6e6ffc7f-d435-4fb1-a722-3699a0749a74"
+}
