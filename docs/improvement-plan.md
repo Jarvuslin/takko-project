@@ -12,7 +12,7 @@ Fix generation first using the two saved failures. Validate chat and asset conti
 - [x] Reproduce both saved planning failures and validate a compact contract derived from the actual approved proposal and selected assets.
 - [x] Start one direct coding session, recover tool-envelope mistakes through validation feedback and pause further requests after the no-code spending threshold. Commit phase 1.
 - [x] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
-- [ ] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
+- [x] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
 - [ ] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test reversible migration and stable staged updates. Do not switch a running app until restart approval. Commit phase 4.
 - [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
 - [ ] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
@@ -31,3 +31,20 @@ The no-code threshold is the smaller of $0.50 and one quarter of the generation 
 Offline checks do not establish live Sonnet behavior, animation playback, physical assembly or a playable exported place. The rate-based estimate and paid acceptance remain pending.
 
 Phase 2: 64 focused tests in seven files passed, plus two new Electron journeys against the direct backend. The journeys preserve replacement and contained-sound choices through approval, and Stop/Continue preserves the same picks. Desktop build/typecheck passed. Native providers and Studio are doubled. The initial anchored test filter selected no tests, then the corrected filter ran both journeys. The full suite remains pending.
+
+Phase 3: 28 focused Studio client/connection tests passed, including a real owned Node child whose owner exits without explicitly closing the client. Takko now tracks child process objects and closes them on normal process exit, desktop shutdown/lease expiry and server SIGINT/SIGTERM. It never enumerates processes by executable name for termination. Forced OS termination of the service cannot run JavaScript exit hooks and remains outside this guarantee. Early test attempts used the wrong client method and an invalid executable override, corrected before the passing run.
+
+## Existing StudioMCP inventory
+
+Read-only process ancestry inspection on 2026-09-30 UTC found no confirmed Takko orphan. Ancestor creation times were checked to exclude reused parent PIDs. All six had live application owners through cmd.exe:
+
+| StudioMCP PID | Parent cmd PID | Live owner |
+| --- | --- | --- |
+| 36712 | 1372 | Codex, codex.exe PID 14540 |
+| 32628 | 27276 | Codex, codex.exe PID 14540 |
+| 43536 | 17996 | Codex, codex.exe PID 14540 |
+| 34804 | 44688 | Codex, codex.exe PID 14540 |
+| 42064 | 29572 | Claude, claude.exe PID 44624 |
+| 22076 | 20780 | Claude, claude.exe PID 44624 |
+
+None was ended. These are live-owned integrations, not proven orphans. Ending any of them needs explicit approval and a fresh PID/start-time check. The initial attribution of these six processes to old Takko builds is not supported by this inventory.

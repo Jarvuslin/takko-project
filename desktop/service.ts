@@ -3,6 +3,7 @@ import path from "node:path";
 import express from "express";
 import { createApp } from "../src/server/app";
 import { windowsCredentialVault } from "../src/generation/credential-vault";
+import { closeOwnedStudioChildren } from "../src/generation/studio-mcp-client";
 
 // Electron utilityProcess supplies parentPort. Node IPC is used only by offline tests.
 const parentPort = (
@@ -52,6 +53,7 @@ let closing = false;
 function shutdown() {
   if (closing) return;
   closing = true;
+  closeOwnedStudioChildren();
   clearInterval(lease);
   // The main process enforces the outer shutdown deadline; this closes idle sockets.
   server.close(() => process.exit(0));

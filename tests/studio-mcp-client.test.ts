@@ -3,10 +3,13 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { EventEmitter } from "node:events";
+import { execFileSync } from "node:child_process";
+import { pathToFileURL } from "node:url";
 import { PassThrough, Writable } from "node:stream";
 import {
   resolveRobloxMcpExecutable,
   StdioStudioClient,
+  closeOwnedStudioChildren,
   type StudioChild,
   type StdioStudioClientOptions,
 } from "../src/generation/studio-mcp-client";
@@ -92,6 +95,35 @@ function setup(options: StdioStudioClientOptions = {}) {
   clients.push(client);
   return { client, child };
 }
+it("service shutdown kills its owned children, forgets exited children and never touches an unrelated child", async () => {
+  const a = setup(), b = setup(), unrelated = new MockChild();
+  await a.client.listTools();
+  await b.client.listTools();
+  a.child.emit("exit", 0, null);
+  closeOwnedStudioChildren();
+  expect(a.child.killed).toBe(0);
+  expect(b.child.killed).toBe(1);
+  expect(unrelated.killed).toBe(0);
+  await new Promise(resolve => setImmediate(resolve));
+  closeOwnedStudioChildren();
+  expect(b.child.killed).toBe(1);
+});
+it("normal owner-process exit closes a real owned child without requiring the client caller to close it", async () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "takko-mcp-test-")); directories.push(directory);
+  const marker = path.join(directory, "child.pid");
+  const moduleUrl = pathToFileURL(path.resolve("src/generation/studio-mcp-client.ts")).href;
+  const script = `import fs from 'node:fs'; import {spawn} from 'node:child_process';
+    import {StdioStudioClient} from ${JSON.stringify(moduleUrl)};
+    const c=new StdioStudioClient({executable:${JSON.stringify(path.join(directory, "StudioMCP.exe"))},childFactory:(_binary,options)=>{
+      const child=spawn(process.execPath,['-e','setInterval(()=>{},1000)'],options);
+      fs.writeFileSync(process.argv[1],String(child.pid));return child;
+    }}); void c.listTools().catch(()=>{}); setTimeout(()=>process.exit(0),100);`;
+  execFileSync(process.execPath, ["--import", "tsx", "--input-type=module", "-e", script, marker], { windowsHide: true, timeout: 5000, stdio: "pipe" });
+  const pid = Number(fs.readFileSync(marker, "utf8"));
+  const alive = () => { try { process.kill(pid, 0); return true; } catch { return false; } };
+  for (let i = 0; i < 20 && alive(); i++) await new Promise(r => setTimeout(r, 50));
+  expect(alive()).toBe(false);
+});
 afterEach(async () => {
   await Promise.all(clients.splice(0).map((client) => client.close()));
   for (const directory of directories.splice(0)) {

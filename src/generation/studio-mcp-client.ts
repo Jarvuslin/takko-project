@@ -30,6 +30,22 @@ export interface StudioChild {
   ): this;
   kill(): boolean;
 }
+// Track process objects, never enumerate/kill by executable name or a reused PID.
+const ownedChildren = new Set<StudioChild>();
+let exitHookInstalled = false;
+export function closeOwnedStudioChildren() {
+  for (const child of ownedChildren) {
+    try { child.kill(); } catch { /* Best effort during synchronous process exit. */ }
+  }
+}
+function ownChild(child: StudioChild) {
+  ownedChildren.add(child);
+  child.on("exit", () => ownedChildren.delete(child));
+  if (!exitHookInstalled) {
+    process.once("exit", closeOwnedStudioChildren);
+    exitHookInstalled = true;
+  }
+}
 export type StudioChildFactory = (
   executable: string,
   options: { windowsHide: true; shell: false; stdio: "pipe" },
@@ -242,6 +258,7 @@ export class StdioStudioClient {
         shell: false,
         stdio: "pipe",
       });
+      ownChild(this.child);
     } catch {
       throw new StudioMcpError(
         "spawn_failed",
