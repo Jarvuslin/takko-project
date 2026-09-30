@@ -1,4 +1,5 @@
 import { planningRetry } from "./retry";
+import { directBuildSpec, NoCodeSpendingStop, noCodeSpendingGuard } from "./direct-build";
 import { QueuedChangeBoundary, mergeQueuedMessages, markQueued, queueReceipt } from "./message-queue";
 import {
   proposalQuestions,
@@ -403,6 +404,8 @@ export function dependencyContext(
 }
 export class AssetPipelineFailure extends Error {}
 export type ExecutionPolicy = {
+  /** Compatibility switch for replaying legacy multi-task planning. New builds default to direct. */
+  directBuild?: boolean;
   excludedAssetIds?: string[];
   /** Explicit host configuration. Saved legacy projects retain their existing backend. */
   opencode?: OpenCodeBackend;
@@ -420,6 +423,7 @@ export type ExecutionPolicy = {
   }) => void | Promise<void>;
 };
 export class Engine {
+  private noCodeStops = new Map<string, () => void>();
   readonly assetOperations = new Set<string>();
   mutationBlocker?: (id: string) => string | undefined;
   private assetStudioLeases = new Set<string>();
@@ -1629,6 +1633,11 @@ export class Engine {
     const p = this.store.get(id);
     this.idle(p, revision);
     const proposing = kind === "proposal" || kind === "proposal-edit";
+    if (kind === "plan" && planningRetry(p) && p.proposal?.approval?.hash === proposalHash(p) && this.executionPolicy.opencode)
+      kind = "proposal-build";
+    // Old failed planning workers are history, not prerequisites for a first build.
+    if (kind === "proposal-build" && !p.artifact && this.executionPolicy.opencode && this.executionPolicy.directBuild !== false)
+      p.executionMode = "opencode";
     const planning =
       kind === "plan" ||
       kind === "concept" ||
@@ -1862,6 +1871,8 @@ export class Engine {
       settings.profiles.map((x) => [x.id, this.config.key(x.id)]),
     );
     let queuedBoundary = false;
+    if (kind === "proposal-build" && !p.artifact?.files.length)
+      this.noCodeStops.set(p.id, noCodeSpendingGuard(p));
     const promise = this.run(
       p,
       resume ? "resume" : kind,
@@ -1877,6 +1888,10 @@ export class Engine {
           return;
         }
         p.stage = controller.signal.aborted ? "interrupted" : "failed";
+        if (e instanceof NoCodeSpendingStop) {
+          p.stage = "interrupted";
+          p.failure = { code: "NO_CODE_SPENDING_STOP", phase: "builder", attempts: 1, details: e.message, at: new Date().toISOString() };
+        }
         if (e instanceof GenerationFailure) p.failure = e.diagnostic;
         if (e instanceof AssetPipelineFailure)
           p.failure = {
@@ -1913,6 +1928,7 @@ export class Engine {
           delete p.implementationBackup;
         }
         p.jobId = null;
+        this.noCodeStops.delete(id);
         this.store.save(p);
         this.jobs.delete(id);
         const current = this.store.get(id);
@@ -1968,6 +1984,7 @@ export class Engine {
     )!;
     assertOpenCodeProfile(profile);
     const stop = new AbortController();
+    const checkNoCodeSpending = this.noCodeStops.get(p.id) ?? noCodeSpendingGuard(p);
     let fatal: Error | undefined;
     const guardedTools = tools.map((tool) => ({
       ...tool,
@@ -1997,7 +2014,11 @@ export class Engine {
         signal: AbortSignal.any([signal, stop.signal]),
         transport: this.transport,
         reservationBudgetMicros: settings.reservationBudgetMicros,
-        beforeDispatch: this.executionPolicy.beforeDispatch,
+        beforeDispatch: async (request) => {
+          try { checkNoCodeSpending(); }
+          catch (error) { fatal = error as Error; stop.abort(); throw error; }
+          await this.executionPolicy.beforeDispatch?.(request);
+        },
         tools: guardedTools,
         prompt,
         finished,
@@ -2259,6 +2280,7 @@ export class Engine {
           );
           break;
         }
+        this.noCodeStops.get(p.id)?.();
         p.reservedMicros += reserve;
         this.store.save(p);
         try {
@@ -3213,7 +3235,14 @@ export class Engine {
           }
           bindProposalPlan(p);
         } else {
-          await this.run(p, "plan", settings, keys, signal);
+          if (p.executionMode === "opencode" && this.executionPolicy.directBuild !== false) {
+            const spec = directBuildSpec(p);
+            this.store.checkpoint(p);
+            p.spec = spec;
+            // Keep old failures in history, not in the coding session's authority.
+            delete p.coordination;
+            this.event(p, "Approved proposal ready. Starting one coding session without planning workers.");
+          } else await this.run(p, "plan", settings, keys, signal);
           bindProposalPlan(p);
         }
       }

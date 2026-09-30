@@ -16,8 +16,28 @@ import {
   profile,
 } from "./generation-fixtures";
 import type { Bundle } from "../src/generation/schema";
+import { OpenCodeGateway } from "../src/generation/opencode-gateway";
 
 const directories: string[] = [];
+it("pauses no-code spending before another provider dispatch and settles the real gateway receipt", async () => {
+  let requests = 0;
+  const s = setup(async job => {
+    const gateway = new OpenCodeGateway({ ...job, profile: { ...job.profile, inputRate: 3, outputRate: 30, maxOutputTokens: 32768 }, transport: async () => {
+      requests++;
+      return Response.json({ choices: [{ message: { content: "Still considering" } }], usage: { prompt_tokens: 100, completion_tokens: 10, cost: 0.5 } });
+    } });
+    await gateway.dispatch({ messages: [{ role: "user", content: "Build" }] }, async () => {});
+    await gateway.dispatch({ messages: [{ role: "user", content: "Continue" }] }, async () => {});
+  });
+  const p = await plan(s);
+  s.engine.start(p.id, p.revision, "build");
+  const stopped = await s.engine.wait(p.id);
+  expect(requests).toBe(1);
+  expect(stopped.stage, stopped.error ?? "").toBe("interrupted");
+  expect(stopped.failure?.code).toBe("NO_CODE_SPENDING_STOP");
+  expect(stopped.reservedMicros).toBe(0);
+  expect(stopped.charges.at(-1)?.chargedMicros).toBe(500000);
+});
 afterEach(() =>
   directories
     .splice(0)

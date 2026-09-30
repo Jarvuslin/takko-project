@@ -97,7 +97,7 @@ afterEach(async () => {
   for (const server of servers.splice(0))
     await new Promise<void>((resolve) => server.close(() => resolve()));
 });
-async function apiFixture(opencode = false) {
+async function apiFixture(opencode = false, directBuild = false) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "takko-proposal-api-"));
   dirs.push(dir);
   const calls: any[] = [];
@@ -183,8 +183,9 @@ async function apiFixture(opencode = false) {
         referenceDecisions: [],
       };
     } else if (c.task) {
+      const owned = c.task.files.length ? c.task.files : [`ServerScriptService/${c.namespace}/Game.server.luau`];
       output = {
-        files: c.task.files.map((file: string) => ({
+        files: owned.map((file: string) => ({
           path: file,
           kind: "Script",
           source: `local value = ${JSON.stringify(c.approvedProposal?.theme.text ?? "warm")}\nprint(value)`,
@@ -194,7 +195,7 @@ async function apiFixture(opencode = false) {
           requirementId: id,
           status: "implemented",
           detail: "Fixture only",
-          files: c.task.files,
+          files: owned,
         })),
         assets: [],
       };
@@ -245,7 +246,7 @@ async function apiFixture(opencode = false) {
   const app = createApp(dir, {
     env: {},
     transport,
-    ...(opencode ? { executionPolicy: { opencode: backend } } : {}),
+    ...(opencode ? { executionPolicy: { opencode: backend, directBuild } } : {}),
   });
   const model = { ...profile(), inputRate: 0.01, outputRate: 0.01 };
   app.locals.config.save({
@@ -285,8 +286,8 @@ async function apiFixture(opencode = false) {
   const p = engine.create("Build a wind gliding game");
   return { p, post, engine, store, calls, control, app };
 }
-async function prepared(opencode = false) {
-  const f = await apiFixture(opencode);
+async function prepared(opencode = false, directBuild = false) {
+  const f = await apiFixture(opencode, directBuild);
   expect(
     (await f.post(`/projects/${f.p.id}/proposal`, { revision: 1 })).status,
   ).toBe(202);
@@ -305,8 +306,8 @@ async function prepared(opencode = false) {
   f.store.save(p);
   return { ...f, p };
 }
-async function built(opencode = false) {
-  const f = await prepared(opencode);
+async function built(opencode = false, directBuild = false) {
+  const f = await prepared(opencode, directBuild);
   expect(
     (
       await f.post(`/projects/${f.p.id}/approve-proposal`, {
@@ -320,6 +321,15 @@ async function built(opencode = false) {
   expect(p.stage).toBe("ready_to_test");
   return { ...f, p };
 }
+it("approves the actual proposal API result and saves code through one direct coding session without a paid planning call", async () => {
+  const f = await built(true, true);
+  expect(f.p.spec!.tasks).toHaveLength(1);
+  expect(f.p.completedBuildTasks).toEqual(["implementation"]);
+  expect(f.p.artifact!.files.length).toBeGreaterThan(0);
+  expect(f.p.coordination).toBeUndefined();
+  expect(f.calls.filter(c => c.coordination || c.kind === "scoped-plan")).toEqual([]);
+  expect(f.calls.filter(c => c.kind !== "proposal" && !c.task && !c.artifact && !c.current && !c.spec)).toEqual([]);
+});
 it("patches theme through the message API, preserving mechanics, layout, animation and cumulative budget", async () => {
   const f = await prepared(),
     before = structuredClone(f.p);

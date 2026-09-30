@@ -74,6 +74,16 @@ async function withHost(
   }
 }
 
+it("returns malformed tool arguments as feedback and accepts a corrected fenced JSON envelope in the same session", async () => {
+  await withHost(async (host, call) => {
+    expect((await call("read", "{broken")).result.isError).toBe(true);
+    host.assertHealthy();
+    const result = await call("read", "```json\n{}\n```");
+    expect(result.result.isError).toBeUndefined();
+    expect(JSON.parse(result.result.content[0].text).totalCharacters).toBeGreaterThan(12000);
+  });
+});
+
 it("isolates credentials and denies filesystem, shell, network and subagent tools", () => {
   const tools = [
     {

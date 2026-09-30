@@ -75,6 +75,12 @@ export type OpenCodeTool = {
   schema: z.ZodType;
   execute: (input: any, signal?: AbortSignal) => unknown | Promise<unknown>;
 };
+
+/** Recover JSON envelope slips only. Never guess IDs, paths or asset choices. */
+export function normalizeToolArguments(value: unknown): unknown {
+  if (typeof value !== "string") return value;
+  return JSON.parse(value.trim().replace(/^```(?:json)?\s*\n?/, "").replace(/\s*```$/, ""));
+}
 export type OpenCodeJob = {
   runId?: string;
   project: Project;
@@ -315,7 +321,7 @@ export async function startOpenCodeHost(job: OpenCodeJob) {
         if (!tool) throw Error("Unknown host tool.");
         const before = job.progress();
         let output = await tool.execute(
-          tool.schema.parse(params.arguments ?? {}),
+          tool.schema.parse(normalizeToolArguments(params.arguments ?? {})),
           signal,
         );
         gateway.assertCurrent();

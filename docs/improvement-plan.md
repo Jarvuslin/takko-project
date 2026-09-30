@@ -1,26 +1,31 @@
 # Improvement plan
 
-Keep the existing projects and provider connection intact, then make a small game reach code generation with bounded spending. Start from the two saved failures and require an exported place plus native gameplay evidence before claiming the product works.
+Fix generation first using the two saved failures. Validate chat and asset continuity next, then own StudioMCP child lifetimes. Inventory and migrate workspaces last, preserving projects, settings and encrypted keys. Commit and report after each phase.
 
 ## Scope
 
-- In: stable desktop delivery and workspace, direct build path, recoverable model-format mistakes, asset/chat continuity, real-input regression tests and one capped acceptance run.
-- Out: mobile layouts, arbitrary existing-place editing, unrelated UI redesign, automatic paid retries and resuming paused projects without approval.
+- In: direct generation, recoverable format errors, no-code spending stop, chat/asset regression tests, StudioMCP ownership, stable delivery/workspace migration and a current-rate acceptance estimate.
+- Out: paid calls without specific approval, ending existing orphan processes without approval, restarting the user's running app without approval, mobile layouts and unrelated redesign.
 
-## Action items
+## Ordered phases
 
-- [ ] Inventory project IDs and settings across `%APPDATA%/Forge Desktop`, `.forge/chat-clean-20260929` and `.forge/fresh-desktop-20260929` without exposing credentials. Resolve collisions before migration.
-- [ ] Implement staged desktop replacement and workspace migration in `desktop/`. Preserve CurrentUser DPAPI access through the existing vault mechanism, validate restart persistence and keep a rollback path. Switch the user's running app only with restart approval.
-- [ ] Reproduce both latest planning failures from saved production inputs in regression tests. Record the proposal, attached-asset identity and spending state passed to the builder.
-- [ ] Route approved small games directly to one coding session in `src/generation/engine.ts` and the OpenCode adapter, removing paid area-planning workers from that path while retaining spending and asset boundaries.
-- [ ] Convert repairable format problems into deterministic normalization or actionable tool feedback. Preserve hard boundaries for budget, user Stop, unresolved asset identity and invalid exports. Add a no-code spending stop and visible recovery.
-- [ ] Exercise the actual proposal/asset APIs through chat and Electron tests, covering replace/remove/skip, contained sounds, retained picks, visible build progress, Stop and explicit Studio connection status.
-- [ ] Replay export and runtime regressions for missing instance paths, dummy assembly and animation selection. Run the full offline check and report what still requires native Studio evidence.
-- [ ] Request approval for one small dummy/punch/counter run with fixed assets and rig. Record each call, reservation and actual cost. Stop after the first failure, with no automatic retry or scope expansion.
-- [ ] Open the exported place in an authorized Studio session and verify spawn, welded dummy, client animation, punch validation and hit counter. Preserve failures, restore the session and leave Studio in Edit mode before reporting.
+- [x] Reproduce both saved planning failures and validate a compact contract derived from the actual approved proposal and selected assets.
+- [x] Start one direct coding session, recover tool-envelope mistakes through validation feedback and pause further requests after the no-code spending threshold. Commit phase 1.
+- [ ] Exercise actual proposal/asset API results through chat tests covering replace/remove/skip, contained audio, retained picks, visible activity and Stop. Commit phase 2.
+- [ ] Close only StudioMCP processes owned by the exiting Takko service. Inventory existing processes and list confirmed/possible orphans for explicit termination approval. Commit phase 3.
+- [ ] Inventory workspace project IDs, collisions, settings and vault locations without exposing credentials. Implement and test reversible migration and stable staged updates. Do not switch a running app until restart approval. Commit phase 4.
+- [ ] Run the full offline check once after implementation and record exact results and remaining native limitations.
+- [ ] Read the actual active preset and refresh its model's public rates. Show input, output, cache assumptions, review allowance and conservative request reservations before proposing a run. Replace the old $2/$3 estimate rather than reusing it.
+- [ ] Request approval for one capped dummy/punch/counter run, then a separately authorized Studio test. No automatic paid retry or resumption of paused projects.
 
-## Validation and first paid run
+## Verification record
 
-The immediate next step is offline reproduction, costing $0 in inference. After those changes pass, propose one R6 dummy/punch/hit-counter build with the user's selected assets. Historical comparison: the earlier coding run cost about $1.53 plus $0.30 review. A provisional expectation is about $2, with a proposed $3 hard cap for the new run, subject to current configured model rates and conservative reservation preflight. This is not a quote or authorization. If the estimate cannot fit, revise the scope or ask for a revised cap before dispatch.
+Phase 1 is committed after 58 focused tests across six files and TypeScript checking passed. The full check is reserved for the end. Build, Luau, plugin, guards, CSS, desktop, production, browser and Electron stages have not yet run for these changes. Work continues on later phases. No paid inference or existing-process termination has occurred. The running delivery remains unchanged until an approved update.
 
-Acceptance requires generated source, a structurally valid export, reconciled spend and a real Studio playtest. Green mocks, schema checks and compilation alone do not establish gameplay.
+Phase 1 uses preserved project snapshots `6e6ffc7f` and `07a88f8e`, plus the original final worker response for the requirement overflow. The earlier duplicate-asset failure already has a production-response replay test. New tests consume the actual store migration, approved-asset linking, proposal API and billing gateway producers.
+
+Initial focused checks caught a legacy mock that returned no files for a task with dynamically assigned paths, and a spending-stop fixture whose synthetic price exceeded its configured reservation. Both failures are preserved in the task transcript. The fixture now authors a namespaced file for that producer contract and uses conservative rates that cover its synthetic receipt. Legacy multi-task replay remains explicitly tested.
+
+The no-code threshold is the smaller of $0.50 and one quarter of the generation allowance. It is checked before the next request after settled spend reaches the threshold. A single in-flight call can cross it, but still requires the existing conservative project/generation reservation. Explicit continuation starts a new observation window without erasing charges or expanding caps.
+
+Offline checks do not establish live Sonnet behavior, animation playback, physical assembly or a playable exported place. The rate-based estimate and paid acceptance remain pending.

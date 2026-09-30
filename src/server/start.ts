@@ -5,6 +5,7 @@ import express from "express";
 import { windowsCredentialVault } from "../generation/credential-vault";
 if (fs.existsSync(".env")) process.loadEnvFile(".env");
 const env = process.env;
+env.FORGE_OPENCODE_BINARY ??= path.resolve(".forge/tools/opencode-1.18.31/opencode.exe");
 const port = Number(env.FORGE_PORT ?? 4318);
 if (!Number.isInteger(port) || port < 1024 || port > 65535)
   throw Error("Invalid FORGE_PORT");

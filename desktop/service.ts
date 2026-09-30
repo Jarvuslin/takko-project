@@ -23,7 +23,7 @@ if (!path.isAbsolute(directory) || !path.isAbsolute(resources))
 fs.mkdirSync(directory, { recursive: true });
 process.chdir(directory);
 const app = createApp(path.join(directory, "projects"), {
-  env: { FORGE_OPENCODE_BINARY: process.env.FORGE_OPENCODE_BINARY },
+  env: { FORGE_OPENCODE_BINARY: process.env.FORGE_OPENCODE_BINARY ?? path.join(resources, "tools/opencode/opencode.exe") },
   credentialVault: windowsCredentialVault(
     path.join(directory, "provider-keys.dpapi"),
   ),

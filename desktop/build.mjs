@@ -82,6 +82,11 @@ if (
 const pkg = JSON.parse(
   await fs.readFile(path.join(root, "package.json"), "utf8"),
 );
+const codingRuntime = path.join(root, ".forge/tools/opencode-1.18.31/opencode.exe");
+if (await fs.stat(codingRuntime).then(s => s.isFile(), () => false)) {
+  await fs.mkdir(path.join(output, "tools/opencode"), { recursive: true });
+  await fs.copyFile(codingRuntime, path.join(output, "tools/opencode/opencode.exe"));
+}
 await fs.writeFile(
   path.join(output, "package.json"),
   JSON.stringify(
