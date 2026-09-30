@@ -9,6 +9,7 @@ import { RequestError, StoredDataError } from "../errors";
 import { initialWorld } from "./world-policy";
 import { initialPlatform } from "./platform-policy";
 import { migrateAssetNeeds } from "./retry";
+import { protectedReviewSchema } from "./review-budget";
 
 /** Keep the last published artifact visible while preserving resumable candidate work. */
 export function retainFailedImplementation(p: Project) {
@@ -46,6 +47,7 @@ const storedProject = z
     stage: z.string(),
     jobId: z.string().nullable(),
     reservedMicros: z.number().int().nonnegative(),
+    protectedReview: protectedReviewSchema.optional(),
     generation: z
       .object({
         id: z.uuid(),

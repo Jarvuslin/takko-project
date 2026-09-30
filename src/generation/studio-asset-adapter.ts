@@ -111,6 +111,12 @@ export class StudioAssetError extends AssetOperationError {
   }
 }
 const identifier = /^[A-Za-z][A-Za-z0-9_-]{0,63}$/;
+function parseNeedBeforeDispatch(input: AssetNeed): AssetNeed {
+  const parsed = assetNeedSchema.safeParse(input);
+  if (!parsed.success)
+    throw new StudioAssetError("Invalid asset need: " + parsed.error.message, [], "none");
+  return parsed.data;
+}
 // JSON string literals are also valid Luau for this restricted identifier/numeric surface.
 const quote = (value: string) => JSON.stringify(value);
 function unpack(raw: unknown): any {
@@ -820,7 +826,7 @@ export class StudioAssetAdapter implements AssetAdapter {
     approval: { discoveryId: string; revision: number },
   ) {
     return this.exclusive(async () => {
-      const need = assetNeedSchema.parse(needInput);
+      const need = parseNeedBeforeDispatch(needInput);
       const parsed = z.object({ discoveryId: assetDiscoveryIdSchema, revision: z.number().int().positive() })
         .strict()
         .safeParse(approval);
@@ -859,7 +865,7 @@ export class StudioAssetAdapter implements AssetAdapter {
   }
   async search(needInput: AssetNeed, query: string, signal: AbortSignal) {
     return this.exclusive(async () => {
-      const need = assetNeedSchema.parse(needInput),
+      const need = parseNeedBeforeDispatch(needInput),
         receipts: AssetReceipt[] = [];
       if (
         !(studioAssetCapabilities.search as readonly string[]).includes(
@@ -960,7 +966,7 @@ export class StudioAssetAdapter implements AssetAdapter {
     signal: AbortSignal,
   ): Promise<AssetInspection> {
     return this.exclusive(async () => {
-      const need = assetNeedSchema.parse(needInput),
+      const need = parseNeedBeforeDispatch(needInput),
         receipts: AssetReceipt[] = [];
       if (
         !attemptId.trim() ||

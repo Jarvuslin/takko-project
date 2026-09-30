@@ -17,8 +17,40 @@ import {
 } from "./generation-fixtures";
 import type { Bundle } from "../src/generation/schema";
 import { OpenCodeGateway } from "../src/generation/opencode-gateway";
+import { trialFinalReviewPolicy } from "../src/generation/review-budget";
 
 const directories: string[] = [];
+it("interrupts the real Engine before coding consumes review funds and retains its submitted checkpoint", async () => {
+  let dispatches = 0;
+  const ledger = JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/ledger.json", "utf8"));
+  const recorded = ledger.charges.filter((c: any) => c.opencodeRunId === "57c4993b-1165-4740-a7a0-b797074b19f7").map((c: any) => ({ ...c, chargedMicros: c.inputTokens * 2 + c.outputTokens * 10 }));
+  const s = setup(async job => {
+    const context = await tool(job, "task_context", { taskId: "coreTask" });
+    await tool(job, "submit_task", { taskId: "coreTask", patch: patch(job) });
+    // Repeat the preserved workload as a fixed no-cache budget stress scenario.
+    job.project.charges.push(...structuredClone(recorded), ...structuredClone(recorded));
+    const request = { messages: [{ role: "user", content: JSON.stringify(context) }] };
+    const bytes = Buffer.byteLength(JSON.stringify({ ...request, model: job.profile.model, max_tokens: job.profile.maxOutputTokens, stream: false }));
+    const reserve = (bytes + 1024) * job.profile.inputRate + job.profile.maxOutputTokens * job.profile.outputRate;
+    expect(job.project.charges.reduce((sum, c) => sum + c.chargedMicros, 0) + reserve).toBeLessThan(7500000);
+    const gateway = new OpenCodeGateway({ ...job, transport: async () => { dispatches++; throw Error("Unexpected provider dispatch"); } });
+    await gateway.dispatch(request, async () => {});
+  });
+  const p = await plan(s);
+  const settings = s.config.read();
+  s.config.save({ ...settings, budgetMicros: 7500000, generationBudgetMicros: 7500000, profiles: settings.profiles.map(model => ({ ...model, inputRate: 2, outputRate: 10, maxOutputTokens: 8192 })) });
+  const engine = new Engine(s.store, s.config, s.transport, s.compiler, undefined, { opencode: s.backend, finalReview: trialFinalReviewPolicy });
+  engine.start(p.id, p.revision, "build", 7500000);
+  const stopped = await engine.wait(p.id);
+  expect(stopped.stage, stopped.error ?? "").toBe("interrupted");
+  expect(stopped.failure?.code).toBe("REVIEW_BUDGET_STOP");
+  expect(stopped.artifact!.files.length).toBeGreaterThan(0);
+  expect(stopped.completedBuildTasks).toContain("coreTask");
+  expect(stopped.protectedReview!.status).toBe("protected");
+  expect(stopped.reservedMicros).toBe(0);
+  expect(dispatches).toBe(0);
+  expect(s.calls).not.toContain("reviewer");
+});
 it("pauses no-code spending before another provider dispatch and settles the real gateway receipt", async () => {
   let requests = 0;
   const s = setup(async job => {

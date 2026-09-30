@@ -300,6 +300,22 @@ it("binds actual proposal discovery output to the real Studio adapter before nat
   })).rejects.toMatchObject({ effects: "none" });
   expect(f.client.calls).toEqual([]);
 });
+it("classifies malformed producer needs as no native effects for bind, search and inspect", async () => {
+  const p: Project = JSON.parse(fs.readFileSync("tests/fixtures/direct-build/6e6ffc7f.json", "utf8"));
+  delete p.assetDiscovery;
+  projectProposalPicks(p);
+  p.proposal!.approval = { hash: p.proposal!.hash, revision: p.revision, at: new Date().toISOString() };
+  p.assetDiscovery!.approved = true;
+  p.spec = directBuildSpec(p);
+  const f = setup();
+  const produced = buildAssetNeeds(p)[0];
+  const found = await approvedAssetAdapter(f.adapter, p).search(produced, produced.query, signal());
+  const invalid = { ...produced, id: "invalid need id" };
+  await expect(f.adapter.bindApprovedReference(invalid, found.candidates[0], { discoveryId: p.assetDiscovery!.id, revision: p.revision })).rejects.toMatchObject({ effects: "none", receipts: [] });
+  await expect(f.adapter.search(invalid, invalid.query, signal())).rejects.toMatchObject({ effects: "none", receipts: [] });
+  await expect(f.adapter.inspect(invalid, found.candidates[0], "bad-need", signal())).rejects.toMatchObject({ effects: "none", receipts: [] });
+  expect(f.client.calls).toEqual([]);
+});
 it("inspects an explicitly approved reference without pretending it came from a search", async () => {
   const f = setup();
   const candidate = {

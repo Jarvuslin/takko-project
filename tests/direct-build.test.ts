@@ -19,6 +19,13 @@ for (const id of ["6e6ffc7f", "07a88f8e"]) it(`replays approval eligibility and 
   const f = await chatJourneyFixture(true);
   try {
     const engine = f.app.locals.engine;
+    const wire: any[] = [];
+    const transport = engine.transport;
+    engine.transport = async (url: any, init: any) => {
+      const body = JSON.parse(String(init.body));
+      if (body.messages?.[0]?.content?.includes("PHASE: reviewer")) wire.push(body);
+      return transport(url, init);
+    };
     const raw = saved(id);
     engine.store.save(raw);
     const migrated: Project = engine.store.get(raw.id);
@@ -49,6 +56,13 @@ for (const id of ["6e6ffc7f", "07a88f8e"]) it(`replays approval eligibility and 
     expect(result.artifact?.files.length, result.error ?? "").toBeGreaterThan(0);
     expect(f.control.buildCalls).toBe(1);
     expect(result.coordination).toBeUndefined();
+    const finalReview = wire.filter(body => {
+      const content = body.messages[1].content;
+      return typeof content === "string" && JSON.parse(content).artifact;
+    });
+    expect(finalReview).toHaveLength(1);
+    expect(finalReview[0]).toMatchObject({ max_tokens: 32768, reasoning: { effort: "medium" } });
+    expect(result.protectedReview).toMatchObject({ status: "consumed", policy: { maxOutputTokens: 32768, reasoningEffort: "medium" } });
     expect(result.proposal!.assetNeeds!.map(n => n.pick)).toEqual(picks);
     expect(result.charges.slice(0, raw.charges.length)).toEqual(raw.charges);
     expect(f.control.contexts.some(c => c.coordination?.step)).toBe(false);

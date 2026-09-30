@@ -1,4 +1,5 @@
 import { planningRetry } from "./retry";
+import { assertReviewBudget, finalReviewPolicySchema, prepareReviewBudget, ReviewBudgetStop, type FinalReviewPolicy } from "./review-budget";
 import { directBuildSpec, NoCodeSpendingStop, noCodeSpendingGuard } from "./direct-build";
 import { QueuedChangeBoundary, mergeQueuedMessages, markQueued, queueReceipt } from "./message-queue";
 import {
@@ -415,6 +416,8 @@ export type ExecutionPolicy = {
   allowFallbacks?: boolean;
   /** Final game review only. Keep acquisition-bound model profiles unchanged. */
   reviewerReasoningEffort?: Profile["reasoningEffort"];
+  /** Direct final review only, with protected admission for earlier build calls. */
+  finalReview?: FinalReviewPolicy;
   beforeDispatch?: (request: {
     phase: Phase;
     profile: Profile;
@@ -443,6 +446,7 @@ export class Engine {
   ) {
     if (executionPolicy.maxAttempts !== undefined)
       z.number().int().min(1).max(6).parse(executionPolicy.maxAttempts);
+    if (executionPolicy.finalReview) finalReviewPolicySchema.parse(executionPolicy.finalReview);
     store.recover();
   }
   create(request: string, attachments?: Project["assetAttachments"]) {
@@ -1853,6 +1857,13 @@ export class Engine {
             };
     else if (generationBudgetMicros !== undefined)
       p.generation.budgetMicros = generationBudgetMicros;
+    if (!proposing && kind !== "concept" && kind !== "plan" &&
+        p.executionMode === "opencode" &&
+        (!p.coordination || kind === "proposal-build" && this.executionPolicy.directBuild !== false) &&
+        (this.executionPolicy.finalReview || p.protectedReview)) {
+      const reviewer = settings.profiles.find(profile => profile.id === routeFor(settings, "reviewer")[0])!;
+      prepareReviewBudget(p, reviewer, p.protectedReview?.policy ?? this.executionPolicy.finalReview!);
+    }
     p.jobId = randomUUID();
     p.error = null;
     p.failure = null;
@@ -1893,6 +1904,10 @@ export class Engine {
           p.failure = { code: "NO_CODE_SPENDING_STOP", phase: "builder", attempts: 1, details: e.message, at: new Date().toISOString() };
         }
         if (e instanceof GenerationFailure) p.failure = e.diagnostic;
+        if (e instanceof ReviewBudgetStop) {
+          p.stage = "interrupted";
+          p.failure = { code: "REVIEW_BUDGET_STOP", phase: "builder", attempts: 0, details: e.message, at: new Date().toISOString() };
+        }
         if (e instanceof AssetPipelineFailure)
           p.failure = {
             code: "ASSET_PIPELINE_FAILED",
@@ -2053,15 +2068,26 @@ export class Engine {
       decisionCurrent?: () => boolean;
     },
     callPolicy?: {
-      providedSchema: boolean;
+      providedSchema?: boolean;
+      finalReview?: boolean;
       maxOutputTokens?: number;
-      system: string;
+      system?: string;
       maxAttempts?: number;
       allowFallbacks?: boolean;
       outputSchema?: z.ZodType;
     },
   ): Promise<T> {
     this.queueBoundary(p);
+    // Asset/source checks can precede Approve & build. Protect the same future
+    // review before those paid calls too, rather than waiting for coding start.
+    if (!p.protectedReview && p.executionMode === "opencode" && !p.coordination &&
+        this.executionPolicy.finalReview &&
+        (assetCall || (context as { kind?: string })?.kind === "attached-source-review")) {
+      const reviewer = settings.profiles.find(profile => profile.id === routeFor(settings, "reviewer")[0]);
+      if (!reviewer) throw new DispatchDenied("Configure the final reviewer before paid asset checks.");
+      prepareReviewBudget(p, reviewer, this.executionPolicy.finalReview);
+      this.store.save(p);
+    }
     if (phase === "planner" && context && typeof context === "object")
       context = { ...context, conversation: p.conversation ?? [] };
     if (p.executionMode === "opencode" && phase === "repair" && !assetCall) {
@@ -2131,13 +2157,15 @@ export class Engine {
     let previousOutput = "";
     let attempts = 0;
     let validationError = "";
+    const finalReview = callPolicy?.finalReview === true && phase === "reviewer" && !assetCall && !p.coordination && !!p.protectedReview;
     const attemptLimit = Math.min(
       this.executionPolicy.maxAttempts ?? Infinity,
       callPolicy?.maxAttempts ?? Infinity,
+      finalReview ? 1 : Infinity,
     );
     const allowFallbacks =
       this.executionPolicy.allowFallbacks !== false &&
-      callPolicy?.allowFallbacks !== false;
+      callPolicy?.allowFallbacks !== false && !finalReview;
     const systemPrefix =
       (callPolicy?.system ?? principle) +
       "\n" + rigInstructions(p) +
@@ -2171,8 +2199,9 @@ export class Engine {
     for (const id of allowFallbacks ? route : route.slice(0, 1)) {
       if (attempts >= attemptLimit) break;
       const routed = settings.profiles.find((x) => x.id === id)!;
-      const configured =
-        phase === "reviewer" &&
+      const configured = finalReview
+        ? { ...routed, maxOutputTokens: p.protectedReview!.policy.maxOutputTokens, reasoningEffort: p.protectedReview!.policy.reasoningEffort }
+        : phase === "reviewer" &&
         !assetCall &&
         this.executionPolicy.reviewerReasoningEffort
           ? {
@@ -2248,6 +2277,13 @@ export class Engine {
                 (phase === "research" ? RESEARCH_SEARCH_MICROS : 0),
             );
         const spent = p.charges.reduce((a, c) => a + c.chargedMicros, 0);
+        try {
+          assertReviewBudget(p, reserve, finalReview,
+            Buffer.byteLength(system + input) + schemaInputBytes + (visual ? 16384 : 0));
+        } catch (error) {
+          this.store.save(p);
+          throw error;
+        }
         if (
           p.generation &&
           p.charges
@@ -2282,6 +2318,7 @@ export class Engine {
         }
         this.noCodeStops.get(p.id)?.();
         p.reservedMicros += reserve;
+        if (finalReview) p.protectedReview!.status = "reserved";
         this.store.save(p);
         try {
           if (this.executionPolicy.beforeDispatch)
@@ -2295,6 +2332,7 @@ export class Engine {
             throw new DispatchDenied("Generation cancelled before dispatch.");
         } catch (error) {
           p.reservedMicros -= reserve;
+          if (finalReview) p.protectedReview!.status = "protected";
           this.store.save(p);
           const reason =
             error instanceof DispatchDenied
@@ -2387,6 +2425,7 @@ export class Engine {
           if (assetCall?.decisionCurrent && !assetCall.decisionCurrent())
             Object.assign(p, this.store.get(p.id));
           p.reservedMicros -= reserve;
+          if (finalReview) p.protectedReview!.status = notDispatched ? "protected" : "consumed";
           const usage = result ?? reported;
           const known =
             usage?.inputTokens != null && usage?.outputTokens != null;
@@ -4002,6 +4041,8 @@ export class Engine {
                       failures.map((c) => c.id + ": " + c.detail).join("\n"),
                   );
               },
+              undefined,
+              { finalReview: true },
             );
     if (!p.review) p.review = review;
     else p.review = mergeReview(p.review, review);

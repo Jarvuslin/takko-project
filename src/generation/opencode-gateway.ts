@@ -8,6 +8,7 @@ import {
 import type { GenerationStore } from "./store";
 import { validateProviderEndpoint } from "./settings";
 import { isDecisionModel } from "./decisions";
+import { assertReviewBudget } from "./review-budget";
 
 export function assertOpenCodeProfile(profile: Profile) {
   if (!["openrouter", "compatible"].includes(profile.provider))
@@ -122,6 +123,13 @@ export class OpenCodeGateway {
         profile.maxOutputTokens * profile.outputRate,
     );
     const total = p.charges.reduce((sum, c) => sum + c.chargedMicros, 0);
+    try {
+      assertReviewBudget(p, reserve);
+    } catch (error) {
+      store.save(p);
+      this.closedReason = (error as Error).message;
+      throw error;
+    }
     if (
       p.charges.some(
         (c) => c.estimated && c.inputTokens === null && c.outputTokens === null,

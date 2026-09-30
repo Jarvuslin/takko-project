@@ -388,6 +388,7 @@ export type Project = {
     result: import("./decisions").DecisionResult;
   }[];
   executionMode?: "coordinator" | "opencode";
+  protectedReview?: import("./review-budget").ProtectedReview;
   opencodeRuns?: import("./opencode-runtime").OpenCodeRun[];
   opencodePending?: {
     requestId: string;
