@@ -4,6 +4,7 @@ import express from "express";
 import { createApp } from "../src/server/app";
 import { windowsCredentialVault } from "../src/generation/credential-vault";
 import { closeOwnedStudioChildren } from "../src/generation/studio-mcp-client";
+import { rehearsalTransport } from "./rehearsal";
 
 // Electron utilityProcess supplies parentPort. Node IPC is used only by offline tests.
 const parentPort = (
@@ -23,9 +24,11 @@ if (!path.isAbsolute(directory) || !path.isAbsolute(resources))
   throw Error("Absolute desktop paths required");
 fs.mkdirSync(directory, { recursive: true });
 process.chdir(directory);
+const offlineTransport = rehearsalTransport(directory, process.env);
 const app = createApp(path.join(directory, "projects"), {
+  transport: offlineTransport,
   env: { FORGE_OPENCODE_BINARY: process.env.FORGE_OPENCODE_BINARY ?? path.join(resources, "tools/opencode/opencode.exe") },
-  credentialVault: windowsCredentialVault(
+  credentialVault: offlineTransport ? undefined : windowsCredentialVault(
     path.join(directory, "provider-keys.dpapi"),
   ),
   pluginPath: path.join(resources, "plugin", "Forge.plugin.luau"),

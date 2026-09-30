@@ -978,7 +978,8 @@ export async function runAssetPipeline(
               proceduralFallbackAllowed: false,
             });
             if (
-              block.kind === "interactive_asset_requires_review" &&
+              (block.kind === "interactive_asset_requires_review" ||
+                block.kind === "unsupported_structure") &&
               adapter.prepareComponentReview &&
               model.reviewComponent
             ) {

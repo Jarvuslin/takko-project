@@ -1624,6 +1624,7 @@ describe("bounded asset selection and native verification pipeline (offline mock
 
   it.each([
     "valid",
+    "valid-unsupported",
     "missing-source",
     "wrong-context",
     "uncertain-preparation",
@@ -1638,7 +1639,7 @@ describe("bounded asset selection and native verification pipeline (offline mock
         safe: false,
         functional: { ...functional, scriptCount: 2 },
         capabilityBlock: {
-          kind: "interactive_asset_requires_review",
+          kind: mode === "valid-unsupported" ? "unsupported_structure" : "interactive_asset_requires_review",
           reason: "Complete scripted component",
         },
       }));
@@ -1683,7 +1684,7 @@ describe("bounded asset selection and native verification pipeline (offline mock
       } else {
         expect(result.requiresReconciliation).not.toBe(true);
         expect(s.adapter.discard).toHaveBeenCalledTimes(1);
-        if (mode === "valid") {
+        if (mode === "valid" || mode === "valid-unsupported") {
           expect(result.error).toContain("source review recorded");
           expect(result.error).toContain("integration");
           expect(

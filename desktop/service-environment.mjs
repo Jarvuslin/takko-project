@@ -12,6 +12,7 @@ export function serviceEnvironment(source) {
     "LOCALAPPDATA",
     "APPDATA",
     "FORGE_OPENCODE_BINARY",
+    "FORGE_REHEARSAL_FILE",
   ];
   return Object.fromEntries(
     allowed.filter((key) => source[key]).map((key) => [key, source[key]]),

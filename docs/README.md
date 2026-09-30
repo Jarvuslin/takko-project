@@ -10,6 +10,7 @@ Read [current state](../research/notes/continuation.md) first. It is the sole au
 - [Improvement plan](improvement-plan.md): next work, including app/workspace consolidation and generation reliability.
 - [Chat and asset implementation](chat-clean-20260929.md) and [flow design](flow-redesign.md): latest implementation record, not confirmation of successful real generation.
 - [OpenCode adapter](opencode-adapter-implementation.md) and [comparison](opencode-competitor-reevaluation.md): current coding integration and the earlier warning about keeping duplicate planning loops.
+- [Trial-failure diagnosis and candidate gate](results/trial-failure-diagnosis/PLAN.md): protected review budget, native role evidence and isolated staged rehearsal. Includes the reviewable D1 proposal and verification limits.
 - [Scene-reference regression](scene-reference-fix.md), [Studio acceptance](studio-acceptance.md) and [native acceptance](native-generation-acceptance.md): native evidence and its limits.
 - [Crystal Hollow native record](crystal-hollow-polished-native-verification.md): retained because the benchmark catalog references it.
 

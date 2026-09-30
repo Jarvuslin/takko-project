@@ -22,6 +22,8 @@ import {
 } from "./policy.mjs";
 
 const resources = path.dirname(fileURLToPath(import.meta.url));
+if (process.env.FORGE_REHEARSAL_FILE && !path.isAbsolute(app.commandLine.getSwitchValue("user-data-dir")))
+  throw Error("Offline rehearsal requires an explicit absolute --user-data-dir");
 // This application has its own identity; it never attaches to a running web server.
 app.setName(desktopIdentity.name);
 const dataDirectory = desktopDataDirectory(
@@ -47,6 +49,7 @@ else {
         FORGE_DESKTOP_DATA: dataDirectory,
         FORGE_DESKTOP_RESOURCES: resources,
         LUAU_BIN_DIR: path.join(resources, "tools", "luau"),
+        FORGE_ROJO_BINARY: path.join(resources, "tools", "rojo", "rojo.exe"),
       },
       stdio: "ignore",
       serviceName: "Takko local service",

@@ -9,6 +9,7 @@ import { z } from "zod";
 import type { Profile, Project } from "./schema";
 import type { GenerationStore } from "./store";
 import { OpenCodeGateway } from "./opencode-gateway";
+import { ReviewBudgetStop } from "./review-budget";
 
 export const OPENCODE_VERSION = "1.18.31";
 const WINDOWS_BINARY_SHA256 =
@@ -580,14 +581,20 @@ export function createOpenCodeBackend(binary: string): OpenCodeBackend {
           );
         record.status = "completed";
       } catch (e) {
+        // The host aborts the child after a dispatch refusal. Preserve that
+        // refusal instead of replacing it with the resulting SIGTERM error.
+        let failure = e;
+        try { host?.assertHealthy(); }
+        catch (hostError) { failure = hostError; }
         record.status = job.signal.aborted ? "cancelled" : "failed";
-        const message = e instanceof Error ? e.message : "OpenCode failed";
+        const message = failure instanceof Error ? failure.message : "OpenCode failed";
         record.diagnostics ??= diagnostics?.snapshot(null, null);
         record.error =
           diagnostics && record.diagnostics
             ? diagnostics.failure(message, record.diagnostics)
             : message;
-        throw new Error(record.error, { cause: e });
+        if (failure instanceof ReviewBudgetStop) throw failure;
+        throw new Error(record.error, { cause: failure });
       } finally {
         await host?.close();
         record.finishedAt = new Date().toISOString();

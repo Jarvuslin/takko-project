@@ -60,12 +60,14 @@ test("desktop keeps Roblox connector paths while excluding inference credentials
     OPENROUTER_API_KEY: "synthetic",
     FORGE_API_KEY: "synthetic",
     FORGE_OPENCODE_BINARY: "C:\\tools\\opencode.exe",
+    FORGE_REHEARSAL_FILE: "C:\\isolated\\rehearsal.json",
   };
   assert.deepEqual(serviceEnvironment(source), {
     LOCALAPPDATA: source.LOCALAPPDATA,
     APPDATA: source.APPDATA,
     PATH: "tools",
     FORGE_OPENCODE_BINARY: source.FORGE_OPENCODE_BINARY,
+    FORGE_REHEARSAL_FILE: source.FORGE_REHEARSAL_FILE,
   });
 });
 

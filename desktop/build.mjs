@@ -40,9 +40,9 @@ await fs.copyFile(
   path.join(root, "plugin/Forge.plugin.luau"),
   path.join(output, "plugin/Forge.plugin.luau"),
 );
-const compilerName =
-  process.platform === "win32" ? "luau-compile.exe" : "luau-compile";
 const candidates = [".forge/tools/luau", "research/tools/luau"];
+for (const tool of ["luau-compile", "luau-ast"]) {
+const compilerName = tool + (process.platform === "win32" ? ".exe" : "");
 let copied = false;
 for (const directory of candidates) {
   const source = path.join(root, directory, compilerName);
@@ -58,10 +58,8 @@ for (const directory of candidates) {
     break;
   }
 }
-if (!copied)
-  console.warn(
-    "Luau compiler unavailable: generated-source compilation will report a failed check.",
-  );
+if (!copied) throw Error("Required desktop Luau tool unavailable: " + compilerName);
+}
 const audioHelper = path.join(
   root,
   ".forge/tools/audio-capture/TakkoAudioCapture.exe",
@@ -83,6 +81,8 @@ const pkg = JSON.parse(
   await fs.readFile(path.join(root, "package.json"), "utf8"),
 );
 const codingRuntime = path.join(root, ".forge/tools/opencode-1.18.31/opencode.exe");
+await fs.mkdir(path.join(output, "tools/rojo"), { recursive: true });
+await fs.copyFile(path.join(root, ".forge/tools/rojo-7.7.0/rojo.exe"), path.join(output, "tools/rojo/rojo.exe"));
 if (await fs.stat(codingRuntime).then(s => s.isFile(), () => false)) {
   await fs.mkdir(path.join(output, "tools/opencode"), { recursive: true });
   await fs.copyFile(codingRuntime, path.join(output, "tools/opencode/opencode.exe"));

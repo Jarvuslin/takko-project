@@ -12,12 +12,14 @@ import {
 } from "../src/generation/opencode-runtime";
 import { GenerationStore, newProject } from "../src/generation/store";
 import { profile } from "./generation-fixtures";
+import { prepareReviewBudget, ReviewBudgetStop, trialFinalReviewPolicy } from "../src/generation/review-budget";
 
 async function withHost(
   body: (
     host: Awaited<ReturnType<typeof startOpenCodeHost>>,
     call: (name: string, args?: unknown) => Promise<any>,
   ) => Promise<void>,
+  prepare?: (job: OpenCodeJob) => void,
 ) {
   const directory = fs.mkdtempSync(
     path.join(os.tmpdir(), "takko-runtime-test-"),
@@ -49,6 +51,7 @@ async function withHost(
     finished: () => false,
     progress: () => "unchanged",
   };
+  prepare?.(job);
   const host = await startOpenCodeHost(job);
   const call = async (name: string, args: unknown = {}) => {
     const response = await fetch(host.url + "/mcp", {
@@ -163,6 +166,21 @@ it("rejects an unpinned executable before launch", () => {
   expect(() => createOpenCodeBackend(process.execPath).preflight()).toThrow(
     /does not match/,
   );
+});
+it("retains the typed protected-budget refusal when the host aborts the coding session", async () => {
+  await withHost(async host => {
+    const response = await fetch(host.url+"/v1/chat/completions", {
+      method:"POST", headers:{Authorization:"Bearer "+host.token,"Content-Type":"application/json"},
+      body:JSON.stringify({messages:[{role:"user",content:"Continue the saved task"}]})
+    });
+    expect(response.status).toBe(403);
+    expect(host.signal.aborted).toBe(true);
+    expect(()=>host.assertHealthy()).toThrow(ReviewBudgetStop);
+  }, job => {
+    job.project.budgetMicros = 1;
+    prepareReviewBudget(job.project,job.profile,trialFinalReviewPolicy);
+    job.store.save(job.project);
+  });
 });
 
 it("preserves the API model identity required by OpenCode's provider-specific cache transforms", () => {

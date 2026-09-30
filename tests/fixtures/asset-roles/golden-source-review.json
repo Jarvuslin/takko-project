@@ -1,0 +1,25 @@
+{
+  "provenance": "Actual StudioMarketplace.snapshot capture in approved throwaway Studio, 2026-09-30. Reviewed fixture inputs for offline transport only.",
+  "assets": [
+    {
+      "assetId": "1245720733",
+      "versionId": "1694140744",
+      "scripts": [
+        {
+          "name": "Training Dummy.Respawn",
+          "source": "robo=script.Parent:clone()\nwhile true do\n\twait(0)\n\tif script.Parent.Humanoid.Health<1 then\n\t\twait(1)\n\t\trobot=robo:clone()\n\t\trobot.Parent=script.Parent.Parent\n\t\trobot:makeJoints()\n\t\tscript.Parent:remove()\n\tend\nend\n\n\t\t\n\n\n\n\n\n"
+        }
+      ]
+    },
+    {
+      "assetId": "12061946559",
+      "versionId": "15424262953",
+      "scripts": [
+        {
+          "name": "R15 Punching Animations.Note",
+          "source": "--For Auevi's Quest System Roblox Studio Tutorial Tutorial!\n--You can use either of these animations for your Enemy, \n--just make sure to publish the animation yourself!\n\n--Like, Comment & Subscribe!\n"
+        }
+      ]
+    }
+  ]
+}

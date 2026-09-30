@@ -21,7 +21,7 @@ function writeContent(file: string, bytes: Buffer | string) {
 export function convertComponentXml(
   directory: string,
   source: { archiveHash: string; manifestHash: string },
-  executable = path.resolve(".forge/tools/rojo-7.7.0/rojo.exe"),
+  executable = process.env.FORGE_ROJO_BINARY ?? path.resolve(".forge/tools/rojo-7.7.0/rojo.exe"),
 ) {
   const original = readComponentOriginal(
     directory,

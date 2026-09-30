@@ -1,0 +1,215 @@
+{
+  "status": "reviewable_input_not_a_build_or_trial_authorization",
+  "derivedFrom": "51dafcb4-1352-4988-9bd0-69b1e951bbdd",
+  "proposal": {
+    "title": "Punch the Dummy",
+    "world": {
+      "kind": "baseplate_template"
+    },
+    "assetNeeds": [
+      {
+        "id": "target_dummy",
+        "requirementId": "req_target_dummy",
+        "role": "The user's attached stationary target dummy that the player punches, placed on the baseplate in front of spawn.",
+        "selectedAssetId": "10161087974",
+        "kind": "Model",
+        "deliveryRole": "visible_prop",
+        "query": "target dummy",
+        "constraints": "Use selected Straw Target Dummy 10161087974, version 12699640075. Native capture has 17 nodes, 11 parts, zero scripts and zero Humanoids. Retain its geometry as a stationary physical target at the existing requested position. Health or respawn behavior is not supplied. No sound or VFX. Static capture is not gameplay verification.",
+        "intent": {
+          "experienceRole": "The dummy is the only target of the fighting game and the thing whose hits the counter measures.",
+          "interaction": "The player walks up and left-clicks. If the punch reaches the dummy, it counts as a hit and the counter goes up by 1 immediately. The dummy stays stationary and has no sound or visual reaction.",
+          "reusableFeatures": [
+            "Captured physical target parts for server-side hit queries",
+            "Captured model hierarchy and bounds for ground placement"
+          ],
+          "relatedRequirementIds": [
+            "req_target_dummy",
+            "req_hit_counter",
+            "req_punch_input"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          0,
+          -10
+        ],
+        "maxSize": 8
+      },
+      {
+        "id": "punch_animation",
+        "requirementId": "req_punch_animation",
+        "role": "The user's attached R6 punch animation, played when the player left-clicks. It is retained as animation source data.",
+        "selectedAssetId": "15008746676",
+        "kind": "Model",
+        "deliveryRole": "source_data",
+        "query": "punch animation",
+        "constraints": "Use selected model 15008746676, version 19600289951, exact raw R6 KeyframeSequence infinity punches at 1/11/1. Retain source data in ReplicatedStorage. The clip is 2.75 seconds, with 12 Dmg keyframe names and one Heavy, zero KeyframeMarkers. Raw registration is Studio-only. No sound or VFX. Playback and smoothness remain unverified.",
+        "intent": {
+          "experienceRole": "Gives the player's left-click punch its visible body motion.",
+          "interaction": "Each fresh left-click advances one authorized segment, with at most one buffered next segment. Never play the whole clip for one click. Use the accompanying captured segment table.",
+          "reusableFeatures": [
+            "Captured R6 poses and source pose digest",
+            "Named keyframes and full-precision timing table"
+          ],
+          "relatedRequirementIds": [
+            "req_punch_animation",
+            "req_punch_input",
+            "req_hit_counter"
+          ]
+        },
+        "required": true,
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "maxSize": 12
+      }
+    ],
+    "mechanics": {
+      "text": "Desktop R6 progressive 13-punch combo. One fresh left-click authorizes one segment, at most one pending click. Clamp playback at each segment end before testing crossed hit times. Hold 0.35 seconds for the next click, otherwise reset with a 0.08-second fade. Segment 13 resets and requires a fresh click. The server owns combo nonce, ordered segment index, hit schedule, six-stud range, facing, line of sight and target scope. Allow requests at most 0.10 seconds early but never schedule before the preceding recovery ends. Reject stale/replayed/out-of-order requests. Preserve earlier pending hits when the next segment is accepted. Death, respawn, timeout and completion rotate the nonce and clear pending hits. Increment the counter only for an authorized server hit, at most once per target per segment. No sound or VFX.",
+      "assumptions": [
+        "The 13 hold endpoints are pose-derived proposals, not native smoothness evidence.",
+        "The timing and network tolerance values are explicit design choices to validate during a separately authorized gameplay test."
+      ],
+      "unresolved": [
+        "Native playback, feel, multiplayer latency and HUD visibility require a gameplay test."
+      ]
+    },
+    "theme": {
+      "text": "A minimal training-yard look: a plain, readable practice arena with no story. The tan or red dummy is the focal point and stands out clearly against the gray baseplate. The HUD is a small, clean counter in a screen corner, for example the label 'Hits' with a large number, with high-contrast white text on a dark semi-transparent panel so it reads at a glance. No sounds, particles, flashes, camera shake or other feedback beyond the punch animation and the counter number changing.",
+      "assumptions": [
+        "The default template sky and lighting stay unchanged, with no mood lighting.",
+        "The counter changes only its number, with no animation or tween, to respect 'no visual effects'."
+      ],
+      "unresolved": []
+    },
+    "environment": {
+      "text": "Use the existing baseplate (top at y=0) as the only ground. Do not add a floor, walls, ceiling or platforms, and do not change lighting, sky or atmosphere.\n\nLayout: the default spawn is near the origin. Place the target dummy standing on the ground about 10 studs in front of the spawn, facing the spawn, so it is visible immediately. The player walks up to about 3-5 studs from the dummy and punches. Leave open space around the dummy so the player can walk around it. The dummy is anchored or otherwise stationary and does not move or attack.\n\nHUD: a ScreenGui with one counter label at the top center or top-left. It is sized for a PC screen, does not block the view of the dummy and has no mobile layout.",
+      "assumptions": [
+        "The dummy is placed at roughly (0, 0, -10), standing on the ground.",
+        "No extra props, decorations or fences are added."
+      ],
+      "unresolved": []
+    }
+  },
+  "selectedClip": {
+    "assetId": "15008746676",
+    "versionId": "19600289951",
+    "key": "1/11/1",
+    "poseDigest": "09c1a50ca78b567872f27aa1951f9204a7375fe2c83c26b20411bbe4d87fce1d"
+  },
+  "timing": {
+    "authority": "Authored hit names plus pose geometry. Suggested holds are inferred, medium confidence. Native playback and collision timing remain unverified. This evidence does not authorize choosing a combo mechanic.",
+    "derivation": "At each Dmg/Heavy frame, the forward-most local-root fist identifies the striking arm. Between hits, hold at the captured frame where the NEXT striking fist is rear-most. Preserve original 1x timing.",
+    "segments": [
+      {
+        "index": 1,
+        "start": 0,
+        "hit": 0.38333332538604736,
+        "end": 0.46666666865348816,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 2,
+        "start": 0.46666666865348816,
+        "hit": 0.6666666865348816,
+        "end": 0.8166666626930237,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 3,
+        "start": 0.8166666626930237,
+        "hit": 0.8833333253860474,
+        "end": 0.949999988079071,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 4,
+        "start": 0.949999988079071,
+        "hit": 1.1166666746139526,
+        "end": 1.2000000476837158,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 5,
+        "start": 1.2000000476837158,
+        "hit": 1.2666666507720947,
+        "end": 1.2833333015441895,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 6,
+        "start": 1.2833333015441895,
+        "hit": 1.3833333253860474,
+        "end": 1.4500000476837158,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 7,
+        "start": 1.4500000476837158,
+        "hit": 1.5,
+        "end": 1.5499999523162842,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 8,
+        "start": 1.5499999523162842,
+        "hit": 1.649999976158142,
+        "end": 1.7333333492279053,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 9,
+        "start": 1.7333333492279053,
+        "hit": 1.7666666507720947,
+        "end": 1.7999999523162842,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 10,
+        "start": 1.7999999523162842,
+        "hit": 1.8833333253860474,
+        "end": 1.9500000476837158,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 11,
+        "start": 1.9500000476837158,
+        "hit": 1.9833333492279053,
+        "end": 2.0166666507720947,
+        "label": "Dmg",
+        "arm": "Right Arm"
+      },
+      {
+        "index": 12,
+        "start": 2.0166666507720947,
+        "hit": 2.0833332538604736,
+        "end": 2.2833333015441895,
+        "label": "Dmg",
+        "arm": "Left Arm"
+      },
+      {
+        "index": 13,
+        "start": 2.2833333015441895,
+        "hit": 2.450000047683716,
+        "end": 2.75,
+        "label": "Heavy",
+        "arm": "Right Arm"
+      }
+    ],
+    "nativePlayback": "not_verified"
+  }
+}
