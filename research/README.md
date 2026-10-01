@@ -1,6 +1,6 @@
 # Research
 
-Latest: [Model history and game-building research](25-next-models-lemonade-forgegui.md) audits 16 historically live-tested models, current Lemonade usage, dated Superbullet/ForgeGUI evidence, Unity/Unreal/Godot research and firsthand community reports. Proposed first comparison: GPT-6 Luna, GLM-5.3 Flash and Gemini 3.8 Flash against Sonnet 5.5. Fresh public prices saved. Zero paid inference calls. The [manual combat rehearsal](../docs/guided-demo-rehearsal.md) remains separate from autonomous Takko success.
+Latest: [Final bounded evaluation](../docs/results/final-evaluation/RESULTS.md) records the source/API changes, five paid Luna/Sonnet attempts with zero accepted games, one control cancelled before inference, infrastructure confounds and reconciled $0.92562963 spend under the $5 cap. No external game-code fixes. [Earlier model research](25-next-models-lemonade-forgegui.md) and the [manual combat rehearsal](../docs/guided-demo-rehearsal.md) remain separate evidence.
 
 ## Start here
 

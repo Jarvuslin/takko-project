@@ -1,0 +1,1392 @@
+{
+  "initial": {
+    "at": "2026-10-01T18:32:22.530Z",
+    "remaining": 12.01960953,
+    "usage": 17.98039047,
+    "limit": 30
+  },
+  "balanceAfter": {
+    "at": "2026-10-01T18:39:09.606Z",
+    "remaining": 11.544607899999999,
+    "usage": 18.4553921,
+    "limit": 30
+  },
+  "capMicros": 5000000,
+  "trials": [
+    {
+      "case": "combat",
+      "model": "openai/gpt-6-luna",
+      "projectId": "5fb92c2e-b5a1-4dbf-84ac-882d2b8632e0",
+      "scope": "Forge_5fb92c2eb5a1",
+      "startedAt": "2026-10-01T18:32:22.833Z",
+      "stage": "failed",
+      "error": "Error: Could not complete component-adapter. Adaptation must describe an actual change Allowed model attempts exhausted.",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 1,
+        "details": "Error: Could not complete component-adapter. Adaptation must describe an actual change Allowed model attempts exhausted.",
+        "at": "2026-10-01T18:32:47.655Z"
+      },
+      "assetPipeline": {
+        "status": "failed",
+        "entries": [
+          {
+            "needId": "target",
+            "status": "failed",
+            "reason": "Error: Could not complete component-adapter. Adaptation must describe an actual change Allowed model attempts exhausted."
+          },
+          {
+            "needId": "punch",
+            "status": "pending"
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "Error: Could not complete component-adapter. Adaptation must describe an actual change Allowed model attempts exhausted."
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 0
+      },
+      "chargedMicros": 3258,
+      "finishedAt": "2026-10-01T18:32:47.698Z",
+      "balance": {
+        "at": "2026-10-01T18:32:47.750Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "case": "npc",
+      "model": "openai/gpt-6-luna",
+      "projectId": "050e037a-1369-4941-8fd9-54695f1e581d",
+      "scope": "Forge_050e037a1369",
+      "startedAt": "2026-10-01T18:32:47.797Z",
+      "stage": "failed",
+      "error": "Error: Could not complete component-reviewer. Component review cites an unknown or repeated source Allowed model attempts exhausted.",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 1,
+        "details": "Error: Could not complete component-reviewer. Component review cites an unknown or repeated source Allowed model attempts exhausted.",
+        "at": "2026-10-01T18:33:53.878Z"
+      },
+      "assetPipeline": {
+        "status": "failed",
+        "entries": [
+          {
+            "needId": "npc",
+            "status": "failed",
+            "reason": "Error: Could not complete component-reviewer. Component review cites an unknown or repeated source Allowed model attempts exhausted."
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "Error: Could not complete component-reviewer. Component review cites an unknown or repeated source Allowed model attempts exhausted."
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 0
+      },
+      "chargedMicros": 6816,
+      "finishedAt": "2026-10-01T18:33:53.924Z",
+      "balance": {
+        "at": "2026-10-01T18:33:54.011Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "case": "audio",
+      "model": "openai/gpt-6-luna",
+      "projectId": "30441967-b596-4734-b318-13bf743e291b",
+      "scope": "Forge_30441967b596",
+      "startedAt": "2026-10-01T18:33:54.065Z",
+      "stage": "failed",
+      "error": "StudioAssetError: Audio capture requires exactly one connected, explicitly selected Studio",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 2,
+        "details": "StudioAssetError: Audio capture requires exactly one connected, explicitly selected Studio",
+        "at": "2026-10-01T18:36:39.495Z"
+      },
+      "assetPipeline": {
+        "status": "failed",
+        "entries": [
+          {
+            "needId": "radio",
+            "status": "passed",
+            "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified.",
+            "selected": "15876467320"
+          },
+          {
+            "needId": "radioAudioVerification",
+            "status": "failed",
+            "reason": "StudioAssetError: Audio capture requires exactly one connected, explicitly selected Studio"
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "StudioAssetError: Audio capture requires exactly one connected, explicitly selected Studio"
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 0
+      },
+      "chargedMicros": 17835,
+      "finishedAt": "2026-10-01T18:36:39.549Z",
+      "balance": {
+        "at": "2026-10-01T18:36:39.576Z",
+        "remaining": 11.997720009999998,
+        "usage": 18.00227999,
+        "limit": 30
+      }
+    },
+    {
+      "case": "combat",
+      "model": "anthropic/claude-sonnet-5.5",
+      "projectId": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "scope": "Forge_d6a1113f990c",
+      "startedAt": "2026-10-01T18:36:39.672Z",
+      "stage": "failed",
+      "error": "Cannot persist asset pipeline history: Error: EPERM: operation not permitted, rename 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json.tmp' -> 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json'",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 2,
+        "details": "Cannot persist asset pipeline history: Error: EPERM: operation not permitted, rename 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json.tmp' -> 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json'",
+        "at": "2026-10-01T18:38:41.963Z"
+      },
+      "assetPipeline": {
+        "status": "failed",
+        "entries": [
+          {
+            "needId": "target",
+            "status": "passed",
+            "reason": "Component source and export checked; retained for worker integration. Placement, media playback and gameplay remain unverified.",
+            "selected": "110933673720505"
+          },
+          {
+            "needId": "punch",
+            "status": "failed",
+            "reason": "Cannot persist asset pipeline history: Error: EPERM: operation not permitted, rename 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json.tmp' -> 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json'"
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "Cannot persist asset pipeline history: Error: EPERM: operation not permitted, rename 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json.tmp' -> 'D:\\RobloxProjects\\Roblox Gen\\.forge\\final-evaluation\\projects\\d6a1113f-990c-40eb-807e-3b7a203e1e24.json'"
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 1
+      },
+      "chargedMicros": 791698,
+      "finishedAt": "2026-10-01T18:38:42.038Z",
+      "balance": {
+        "at": "2026-10-01T18:38:42.060Z",
+        "remaining": 11.8187039,
+        "usage": 18.1812961,
+        "limit": 30
+      }
+    },
+    {
+      "case": "npc",
+      "model": "anthropic/claude-sonnet-5.5",
+      "projectId": "651891cb-a5cb-4956-8365-abf8d2f31019",
+      "scope": "Forge_651891cba5cb",
+      "startedAt": "2026-10-01T18:38:42.168Z",
+      "stage": "failed",
+      "error": "Error: Could not complete component-reviewer. Component review must cover every captured content reference exactly without inventing values Allowed model attempts exhausted.",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 1,
+        "details": "Error: Could not complete component-reviewer. Component review must cover every captured content reference exactly without inventing values Allowed model attempts exhausted.",
+        "at": "2026-10-01T18:39:09.125Z"
+      },
+      "assetPipeline": {
+        "status": "failed",
+        "entries": [
+          {
+            "needId": "npc",
+            "status": "failed",
+            "reason": "Error: Could not complete component-reviewer. Component review must cover every captured content reference exactly without inventing values Allowed model attempts exhausted."
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "Error: Could not complete component-reviewer. Component review must cover every captured content reference exactly without inventing values Allowed model attempts exhausted."
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 0
+      },
+      "chargedMicros": 106034,
+      "finishedAt": "2026-10-01T18:39:09.172Z",
+      "balance": {
+        "at": "2026-10-01T18:39:09.188Z",
+        "remaining": 11.544607899999999,
+        "usage": 18.4553921,
+        "limit": 30
+      }
+    },
+    {
+      "case": "audio",
+      "model": "anthropic/claude-sonnet-5.5",
+      "projectId": "8bd5d79b-f96e-4e07-a78e-b38bcc7dea39",
+      "scope": "Forge_8bd5d79bf96e",
+      "startedAt": "2026-10-01T18:39:09.273Z",
+      "stage": "interrupted",
+      "error": "StudioAssetError: list_roblox_studios failed; no automatic retry",
+      "failure": {
+        "code": "ASSET_PIPELINE_FAILED",
+        "phase": "builder",
+        "attempts": 0,
+        "details": "StudioAssetError: list_roblox_studios failed; no automatic retry",
+        "at": "2026-10-01T18:39:09.440Z"
+      },
+      "assetPipeline": {
+        "status": "interrupted",
+        "entries": [
+          {
+            "needId": "radio",
+            "status": "failed",
+            "reason": "StudioAssetError: list_roblox_studios failed; no automatic retry"
+          }
+        ]
+      },
+      "staticFailures": [
+        {
+          "id": "asset-pipeline",
+          "status": "failed",
+          "detail": "StudioAssetError: list_roblox_studios failed; no automatic retry"
+        }
+      ],
+      "cleanup": {
+        "removedScopes": 0
+      },
+      "chargedMicros": 0,
+      "finishedAt": "2026-10-01T18:39:09.491Z",
+      "balance": {
+        "at": "2026-10-01T18:39:09.507Z",
+        "remaining": 11.544607899999999,
+        "usage": 18.4553921,
+        "limit": 30
+      }
+    }
+  ],
+  "charges": [
+    {
+      "project": "5fb92c2e-b5a1-4dbf-84ac-882d2b8632e0",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32743,
+      "chargedMicros": 908,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6508,
+      "outputTokens": 189,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:32:27.281Z"
+    },
+    {
+      "project": "5fb92c2e-b5a1-4dbf-84ac-882d2b8632e0",
+      "phase": "reviewer",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32636,
+      "chargedMicros": 1291,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6321,
+      "outputTokens": 1317,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:32:40.334Z"
+    },
+    {
+      "project": "5fb92c2e-b5a1-4dbf-84ac-882d2b8632e0",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 31711,
+      "chargedMicros": 1059,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5712,
+      "outputTokens": 690,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:32:47.552Z"
+    },
+    {
+      "project": "050e037a-1369-4941-8fd9-54695f1e581d",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32488,
+      "chargedMicros": 877,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6242,
+      "outputTokens": 192,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:32:51.042Z"
+    },
+    {
+      "project": "050e037a-1369-4941-8fd9-54695f1e581d",
+      "phase": "reviewer",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 41914,
+      "chargedMicros": 5939,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 18439,
+      "outputTokens": 7268,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:33:53.745Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32266,
+      "chargedMicros": 870,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6105,
+      "outputTokens": 212,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:33:57.841Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "phase": "reviewer",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32722,
+      "chargedMicros": 1311,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6369,
+      "outputTokens": 1471,
+      "cachedInputTokens": 1926,
+      "status": "ok",
+      "at": "2026-10-01T18:34:14.162Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "61961d76-55fa-420b-8044-071fa3968c3d",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 27706,
+      "chargedMicros": 332,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 2586,
+      "outputTokens": 16,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:34:21.145Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "1054263a-9582-4b55-a0f9-4b22c3b2aa6b",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 31285,
+      "chargedMicros": 409,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 5395,
+      "outputTokens": 62,
+      "cachedInputTokens": 2583,
+      "status": "ok",
+      "at": "2026-10-01T18:34:23.503Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "9c145190-438a-4a39-81e7-628c000b42c2",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 34915,
+      "chargedMicros": 420,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 8112,
+      "outputTokens": 51,
+      "cachedInputTokens": 5392,
+      "status": "ok",
+      "at": "2026-10-01T18:34:24.761Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "4c64ae53-b42f-4071-9271-366d8836e5b2",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 37255,
+      "chargedMicros": 328,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 9993,
+      "outputTokens": 22,
+      "cachedInputTokens": 8109,
+      "status": "ok",
+      "at": "2026-10-01T18:34:26.144Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "d4de67c5-01dd-4b28-8049-f781e1172bd9",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 40840,
+      "chargedMicros": 482,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 12804,
+      "outputTokens": 60,
+      "cachedInputTokens": 9990,
+      "status": "ok",
+      "at": "2026-10-01T18:34:27.606Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "97cdb089-c103-48de-a955-52f0e9cf7c4b",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 44218,
+      "chargedMicros": 472,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 15367,
+      "outputTokens": 46,
+      "cachedInputTokens": 12801,
+      "status": "ok",
+      "at": "2026-10-01T18:34:29.033Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "98e2d6c7-6fd5-465c-bb6f-b2aebe363c83",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 44479,
+      "chargedMicros": 2143,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 15591,
+      "outputTokens": 3921,
+      "cachedInputTokens": 15364,
+      "status": "ok",
+      "at": "2026-10-01T18:34:57.189Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "19b5f558-d40d-4b46-a269-48e1d78beb08",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 47540,
+      "chargedMicros": 2854,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 18592,
+      "outputTokens": 4645,
+      "cachedInputTokens": 15588,
+      "status": "ok",
+      "at": "2026-10-01T18:35:28.433Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "8fc96715-a70e-4a4f-a584-5d4e7bed6b95",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 50867,
+      "chargedMicros": 2203,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 21544,
+      "outputTokens": 3294,
+      "cachedInputTokens": 18589,
+      "status": "ok",
+      "at": "2026-10-01T18:35:47.735Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "requestId": "8d9f4c30-3d53-412e-9825-781ff32b12c5",
+      "opencodeRunId": "a6e49f31-d9c6-4b3e-aa0e-2e7b5ecb57fc",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 53960,
+      "chargedMicros": 2797,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 24623,
+      "outputTokens": 4391,
+      "cachedInputTokens": 21541,
+      "status": "ok",
+      "at": "2026-10-01T18:36:17.326Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32977,
+      "chargedMicros": 931,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6765,
+      "outputTokens": 169,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:36:21.120Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32505,
+      "chargedMicros": 912,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6251,
+      "outputTokens": 260,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:36:24.995Z"
+    },
+    {
+      "project": "30441967-b596-4734-b318-13bf743e291b",
+      "phase": "builder",
+      "profileId": "3380841f-4720-40d8-9305-71cadb6b99ac",
+      "model": "openai/gpt-6-luna",
+      "reservedMicros": 32607,
+      "chargedMicros": 1371,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 6382,
+      "outputTokens": 1146,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:36:38.384Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "builder",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 458344,
+      "chargedMicros": 26346,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 11523,
+      "outputTokens": 330,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:36:45.174Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "reviewer",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 798004,
+      "chargedMicros": 146662,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 55836,
+      "outputTokens": 3499,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:37:21.700Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "builder",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 773080,
+      "chargedMicros": 127334,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 53942,
+      "outputTokens": 1945,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:37:41.682Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "reviewer",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 893244,
+      "chargedMicros": 146762,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 66136,
+      "outputTokens": 1449,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:37:58.660Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "builder",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 879296,
+      "chargedMicros": 149690,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 65170,
+      "outputTokens": 1935,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:38:16.834Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "reviewer",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 994536,
+      "chargedMicros": 168566,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 77418,
+      "outputTokens": 1373,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:38:34.430Z"
+    },
+    {
+      "project": "d6a1113f-990c-40eb-807e-3b7a203e1e24",
+      "phase": "builder",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 457080,
+      "chargedMicros": 26338,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 11334,
+      "outputTokens": 367,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:38:41.134Z"
+    },
+    {
+      "project": "651891cb-a5cb-4956-8365-abf8d2f31019",
+      "phase": "builder",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 454260,
+      "chargedMicros": 25858,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 10989,
+      "outputTokens": 388,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:38:46.852Z"
+    },
+    {
+      "project": "651891cb-a5cb-4956-8365-abf8d2f31019",
+      "phase": "reviewer",
+      "profileId": "0213e8d4-db7d-453b-aa82-44cc14376e96",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 605088,
+      "chargedMicros": 80176,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 30253,
+      "outputTokens": 1967,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T18:39:09.026Z"
+    }
+  ],
+  "dispatches": [
+    {
+      "trial": 0,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32743,
+      "at": "2026-10-01T18:32:23.524Z",
+      "liability": {
+        "chargedMicros": 0,
+        "reservedMicros": 32743,
+        "providerSpentMicros": 0,
+        "liabilityMicros": 32743,
+        "remainingMicros": 4967257
+      },
+      "balance": {
+        "at": "2026-10-01T18:32:23.517Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 0,
+      "phase": "reviewer",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32636,
+      "at": "2026-10-01T18:32:28.046Z",
+      "liability": {
+        "chargedMicros": 908,
+        "reservedMicros": 32636,
+        "providerSpentMicros": 0,
+        "liabilityMicros": 33544,
+        "remainingMicros": 4966456
+      },
+      "balance": {
+        "at": "2026-10-01T18:32:28.042Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 0,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 31711,
+      "at": "2026-10-01T18:32:40.396Z",
+      "liability": {
+        "chargedMicros": 2199,
+        "reservedMicros": 31711,
+        "providerSpentMicros": 0,
+        "liabilityMicros": 33910,
+        "remainingMicros": 4966090
+      },
+      "balance": {
+        "at": "2026-10-01T18:32:40.392Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 1,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32488,
+      "at": "2026-10-01T18:32:48.172Z",
+      "liability": {
+        "chargedMicros": 3258,
+        "reservedMicros": 32488,
+        "providerSpentMicros": 0,
+        "liabilityMicros": 35746,
+        "remainingMicros": 4964254
+      },
+      "balance": {
+        "at": "2026-10-01T18:32:48.165Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 1,
+      "phase": "reviewer",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 41914,
+      "at": "2026-10-01T18:32:52.406Z",
+      "liability": {
+        "chargedMicros": 4135,
+        "reservedMicros": 41914,
+        "providerSpentMicros": 0,
+        "liabilityMicros": 46049,
+        "remainingMicros": 4953951
+      },
+      "balance": {
+        "at": "2026-10-01T18:32:52.397Z",
+        "remaining": 12.01960953,
+        "usage": 17.98039047,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32266,
+      "at": "2026-10-01T18:33:54.461Z",
+      "liability": {
+        "chargedMicros": 10074,
+        "reservedMicros": 32266,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 42340,
+        "remainingMicros": 4957660
+      },
+      "balance": {
+        "at": "2026-10-01T18:33:54.448Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "reviewer",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32722,
+      "at": "2026-10-01T18:33:59.033Z",
+      "liability": {
+        "chargedMicros": 10944,
+        "reservedMicros": 32722,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 43666,
+        "remainingMicros": 4956334
+      },
+      "balance": {
+        "at": "2026-10-01T18:33:59.021Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 27706,
+      "at": "2026-10-01T18:34:19.982Z",
+      "liability": {
+        "chargedMicros": 12255,
+        "reservedMicros": 27706,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 39961,
+        "remainingMicros": 4960039
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:19.962Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 2,
+      "reservedMicros": 31285,
+      "at": "2026-10-01T18:34:21.322Z",
+      "liability": {
+        "chargedMicros": 12587,
+        "reservedMicros": 31285,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 43872,
+        "remainingMicros": 4956128
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:21.311Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 3,
+      "reservedMicros": 34915,
+      "at": "2026-10-01T18:34:23.796Z",
+      "liability": {
+        "chargedMicros": 12996,
+        "reservedMicros": 34915,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 47911,
+        "remainingMicros": 4952089
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:23.784Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 4,
+      "reservedMicros": 37255,
+      "at": "2026-10-01T18:34:25.087Z",
+      "liability": {
+        "chargedMicros": 13416,
+        "reservedMicros": 37255,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 50671,
+        "remainingMicros": 4949329
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:25.074Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 5,
+      "reservedMicros": 40840,
+      "at": "2026-10-01T18:34:26.390Z",
+      "liability": {
+        "chargedMicros": 13744,
+        "reservedMicros": 40840,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 54584,
+        "remainingMicros": 4945416
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:26.378Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 6,
+      "reservedMicros": 44218,
+      "at": "2026-10-01T18:34:27.787Z",
+      "liability": {
+        "chargedMicros": 14226,
+        "reservedMicros": 44218,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 58444,
+        "remainingMicros": 4941556
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:27.773Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 7,
+      "reservedMicros": 44479,
+      "at": "2026-10-01T18:34:29.178Z",
+      "liability": {
+        "chargedMicros": 14698,
+        "reservedMicros": 44479,
+        "providerSpentMicros": 4134,
+        "liabilityMicros": 59177,
+        "remainingMicros": 4940823
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:29.165Z",
+        "remaining": 12.015475904999999,
+        "usage": 17.984524095,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 8,
+      "reservedMicros": 47540,
+      "at": "2026-10-01T18:34:57.403Z",
+      "liability": {
+        "chargedMicros": 16841,
+        "reservedMicros": 47540,
+        "providerSpentMicros": 10942,
+        "liabilityMicros": 64381,
+        "remainingMicros": 4935619
+      },
+      "balance": {
+        "at": "2026-10-01T18:34:57.381Z",
+        "remaining": 12.008668055000001,
+        "usage": 17.991331945,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 9,
+      "reservedMicros": 50867,
+      "at": "2026-10-01T18:35:28.556Z",
+      "liability": {
+        "chargedMicros": 19695,
+        "reservedMicros": 50867,
+        "providerSpentMicros": 14692,
+        "liabilityMicros": 70562,
+        "remainingMicros": 4929438
+      },
+      "balance": {
+        "at": "2026-10-01T18:35:28.548Z",
+        "remaining": 12.004918445000001,
+        "usage": 17.995081555,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 10,
+      "reservedMicros": 53960,
+      "at": "2026-10-01T18:35:47.911Z",
+      "liability": {
+        "chargedMicros": 21898,
+        "reservedMicros": 53960,
+        "providerSpentMicros": 14692,
+        "liabilityMicros": 75858,
+        "remainingMicros": 4924142
+      },
+      "balance": {
+        "at": "2026-10-01T18:35:47.900Z",
+        "remaining": 12.004918445000001,
+        "usage": 17.995081555,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32977,
+      "at": "2026-10-01T18:36:17.748Z",
+      "liability": {
+        "chargedMicros": 24695,
+        "reservedMicros": 32977,
+        "providerSpentMicros": 16834,
+        "liabilityMicros": 57672,
+        "remainingMicros": 4942328
+      },
+      "balance": {
+        "at": "2026-10-01T18:36:17.729Z",
+        "remaining": 12.002776005000001,
+        "usage": 17.997223995,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32505,
+      "at": "2026-10-01T18:36:21.622Z",
+      "liability": {
+        "chargedMicros": 25626,
+        "reservedMicros": 32505,
+        "providerSpentMicros": 16834,
+        "liabilityMicros": 58131,
+        "remainingMicros": 4941869
+      },
+      "balance": {
+        "at": "2026-10-01T18:36:21.607Z",
+        "remaining": 12.002776005000001,
+        "usage": 17.997223995,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 2,
+      "phase": "builder",
+      "profile": "openai/gpt-6-luna",
+      "attempt": 1,
+      "reservedMicros": 32607,
+      "at": "2026-10-01T18:36:25.424Z",
+      "liability": {
+        "chargedMicros": 26538,
+        "reservedMicros": 32607,
+        "providerSpentMicros": 16834,
+        "liabilityMicros": 59145,
+        "remainingMicros": 4940855
+      },
+      "balance": {
+        "at": "2026-10-01T18:36:25.411Z",
+        "remaining": 12.002776005000001,
+        "usage": 17.997223995,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "builder",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 458344,
+      "at": "2026-10-01T18:36:40.017Z",
+      "liability": {
+        "chargedMicros": 27909,
+        "reservedMicros": 458344,
+        "providerSpentMicros": 21890,
+        "liabilityMicros": 486253,
+        "remainingMicros": 4513747
+      },
+      "balance": {
+        "at": "2026-10-01T18:36:40.005Z",
+        "remaining": 11.997720009999998,
+        "usage": 18.00227999,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "reviewer",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 798004,
+      "at": "2026-10-01T18:36:47.256Z",
+      "liability": {
+        "chargedMicros": 54255,
+        "reservedMicros": 798004,
+        "providerSpentMicros": 21890,
+        "liabilityMicros": 852259,
+        "remainingMicros": 4147741
+      },
+      "balance": {
+        "at": "2026-10-01T18:36:47.238Z",
+        "remaining": 11.997720009999998,
+        "usage": 18.00227999,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "builder",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 773080,
+      "at": "2026-10-01T18:37:21.834Z",
+      "liability": {
+        "chargedMicros": 200917,
+        "reservedMicros": 773080,
+        "providerSpentMicros": 26527,
+        "liabilityMicros": 973997,
+        "remainingMicros": 4026003
+      },
+      "balance": {
+        "at": "2026-10-01T18:37:21.812Z",
+        "remaining": 11.993082574999999,
+        "usage": 18.006917425,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "reviewer",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 893244,
+      "at": "2026-10-01T18:37:42.382Z",
+      "liability": {
+        "chargedMicros": 328251,
+        "reservedMicros": 893244,
+        "providerSpentMicros": 54244,
+        "liabilityMicros": 1221495,
+        "remainingMicros": 3778505
+      },
+      "balance": {
+        "at": "2026-10-01T18:37:42.364Z",
+        "remaining": 11.965365899999998,
+        "usage": 18.0346341,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "builder",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 879296,
+      "at": "2026-10-01T18:37:58.790Z",
+      "liability": {
+        "chargedMicros": 475013,
+        "reservedMicros": 879296,
+        "providerSpentMicros": 54244,
+        "liabilityMicros": 1354309,
+        "remainingMicros": 3645691
+      },
+      "balance": {
+        "at": "2026-10-01T18:37:58.773Z",
+        "remaining": 11.965365899999998,
+        "usage": 18.0346341,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "reviewer",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 994536,
+      "at": "2026-10-01T18:38:17.880Z",
+      "liability": {
+        "chargedMicros": 624703,
+        "reservedMicros": 994536,
+        "providerSpentMicros": 200906,
+        "liabilityMicros": 1619239,
+        "remainingMicros": 3380761
+      },
+      "balance": {
+        "at": "2026-10-01T18:38:17.854Z",
+        "remaining": 11.8187039,
+        "usage": 18.1812961,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 3,
+      "phase": "builder",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 457080,
+      "at": "2026-10-01T18:38:36.157Z",
+      "liability": {
+        "chargedMicros": 793269,
+        "reservedMicros": 457080,
+        "providerSpentMicros": 200906,
+        "liabilityMicros": 1250349,
+        "remainingMicros": 3749651
+      },
+      "balance": {
+        "at": "2026-10-01T18:38:36.133Z",
+        "remaining": 11.8187039,
+        "usage": 18.1812961,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 4,
+      "phase": "builder",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 454260,
+      "at": "2026-10-01T18:38:42.520Z",
+      "liability": {
+        "chargedMicros": 819607,
+        "reservedMicros": 454260,
+        "providerSpentMicros": 475002,
+        "liabilityMicros": 1273867,
+        "remainingMicros": 3726133
+      },
+      "balance": {
+        "at": "2026-10-01T18:38:42.500Z",
+        "remaining": 11.544607899999999,
+        "usage": 18.4553921,
+        "limit": 30
+      }
+    },
+    {
+      "trial": 4,
+      "phase": "reviewer",
+      "profile": "anthropic/claude-sonnet-5.5",
+      "attempt": 1,
+      "reservedMicros": 605088,
+      "at": "2026-10-01T18:38:47.772Z",
+      "liability": {
+        "chargedMicros": 845465,
+        "reservedMicros": 605088,
+        "providerSpentMicros": 475002,
+        "liabilityMicros": 1450553,
+        "remainingMicros": 3549447
+      },
+      "balance": {
+        "at": "2026-10-01T18:38:47.743Z",
+        "remaining": 11.544607899999999,
+        "usage": 18.4553921,
+        "limit": 30
+      }
+    }
+  ],
+  "reconciliations": [
+    {
+      "at": "2026-10-01T18:41:33.397Z",
+      "remaining": 11.0939799,
+      "usage": 18.9060201,
+      "limit": 30
+    }
+  ],
+  "interventions": [
+    {
+      "at": "2026-10-01T18:39:09.417Z",
+      "projectId": "8bd5d79b-f96e-4e07-a78e-b38bcc7dea39",
+      "reason": "Known infrastructure blocker: audio capture requires exactly one connected Studio. User-owned Studio windows must not be closed without permission. Cancel control rather than pay to reproduce an unavailable environment.",
+      "status": 200,
+      "stage": "generating",
+      "charges": []
+    }
+  ],
+  "inspectionFinal": {
+    "workspaceChildren": 2,
+    "scripts": 0
+  },
+  "cleanup": {
+    "editRestored": true,
+    "testServiceStopped": true,
+    "temporaryFolders": "Ten Electron journey test directories retained after automatic approval review rejected cleanup: blocked by policy"
+  }
+}

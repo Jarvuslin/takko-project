@@ -1,33 +1,33 @@
 # Current state
 
-Updated 2026-10-01T16:40Z. Read research/25-next-models-lemonade-forgegui.md for the model-history audit, engine/community research and proposed candidates. Research only, zero paid calls. The earlier manually repaired combat demo remains in docs/guided-demo-rehearsal.md, separate from autonomous Takko success.
+Updated 2026-10-01T18:45Z. Read docs/results/final-evaluation/RESULTS.md for the final authorized $5 evaluation. Five paid attempts, zero accepted game artifacts, one planned control cancelled before inference. Product no-go, not proof of model coding incapacity.
 
 ## Live and data
 
-- Takko main PID 28600 is alive. Read-only checks found old service PID 14992 and listener 51256 absent. No listeners on 4318, 4319, 4324, 4335 or 4336 after this check. No Takko process was stopped, restarted or changed. Investigate service state separately before a new generation run.
-- Canonical data: C:/Users/7474g/AppData/Roaming/Forge Desktop. No settings writes, credential/vault access or balance refresh. Last inspected son preset used Sonnet 5.5 for every phase, 8192 output tokens and repairLimit=2. Not reread this turn.
-- Studio processes 15320 and 2816 still exist. Prior Place1 PID 29704 absent. Studio was not used this turn, so current Edit/Play state was not rechecked. Last native session left both owned places in Edit, removed probes/imports and restored device settings. Empty trial had zero scripts/two Workspace children. Demo had four authored scripts.
-- Deliverable remains .forge/exports/guided-demo/GuidedCombatDemo.rbxlx. Nothing published. No native test service started.
-- Installed release/Takko-win32-x64 lacks role capture, protected review, coding policy and staged lease fixes. Stage .forge/update-stage/app/Takko-win32-x64 lacks subsequent pack/coding-policy fixes. Neither replaced. Retained rollback and canonical data untouched.
-- Prior blocked cleanup remains: previous-staged-app, takko-parent-loss-Gz4i9s, run-30876, run-4644 and older Electron workspaces. Earlier models.json ENOENT remains unexplained. New cleanup blocked: run-36388 and ten Temp/takko-electron-journey workspaces created 16:37:53-16:39:28Z. Reason: "blocked by policy".
+- User Takko main PID 28600 remains alive. No listener found on 4318, 4319, 4324, 4335, 4336 or 51256 after the run. No user Takko process was stopped, restarted or replaced. The owned evaluation service on 4335 and cancellation watcher exited.
+- Canonical data remains C:/Users/7474g/AppData/Roaming/Forge Desktop. Authorized DPAPI read in process, no plaintext key writes. Canonical settings unchanged. Isolated evaluation data: .forge/final-evaluation.
+- Inspection Studio d019b9b1-170e-42f8-b76c-704533ef26cd was verified in Edit, zero scripts and two Workspace children, matching its original state. Test-owned imports/scopes removed. Original scripts unchanged. Other user Studio windows were not closed. A separate owned default-baseplate export passed the $0 native preflight and was restored to Edit.
+- No newly generated demo passed. Previous manual demo remains .forge/exports/guided-demo/GuidedCombatDemo.rbxlx. Nothing published.
+- Installed release/Takko-win32-x64 and .forge/update-stage/app were not replaced. New native API/evidence changes exist only in source. Canonical data and retained rollback untouched.
+- Automatic approval review rejected cleanup of this run's ten Temp/takko-electron-journey directories created 18:37:42-18:39:30Z: "blocked by policy". Older cleanup failures and models.json ENOENT remain unresolved, see prior reports.
 
 ## Findings and decisions
 
-- Audit identifies 16 live-tested model identities with unequal tasks/harnesses. Two oldest rely on the historical log. Controlled screen: Sonnet 5 15/15 native fixture checks, Luna 5.6 14/15, Qwen3.8 Max API error, Kimi K2.7 Code output exhaustion. No complete-game winner established.
-- Proposed first comparison: GPT-6 Luna, GLM-5.3 Flash, Gemini 3.8 Flash against Sonnet 5.5. Composer 2.5 is a separate Cursor agent-system track. No paid batch authorized. Public catalog prices saved without credentials. Lemonade attribution supports Luna/GLM/Gemini usage, not model roles or success rates. Superbullet/ForgeGUI attribution remains dated and explicitly limited.
-- Unity/Unreal/Godot research and selected firsthand reports support project/asset indexing, engine tools and behavioral feedback. They do not prove Takko savings. Keep one host-controlled workflow, bounded targeted repair and native acceptance across genres. Existing direct generation already has deterministic sequencing, so no framework rewrite is justified.
-- Prior rehearsal searched twelve listings, inspected eight detached models and extracted Sound 3932505023 from container 9280156718 without importing its source. Retained approved animation 15008746676 and target 10161087974. These are known assets, not holdouts.
-- Manually repaired derivative passed ten native scenarios after reopening the export and 22 offline contracts. Original paid P-Build 2 remains 18/20. No production app source changed. NPC rewiring and smaller-model decision cases remain untested.
-- Asset generalization remains no-go: 11/16 strata unfilled, no qualifying attack playback in the holdout. Preserve that failure.
+- Added retained script/dependency/configuration/security evidence to builder context. Added product-owned POST /api/projects/:id/native-acceptance: full export, new Studio, hierarchy/source identity, real client/server checks, concrete failure into existing repair once, reopened retest, stale evidence rejection and Edit restoration. Trusted caller-supplied plan. No new desktop button or universal relocation engine.
+- Added shared evaluation admission using saved production reservations, actual charges and fresh balance. Existing OpenCode, sequencing, baseplate and component inspection/adaptation stay in place. One attempt per structured call, no fallback, max 20 calls/case. Existing static repair plus at most one native repair cycle.
+- Luna combat failed because a missing visual/physics observation was routed to adaptation and returned an empty edit. Luna NPC emitted an invented hash in requirement citations. Luna audio inspected a radio and started integration, then hit the audio helper's single-connected-Studio requirement.
+- Sonnet combat adapted its selected target but stopped at Windows EPERM atomic save. Evaluator live-file reads/watcher were present, so interference is possible and cause is unproven. Sonnet NPC collapsed eight distinct media bindings into one value, causing seven mismatches. Its audio control was explicitly cancelled before any charge to avoid the known environment blocker.
+- No paid output reached native acceptance. This does not measure gameplay quality or model-driven native repair. The cases used fixed approved specs and actual automatic asset search, not a user-selected-assets comparison. No external game-code fixes. Partial asset success is not a playable-game pass.
+- No measured cost improvement or successful-game economics established. Remaining architecture changes below are recommendations, not claimed fixes.
 
 ## Money and paused work
 
-This research: $0 project-provider charge, zero inference calls. Assistant allowance separate/unmeasured. Last provider balance 2026-10-01T03:26:03.531Z: remaining $12.01960953, usage $17.98039047, limit $30. Probes 2 review $0.229214 plus build $0.2537187 = $0.4829327. Host rounding $0.253720. No live reservations. Earlier build $0.1081545 remains historical. Rejected review liability $0.749202, observed billed delta $0.
+This batch: 29 billed calls, actual provider delta $0.92562963 against the authorized $5 cap. Host rounded ledger $0.925641, no estimated calls or active reservations. Final balance 2026-10-01T18:41:33.397Z: remaining $11.0939799, usage $18.9060201, limit $30. Unspent batch allowance $4.07437037 is not a fresh run authorization. Immediate endpoint lag is preserved and reconciled in RESULTS.md. Assistant allowance separate/unmeasured.
 
-Both paid probes are consumed. Their $1.25/$1.75 caps are nontransferable. No further paid run, full trial, install or Takko shutdown authorized. Old generation goal remains paused.
+Final batch consumed. No failed trial was automatically retried. No further paid batch, deployment, install or user-process shutdown authorized. Old generation goal remains paused. Prior probe charges and balances remain in their original reports.
 
 ## Verification and next up
 
-Full npm run check passed once: build, 1911 unit/150 files, 6 Luau, 16 plugin plus plugin/8 compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 108 browser, 10 Electron. No crash/rerun/skips. Log test-artifacts/game-model-research-full-check.log. No new Studio verification or measured model improvement.
+Full npm run check passed once: build, 1919 unit/151 files, 6 Luau, 16 plugin plus plugin/8 compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 108 browser, 10 Electron. No crash/rerun/skips. Log test-artifacts/final-evaluation-full-check.log. Focused 24 tests passed. Native $0 baseplate preflight passed. No playable-game pass.
 
-Next: inspect absent service separately. Implement one general slice for complete asset/dependency evidence, capability gaps, environment preflight and exact-export acceptance. Then compare the four proposed models on the same cases, including nested audio, behavior-preserving NPC wiring and held-out genres/assets, in a separately authorized capped batch. Count failures and manual interventions in cost per accepted artifact.
+Next up only if the user continues: decide whether to pivot to tested asset packs/bounded integration. Otherwise fix identity echo contracts, observation routing, early audio capability checks and isolate/reproduce Windows save contention before any new authorized paid comparison. Keep the failed runs intact. Investigate absent user app service separately without restarting it.

@@ -4,6 +4,7 @@ Read [current state](../research/notes/continuation.md) first. It is the sole au
 
 ## Current documents
 
+- [Final bounded evaluation](results/final-evaluation/RESULTS.md): production changes, five paid attempts, zero accepted games, infrastructure confounds and reconciled $0.92562963 cost under the $5 cap.
 - [Generation diagnostic brief](generation-diagnostic-brief.md): architecture, models, versions, failure history and spend, written for a fresh diagnosing agent.
 - [Model history and game-building research](../research/25-next-models-lemonade-forgegui.md): audited live model tests, Roblox competitor attribution, Unity/Unreal/Godot evidence, community reports and a priced candidate shortlist.
 - [Guided demo rehearsal](guided-demo-rehearsal.md): a manually repaired fighting demo tested in a reopened Studio export, asset decisions, reproducible failures and architecture lessons. Not an automated Takko success or measured provider-cost improvement.

@@ -95,6 +95,18 @@ function setup(runtimeTouch = false) {
   };
   return { directory, p, f };
 }
+it("passes the archived producer's reviewed dependencies and script bindings to the game worker", () => {
+  const { directory, p } = setup();
+  const component = projectComponents(p, directory)[0];
+  const context = componentBuilderContext(p, directory)[0];
+  expect(context.integrationEvidence.requirements).toEqual(component.record.review.requirements);
+  expect(context.integrationEvidence.dependencies).toEqual(component.record.review.sources);
+  expect(context.integrationEvidence.scriptLocations).toEqual(component.evidence.sourceBodies.flatMap(body => body.bindings.map(binding => ({
+    ...binding, sha256: body.sha256, node: component.evidence.nodes.find(node => node.index === binding.index),
+  }))));
+  expect(context.integrationEvidence.dependencies[0].dependencies.length).toBeGreaterThan(0);
+  expect(context.integrationEvidence.packetHash).toBe(component.evidence.packetHash);
+});
 it("persists and revalidates model-selected line citations without rewriting the durable review", () => {
   const { directory, p, f } = setup();
   const review = structuredClone(f.review);

@@ -1,4 +1,5 @@
 import { proposalQuestions } from "../generation/proposal-questions";
+import { NativeAcceptanceRunner, nativeAcceptanceSchema, type NativeRuntime } from "../generation/native-acceptance";
 import { trialFinalReviewPolicy } from "../generation/review-budget";
 import { defaultOpenCodeCallPolicy } from "../generation/opencode-gateway";
 import { stepRetry } from "../generation/retry";
@@ -49,6 +50,7 @@ export function createApp(
   directory: string,
   options: {
     transport?: typeof fetch;
+    nativeRuntimeFactory?: () => NativeRuntime;
     credentialVault?: CredentialVault;
     executionPolicy?: ExecutionPolicy;
     env?: NodeJS.ProcessEnv;
@@ -107,8 +109,9 @@ export function createApp(
       },
     ),
     bridge = new Bridge(store);
+  const nativeAcceptance = new NativeAcceptanceRunner(engine, directory, options.nativeRuntimeFactory);
   engine.mutationBlocker = (id) =>
-    bridge
+    nativeAcceptance.active.has(id) ? "Native acceptance is active for this project" : bridge
       .projectOperations(id)
       .some((op) => ["queued", "dispatched", "unknown"].includes(op.state))
       ? "A Studio operation is active or has an unknown outcome. Wait, cancel or reconcile it before editing or building. Your request remains a draft."
@@ -116,6 +119,7 @@ export function createApp(
   app.locals.engine = engine;
   app.locals.config = config;
   app.locals.bridge = bridge;
+  app.locals.nativeAcceptance = nativeAcceptance;
   app.disable("x-powered-by");
   app.use((_req, res, next) => {
     const json = res.json.bind(res);
@@ -893,6 +897,10 @@ export function createApp(
         p.rig,
       ),
     );
+  });
+  app.post("/api/projects/:id/native-acceptance", async (req, res) => {
+    const input = nativeAcceptanceSchema.parse(req.body);
+    res.json(await nativeAcceptance.run(String(req.params.id), input));
   });
   app.get("/api/studio/pairing", (_req, res) =>
     res.json({ token: bridge.pairing() }),
