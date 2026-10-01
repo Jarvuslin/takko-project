@@ -16,13 +16,13 @@ Updated 2026-10-01T01:17Z. Active approved task: service step 1b, clean full che
 
 ## Money and authorization
 
-P-Review made one attempt, HTTP 429 admission rejection with no completion/tokens. No retry. Observed balance delta $0, no authoritative per-call receipt. Conservative estimated liability $0.749202 retained, live reservations $0. Balance at 2026-10-01T01:21:44.815Z: remaining $12.61069673, usage $17.38930327, limit $30. DPAPI key read only in memory, no vault copy. P-Build still unspent with its separate $1.75 cap.
+P-Review: one HTTP 429 admission rejection, no completion/tokens/retry. Observed billed delta $0, no receipt, conservative liability $0.749202 retained. P-Build: one session/two calls, actual receipts $0.1081545 (host rounds $0.108155), no submitted code. Second call used all 8192 output tokens as reasoning and finished length. No retries. Live reservations $0. Balance at 2026-10-01T01:24:38.057Z: remaining $12.59694473, usage $17.40305527, limit $30. This reflects only call 1, with $0.0944025 additional receipted cost awaiting balance reflection. Keys only in memory, no vault copy.
 
 Explicit caps: P-Review $1.25, P-Build $1.75, total $3.00, nontransferable. One review attempt and one scoped coding session only, no retries or full trial. Review uses Release A golden, 32768 output/medium. Build uses original R6 15008746676 infinity punches accepted 13-segment table and target 10161087974, labeled model-code quality only. Unmodified model code, interface shim only. No paid work on a red check. Keys read in memory through DPAPI only, no vault copy or live-service dependency.
 
 ## Remaining steps and limits
 
-Steps 2 and 3 complete. P-Review is an admission failure, not a model measurement. Run P-Build once. Then fix authored events on published clips and selected-clip capture for oversized packs, with real native fixtures. Commit fresh stratified manifest before search, freeze production and exclude all exposed IDs. Keep failures and unfilled strata, no swaps. Native Play only for scoped P-Build and four stratified playback checks, with cleanup after each run.
+Steps 2–4 complete. No model code to compile, contract-test or play. Model-quality verdict no-go, $7.50 not validated. Next: authored events on published clips and selected-clip capture for oversized packs, with real native fixtures. Commit fresh stratified manifest before search, freeze production and exclude all exposed IDs. Keep failures and unfilled strata, no swaps. Native Play only for four stratified playback checks. Fresh Studio id 216e6aaa-19c8-44d9-94f2-7341c2e69973/PID 33952: TrialReviewInspection, Edit, zero scripts/scopes, two Workspace children. No insertions or Play yet.
 
 Prior G4: 32 draws, 28 distinct, 27 structural comparisons, zero false passes/blocks, four withheld role mismatches. Only R15 readable clips and no usable attack proposals. This exposed set is now diagnostic only. Previous full check had a stale Electron failure subsequently fixed, not a clean full invocation. Do not use these results as proof of model coding or arbitrary game compatibility.
 
