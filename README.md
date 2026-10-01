@@ -1,20 +1,12 @@
 # Takko
 
-Takko is a local, desktop-only app that turns a Roblox game request and selected Marketplace assets into Luau, scene data and an exported place. It uses configurable model providers and a Studio bridge. Previously named Forge, it retains the `FORGE_*` identifiers and `Forge Desktop` storage directory.
+Takko is an experimental desktop app for building Roblox projects from a game request and selected Creator Marketplace assets. It combines configurable model providers, Luau generation, asset inspection and a Roblox Studio bridge.
 
-**Current limitation:** automated playable generation remains unproven. Later paid probes completed review and produced code, but the original build passed 18/20 contracts without native gameplay proof. A [manually repaired derivative](docs/guided-demo-rehearsal.md) now passes ten scenarios in a reopened Studio export. That is not a successful Takko generation. See the [current diagnosis](docs/generation-diagnostic-brief.md) and [improvement plan](docs/improvement-plan.md).
-
-## Start here
-
-- [Current state, running app and budget](research/notes/continuation.md)
-- [Documentation and source map](docs/README.md)
-- [Desktop setup and storage](docs/desktop.md)
-- [Cleanup and maintenance rules](docs/repository-maintenance.md)
-- [Research evidence](research/README.md)
-
-The installed app is `release/Takko-win32-x64/Takko.exe`. The Desktop Takko shortcut opens it with the default `%APPDATA%/Forge Desktop` workspace. Seven projects, five profiles, three presets and the encrypted provider connection survived two launches after consolidation. See the current-state file for live PIDs and the retained rollback directories.
+The app produces projects that are **ready to test**. Exported code and passing offline checks do not establish that a game works in Studio.
 
 ## Development
+
+Use Node.js 24, npm and Roblox Studio on Windows.
 
 ```powershell
 npm ci
@@ -22,18 +14,30 @@ npm ci
 npx playwright install chromium
 $env:LUAU_BIN_DIR = '.forge/tools/luau'
 npm run check
+npm run desktop
 ```
 
-`npm run dev` serves browser development on port 4318. `npm run desktop` builds and opens the desktop app, normally using `%APPDATA%/Forge Desktop`. Do not launch it as a replacement for the user's current app without checking the current workspace and getting restart approval.
+`npm run dev` starts browser development on port 4318. The product targets desktop layouts.
 
-`npm run check` runs build/typecheck, Vitest, Luau, plugin mocks, guards, CSS lint, desktop lifecycle tests, production smoke, desktop browser tests and Electron journeys. Native Studio gameplay and paid model trials are separate.
+Configure models and provider credentials through the Models interface. Windows provider connections are encrypted for the current user. Never commit `.env`, credentials, project workspaces or exported user games.
 
-## Product boundaries
+## Commands
 
-Describe the game, answer consequential questions, review attached assets, then approve the proposal and build. Review the generated source and export a place or apply through the Takko plugin. The adapter works in its own namespace. It does not edit arbitrary existing games.
+| Command | Purpose |
+| --- | --- |
+| `npm run desktop` | Build and open the Electron app |
+| `npm run desktop:package` | Create an unsigned Windows application in `.forge/update-stage/app` |
+| `npm run build` | Typecheck and build the web app |
+| `npm test` | Run offline unit and integration tests |
+| `npm run check` | Run the complete local verification pipeline |
+| `npm run benchmark -- --help` | Inspect the benchmark command interface |
 
-On Windows, validated provider connections can persist through CurrentUser DPAPI encryption. Never move or reset a workspace casually. Provider settings, projects and encrypted credentials belong to the user.
+See [desktop setup](docs/desktop.md) and the [source map](docs/README.md).
 
-Takko stops at **ready to test**. Animation permissions, physics, visuals, multiplayer behavior and complete gameplay require a real Studio test. Static asset inspection is screening, not a guarantee of safety.
+## Storage and Studio
 
-Private repository: [Jarvuslin/takko-project](https://github.com/Jarvuslin/takko-project).
+Desktop data lives in `%APPDATA%/Forge Desktop`. The earlier Forge name remains in storage paths, `FORGE_*` environment variables and `plugin/Forge.plugin.luau` for compatibility.
+
+Install the Studio plugin through the application and connect it to the local service. The adapter builds inside its own generated namespace. It does not edit arbitrary existing games.
+
+Tests use mocked model responses. Native Studio gameplay verification and paid inference are separate, explicit operations. Test output is ignored by Git.

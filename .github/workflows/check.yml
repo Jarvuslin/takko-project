@@ -23,5 +23,5 @@ jobs:
         with:
           name: verification-results
           path: |
-            docs/results/
+            test-artifacts/
             playwright-report/
