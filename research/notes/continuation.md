@@ -1,11 +1,11 @@
 # Current state
 
-Updated 2026-09-30T22:54:57.838Z. Approved asset-generalization task ended no-go for paid probes/full trial. G1 74eea22, G2 9eafa75, G3 production freeze a90b67f, G4 evidence 0822ea6. Reports: docs/results/generalization/RESULTS.md and docs/results/trial-probes/RESULTS.md. No production change after holdout exposure. Only a stale Electron test was corrected afterward.
+Updated 2026-10-01T00:51:43.073Z. Approved asset-generalization task ended no-go for paid probes/full trial. G1 74eea22, G2 9eafa75, G3 production freeze a90b67f, G4 evidence 0822ea6. Reports: docs/results/generalization/RESULTS.md and docs/results/trial-probes/RESULTS.md. No production change after holdout exposure. Only a stale Electron test was corrected afterward.
 
 ## Live now
 
-- Takko main PID 33012 remains alive. Former service PID 32828 and port 56794 are absent. None of 4318, 4319, 4324, 4335, 4336, 56794 was listening at the final read-only check. Do not recover, restart, install or replace the app without approval. Canonical data is %APPDATA%/Forge Desktop.
-- Only approved TrialReviewInspection.rbxlx was inspected, PID 45860 / Studio id 360d3ed1-0d29-4942-96ed-1bb8e5faea62. Original Place1 was user-saved/closed. Final native census: Edit, zero scripts, zero owned scopes, two Workspace children. Imports detached/destroyed, no asset scripts executed. No Play, publish or save-over occurred. No native test service was started. Owned SDK clients closed.
+- No Takko process is running now. Windows rebooted at 2026-10-01T00:20:59.500Z, after the earlier service-only disappearance. Likely earlier cause: wall-clock heartbeat lease expired on the 22:05:55Z wake, but no exit telemetry proves it. Read-only findings in docs/desktop.md. Eight project JSONs parse, encrypted vault present with unchanged pre-incident timestamp. No decryption/recovery performed. User can open the existing installed Takko normally. Do not install/restart on their behalf without approval. Canonical data remains %APPDATA%/Forge Desktop.
+- Only approved TrialReviewInspection.rbxlx was inspected, PID 45860 / Studio id 360d3ed1-0d29-4942-96ed-1bb8e5faea62. Original Place1 was user-saved/closed. Last recorded native census before the later reboot: Edit, zero scripts, zero owned scopes, two Workspace children. Imports detached/destroyed, no asset scripts executed. No Play, publish or save-over occurred. No native test service was started. Owned SDK clients closed.
 - Staged Release A remains .forge/update-stage/app/Takko-win32-x64, not installed or repackaged. Preserve rollback, legacy-delivery, migration copies, uncertain exports and encrypted vaults. Release A historical report remains docs/results/trial-failure-diagnosis/PLAN.md.
 
 ## Result and verification
@@ -22,6 +22,8 @@ Task spend $0, zero inference/balance requests, no vault access. Last actual bal
 Conditional P-Review $1.25 and P-Build $1.75 caps remain unspent. G4 did not satisfy their preconditions. No retries, transfers or reservations. No measured full-build projection exists, and $7.50 is not validated. Full trial, live shutdown, installation and publication remain unauthorized.
 
 ## Next up and paused
+
+Service follow-up: suspend/resume-aware heartbeat lease, bounded redacted exit/lifecycle logging and wake-order/parent-loss regression tests. Diagnosis only, no fix or app launch performed.
 
 Fix bound metadata for published Animation references (poses currently lack matching authored labels/markers/loop facts). Add bounded selected-clip inspection for oversized packs, natural positive marker fixtures, and timing-count editing. Preserve this exposed holdout as diagnostic evidence. A changed implementation needs a fresh preregistered sample with explicit rig/interaction strata and native playback coverage before paid eligibility. Do not substitute known-good original picks to force a pass.
 

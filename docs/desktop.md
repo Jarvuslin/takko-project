@@ -64,3 +64,22 @@ Verified in this implementation pass: all nine desktop tests passed, the separat
 Models now validates a provider before browsing its catalog or adding a model. One connection serves all models at that provider and endpoint. Windows stores connections in `%APPDATA%/Forge Desktop/provider-keys.dpapi`, encrypted for the current Windows account. Reopening Takko restores keys without putting them in browser storage or project JSON. Replace key validates the replacement before saving. Disconnect removes the provider key and keeps model profiles. A failed unlock does not fall back to plaintext. Other platforms remain explicitly session-only.
 
 `TAKKO_PACKAGE_OUT` remains available for isolated packaging tests. Do not use it to accumulate dated user-facing deliveries. Keep the current shortcut, bundle and workspace until a verified update/migration is ready. Never overwrite a running app.
+
+
+## Live service investigation, 2026-10-01T00:51:43.073Z
+
+Read-only diagnosis of the September 30 service disappearance. No app, service, Studio, project or vault was changed. No inference, restart or launch occurred.
+
+Most likely cause, not proven: the service's wall-clock heartbeat lease expired on wake. Windows Power-Troubleshooter event 1 records sleep at 2026-09-30T19:34:32.762Z and wake at 22:05:55.758Z (15:34 to 18:05 Toronto). This matches the reported 18:05 loss of the service while the main process remained alive. The installed release, not just source, contains Date.now() - heartbeatAt > 10000 followed by shutdown (service.cjs lines 96546-96571). The supervisor sends heartbeats every two seconds. Neither component handles suspend/resume. If the service timer executes before the first post-wake heartbeat, it exits normally even though its parent remains alive. Scheduling at the actual incident was not recorded, so causation cannot be proved.
+
+No Takko-specific Application Error, Application Hang or Windows Error Reporting event was found in the inspected September 30 window. No process-termination audit event 4689 was available. Canonical storage has no service/heartbeat lifecycle log. Installed main.mjs discards service stdio (line 51), and supervisor.mjs does not preserve exit code, signal or reason. The lease itself exists only in memory. Historical kernel WER reports emitted near wake reference older dump dates and are not evidence of a new Takko crash.
+
+Reviewed test and rehearsal cleanup uses its owned child/app objects, with isolated data directories. No evidence was found of a command targeting the live service. This does not substitute for missing process-exit telemetry or conclusively rule out every external cause.
+
+A later, separate event changed current state: Windows reports last boot at 2026-10-01T00:20:59.500Z (September 30, 20:20:59 Toronto), with Kernel-Power event 41 at 20:21:07 reporting an unclean prior shutdown. No Takko process exists at this investigation. This later reboot explains why the old main PID is now gone, not the earlier service-only disappearance.
+
+Data checks: all eight canonical top-level project JSON files parse successfully and their modification timestamps predate the incident. The encrypted provider-keys.dpapi remains present, 456 bytes, last modified 2026-09-30T04:14:46Z. No corruption or incident-time write was observed. Vault decryption was deliberately not attempted, so decryptability and any unsaved renderer state are not established.
+
+Safe recovery: normal close and reopen of the existing installed Takko application, preserving canonical data and the existing encrypted vault. Since it is currently closed after the reboot, the user can open release/Takko-win32-x64/Takko.exe normally. Do not install the staged candidate or restore/copy data as a recovery step. No recovery was performed here.
+
+Proposed follow-up, not implemented: make liveness checks suspend/resume-aware, allow heartbeat re-establishment after wake while preserving orphan cleanup, and persist bounded redacted lifecycle records including exit code/signal, last heartbeat age and shutdown reason. Add sleep/resume ordering and genuine parent-loss regression tests. No runtime code changed and no test suite was run for this read-only diagnosis.
