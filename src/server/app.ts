@@ -1,5 +1,6 @@
 import { proposalQuestions } from "../generation/proposal-questions";
 import { trialFinalReviewPolicy } from "../generation/review-budget";
+import { defaultOpenCodeCallPolicy } from "../generation/opencode-gateway";
 import { stepRetry } from "../generation/retry";
 import express from "express";
 import { z } from "zod";
@@ -94,6 +95,7 @@ export function createApp(
       {
         coordinated: true,
         finalReview: trialFinalReviewPolicy,
+        openCodeCall: defaultOpenCodeCallPolicy,
         ...(options.env?.FORGE_OPENCODE_BINARY
           ? {
               opencode: createOpenCodeBackend(

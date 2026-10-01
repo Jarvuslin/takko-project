@@ -9,6 +9,24 @@ import type { GenerationStore } from "./store";
 import { validateProviderEndpoint } from "./settings";
 import { isDecisionModel } from "./decisions";
 import { assertReviewBudget } from "./review-budget";
+import { z } from "zod";
+
+/** Host-owned output policy for OpenCode coding calls. Reasoning shares the
+ * output cap, so a provider-default effort can spend a small cap before any
+ * tool call. A profile's explicit effort is the user's choice and is kept. */
+export const openCodeCallPolicySchema = z.object({
+  maxOutputTokens: z.number().int().min(512).max(32768),
+  reasoningEffort: z.enum(["low", "medium", "high"]),
+}).strict();
+export type OpenCodeCallPolicy = z.infer<typeof openCodeCallPolicySchema>;
+export const defaultOpenCodeCallPolicy: OpenCodeCallPolicy = {
+  maxOutputTokens: 32768, reasoningEffort: "medium",
+};
+export function applyOpenCodeCallPolicy(profile: Profile, policy?: OpenCodeCallPolicy): Profile {
+  if (!policy) return profile;
+  const { maxOutputTokens, reasoningEffort } = openCodeCallPolicySchema.parse(policy);
+  return { ...profile, maxOutputTokens, reasoningEffort: profile.reasoningEffort ?? reasoningEffort };
+}
 
 export function assertOpenCodeProfile(profile: Profile) {
   if (!["openrouter", "compatible"].includes(profile.provider))

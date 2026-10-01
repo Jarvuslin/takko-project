@@ -7,18 +7,22 @@ import { newProject, GenerationStore } from "../src/generation/store";
 import { providerIdentity } from "../src/generation/settings";
 import { windowsCredentialVault } from "../src/generation/credential-vault";
 import { createOpenCodeBackend } from "../src/generation/opencode-runtime";
+import { applyOpenCodeCallPolicy, defaultOpenCodeCallPolicy } from "../src/generation/opencode-gateway";
 import { animationCapabilityContract } from "../src/marketplace/selected-clip-context";
 import { bundleSchema } from "../src/generation/schema";
 import { compileSources } from "../src/generation/validation";
 
 assert.ok(process.argv.includes("--dispatch-authorized"), "Explicit paid invocation required");
-const root = path.resolve(".forge/trial-probes/p-build");
+// A new authorized attempt gets its own folder. Earlier attempts keep their no-retry markers.
+const out = process.argv[process.argv.indexOf("--out") + 1];
+const root = path.resolve(".forge/trial-probes", process.argv.includes("--out") && /^[a-z0-9-]+$/.test(out) ? out : "p-build");
 fs.mkdirSync(root, { recursive: true });
 assert.ok(!fs.existsSync(path.join(root, "session-once.json")), "No retry permitted");
 const write = (name: string, value: unknown) => fs.writeFileSync(path.join(root, name + ".json"), JSON.stringify(value, null, 2));
 const canonical = path.join(process.env.APPDATA!, "Forge Desktop");
 const settings = JSON.parse(fs.readFileSync(path.join(canonical, "projects/configuration/models.json"), "utf8"));
-const profile = settings.profiles.find((p: any) => p.id === settings.routes.builder[0]);
+// Same coding policy as the production app (src/server/app.ts).
+const profile = applyOpenCodeCallPolicy(settings.profiles.find((p: any) => p.id === settings.routes.builder[0]), defaultOpenCodeCallPolicy);
 assert.equal(profile.model, "anthropic/claude-sonnet-5.5");
 const key = windowsCredentialVault(path.join(canonical, "provider-keys.dpapi"))!.read()[providerIdentity(profile)];
 assert.ok(key);
@@ -28,7 +32,7 @@ async function balance() {
   const { data } = await response.json();
   return { at: new Date().toISOString(), remaining: data.limit_remaining, usage: data.usage, limit: data.limit };
 }
-const result: any = { label: "Model code-quality probe on known assets, not asset generality", capMicros: 1750000, startedAt: new Date().toISOString(), balanceBefore: await balance(), dispatches: [] };
+const result: any = { policy: { maxOutputTokens: profile.maxOutputTokens, reasoningEffort: profile.reasoningEffort }, label: "Model code-quality probe on known assets, not asset generality", capMicros: 1750000, startedAt: new Date().toISOString(), balanceBefore: await balance(), dispatches: [] };
 assert.ok(result.balanceBefore.remaining >= 1.75);
 const p = newProject("Implement only the accepted 13-segment R6 combo, client input/playback, server hit authority and remote wiring against the straw target. This is a model code-quality probe on known assets, not asset generality.", 1750000);
 const store = new GenerationStore(path.join(root, "projects")); store.save(p);

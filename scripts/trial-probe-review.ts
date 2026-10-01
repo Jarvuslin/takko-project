@@ -11,7 +11,8 @@ import { prepareReviewBudget, trialFinalReviewPolicy } from "../src/generation/r
 import { reviewSchema } from "../src/generation/schema";
 import { compileSources } from "../src/generation/validation";
 
-const root = path.resolve(process.argv.includes("--dispatch-authorized") ? ".forge/trial-probes/p-review" : ".forge/trial-probes/p-review-offline");
+const out = process.argv[process.argv.indexOf("--out") + 1];
+const root = path.resolve(".forge/trial-probes", process.argv.includes("--out") && /^[a-z0-9-]+$/.test(out) ? out : process.argv.includes("--dispatch-authorized") ? "p-review" : "p-review-offline");
 fs.mkdirSync(root, { recursive: true });
 const write = (name: string, value: unknown) => fs.writeFileSync(path.join(root, name + ".json"), JSON.stringify(value, null, 2));
 const golden = ".forge/trial-rehearsal/native-golden-X5nueF";

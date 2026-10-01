@@ -16,7 +16,7 @@ import {
   profile,
 } from "./generation-fixtures";
 import type { Bundle } from "../src/generation/schema";
-import { OpenCodeGateway } from "../src/generation/opencode-gateway";
+import { defaultOpenCodeCallPolicy, OpenCodeGateway } from "../src/generation/opencode-gateway";
 import { trialFinalReviewPolicy } from "../src/generation/review-budget";
 
 const directories: string[] = [];
@@ -69,6 +69,43 @@ it("pauses no-code spending before another provider dispatch and settles the rea
   expect(stopped.failure?.code).toBe("NO_CODE_SPENDING_STOP");
   expect(stopped.reservedMicros).toBe(0);
   expect(stopped.charges.at(-1)?.chargedMicros).toBe(500000);
+});
+// P-Build (docs/results/trial-probes) spent its whole 8,192-token reply on
+// provider-default reasoning and never called a tool. The coding job, the
+// OpenCode config limit and the wire request must all carry the host policy.
+for (const [name, policy, explicit, expected] of [
+  ["applies the production coding policy", defaultOpenCodeCallPolicy, undefined, { max_tokens: 32768, effort: "medium" }],
+  ["keeps a profile's explicit reasoning effort under the policy", defaultOpenCodeCallPolicy, "low", { max_tokens: 32768, effort: "low" }],
+  ["leaves replays without a policy on the plain profile", undefined, undefined, { max_tokens: 2048, effort: undefined }],
+] as const)
+  it(`${name} to the OpenCode job, wire request and reservation`, async () => {
+    let body: any, reservation = 0, jobLimit = 0;
+    const s = setup(async job => {
+      jobLimit = job.profile.maxOutputTokens;
+      const gateway = new OpenCodeGateway({ ...job, transport: async (_url, init) => {
+        body = JSON.parse(String(init?.body));
+        reservation = job.project.opencodePending!.at(-1)!.reservedMicros;
+        return Response.json({ choices: [{ finish_reason: "stop", message: { content: "Done" } }], usage: { prompt_tokens: 100, completion_tokens: 10 } });
+      } });
+      await gateway.dispatch({ messages: [{ role: "user", content: "Build" }] }, async () => {});
+      await tool(job, "submit_task", { taskId: "coreTask", patch: patch(job) });
+    });
+    const p = await plan(s);
+    const settings = s.config.read();
+    s.config.save({ ...settings, profiles: settings.profiles.map(model => ({ ...model, ...(explicit ? { reasoningEffort: explicit } : {}) })) });
+    const engine = new Engine(s.store, s.config, s.transport, s.compiler, undefined, { coordinated: true, opencode: s.backend, ...(policy ? { openCodeCall: policy } : {}) });
+    engine.start(p.id, p.revision, "build");
+    const built = await engine.wait(p.id);
+    expect(built.stage, built.error ?? "").toBe("ready_to_test");
+    expect(jobLimit).toBe(expected.max_tokens);
+    expect(body.max_tokens).toBe(expected.max_tokens);
+    expect(body.reasoning?.effort).toBe(expected.effort);
+    const model = s.config.read().profiles[0];
+    expect(reservation).toBe(Math.ceil((Buffer.byteLength(JSON.stringify(body)) + 1024) * model.inputRate + expected.max_tokens * model.outputRate));
+  });
+it("rejects an OpenCode call policy outside the profile output range", () => {
+  const s = setup(async () => {});
+  expect(() => new Engine(s.store, s.config, s.transport, s.compiler, undefined, { openCodeCall: { maxOutputTokens: 65536, reasoningEffort: "medium" } })).toThrow();
 });
 afterEach(() =>
   directories

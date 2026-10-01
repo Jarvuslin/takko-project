@@ -95,7 +95,7 @@ import { generationDesignGuidance } from "./design-guidance";
 import { normalizeKnownSceneEnums } from "./normalize-scene";
 import { z } from "zod";
 import type { OpenCodeBackend, OpenCodeTool } from "./opencode-runtime";
-import { assertOpenCodeProfile } from "./opencode-gateway";
+import { applyOpenCodeCallPolicy, assertOpenCodeProfile, openCodeCallPolicySchema, type OpenCodeCallPolicy } from "./opencode-gateway";
 import {
   assessCandidatePage,
   briefDecisionRequest,
@@ -418,6 +418,8 @@ export type ExecutionPolicy = {
   reviewerReasoningEffort?: Profile["reasoningEffort"];
   /** Direct final review only, with protected admission for earlier build calls. */
   finalReview?: FinalReviewPolicy;
+  /** OpenCode builder/repair calls only. Omit to replay with the plain profile. */
+  openCodeCall?: OpenCodeCallPolicy;
   beforeDispatch?: (request: {
     phase: Phase;
     profile: Profile;
@@ -447,6 +449,7 @@ export class Engine {
     if (executionPolicy.maxAttempts !== undefined)
       z.number().int().min(1).max(6).parse(executionPolicy.maxAttempts);
     if (executionPolicy.finalReview) finalReviewPolicySchema.parse(executionPolicy.finalReview);
+    if (executionPolicy.openCodeCall) openCodeCallPolicySchema.parse(executionPolicy.openCodeCall);
     store.recover();
   }
   create(request: string, attachments?: Project["assetAttachments"]) {
@@ -1999,9 +2002,12 @@ export class Engine {
     const backend = this.executionPolicy.opencode;
     if (!backend)
       throw Error("OpenCode runtime is unavailable. Saved work was retained.");
-    const profile = settings.profiles.find(
-      (profile) => profile.id === routeFor(settings, phase)[0],
-    )!;
+    const profile = applyOpenCodeCallPolicy(
+      settings.profiles.find(
+        (profile) => profile.id === routeFor(settings, phase)[0],
+      )!,
+      this.executionPolicy.openCodeCall,
+    );
     assertOpenCodeProfile(profile);
     const stop = new AbortController();
     const checkNoCodeSpending = this.noCodeStops.get(p.id) ?? noCodeSpendingGuard(p);
