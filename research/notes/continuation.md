@@ -1,6 +1,6 @@
 # Current state
 
-Updated 2026-10-01T04:52Z. Offline diagnosis in docs/generation-diagnostic-brief.md. No implementation, paid calls, install or native session. One full regression check passed, exit 0.
+Updated 2026-10-01T05:01Z. Selected-asset combat proposal added to docs/generation-diagnostic-brief.md. Proposal only, no implementation, paid calls, install or native session. Prior full regression check passed on unchanged application source.
 
 ## Live and data
 
@@ -29,4 +29,4 @@ Both authorized probes are consumed. Caps $1.25/$1.75 nontransferable. No furthe
 
 Diagnosis full check: build, 1889 unit/149 files, 6 Luau, 16 plugin plus plugin/8 compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 108 browser, 10 Electron. No crash/rerun/skipped stage. Log test-artifacts/generation-diagnosis-full-check.log. Offline/mocked, not playable-generation proof. Live PIDs reconfirmed, 4319 released. Automatic review blocked cleanup of run-30876 and ten temporary Electron workspaces, reason only "blocked by policy". Retained.
 
-Next: resolve pending-state test contract and grace defect in a separate derivative, diagnose native input and demonstrate existing combo behavior. Then package/rehearse one exact current candidate with real boundaries and inference replaced. Installation requires shutdown approval. A complete measured build needs fresh specific paid authorization. Optimize duplicate context and evaluate bounded cheap decision routing after the baseline. README/maintenance contain stale state to update separately.
+Next proposed work: a versioned combat component, typed asset/timing bindings and deterministic assembly for the supported script-free demo. Target zero inference after approval. Write dispatch/graph/behavior regressions first, fix pending-state/grace issues in a derivative, then native animation/hit/counter acceptance and staged-package parity. Unsupported inputs stop without paid fallback. This is proposed, not implemented or a general-game guarantee. General model optimization requires separate measurements. Shutdown and specific paid-run approvals remain required. README/maintenance still contain stale state.
