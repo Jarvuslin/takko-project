@@ -1,6 +1,6 @@
 # Current state
 
-Updated 2026-10-01T05:05Z. Proposal revised for general game generation in docs/generation-diagnostic-brief.md. Combat is a regression case, not the product scope. No implementation, paid calls, native session or new test run. Application source unchanged.
+Updated 2026-10-01T05:12Z. General proposal now includes deep asset inspection, nested-audio extraction and behavior-preserving NPC rewiring. See docs/generation-diagnostic-brief.md. Proposal only, Updated 2026-10-01T05:05Z. Proposal revised for general game generation in docs/generation-diagnostic-brief.md. Combat is a regression case, not the product scope. No implementation, paid calls, native session or new test run. Application source unchanged., no application changes or new tests.
 
 ## Live and data
 
@@ -29,4 +29,4 @@ Both authorized probes are consumed. Caps $1.25/$1.75 nontransferable. No furthe
 
 Diagnosis full check: build, 1889 unit/149 files, 6 Luau, 16 plugin plus plugin/8 compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 108 browser, 10 Electron. No crash/rerun/skipped stage. Log test-artifacts/generation-diagnosis-full-check.log. Offline/mocked, not playable-generation proof. Live PIDs reconfirmed, 4319 released. Automatic review blocked cleanup of run-30876 and ten temporary Electron workspaces, reason only "blocked by policy". Retained.
 
-Next proposed work: general host-controlled generation with native asset facts, explicit capability gaps, bounded generation/targeted repair and real runtime acceptance. Separate adaptable content from actual incompatibility and unknown evidence. No genre whitelist. Combat component assembly is optional, zero-inference applies only to fully supported fixed components. Cross-genre and held-out custom behavior regressions must precede implementation. No implementation or paid run authorized by these proposals. Shutdown and specific paid-run approvals remain required.
+Next proposed work: general host-controlled generation with deep asset/source inspection, capability gaps, extraction/reuse and bounded adaptation. Existing component capture/review/audio discovery/source patching are foundations, arbitrary script relocation is not proven. Add nested/source-created audio and NPC dependency/relocation regressions, then native behavior and cross-genre tests. Preserve selected assets and working behavior. Combat is one case. Proposal only, no implementation or paid run authorized. Shutdown/specific paid-run approvals remain required.
