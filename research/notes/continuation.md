@@ -1,31 +1,32 @@
 # Current state
 
-Updated 2026-10-01T02:28Z. Steps 1b–6 complete, final full rerun passed. Full trial no-go. Reports: docs/desktop.md, docs/results/trial-probes/RESULTS.md, docs/results/generalization/RESULTS.md.
+Updated 2026-10-01T03:35Z. New P-Review 2 and P-Build 2 attempts consumed. Full trial no-go. Report: docs/results/trial-probes/RESULTS.md. Final full check passed, no model repair or paid retry.
 
-## Live now
+## Live and data
 
-- Installed Takko main PID 28600, service PID 14992 on 127.0.0.1:51256. Both alive and /api/status returned 200 during final reporting. No running app stopped/restarted/replaced and no installation. Canonical data: %APPDATA%/Forge Desktop.
-- Authorized Studio only: TrialReviewInspection.rbxlx, PID 33952, SDK id 216e6aaa-19c8-44d9-94f2-7341c2e69973. File .forge/exports/trial-review-inspection/TrialReviewInspection.rbxlx is a bare Workspace without baseplate/spawn, not a generated game. Final native census 02:15:49Z: Edit, zero scripts/scopes, two Workspace children. Detached imports destroyed, original scripts unchanged, SDK clients closed. No Play, save-over, publication or asset script execution. No test service started.
-- Service-only candidate staged .forge/update-stage/app/Takko-win32-x64, not installed. Pack fixes are source changes, not in that bundle. Older stage retained .forge/update-stage/previous-staged-app after automatic approval review blocked deletion. Existing installed rollback and canonical data untouched. Disposable native parent-loss folder C:/Users/7474g/AppData/Local/Temp/takko-parent-loss-Gz4i9s remains because automatic approval review blocked its checked deletion.
+- Installed Takko main PID 28600, service PID 14992 on 127.0.0.1:51256, canonical data C:/Users/7474g/AppData/Roaming/Forge Desktop. No restart, install or replacement.
+- Reported models.json ENOENT was not reproducible. Service command line still uses canonical user-data-dir. Settings read successfully with five profiles, last written 2026-09-30T04:51:05.441681Z. Eight project JSON files parse. Vault exists (456 bytes), decrypts through existing DPAPI code, last written 2026-09-30T04:14:46.1449347Z. Earlier error cause unknown. No path fix, restore, move, copy or canonical write occurred. Keys stayed in memory.
+- Only authorized Studio: TrialReviewInspection.rbxlx, PID 33952, SDK id 216e6aaa-19c8-44d9-94f2-7341c2e69973. File .forge/exports/trial-review-inspection/TrialReviewInspection.rbxlx is an empty inspection place, not a Baseplate template or generated game.
+- One new Play session installed the unmodified four model files, known clip/target and temporary R6 floor/spawn setup. First mouse-input request failed through the bridge. Native holds, grace and hit counts remain unverified. Cleaned at 03:25:11.505Z: Edit, zero scripts/scopes, two Workspace children. Owned StarterCharacter, floor/spawn, assets and scripts removed. No asset scripts, save-over or publication. SDK closed, no native test service remained.
+- Service-only candidate remains staged .forge/update-stage/app/Takko-win32-x64, not installed. Later pack and coding-policy fixes are source-only. Older stage .forge/update-stage/previous-staged-app and disposable C:/Users/7474g/AppData/Local/Temp/takko-parent-loss-Gz4i9s retained after earlier automatic approval deletion blocks. Installed rollback and canonical data untouched.
 
-## Results and verification
+## Current findings
 
-- Same-day 02:40–09:08 local sleep survived, /api/models read at 09:36 and alive at 12:19. Later service loss is an inferred wake-ordering race, not deterministic sleep expiry. Dedicated transferred IPC close is primary orphan signal. Late lease check allows a fresh heartbeat grace interval. Small redacted exit record added. Forced OS termination can bypass recording. Forced-ordering tests and real Electron port loss passed, not actual Windows sleep reproduction.
-- Step 2 clean full check before paid: 1876 unit/148 files, 6 Luau, 16 plugin plus plugin/8 source compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 107 browser, 10 Electron.
-- Step 5 bound published events to pose digest and added selected-clip large-pack capture with explicit unchecked coverage and retained failures. Diagnostic manifests 27/48/262 entries. No positive marker fixture. Incomplete pack inspection still prevents readiness.
-- Step 5 clean full check: build, 1885 unit/149 files, same Luau/plugin/guards/CSS/desktop/smoke stages, 108 browser, 10 Electron. No worker crash or rerun. Final check hit one Windows worker crash (1870 tests/148 files completed). One full rerun passed all the same counts, log test-artifacts/stratified-final-check-rerun.log. Original failure retained.
-- Step 6 preregistration 4246139, seed 202610011, production frozen d9e7d90. 46 draws, 43 distinct selections, 22 paired comparisons, 0 false-ready flags. Raw false-block flag 1 is a single time-zero pose correctly blocked for no duration. Three paired wrong-role draws blocked. Twenty missing first-attempt censuses completed separately, all lacked animation content. Original failures retained, no replacements/retries/source changes. Eleven of 16 strata unfilled. No eligible attack clips, all four playback checks unrun. Asset generality remains unproven.
+- Policy commit d2ac499 applies 32768 output/medium effort to OpenCode coding. P-Build 2 confirmed that policy on the real requests. No production changes in this probe task.
+- P-Review 2: one HTTP 200, stop, parsed and host-valid. 91627 input, 4596 output, 0 reported reasoning. Ten returned test sources compiled, not executed against a game.
+- P-Build 2: one session, three calls, one code submission. 35963 input, 19868 output including 8394 reasoning. Four files compiled and passed bounded AST checks. Original contracts 18/20 passed, including all 13 boundaries and segment 5. One failure assumes pending remains after a hit, separate cached-time diagnostic confirmed early rejection/dedup. Real failure: server accepts at end+0.351 because generated lateSlack extends the required 0.35 grace. No hand fixes. Native input failed, no second Play session.
+- Canonical evidence: docs/results/trial-probes/p-review-2 and p-build-2. Earlier attempts remain unchanged.
+- Asset generality remains no-go from frozen d9e7d90/manifest 4246139: 46 draws, 43 distinct assets, 22 comparisons, 0 false-ready flags, 11/16 strata unfilled and zero eligible attack playback. Pack fixes bound published events and selected-clip coverage, not arbitrary-asset readiness.
+- Service diagnosis remains inferred wake-ordering race, not deterministic sleep failure. IPC close and wake grace fixes were tested/staged only.
 
-## Money and authorization
+## Money
 
-P-Review: one HTTP 429 admission rejection, no completion/tokens/retry. Observed billed delta $0, no receipt, conservative liability $0.749202 retained separately. P-Build: one session/two calls, receipts $0.1081545 (host rounds $0.108155), no submitted code. Second call exhausted 8192 output tokens on reasoning. No model code to compile/test/play. Live reservations $0.
+New review cost $0.229214, build $0.2537187, total $0.4829327. Build host micro-rounding $0.253720. No live reservations. Read-only balance 2026-10-01T03:26:03.531Z: remaining $12.01960953, usage $17.98039047, limit $30. Delta exactly matches new receipts. Prior build spend $0.1081545 remains historical. Original rejected review retains separate $0.749202 conservative liability, observed billed delta $0.
 
-Reconciled balance 2026-10-01T01:49:39.779Z: remaining $12.50254223, usage $17.49745777, limit $30. Decrease exactly matches both build receipts, earlier delayed balance preserved in report. Keys only in memory through DPAPI, no vault copy. Steps 5/6 cost $0.
+Both new authorized attempts consumed. Caps $1.25/$1.75 nontransferable, no further paid work or full trial authorized. $7.50 plausible only under explicit bounded cost scenarios, not a validated full-game budget.
 
-Caps were review $1.25 and build $1.75, nontransferable. Both attempts consumed. No retries or further paid work authorized. Model quality and asset generality both no-go. $7.50 not validated. No qualifying new full-trial asset set. Original pair remains diagnostic only, never substitute it for fresh generality evidence.
+## Verification and next
 
-## Next and paused
+New full check passed once without crash/rerun: build, 1889 unit/149 files, 6 Luau, 16 plugin plus plugin/8 compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 108 browser, 10 Electron. Log test-artifacts/probes-2-full-check.log. Separate model contracts remain 18/20, native input failed. Live main/service/Studio PIDs confirmed alive at final reporting.
 
-Stop after report commit. No full trial, install, publication or live shutdown. All older generation goals remain paused. Preserve deny-dispatch flags, vaults and uncertain outputs.
-
-Next up only with appropriate authorization: builder output/reasoning policy and a new paid probe, acquisition/sampling that actually fills content strata, positive marker evidence and four native attack playback categories. Improve presence-only oracle metric to require playable duration before counting a false block. Timing-count editing remains outside this task.
+Stop after report commit. No install, live shutdown, full trial or old paused goal resumption. Follow-up requires appropriate authorization: server grace-policy correction and new model test, contract pending-state interface clarification, native input bridge diagnosis, then representative asset acquisition/coverage. No qualifying new full-trial asset set. Keep original pair diagnostic only. Preserve vaults, failures and deny-dispatch flags.

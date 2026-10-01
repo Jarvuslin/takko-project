@@ -1,0 +1,15 @@
+local Combo=require('./model-combo')
+local Config=require('./model-config')
+local s=Combo.server(Config.segments,Config.options)
+assert(Combo.accept(s,1,1,0))
+local at=s.pending.hitAt
+local target={id='dummy',alive=true,inScope=true,distance=4,facing=1,lineOfSight=true}
+assert(Combo.hit(s,1,at-0.001,target)==0)
+assert(Combo.hit(s,1,at,target)==1)
+assert(Combo.hit(s,1,at,target)==0 and s.counter==1)
+print('cached-hit-time early rejection and deduplication passed')
+local late=Combo.server(Config.segments,Config.options)
+assert(Combo.accept(late,1,1,0))
+local accepted=Combo.accept(late,1,2,late.endAt+0.351)
+print('next request accepted 0.351 seconds after end: '..tostring(accepted))
+assert(accepted==true and late.nonce==1)

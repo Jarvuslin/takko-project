@@ -1,0 +1,121 @@
+{
+  "label": "Golden final-review policy probe, not a review of a new game",
+  "capMicros": 1250000,
+  "startedAt": "2026-10-01T03:18:19.227Z",
+  "calls": 1,
+  "balanceBefore": {
+    "at": "2026-10-01T03:18:19.684Z",
+    "limit": 30,
+    "remaining": 12.50254223,
+    "usage": 17.49745777
+  },
+  "preDispatch": {
+    "at": "2026-10-01T03:18:19.900Z",
+    "bytes": 227223,
+    "reservedMicros": 749202,
+    "remainingCapMicros": 500798
+  },
+  "httpStatus": 200,
+  "usage": {
+    "prompt_tokens": 91627,
+    "completion_tokens": 4596,
+    "total_tokens": 96223,
+    "cost": 0.229214,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.229214,
+      "upstream_inference_prompt_cost": 0.183254,
+      "upstream_inference_completions_cost": 0.04596
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finishReason": "stop",
+  "parsed": true,
+  "compiler": [
+    {
+      "id": "compile:dummy_present",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:dummy_position",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:remotes_exist",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:hit_sound_ref",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:punch_anim_sequence",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:hud_counter",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:punch_flow",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:theme_environment",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:scope_single_input_dummy",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    },
+    {
+      "id": "compile:scope_no_extra_targets",
+      "status": "passed",
+      "detail": "Luau syntax compiled."
+    }
+  ],
+  "hostValid": true,
+  "charges": [
+    {
+      "phase": "reviewer",
+      "profileId": "0ad0b1bd-f70a-491a-af61-995af46b3e36",
+      "model": "anthropic/claude-sonnet-5.5",
+      "reservedMicros": 749202,
+      "chargedMicros": 229214,
+      "estimated": false,
+      "billingSource": "provider",
+      "inputTokens": 91627,
+      "outputTokens": 4596,
+      "cachedInputTokens": 0,
+      "status": "ok",
+      "at": "2026-10-01T03:18:50.842Z"
+    }
+  ],
+  "reservedMicros": 0,
+  "finishedAt": "2026-10-01T03:18:51.213Z",
+  "balanceAfter": {
+    "at": "2026-10-01T03:18:51.230Z",
+    "limit": 30,
+    "remaining": 12.50254223,
+    "usage": 17.49745777
+  }
+}
