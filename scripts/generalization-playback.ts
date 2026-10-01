@@ -1,15 +1,19 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';
 import {StdioStudioClient} from '../src/generation/studio-mcp-client';import {unpackMarketplace} from '../src/marketplace/studio';import {isVerifiedEditState,isVerifiedClientPlayState} from '../src/generation/studio-state';
-const dir='docs/results/generalization/holdout',studioId='360d3ed1-0d29-4942-96ed-1bb8e5faea62';
+const stratified=process.argv.includes('--stratified');
+const dir=stratified?'docs/results/generalization/stratified':'docs/results/generalization/holdout',studioId=stratified?'216e6aaa-19c8-44d9-94f2-7341c2e69973':'360d3ed1-0d29-4942-96ed-1bb8e5faea62';
 assert.ok(fs.existsSync(dir+'/cleanup.json'),'Sweep must finish first');assert.ok(!fs.existsSync(dir+'/playback.json'),'No playback retry');
 const rows=fs.readdirSync(dir).filter(f=>/^\d+.json$/.test(f)).map(f=>JSON.parse(fs.readFileSync(dir+'/'+f,'utf8')));
 const target=rows.find(r=>r.role==='static_target'&&r.verdict?.status==='ready'&&r.nativeRolePresent);
-const options=rows.flatMap(r=>(r.animations??[]).filter((a:any)=>a.analysis.segments.length).map((a:any)=>({row:r,analysis:a,entry:r.pack.entries.find((e:any)=>e.key===a.key)})));
+const attackStrata=['r6_single','r6_multi','r15_single','r15_multi'];
+const options=stratified?rows.filter(r=>r.matchesStratum&&attackStrata.includes(r.stratum)&&r.entry?.clip&&r.analysis?.segments.length).map(r=>({row:r,analysis:{key:r.selectedKey,analysis:r.analysis},entry:r.entry})):rows.flatMap(r=>(r.animations??[]).filter((a:any)=>a.analysis.segments.length).map((a:any)=>({row:r,analysis:a,entry:r.pack.entries.find((e:any)=>e.key===a.key)})));
 const selected:any[]=[];
 const add=(condition:(x:any)=>boolean)=>{const found=options.find(x=>!selected.includes(x)&&condition(x));if(found)selected.push(found)};
-add(x=>x.entry.clip.rig==='R15');add(x=>x.analysis.analysis.segments.every((s:any)=>s.source==='motion'));add(()=>true);
+if(stratified)for(const stratum of attackStrata)add(x=>x.row.stratum===stratum);
+else {add(x=>x.entry.clip.rig==='R15');add(x=>x.analysis.analysis.segments.every((s:any)=>s.source==='motion'));add(()=>true);}
 const report:any={at:new Date().toISOString(),target:target?.selected.assetId,selection:selected.map(x=>({assetId:x.row.selected.assetId,key:x.entry.key,segments:x.analysis.analysis.segments})),results:[],cost:0};
-if(!target||selected.length<3){report.gate='unmet: fewer than three eligible attack clips or no sampled structural target';fs.writeFileSync(dir+'/playback.json',JSON.stringify(report,null,2));process.exit(0)}
+if(stratified)report.unfilledPlaybackStrata=attackStrata.filter(s=>!selected.some(x=>x.row.stratum===s));
+if(!target||selected.length<(stratified?1:3)){report.gate=stratified?'unmet: no independently classified attack clip or no sampled structural target':'unmet: fewer than three eligible attack clips or no sampled structural target';fs.writeFileSync(dir+'/playback.json',JSON.stringify(report,null,2));process.exit(0)}
 const scope='Takko_Generalization_'+randomUUID().replaceAll('-','');const client=new StdioStudioClient({timeoutMs:90000});let started=false;
 const q=(s:string)=>JSON.stringify(s);
 const call=async(name:string,args:any)=>unpackMarketplace(await client.callTool(name,{studio_id:studioId,...args}));
@@ -37,7 +41,7 @@ try{
  local indices=game:GetService('HttpService'):JSONDecode(${q(JSON.stringify(x.entry.key.split('/').map(Number)))})
  local node=roots[indices[1]] for j=2,#indices do node=node:GetChildren()[indices[j]] end
  assert(node:IsA('KeyframeSequence') or node:IsA('Animation'),'Unexpected clip class')
- local clip=node:Clone() clip.Name='Clip${i+1}' clip.Parent=scope
+ local clip=node:Clone() removeScripts(clip) clip.Name='Clip${i+1}' clip.Parent=scope
  for _,r in roots do r:Destroy() end
  local description=Instance.new('HumanoidDescription')
  local rig=game:GetService('Players'):CreateHumanoidModelFromDescriptionAsync(description,Enum.HumanoidRigType.${x.entry.clip.rig}) description:Destroy()
