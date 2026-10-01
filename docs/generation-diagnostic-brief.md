@@ -4,6 +4,66 @@ Written 2026-10-01 for a fresh agent asked to diagnose why Takko generation keep
 
 **Result so far:** about $18 has been spent on this OpenRouter key and Takko has never produced a playable game. The two newest paid probes, run from scripts and not through the app, are the first to complete. A real review finished and parsed. The builder submitted four compiling files that passed 18 of 20 contract tests. Native gameplay is still unverified.
 
+## Independent diagnosis, 2026-10-01
+
+Read against source `6585663`, the installed and staged service bundles, saved settings and original result records. This is an investigation, not an implementation or another generation attempt. Skill: `agent-orchestration-multi-agent-optimize`.
+
+**The strongest diagnosis is incomplete integration and release validation, compounded by an output-policy defect.** The evidence does not identify an infinite agent loop as the cause of current direct-build failures. Earlier planning contracts caused real failures, but the direct path already removes that planning worker. Several other stops correctly expose missing evidence or broken output. Removing those checks would not make a game work.
+
+### Assessment of the proposed explanations
+
+| Proposed solution | What the current project actually does | Verdict |
+|---|---|---|
+| Deterministic routing / hybrid AI | Approved fresh OpenCode builds become one host-created `implementation` task. Host code sequences acquisition, coding, review and checks. Exact single approved asset selection bypasses model selection. Scoped edits and legacy builds can still call a planner. | Already substantially implemented. Consolidate the remaining contracts rather than adding another planner. See `direct-build.ts`, `engine.ts:866,3288,4031`. |
+| Model cascading | Saved active preset `son` uses the same Sonnet 5.5 profile for all five routes. There is no active decision route. OpenCode sets `small_model` to the same gateway model. Other saved profiles do not imply active use. | A cost opportunity, not an explanation for bad asset identities, packaging or native input. No measured evidence here establishes that any cheaper profile can perform the coding/review tasks reliably. |
+| LLM FinOps | Actual receipts, project/generation caps, reservations, unknown-billing refusal and protected review capacity exist. Protection is absent from the installed service. | Implementation exists, release parity and admission estimates need attention. A reservation is not a charge. The unitemized historical ~$3.03 is an accounting gap, not proof of runaway inference. |
+| Finite state machine | Host branches control persisted stages, cancellation and checkpoints. This is not a centralized transition table, but the model does not freely select the top-level next stage. | Centralizing legal transitions would aid maintenance. No observed failure requires an FSM framework migration. |
+| Token budgets / turn caps | Runtime has 48 steps, gateway has 48 requests, a 15-minute session deadline, 2 MB request bound and a no-code spending guard. Repairs are schema-bounded to 0–3. Saved active preset allows 2, unlike the probes' 0. | Caps exist. The demonstrated defect was an output allowance too small for reasoning plus code, not an absent cap. The no-code threshold is checked before the next call and is not a strict per-call maximum. |
+| State/context management | Review includes original sources, requirements, assets and current files through several overlapping context fields. | Measurable duplication and cost. Simplify projections without withholding unique evidence. State corruption is not established. |
+| LangGraph / AutoGen / CrewAI refactor | The inspected pipeline uses custom TypeScript host code and pinned OpenCode. None of those frameworks is a package dependency. | No evidence-based reason to migrate. It would introduce a new integration boundary before the existing one is proven. |
+
+### Causes and contributing factors, in priority order
+
+1. **Tests and releases do not consistently exercise the product that is running.** The live service is still PID 14992 on 51256, with main PID 28600. Read-only bundle inspection reconfirmed that the installed service has direct build but lacks role capture, protected review and the coding policy. The staged service has role capture and protected review but still lacks the coding policy. Source fixes therefore cannot establish that the user's installed workflow is repaired. Source's production `createApp` wires both policies at `src/server/app.ts:97`.
+2. **Real producer/consumer contracts have failed between individually tested stages.** Preserved examples include approved asset IDs rejected by the binder, native packs rejected by simplified export, missing packaged AST/Rojo tools and generated lookups absent from exported XML. `tests/chat-journey-fixture.ts:51` replaces OpenCode execution and line 79 replaces the native adapter. Its reviewer returns no issues. This is useful UI/host regression coverage, but cannot establish those replaced boundaries or game quality. The later native structural rehearsal closes some of these gaps on a scripted golden, not on a newly generated game.
+3. **Output policy demonstrably prevented useful output.** P-Build 1 ended at 8,192 output tokens, all reasoning, with no code. P-Build 2's main request used 19,182 output tokens, including 8,394 reasoning, and submitted four files with the 32,768/medium policy. Both the output cap and effort changed, so this is not an isolated measurement of which change helped most. It does prove the old 8,192 cap could not contain the measured successful response. The provider documents that reasoning and visible output share this limit: [OpenRouter parameters](https://openrouter.ai/docs/api_reference/parameters).
+4. **Working behavior remains outside the completed verification chain.** The generated server extends the required 0.35-second grace with 0.15 seconds of slack. A different contract failure assumes a consumed pending object remains present. Native input then failed before an observation timeline. These are three separate issues: model semantics, test interface, bridge operation. Compiling generated acceptance tests, or detecting an `assert`, does not execute them. See `engine.ts:4060–4168` and the preserved probe results.
+5. **Context and admission overhead can stop an otherwise affordable run.** This is a genuine FinOps/state-management issue, with the concrete measurements below. It does not establish that context duplication caused a particular wrong model answer.
+
+The earlier [attempt inventory](results/trial-failure-diagnosis/PLAN.md) counts four planning and four asset terminal failures among 12 builds, plus two final-review failures, one runtime failure and one export failure. These are overlapping historical conditions across changing versions, not a current failure-rate estimate. There is no basis for claiming every validator failure was unnecessary or that one subsystem caused all losses.
+
+### Context and budget measurements
+
+The preserved golden review request has **227,223 wire bytes**, a **206,408-byte user context**, and **91,627 reported input tokens** for six generated files. Fresh read-only JSON measurements found:
+
+| Context field | Serialized bytes |
+|---|---:|
+| retainedComponents | 62,052 |
+| artifact | 33,748 |
+| existingProject | 31,259 |
+| gameContext | 22,040 |
+| spec | 12,315 |
+| designGuidance | 9,829 |
+| runtimeReference | 9,441 |
+| approvedProposal | 7,576 |
+
+All six generated source bodies occur in both `artifact.files` and `existingProject.existingFiles`. `spec.requirements` equals `gameContext.playerExperience.requirements`, and top-level `userSources` equals `gameContext.userSources`. The producer is `engine.ts:3484`, with `world-policy.ts:48`. Preserve distinct before/after sources when an implementation backup exists. For a fresh final review, reference one authoritative source body per file and one copy of each requirement/evidence item. Do not solve duplication by discarding asset evidence needed for judgement.
+
+The review receipt reports **$0.183254 input / $0.229214 total**, so about **80%** of that review's cost was input. This is one historical golden review, not a cost breakdown of a complete current build. Data comes from `.forge/trial-rehearsal/native-golden-X5nueF/requests.json` and [the committed review receipt](results/trial-probes/p-review-2/result.json).
+
+The proposed **$1.50 full-build cap is not validated and can fail admission**. At saved rates of $2/M input and $10/M output, the minimum protected final-review envelope is `(400000 + 1024) × 2 + 32768 × 10 = 1,129,728` microdollars. Reusing P-Build 2's first charge and second request reservation would require `13,755 + 376,172 + 1,129,728 = 1,519,655` microdollars. That exceeds $1.50 before acquisition costs or envelope growth. An in-memory reproduction loaded `tests/fixtures/direct-build/6e6ffc7f.json`, generated its spec with `directBuildSpec`, applied `prepareReviewBudget`, and passed the probe's recorded reservations/first charge to `assertReviewBudget` at a $1.50 cap. The first request was admitted and the second refused for consuming protected review funds. Zero transport calls, no saved-state writes. This combines a historical direct-input fixture with scoped-probe receipts, not an executed full build or a proposed new authorization. Size any future cap from the actual combined request envelopes and then reconcile actual charges separately.
+
+### Recommended next work
+
+1. Close the known diagnostic loop without inference: clarify the pending-state contract, correct the grace defect in a separately tracked derivative, and repair or bypass the broken automated input path with a human Studio test of the existing output. Preserve original model outputs and failures. This would establish whether that small combo works, not whether generation is reliable.
+2. Package a candidate from one identified source revision, including the coding policy. Rehearse its actual service/OpenCode/acquisition/export boundaries with inference replaced, using both real failed inputs and known-good data. Confirm the exact emitted model policy and budget admission. Install only after the separately required shutdown approval.
+3. With new authorization, measure one complete small build through that same candidate and then play-test it. Cost, completion, export, gameplay and publication remain separate outcomes. Do not extrapolate a full-game quote from a scoped combo and a review of a different historical game.
+4. Optimize after that baseline: deduplicate review context, make byte/headroom costs visible, then evaluate cheaper models only for bounded non-coding decisions. Keep host-owned IDs, paths, accounting and state transitions deterministic. A smaller no-progress allowance may be useful, but request-count evidence does not currently make it the first fix.
+
+Keep budget admission, source screening, exact asset identity, compile/path/physics validation and honest readiness states. Move deterministic compatibility failures earlier where possible. Audit redundant or unjustified model verdicts against real counterexamples instead of disabling the review/export gates wholesale.
+
+Verification for this investigation: source and bundle reads, redacted settings fields, original receipts, captured-context measurements and the in-memory budget-admission reproduction. No application source changes, inference, credential-vault access, installation, live-process shutdown or Studio session. Investigation cost **$0**. One full `npm run check` passed, exit 0, without crash or rerun: build/typecheck, **1,889 unit tests / 149 files**, **6 Luau scenarios**, **16 plugin scenarios plus plugin/8 injected-source compiles**, **6 guard cases**, CSS **0 errors / 274 warnings**, **21 desktop tests**, production smoke, **108 browser tests**, **10 Electron tests**. No stages skipped. Log: `test-artifacts/generation-diagnosis-full-check.log`. These offline/mock checks cannot establish new model reliability or native gameplay. Live main/service/Studio PIDs remained alive, and test port 4319 was released. Automatic approval review rejected cleanup of `.forge/e2e-projects/run-30876` and ten `takko-electron-journey-*` temporary directories created during this check with “blocked by policy”, without a further reason. They remain intact.
+
 ## Rules before you touch anything
 
 Read `AGENTS.md` and `research/notes/continuation.md` first. They override this brief.
@@ -39,7 +99,7 @@ Any run through the user's app UI today would use the installed build and miss m
 - **Host overrides:**
   - Final review: 32,768 output tokens, medium effort, one attempt, no fallback (`src/generation/review-budget.ts`, `trialFinalReviewPolicy`). In staged and source only.
   - OpenCode coding and repair calls: 32,768 output tokens, medium effort. An explicit profile effort is kept (`src/generation/opencode-gateway.ts`, `defaultOpenCodeCallPolicy`, commit `d2ac499`). Source only.
-- **Other configured models:** the user has five model profiles and three presets in total. They were not enumerated for this brief because the sandbox cannot read the settings file. `typesafe/jev-1.13` ("Jev", `src/generation/decisions.ts`) is a bounded non-coding decision model and is refused for coding. Historical runs used `anthropic/claude-sonnet-5` before 5.5.
+- **Other configured models:** five profiles and three presets. The independent read-only check confirmed the active `son` preset routes every phase to Sonnet 5.5, has no decision route and allows two repairs. `typesafe/jev-1.13` ("Jev", `src/generation/decisions.ts`) is a bounded non-coding decision model and is refused for coding. Historical runs used `anthropic/claude-sonnet-5` before 5.5.
 - **Coding runtime:** OpenCode 1.18.31, pinned and bundled, driven through a host-owned gateway. Rojo converter and Luau compiler are bundled with hash checks.
 
 ## Generation pipeline (current source)
@@ -57,7 +117,7 @@ Stage values (`src/generation/schema.ts`): `draft, planning, clarification, revi
 4. **Asset acquisition (native, with some paid calls).** `resolveAssets` calls `runAssetPipeline` (`src/generation/asset-pipeline.ts`). It imports picks into the Studio namespace, captures and compares components, converts through Rojo and records provenance. Its model hooks make paid builder and reviewer calls for adaptation, decisions and evaluation (`engine.ts` lines 782 to 960).
 5. **Coding (paid, one OpenCode session).** `runOpenCode` offers three tools: `manifest`, `task_context` and `submit_task`. `submit_task` validates file ownership, scene, physics, asset provenance and coverage, compiles, then saves a checkpoint. Invalid patches return validation feedback to the model.
 6. **Final review (paid, one call).** The whole-game reviewer returns issues and acceptance tests, which must compile.
-7. **Repair (paid).** Runs up to the configured `repairLimit`. Trials used 0. The current preset value was not re-read for this brief.
+7. **Repair (paid).** Runs up to the configured `repairLimit`. Trials used 0. The independent read-only check confirmed the active preset value is 2.
 8. **Checks and export.** Static path checks, then `.rbxlx` export and a structural XML check, then `ready_to_test`. Export returns HTTP 409 while review checks are failing.
 
 **Budget guards, all in source:**
@@ -115,7 +175,7 @@ Record: `docs/results/trial-probes/RESULTS.md`, folders `p-review-2/` and `p-bui
 ## Open issues, roughly by impact
 
 1. **The installed app lacks most fixes**, including the builder policy, role evidence, protected review budget, pack fixes and the lease fix. Installing needs the user's restart approval.
-2. **No complete demo build has run on the current direct path.** Only a scoped combo has been measured. World setup, dummy placement and integration are unmeasured. The current estimate is $0.50 to $0.90 with a suggested $1.50 cap. That is an inference from probes 2. An earlier $7.50 figure came from the obsolete 30-call pipeline and should be ignored.
+2. **No complete demo build has run on the current direct path.** Only a scoped combo has been measured. World setup, dummy placement and integration are unmeasured. The earlier $0.50–$0.90 estimate is not a validated complete-build quote, and the suggested $1.50 cap can fail current reservation admission, as shown above. The original probe report's $7.50 discussion is an explicit workload scenario, not a validated price or an observed 30-call current build.
 3. **Native gameplay has never been verified.** The Studio input tool fails. A human play-test in the throwaway place costs $0 and may be the fastest evidence.
 4. **Asset generality is unproven.** Pre-registered sweeps found zero false-ready results across 22 to 27 comparisons. But 11 of 16 strata went unfilled, because Creator Store search returns few animations (`studio-asset-adapter.ts`: "Official Creator Store search does not support Animation"). The animation sourcing strategy itself may need rethinking: attachments, inventory or a curated library.
 5. **Pipeline complexity.** There are many strict validators across a 4,264-line engine and a 1,663-line asset pipeline. Most historical stops were self-inflicted gate failures. Whether each gate earns its place is an open question.
