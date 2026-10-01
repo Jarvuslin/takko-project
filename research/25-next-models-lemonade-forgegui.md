@@ -1,4 +1,107 @@
-# Next model tests and competitor architecture — 2026-09-16
+# Model test history, game-building research and next candidates
+
+## Current assessment, 2026-10-01
+
+**Test GPT-6 Luna, GLM-5.3 Flash and Gemini 3.8 Flash against Sonnet 5.5 first.** Composer 2.5 belongs in a separate whole-agent comparison. This is a proposed shortlist, not a measured ranking. We have already tried considerably more models than Sonnet and Haiku, but the tasks, harness versions and evidence vary too much to rank them as complete game builders.
+
+This update audits retained local records and reads official documentation, research papers, public provider attribution, Reddit and engine forums. No paid inference, account-balance request, new model installation, Studio action or app restart occurred. Public catalog access did not use credentials. The September 16 sections below are retained as a dated snapshot, including recommendations and statements later superseded by actual tests.
+
+## What we have actually tested
+
+Counts below describe individual experiments, not a common leaderboard. A configured model, catalog entry or planned worker does not count as a completed inference test.
+
+| Model | Actual local evidence and outcome | Evidence |
+|---|---|---|
+| GPT-4.1 mini | Numerous early pipeline/component tests. In the controlled OpenCode comparison, both harnesses passed 3/3 pure Luau tasks. Takko used 6 calls/$0.0243528, OpenCode 14 calls/$0.0156412. No assets or native game acceptance. | [Harness comparison](24-agent-effectiveness-comparison.md) |
+| Qwen3 Coder Next and Gemini 2.5 Flash Lite | Early live generation/planner trials exposed schema, ownership and validation defects. Historical continuation explicitly records live use. Original call receipts were not reconstructed in this audit. No comparable native success score. | [Historical state](notes/archive/continuation-2026-09-13-to-2026-09-29.md), entry beginning “Live tests used Qwen3 Coder Next” |
+| Gemini 3.7 Flash | Used in planning, asset decisions, source review and adaptation. Frozen source review initially failed JSON/quotation contracts. After the evidence interface changed to line-range citations, one fresh review passed first attempt for $0.050034. This is a contract improvement, not full-game success. | [Source-review result](results/source-review-lines-v1/RESULTS.md) |
+| GPT-5.6 Sol | Collect-and-sell reached `ready_to_test`. A separate frozen source review failed twice for $0.253846. Different roles and tasks give different results. | [Generation report](../.forge/evaluations/takko-generation-20260915/report.json), [review diagnostic](results/source-review-sol-v1/RESULTS.md) |
+| GPT-5.6 Luna | Initial collect-and-sell failed task ownership. Retry after a clearer output contract reached `ready_to_test`. Later bubble controller passed 14/15 native fixture checks for $0.0019958, failing overlapping presses. | [Retry](../.forge/evaluations/takko-generation-retry-20260915/), [screen](results/model-screen-20260916/RESULTS.md) |
+| MiMo V2.5 | Collect-and-sell request hit the 120-second timeout. This does not establish coding quality. | [Generation report](../.forge/evaluations/takko-generation-20260915/report.json) |
+| MiMo V2.5 Pro | V4 asset workflow dispatched nine Pro calls alongside two Gemini planner calls. Required asset needs remained unresolved. Distinct from base MiMo and from later runs where a planner failed before the worker. | [V4 receipts](../benchmarks/runs/butter-crunch-marketplace-v4-20260916/mimo/results.json) |
+| DeepSeek V4.1 Flash | Collect-and-sell hit the 8,000-output-token limit. No usable completed build in that test. | [Generation report](../.forge/evaluations/takko-generation-20260915/report.json) |
+| MiniMax M3 | V4 dispatched three MiniMax calls alongside two Gemini planner calls. Asset workflow failed before a verified game. | [V4 receipts](../benchmarks/runs/butter-crunch-marketplace-v4-20260916/minimax/results.json) |
+| Grok Build 0.1 | V6 produced a build, but native count-after-completion behavior failed. Mixed Grok/Gemini run cost $0.185297, not a Grok-only invoice. | [Cost audit](22-game-generation-cost-and-optimization.md), [native result](../benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/native-evaluation/RESULTS.md) |
+| Claude Sonnet 5 | Bubble controller passed 15/15 native fixture checks in one $0.023992 call. Later pipeline trials are separate. | [Four-model screen](results/model-screen-20260916/RESULTS.md) |
+| Qwen3.8 Max 0902 | Same screen cost $0.036346. Compiled, but `Vector3:Clone()` caused native initialization failure. No repair call was allowed. | [Screen](results/model-screen-20260916/RESULTS.md), [failure attribution](26-model-failure-diagnosis.md) |
+| Kimi K2.7 Code | Same screen cost $0.031298208. Used 7,999 of 8,000 output tokens on reasoning and returned no executable answer. Unsupported/unverified reasoning controls confound capability interpretation. | [Screen](results/model-screen-20260916/RESULTS.md), [failure attribution](26-model-failure-diagnosis.md) |
+| Claude Haiku 4.5 | Concept/clarification tests, not the fighting demo. V1 made two paid calls for $0.008137 and failed the clarification schema. Offline replay after a schema change does not upgrade the failed live run. | [Concept trial](results/concept-live-v1/RESULTS.md) |
+| Claude Sonnet 5.5 | Recent paid combat probes. P-Build 2 returned four compiling files passing 18/20 offline contracts. The later ten-scenario native pass belongs to a manually repaired derivative. | [Diagnostic](../docs/generation-diagnostic-brief.md), [rehearsal](../docs/guided-demo-rehearsal.md) |
+
+These are **16 distinct named models recorded as live-tested**, with the two oldest supported here by the historical log rather than newly reconstructed receipts. This is not a claim of exhaustive account-wide usage. GPT-6 Luna is different from tested GPT-5.6 Luna. Gemini 3.8 Flash appears in saved configuration/catalog data, but this audit did not establish a paid test receipt. Composer, GLM-5.3 Flash and GameCoder-27B have no established local evaluation in these records. Our interactive Codex/Astra engineering session is not a controlled Takko model trial.
+
+## What Roblox competitors demonstrably use
+
+**Lemonade:** the freshly opened [OpenRouter app page](https://openrouter.ai/apps/lemonade) showed 42 models and these leading last-30-day figures: GPT-5.6 Luna 697B tokens, GLM-5.3 Flash 360B, Gemini 3.7 Flash 176B, GPT-6 Luna 65.1B and Hy3 44.8B. Earlier reads during this session showed slightly smaller totals, so these are a changing public snapshot. This establishes provider-attributed usage, not which model plans, codes or reviews, all of Lemonade's traffic, or its game success rate. September's observed Composer picker label remains weaker evidence than a generation receipt.
+
+**Superbullet:** our inspected installed 0.3.99 client exposes Sonnet 5, Opus 5 and Haiku 4.5 selectors. Its “Bullet GPT 5.2” label maps to `gpt-5`, demonstrating why display labels alone are unreliable. BulletMind/BulletLearn identities remain opaque. BulletCode has an xAI description without an exact proven backend model. This is dated shipped-client evidence, not a new live backend observation. [Installed architecture and exact selectors](27-superbullet-installed-architecture.md).
+
+**ForgeGUI:** the September public-client inspection supports context/reference retrieval, Studio pairing and Meshy-related contracts. Its coding/planning LLM remains unconfirmed. An image-model attribution cannot identify its coding model. Evidence and limitations remain in the dated section below.
+
+**Roblox itself:** Roblox documents Assistant planning, asset generation and playtesting plus third-party Claude/Cursor/Codex access through Studio MCP. That supports an engine-tool architecture, not an identifiable universal game-building LLM. Cube/GenerationService generates assets and should not be confused with the coding agent. [Roblox announcement](https://about.roblox.com/newsroom/2026/04/roblox-studio-going-agentic), [GenerationService](https://create.roblox.com/docs/reference/engine/classes/GenerationService).
+
+## Unity, Unreal, Godot and browser-game evidence
+
+| Platform | Strongest relevant finding | Implication for Takko |
+|---|---|---|
+| Unity | Official AI combines an in-editor agent, project-aware MCP and a gateway for external agents. Current credit documentation names Default/Lite/Ultra tiers without identifying their underlying coding models. | Do not invent a “Unity model” to copy. The transferable part is access to scene objects, components, logs and editor actions. [Unity overview](https://unity.com/blog/unity-ai-how-to-get-started), [current tiers](https://docs.unity.com/en-us/ai/credits/credits-about) |
+| Unreal/UEFN | Epic's UE6 roadmap explicitly names MCP integrations with Claude and Gemini. UEFN's assistant generates Verse and provides guidance. The reviewed official pages do not establish an exact underlying EDA model. | Integration and external-model choice matter. Roadmap items are not evidence of a shipped fully autonomous builder. [Epic roadmap](https://www.unrealengine.com/news/the-road-to-ue-6), [UEFN tools](https://www.fortnite.com/developer/tools?lang=en-US) |
+| Unreal research | Code4Scene evaluates construction/editing in the engine. Fable 5.1 leads construction, Gemini 3.8 Flash leads editing, Astra narrowly leads overall. Best public repair F1 is only 0.527. | Gemini is a serious editing candidate, but scene quality does not establish combat logic, networking or Roblox asset integration. This September 29 preprint is fresh research, not our reproduction. [Paper](https://arxiv.org/html/2609.36777v1) |
+| Godot research | GameDevBench compares edits to existing projects. Gemini 3 Flash with video reports 46.9% full pass@1 at $0.082 median task cost, including failed attempts. Tools and observation modes affect results. | Engine feedback and total attempt cost deserve controlled testing. These are project-edit tasks, not complete games for eight cents. [Paper, Table 4](https://arxiv.org/html/2602.11103v2) |
+| Browser games | OpenGame combines GameCoder-27B with project templates, debugging tools and runtime evaluation. Its domain is web games. | Study its evaluation and reusable integration methods. Do not assume its model knows Roblox services or marketplace scripts. The opened repository establishes framework availability, not a verified deployable weights endpoint. [Authors' repository](https://github.com/leigest519/OpenGame) |
+
+One particularly relevant result is [Unity Insight](https://arxiv.org/html/2609.27585v1): a persistent code-to-asset index reduced session tokens by 53% and elapsed time by 52% across 28 paired questions on two projects. This is a small project-question experiment, not a game-generation cost guarantee. It supports testing structural asset/dependency retrieval in Takko before adding more planning agents.
+
+World/video generators and mesh generators solve different outputs. A generated gameplay video or 3D character does not supply editable, authoritative Roblox behavior. They are possible asset suppliers, not replacements for the coding and acceptance workflow.
+
+## What Reddit and forums contribute
+
+These are selected firsthand reports found through public searches, not a representative survey or independently reproduced builds. Dates are posting dates. No private communities were accessed and nobody was contacted.
+
+- [Unity + Claude Code/MCP showcase, August 16](https://www.reddit.com/r/claude/comments/1vq06o8/game_dev_with_fable_5_is_actually_crazy/): the author reports 13 hours, system-by-system iteration, bought assets, image/Meshy generation and manual testing. They explicitly acknowledge substantial remaining refinement. Useful workflow evidence, not one-prompt automation.
+- [Unreal developer discussion, July 22](https://www.reddit.com/r/unrealengine/comments/1v36yv8/for_those_using_ai_in_unreal_what_parts_of_your/): firsthand praise for Claude-generated C++ with thin Blueprint configuration, alongside complaints about Blueprint/MCP visibility and token use. Supports testing source and graph access separately. Model versions are often unspecified.
+- [Unity forum, June 23](https://discussions.unity.com/t/advise-for-non-devs-using-ai-to-create-games/1723877): an author uses Sonnet for coding and Codex for audit, while replies dispute the value of excessive agent handoffs and emphasize project context. Evidence of competing practices, not proof either wins.
+- [Qwen3.8-27B-Q5 game report, August 2026](https://www.reddit.com/r/LocalLLM/comments/1vvaxid/game_made_by_qwen3827bq5/): supplied asset packs and a custom harness produced a reported game. This nominates a local-model experiment. It does not demonstrate Roblox competence, repeatability or hardware cost.
+- [Roblox scripting discussion, October 16, 2024](https://www.reddit.com/r/robloxgamedev/comments/1g5c628/i_use_ai_for_80_of_my_code_and_i_feel_great_about/): an experienced developer reports productive GPT-4o/Claude 3.5 use with review and polishing. Too old to rank current models, but useful evidence that successful reports include human understanding and debugging.
+
+The practical inference is to automate the missing inspection and feedback steps, then compare models inside that workflow. Copying the model name from a showcase leaves out much of what made the showcase work.
+
+## Prioritized candidates and fresh catalog prices
+
+USD per million uncached input/output tokens, fetched 2026-10-01 from the unauthenticated [OpenRouter catalog](https://openrouter.ai/api/v1/models). [Saved selected entries](notes/model-platform-refresh-20260916/selected-models-20261001.json). These are listed rates, not a guaranteed routed quote or cost per accepted game. Reasoning, repeated context, tools and failures count toward cost. Validate the selected provider before reserving a paid call.
+
+| Priority | Exact candidate | Input / output | Why test it |
+|---|---|---:|---|
+| First | `openai/gpt-6-luna` | $0.10 / $0.50 | Cheapest practical general baseline, fresh Lemonade usage, successor to our promising but imperfect Luna fixture result. |
+| First | `z-ai/glm-5.3-flash` | $0.15 / $0.50 | Strong competitor-usage evidence, multimodal model, no local test yet. |
+| First | `google/gemini-3.8-flash` | $0.75 / $3.75 | Strong relevant scene-editing evidence, compare against old Flash results and source/asset interpretation failures. |
+| Control | `anthropic/claude-sonnet-5.5` | $2 / $10 | Current combat baseline. Fresh challengers need the same tasks and repaired harness, not comparison against unrelated historical failures. |
+| Second | `minimax/minimax-m3` | $0.30 / $1.20 | Earlier acquisition failure did not fairly measure coding with complete asset evidence. |
+| Second | `deepseek/deepseek-v4.1-flash` | $0.03 / $0.50 | Very cheap bounded repair retest with validated output settings. Its weak Code4Scene result lowers scene-building priority. |
+| Second | `tencent/hy3` | $0.0825 / $0.33 | Actual Lemonade usage supports a cheap challenger, but no local behavioral evidence. |
+| Separate local track | `qwen/qwen3.8-27b` or a pinned local weight/quantization | Hosted $0.42 / $3 | Community and engine-benchmark leads. Hosted and local configurations must not be treated as equivalent. Local hardware, latency and memory cost remain unmeasured. |
+
+**Composer 2.5 standard** remains a useful separate Cursor SDK experiment at $0.50/$2.50, subject to access. Fast is $3/$15 and is the default, so pricing mode must be explicit. It changes the agent system as well as the model. [Cursor model docs](https://cursor.com/docs/models/cursor-composer-2-5), [SDK](https://cursor.com/docs/sdk/typescript).
+
+GLM's [official model card](https://huggingface.co/zai-org/GLM-5.3-Flash) says omitted or invalid `reasoning_effort` defaults to `max`. Explicit supported settings and a bounded output allowance matter. The previous Kimi failure is why a universal “low effort” setting is insufficient. Haiku remains eligible for narrow intent/extraction tasks, but the three first candidates offer stronger reasons to spend the next comparison budget. No general role assignment is established until evaluated.
+
+## Proposed comparison, not authorized or started
+
+Use one host-controlled agent and the same tools for the first four models. Freeze an independent acceptance specification and eight cases: overlapping combo hits, nested audio extraction, NPC dependency/script rewiring with behavior preserved, checkpoint respawn, farming state, racing laps, a held-out custom mechanic, and rejection of an invalid remote action. Supply exact native asset facts. Require actual instance paths and complete relevant source where needed. Keep reference solutions and evaluator findings out of worker input.
+
+First screen the four candidates on the same small cases. Promote at most two to repeated runs and newly held-out assets. Use model-supported reasoning settings, a fixed model-call/repair cap, wall-clock deadline and explicit dollar reservation per case. Preserve first-attempt and repaired scores separately. Do not let a failed importer, missing permission or dead bridge trigger paid speculative repair. Record those as harness/environment failures with all cost still included.
+
+Measure **total billed cost across successes and failures divided by accepted artifacts**, plus latency, manual interventions and failure category. If there are no accepted artifacts, report no measurable cost per success. A pass requires behavior in the reopened exported place, asset identity preserved and independently specified acceptance checks. Mocks validate routing, budgets and recovery, not model quality or native gameplay. Record actual usage and remaining balance only during a separately authorized paid batch. None is activated by this research.
+
+## Verification of this update
+
+Public catalog fetched without credentials. Local historical results and source links inspected. Application source unchanged. Full `npm run check` passed once: build, 1,911 unit tests in 150 files, six Luau scenarios, 16 plugin checks plus plugin/eight source compiles, six guard fixtures, CSS zero errors/274 warnings, 21 desktop tests, production smoke, 108 browser tests and ten Electron tests. No crash, rerun or skipped stage. Log: `test-artifacts/game-model-research-full-check.log`. Native Studio verification was not run this turn. These checks do not reproduce external benchmarks or establish cheaper successful generation.
+
+Automatic approval review rejected cleanup of `.forge/e2e-projects/run-36388` and ten `%TEMP%/takko-electron-journey-*` workspaces created 16:37:53–16:39:28Z, stating only “blocked by policy.” They remain. The check's port 4319 was released. Read-only process inspection found the existing Takko main PID 28600 alive but the previously recorded service PID 14992 and listener 51256 absent. No app process was stopped or restarted. Investigating that service state is separate follow-up work.
+
+---
+
+## Historical snapshot, September 16, before the four-model screen
 
 This is a research result, not a new benchmark. No paid inference, generation, Studio operations, application changes or goal resumption occurred. Sources are current public documentation, a fresh unauthenticated OpenRouter catalog, downloaded public web assets, and explicitly dated prior local observations. Backend implementations remain unavailable.
 

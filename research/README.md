@@ -1,6 +1,6 @@
 # Research
 
-Latest: [Guided demo rehearsal](../docs/guided-demo-rehearsal.md) built and reopened a manually repaired combat demo. Ten native scenarios and 22 offline contracts pass. Nested audio extraction, input-mode recovery, bounded evidence paging and export checks inform the general architecture. Zero project-provider calls. Automated Takko generation and cost reduction remain unproven.
+Latest: [Model history and game-building research](25-next-models-lemonade-forgegui.md) audits 16 historically live-tested models, current Lemonade usage, dated Superbullet/ForgeGUI evidence, Unity/Unreal/Godot research and firsthand community reports. Proposed first comparison: GPT-6 Luna, GLM-5.3 Flash and Gemini 3.8 Flash against Sonnet 5.5. Fresh public prices saved. Zero paid inference calls. The [manual combat rehearsal](../docs/guided-demo-rehearsal.md) remains separate from autonomous Takko success.
 
 ## Start here
 
