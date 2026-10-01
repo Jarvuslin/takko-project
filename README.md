@@ -2,7 +2,7 @@
 
 Takko is a local, desktop-only app that turns a Roblox game request and selected Marketplace assets into Luau, scene data and an exported place. It uses configurable model providers and a Studio bridge. Previously named Forge, it retains the `FORGE_*` identifiers and `Forge Desktop` storage directory.
 
-**Current limitation:** the two latest paid runs failed during planning before writing game code. Successful offline checks do not establish playable generation. See [the diagnosis](research/31-planning-overhead-and-direct-build.md) and [the improvement plan](docs/improvement-plan.md).
+**Current limitation:** automated playable generation remains unproven. Later paid probes completed review and produced code, but the original build passed 18/20 contracts without native gameplay proof. A [manually repaired derivative](docs/guided-demo-rehearsal.md) now passes ten scenarios in a reopened Studio export. That is not a successful Takko generation. See the [current diagnosis](docs/generation-diagnostic-brief.md) and [improvement plan](docs/improvement-plan.md).
 
 ## Start here
 

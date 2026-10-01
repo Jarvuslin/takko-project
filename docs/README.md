@@ -5,6 +5,7 @@ Read [current state](../research/notes/continuation.md) first. It is the sole au
 ## Current documents
 
 - [Generation diagnostic brief](generation-diagnostic-brief.md): architecture, models, versions, failure history and spend, written for a fresh diagnosing agent.
+- [Guided demo rehearsal](guided-demo-rehearsal.md): a manually repaired fighting demo tested in a reopened Studio export, asset decisions, reproducible failures and architecture lessons. Not an automated Takko success or measured provider-cost improvement.
 - [Desktop](desktop.md): launch, storage, service lifecycle and credentials.
 - [Maintenance](repository-maintenance.md): what to keep, where output belongs and how to recover history.
 - [Cleanup](cleanup.md): removals, retained uncertain files and verification.

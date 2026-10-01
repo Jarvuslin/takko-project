@@ -6,6 +6,8 @@ Written 2026-10-01 for a fresh agent asked to diagnose why Takko generation keep
 
 ## Independent diagnosis, 2026-10-01
 
+**Subsequent native rehearsal:** [Guided combat demo](guided-demo-rehearsal.md) repaired a derivative of P-Build 2 and passed ten gameplay scenarios in a reopened local Studio export, with 22 offline contracts. The original paid output and its 18/20 result remain unchanged. This establishes a local manually repaired demo, not autonomous Takko generation, cheaper-model reliability or publishing readiness. The rehearsal also found a Studio input-mode mismatch, nested reusable audio inside a combat script container and truncated tool output. Its evidence and architecture recommendations supplement the proposal below.
+
 ### Revised proposal: general generation, with combat as a regression case
 
 The user clarified that the solution must serve arbitrary game requests, not only combat. This supersedes the narrow assembly path as the overarching recommendation. The combat proposal below remains an optional supported optimization and a first regression case, not a genre whitelist or a replacement for generation.
