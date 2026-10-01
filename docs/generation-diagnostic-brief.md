@@ -6,7 +6,32 @@ Written 2026-10-01 for a fresh agent asked to diagnose why Takko generation keep
 
 ## Independent diagnosis, 2026-10-01
 
-### Proposed fix for the selected-asset combat demo
+### Revised proposal: general generation, with combat as a regression case
+
+The user clarified that the solution must serve arbitrary game requests, not only combat. This supersedes the narrow assembly path as the overarching recommendation. The combat proposal below remains an optional supported optimization and a first regression case, not a genre whitelist or a replacement for generation.
+
+Use one host-controlled workflow across genres: approved behavior requirements -> native asset facts -> required integration work -> bounded generation of missing behavior -> compile/contract/export checks -> targeted repair of concrete failures -> Studio acceptance. Reuse tested infrastructure where it fits. Generate novel mechanics and adapters where it does not. Do not reintroduce the old paid task-graph planning loop or promise zero inference for arbitrary new mechanics. The workflow, identity, budgets, checkpoints and legal transitions are deterministic. Game design and new code can remain model-generated.
+
+Asset compatibility is a relation between **the exact asset revision, its intended role, the intended integration and the target runtime**. It is not a universal property of a listing. Derive required capabilities from the approved user request, inspect actual instances/media/source, compare the two, and record each missing capability and a testable integration obligation. An LLM may interpret intent and propose an adapter, but it cannot turn guesses into native evidence or invent additional requirements that disqualify the user's selection.
+
+| Outcome | Meaning | Example and action |
+|---|---|---|
+| Usable as-is for this role | Evidence supports the required asset capabilities. Integration still needs testing. | A tree mesh used as scenery can be placed without a growth script. |
+| Usable with integration | The asset supplies reusable content but lacks behavior or binding that Takko can implement. | A sword-shaped model needs a Tool/Handle binding and combat logic. A decorative car needs separately implemented driving behavior and any necessary structural adaptation. Retain the selected asset and test the adapter. |
+| Blocked by a known constraint | A concrete requirement cannot currently be met by the available integration. | A selected clip targets a different skeleton and no validated retargeting path exists. Explain the rig/retargeting choice. Inaccessible animation permission needs user/platform action. Never silently substitute. |
+| Unverified | Evidence or an adapter test is missing. | Incomplete native capture or unknown embedded dependencies. Inspect or test the missing fact before labelling it incompatible. No repeated paid guessing. |
+
+Availability/identity, scene structure, skeleton/joints, physics/attachments, media loading, embedded behavior/dependencies, permission and actual runtime observations are separate evidence dimensions. Visual and semantic fit remains partly user judgement. Native import does not establish intended gameplay. A static target need not have a Humanoid, a farming crop need not ship with a farming system, and an animation need not already contain the app's preferred hit markers. Missing scripts often represent the code Takko is supposed to generate.
+
+Current source illustrates the problem: `assetRoleEvidence` infers roles from explicit intent or legacy text, and its Tool branch blocks a model with no Tool instance. This accurately says it is not already an equippable Tool, but does not prove that it cannot be adapted into one. The proposed capability-gap representation must separate those meanings, preserving source/security checks and user intent. Unknown roles must not become a permanent genre restriction. Their required structural capabilities and generated integration need explicit evidence and tests.
+
+Validate the general solution with frozen contracts across combat, obby checkpoints, farming/growth, racing/laps and a custom mechanic held out from implementation. Each must check selected-asset preservation, bounded model dispatch, real import/export boundaries and observable behavior. Include both content-only assets needing generated behavior and assets with reusable existing behavior. Those cases test generalization across responsibilities, not a promise that five genres cover every game. Report failed attempts and cost per successful tested build. The earlier zero-inference target applies only to unchanged, fully supported component assembly. Novel model-generated code still needs independently specified acceptance checks, bounded spending and, for measured cost/quality, separately authorized real calls.
+
+Roblox platform references: [Rig Generator](https://create.roblox.com/docs/studio/rig-builder) describes distinct skeleton structures, and [animation asset permissions](https://devforum.roblox.com/t/improving-animation-asset-permissions/3852101) describes experience access. These are concrete platform constraints, not reasons to reject an asset merely because it lacks game-specific scripts.
+
+Revision status: proposal only, no implementation or new tests. Application source is unchanged, so the prior full check remains the last regression result and does not validate this proposed architecture. Cost $0.
+
+### Earlier narrow proposal: optional selected-asset combat assembly
 
 Proposal only, following the user's request for test-driven engineering. No implementation, native session or paid evaluation is authorized by this proposal. Use `agent-orchestration-multi-agent-optimize` and `agent-evals`, implemented with the existing TypeScript/Vitest/Luau harnesses. The skill examples do not require adding Python or a hosted evaluation service.
 
