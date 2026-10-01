@@ -25,7 +25,7 @@ function literal(v: any): string {
 it("runs the real Luau producer over captured native MeshParts, preserving visibility and passing the old 80-part limit", () => {
   const source = JSON.parse(
     fs.readFileSync(
-      "docs/results/asset-evidence-selection-20260926/native-model-source.json",
+      "tests/fixtures/regression/asset-evidence-selection/native-model-source.json",
       "utf8",
     ),
   );

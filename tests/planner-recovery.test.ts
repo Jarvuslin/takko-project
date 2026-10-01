@@ -6,13 +6,13 @@ import { validateSpec } from "../src/generation/validation";
 
 const read = (name: string) =>
   JSON.parse(
-    fs.readFileSync(`docs/results/demo-export-20260927/${name}.json`, "utf8"),
+    fs.readFileSync(`tests/fixtures/regression/planner-recovery/${name}.json`, "utf8"),
   );
 const original = read("planner-output-1");
 const corrected = read("planner-output-2");
 const acceptedProject = JSON.parse(
   fs.readFileSync(
-    "docs/results/opencode-step3-live-20260925/terminal-project.json",
+    "tests/fixtures/regression/animation-selection/terminal-project.json",
     "utf8",
   ),
 );

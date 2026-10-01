@@ -2,10 +2,10 @@ import fs from "node:fs";
 import { expect,it } from "vitest";
 import { scopeQuestions, questionProposalScope,sequenceAssetIssues, scopeQuestionId } from "../src/generation/scope-questions";
 const read=(p:string)=>JSON.parse(fs.readFileSync(p,"utf8"));
-const real=read("docs/results/approved-reference-finish-20260927/terminal-project.json");
-const other=read("benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json");
+const real=read("tests/fixtures/regression/completed-combat/terminal-project.json");
+const other=read("tests/fixtures/asset-pipeline/butter-crunch-marketplace-v6/grok/final-project.json");
 it("does not reopen the real narrow request's explicit closed scope or implementation timing",()=>{
- const narrow=read("docs/results/opencode-minimal-fighting-20260925/terminal-project.json");
+ const narrow=read("tests/fixtures/regression/minimal-combat-selection/terminal-project.json");
  expect(scopeQuestions(narrow.proposal.mechanics.assumptions,narrow)).toEqual([]);
 });
 it("does not treat an explicit no-combo answer as permission to remove upgrades",()=>{

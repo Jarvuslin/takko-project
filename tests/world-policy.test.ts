@@ -8,8 +8,8 @@ import { proposedWorld, existingProjectContext } from "../src/generation/world-p
 import { getBenchmarkCase } from "../src/benchmark/cases";
 
 const corpus = [
-  "docs/results/approved-reference-finish-20260927/terminal-project.json",
-  "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json",
+  "tests/fixtures/regression/completed-combat/terminal-project.json",
+  "tests/fixtures/asset-pipeline/butter-crunch-marketplace-v6/grok/final-project.json",
 ].map(file => JSON.parse(fs.readFileSync(file,"utf8")) as Project);
 for (const old of corpus) {
   it(`records a fresh world, but never injects one into legacy ${old.name}`, () => {

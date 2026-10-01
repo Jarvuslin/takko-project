@@ -5,7 +5,7 @@ test("build approval reports pending work and rejection beside the button", asyn
 }) => {
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/approval-stall-20260928/project-stopped.json",
+      "tests/fixtures/regression/approval-stall/project-stopped.json",
       "utf8",
     ),
   );

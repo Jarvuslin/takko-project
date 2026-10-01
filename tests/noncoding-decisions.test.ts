@@ -354,7 +354,7 @@ describe("non-coding route through the real Engine", () => {
   it("accepts the retained native Jev score reply with its exact criterion legend", () => {
     const value = JSON.parse(
       fs.readFileSync(
-        "docs/results/jev-noncoding-workflow/rejected-score-response.json",
+        "tests/fixtures/regression/jev-noncoding-workflow/rejected-score-response.json",
         "utf8",
       ),
     );

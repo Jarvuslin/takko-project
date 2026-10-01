@@ -1,1 +1,0 @@
-import fs from 'node:fs';const file='docs/results/demo-precheck-20260927/harness/native-roundtrip.luau';let s=fs.readFileSync(file,'utf8');const start=s.indexOf(' local denied=Http:RequestAsync');const end=s.indexOf('\nend)\nreport.ok=',start);if(start<0||end<0)throw Error('Missing driver section');s=s.slice(0,start)+s.slice(end);fs.writeFileSync(file,s);

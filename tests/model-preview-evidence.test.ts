@@ -8,7 +8,7 @@ it("renders captured geometry using instancing and distinguishes approximate sur
   const model = modelPreviewSchema.parse(
     JSON.parse(
       fs.readFileSync(
-        "docs/results/asset-evidence-selection-20260926/model-preview-capture.json",
+        "tests/fixtures/regression/asset-evidence-selection/model-preview-capture.json",
         "utf8",
       ),
     ),

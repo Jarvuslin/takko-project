@@ -83,7 +83,7 @@ it.each([undefined, 4])(
     const replies = [1, 2].map((i) =>
       JSON.parse(
         fs.readFileSync(
-          `docs/results/demo-export-20260927/planner-output-${i}.json`,
+          `tests/fixtures/regression/planner-recovery/planner-output-${i}.json`,
           "utf8",
         ),
       ),

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 const suffix = process.platform === "win32" ? ".exe" : "";
-const folder = process.env.LUAU_BIN_DIR ?? "research/tools/luau";
+const folder = process.env.LUAU_BIN_DIR ?? ".forge/tools/luau";
 function run(binary, args) {
   const result = spawnSync(path.resolve(folder, binary + suffix), args, {
     encoding: "utf8",

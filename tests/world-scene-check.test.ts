@@ -4,8 +4,8 @@ import { checkWorldScene } from "../src/generation/world-scene-check";
 import type { Project } from "../src/generation/schema";
 import { newProject } from "../src/generation/store";
 const read = (file: string): Project => JSON.parse(fs.readFileSync(file, "utf8"));
-const combat = read("docs/results/approved-reference-finish-20260927/terminal-project.json");
-const other = read("benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json");
+const combat = read("tests/fixtures/regression/completed-combat/terminal-project.json");
+const other = read("tests/fixtures/asset-pipeline/butter-crunch-marketplace-v6/grok/final-project.json");
 combat.world = newProject(combat.request,8000000).world;
 other.world = newProject(other.request,8000000).world;
 it("rejects the real invented slab and enclosure and reports overlapping lighting evidence", () => {

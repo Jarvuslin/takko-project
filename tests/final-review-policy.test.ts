@@ -14,10 +14,10 @@ const folders: string[] = [];
 afterEach(() => folders.splice(0).forEach(dir => fs.rmSync(dir, { recursive: true, force: true })));
 for (const truncated of [false, true]) it(`replays the preserved ${truncated ? "truncated" : "completed"} final review through Engine admission with one attempt`, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "takko-final-review-")); folders.push(dir);
-  const root = "docs/results/approved-reference-finish-20260927/";
+  const root = "tests/fixtures/regression/completed-combat/";
   const p: Project = JSON.parse(fs.readFileSync(root + "terminal-project.json", "utf8"));
   const trace = JSON.parse(fs.readFileSync(root + "traces/" + p.id + ".json", "utf8"));
-  const failure = JSON.parse(fs.readFileSync("docs/results/runtime-diagnostics-20260927/review-failure.json", "utf8"));
+  const failure = JSON.parse(fs.readFileSync("tests/fixtures/regression/retained-animation/review-failure.json", "utf8"));
   const ledger = JSON.parse(fs.readFileSync(root + "ledger.json", "utf8"));
   p.charges = ledger.charges.filter((c: any) => c.opencodeRunId === "57c4993b-1165-4740-a7a0-b797074b19f7").map((c: any) => ({ ...c, chargedMicros: c.inputTokens * 2 + c.outputTokens * 10 }));
   p.budgetMicros = 7500000;
@@ -42,7 +42,7 @@ for (const truncated of [false, true]) it(`replays the preserved ${truncated ? "
     expect(JSON.parse(String(init?.body))).toMatchObject({ max_tokens: 32768, reasoning: { effort: "medium" } });
     expect(p.protectedReview!.status).toBe("reserved");
     expect(p.reservedMicros).toBeGreaterThan(327680);
-    return Response.json({ choices: [{ finish_reason: truncated ? "length" : "stop", message: { content: truncated ? fs.readFileSync("docs/results/runtime-diagnostics-20260927/review-truncated.txt", "utf8") : trace.response } }], usage: { prompt_tokens: 77832, completion_tokens: truncated ? failure.outputTokens : 14854, completion_tokens_details: { reasoning_tokens: truncated ? failure.reasoningTokens : 7481 } } });
+    return Response.json({ choices: [{ finish_reason: truncated ? "length" : "stop", message: { content: truncated ? fs.readFileSync("tests/fixtures/regression/retained-animation/review-truncated.txt", "utf8") : trace.response } }], usage: { prompt_tokens: 77832, completion_tokens: truncated ? failure.outputTokens : 14854, completion_tokens_details: { reasoning_tokens: truncated ? failure.reasoningTokens : 7481 } } });
   }, async () => [], undefined, { finalReview: trialFinalReviewPolicy });
   // Large attached-script reviews use this same helper without assetCall.
   // They must retain the ordinary profile and the final-review allowance.

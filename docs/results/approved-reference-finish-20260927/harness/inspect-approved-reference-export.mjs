@@ -1,5 +1,0 @@
-import fs from 'node:fs';import {XMLParser} from 'fast-xml-parser';
-const out='docs/results/approved-reference-finish-20260927';const exp=JSON.parse(fs.readFileSync(`${out}/export-result.json`));const tree=new XMLParser({ignoreAttributes:false,parseTagValue:false}).parse(fs.readFileSync(exp.path,'utf8'));const array=v=>v===undefined?[]:Array.isArray(v)?v:[v];const nodes=[];
-function visit(item,parent=[]){const name=array(item.Properties?.string).find(p=>p['@_name']==='Name')?.['#text'];const current=[...parent,name];nodes.push({path:current.join('/'),className:item['@_class']});for(const c of array(item.Item))visit(c,current);}
-for(const i of array(tree.roblox.Item))visit(i);
-const observed={at:new Date().toISOString(),dummyNodes:nodes.filter(n=>n.path.includes('/Assets/dummy')),scripts:nodes.filter(n=>['Script','LocalScript','ModuleScript'].includes(n.className))};fs.writeFileSync(`${out}/export-dummy-path-failure.json`,JSON.stringify(observed,null,2));console.log(JSON.stringify(observed,null,2));

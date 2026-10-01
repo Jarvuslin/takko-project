@@ -1,9 +1,0 @@
-
-> takko-studio@0.2.0 desktop:build
-> npm run build && tsc --noEmit --project desktop/tsconfig.json && node desktop/build.mjs
-
-
-> takko-studio@0.2.0 build
-> tsc --noEmit && vite build
-
-src/generation/concept.ts(88,3): error TS2322: Type 'ZodObject<{ goal: ZodString; actions: ZodArray<ZodObject<{ action: ZodString; expected: ZodString; }, $strict>>; expected: ZodString; }, $strict>' is not assignable to type 'never'.

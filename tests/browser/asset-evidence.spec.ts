@@ -17,7 +17,7 @@ test("raw animation publishing limitation is visible in the clip sheet and persi
   option.previewData = {
     pack: JSON.parse(
       fs.readFileSync(
-        "docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json",
+        "tests/fixtures/regression/asset-evidence-selection/captured-pack-12061946559.json",
         "utf8",
       ),
     ),
@@ -40,7 +40,7 @@ test("raw animation publishing limitation is visible in the clip sheet and persi
   await page.keyboard.press("Escape");
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-step3-live-20260925/terminal-project.json",
+      "tests/fixtures/regression/animation-selection/terminal-project.json",
       "utf8",
     ),
   );
@@ -69,7 +69,7 @@ test("chosen model bounds remain labelled and release the renderer when collapse
   option.previewData = {
     model: JSON.parse(
       fs.readFileSync(
-        "docs/results/asset-evidence-selection-20260926/sword-model-preview.json",
+        "tests/fixtures/regression/asset-evidence-selection/sword-model-preview.json",
         "utf8",
       ),
     ),

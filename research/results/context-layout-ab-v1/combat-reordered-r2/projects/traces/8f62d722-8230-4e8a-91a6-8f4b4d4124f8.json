@@ -1,6 +1,0 @@
-{
-  "phase": "reviewer",
-  "model": "openai/gpt-4.1-mini",
-  "response": "{\"issues\":[],\"tests\":[{\"id\":\"core\",\"requirementId\":\"core\",\"mode\":\"server\",\"source\":\"return function(ctx)\\n    local Logic = require(ctx.scope)\\n    local a = Logic.new(0.25,1)\\n    assert(a:getHits()==0 and a:hit('dummy')==false,'initial')\\n    assert(a:attack(0)==1,'first')\\n    assert(a:hit('dummy')==true and a:hit('dummy')==false,'dedup')\\n    assert(a:hit('')==false and a:hit('other')==true,'target identities')\\n    assert(a:attack(0.2)==nil and a:attack(0.25)==2,'cooldown and rejected timing')\\n    assert(a:hit('dummy')==true and a:getHits()==3,'new swing')\\n    assert(a:attack(0.5)==3 and a:attack(0.75)==1,'cycle')\\n    assert(a:attack(1.75)==2,'exact reset boundary')\\n    assert(a:attack(3)==1,'expired combo')\\n    assert(Logic.new(0.25,1):getHits()==0,'independent')\\n    a:reset()\\n    assert(a:getHits()==0 and a:hit('dummy')==false and a:attack(0)==1,'reset')\\nend\\n\"}]}",
-  "at": "2026-09-16T06:54:29.823Z"
-}

@@ -1,7 +1,0 @@
-{
-  "reason": "The run retained stale prose from the first OpenCode comparison in protocol.design, protocol.limits and results.conclusion. Original records remain unchanged.",
-  "actualDesign": "layoutAB=true, two rounds, three public pure-Luau tasks, baseline versus reordered context in the actual Takko Engine, alternating order by case and round. OpenCode was not run in this experiment.",
-  "isolation": "Each arm received a separate prefix in the system message using the same fresh cohort UUID. The baseline transport restores frozen pilot field order using current values and asserts deep semantic equality. Both arms include the same corrected Marketplace reference instructions.",
-  "limits": "Small exploratory sample. Model output and provider caching vary. Public tests are not held-out; no Marketplace discovery, native gameplay or full-game result.",
-  "harnessFollowup": "Future runs now emit conditional protocol and conclusion prose and hash the context layout, runtime reference and harness source. Those metadata-only corrections occurred after this run. Retained raw requests and responses are the evidence for this run."
-}

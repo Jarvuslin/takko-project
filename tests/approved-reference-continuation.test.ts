@@ -10,7 +10,7 @@ import { validateBundle } from "../src/generation/validation";
 
 const saved: Project = JSON.parse(
   fs.readFileSync(
-    "docs/results/animation-resume-20260927/terminal-project.json",
+    "tests/fixtures/regression/animation-resume/terminal-project.json",
     "utf8",
   ),
 );

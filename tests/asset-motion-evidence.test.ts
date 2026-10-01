@@ -11,7 +11,7 @@ import {
 } from "../src/marketplace/animations";
 import { unmetAssetRequirements } from "../src/generation/asset-gaps";
 import { savedReplay } from "./post-plan-replay.fixture";
-const project = savedReplay("opencode-step3-live-20260925");
+const project = savedReplay("animation-selection");
 const group = project.assetDiscovery!.groups.find(
   (g) => g.preview === "animation",
 )!;
@@ -33,7 +33,7 @@ it("gates each real captured clip before ranking votes and retains the assessed 
   const low = { ...structuredClone(option), votes: { up: 10, down: 0 } };
   const sword = JSON.parse(
     fs.readFileSync(
-      "docs/results/asset-evidence-selection-20260926/captured-pack-77935648543779.json",
+      "tests/fixtures/regression/asset-evidence-selection/captured-pack-77935648543779.json",
       "utf8",
     ),
   );
@@ -105,7 +105,7 @@ it("offers mapped raw clips with a recorded publishing limitation, excluding unm
   // Published identity comes from the existing producer fixture, not a synthesized raw-pack ID.
   const published = JSON.parse(
     fs.readFileSync(
-      "docs/results/marketplace-animation/native-pack.json",
+      "tests/fixtures/regression/marketplace-animation/native-pack.json",
       "utf8",
     ),
   );
@@ -141,7 +141,7 @@ it("keeps the 0.8 gate even for a unanimous relevance choice with very high vote
   expect(result).toBeNull();
 });
 
-for (const file of ["docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json", "docs/results/asset-evidence-selection-20260926/captured-pack-77935648543779.json"]) {
+for (const file of ["tests/fixtures/regression/asset-evidence-selection/captured-pack-12061946559.json", "tests/fixtures/regression/asset-evidence-selection/captured-pack-77935648543779.json"]) {
   it(`supplies captured variant identity and distinguishes uncertainty from rejection: ${file}`, async () => {
     const captured = JSON.parse(fs.readFileSync(file,"utf8"));
     const records:any[]=[];

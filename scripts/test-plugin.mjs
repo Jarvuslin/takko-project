@@ -1,5 +1,5 @@
 import fs from 'node:fs';import path from 'node:path';import {spawnSync} from 'node:child_process';import {buildSync} from 'esbuild';import {createRequire} from 'node:module';
-const dir=path.resolve('.forge/plugin-tests');fs.mkdirSync(dir,{recursive:true});const bin=path.resolve(process.env.LUAU_BIN_DIR??'research/tools/luau');const suffix=process.platform==='win32'?'.exe':'';
+const dir=path.resolve('.forge/plugin-tests');fs.mkdirSync(dir,{recursive:true});const bin=path.resolve(process.env.LUAU_BIN_DIR??'.forge/tools/luau');const suffix=process.platform==='win32'?'.exe':'';
 function run(binary,args){const r=spawnSync(path.join(bin,binary+suffix),args,{encoding:'utf8',windowsHide:true,timeout:20000});if(r.error||r.status!==0)throw Error(r.error?.message??r.stdout+r.stderr);return r.stdout;}
 const source=fs.readFileSync('plugin/Forge.plugin.luau','utf8');run('luau-compile',['--null','plugin/Forge.plugin.luau']);
 buildSync({entryPoints:['src/generation/base-world.ts'],outfile:path.join(dir,'base-world.cjs'),bundle:true,platform:'node',format:'cjs'});

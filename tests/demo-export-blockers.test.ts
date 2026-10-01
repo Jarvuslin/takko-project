@@ -7,13 +7,13 @@ import { proposalDraftSchema } from "../src/generation/proposal";
 import { assessEvidenceOptions } from "../src/marketplace/relevance";
 const previous = JSON.parse(
   fs.readFileSync(
-    "docs/results/opencode-motion-live-20260926/inspection-evidence/14056318312.json",
+    "tests/fixtures/regression/motion-inspection/inspection-evidence/14056318312.json",
     "utf8",
   ),
 );
 const full = JSON.parse(
   fs.readFileSync(
-    "docs/results/demo-export-20260927/full-real-inspection.json",
+    "tests/fixtures/regression/planner-recovery/full-real-inspection.json",
     "utf8",
   ),
 );
@@ -33,7 +33,7 @@ it("still blocks a real source finding when coverage is incomplete", () => {
   const input = structuredClone(previous.snapshot);
   const source = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-step3-live-20260925/terminal-project.json",
+      "tests/fixtures/regression/animation-selection/terminal-project.json",
       "utf8",
     ),
   );
@@ -45,7 +45,7 @@ it("still blocks a real source finding when coverage is incomplete", () => {
 it("uses planner-owned proposal asset needs before the implementation plan exists", async () => {
   const real = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-step3-live-20260925/terminal-project.json",
+      "tests/fixtures/regression/animation-selection/terminal-project.json",
       "utf8",
     ),
   );
@@ -67,7 +67,7 @@ it("uses planner-owned proposal asset needs before the implementation plan exist
     preview: "animation",
     options: JSON.parse(
       fs.readFileSync(
-        "docs/results/opencode-motion-live-20260926/automatic-before-proposal.json",
+        "tests/fixtures/regression/motion-inspection/automatic-before-proposal.json",
         "utf8",
       ),
     )

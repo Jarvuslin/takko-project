@@ -12,11 +12,11 @@ import { validateRetainedAnimations } from "../src/generation/retained-animation
 
 const p: Project = JSON.parse(
   fs.readFileSync(
-    "docs/results/runtime-diagnostics-20260927/terminal-project.json",
+    "tests/fixtures/regression/retained-animation/terminal-project.json",
     "utf8",
   ),
 );
-const directory = `docs/results/runtime-diagnostics-20260927/asset-evidence/${p.id}`;
+const directory = `tests/fixtures/regression/retained-animation/asset-evidence/${p.id}`;
 const files = p.artifact!.files;
 
 it("resume exposes the producer context and rejects the real bad patch before replacing any saved work", async () => {

@@ -175,7 +175,7 @@ function setup(needs = [need()]) {
 it("preserves the real evaluator rejection as advisory for an approved reference while still performing native placement", async () => {
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/animation-resume-20260927/terminal-project.json",
+      "tests/fixtures/regression/animation-resume/terminal-project.json",
       "utf8",
     ),
   );

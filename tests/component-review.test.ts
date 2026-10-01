@@ -177,7 +177,7 @@ describe("component source review evidence (offline)", () => {
 
   it("keeps both unchanged V14 raw reviews rejected with the actionable kind restriction", () => {
     const base =
-      "benchmarks/runs/marketplace-diversity-v14-20260916/bubble-wrap";
+      "tests/fixtures/asset-pipeline/marketplace-diversity-v14/bubble-wrap";
     const directory = fs.mkdtempSync(
       path.join(os.tmpdir(), "takko-review-v14-"),
     );

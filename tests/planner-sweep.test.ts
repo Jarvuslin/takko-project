@@ -12,7 +12,7 @@ import { inspectPlannerOutput, replayCorpus } from "../scripts/planner-corpus";
 import { specSchema } from "../src/generation/schema";
 import { validateSpec } from "../src/generation/validation";
 import { validateImplementationPlan } from "../src/generation/plan-validation";
-const base = "docs/results/run13-live-20260927/";
+const base = "tests/fixtures/regression/planner-invalid-output/";
 const read = (name: string) =>
   JSON.parse(fs.readFileSync(base + name + ".json", "utf8"));
 it("rejects the real seven-term proposal query at its authoring boundary and identifies the need", () => {
@@ -107,7 +107,7 @@ it("rejects script suffix/container contradictions when the planner first assign
 it("checks authored intent links and MeshPart companion discovery before proposal approval", () => {
   const proposal = JSON.parse(
     fs.readFileSync(
-      "docs/results/demo-export-20260927/planner-output-0.json",
+      "tests/fixtures/regression/planner-recovery/planner-output-0.json",
       "utf8",
     ),
   );

@@ -1,9 +1,0 @@
-function Assert-TakkoRunRestorable {
-    param([Parameter(Mandatory = $true)][object]$Result)
-    if ($Result.noFurtherCallsPending -isnot [bool] -or !$Result.noFurtherCallsPending) {
-        throw 'Calls may be pending; preserve isolation recovery record.'
-    }
-    if ($Result.requiresReconciliation -isnot [bool] -or $Result.requiresReconciliation) {
-        throw 'Native effects require reconciliation; preserve isolation recovery record before restoration.'
-    }
-}

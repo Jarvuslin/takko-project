@@ -41,7 +41,7 @@ await fs.copyFile(
   path.join(root, "plugin/Forge.plugin.luau"),
   path.join(output, "plugin/Forge.plugin.luau"),
 );
-const candidates = [".forge/tools/luau", "research/tools/luau"];
+const candidates = [".forge/tools/luau"];
 for (const tool of ["luau-compile", "luau-ast"]) {
 const compilerName = tool + (process.platform === "win32" ? ".exe" : "");
 let copied = false;

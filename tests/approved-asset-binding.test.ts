@@ -10,7 +10,7 @@ import { assetSearches } from "../src/marketplace/discovery";
 function failedProject(): Project {
   return JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-fighting-live-20260924/terminal-project.json",
+      "tests/fixtures/regression/combat-selection/terminal-project.json",
       "utf8",
     ),
   );

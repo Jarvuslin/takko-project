@@ -172,9 +172,9 @@ async function fixture(request = brief) {
 
 
 it("filters run exclusions before inspecting or recommending actual preserved animation candidates",async()=>{
-  for(const run of ["opencode-step3-live-20260925","opencode-fighting-live-20260924"]) {
+  for(const run of ["animation-selection","combat-selection"]) {
     const f=await fixture();
-    const real=JSON.parse(fs.readFileSync(`docs/results/${run}/terminal-project.json`,"utf8"));
+    const real=JSON.parse(fs.readFileSync(`tests/fixtures/regression/${run}/terminal-project.json`,"utf8"));
     const group=real.assetDiscovery.groups.find((g:any)=>g.preview==="animation");
     const option=group.options.find((o:any)=>o.previewData?.pack);
     expect(option).toBeTruthy();
@@ -191,10 +191,10 @@ it("filters run exclusions before inspecting or recommending actual preserved an
 });
 
 for (const packFile of [
-  "docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json",
-  "docs/results/asset-evidence-selection-20260926/captured-pack-77935648543779.json",
+  "tests/fixtures/regression/asset-evidence-selection/captured-pack-12061946559.json",
+  "tests/fixtures/regression/asset-evidence-selection/captured-pack-77935648543779.json",
 ]) it(`leaves an unresolved real multi-clip pack unselected: ${packFile}`, async () => {
-  const real = JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/terminal-project.json", "utf8"));
+  const real = JSON.parse(fs.readFileSync("tests/fixtures/regression/completed-combat/terminal-project.json", "utf8"));
   const pack = JSON.parse(fs.readFileSync(packFile, "utf8"));
   const f = await fixture(real.request);
   f.provider.animations.mockImplementation(async (_s, m) => ({...pack, assetId:m.assetId, revisionKey:"updated:v1"}));
@@ -213,7 +213,7 @@ it("captures the ten highest vote priors completely while retaining the rest of 
   const f = await fixture("Punching animation");
   const real = JSON.parse(
     fs.readFileSync(
-      "docs/results/asset-evidence-selection-20260926/captured-pack-12061946559.json",
+      "tests/fixtures/regression/asset-evidence-selection/captured-pack-12061946559.json",
       "utf8",
     ),
   );
@@ -247,7 +247,7 @@ it("persists spec-origin need links through discovery and refresh without relyin
   const p = f.project();
   p.spec = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-fighting-live-20260924/terminal-project.json",
+      "tests/fixtures/regression/combat-selection/terminal-project.json",
       "utf8",
     ),
   ).spec;

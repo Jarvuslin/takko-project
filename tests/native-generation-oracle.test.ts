@@ -66,7 +66,7 @@ print('PASS isolated oracle cursor roundtrip and invalid/stale cursor rejection;
       mocks + "\nlocal function fresh()\n" + source + "\nend\n" + assertions,
     );
     const compilerDirectory = path.resolve(
-      process.env.LUAU_BIN_DIR ?? "research/tools/luau",
+      process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
     );
     const result = spawnSync(
       path.join(

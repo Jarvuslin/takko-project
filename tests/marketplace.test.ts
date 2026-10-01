@@ -405,7 +405,7 @@ print("OFFLINE_CAPTURE_PASS")
 `,
       );
       const binary = path.resolve(
-        process.env.LUAU_BIN_DIR ?? "research/tools/luau",
+        process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
         process.platform === "win32" ? "luau.exe" : "luau",
       );
       const run = spawnSync(binary, [filename], {
@@ -536,7 +536,7 @@ it("requires explicit coverage acknowledgement and preserves the limitation on a
   const f = fixture();
   const real = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-motion-live-20260926/inspection-evidence/14056318312.json",
+      "tests/fixtures/regression/motion-inspection/inspection-evidence/14056318312.json",
       "utf8",
     ),
   );

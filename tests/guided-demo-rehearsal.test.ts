@@ -18,7 +18,7 @@ function run(source: string) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "takko-combo-contract-"));
   try {
     fs.copyFileSync(
-      "docs/results/guided-demo-rehearsal/Combo.luau",
+      "tests/fixtures/regression/combo-controller/Combo.luau",
       path.join(dir, "combo-contract.luau"),
     );
     const table =

@@ -28,7 +28,7 @@ export const benchmarkWorkers = [
 ] as const;
 const defaultPlannerReviewerModel = "google/gemini-3.7-flash";
 const promptRelative =
-  "benchmarks/runs/butter-crunch-marketplace-v3-20260915/prompt.txt";
+  "tests/fixtures/asset-pipeline/butter-crunch-marketplace-v3/prompt.txt";
 // Exact full hash is checked before any server mutation.
 const frozenPromptSha256 =
   "591fb62a702e0b7c96925f36def1179cd8d9f7c21999cbe4ecf648cf2e48a0bd";

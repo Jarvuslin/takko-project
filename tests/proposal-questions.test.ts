@@ -23,7 +23,7 @@ afterEach(() =>
 const real = () => {
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/question-modal-20260928/live-project-before.json",
+      "tests/fixtures/regression/question-modal/live-project-before.json",
       "utf8",
     ),
   ) as Project;
@@ -84,7 +84,7 @@ it("migrates both real saved proposals with stable IDs and marked fallback choic
     real(),
     JSON.parse(
       fs.readFileSync(
-        "docs/results/approved-reference-finish-20260927/terminal-project.json",
+        "tests/fixtures/regression/completed-combat/terminal-project.json",
         "utf8",
       ),
     ),

@@ -20,8 +20,8 @@ import { assetNeedSchema } from "../src/generation/asset-contract";
 import { parseJson } from "../src/generation/providers";
 
 export const corpus = [
-  ...[0, 1, 2].map((index) => ({ run: "demo-export-20260927", index })),
-  ...[0, 1, 2, 3, 4].map((index) => ({ run: "run13-live-20260927", index })),
+  ...[0, 1, 2].map((index) => ({ run: "planner-recovery", index })),
+  ...[0, 1, 2, 3, 4].map((index) => ({ run: "planner-invalid-output", index })),
 ];
 export type Finding = { stage: string; detail: string };
 export function inspectPlannerOutput(
@@ -186,7 +186,7 @@ export function replayCorpus(entries: CorpusEntry[] = corpus) {
       projectFile: suppliedProject,
       proposal,
     }) => {
-      const base = `docs/results/${run}`;
+      const base = `tests/fixtures/regression/${run}`;
       const file =
         suppliedFile ??
         `${base}/planner-output-${index}.${index === 3 ? "txt" : "json"}`;

@@ -21,14 +21,14 @@ import type { OpenCodeBackend } from "../src/generation/opencode-runtime";
 import { profile, fixtureReview } from "./generation-fixtures";
 
 export const replayRuns = [
-  "opencode-fighting-live-20260924",
-  "opencode-minimal-fighting-20260925",
+  "combat-selection",
+  "minimal-combat-selection",
 ] as const;
 export type ReplayRun =
-  (typeof replayRuns)[number] | "opencode-step3-live-20260925";
+  (typeof replayRuns)[number] | "animation-selection";
 export function savedReplay(run: ReplayRun): Project {
   return JSON.parse(
-    fs.readFileSync(`docs/results/${run}/terminal-project.json`, "utf8"),
+    fs.readFileSync(`tests/fixtures/regression/${run}/terminal-project.json`, "utf8"),
   );
 }
 // A scripted model correction, not a rewrite of either saved artifact or production inference.
@@ -274,7 +274,7 @@ export async function replayPostPlan(
               .needId && e.step === "component_review_call",
       )!;
       const hash = (originalEvent.data as any).packetHash;
-      const source = `docs/results/${run}/asset-evidence/${original.id}`;
+      const source = `tests/fixtures/regression/${run}/asset-evidence/${original.id}`;
       const copied = path.join(directory, "evidence-copy");
       fs.cpSync(source, copied, { recursive: true });
       const packet = JSON.parse(

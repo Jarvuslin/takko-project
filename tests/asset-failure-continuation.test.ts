@@ -5,7 +5,7 @@ import type { Bundle } from "../src/generation/schema";
 import { bundleSchema } from "../src/generation/schema";
 import { retainAssetGaps } from "../src/generation/asset-gaps";
 
-const run = "opencode-step3-live-20260925";
+const run = "animation-selection";
 it("many failed dependencies still produce a schema-valid artifact with full reasons retained in the pipeline", () => {
   const p = savedReplay(run);
   const need = p.assetPipeline!.needs[0];

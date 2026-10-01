@@ -82,12 +82,12 @@ it("protects the allowance during concurrent gateway requests before asynchronou
 
 it("replays recorded no-cache charges through the gateway and stops coding before it consumes review funds", async () => {
   const { project: p, store, model } = setup();
-  const ledger = JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/ledger.json", "utf8"));
+  const ledger = JSON.parse(fs.readFileSync("tests/fixtures/regression/completed-combat/ledger.json", "utf8"));
   const charges: Charge[] = ledger.charges.filter((c: any) => c.opencodeRunId === "57c4993b-1165-4740-a7a0-b797074b19f7");
   expect(charges).toHaveLength(30);
   expect(charges.reduce((sum, c) => sum + c.inputTokens! * 2 + c.outputTokens! * 10, 0)).toBe(3593702);
   // Request consumes the real direct-spec producer, not a fabricated asset contract.
-  const historical: Project = JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/terminal-project.json", "utf8"));
+  const historical: Project = JSON.parse(fs.readFileSync("tests/fixtures/regression/completed-combat/terminal-project.json", "utf8"));
   const request = { messages: [{ role: "user", content: JSON.stringify({ spec: p.spec, existingArtifact: historical.artifact }) }] };
   let calls = 0;
   const gateway = new OpenCodeGateway({ project: p, store, profile: model, key: "offline", phase: "builder", signal: new AbortController().signal, maxRequests: 100,

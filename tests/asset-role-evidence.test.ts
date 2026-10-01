@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, expect, it } from "vitest";
-import saved from "../docs/results/direct-build-acceptance/terminal-project.json";
+import saved from "./fixtures/regression/direct-build-acceptance/terminal-project.json";
 import straw from "./fixtures/asset-roles/10161087974.json";
 import animation from "./fixtures/asset-roles/15008746676.json";
 import infinity from "./fixtures/asset-roles/15008746676-infinity.json";

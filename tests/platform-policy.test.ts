@@ -39,7 +39,7 @@ it("persists PC keyboard and mouse for new projects and leaves legacy projects u
   });
   const old = JSON.parse(
     fs.readFileSync(
-      "docs/results/scope-answer-reuse-20260929/live-after.json",
+      "tests/fixtures/regression/scope-answer-reuse/live-after.json",
       "utf8",
     ),
   ) as Project;

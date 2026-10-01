@@ -1,4 +1,0 @@
-{
-  "ok": false,
-  "error": "Error: expect(locator).toBeHidden() failed\n\nLocator:  getByRole('dialog', { name: 'Choose assets', exact: true })\nExpected: hidden\nReceived: visible\nTimeout:  60000ms\n\nCall log:\n  - Expect \"toBeHidden\" getByRole('dialog', { name: 'Choose assets', exact: true }) with timeout 60000ms\n  - waiting for getByRole('dialog', { name: 'Choose assets', exact: true })\n    121 × locator resolved to <dialog open=\"\" data-modal=\"true\" class=\"focused-dialog\" data-scroll-body=\"true\" aria-label=\"Choose assets\">…</dialog>\n        - unexpected value \"visible\"\n"
-}

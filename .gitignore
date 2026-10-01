@@ -1,37 +1,24 @@
 node_modules/
 dist/
+dist-desktop/
+release/
 .forge/
 .env
 .env.*
 !.env.example
-test-results/
-playwright-report/
-research/evidence/
-research/tools/
-research/evidence-inventory.json
-
-dist-desktop/
-release/
-
-# Local third-party reverse-engineering derivatives; findings stay in research/*.md.
-research/notes/superbullet-0.3.99/
-
-# Recreated caches and local runtime/credential material.
-coverage/
-*.tsbuildinfo
+*.dpapi
 *.pid
 *.lock.local
-*.dpapi
+*.rbxlx.lock
+*.tsbuildinfo
+coverage/
+test-artifacts/
+test-results/
+playwright-report/
+
+# Historical research, reports and local captures do not belong in source.
+research/
+docs/results/
+benchmarks/runs/
 .DS_Store
 Thumbs.db
-
-# Bulky run artifacts stay on disk, out of git: screen recordings, Playwright
-# traces and npm caches copied into evidence folders.
-docs/results/**/*.webm
-docs/results/**/trace.zip
-docs/results/**/npm-cache/
-docs/results/**/localappdata/
-*.rbxlx.lock
-
-# Output written by npm run check (screenshots, guard and smoke results).
-test-artifacts/

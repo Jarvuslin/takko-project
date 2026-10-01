@@ -22,7 +22,7 @@ test("paged browsing preserves scroll, chooses from preview and releases its ren
 });
 test("long proposal questions keep editing and next actions reachable in a short desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1000, height: 600 });
-  const p = JSON.parse(fs.readFileSync("docs/results/question-modal-20260928/live-project-before.json", "utf8"));
+  const p = JSON.parse(fs.readFileSync("tests/fixtures/regression/question-modal/live-project-before.json", "utf8"));
   p.clarificationQuestions = proposalQuestions(p);
   p.clarificationQuestions[0].prompt = "Which details should guide your training yard? ".repeat(12);
   await page.route("**/api/status", r => r.fulfill({ json: { studios: [], proposals: true, assetChoices: false, studioConnectionGate: false } }));

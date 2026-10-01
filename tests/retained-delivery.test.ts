@@ -9,9 +9,9 @@ import { exportedHierarchy,checkInstancePaths } from "../src/generation/instance
 import { exportBundle } from "../src/generation/export";
 import { componentPhysics } from "../src/generation/component-physics";
 import type { Project } from "../src/generation/schema";
-for(const run of ["runtime-diagnostics-20260927","opencode-step3-live-20260925"]) {
+for(const run of ["retained-animation","animation-selection"]) {
  it(`preserves the actual animation role through Model acquisition: ${run}`,()=>{
-  const p:Project=JSON.parse(fs.readFileSync(`docs/results/${run}/terminal-project.json`,"utf8"));
+  const p:Project=JSON.parse(fs.readFileSync(`tests/fixtures/regression/${run}/terminal-project.json`,"utf8"));
   p.assetPipeline=undefined; // Replay fresh acquisition from this real saved spec/selection.
   const needs=buildAssetNeeds(p);
   const animations=approvedAssetLinks(p).filter(link=>link.group.preview==="animation").map(link=>link.need);
@@ -20,10 +20,10 @@ for(const run of ["runtime-diagnostics-20260927","opencode-step3-live-20260925"]
  });
 }
 it("fresh source-data integration preserves old records and exports the exact new builder path",()=>{
- const p:Project=JSON.parse(fs.readFileSync("docs/results/runtime-diagnostics-20260927/terminal-project.json","utf8"));
+ const p:Project=JSON.parse(fs.readFileSync("tests/fixtures/regression/retained-animation/terminal-project.json","utf8"));
  const temp=fs.mkdtempSync(path.join(os.tmpdir(),"takko-delivery-"));
  try {
-  fs.cpSync(`docs/results/runtime-diagnostics-20260927/asset-evidence/${p.id}`,temp,{recursive:true});
+  fs.cpSync(`tests/fixtures/regression/retained-animation/asset-evidence/${p.id}`,temp,{recursive:true});
   const need=buildAssetNeeds({...p,assetPipeline:undefined}).find(n=>n.deliveryRole==="source_data")!;
   expect(need).toBeDefined();
   const entry=p.assetPipeline!.entries.find(e=>e.needId===need.id)!;
@@ -44,8 +44,8 @@ it("fresh source-data integration preserves old records and exports the exact ne
  } finally {fs.rmSync(temp,{recursive:true,force:true});}
 });
 it("rejects the real unhandled prop and anchors only its explicit delivery copy",()=>{
- const p:Project=JSON.parse(fs.readFileSync("docs/results/runtime-diagnostics-20260927/terminal-project.json","utf8"));
- const dir=`docs/results/runtime-diagnostics-20260927/asset-evidence/${p.id}`;
+ const p:Project=JSON.parse(fs.readFileSync("tests/fixtures/regression/retained-animation/terminal-project.json","utf8"));
+ const dir=`tests/fixtures/regression/retained-animation/asset-evidence/${p.id}`;
  const components=projectComponents(p,dir);
  const prop=components.find(c=>c.record.need.kind==="Model" && !c.evidence.nodes.some(n=>n.className==="KeyframeSequence"))!;
  expect(checkRetainedPhysics(p,dir,p.artifact!).some(c=>c.id==="physics:"+prop.reference.needId && c.status==="failed")).toBe(true);

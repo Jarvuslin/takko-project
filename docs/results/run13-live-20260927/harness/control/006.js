@@ -1,5 +1,0 @@
-const preview=page.getByRole('dialog',{name:'Punch impact',exact:true});await expect(preview.getByText('Loading preview…',{exact:true})).toBeHidden({timeout:60000});await page.screenshot({path:path.join(output,'05-sound-preview-result.png'),fullPage:true});const text=await preview.innerText();await preview.getByRole('button',{name:'Choose this asset',exact:true}).click();
-await page.getByRole('dialog',{name:'Choose assets'}).getByRole('button',{name:'Save replacements',exact:true}).click();
-const id=JSON.parse(fs.readFileSync(path.join(output,'mode-verified.json'),'utf8')).projectId;
-await expect.poll(async()=>!!(await api('/projects/'+id)).assetDiscovery?.approved,{timeout:60000}).toBe(true);
-const p=await api('/projects/'+id);fs.writeFileSync(path.join(output,'approved-assets.json'),JSON.stringify(p,null,2));mark('Automatic punch animation retained. Manual dummy and sound after no candidates cleared relevance.');return {text,stage:p.stage,choices:p.assetDiscovery.choices,charges:p.charges.length};

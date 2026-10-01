@@ -36,13 +36,13 @@ it("recovers the real live saved listing after the old search removed it from th
 });
 const recorded = JSON.parse(
   fs.readFileSync(
-    "docs/results/scope-answer-reuse-20260929/live-after.json",
+    "tests/fixtures/regression/scope-answer-reuse/live-after.json",
     "utf8",
   ),
 ) as Project;
 const earlier = JSON.parse(
   fs.readFileSync(
-    "docs/results/question-modal-20260928/live-project-before.json",
+    "tests/fixtures/regression/question-modal/live-project-before.json",
     "utf8",
   ),
 ) as Project;

@@ -9,7 +9,7 @@ import { proposalQuestions } from "../src/generation/proposal-questions";
 const read = (file: string) =>
   JSON.parse(fs.readFileSync(file, "utf8")) as Project;
 const stopped = () =>
-  read("docs/results/approval-stall-20260928/project-stopped.json");
+  read("tests/fixtures/regression/approval-stall/project-stopped.json");
 const dirs: string[] = [];
 afterEach(() => {
   vi.restoreAllMocks();
@@ -78,7 +78,7 @@ it("does not automatically reassess an unresolved recommendation on repeat reque
 });
 it("rejects the real accepted combo patch when its output commits three steps but keeps a single animation slot", async () => {
   const prior = read(
-      "docs/results/question-modal-20260928/live-project-before.json",
+      "tests/fixtures/regression/question-modal/live-project-before.json",
     ),
     after = stopped();
   let calls = 0;

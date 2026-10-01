@@ -1,6 +1,0 @@
-{
-  "phase": "reviewer",
-  "model": "openai/gpt-4.1-mini",
-  "response": "{\"issues\":[],\"tests\":[{\"id\":\"core\",\"requirementId\":\"core\",\"mode\":\"server\",\"source\":\"local M=require(ReplicatedStorage.Forge_AgentComparison.Logic)\\nreturn function(ctx)\\n\\tlocal a=M.new(1)\\n\\tassert(a:getCount()==0,'initial count')\\n\\tlocal token=a:request(0)\\n\\tassert(type(token)=='number' and token>0 and token%1==0,'token')\\n\\tassert(a:request(0.5)==nil,'overlap')\\n\\tassert(a:getCount()==0,'request cannot count')\\n\\tassert(a:complete(token,0.9)==false,'early completion')\\n\\tassert(a:complete(token,1)==true,'deadline unchanged')\\n\\tassert(a:complete(token,2)==false and a:getCount()==1,'duplicate')\\n\\tfor i=2,10 do local t=i*3; local id=a:request(t); assert(id and a:complete(id,t+1)); end\\n\\tassert(a:getCount()==10,'ten complete')\\n\\tlocal old=a:request(40); a:reset(); local fresh=a:request(41)\\n\\tassert(fresh~=old and a:complete(old,50)==false,'stale cancellation')\\n\\tassert(a:getCount()==0 and a:complete(fresh,50)==true and a:getCount()==1,'reset count')\\n\\tassert(M.new(1):getCount()==0,'independent state')\\n\\tprint('PASS crunch')\\nend\\n\"}]}",
-  "at": "2026-09-16T06:53:58.845Z"
-}

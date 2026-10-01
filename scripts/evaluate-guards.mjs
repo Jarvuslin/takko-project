@@ -11,7 +11,7 @@ const tests = fs
   .replace('require("../recipes/combat/CombatCore")', 'require("./Core")');
 fs.writeFileSync(path.join(folder, "tests.luau"), tests);
 const binary = path.resolve(
-  process.env.LUAU_BIN_DIR ?? "research/tools/luau",
+  process.env.LUAU_BIN_DIR ?? ".forge/tools/luau",
   process.platform === "win32" ? "luau.exe" : "luau",
 );
 const cases = [

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { XMLParser } from "fast-xml-parser";
 import type { Project } from "../src/generation/schema";
 
-export const goldenRoot = "docs/results/approved-reference-finish-20260927";
+export const goldenRoot = "tests/fixtures/regression/completed-combat";
 /** Preserved source submissions are the input. Only the two nonexistent Imported
  * lookups change. Current native placement compatibility is a separate delta. */
 export function derivedGolden() {

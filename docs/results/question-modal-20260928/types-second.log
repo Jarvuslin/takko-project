@@ -1,5 +1,0 @@
-src/web/GameConcept.tsx(25,66): error TS2345: Argument of type '{ id: string; source?: string | undefined; prompt: string; options: { id: string; label: string; description: string; }[]; recommendedOptionId: string; recommendationReason: string; allowOther: boolean; fallback?: boolean | undefined; } | { ...; }' is not assignable to parameter of type 'ClarificationQuestion'.
-  Type '{ id: string; source?: string | undefined; prompt: string; options: { id: string; label: string; description: string; }[]; recommendedOptionId: string; recommendationReason: string; allowOther: boolean; fallback?: boolean | undefined; }' is not assignable to type 'ClarificationQuestion'.
-    Types of property 'options' are incompatible.
-      Type '{ id: string; label: string; description: string; }[]' is not assignable to type 'string[]'.
-        Type '{ id: string; label: string; description: string; }' is not assignable to type 'string'.

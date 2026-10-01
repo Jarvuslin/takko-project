@@ -4,7 +4,7 @@ import os from "node:os";
 import { afterEach, expect, it } from "vitest";
 import { benchmarkQualityCli } from "../scripts/benchmark-quality";
 import { benchmarkVersion, getBenchmarkCase } from "../src/benchmark/cases";
-import { qualitySubmissionSchema } from "../src/benchmark/quality";
+import { qualitySubmissionSchema, scoreQuality } from "../src/benchmark/quality";
 import { createEvidenceFileManifest } from "../src/benchmark/evidence-files";
 
 it.each(["score", "compare"])(
@@ -125,28 +125,13 @@ it("creates a separate masked review packet and rejects an unfinished review", (
   ).toThrow();
 });
 
-it("keeps the historical baseline observations without passing new-case gates", () => {
-  const baselineRoot = path.resolve(
-    "benchmarks/runs/crystal-hollow-v2-retrospective-r2",
-  );
-  const submission = qualitySubmissionSchema.parse(
-    JSON.parse(
-      fs.readFileSync(path.join(baselineRoot, "submission.json"), "utf8"),
-    ),
-  );
-  expect(submission.runKind).toBe("retrospective");
-  expect(submission.gateResults).toEqual([]);
-  expect(
-    submission.evidence.find((e) => e.id === "historical-core")?.outcome,
-  ).toBe("passed");
-  const result = JSON.parse(
-    fs.readFileSync(path.join(baselineRoot, "evaluation/result.json"), "utf8"),
-  );
+it("does not award a score to a retrospective submission with no case gates", () => {
+  const { submission } = fixture();
+  const result = scoreQuality(getBenchmarkCase(submission.caseId), submission);
   expect(result.finalScore).toBeNull();
-  expect(
-    result.gates.every((g: { status: string }) => g.status === "pending"),
-  ).toBe(true);
+  expect(result.gates.every(g => g.status === "pending")).toBe(true);
 });
+
 function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "takko-benchmark-cli-"));
   directories.push(root);

@@ -22,7 +22,7 @@ import { trialFinalReviewPolicy } from "../src/generation/review-budget";
 const directories: string[] = [];
 it("interrupts the real Engine before coding consumes review funds and retains its submitted checkpoint", async () => {
   let dispatches = 0;
-  const ledger = JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/ledger.json", "utf8"));
+  const ledger = JSON.parse(fs.readFileSync("tests/fixtures/regression/completed-combat/ledger.json", "utf8"));
   const recorded = ledger.charges.filter((c: any) => c.opencodeRunId === "57c4993b-1165-4740-a7a0-b797074b19f7").map((c: any) => ({ ...c, chargedMicros: c.inputTokens * 2 + c.outputTokens * 10 }));
   const s = setup(async job => {
     const context = await tool(job, "task_context", { taskId: "coreTask" });
@@ -70,7 +70,7 @@ it("pauses no-code spending before another provider dispatch and settles the rea
   expect(stopped.reservedMicros).toBe(0);
   expect(stopped.charges.at(-1)?.chargedMicros).toBe(500000);
 });
-// P-Build (docs/results/trial-probes) spent its whole 8,192-token reply on
+// A captured builder response spent its whole 8,192-token reply on
 // provider-default reasoning and never called a tool. The coding job, the
 // OpenCode config limit and the wire request must all carry the host policy.
 for (const [name, policy, explicit, expected] of [

@@ -12,7 +12,7 @@ import {
   scopeQuestions,
 } from "../src/generation/scope-questions";
 
-const dir = "docs/results/single-punch-recovery-20260928/";
+const dir = "tests/fixtures/regression/scope-answer-patch/";
 const read = (name: string) => JSON.parse(fs.readFileSync(dir + name, "utf8"));
 const after = (): Project => read("project-after.json");
 const duplicateId = "scope_b739c539bf2a";

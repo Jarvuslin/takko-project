@@ -1199,7 +1199,7 @@ export const referenceLibrary = [
     title: "Crystal Hollow visual V2 (authored expert refinement)",
     creator: "Takko evaluation with expert assistance",
     sourceUrl: null,
-    localEvidence: "docs/crystal-hollow-polished-native-verification.md",
+    localEvidence: "benchmarks/fixtures/v1/quarry-asset-integration/bundle.json",
     kind: "retrospective_anchor",
     provenance:
       "Historical gameplay/visual evidence exists, but the candidate was not run under this benchmark's prompt, budgets or fifteen-minute protocol.",

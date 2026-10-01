@@ -6,7 +6,7 @@ import {
   oneShotTransport,
   probeLimits,
   reconstructSecondAdaptation,
-} from "../scripts/component-repair-route-probe";
+} from "./component-repair-route.fixture";
 import type { Profile } from "../src/generation/schema";
 
 const url = "https://openrouter.ai/api/v1/chat/completions";
@@ -186,7 +186,7 @@ describe("one-shot repair route diagnostic", () => {
     const temp = fs.mkdtempSync(path.join(os.tmpdir(), "takko-repair-route-"));
     try {
       fs.cpSync(
-        "benchmarks/runs/marketplace-diversity-v13-20260916/combat-training/asset-evidence",
+        "tests/fixtures/asset-pipeline/marketplace-diversity-v13/combat-training/asset-evidence",
         temp,
         { recursive: true },
       );

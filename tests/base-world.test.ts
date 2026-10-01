@@ -7,8 +7,8 @@ import type { Project } from "../src/generation/schema";
 import { newProject } from "../src/generation/store";
 
 for (const file of [
-  "docs/results/approved-reference-finish-20260927/terminal-project.json",
-  "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json",
+  "tests/fixtures/regression/completed-combat/terminal-project.json",
+  "tests/fixtures/asset-pipeline/butter-crunch-marketplace-v6/grok/final-project.json",
 ]) {
   const p: Project = JSON.parse(fs.readFileSync(file, "utf8"));
   it(`exports the verified base world below the real content: ${file}`, () => {

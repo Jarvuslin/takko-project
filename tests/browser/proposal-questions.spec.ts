@@ -8,7 +8,7 @@ test("unanswered proposal questions offer displayed defaults without an extra ap
 }) => {
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/question-modal-20260928/live-project-before.json",
+      "tests/fixtures/regression/question-modal/live-project-before.json",
       "utf8",
     ),
   );
@@ -54,7 +54,7 @@ test("real saved proposal questions support sequential inline choices, Other and
 }, info) => {
   const p = JSON.parse(
     fs.readFileSync(
-      "docs/results/question-modal-20260928/live-project-before.json",
+      "tests/fixtures/regression/question-modal/live-project-before.json",
       "utf8",
     ),
   );

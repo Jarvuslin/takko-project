@@ -6,17 +6,17 @@ import type { Project } from "../src/generation/schema";
 
 const p: Project = JSON.parse(
   fs.readFileSync(
-    "docs/results/approved-reference-finish-20260927/terminal-project.json",
+    "tests/fixtures/regression/completed-combat/terminal-project.json",
     "utf8",
   ),
 );
 const xml = fs.readFileSync(
-  "docs/results/approved-reference-finish-20260927/game.rbxlx",
+  "tests/fixtures/regression/completed-combat/game.rbxlx",
   "utf8",
 );
 const other: Project = JSON.parse(
   fs.readFileSync(
-    "benchmarks/runs/butter-crunch-marketplace-v6-20260916/grok/final-project.json",
+    "tests/fixtures/asset-pipeline/butter-crunch-marketplace-v6/grok/final-project.json",
     "utf8",
   ),
 );

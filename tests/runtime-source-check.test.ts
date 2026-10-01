@@ -17,7 +17,7 @@ it("ignores comments and strings containing source-looking text", () => {
 });
 it("detects the retained raw worker failure the reviewer approved", () => {
   const source = fs.readFileSync(
-    "docs/results/takko-component-adaptation/native-v2/bubble-wrap/worker-source-4.luau",
+    "tests/fixtures/regression/component-adaptation/native-v2/bubble-wrap/worker-source-4.luau",
     "utf8",
   );
   expect(() => assertNoRuntimeSourceWrites(source)).toThrow("116,1");

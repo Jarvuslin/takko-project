@@ -18,7 +18,7 @@ const checks = (source: string) => {
 it("flags actual generated controller bindings, while preserving the original existing game", () => {
   const old = JSON.parse(
     fs.readFileSync(
-      "docs/results/approved-reference-finish-20260927/terminal-project.json",
+      "tests/fixtures/regression/completed-combat/terminal-project.json",
       "utf8",
     ),
   ) as Project;

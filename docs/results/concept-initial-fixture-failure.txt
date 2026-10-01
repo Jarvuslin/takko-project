@@ -1,6 +1,0 @@
-2026-09-20 initial focused run: npx vitest run tests/concept.test.ts
-Exit 1. 10 tests failed in 1 file, duration 6.49s.
-All failures occurred in test setup at Configuration.save, before exercising the feature.
-ZodError: routes.builder, routes.reviewer and routes.repair expected array, received undefined.
-Corrected the new test fixture to supply the existing mandatory empty route arrays.
-This failure is retained separately from subsequent test results.

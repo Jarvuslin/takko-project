@@ -5,13 +5,13 @@ import { StudioMarketplace } from "../src/marketplace/studio";
 it("retains real raw sibling clips when one embedded Animation has an invalid published identity", async () => {
   const captured = JSON.parse(
     fs.readFileSync(
-      "docs/results/asset-evidence-selection-20260926/mixed-manifest-capture.json",
+      "tests/fixtures/regression/asset-evidence-selection/mixed-manifest-capture.json",
       "utf8",
     ),
   );
   const saved = JSON.parse(
     fs.readFileSync(
-      "docs/results/opencode-step3-live-20260925/terminal-project.json",
+      "tests/fixtures/regression/animation-selection/terminal-project.json",
       "utf8",
     ),
   );

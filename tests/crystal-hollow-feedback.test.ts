@@ -51,7 +51,7 @@ ${assertions}
 `;
     const file = path.join(directory, "feedback.luau");
     fs.writeFileSync(file, body);
-    const binary = path.resolve(process.env.LUAU_BIN_DIR ?? "research/tools/luau", "luau" + (process.platform === "win32" ? ".exe" : ""));
+    const binary = path.resolve(process.env.LUAU_BIN_DIR ?? ".forge/tools/luau", "luau" + (process.platform === "win32" ? ".exe" : ""));
     const result = spawnSync(binary, [file], {encoding:"utf8",windowsHide:true,timeout:10000});
     expect(result.error).toBeUndefined();
     return {status:result.status, output:result.stdout+result.stderr};

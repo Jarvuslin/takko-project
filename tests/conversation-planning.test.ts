@@ -86,7 +86,7 @@ function attachProposal(p: Project) {
 }
 it("names unresolved assets before applying unanswered defaults", () => {
   const {engine,store}=setup();
-  const real:Project=JSON.parse(fs.readFileSync("docs/results/approved-reference-finish-20260927/terminal-project.json","utf8"));
+  const real:Project=JSON.parse(fs.readFileSync("tests/fixtures/regression/completed-combat/terminal-project.json","utf8"));
   real.jobId=null;
   real.proposal!.approval=undefined;
   store.save(real);

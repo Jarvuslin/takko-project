@@ -66,7 +66,7 @@ worldCoverage.detail="Expert refinement retains authored paths, stations, terrac
 if (existsSync(join(output,"original-project.json")) && !readFileSync(join(output,"original-project.json")).equals(raw)) throw Error("Refinement directory belongs to a different original snapshot");
 mkdirSync(output, { recursive: true });
 writeFileSync(join(output,"original-project.json"),raw);
-const cli = resolve("research/tools/luau/luau" + (process.platform === "win32" ? ".exe" : ""));
+const cli = resolve(".forge/tools/luau/luau" + (process.platform === "win32" ? ".exe" : ""));
 const mock = readFileSync(resolve("tests/crystal-hollow-ui-mocks.luau"),"utf8");
 const observations: unknown[] = [];
 const wrap = (code: string) => `(function()\n${code}\nend)()`;

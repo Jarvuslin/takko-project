@@ -6,10 +6,10 @@ import {
   animationCapabilityContract,
 } from "../src/marketplace/selected-clip-context";
 import { publishableAnimationPack } from "../src/marketplace/animations";
-const project = savedReplay("opencode-step3-live-20260925");
+const project = savedReplay("animation-selection");
 const evidence = JSON.parse(
   fs.readFileSync(
-    "docs/results/opencode-step3-live-20260925/asset-evidence/eb4c0269-8c7d-4933-bbe4-f637ecf68d22/59a3136837a54a1f5a83ef223711f634c35a3a6d992e504aadeddcd8c938282c.review.json",
+    "tests/fixtures/regression/animation-selection/asset-evidence/eb4c0269-8c7d-4933-bbe4-f637ecf68d22/59a3136837a54a1f5a83ef223711f634c35a3a6d992e504aadeddcd8c938282c.review.json",
     "utf8",
   ),
 );

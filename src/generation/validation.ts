@@ -482,7 +482,6 @@ export async function compileSources(
       ? [path.resolve(configuredDirectory, binary)]
       : [
           path.join(".forge/tools/luau", binary),
-          path.join("research/tools/luau", binary),
         ];
   const compiler = candidates.map((x) => path.resolve(x)).find(fs.existsSync);
   if (!compiler)
