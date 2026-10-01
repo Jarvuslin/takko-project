@@ -1,6 +1,6 @@
 # Asset generalization
 
-Current task: step 5 producer fixes are implemented and verified against the exposed diagnostic assets. A new stratified preregistration and sweep follow after the full check. Paid probe results are separate in ../trial-probes/RESULTS.md. No full trial or installation.
+Current result: no-go for the full trial. Step 5 pack fixes passed native diagnostic checks. The fresh 46-draw sweep left 11 of 16 strata unfilled and supplied no eligible attack playback clip. No false-ready result occurred in 22 paired structural comparisons. This does not establish general asset support. Paid model failures are separate in ../trial-probes/RESULTS.md. Service fix staged only, no installation.
 
 ## Historical G1–G4 conclusion
 
@@ -120,3 +120,49 @@ Step 5 full verification: one clean npm run check, exit 0. Build/typecheck, 1885
 ## Step 6 preregistration
 
 Fresh seed 202610011, 46 fixed draws across the 16 requested strata. Each attack/label/loop stratum has four draws, the large-pack stratum has two, and each non-animation role has two. Minimum coverage remains two per stratum and one large pack. Frozen production is d9e7d90. The exclusion scan read 12712 prior evidence/project files and retained a conservative superset of 6234 exposed numeric asset identities. The manifest includes exact query, asset rank draw and clip rank draw, independent classification rules, fixed playback selection and failure policy. It is committed before any new search. No replacements, retries, clip swaps or source changes after exposure.
+
+
+## Step 6 results: fresh frozen stratified sweep
+
+Manifest committed at 4246139 before search, production frozen at d9e7d90. All 46 draws completed, selecting 43 distinct assets. Slot 11 repeated slot 10 and was retained without replacement. Mesh slots 43 and 44 had no unseen eligible result in the preregistered page. Twenty selected animation-query assets had no clips. Slot 30's independent oracle failed and was not retried. Original per-slot records, searches and errors remain in stratified/.
+
+The initial harness exited on an empty manifest before its independent census. A separately recorded supplement completed only those 20 missing first attempts, on the same assets, without searching, choosing another clip or retrying any failed oracle. All 20 independently contained zero KeyframeSequence and Animation instances. Original failed rows were not rewritten. This post-exposure harness correction is a protocol execution limitation, not a production change or a new sample. Supplementary censuses have no readiness verdict and do not increase the paired-comparison denominator.
+
+| Assigned stratum | Draws | Independently filled / minimum | Paired comparisons | Ready / blocked / unknown | No animation content |
+| --- | ---: | ---: | ---: | --- | ---: |
+| R6 single hit | 4 | 0 / 2 | 3 | 0 / 0 / 3 | 1 |
+| R6 multi hit | 4 | 0 / 2 | 0 | 0 / 0 / 0 | 4 |
+| R15 single hit | 4 | 0 / 2 | 0 | 0 / 0 / 0 | 3 |
+| R15 multi hit | 4 | 0 / 2 | 0 | 0 / 0 / 0 | 4 |
+| Authored labels or markers | 4 | 0 / 2 | 1 | 0 / 0 / 1 | 3 |
+| Unlabeled | 4 | 0 / 2 | 1 | 0 / 0 / 1 | 3 |
+| Nonattack or looping | 4 | 1 / 2 | 3 | 2 / 1 / 0 | 1 |
+| Large pack | 2 | 0 / 1 | 0 | 0 / 0 / 1 | 1 |
+| Character / NPC | 2 | 2 / 2 | 2 | 2 / 0 / 0 | 0 |
+| Static target | 2 | 2 / 2 | 2 | 2 / 0 / 0 | 0 |
+| Tool | 2 | 0 / 2 | 2 | 0 / 2 / 0 | 0 |
+| Prop | 2 | 2 / 2 | 2 | 2 / 0 / 0 | 0 |
+| VFX | 2 | 1 / 2 | 2 | 0 / 1 / 1 | 0 |
+| Sound | 2 | 2 / 2 | 2 | 2 / 0 / 0 | 0 |
+| Mesh | 2 | 0 / 2 | 0 | 0 / 0 / 0 | 0 |
+| Image | 2 | 2 / 2 | 2 | 2 / 0 / 0 | 0 |
+
+Ready does not mean the draw met its assigned stratum. For example, slot 25 was structurally ready as an animation but did not meet the preregistered nonattack/loop definition. Table status counts include slot 30's unknown result although its oracle failed, so it is not a paired comparison.
+
+Paired structural results: 0 false-ready flags out of 22 comparisons. The raw presence-only metric flags 1 false block, slot 26, asset 123250415655298. Its independent selected sequence has exactly one Keyframe at time 0. Production rejected it with “This clip has no playable duration.” Preserve that raw metric, but it is not evidence that a playable clip was falsely blocked. No confirmed playable false block was observed, and semantic accuracy was not measured. Three role/content mismatches in paired comparisons, tool slots 35/36 and VFX slot 39, were blocked. The supplemental 20 animation-content mismatches are reported separately, rather than folded into that denominator.
+
+Coverage: only character, static target, prop, sound and image met their minimum. All eight animation categories, tool, VFX and mesh remain unfilled. Query-stratified draws did not reliably yield content belonging to those strata. Authored labels, compatible rigs and attack events cannot be inferred from query words. This is both an acquisition/sampling limitation and an unmet validation gate, not proof that every missing category is unsupported by the producer.
+
+Playback selection ran once at 2026-10-01T02:15:56.332Z. It found structural target 5253001967 but zero qualifying attack clips across the four required categories. All four playback categories remain unfilled. Zero Play sessions and zero native attack playback tests ran. No old asset pair or different clip was substituted. playback.json records the unmet gate, not a pass.
+
+Final native census at 2026-10-01T02:15:49.012Z: Edit, zero scripts, zero probe scopes, two Workspace children. Detached imports were destroyed, original scripts were unchanged, SDK clients closed, and no test service was started. No save-over, publication or asset script execution. TrialReviewInspection.rbxlx is the deliberately bare inspection file, not the default Baseplate template or a generated game. No baseplate or spawn existed in its saved XML. Cost of steps 5 and 6: $0.
+
+## Final asset verdict and full-trial decision
+
+Asset generality: no-go. Bound published metadata and bounded selected-clip inspection close the two measured producer gaps. They do not establish positive marker coverage, all-pack readiness, representative attack coverage or native playback. The fresh sample is not Marketplace-wide accuracy, and structural readiness is not verified gameplay.
+
+Full trial: no-go. There is no qualifying new asset set from this sweep. The original 15008746676 / 10161087974 pair remains a known diagnostic pair for a separately authorized code probe, not evidence of asset generality and not authorization for a full trial. Model completion policy and acquisition/coverage design need separate follow-up. No full trial, paid retry, installation or live-app restart was performed.
+
+Final harness verification: summary assertions against actual native rows passed, including separate supplemental counts, original empty-manifest failures, zero-duration evidence and cleanup. The initial final npm run check passed build but failed in Vitest with a Windows worker exit 3221226505 in tests/asset-choices.test.ts. It recorded 1870 passed tests across 148 completed files, with one unhandled worker error. All later stages were skipped by the chained command. Log: test-artifacts/stratified-final-check.log. The one permitted full rerun is recorded below when complete. No source changed between attempts.
+
+Final full rerun passed, exit 0: build/typecheck, 1885 unit tests in 149 files, 6 Luau scenarios, 16 plugin scenarios plus plugin/8 source compilations, 6 guard cases, CSS 0 errors/274 warnings, 21 desktop tests, production smoke, 108 browser tests and 10 Electron journeys. Log: test-artifacts/stratified-final-check-rerun.log. One rerun after the recorded Windows worker crash, no source changes between attempts. These offline checks do not establish native attack playback or a working generated game.

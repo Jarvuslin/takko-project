@@ -4,6 +4,7 @@ const manifest = JSON.parse(fs.readFileSync("docs/results/generalization/stratif
 const rows = fs.readdirSync(root).filter(f => /^\d+\.json$/.test(f)).map(f => JSON.parse(fs.readFileSync(root + "/" + f, "utf8")));
 const playback = fs.existsSync(root + "/playback.json") ? JSON.parse(fs.readFileSync(root + "/playback.json", "utf8")) : null;
 const compared = rows.filter(r => r.oracle && r.verdict);
+const supplement = JSON.parse(fs.readFileSync(root + "/oracle-supplement.json", "utf8"));
 const strata = manifest.strata.map((s: any) => {
  const selected = rows.filter(r => r.stratum === s.id);
  const matching = selected.filter(r => r.matchesStratum);
@@ -17,6 +18,7 @@ const strata = manifest.strata.map((s: any) => {
    unknown: selected.filter(r => r.verdict?.status === "unknown").length,
    wrongRoles: selected.filter(r => r.wrongRole).map(r => r.slot),
    errors: selected.filter(r => r.error || r.oracleError).map(r => r.slot),
+   supplementalNoAnimationContent: supplement.rows.filter((r: any) => selected.some(s => s.slot === r.slot) && r.hasAnimationContent === false).map((r: any) => r.slot),
  };
 });
 const summary = { at: new Date().toISOString(), seed: manifest.seed, productionCommit: manifest.productionCommit,
@@ -26,6 +28,10 @@ const summary = { at: new Date().toISOString(), seed: manifest.seed, productionC
  falseBlocks: compared.filter(r => r.falseBlock).map(r => r.slot),
  wrongRoles: compared.filter(r => r.wrongRole).map(r => r.slot),
  duplicates: rows.filter(r => r.duplicate).map(r => r.slot),
+ supplementaryCensuses: supplement.rows.length,
+ supplementaryNoAnimationContent: supplement.rows.filter((r: any) => r.hasAnimationContent === false).map((r: any) => r.slot),
+ supplementaryOracleErrors: supplement.rows.filter((r: any) => r.oracleError),
+ metricCaveat: "Raw falseBlocks is a structural-presence flag. Slot 26 has one frame at time zero and was blocked for no playable duration. Preserve the raw flag, but it does not demonstrate rejection of a playable clip. Supplementary censuses have no readiness verdict and are excluded from the 22 paired comparisons.",
  errors: rows.filter(r => r.error || r.oracleError).map(r => ({ slot: r.slot, error: r.error, oracleError: r.oracleError })),
  strata, unfilledStrata: strata.filter((s: any) => s.filled < s.minimum).map((s: any) => s.id),
  playback, cost: 0,

@@ -1,6 +1,6 @@
 # Research
 
-Latest: [Asset generalization holdout](../docs/results/generalization/RESULTS.md) records nine-role native checks, reviewed animation timings and a frozen 28-asset holdout. Missing animation coverage blocked paid probes. Cost $0, full trial remains no-go.
+Latest: [Fresh asset sweep](../docs/results/generalization/RESULTS.md) left 11 of 16 strata unfilled, with no qualifying attack playback. [Model probes](../docs/results/trial-probes/RESULTS.md) yielded a review admission failure and no submitted build code. Measured spend Latest: [Asset generalization holdout](../docs/results/generalization/RESULTS.md) records nine-role native checks, reviewed animation timings and a frozen 28-asset holdout. Missing animation coverage blocked paid probes. Cost $0, full trial remains no-go..1081545. Full trial remains no-go. Service fix staged, not installed.
 
 ## Start here
 
