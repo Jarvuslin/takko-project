@@ -12,7 +12,7 @@ Updated 2026-10-01T01:17Z. Active approved task: service step 1b, clean full che
 
 - Diagnosis corrected: same-day 02:40–09:08 local sleep survived, with /api/models read at 09:36 and confirmed alive at 12:19. Later 18:05 service loss remains an inferred check-before-heartbeat wake race, not deterministic sleep expiry. Separate later reboot is documented.
 - Dedicated Electron transferred parent IPC close is primary orphan signal. Node tests use native disconnect. Late backup checks allow a fresh heartbeat window. Fixed-schema service-exit.json records UTC/PID/reason/code/heartbeat age only. Forced OS termination may bypass this record.
-- 21 focused desktop tests passed, plus real isolated Electron parent-port closure exited before lease expiry. Full npm run check is running in test-artifacts/service-fix-full-check.log. No claim of clean full result yet. No actual Windows sleep test.
+- 21 focused desktop tests and real isolated Electron parent-port closure passed. One full npm run check exited 0: build, 1876 unit/148 files, 6 Luau, 16 plugin plus plugin/8 source compiles, 6 guards, CSS 0 errors/274 warnings, 21 desktop, production smoke, 107 browser, 10 Electron. No crash/rerun. Log test-artifacts/service-fix-full-check.log. No actual Windows sleep test.
 
 ## Money and authorization
 
@@ -22,7 +22,7 @@ Explicit caps: P-Review $1.25, P-Build $1.75, total $3.00, nontransferable. One 
 
 ## Remaining steps and limits
 
-Finish check, commit step 2, run separately recorded P-Review/P-Build. Then fix authored events on published clips and selected-clip capture for oversized packs, with real native fixtures. Commit fresh stratified manifest before search, freeze production and exclude all exposed IDs. Keep failures and unfilled strata, no swaps. Native Play is authorized only for scoped P-Build and four stratified playback checks, with cleanup after each run.
+Step 2 complete. Run separately recorded P-Review/P-Build. Then fix authored events on published clips and selected-clip capture for oversized packs, with real native fixtures. Commit fresh stratified manifest before search, freeze production and exclude all exposed IDs. Keep failures and unfilled strata, no swaps. Native Play is authorized only for scoped P-Build and four stratified playback checks, with cleanup after each run.
 
 Prior G4: 32 draws, 28 distinct, 27 structural comparisons, zero false passes/blocks, four withheld role mismatches. Only R15 readable clips and no usable attack proposals. This exposed set is now diagnostic only. Previous full check had a stale Electron failure subsequently fixed, not a clean full invocation. Do not use these results as proof of model coding or arbitrary game compatibility.
 
