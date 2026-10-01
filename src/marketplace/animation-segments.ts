@@ -128,6 +128,9 @@ export function animationSegments(
   sequence: Sequence | undefined,
   intent: string,
 ) {
+  if (!sequence && clip.authored) sequence = {
+    ...clip.authored, key: "captured-clip", path: "captured-clip", name: clip.name,
+  };
   const key = JSON.stringify([
     "segments-v1",
     clip.sourcePoseDigest,

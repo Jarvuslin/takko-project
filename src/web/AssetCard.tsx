@@ -499,9 +499,19 @@ export function ClipSheet({
         {o.previewData.pack.entries.map((e) => (
           <button
             key={e.key}
-            disabled={!e.clip || busy}
+            disabled={(!e.clip && !e.unchecked) || busy}
             aria-pressed={selected === e.key}
-            onClick={() => setSelected(e.key)}
+            onClick={async () => {
+              setSelected(e.key);
+              if (!e.unchecked) return;
+              setBusy(true); setError("");
+              try {
+                update(await assetRequest<Project>(project.id, "asset-picks/clip-capture", {
+                  revision: project.revision, groupId, assetId: o.assetId, clipKey: e.key,
+                }));
+              } catch (error) { setError((error as Error).message); }
+              finally { setBusy(false); }
+            }}
           >
             <Icon name="play" size={16} />
             <span>
@@ -511,12 +521,16 @@ export function ClipSheet({
               <small>
                 {e.clip
                   ? `${e.clip.duration.toFixed(2)} s · ${e.clip.rig}`
-                  : "No playable clip captured"}
+                  : e.unchecked ? "Not inspected · select to capture" : e.error ?? "No playable clip captured"}
               </small>
             </span>
           </button>
         ))}
       </div>
+      {o.previewData.pack.coverage && <p role="status">
+        {o.previewData.pack.coverage.inspectedKeys.length} of {o.previewData.pack.coverage.total} clips inspected.
+        Remaining clips are unchecked. Pack contents are not verified by inspecting one clip.
+      </p>}
       {entry?.clip && (
         <Suspense fallback={<p>Loading 3D viewer…</p>}>
           <AnimationPlayer
@@ -538,7 +552,7 @@ export function ClipSheet({
       <div className="need-actions">
         <button
           className="primary"
-          disabled={!selected || busy}
+          disabled={!selected || !entry?.clip || busy}
           onClick={async () => {
             setBusy(true);
             try {

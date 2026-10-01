@@ -7,6 +7,8 @@ const { pickerFixture } = (await tsImport(
 )) as typeof import("../asset-picking-fixture");
 import { pickStatus } from "../../src/marketplace/pick-status";
 import { recommendRig } from "../../src/generation/rig-policy";
+import fs from "node:fs";
+const largePack = JSON.parse(fs.readFileSync(new URL("../fixtures/generalization/pack-fixes/16840174248.json", import.meta.url), "utf8"));
 let f: Awaited<ReturnType<typeof pickerFixture>>;
 test.beforeEach(async ({ page }) => {
   f = await pickerFixture();
@@ -36,6 +38,39 @@ const card = (page: Page) =>
   page.getByRole("region", { name: "Assets for this game", exact: true });
 const row = (page: Page, name = "Target dummy") =>
   card(page).getByRole("region", { name, exact: true });
+
+test("a real large-pack manifest captures only the selected clip and keeps remaining coverage visible", async ({ page }) => {
+  const p = f.project();
+  const need = p.proposal!.assetNeeds!.find(n => n.id === "punchAnimation")!;
+  need.assetRole = "animation"; need.selectedAssetId = largePack.metadata.assetId;
+  need.pick = { assetId: largePack.metadata.assetId, option: {
+    ...largePack.metadata, previewData: { pack: largePack.manifest, revisionKey: largePack.manifest.revisionKey },
+  } } as any;
+  p.assetStudioId = "392fce6b-fea7-4de3-bb2e-49a95231c3f5";
+  p.assetDiscovery!.studioId = p.assetStudioId;
+  f.app.locals.engine.store.save(p);
+  f.provider.metadata = async () => largePack.metadata as any;
+  let calls = 0;
+  f.provider.animations = async (...args: any[]) => {
+    expect(args[3]).toBe(largePack.selectedKey); calls++;
+    return largePack.selected as any;
+  };
+  await page.reload();
+  await page.getByRole("button", { name: "Choose clip", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: `Clips from ${largePack.metadata.name}` });
+  await expect(dialog).toContainText("0 of 48 clips inspected");
+  await expect(dialog.getByRole("button", { name: "Use this clip", exact: true })).toBeDisabled();
+  await dialog.getByRole("button", { name: /^Pon Pon Not inspected/ }).click();
+  await expect(dialog).toContainText("1 of 48 clips inspected");
+  await expect(dialog.getByRole("button", { name: "Use this clip", exact: true })).toBeEnabled();
+  expect(calls).toBe(1);
+  await dialog.getByRole("button", { name: "Use this clip", exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  await page.reload();
+  const saved = f.project().proposal!.assetNeeds!.find(n => n.id === "punchAnimation")!.pick!;
+  expect(saved.clipKey).toBe(largePack.selectedKey);
+  expect(saved.option!.previewData!.pack!.coverage!.uncheckedKeys).toHaveLength(47);
+});
 test("a visible asset role correction persists and rechecks native structure",async({page})=>{
   await f.search(); await f.choose(); await page.reload();
   const role=row(page).getByRole("combobox",{name:/Asset role/});

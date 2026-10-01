@@ -1,4 +1,8 @@
-# Conditional paid probes
+# Model probes
+
+Current result: no-go for the full trial. The newly authorized P-Review was rejected by provider admission. P-Build exhausted its 8192-token response on reasoning and submitted no code. Actual P-Build receipts total $0.1081545. P-Review has no billing receipt and retains $0.749202 conservative liability. Details and the original withheld run are preserved below. Asset generality is reported separately.
+
+## Historical G4 gate
 
 Status: not run. G4 did not meet its preregistered coverage and playback gates. The approved stop condition applies. No provider request, balance request or credential-vault access occurred. No retry or replacement asset was used to bypass the gate.
 
@@ -45,3 +49,5 @@ Compile/AST: not run, no model source. Parameterized tests: zero executed, no in
 Native preflight only: freshly connected TrialReviewInspection.rbxlx, Studio id 216e6aaa-19c8-44d9-94f2-7341c2e69973, PID 33952, Edit with zero scripts/scopes and two Workspace children. No Play or insertion occurred, so there were no scripts/imports to restore or remove. SDK clients closed and no native test service was started.
 
 Model-quality verdict: no-go. P-Review supplied no review measurement, and P-Build supplied no code-quality measurement. A useful full-build cost projection cannot be fitted from a context read followed by reasoning-only truncation. $7.50 does not solve the demonstrated per-call output bottleneck. Raising output limits or changing reasoning policy would need a separately authorized future probe and new conservative reservation calculations. No full trial was started.
+
+Cost projection limit: this run measures a context read ($0.013752) and a reasoning-only truncation ($0.0944025), not a completed build task. With the observed second-call 9851 input tokens, an uncached 8192-output call at configured $2/M input and $10/M output is $0.101622. Increasing that output allowance to 32768 would make its full-output cost $0.347382. An illustrative 20 such larger calls would cost $6.94764. A review using the historical 77832-input envelope and full 32768 output would add $0.483344, totaling $7.430984 before acquisition, planning, repairs or other overhead. These call counts and full-output assumptions are scenarios, not measured workload estimates, and conservative byte reservations can refuse earlier. There is no defensible successful full-build projection from this failure. $7.50 is not validated and the full-trial verdict remains no-go.

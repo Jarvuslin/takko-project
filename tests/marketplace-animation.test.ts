@@ -286,6 +286,7 @@ local function item(name,class,children)
  local v={Name=name,ClassName=class,children=children or {},Enabled=true,PlayOnRemove=true,AnimationId="rbxassetid://789"}
  function v:IsA(c) return self.ClassName==c end
  function v:GetChildren() return self.children end
+ function v:GetKeyframes() return self.children end
  function v:GetDescendants()
   local out={}
   for _,child in self.children do table.insert(out,child);for _,descendant in child:GetDescendants() do table.insert(out,descendant) end end
@@ -298,7 +299,7 @@ local script=item("Never execute","BaseScript")
 local sound=item("Silent","Sound")
 local list={item("Punch","KeyframeSequence"),item("Kick","Animation"),script,sound}
 list[1].GetChildren=function() error("Discovery must not traverse the contents of a clip") end
-if ${overflow} then for i=1,101 do table.insert(list,item("Extra"..i,"Animation")) end end
+if ${overflow} then for i=1,1001 do table.insert(list,item("Extra"..i,"Animation")) end end
 local lateSound=item("AfterCaptureLimit","Sound");table.insert(list,lateSound)
 local root=item("Pack","Model",{item("Nested","Folder",list)})
 local game={}
@@ -311,7 +312,7 @@ local result=capture()
 assert(root.destroyed and root.Parent==nil)
 assert(script.Enabled==false and sound.PlayOnRemove==false)
 assert(lateSound.PlayOnRemove==false)
-if ${overflow} then assert(result.captureError:find("100 animations"))
+if ${overflow} then assert(result.captureError:find("1000 animation manifest entries"))
 else assert(#result.entries==2 and result.entries[2].animationId=="789") end
 print("DETACHED_PACK_PASS")
 `,

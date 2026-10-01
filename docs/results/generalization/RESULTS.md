@@ -1,5 +1,9 @@
 # Asset generalization
 
+Current task: step 5 producer fixes are implemented and verified against the exposed diagnostic assets. A new stratified preregistration and sweep follow after the full check. Paid probe results are separate in ../trial-probes/RESULTS.md. No full trial or installation.
+
+## Historical G1–G4 conclusion
+
 Status: no-go for paid probes or the full trial. G1-G3 changes are implemented, but G4 exposed missing animation coverage and producer gaps. G1-G4 cost $0. G5 was withheld under the approved gate, with both $1.25/$1.75 caps unspent. No full game trial, live-app restart, installation or publication is authorized. Only TrialReviewInspection is authorized for capture, with Play allowed in G4/G5 only.
 
 ## Verified starting findings
@@ -88,3 +92,27 @@ One full npm run check attempt ran all stages. Build/typecheck passed, followed 
 No production code changed after a90b67f or after holdout exposure. The final correction touched only the Electron test. Final typecheck passed. Logs: test-artifacts/generalization-full-check.log, generalization-electron-correction.log, generalization-electron-correction-2.log and generalization-final-types.log. Both failed Electron traces remain in their original test-artifacts directories. Earlier development worker crashes and type/fixture failures remain recorded. No extra full check was run.
 
 These automated tests include mocks and do not establish native gameplay. Native G4 completed Edit inspections only. G5 has a separate zero-call record in ../trial-probes/RESULTS.md. Live Takko main PID 33012 remains running, its previously recorded service/port are absent, and neither was restarted. No installation or staged-package replacement was performed.
+
+## Step 5: exposed-pack producer fixes, $0
+
+Published Animation references now carry authored frame names, marker name/value arrays, loop and priority from the exact fetched sequence. The metadata includes the pose digest and is validated against the clip digest and duration. Timing analysis can consume this bound metadata when a published reference has no raw sequence in the role census. Missing events are not invented, and loop/nonattack gates remain in effect.
+
+Packs over 32 entries use a cheap manifest with up to 1000 entries. The walk stops at sequences, avoiding traversal of their poses during listing. Raw keyframe counts identify clips outside the supported 1–300 frame range before pose capture. Only the selected clip is loaded. Coverage records the full manifest count, inspected key and every unchecked key. Both the game asset card and a dropped pack can inspect a selection. Inspection does not automatically select it or approve the asset. Recorded errors persist and repeat clicks do not capture them again. Provider caching is bounded and tied to Studio, asset revision and clip key.
+
+Native diagnostic results, all in the approved throwaway place:
+
+| Asset | Manifest | Selected native result | Unchecked |
+| --- | ---: | --- | ---: |
+| 85284763604545 | 27 | Published CheerAnim, 61 frames, End label, no markers, loop false. Producer metadata matches independent native oracle. | 26 |
+| 16840174248 | 48 | Raw Pon Pon, 59 frames, loop true. Producer metadata matches independent oracle. | 47 |
+| 13734483218 | 262 | First selected Corvette Corvette has 315 frames and was rejected. Failure retained. A different explicitly selected raw clip at 1/1/19/3 has 253 frames and captured successfully. | 261 after bounded selection |
+
+The 262-entry selectable manifest is the observed producer result, not a rewrite of the older complete descendant census. Original failed G4 captures and the new 315-frame failure remain intact. The added frame-count manifest prevents repeating that known oversized capture. Fixtures are in tests/fixtures/generalization/pack-fixes. No positive authored-marker example was found in these selected diagnostic clips. The code preserves marker arrays, but these records do not establish marker-positive coverage.
+
+Selected-clip capture fixes inspectability. It does not certify the remainder of a large pack or bypass incomplete source/role inspection. Such assets can remain unknown for build. Existing transfer, pose, standard-rig and duration limits remain bounded. This is not evidence of arbitrary pack compatibility.
+
+Focused checks: 66 tests across 3 files passed, then a 30-test set had two stale native-mock failures after the manifest API changed. Those mocks were updated for GetKeyframes and the explicit 1000-entry bound. Final focused boundary and gallery tests passed (9 new tests), and marketplace animation tests passed (11). The new UI test first failed to load its JSON fixture, then exposed a missing Studio identity in its setup. Both failures and traces remain recorded. The corrected real-manifest UI flow passed. No production behavior was weakened to accommodate the test. Full check result is recorded below when complete.
+
+Final native census 2026-10-01T01:39:00.887Z: Edit, zero scripts, zero probe scopes, two Workspace children. Every imported root and reference rig was detached and destroyed by the reader. No Play, save-over, publish or asset script execution occurred. No native test service was started. Owned SDK clients closed. Cost $0.
+
+Step 5 full verification: one clean npm run check, exit 0. Build/typecheck, 1885 unit tests in 149 files, 6 Luau scenarios, 16 plugin scenarios plus plugin/8 source compilations, 6 guard cases, CSS 0 errors/274 warnings, 21 desktop tests, production smoke, 108 browser tests and 10 Electron journeys passed. No worker crash or full rerun. Log test-artifacts/pack-fixes-full-check.log. These are offline tests, distinct from the three diagnostic native asset captures. No production source will change during the next holdout.

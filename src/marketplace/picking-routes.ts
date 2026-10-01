@@ -462,8 +462,7 @@ export function pickingRoutes(
           previousHash !== inspected.inspection.contentHash ||
           option.previewData.pack.entries.some(
             (e) => e.clip && !e.clip.sourcePoseDigest,
-          ) ||
-          assetRoleEvidence(p, g).recapture)
+          ))
       ) {
         if (!library.provider.animations)
           throw new RequestError(
@@ -482,7 +481,7 @@ export function pickingRoutes(
             "The animation pack changed during capture. Choose it again to retry.",
           );
         option.previewData = { pack, revisionKey: revisionKey(inspected) };
-        if (!pack.entries.some((e) => e.clip))
+        if (!pack.entries.some((e) => e.clip || e.unchecked))
           throw new RequestError(
             "This pack has no playable captured clips. Choose another animation pack.",
           );
@@ -673,6 +672,35 @@ export function pickingRoutes(
     c.clipKey = b.clipKey;
     delete c.error;
     res.json(save(p));
+  });
+  app.post("/api/projects/:id/asset-picks/clip-capture", async (req, res) => {
+    const b = base.extend({ groupId: z.string().max(80), assetId: assetIdSchema,
+      clipKey: z.string().max(1024) }).strict().parse(req.body);
+    res.json(await exclusive(req.params.id, async () => {
+      const p = current(req.params.id, b.revision), g = group(p, b.groupId);
+      const choice = p.assetDiscovery!.choices?.[g.id];
+      const option = g.options.find(o => o.assetId === b.assetId);
+      const entry = option?.previewData?.pack?.entries.find(e => e.key === b.clipKey);
+      if (choice?.assetId !== b.assetId || !entry || !option || !library.provider.animations)
+        throw new ConflictError("Choose a clip from the current animation manifest.");
+      // A recorded failure is retained. Repeated clicks cannot dispatch the same failed capture.
+      if (!entry.unchecked) return p;
+      const studioId = p.assetDiscovery!.studioId;
+      if (!studioId) throw new RequestError("Connect the selected Studio first.");
+      const metadata = await library.provider.metadata(studioId, option.assetId);
+      if (revisionKey(metadata) !== option.previewData!.pack!.revisionKey)
+        throw new ConflictError("The asset revision changed. Inspect this asset again.");
+      const pack = animationPackSchema.parse(await library.provider.animations(studioId, metadata, 100, b.clipKey));
+      current(p.id, p.revision);
+      if (pack.assetId !== option.assetId || pack.revisionKey !== revisionKey(metadata))
+        throw new ConflictError("The captured clip belongs to another asset revision.");
+      const previousErrors = new Map(option.previewData!.pack!.entries.filter(e => e.error).map(e => [e.key, e]));
+      pack.entries = pack.entries.map(entry => entry.unchecked ? previousErrors.get(entry.key) ?? entry : entry);
+      option.previewData = { ...option.previewData, pack, revisionKey: pack.revisionKey };
+      p.assetDiscovery!.approved = false;
+      delete choice.timingDecision;
+      return save(p);
+    }));
   });
   app.post("/api/projects/:id/asset-picks/timing", (req, res) => {
     const b = base

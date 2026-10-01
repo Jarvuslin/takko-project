@@ -39,6 +39,7 @@ export interface MarketplaceProvider {
     studioId: string,
     metadata: AssetMetadata,
     limit?: number,
+    selectedKey?: string,
   ): Promise<import("./animations").AnimationPack>;
 }
 type AssetRecord = { asset: LibraryAsset; snapshot?: AssetSnapshot };

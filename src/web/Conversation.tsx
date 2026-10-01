@@ -340,7 +340,17 @@ export function Conversation({
                       key={pack.id}
                       fallback={<p>Loading animations…</p>}
                     >
-                      <AnimationGallery pack={pack} />
+                      <AnimationGallery pack={pack} capture={async (selectedKey) => {
+                        const studioId = project.assetStudioId || localStorage.getItem("takko-marketplace-studio");
+                        if (!studioId) throw Error("Connect Studio to inspect this clip.");
+                        const response = await fetch(`/api/projects/${project.id}/marketplace-animations`, {
+                          method: "POST", headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ revision: project.revision, studioId, reference: pack.assetId, selectedKey }),
+                        });
+                        const result = await response.json();
+                        if (!response.ok) throw Error(result.error ?? "Clip inspection failed.");
+                        update(result);
+                      }} />
                     </Suspense>
                   ))}
               {turn.animationId &&

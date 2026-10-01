@@ -1,0 +1,1224 @@
+{
+  "at": "2026-10-01T01:29:16.463Z",
+  "assetId": "85284763604545",
+  "diagnosticOnly": true,
+  "calls": [],
+  "metadata": {
+    "assetId": "85284763604545",
+    "name": "R15 bode",
+    "kind": "Model",
+    "creatorName": "effnkdm",
+    "updated": "2025-12-05T22:45:49.023Z",
+    "versionId": "37444879752"
+  },
+  "manifest": {
+    "assetId": "85284763604545",
+    "name": "R15 bode",
+    "revisionKey": "version:37444879752",
+    "entries": [
+      {
+        "key": "1/1/3/6/1/1/1/1",
+        "name": "CheerAnim",
+        "animationId": "507770677",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/2/1",
+        "name": "ClimbAnim",
+        "animationId": "507765644",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/3/1",
+        "name": "Animation1",
+        "animationId": "507771019",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/3/2",
+        "name": "Animation2",
+        "animationId": "507771955",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/3/3",
+        "name": "Animation3",
+        "animationId": "507772104",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/4/1",
+        "name": "Animation1",
+        "animationId": "507776043",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/4/2",
+        "name": "Animation2",
+        "animationId": "507776720",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/4/3",
+        "name": "Animation3",
+        "animationId": "507776879",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/5/1",
+        "name": "Animation1",
+        "animationId": "507777268",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/5/2",
+        "name": "Animation2",
+        "animationId": "507777451",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/5/3",
+        "name": "Animation3",
+        "animationId": "507777623",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/6/1",
+        "name": "FallAnim",
+        "animationId": "507767968",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/7/1",
+        "name": "Animation1",
+        "animationId": "507766388",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/7/2",
+        "name": "Animation2",
+        "animationId": "507766666",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/8/1",
+        "name": "JumpAnim",
+        "animationId": "507765000",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/9/1",
+        "name": "LaughAnim",
+        "animationId": "507770818",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/10/1",
+        "name": "PointAnim",
+        "animationId": "507770453",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/11/1",
+        "name": "SitAnim",
+        "animationId": "2506281703",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/12/1",
+        "name": "ToolLungeAnim",
+        "animationId": "522638767",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/13/1",
+        "name": "ToolNoneAnim",
+        "animationId": "507768375",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/14/1",
+        "name": "ToolSlashAnim",
+        "animationId": "522635514",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/15/1",
+        "name": "WaveAnim",
+        "animationId": "507770239",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/17/1",
+        "name": "RunAnim",
+        "animationId": "913376220",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/18/1",
+        "name": "Animation1",
+        "animationId": "7715096377",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/19/1",
+        "name": "Swim",
+        "animationId": "11600212676",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/20/1",
+        "name": "WalkAnim",
+        "animationId": "913402848",
+        "unchecked": true
+      },
+      {
+        "key": "1/1/3/6/1/1/22/1",
+        "name": "SwimIdle",
+        "animationId": "11600213505",
+        "unchecked": true
+      }
+    ],
+    "coverage": {
+      "mode": "selected_clip",
+      "total": 27,
+      "inspectedKeys": [],
+      "uncheckedKeys": [
+        "1/1/3/6/1/1/1/1",
+        "1/1/3/6/1/1/2/1",
+        "1/1/3/6/1/1/3/1",
+        "1/1/3/6/1/1/3/2",
+        "1/1/3/6/1/1/3/3",
+        "1/1/3/6/1/1/4/1",
+        "1/1/3/6/1/1/4/2",
+        "1/1/3/6/1/1/4/3",
+        "1/1/3/6/1/1/5/1",
+        "1/1/3/6/1/1/5/2",
+        "1/1/3/6/1/1/5/3",
+        "1/1/3/6/1/1/6/1",
+        "1/1/3/6/1/1/7/1",
+        "1/1/3/6/1/1/7/2",
+        "1/1/3/6/1/1/8/1",
+        "1/1/3/6/1/1/9/1",
+        "1/1/3/6/1/1/10/1",
+        "1/1/3/6/1/1/11/1",
+        "1/1/3/6/1/1/12/1",
+        "1/1/3/6/1/1/13/1",
+        "1/1/3/6/1/1/14/1",
+        "1/1/3/6/1/1/15/1",
+        "1/1/3/6/1/1/17/1",
+        "1/1/3/6/1/1/18/1",
+        "1/1/3/6/1/1/19/1",
+        "1/1/3/6/1/1/20/1",
+        "1/1/3/6/1/1/22/1"
+      ]
+    },
+    "context": {
+      "toolCount": 0,
+      "meshPartCount": 186,
+      "siblings": [
+        {
+          "name": "Model5",
+          "className": "Model",
+          "path": "1"
+        },
+        {
+          "name": "R 15 2019",
+          "className": "Model",
+          "path": "1/1"
+        },
+        {
+          "name": "Chassis",
+          "className": "Model",
+          "path": "1/1/1"
+        },
+        {
+          "name": "Retro",
+          "className": "Model",
+          "path": "1/1/1/1"
+        },
+        {
+          "name": "Retro D",
+          "className": "Model",
+          "path": "1/1/1/1/1"
+        },
+        {
+          "name": "mirrors_body.003",
+          "className": "MeshPart",
+          "path": "1/1/1/1/1/1"
+        },
+        {
+          "name": "mirror01.001",
+          "className": "MeshPart",
+          "path": "1/1/1/1/1/2"
+        },
+        {
+          "name": "mirrors_body.001",
+          "className": "MeshPart",
+          "path": "1/1/1/1/1/3"
+        },
+        {
+          "name": "mirrors_body",
+          "className": "MeshPart",
+          "path": "1/1/1/1/1/4"
+        },
+        {
+          "name": "mirrors_body.002",
+          "className": "MeshPart",
+          "path": "1/1/1/1/1/5"
+        },
+        {
+          "name": "Retro E",
+          "className": "Model",
+          "path": "1/1/1/1/2"
+        },
+        {
+          "name": "mirror01",
+          "className": "MeshPart",
+          "path": "1/1/1/1/2/1"
+        },
+        {
+          "name": "mirrors_body.006",
+          "className": "MeshPart",
+          "path": "1/1/1/1/2/2"
+        },
+        {
+          "name": "mirrors_body.008",
+          "className": "MeshPart",
+          "path": "1/1/1/1/2/3"
+        },
+        {
+          "name": "mirrors_body.009",
+          "className": "MeshPart",
+          "path": "1/1/1/1/2/4"
+        },
+        {
+          "name": "mirrors_body.007",
+          "className": "MeshPart",
+          "path": "1/1/1/1/2/5"
+        },
+        {
+          "name": "fon_logo",
+          "className": "MeshPart",
+          "path": "1/1/1/2"
+        },
+        {
+          "name": "plastik_body",
+          "className": "MeshPart",
+          "path": "1/1/1/3"
+        },
+        {
+          "name": "spring_small",
+          "className": "MeshPart",
+          "path": "1/1/1/4"
+        },
+        {
+          "name": "plastik_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/5"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/6"
+        },
+        {
+          "name": "engine.001",
+          "className": "MeshPart",
+          "path": "1/1/1/7"
+        },
+        {
+          "name": "hl",
+          "className": "MeshPart",
+          "path": "1/1/1/8"
+        },
+        {
+          "name": "decal_black",
+          "className": "MeshPart",
+          "path": "1/1/1/9"
+        },
+        {
+          "name": "rim_rear.002",
+          "className": "MeshPart",
+          "path": "1/1/1/10"
+        },
+        {
+          "name": "glass_red02",
+          "className": "MeshPart",
+          "path": "1/1/1/11"
+        },
+        {
+          "name": "decal_white.002",
+          "className": "MeshPart",
+          "path": "1/1/1/12"
+        },
+        {
+          "name": "cover_small",
+          "className": "MeshPart",
+          "path": "1/1/1/13"
+        },
+        {
+          "name": "plastik_white02",
+          "className": "MeshPart",
+          "path": "1/1/1/14"
+        },
+        {
+          "name": "mirrors_body.005",
+          "className": "MeshPart",
+          "path": "1/1/1/15"
+        },
+        {
+          "name": "decal_white",
+          "className": "MeshPart",
+          "path": "1/1/1/16"
+        },
+        {
+          "name": "fender_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/17"
+        },
+        {
+          "name": "plastik_small.001",
+          "className": "MeshPart",
+          "path": "1/1/1/18"
+        },
+        {
+          "name": "body.001",
+          "className": "MeshPart",
+          "path": "1/1/1/19"
+        },
+        {
+          "name": "body_01.001",
+          "className": "MeshPart",
+          "path": "1/1/1/20"
+        },
+        {
+          "name": "text_gray",
+          "className": "MeshPart",
+          "path": "1/1/1/21"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/22"
+        },
+        {
+          "name": "decal_blue",
+          "className": "MeshPart",
+          "path": "1/1/1/23"
+        },
+        {
+          "name": "muffler_01",
+          "className": "MeshPart",
+          "path": "1/1/1/24"
+        },
+        {
+          "name": "radiator",
+          "className": "MeshPart",
+          "path": "1/1/1/25"
+        },
+        {
+          "name": "logo",
+          "className": "MeshPart",
+          "path": "1/1/1/26"
+        },
+        {
+          "name": "sprocket",
+          "className": "MeshPart",
+          "path": "1/1/1/27"
+        },
+        {
+          "name": "text_bachboard",
+          "className": "MeshPart",
+          "path": "1/1/1/28"
+        },
+        {
+          "name": "glass_small",
+          "className": "MeshPart",
+          "path": "1/1/1/29"
+        },
+        {
+          "name": "plastik_rear_01",
+          "className": "MeshPart",
+          "path": "1/1/1/30"
+        },
+        {
+          "name": "engine.002",
+          "className": "MeshPart",
+          "path": "1/1/1/31"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/32"
+        },
+        {
+          "name": "rflector_small.001",
+          "className": "MeshPart",
+          "path": "1/1/1/33"
+        },
+        {
+          "name": "bolt_black",
+          "className": "MeshPart",
+          "path": "1/1/1/34"
+        },
+        {
+          "name": "ribs_reflector_hl",
+          "className": "MeshPart",
+          "path": "1/1/1/35"
+        },
+        {
+          "name": "button_bachboard",
+          "className": "MeshPart",
+          "path": "1/1/1/36"
+        },
+        {
+          "name": "muffler_protect_carbon",
+          "className": "MeshPart",
+          "path": "1/1/1/37"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/38"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/39"
+        },
+        {
+          "name": "glass_yellow.001",
+          "className": "MeshPart",
+          "path": "1/1/1/40"
+        },
+        {
+          "name": "chain",
+          "className": "MeshPart",
+          "path": "1/1/1/41"
+        },
+        {
+          "name": "aluminium.002",
+          "className": "MeshPart",
+          "path": "1/1/1/42"
+        },
+        {
+          "name": "brake_caliper_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/43"
+        },
+        {
+          "name": "glass",
+          "className": "MeshPart",
+          "path": "1/1/1/44"
+        },
+        {
+          "name": "glass_bachboard",
+          "className": "MeshPart",
+          "path": "1/1/1/45"
+        },
+        {
+          "name": "chain.001",
+          "className": "MeshPart",
+          "path": "1/1/1/46"
+        },
+        {
+          "name": "gride_radiator.002",
+          "className": "MeshPart",
+          "path": "1/1/1/47"
+        },
+        {
+          "name": "decal_white.003",
+          "className": "MeshPart",
+          "path": "1/1/1/48"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/49"
+        },
+        {
+          "name": "plastik_body.005",
+          "className": "MeshPart",
+          "path": "1/1/1/50"
+        },
+        {
+          "name": "reflector_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/51"
+        },
+        {
+          "name": "shockabsorber_rear_black",
+          "className": "MeshPart",
+          "path": "1/1/1/52"
+        },
+        {
+          "name": "text_engine",
+          "className": "MeshPart",
+          "path": "1/1/1/53"
+        },
+        {
+          "name": "tire_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/54"
+        },
+        {
+          "name": "body",
+          "className": "MeshPart",
+          "path": "1/1/1/55"
+        },
+        {
+          "name": "rflector_small.002",
+          "className": "MeshPart",
+          "path": "1/1/1/56"
+        },
+        {
+          "name": "text_white.004",
+          "className": "MeshPart",
+          "path": "1/1/1/57"
+        },
+        {
+          "name": "brake_disk_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/58"
+        },
+        {
+          "name": "sping_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/59"
+        },
+        {
+          "name": "text_white.002",
+          "className": "MeshPart",
+          "path": "1/1/1/60"
+        },
+        {
+          "name": "traction",
+          "className": "MeshPart",
+          "path": "1/1/1/61"
+        },
+        {
+          "name": "decal_white.001",
+          "className": "MeshPart",
+          "path": "1/1/1/62"
+        },
+        {
+          "name": "bachboard",
+          "className": "MeshPart",
+          "path": "1/1/1/63"
+        },
+        {
+          "name": "det02",
+          "className": "MeshPart",
+          "path": "1/1/1/64"
+        },
+        {
+          "name": "stand",
+          "className": "MeshPart",
+          "path": "1/1/1/65"
+        },
+        {
+          "name": "shock_absorber_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/66"
+        },
+        {
+          "name": "plastik_body.003",
+          "className": "MeshPart",
+          "path": "1/1/1/67"
+        },
+        {
+          "name": "body.003",
+          "className": "MeshPart",
+          "path": "1/1/1/68"
+        },
+        {
+          "name": "rim_rear.003",
+          "className": "MeshPart",
+          "path": "1/1/1/69"
+        },
+        {
+          "name": "rflector_small.005",
+          "className": "MeshPart",
+          "path": "1/1/1/70"
+        },
+        {
+          "name": "aluminium.003",
+          "className": "MeshPart",
+          "path": "1/1/1/71"
+        },
+        {
+          "name": "brake_cylinder",
+          "className": "MeshPart",
+          "path": "1/1/1/72"
+        },
+        {
+          "name": "bolt",
+          "className": "MeshPart",
+          "path": "1/1/1/73"
+        },
+        {
+          "name": "muffler_protect",
+          "className": "MeshPart",
+          "path": "1/1/1/74"
+        },
+        {
+          "name": "axis_chain",
+          "className": "MeshPart",
+          "path": "1/1/1/75"
+        },
+        {
+          "name": "axis_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/76"
+        },
+        {
+          "name": "plastik_small",
+          "className": "MeshPart",
+          "path": "1/1/1/77"
+        },
+        {
+          "name": "body_01",
+          "className": "MeshPart",
+          "path": "1/1/1/78"
+        },
+        {
+          "name": "frame",
+          "className": "MeshPart",
+          "path": "1/1/1/79"
+        },
+        {
+          "name": "text_white.003",
+          "className": "MeshPart",
+          "path": "1/1/1/80"
+        },
+        {
+          "name": "bolt_rear_wheel",
+          "className": "MeshPart",
+          "path": "1/1/1/81"
+        },
+        {
+          "name": "plastik_body.002",
+          "className": "MeshPart",
+          "path": "1/1/1/82"
+        },
+        {
+          "name": "aluminium.001",
+          "className": "MeshPart",
+          "path": "1/1/1/83"
+        },
+        {
+          "name": "display",
+          "className": "MeshPart",
+          "path": "1/1/1/84"
+        },
+        {
+          "name": "gride_radiator.001",
+          "className": "MeshPart",
+          "path": "1/1/1/85"
+        },
+        {
+          "name": "rflector_small.004",
+          "className": "MeshPart",
+          "path": "1/1/1/86"
+        },
+        {
+          "name": "decal_carbon",
+          "className": "MeshPart",
+          "path": "1/1/1/87"
+        },
+        {
+          "name": "seat",
+          "className": "MeshPart",
+          "path": "1/1/1/88"
+        },
+        {
+          "name": "rim_rear.001",
+          "className": "MeshPart",
+          "path": "1/1/1/89"
+        },
+        {
+          "name": "glass_red01",
+          "className": "MeshPart",
+          "path": "1/1/1/90"
+        },
+        {
+          "name": "bolt_engine",
+          "className": "MeshPart",
+          "path": "1/1/1/91"
+        },
+        {
+          "name": "glass_hl",
+          "className": "MeshPart",
+          "path": "1/1/1/92"
+        },
+        {
+          "name": "gride_radiator",
+          "className": "MeshPart",
+          "path": "1/1/1/93"
+        },
+        {
+          "name": "aluminium.010",
+          "className": "MeshPart",
+          "path": "1/1/1/94"
+        },
+        {
+          "name": "DesireFX.COM_text_black",
+          "className": "MeshPart",
+          "path": "1/1/1/95"
+        },
+        {
+          "name": "inside",
+          "className": "MeshPart",
+          "path": "1/1/1/96"
+        },
+        {
+          "name": "mirrors_body.004",
+          "className": "MeshPart",
+          "path": "1/1/1/97"
+        },
+        {
+          "name": "cover_fuel_tank",
+          "className": "MeshPart",
+          "path": "1/1/1/98"
+        },
+        {
+          "name": "radiator02",
+          "className": "MeshPart",
+          "path": "1/1/1/99"
+        },
+        {
+          "name": "pedal",
+          "className": "MeshPart",
+          "path": "1/1/1/100"
+        },
+        {
+          "name": "plastik_body.001",
+          "className": "MeshPart",
+          "path": "1/1/1/101"
+        },
+        {
+          "name": "rubber",
+          "className": "MeshPart",
+          "path": "1/1/1/102"
+        },
+        {
+          "name": "gride_radiator.003",
+          "className": "MeshPart",
+          "path": "1/1/1/103"
+        },
+        {
+          "name": "glass_ribs_rear.003",
+          "className": "MeshPart",
+          "path": "1/1/1/104"
+        },
+        {
+          "name": "plastik_body.004",
+          "className": "MeshPart",
+          "path": "1/1/1/105"
+        },
+        {
+          "name": "text_white",
+          "className": "MeshPart",
+          "path": "1/1/1/106"
+        },
+        {
+          "name": "pipe_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/107"
+        },
+        {
+          "name": "swingarm",
+          "className": "MeshPart",
+          "path": "1/1/1/108"
+        },
+        {
+          "name": "plastik_rear.001",
+          "className": "MeshPart",
+          "path": "1/1/1/109"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/110"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/111"
+        },
+        {
+          "name": "protect_shain",
+          "className": "MeshPart",
+          "path": "1/1/1/112"
+        },
+        {
+          "name": "radiator_grid",
+          "className": "MeshPart",
+          "path": "1/1/1/113"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/114"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/115"
+        },
+        {
+          "name": "engine",
+          "className": "MeshPart",
+          "path": "1/1/1/116"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/117"
+        },
+        {
+          "name": "muffler",
+          "className": "MeshPart",
+          "path": "1/1/1/118"
+        },
+        {
+          "name": "text_white.001",
+          "className": "MeshPart",
+          "path": "1/1/1/119"
+        },
+        {
+          "name": "plastik_white01",
+          "className": "MeshPart",
+          "path": "1/1/1/120"
+        },
+        {
+          "name": "reflector_hl",
+          "className": "MeshPart",
+          "path": "1/1/1/121"
+        },
+        {
+          "name": "suspemsion_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/122"
+        },
+        {
+          "name": "bolt_01",
+          "className": "MeshPart",
+          "path": "1/1/1/123"
+        },
+        {
+          "name": "aluminium.006",
+          "className": "MeshPart",
+          "path": "1/1/1/124"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/125"
+        },
+        {
+          "name": "glass_ribs_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/126"
+        },
+        {
+          "name": "hose",
+          "className": "MeshPart",
+          "path": "1/1/1/127"
+        },
+        {
+          "name": "rim_rear",
+          "className": "MeshPart",
+          "path": "1/1/1/128"
+        },
+        {
+          "name": "aluminium.007",
+          "className": "MeshPart",
+          "path": "1/1/1/129"
+        },
+        {
+          "name": "mirrors_body.011",
+          "className": "MeshPart",
+          "path": "1/1/1/130"
+        },
+        {
+          "name": "plastik_small.002",
+          "className": "MeshPart",
+          "path": "1/1/1/131"
+        },
+        {
+          "name": "det_fuel_tank",
+          "className": "MeshPart",
+          "path": "1/1/1/132"
+        },
+        {
+          "name": "rflector_small.003",
+          "className": "MeshPart",
+          "path": "1/1/1/133"
+        },
+        {
+          "name": "det_seat",
+          "className": "MeshPart",
+          "path": "1/1/1/134"
+        },
+        {
+          "name": "body.002",
+          "className": "MeshPart",
+          "path": "1/1/1/135"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/136"
+        },
+        {
+          "name": "Part",
+          "className": "Part",
+          "path": "1/1/1/137"
+        },
+        {
+          "name": "mirrors_body.010",
+          "className": "MeshPart",
+          "path": "1/1/1/138"
+        },
+        {
+          "name": "det_bachboard",
+          "className": "MeshPart",
+          "path": "1/1/1/139"
+        },
+        {
+          "name": "Front",
+          "className": "Model",
+          "path": "1/1/2"
+        },
+        {
+          "name": "brake_disk_front",
+          "className": "MeshPart",
+          "path": "1/1/2/1"
+        },
+        {
+          "name": "bolt_handle",
+          "className": "MeshPart",
+          "path": "1/1/2/2"
+        },
+        {
+          "name": "pipe",
+          "className": "MeshPart",
+          "path": "1/1/2/3"
+        },
+        {
+          "name": "switch",
+          "className": "MeshPart",
+          "path": "1/1/2/4"
+        },
+        {
+          "name": "axis_front02",
+          "className": "MeshPart",
+          "path": "1/1/2/5"
+        },
+        {
+          "name": "details_brake",
+          "className": "MeshPart",
+          "path": "1/1/2/6"
+        },
+        {
+          "name": "det_axis_front",
+          "className": "MeshPart",
+          "path": "1/1/2/7"
+        },
+        {
+          "name": "brake_caliper_front",
+          "className": "MeshPart",
+          "path": "1/1/2/8"
+        },
+        {
+          "name": "traverse",
+          "className": "MeshPart",
+          "path": "1/1/2/9"
+        },
+        {
+          "name": "det01",
+          "className": "MeshPart",
+          "path": "1/1/2/10"
+        },
+        {
+          "name": "button_yellow",
+          "className": "MeshPart",
+          "path": "1/1/2/11"
+        },
+        {
+          "name": "glass_01",
+          "className": "MeshPart",
+          "path": "1/1/2/12"
+        },
+        {
+          "name": "bolt_front_wheel",
+          "className": "MeshPart",
+          "path": "1/1/2/13"
+        },
+        {
+          "name": "rim_front.001",
+          "className": "MeshPart",
+          "path": "1/1/2/14"
+        },
+        {
+          "name": "handlebar",
+          "className": "MeshPart",
+          "path": "1/1/2/15"
+        },
+        {
+          "name": "lever",
+          "className": "MeshPart",
+          "path": "1/1/2/16"
+        },
+        {
+          "name": "brake_disk_front.001",
+          "className": "MeshPart",
+          "path": "1/1/2/17"
+        },
+        {
+          "name": "brake_caliper_front_01",
+          "className": "MeshPart",
+          "path": "1/1/2/18"
+        },
+        {
+          "name": "rim_front.003",
+          "className": "MeshPart",
+          "path": "1/1/2/19"
+        },
+        {
+          "name": "fender_front",
+          "className": "MeshPart",
+          "path": "1/1/2/20"
+        },
+        {
+          "name": "button_red",
+          "className": "MeshPart",
+          "path": "1/1/2/21"
+        },
+        {
+          "name": "det_handlebar",
+          "className": "MeshPart",
+          "path": "1/1/2/22"
+        },
+        {
+          "name": "rim_front.002",
+          "className": "MeshPart",
+          "path": "1/1/2/23"
+        },
+        {
+          "name": "fender_front.001",
+          "className": "MeshPart",
+          "path": "1/1/2/24"
+        },
+        {
+          "name": "axis_front01",
+          "className": "MeshPart",
+          "path": "1/1/2/25"
+        },
+        {
+          "name": "traverse.001",
+          "className": "MeshPart",
+          "path": "1/1/2/26"
+        },
+        {
+          "name": "hose.001",
+          "className": "MeshPart",
+          "path": "1/1/2/27"
+        },
+        {
+          "name": "shockabsorber_front",
+          "className": "MeshPart",
+          "path": "1/1/2/28"
+        },
+        {
+          "name": "handlebar.001",
+          "className": "MeshPart",
+          "path": "1/1/2/29"
+        },
+        {
+          "name": "rim_front",
+          "className": "MeshPart",
+          "path": "1/1/2/30"
+        },
+        {
+          "name": "det_shockabsorber_front",
+          "className": "MeshPart",
+          "path": "1/1/2/31"
+        },
+        {
+          "name": "bolt_front",
+          "className": "MeshPart",
+          "path": "1/1/2/32"
+        },
+        {
+          "name": "tire_front",
+          "className": "MeshPart",
+          "path": "1/1/2/33"
+        },
+        {
+          "name": "MULT MULT NAO USAR",
+          "className": "Model",
+          "path": "1/1/3"
+        },
+        {
+          "name": "Model",
+          "className": "Model",
+          "path": "1/1/3/1"
+        },
+        {
+          "name": "Model",
+          "className": "Model",
+          "path": "1/1/3/1/1"
+        },
+        {
+          "name": "front",
+          "className": "Model",
+          "path": "1/1/3/2"
+        },
+        {
+          "name": "chass",
+          "className": "Model",
+          "path": "1/1/3/3"
+        },
+        {
+          "name": "PAINEL",
+          "className": "Model",
+          "path": "1/1/3/3/1"
+        },
+        {
+          "name": "axis_bolt_front_Node",
+          "className": "Model",
+          "path": "1/1/3/3/2"
+        },
+        {
+          "name": "axis_chain_Node",
+          "className": "Model",
+          "path": "1/1/3/3/3"
+        },
+        {
+          "name": "axis_front_Node",
+          "className": "Model",
+          "path": "1/1/3/3/4"
+        },
+        {
+          "name": "axis_rear_Node",
+          "className": "Model",
+          "path": "1/1/3/3/5"
+        },
+        {
+          "name": "big_bolts_handle_Node",
+          "className": "Model",
+          "path": "1/1/3/3/6"
+        },
+        {
+          "name": "body_01_Node",
+          "className": "Model",
+          "path": "1/1/3/3/7"
+        }
+      ],
+      "omitted": 438
+    }
+  }
+}

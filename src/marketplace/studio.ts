@@ -97,6 +97,7 @@ function studioData<T>(schema: z.ZodType<T>, value: unknown, label: string): T {
   return parsed.data;
 }
 export class StudioMarketplace implements MarketplaceProvider {
+  private readonly clipResults = new Map<string, AnimationPack["entries"][number]>();
   private readonly creatorStore = new CreatorStore();
   async searchPage(
     _studioId: string,
@@ -292,8 +293,9 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
     studioId: string,
     metadata: AssetMetadata,
     limit = 100,
+    selectedKey?: string,
   ): Promise<AnimationPack> {
-    z.number().int().min(1).max(100).parse(limit);
+    z.number().int().min(0).max(100).parse(limit);
     const empty = {
       assetId: metadata.assetId,
       name: metadata.name,
@@ -315,21 +317,27 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
                 .object({
                   key: z.string().max(1024),
                   name: z.string().max(200),
+                  frameCount: z.number().int().nonnegative().max(100000).optional(),
                   // The manifest describes authored instances, including broken IDs.
                   // Isolate unsupported identities per entry rather than losing the pack.
                   animationId: z.string().max(1024).optional(),
                 })
                 .strict(),
             )
-            .max(100),
+            .max(1000),
           context: animationPackSchema.shape.context,
         })
         .strict(),
       await read(-1),
       "animation manifest",
     );
+    if (selectedKey !== undefined && !manifest.entries.some(entry => entry.key === selectedKey))
+      throw new UpstreamError("The selected clip is absent from this asset revision.");
+    // Large packs remain cheap manifests until the user selects a clip. No pose
+    // capture is attempted for unchecked entries, including oversized sequences.
+    const selective = limit === 0 || selectedKey !== undefined || manifest.entries.length > 32;
     const entries: AnimationPack["entries"] = [];
-    for (const [index, entry] of manifest.entries.slice(0, limit).entries()) {
+    for (const [index, entry] of (selective ? manifest.entries : manifest.entries.slice(0, limit)).entries()) {
       if (metadata.kind === "Animation") entry.name = metadata.name;
       if (
         entry.animationId !== undefined &&
@@ -343,6 +351,17 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
         });
         continue;
       }
+      if (entry.frameCount !== undefined && (entry.frameCount === 0 || entry.frameCount > 300)) {
+        entries.push({ ...entry, error: "This clip exceeds the supported 1–300 keyframe range. Its poses were not inspected." });
+        continue;
+      }
+      if (selective && entry.key !== selectedKey) {
+        entries.push({ ...entry, unchecked: true });
+        continue;
+      }
+      const cacheKey = JSON.stringify([studioId, metadata.assetId, revisionKey(metadata), entry.key]);
+      const cached = this.clipResults.get(cacheKey);
+      if (cached && revisionKey(metadata) && (selective || cached.error)) { entries.push(structuredClone(cached)); continue; }
       try {
         const clip = studioData(
           animationClipSchema,
@@ -360,7 +379,7 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
           }),
         );
         const errorReserve =
-          (Math.min(limit, manifest.entries.length) - index - 1) * 2048;
+          (selective ? manifest.entries.length : Math.min(limit, manifest.entries.length)) * 2048;
         if (bytes + errorReserve > MAX_TRANSFER_BYTES)
           throw new UpstreamError(
             "This pack exceeds the 4 MB preview limit. Preview this animation using its own asset link.",
@@ -374,6 +393,10 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
               ? error.message.slice(0, 400)
               : "Roblox could not load this clip. It may be private, unavailable, or outside the supported R6/R15 preview format.",
         });
+      }
+      if (revisionKey(metadata)) {
+        this.clipResults.set(cacheKey, structuredClone(entries.at(-1)!));
+        if (this.clipResults.size > 16) this.clipResults.delete(this.clipResults.keys().next().value!);
       }
     }
     const after = await this.metadata(studioId, metadata.assetId);
@@ -389,6 +412,11 @@ return game:GetService("HttpService"):JSONEncode({assetId="${assetId}",name=stri
       ...empty,
       entries,
       context: manifest.context,
+      ...(selective ? { coverage: {
+        mode: "selected_clip", total: manifest.entries.length,
+        inspectedKeys: entries.filter(entry => entry.clip).map(entry => entry.key),
+        uncheckedKeys: entries.filter(entry => !entry.clip).map(entry => entry.key),
+      } } : {}),
     });
   }
   async snapshot(studioId: string, metadata: AssetMetadata) {

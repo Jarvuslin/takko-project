@@ -6,21 +6,29 @@ export const animationEntrySchema = z
   .object({
     key: z.string().min(1).max(1024),
     name: z.string().min(1).max(200),
+    frameCount: z.number().int().nonnegative().max(100000).optional(),
     animationId: assetIdSchema.optional(),
     clip: animationClipSchema.optional(),
     error: z.string().min(1).max(400).optional(),
+    unchecked: z.literal(true).optional(),
   })
   .strict()
   .refine(
-    (e) => Boolean(e.clip) !== Boolean(e.error),
-    "A clip needs data or an error.",
+    (e) => [e.clip, e.error, e.unchecked].filter(Boolean).length === 1,
+    "A clip needs captured data, an error, or explicit unchecked status.",
   );
 export const animationPackSchema = z
   .object({
     assetId: assetIdSchema,
     name: z.string().min(1).max(200),
     revisionKey: z.string().max(150),
-    entries: z.array(animationEntrySchema).max(100),
+    entries: z.array(animationEntrySchema).max(1000),
+    coverage: z.object({
+      mode: z.literal("selected_clip"),
+      total: z.number().int().nonnegative().max(1000),
+      inspectedKeys: z.array(z.string().max(1024)).max(1000),
+      uncheckedKeys: z.array(z.string().max(1024)).max(1000),
+    }).strict().optional(),
     context: z
       .object({
         toolCount: z.number().int().nonnegative(),
@@ -50,6 +58,7 @@ export type AnimationPack = z.infer<typeof animationPackSchema>;
 export const studioPublishingLimitation =
   "Studio testing is available for this mapped raw animation. Publishing remains blocked until a permitted published animation ID is supplied. Takko does not publish animations. Temporary registration IDs are Studio-only.";
 export function animationTier(entry: AnimationPack["entries"][number]) {
+  if (entry.unchecked) return "unchecked";
   if (!entry.clip) return "unusable";
   if (entry.animationId) return "published";
   // Native capture produces an ordinal path for every embedded sequence. An arbitrary label is not an identity.
@@ -58,6 +67,7 @@ export function animationTier(entry: AnimationPack["entries"][number]) {
     : "unusable";
 }
 export function studioAnimationPack(pack: AnimationPack): AnimationPack {
+  if (pack.coverage) return pack;
   return {
     ...pack,
     entries: pack.entries.filter((e) => animationTier(e) !== "unusable"),
@@ -78,14 +88,17 @@ export function animationCaptureLuau(
   index = -1,
 ) {
   assetIdSchema.parse(assetId);
-  if (!Number.isInteger(index) || index < -1 || index > 99)
+  if (!Number.isInteger(index) || index < -1 || index > 999)
     throw Error("Invalid animation index");
   return `
 assert(not game:GetService("RunService"):IsRunning(),"Stop Play before reading animations")
 local roots,owned,entries={},{},{}
 local context={toolCount=0,meshPartCount=0,siblings={},omitted=0}
 local function own(item) table.insert(owned,item);return item end
-local function add(item,path,id) assert(#entries<100,"Pack exceeds 100 animations");table.insert(entries,{item=item,key=path,name=string.sub(item and item.Name or "Animation",1,200),animationId=id}) end
+local function add(item,path,id)
+ assert(#entries<1000,"Pack exceeds 1000 animation manifest entries")
+ table.insert(entries,{item=item,key=path,name=string.sub(item and item.Name or "Animation",1,200),animationId=id,frameCount=item and item:IsA("KeyframeSequence") and #item:GetKeyframes() or nil})
+end
 local ok,result=pcall(function()
   if ${kind === "Animation" ? "true" : "false"} then
     add(nil,"asset","${assetId}")
@@ -109,7 +122,7 @@ local ok,result=pcall(function()
   end
   if ${index} < 0 then
     local out={}
-    for _,entry in entries do table.insert(out,{key=entry.key,name=entry.name,animationId=entry.animationId}) end
+    for _,entry in entries do table.insert(out,{key=entry.key,name=entry.name,animationId=entry.animationId,frameCount=entry.frameCount}) end
     return {entries=out,context=context}
   end
   local entry=assert(entries[${index + 1}],"Animation no longer exists in this pack")
@@ -144,6 +157,16 @@ local ok,result=pcall(function()
     end
   end
   local sourcePoseDigest=game:GetService("EncodingService"):ComputeStringHash(game:GetService("HttpService"):JSONEncode(poseIdentity),Enum.HashAlgorithm.Sha256):gsub(".",function(c) return string.format("%02x",string.byte(c)) end)
+  -- Capture events from this exact fetched/cloned sequence, including published references.
+  local authored={poseDigest=sourcePoseDigest,loop=sequence.Loop,priority=sequence.Priority.Name,frames={}}
+  for _,frame in frames do
+    local row={time=frame.Time,name=string.sub(frame.Name,1,200),markers={}}
+    for _,marker in frame:GetMarkers() do
+      assert(#row.markers<100,"Clip exceeds 100 markers per frame")
+      table.insert(row.markers,{name=string.sub(marker.Name,1,200),value=string.sub(marker.Value,1,400)})
+    end
+    table.insert(authored.frames,row)
+  end
   table.sort(tracks,function(a,b) return a.joint<b.joint end)
   local description=own(Instance.new("HumanoidDescription"))
   local model=own(game:GetService("Players"):CreateHumanoidModelFromDescriptionAsync(description,Enum.HumanoidRigType[rig]))
@@ -168,7 +191,7 @@ local ok,result=pcall(function()
   local supported={}
   for _,part in nativeRig do supported[part.name]=true end
   for _,track in tracks do assert(supported[track.joint],"Custom joint '"..track.joint.."' is not supported by the R6/R15 body preview") end
-  return {version=1,name=string.sub(entry.name,1,80),rig=rig,duration=duration,tracks=tracks,nativeRig=nativeRig,sourcePoseDigest=sourcePoseDigest}
+  return {version=1,name=string.sub(entry.name,1,80),rig=rig,duration=duration,tracks=tracks,nativeRig=nativeRig,sourcePoseDigest=sourcePoseDigest,authored=authored}
 end)
 for _,root in roots do
   if root:IsA("Sound") then root.PlayOnRemove=false end

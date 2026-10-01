@@ -38,6 +38,15 @@ export const animationClipSchema = z
     rig: z.enum(["R6", "R15"]),
     duration: z.number().finite().min(0).max(30),
     sourcePoseDigest: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+    authored: z.object({
+      poseDigest: z.string().regex(/^[a-f0-9]{64}$/),
+      loop: z.boolean(), priority: z.string().max(100),
+      frames: z.array(z.object({
+        time: z.number().finite().nonnegative().max(30),
+        name: z.string().max(200),
+        markers: z.array(z.object({ name: z.string().max(200), value: z.string().max(400) }).strict()).max(100),
+      }).strict()).min(1).max(300),
+    }).strict().optional(),
     nativeRig: z
       .array(
         z
@@ -94,6 +103,9 @@ export const animationClipSchema = z
   })
   .strict()
   .superRefine((clip, ctx) => {
+    if (clip.authored && (clip.authored.poseDigest !== clip.sourcePoseDigest ||
+        clip.authored.frames.some(frame => frame.time > clip.duration)))
+      ctx.addIssue({ code: "custom", message: "Authored events must bind to the captured poses and duration." });
     if (clip.nativeRig) {
       const seen = new Set(["HumanoidRootPart"]);
       for (const part of clip.nativeRig) {

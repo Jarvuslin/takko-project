@@ -27,7 +27,7 @@ import { StudioAssetAdapter } from "../generation/studio-asset-adapter";
 import { createStudioAudioCapture } from "../generation/audio-capture";
 import type { AssetAdapter } from "../generation/asset-contract";
 import type { Project } from "../generation/schema";
-import { AssetLibrary, type MarketplaceProvider } from "../marketplace/library";
+import { AssetLibrary, revisionKey, type MarketplaceProvider } from "../marketplace/library";
 import { StudioMarketplace } from "../marketplace/studio";
 import { marketplaceRoutes } from "../marketplace/routes";
 import { discoveryRoutes } from "../marketplace/discovery-routes";
@@ -568,6 +568,7 @@ export function createApp(
         revision: z.number().int(),
         studioId: z.uuid(),
         reference: z.string().min(1).max(1000),
+        selectedKey: z.string().min(1).max(1024).optional(),
       })
       .strict()
       .parse(req.body);
@@ -600,12 +601,28 @@ export function createApp(
         b.studioId,
         parseAssetReference(b.reference),
       );
+      const prior = assertAvailable().animationPacks?.find(pack => pack.assetId === metadata.assetId && pack.revisionKey === revisionKey(metadata));
+      if (b.selectedKey) {
+        const entry = prior?.entries.find(entry => entry.key === b.selectedKey);
+        if (!entry) throw new ConflictError("Select a clip from the current manifest first.");
+        if (!entry.unchecked) return res.json(assertAvailable());
+      }
       const pack = animationPackSchema.parse(
-        await assetLibrary.provider.animations(b.studioId, metadata),
+        await assetLibrary.provider.animations(b.studioId, metadata, 100, b.selectedKey),
       );
       if (pack.assetId !== metadata.assetId)
         throw new RequestError("Studio returned a different asset.");
       const p = assertAvailable();
+      if (b.selectedKey && prior) {
+        const previousErrors = new Map(prior.entries.filter(e => e.error).map(e => [e.key, e]));
+        pack.entries = pack.entries.map(entry => entry.unchecked ? previousErrors.get(entry.key) ?? entry : entry);
+        const replacement = { ...prior, ...pack };
+        const packs = p.animationPacks!.map(saved => saved.id === prior.id ? replacement : saved);
+        if (Buffer.byteLength(JSON.stringify(packs)) > 16 * 1024 * 1024)
+          throw new ConflictError("This project has reached its 16 MB animation preview limit.");
+        p.animationPacks = packs;
+        return res.json(store.save(p));
+      }
       if (!pack.entries.length) return res.json(p);
       const existing = p.animationPacks?.find(
         (a) =>
