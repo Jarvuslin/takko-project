@@ -28,6 +28,7 @@ for (const file of [
   "identity.mjs",
   "policy.mjs",
   "supervisor.mjs",
+  "parent-channel.mjs",
   "service-environment.mjs",
   "status.html",
 ])

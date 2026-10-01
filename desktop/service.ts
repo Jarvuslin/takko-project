@@ -5,13 +5,16 @@ import { createApp } from "../src/server/app";
 import { windowsCredentialVault } from "../src/generation/credential-vault";
 import { closeOwnedStudioChildren } from "../src/generation/studio-mcp-client";
 import { rehearsalTransport } from "./rehearsal";
+import { serviceLease } from "./service-lease";
+
+type OwnerPort = { on(event: "close", callback: () => void): void; start(): void };
 
 // Electron utilityProcess supplies parentPort. Node IPC is used only by offline tests.
 const parentPort = (
   process as unknown as {
     parentPort?: {
       postMessage: (message: unknown) => void;
-      on: (event: string, cb: (event: { data: unknown }) => void) => void;
+      on: (event: string, cb: (event: { data: unknown; ports?: OwnerPort[] }) => void) => void;
     };
   }
 ).parentPort;
@@ -51,11 +54,23 @@ const server = app.listen(0, "127.0.0.1", () => {
   if (parentPort) parentPort.postMessage(message);
   else process.send!(message);
 });
-let heartbeatAt = Date.now();
+const liveness = serviceLease(Date.now);
 let closing = false;
-function shutdown() {
+let exitReason = "process-exit";
+let ownerPort: OwnerPort | undefined;
+// Fixed-schema, bounded, overwrite-only record. Never serialize messages or errors.
+process.once("exit", (code) => {
+  try {
+    fs.writeFileSync(path.join(directory, "service-exit.json"), JSON.stringify({
+      version: 1, at: new Date().toISOString(), pid: process.pid,
+      reason: exitReason, code, heartbeatAgeMs: liveness.heartbeatAge(),
+    }) + "\n");
+  } catch { /* A failed diagnostic write must not prevent termination. */ }
+});
+function shutdown(reason: string) {
   if (closing) return;
   closing = true;
+  exitReason = reason;
   closeOwnedStudioChildren();
   clearInterval(lease);
   // The main process enforces the outer shutdown deadline; this closes idle sockets.
@@ -63,20 +78,25 @@ function shutdown() {
   server.closeIdleConnections();
   setTimeout(() => process.exit(0), 4000).unref();
 }
-function receive(message: unknown) {
+function receive(message: unknown, ports?: OwnerPort[]) {
   if (!message || typeof message !== "object") return;
   const command = message as { nonce?: string; type?: string };
   if (command.nonce !== nonce) return;
-  if (command.type === "heartbeat") heartbeatAt = Date.now();
-  if (command.type === "shutdown") shutdown();
+  if (command.type === "owner" && !ownerPort && ports?.length === 1) {
+    ownerPort = ports[0];
+    ownerPort.on("close", () => shutdown("parent-disconnect"));
+    ownerPort.start();
+  }
+  if (command.type === "heartbeat") liveness.heartbeat();
+  if (command.type === "shutdown") shutdown("parent-shutdown");
 }
-if (parentPort) parentPort.on("message", (event) => receive(event.data));
+if (parentPort) parentPort.on("message", (event) => receive(event.data, event.ports));
 else {
-  process.on("message", receive);
-  process.on("disconnect", shutdown);
+  process.on("message", (message) => receive(message));
+  process.on("disconnect", () => shutdown("parent-disconnect"));
 }
 const lease = setInterval(() => {
-  if (Date.now() - heartbeatAt > 10000) shutdown();
+  if (liveness.expired()) shutdown("heartbeat-expired");
 }, 2000);
-process.on("SIGTERM", shutdown);
-process.on("SIGINT", shutdown);
+process.on("SIGTERM", () => shutdown("SIGTERM"));
+process.on("SIGINT", () => shutdown("SIGINT"));

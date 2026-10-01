@@ -5,12 +5,14 @@ import {
   dialog,
   nativeTheme,
   utilityProcess,
+  MessageChannelMain,
   shell,
 } from "electron";
 import path from "node:path";
 import fs from "node:fs";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ServiceSupervisor } from "./supervisor.mjs";
+import { attachParentChannel } from "./parent-channel.mjs";
 import { serviceEnvironment } from "./service-environment.mjs";
 import { desktopIdentity, desktopDataDirectory } from "./identity.mjs";
 import {
@@ -40,7 +42,7 @@ else {
   const failureUrl = pathToFileURL(path.join(resources, "status.html")).href;
   const supervisor = new ServiceSupervisor((nonce) => {
     const env = serviceEnvironment(process.env);
-    return utilityProcess.fork(path.join(resources, "service.cjs"), [], {
+    const child = utilityProcess.fork(path.join(resources, "service.cjs"), [], {
       cwd: dataDirectory,
       env: {
         ...env,
@@ -54,6 +56,8 @@ else {
       stdio: "ignore",
       serviceName: "Takko local service",
     });
+    attachParentChannel(child, nonce, new MessageChannelMain());
+    return child;
   });
   async function start() {
     if (starting || quitting || supervisor.child) return;

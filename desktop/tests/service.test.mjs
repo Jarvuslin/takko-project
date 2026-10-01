@@ -7,8 +7,8 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { once } from "node:events";
 
-test(
-  "bundled service uses isolated data, private readiness, and graceful shutdown",
+for (const ending of ["shutdown", "disconnect"]) test(
+  `bundled service uses isolated data, private readiness, and ${ending}`,
   { timeout: 20000 },
   async () => {
     const directory = await fs.mkdtemp(
@@ -62,9 +62,17 @@ test(
       await fs.access(path.join(directory, "projects"));
       child.send({ type: "shutdown", nonce: "wrong" });
       assert.equal((await fetch(origin + "/api/status")).status, 200);
-      child.send({ type: "shutdown", nonce });
+      if (ending === "disconnect") child.disconnect();
+      else child.send({ type: "shutdown", nonce });
       const [code] = await exited;
       assert.equal(code, 0, stderr);
+      const recordText = await fs.readFile(path.join(directory, "service-exit.json"), "utf8");
+      const record = JSON.parse(recordText);
+      assert.deepEqual(Object.keys(record).sort(), ["at", "code", "heartbeatAgeMs", "pid", "reason", "version"]);
+      assert.equal(record.reason, ending === "disconnect" ? "parent-disconnect" : "parent-shutdown");
+      assert.equal(record.code, 0);
+      assert.ok(recordText.length < 512);
+      assert.ok(!recordText.includes(nonce));
       await assert.rejects(fetch(origin + "/api/status"));
     } finally {
       clearTimeout(readyTimer);
